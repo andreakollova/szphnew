@@ -1,0 +1,261 @@
+@import "tailwindcss";
+
+/* ============================================================
+   SZPH Design System — CSS premenné + theming
+   ============================================================ */
+
+:root {
+  /* Základné farby (brand-agnostic) */
+  --navy:        #0A2472;
+  --navy-deep:   #001A4D;
+  --navy-light:  #1a3a8f;
+  --red:         #EE1C25;
+  --red-dark:    #C0151D;
+  --white:       #FFFFFF;
+  --ink:         #0A0E1A;
+  --sky:         #4D7CFF;
+  --sky-light:   #7da0ff;
+  --glass:       rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-highlight: rgba(255, 255, 255, 0.05);
+
+  /* Shadowing pre glass */
+  --shadow-glass: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+  --shadow-glass-lg: 0 8px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+
+  /* Fonty */
+  --font-garet: "Garet", "Inter", sans-serif;
+  --font-inter: "Inter", system-ui, sans-serif;
+
+  /* Defaultný brand (fieldhockey) */
+  --brand-primary: var(--sky);
+  --brand-accent: var(--red);
+  --brand-bg: var(--ink);
+  --brand-bg-secondary: #0d1220;
+  --brand-text: var(--white);
+  --brand-hero-overlay: rgba(10, 14, 26, 0.65);
+}
+
+/* ============================================================
+   fieldhockey.sk — energická, sky-first
+   ============================================================ */
+[data-brand="fieldhockey"] {
+  --brand-primary: var(--sky);
+  --brand-accent: var(--red);
+  --brand-bg: #080c18;
+  --brand-bg-secondary: #0d1428;
+  --brand-text: var(--white);
+  --brand-hero-overlay: rgba(8, 12, 24, 0.6);
+  --brand-gradient: linear-gradient(135deg, var(--navy-deep) 0%, #0d1a3a 50%, #0a0e1a 100%);
+  --brand-card-accent: var(--sky);
+  --brand-nav-bg: rgba(8, 12, 24, 0.85);
+}
+
+/* ============================================================
+   szph.sk — inštitucionálna, navy-first
+   ============================================================ */
+[data-brand="szph"] {
+  --brand-primary: var(--navy);
+  --brand-accent: var(--red);
+  --brand-bg: #020817;
+  --brand-bg-secondary: #060e25;
+  --brand-text: var(--white);
+  --brand-hero-overlay: rgba(2, 8, 23, 0.7);
+  --brand-gradient: linear-gradient(135deg, var(--navy-deep) 0%, #051040 50%, #020817 100%);
+  --brand-card-accent: var(--navy-light);
+  --brand-nav-bg: rgba(2, 8, 23, 0.9);
+}
+
+/* ============================================================
+   Base reset + typografia
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--brand-bg, var(--ink));
+  color: var(--brand-text, var(--white));
+  font-family: var(--font-inter);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   Typografické utility
+   ============================================================ */
+.font-garet { font-family: var(--font-garet); }
+.font-inter { font-family: var(--font-inter); }
+
+.text-hero {
+  font-family: var(--font-garet);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+.text-display {
+  font-family: var(--font-garet);
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.text-headline {
+  font-family: var(--font-garet);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+.label-wide {
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ============================================================
+   Liquid Glass komponenty
+   ============================================================ */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-sm {
+  background: var(--glass);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-glass-lg);
+}
+
+/* ============================================================
+   Gradient overlays
+   ============================================================ */
+.overlay-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--brand-hero-overlay, rgba(10, 14, 26, 0.65));
+  pointer-events: none;
+}
+
+/* Diagonálny rez (clip-path) */
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
+
+.clip-diagonal-reverse {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 88%);
+}
+
+/* ============================================================
+   Scroll animations
+   ============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+/* Staggered animácie pre listy */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* ============================================================
+   Scrollbar štýl
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ============================================================
+   Utility classes
+   ============================================================ */
+.container-szph {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-szph {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-szph {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* Status badge farby */
+.badge-scheduled { background: rgba(77, 124, 255, 0.2); color: var(--sky); border: 1px solid rgba(77, 124, 255, 0.3); }
+.badge-live      { background: rgba(238, 28, 37, 0.2);  color: #ff4d55;   border: 1px solid rgba(238, 28, 37, 0.4); }
+.badge-finished  { background: rgba(255,255,255,0.1);   color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.15); }
+.badge-postponed { background: rgba(255,200,0,0.1);     color: #ffc800;   border: 1px solid rgba(255,200,0,0.3); }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

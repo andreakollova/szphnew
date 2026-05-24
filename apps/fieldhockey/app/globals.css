@@ -1,0 +1,6 @@
+@import "@szph/ui/styles";
+
+/* Fieldhockey-specific overrides */
+[data-brand="fieldhockey"] {
+  --brand-hero-bg: url('/images/banner1.jpg');
+}
