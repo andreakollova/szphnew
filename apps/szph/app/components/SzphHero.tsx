@@ -10,16 +10,16 @@ const BAR_H = 88;
 export function SzphHero() {
   return (
     <>
-      <div style={{ background: "#051937" }} className="-mt-16 md:-mt-[112px] pt-16 md:pt-[112px]">
+      <div style={{ background: "#051937" }} className="-mt-16 md:-mt-[112px]">
       <section
-        className="relative overflow-hidden w-full h-[calc(82vh)] md:h-[calc(80vh)] min-h-[520px] max-h-[800px]"
+        className="relative overflow-hidden w-full h-[calc(90vh)] md:h-[calc(88vh)] min-h-[600px] max-h-[920px]"
         style={{ background: "#051937" }}
       >
         {/* ── Banner fotka — contain, celá viditeľná ── */}
         <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 1 }}>
-          <div className="relative" style={{ width: "113%", height: "113%" }}>
+          <div className="relative" style={{ width: "115%", height: "115%", left: "5%", top: "8%" }}>
             <Image
-              src="/images/hlavnybanner.png"
+              src="/images/hlavnybanner3.png"
               alt=""
               fill
               className="object-contain object-center"
@@ -35,7 +35,7 @@ export function SzphHero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to right, #051937 0%, #051937 14%, rgba(5,25,55,0.95) 17%, rgba(5,25,55,0.6) 22%, rgba(5,25,55,0.2) 27%, transparent 33%)",
+            background: "linear-gradient(to right, #051937 0%, #051937 18%, rgba(5,25,55,0.95) 22%, rgba(5,25,55,0.6) 28%, rgba(5,25,55,0.2) 34%, transparent 40%)",
           }}
         />
 
@@ -44,7 +44,7 @@ export function SzphHero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to left, #051937 0%, #051937 20%, rgba(5,25,55,0.9) 23%, rgba(5,25,55,0.3) 28%, transparent 34%)",
+            background: "linear-gradient(to left, #051937 0%, #051937 12%, rgba(5,25,55,0.9) 15%, rgba(5,25,55,0.3) 20%, transparent 26%)",
           }}
         />
 
@@ -61,7 +61,7 @@ export function SzphHero() {
         <div
           className="absolute bottom-0 left-0 right-0 pointer-events-none"
           style={{
-            zIndex: 10,
+            zIndex: 4,
             height: "40px",
             background: "#f8f9fa",
             borderRadius: "40px 40px 0 0",
@@ -88,7 +88,7 @@ export function SzphHero() {
 
         {/* ── Ľavý textový obsah ── */}
         <div
-          className="absolute inset-0 left-0 flex items-center pt-16 md:pt-[112px]"
+          className="absolute inset-0 left-0 flex items-end pt-16 md:pb-[120px]"
           style={{ zIndex: 5, width: "52%" }}
         >
           <motion.div
@@ -133,16 +133,20 @@ export function SzphHero() {
             <div className="flex items-center gap-3">
               <Link
                 href="/o-szph"
-                className="flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold text-white transition-all hover:brightness-110"
-                style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)" }}
+                className="flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:bg-white hover:text-[#051937]"
+                style={{ border: "1.5px solid rgba(255,255,255,0.5)" }}
               >
                 O SZPH
               </Link>
               <Link
                 href="/novinky"
-                className="flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold text-white transition-all hover:brightness-110"
-                style={{ background: "#C8102E" }}
+                className="group flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:scale-[1.02]"
+                style={{
+                  background: "#C8102E",
+                  boxShadow: "0 0 20px rgba(200,16,46,0.3)",
+                }}
               >
+                <span className="h-1.5 w-1.5 rounded-full bg-white/50 animate-pulse" />
                 Aktuality
               </Link>
             </div>
@@ -153,7 +157,7 @@ export function SzphHero() {
         {/* ── Ľavá sidebar — socials · line · #wearehockey · line · scroll ── */}
         <div
           className="hidden md:flex absolute left-5 flex-col items-center pointer-events-none"
-          style={{ zIndex: 12, color: "rgba(255,255,255,0.85)", top: "140px", bottom: "80px" }}
+          style={{ zIndex: 12, color: "rgba(255,255,255,0.85)", top: "160px", bottom: "80px" }}
         >
           {/* Social icons */}
           <div className="flex flex-col items-center gap-2.5 pointer-events-auto mb-4">
@@ -203,98 +207,203 @@ export function SzphHero() {
           </div>
         </div>
 
-        {/* ── Plávajúca karta najbližšieho zápasu ── */}
+        {/* ── Annotation: bodka na hráčovi + šikmá čiara k video karte ── */}
+        <svg
+          className="hidden md:block absolute pointer-events-none"
+          style={{ zIndex: 13, top: "0", left: "0", width: "100%", height: "100%" }}
+        >
+          {/* Šikmá čiara od hráča k video karte */}
+          <line
+            x1="66%" y1="28%"
+            x2="calc(100% - 60px - 100px)" y2="28%"
+            stroke="rgba(255,255,255,0.3)"
+            strokeWidth="1"
+            strokeDasharray="none"
+          />
+          {/* Bodka na hráčovi */}
+          <circle cx="66%" cy="28%" r="5" fill="white" opacity="0.9">
+            <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite" />
+            <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="66%" cy="28%" r="4" fill="white" />
+        </svg>
+
+        {/* ── Video card — Gól mesiaca ── */}
         <motion.div
           initial={{ opacity: 0, y: -12, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          className="hidden md:block absolute"
+          style={{ right: "60px", top: "150px", zIndex: 14 }}
+        >
+          <div
+            className="group/vid relative cursor-pointer"
+            style={{ width: "200px" }}
+          >
+            {/* Malá karta */}
+            <div
+              className="relative overflow-hidden"
+              style={{
+                borderRadius: "16px",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              <video
+                className="w-full h-auto block"
+                src="/images/roh.mov"
+                muted
+                playsInline
+                autoPlay
+              />
+              {/* Badge — top left */}
+              <div
+                className="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2 py-1"
+                style={{ borderRadius: "8px", background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
+              >
+                <span style={{ fontSize: "9px" }}>⚡</span>
+                <span className="font-bold text-white uppercase" style={{ fontSize: "7px", letterSpacing: "0.1em" }}>Gol mesiaca</span>
+              </div>
+              {/* Expand icon — top right */}
+              <div
+                className="absolute top-2.5 right-2.5 flex items-center justify-center"
+                style={{ width: "22px", height: "22px", borderRadius: "7px", background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
+              >
+                <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Expanded view on hover */}
+            <div
+              className="hidden group-hover/vid:block fixed"
+              style={{
+                bottom: "195px",
+                right: "40px",
+                width: "50vw",
+                zIndex: 60,
+                borderRadius: "20px",
+                overflow: "hidden",
+                boxShadow: "0 16px 60px rgba(0,0,0,0.4)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              <video
+                className="w-full h-auto block"
+                src="/images/roh.mov"
+                muted
+                loop
+                playsInline
+                autoPlay
+              />
+              {/* Glass bottom bar */}
+              <div
+                className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-6 py-4"
+                style={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(16px)" }}
+              >
+                <div>
+                  <p className="font-bold text-white leading-none" style={{ fontSize: "14px" }}>Gol: Tomas Romanec</p>
+                  <p className="text-white/50 font-semibold leading-none mt-1" style={{ fontSize: "10px" }}>Asistencia: Daniel Petras, Matus Parajka</p>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+                  <span className="font-bold text-white/60 uppercase" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>Video</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ── Ticket — najbližší zápas ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 16, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="hidden md:block absolute bg-white"
+          className="hidden md:flex absolute flex-col overflow-hidden"
           style={{
-            boxShadow: "0 4px 24px rgba(1,45,116,0.14), 0 1px 8px rgba(1,45,116,0.06)",
-            width: "148px",
-            right: "80px",
-            bottom: "32px",
-            zIndex: 10,
-            display: "flex",
-            flexDirection: "column",
+            width: "200px",
+            right: "60px",
+            bottom: "100px",
+            zIndex: 11,
+            borderRadius: "20px",
+            background: "#ffffff",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
           }}
         >
-          {/* Label */}
-          <div className="px-5 pt-6 pb-4">
-            <p className="font-extrabold uppercase tracking-widest text-[#051937]" style={{ fontSize: "10px", letterSpacing: "0.16em" }}>
-              Najbližší<br />zápas
+          {/* Header */}
+          <div className="px-5 pt-5 pb-3 flex items-center justify-between">
+            <p className="font-bold uppercase tracking-widest text-[#051937]/40" style={{ fontSize: "8px", letterSpacing: "0.14em" }}>
+              Najbližší zápas
             </p>
           </div>
 
-          {/* Divider */}
-          <div style={{ height: "1px", background: "rgba(1,45,116,0.1)", margin: "0 20px" }} />
-
-          {/* Dátum + čas */}
-          <div className="px-5 pt-5 pb-5 flex items-start gap-3">
-            <p className="font-garet font-bold text-[#051937] leading-none shrink-0" style={{ fontSize: "34px", lineHeight: 1 }}>
+          {/* Dátum */}
+          <div className="px-5 pb-4 flex items-baseline gap-2">
+            <p className="font-garet font-bold text-[#051937] leading-none" style={{ fontSize: "28px" }}>
               15
             </p>
-            <div className="pt-0.5">
-              <p className="font-bold uppercase tracking-wide text-[#051937]/40 leading-none" style={{ fontSize: "8px" }}>
-                Jún
-              </p>
-              <p className="font-black leading-none mt-1.5" style={{ fontSize: "13px", color: "#C8102E" }}>
-                15:00
-              </p>
-            </div>
-          </div>
-
-          {/* Tím 1 */}
-          <div className="px-5 py-3 flex items-center gap-3">
-            <div className="relative shrink-0 overflow-hidden" style={{ width: "28px", height: "20px" }}>
-              <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/500px-Flag_of_Slovakia.svg.png" alt="SVK" fill className="object-cover" sizes="28px" />
-            </div>
             <div>
-              <p className="font-extrabold text-[#051937] leading-none" style={{ fontSize: "11px" }}>SVK</p>
-              <p className="text-[#94a3b8] leading-none mt-1" style={{ fontSize: "8.5px" }}>MUŽI</p>
+              <p className="font-bold uppercase text-[#051937]/40 leading-none" style={{ fontSize: "9px" }}>Jún</p>
+              <p className="font-black text-[#C8102E] leading-none mt-1" style={{ fontSize: "14px" }}>15:00</p>
             </div>
           </div>
 
-          {/* Malý divider */}
-          <div style={{ height: "1px", background: "rgba(1,45,116,0.07)", margin: "0 20px" }} />
+          {/* Perforácia */}
+          <div className="relative flex items-center" style={{ height: "1px" }}>
+            <div className="absolute -left-[8px] h-4 w-4 rounded-full" style={{ background: "#051937", boxShadow: "0 0 0 4px #ffffff" }} />
+            <div className="flex-1 mx-4" style={{ borderTop: "2px dashed rgba(1,45,116,0.12)" }} />
+            <div className="absolute -right-[8px] h-4 w-4 rounded-full" style={{ background: "#051937", boxShadow: "0 0 0 4px #ffffff" }} />
+          </div>
 
-          {/* Tím 2 */}
-          <div className="px-5 py-3 flex items-center gap-3">
-            <div className="relative shrink-0 overflow-hidden" style={{ width: "28px", height: "20px" }}>
-              <Image src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg" alt="CRO" fill className="object-cover" sizes="28px" />
+          {/* Tímy */}
+          <div className="px-5 py-4 flex flex-col gap-3">
+            {/* SVK */}
+            <div className="flex items-center gap-3">
+              <div className="relative shrink-0 overflow-hidden rounded-sm" style={{ width: "28px", height: "20px" }}>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/500px-Flag_of_Slovakia.svg.png" alt="SVK" fill className="object-cover" sizes="28px" />
+              </div>
+              <div>
+                <p className="font-extrabold text-[#051937] leading-none" style={{ fontSize: "12px" }}>Slovensko</p>
+                <p className="text-[#94a3b8] font-bold uppercase leading-none mt-1" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>Muži</p>
+              </div>
             </div>
-            <div>
-              <p className="font-extrabold text-[#051937] leading-none" style={{ fontSize: "11px" }}>CRO</p>
-              <p className="text-[#94a3b8] leading-none mt-1" style={{ fontSize: "8.5px" }}>MUŽI</p>
+
+            {/* VS */}
+            <div className="flex items-center gap-2">
+              <div style={{ flex: 1, height: "1px", background: "rgba(1,45,116,0.08)" }} />
+              <span className="font-black text-[#051937]/20" style={{ fontSize: "9px" }}>VS</span>
+              <div style={{ flex: 1, height: "1px", background: "rgba(1,45,116,0.08)" }} />
+            </div>
+
+            {/* CRO */}
+            <div className="flex items-center gap-3">
+              <div className="relative shrink-0 overflow-hidden rounded-sm" style={{ width: "28px", height: "20px" }}>
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg" alt="CRO" fill className="object-cover" sizes="28px" />
+              </div>
+              <div>
+                <p className="font-extrabold text-[#051937] leading-none" style={{ fontSize: "12px" }}>Chorvátsko</p>
+                <p className="text-[#94a3b8] font-bold uppercase leading-none mt-1" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>Muži</p>
+              </div>
             </div>
           </div>
 
-          {/* Dlhší divider */}
-          <div style={{ height: "1px", background: "rgba(1,45,116,0.12)", margin: "0 20px" }} />
-
-          {/* Súťaž */}
-          <div className="px-5 pt-3 pb-3">
-            <p className="font-bold uppercase tracking-widest text-[#94a3b8]" style={{ fontSize: "7.5px", letterSpacing: "0.14em" }}>
-              EuroHockey 5s
-            </p>
-          </div>
-
-          {/* Button */}
-          <a
+          {/* Footer */}
+          <Link
             href="/zapasy"
-            className="flex items-center justify-between px-5 py-4 font-bold text-white transition-all hover:brightness-110"
-            style={{ background: "#051937", fontSize: "10px", letterSpacing: "0.06em" }}
+            className="flex items-center justify-between px-5 py-3.5 transition-all hover:bg-[#f5f7fb]"
+            style={{ borderTop: "1px solid rgba(1,45,116,0.06)" }}
           >
-            Zobraziť
-            <svg className="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <span className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>EuroHockey 5s</span>
+            <svg className="h-3.5 w-3.5 text-[#051937]/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </Link>
         </motion.div>
       </section>
       </div>
       {/* Spacer pod bannerom */}
-      <div style={{ height: "24px", background: "#f8f9fa" }} />
+      <div style={{ height: "0px", background: "#f8f9fa" }} />
     </>
   );
 }

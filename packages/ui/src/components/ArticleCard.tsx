@@ -62,7 +62,7 @@ export function ArticleCard({ article, href, className, delay = 0, featured = fa
           </span>
 
           <h3 className={cn(
-            "font-garet font-bold text-[#012d74] transition-colors group-hover:text-[#016fb4] leading-snug",
+            "font-bold text-[#012d74] transition-colors group-hover:text-[#016fb4] leading-snug",
             featured ? "text-xl md:text-2xl" : "text-base"
           )}>
             {article.title}

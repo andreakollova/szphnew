@@ -25,18 +25,41 @@ const MOCK_ARTICLES = [
   },
 ] as any[];
 
+async function getWorldNews() {
+  try {
+    const { createClient } = await import("@supabase/supabase-js");
+    const hr = createClient(
+      "https://oivzvihdhidpbrjpygfl.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9pdnp2aWhkaGlkcGJyanB5Z2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI3MTgsImV4cCI6MjA5MDIwODcxOH0.7d917agBywM3D1RlFJ27oHTRvjBaE_pyDxCzLKaKaIE"
+    );
+    const { data } = await hr.from("articles").select("title_sk, image_url, url, scraped_at").eq("published", true).order("scraped_at", { ascending: false }).limit(4);
+    return (data ?? []).map((a: any) => ({
+      id: a.url,
+      slug: a.url,
+      title: a.title_sk ?? "",
+      cover_image_url: a.image_url,
+      category: "svet",
+      published_at: a.scraped_at,
+      status: "published",
+      href: a.url,
+    }));
+  } catch { return []; }
+}
+
 async function getData() {
   const cookieStore = await cookies();
   const supabase = createServerSupabaseClient(cookieStore);
-  const [articles, matches, competitions] = await Promise.allSettled([
-    getPublishedArticles(supabase, { site: "szph", limit: 6 }),
+  const [articles, matches, competitions, worldNews] = await Promise.allSettled([
+    getPublishedArticles(supabase, { site: "szph", limit: 12 }),
     getUpcomingMatches(supabase, { site: "szph", limit: 20 }),
     getAllCompetitions(supabase),
+    getWorldNews(),
   ]);
   return {
     articles:     articles.status === "fulfilled" && articles.value.length > 0 ? articles.value : MOCK_ARTICLES,
     matches:      matches.status === "fulfilled"  ? matches.value  : [],
     competitions: competitions.status === "fulfilled" ? competitions.value : [],
+    worldNews:    worldNews.status === "fulfilled" ? worldNews.value : [],
   };
 }
 
@@ -66,7 +89,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
       <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
         {articles.map((article) => (
           <Link key={article.id} href={`/novinky/${article.slug}`} className="group block overflow-hidden">
-            <div className="relative overflow-hidden" style={{ height: "180px" }}>
+            <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "12px" }}>
               {article.cover_image_url ? (
                 <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               ) : (
@@ -77,7 +100,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
               <span className="block font-bold uppercase text-[#C8102E] mb-1" style={{ fontSize: "9px", letterSpacing: "0.14em" }}>
                 {article.category}
               </span>
-              <h3 className="font-garet font-bold text-[#051937] leading-snug group-hover:text-[#012D74] transition-colors line-clamp-2" style={{ fontSize: "13px" }}>
+              <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012D74] transition-colors line-clamp-2" style={{ fontSize: "13px" }}>
                 {article.title}
               </h3>
             </div>
@@ -113,7 +136,7 @@ function SectionHeading({ label, title, href, hrefLabel, light = false }: {
 }
 
 export default async function SzphHome() {
-  const { articles, matches, competitions } = await getData();
+  const { articles, matches, competitions, worldNews } = await getData();
 
   return (
     <>
@@ -122,7 +145,7 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           AKTUALITY + RÝCHLE ODKAZY
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#f8f9fa" }} className="py-12">
+      <section style={{ background: "#f8f9fa" }} className="pt-0 pb-12">
         <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-0 items-start">
 
@@ -160,7 +183,7 @@ export default async function SzphHome() {
                 </p>
                 <div className="mb-4" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
 
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-1.5 overflow-hidden" style={{ borderRadius: "12px" }}>
                   {[
                     { home: "SVK", homeFull: "Slovensko", homeFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/500px-Flag_of_Slovakia.svg.png", away: "CRO", awayFull: "Chorvátsko", awayFlag: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg", homeScore: 3, awayScore: 1, date: "12. 6.", competition: "EHC" },
                     { home: "SVK", homeFull: "Slovensko", homeFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/500px-Flag_of_Slovakia.svg.png", away: "POL", awayFull: "Poľsko", awayFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/500px-Flag_of_Poland.svg.png", homeScore: 1, awayScore: 2, date: "10. 6.", competition: "EHC" },
@@ -215,7 +238,7 @@ export default async function SzphHome() {
                 <Link
                   href="/reprezentacia"
                   className="mt-3 flex items-center justify-between px-4 py-3 font-bold text-white w-full"
-                  style={{ background: "#051937", fontSize: "10px", letterSpacing: "0.06em" }}
+                  style={{ background: "#051937", fontSize: "10px", letterSpacing: "0.06em", borderRadius: "10px" }}
                 >
                   Všetky zápasy reprezentácie
                   <svg className="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -235,12 +258,16 @@ export default async function SzphHome() {
       <section style={{ background: "#f8f9fa" }} className="py-14">
         <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="flex items-center justify-between mb-7">
-            <h2
-              className="font-garet font-bold italic text-[#051937]"
-              style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}
-            >
-              Zápasové centrum
-            </h2>
+            <div className="flex items-center gap-4">
+              {/* Gradient glow line */}
+              <div style={{ width: "2px", height: "32px", borderRadius: "1px", background: "linear-gradient(to bottom, rgba(200,16,46,0.8), rgba(5,25,55,0.3))" }} />
+              <h2
+                className="font-bold text-[#051937]"
+                style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)" }}
+              >
+                Zápasové centrum
+              </h2>
+            </div>
             <Link href="/zapasy" className="hidden sm:flex items-center gap-1.5 font-bold text-[#94a3b8] hover:text-[#051937] transition-colors" style={{ fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
               Všetky zápasy
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -255,7 +282,7 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           PODCAST
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#030f22" }} className="py-16">
+      <section className="py-16 mx-4 md:mx-8" style={{ background: "#051937", borderRadius: "24px" }}>
         <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
 
@@ -268,7 +295,7 @@ export default async function SzphHome() {
                 <Image src="/images/podcastlogo2.png" alt="SZPH Podcast" fill className="object-contain object-left" sizes="180px" />
               </div>
 
-              <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)", textTransform: "uppercase" }}>
+              <h3 className="font-bold text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
                 Vypočujte si najnovšie príbehy zo sveta pozemného hokeja
               </h3>
               <p className="text-white/60 mb-8" style={{ fontSize: "13px", fontWeight: 400 }}>
@@ -344,6 +371,7 @@ export default async function SzphHome() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative overflow-hidden block"
+              style={{ borderRadius: "16px" }}
             >
               <Image
                 src="/images/podcast.jpg"
@@ -388,13 +416,10 @@ export default async function SzphHome() {
       <section style={{ background: "#f8f9fa" }} className="py-12">
         <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <CardSection
-            title="Novinky z Európy"
-            href="/novinky/europa"
+            title="Novinky zo sveta"
+            href="/novinky/svet"
             cols={4}
-            articles={articles.slice(0, 4).length >= 4 ? articles.slice(0, 4) : [
-              ...articles.slice(0, 3).map((a, i) => ({ ...a, id: a.id + "_eu", cover_image_url: ["/images/banner4.jpg", "/images/banner2.jpg", "/images/banner3.jpg"][i] })),
-              { ...articles[0], id: articles[0].id + "_eu3", cover_image_url: "/images/banner1.jpg" },
-            ]}
+            articles={worldNews.length >= 4 ? worldNews : articles.slice(0, 4)}
           />
         </div>
       </section>
@@ -463,82 +488,101 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           VIDEO ZÓNA
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#06101f" }} className="py-14">
-        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+      <section className="py-14 mx-4 md:mx-8" style={{ background: "#1a1a1a", borderRadius: "24px" }}>
+        <div className="px-6 lg:px-10 xl:px-12 max-w-[1600px] mx-auto">
 
           {/* Header */}
           <div className="flex items-center justify-between mb-10">
-            <div>
-              <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
-                Video zóna
-              </h2>
-              <div className="mt-1.5" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
+            <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center shrink-0" style={{ width: "40px", height: "40px", borderRadius: "12px", background: "rgba(255,255,255,0.08)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.12)" }}>
+                <svg className="h-5 w-5 text-white/70" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <div>
+                <h2 className="font-bold text-white" style={{ fontSize: "clamp(1.2rem, 2vw, 1.6rem)" }}>
+                  Video zóna
+                </h2>
+                <p className="text-white/40 font-semibold" style={{ fontSize: "11px" }}>Streamy, highlighty a shorts</p>
+              </div>
             </div>
-            <Link href="/video" className="font-bold text-white/35 hover:text-white/80 transition-colors flex items-center gap-2" style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            <Link href="/video" className="flex items-center gap-2 rounded-full px-4 py-2 font-bold text-white/60 hover:text-white transition-all" style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.12)" }}>
               Všetky videá
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
             </Link>
           </div>
 
           {/* ── STREAMY: horizontálny carousel ── */}
-          <div className="flex gap-4 overflow-x-auto pb-1 mb-8" style={{ scrollbarWidth: "none" }}>
+          <div className="flex gap-4 overflow-x-auto pb-2 mb-10" style={{ scrollbarWidth: "none" }}>
             {[
-              { id: "W8Umeplx-8o", url: "https://www.youtube.com/watch?v=W8Umeplx-8o&t=1604s", title: "Extraliga muži — kolo 1", meta: "Jun 2025" },
-              { id: "QDL6rHpqd_c", url: "https://www.youtube.com/watch?v=QDL6rHpqd_c&t=4977s", title: "Extraliga muži — kolo 2", meta: "Jun 2025" },
-              { id: "9HxmftfEa0A", url: "https://www.youtube.com/watch?v=9HxmftfEa0A&t=817s", title: "Extraliga muži — kolo 3", meta: "Máj 2025" },
-              { id: "R2xOukt5BgE", url: "https://www.youtube.com/watch?v=R2xOukt5BgE", title: "Extraliga muži — kolo 4", meta: "Máj 2025" },
+              { id: "W8Umeplx-8o", url: "https://www.youtube.com/watch?v=W8Umeplx-8o&t=1604s", title: "Extraliga muzi — kolo 1", meta: "Jun 2025" },
+              { id: "QDL6rHpqd_c", url: "https://www.youtube.com/watch?v=QDL6rHpqd_c&t=4977s", title: "Extraliga muzi — kolo 2", meta: "Jun 2025" },
+              { id: "9HxmftfEa0A", url: "https://www.youtube.com/watch?v=9HxmftfEa0A&t=817s", title: "Extraliga muzi — kolo 3", meta: "Maj 2025" },
+              { id: "R2xOukt5BgE", url: "https://www.youtube.com/watch?v=R2xOukt5BgE", title: "Extraliga muzi — kolo 4", meta: "Maj 2025" },
             ].map((v) => (
               <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer"
                 className="group relative overflow-hidden shrink-0 block"
-                style={{ width: "380px", aspectRatio: "16/9", borderRadius: "12px" }}>
+                style={{ width: "360px", aspectRatio: "16/9", borderRadius: "16px" }}>
                 <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.05]" sizes="380px" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(6,16,31,0.95) 0%, rgba(6,16,31,0.15) 55%, transparent 100%)" }} />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" sizes="360px" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.95) 0%, rgba(5,25,55,0.1) 50%, transparent 100%)" }} />
+                {/* Glass play — hover only */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="flex items-center justify-center rounded-full"
-                    style={{ width: "52px", height: "52px", background: "rgba(200,16,46,0.95)", boxShadow: "0 4px 24px rgba(200,16,46,0.5)" }}>
+                    style={{ width: "48px", height: "48px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)" }}>
                     <svg className="h-5 w-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                   </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <span className="block mb-1.5 font-bold text-white/40" style={{ fontSize: "8px", letterSpacing: "0.1em", textTransform: "uppercase" }}>STREAM · {v.meta}</span>
-                  <p className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "14px" }}>{v.title}</p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="px-2 py-0.5 rounded-full font-bold text-white/80" style={{ fontSize: "7px", letterSpacing: "0.1em", textTransform: "uppercase", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                      Stream
+                    </span>
+                    <span className="font-semibold text-white/30" style={{ fontSize: "8px" }}>{v.meta}</span>
+                  </div>
+                  <p className="font-bold text-white leading-tight" style={{ fontSize: "13px" }}>{v.title}</p>
                 </div>
               </a>
             ))}
           </div>
 
-          {/* Separator */}
-          <div style={{ height: "1px", background: "rgba(255,255,255,0.06)" }} className="mb-8" />
-
-          {/* ── SHORTS: 5 portrait kariet vedľa seba ── */}
+          {/* ── SHORTS ── */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <span className="font-garet font-bold italic text-white/50 shrink-0" style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Shorts</span>
-              <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.07)" }} />
+              <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center shrink-0" style={{ width: "28px", height: "28px", borderRadius: "8px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                  <svg className="h-3.5 w-3.5 text-white/50" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2h9l7 10-7 10H4l7-10z"/></svg>
+                </div>
+                <span className="font-bold text-white/50 shrink-0" style={{ fontSize: "11px", letterSpacing: "0.06em", textTransform: "uppercase" }}>Shorts</span>
+              </div>
+              <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.06)" }} />
             </div>
-            <div className="grid grid-cols-6 gap-3">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
               {[
-                { id: "QGsvNAgpFuw", url: "https://www.youtube.com/shorts/QGsvNAgpFuw", title: "Extraligový gól týždňa" },
-                { id: "AFiMGDHFfrQ", url: "https://www.youtube.com/shorts/AFiMGDHFfrQ", title: "Top momenty kola" },
-                { id: "jwDGy4oCevE", url: "https://www.youtube.com/shorts/jwDGy4oCevE", title: "Najlepší zákrok kola" },
-                { id: "4P99iVz3e_k", url: "https://www.youtube.com/shorts/4P99iVz3e_k", title: "Reprezentácia v akcii" },
-                { id: "ywGDsIWSPDw", url: "https://www.youtube.com/shorts/ywGDsIWSPDw", title: "Záber týždňa" },
+                { id: "QGsvNAgpFuw", url: "https://www.youtube.com/shorts/QGsvNAgpFuw", title: "Gol tyzdna" },
+                { id: "AFiMGDHFfrQ", url: "https://www.youtube.com/shorts/AFiMGDHFfrQ", title: "Top momenty" },
+                { id: "jwDGy4oCevE", url: "https://www.youtube.com/shorts/jwDGy4oCevE", title: "Najlepsi zakrok" },
+                { id: "4P99iVz3e_k", url: "https://www.youtube.com/shorts/4P99iVz3e_k", title: "Reprezentacia" },
+                { id: "ywGDsIWSPDw", url: "https://www.youtube.com/shorts/ywGDsIWSPDw", title: "Zaber tyzdna" },
                 { id: "4rgr9GDsQQk", url: "https://www.youtube.com/shorts/4rgr9GDsQQk", title: "Short" },
               ].map((v) => (
                 <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer"
-                  className="group relative overflow-hidden block" style={{ aspectRatio: "9/16", borderRadius: "10px" }}>
+                  className="group relative overflow-hidden block" style={{ aspectRatio: "9/16", borderRadius: "14px" }}>
                   <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.06]" sizes="20vw" unoptimized />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(6,16,31,0.85) 0%, transparent 55%)" }} />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
-                      style={{ width: "40px", height: "40px", background: "rgba(200,16,46,0.92)", backdropFilter: "blur(4px)", boxShadow: "0 4px 16px rgba(200,16,46,0.5)" }}>
-                      <svg className="h-4 w-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.05]" sizes="20vw" unoptimized />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.85) 0%, transparent 50%)" }} />
+                  {/* Glass play on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="flex items-center justify-center rounded-full"
+                      style={{ width: "36px", height: "36px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)" }}>
+                      <svg className="h-3.5 w-3.5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                     </div>
                   </div>
+                  {/* Bottom label */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <p className="font-bold text-white leading-tight" style={{ fontSize: "10px" }}>{v.title}</p>
+                  </div>
+                  {/* Short badge */}
                   <div className="absolute top-2.5 left-2.5 flex items-center gap-1 px-1.5 py-0.5 font-bold text-white"
-                    style={{ background: "rgba(0,0,0,0.5)", fontSize: "7px", letterSpacing: "0.1em", backdropFilter: "blur(4px)", borderRadius: "4px" }}>
+                    style={{ background: "rgba(0,0,0,0.4)", fontSize: "7px", letterSpacing: "0.08em", backdropFilter: "blur(4px)", borderRadius: "6px" }}>
                     <svg className="h-2.5 w-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2h9l7 10-7 10H4l7-10z"/></svg>
                     SHORT
                   </div>

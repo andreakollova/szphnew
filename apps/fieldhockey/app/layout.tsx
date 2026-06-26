@@ -33,7 +33,8 @@ export default function RootLayout({
           crossSiteUrl="https://szph.sk"
           crossSiteLabel="szph.sk"
         />
-        <main>{children}</main>
+        {/* 98px = blue bar(34) + white nav(64) */}
+        <main className="pt-[64px] md:pt-[98px]">{children}</main>
         <Footer brand="fieldhockey" />
       </body>
     </html>

@@ -468,7 +468,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                 <circle cx="12" cy="12" r="9" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 8.5l5 3.5-5 3.5V8.5z" />
               </svg>
-              Live zápasy
+              Zápasové centrum
             </a>
           </div>
         </div>
@@ -541,7 +541,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                     className="flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-bold text-white"
                     style={{ background: "#C8102E" }}>
                     <span className="h-2 w-2 rounded-full bg-white/70 animate-pulse" />
-                    Live zápasy a archív
+                    Zápasové centrum a archív
                   </a>
                 </div>
               </div>

@@ -236,7 +236,7 @@ export function MatchCenter({ competitions, matches, className }: MatchCenterPro
         {/* Riadok 1: Liga / Reprezentácia + Nasledujúce/Minulé */}
         <div className="flex items-center justify-between gap-4">
           {/* Liga / Reprezentácia */}
-          <div className="flex items-center" style={{ border: "1px solid rgba(1,45,116,0.12)" }}>
+          <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "10px" }}>
             {([{ key: "liga", label: "Liga" }, { key: "reprezentacia", label: "Reprezentácia" }] as const).map((tab, i) => (
               <button
                 key={tab.key}
@@ -257,7 +257,7 @@ export function MatchCenter({ competitions, matches, className }: MatchCenterPro
           </div>
 
           {/* Nasledujúce / Minulé */}
-          <div className="flex items-center shrink-0" style={{ border: "1px solid rgba(1,45,116,0.12)" }}>
+          <div className="flex items-center shrink-0 overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "10px" }}>
             {([{ key: "upcoming", label: "Nasledujúce" }, { key: "past", label: "Minulé" }] as const).map((tab, i) => (
               <button
                 key={tab.key}
@@ -277,7 +277,7 @@ export function MatchCenter({ competitions, matches, className }: MatchCenterPro
 
         {/* Riadok 2: Kategórie — len pre Ligu */}
         {activeSection === "liga" && (
-          <div className="flex items-center overflow-x-auto gap-0" style={{ border: "1px solid rgba(1,45,116,0.12)" }}>
+          <div className="flex items-center overflow-x-auto gap-0 overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "10px" }}>
             {CATEGORY_TABS.map((tab, i) => (
               <button
                 key={tab.key}
@@ -304,8 +304,8 @@ export function MatchCenter({ competitions, matches, className }: MatchCenterPro
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
-          style={{ border: "1px solid rgba(1,45,116,0.08)" }}
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 overflow-hidden"
+          style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "16px" }}
         >
           {list.map((m, i) => (
             <div
