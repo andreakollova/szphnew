@@ -58,7 +58,7 @@ export function SzphHero() {
       >
         {/* ── Banner fotka — posunutá nižšie, v strede bez gradientu ── */}
         <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 1, background: "#051937" }}>
-          <div className="relative" style={{ width: "70%", height: "100%", top: "calc(40px + 3%)", left: "1%" }}>
+          <div className="relative overflow-hidden" style={{ width: "70%", height: "100%", top: "calc(40px + 3%)", left: "1%", borderRadius: "20px 20px 0 0" }}>
             <Image
               src="/images/hlavnybanner.png"
               alt=""
