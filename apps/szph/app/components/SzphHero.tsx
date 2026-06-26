@@ -85,7 +85,7 @@ export function SzphHero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to left, #051937 0%, #051937 12%, rgba(5,25,55,0.85) 20%, rgba(5,25,55,0.4) 30%, transparent 42%)",
+            background: "linear-gradient(to left, #051937 0%, #051937 25%, rgba(5,25,55,0.97) 30%, rgba(5,25,55,0.85) 35%, rgba(5,25,55,0.5) 42%, transparent 55%)",
           }}
         />
 
