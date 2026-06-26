@@ -54,24 +54,47 @@ export function SzphHero() {
     <>
       <section
         className="relative overflow-hidden w-full -mt-16 md:-mt-[112px] h-[calc(65vh+64px)] md:h-[calc(62vh+112px)] min-h-[480px] max-h-[740px]"
-        style={{ background: "#f5f5f5" }}
+        style={{ background: "#051937" }}
       >
-        {/* ── Pozadie bannerbg.png ── */}
-        <div
-          className="absolute inset-0"
-          style={{ zIndex: 1, overflow: "hidden" }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              backgroundImage: "url('/images/bannerbg2.png')",
-              backgroundSize: "auto 100%",
-              backgroundPosition: "left top",
-              backgroundRepeat: "no-repeat",
-            }}
+        {/* ── Banner fotka ── */}
+        <div className="absolute inset-0" style={{ zIndex: 1 }}>
+          <Image
+            src="/images/bannerbg2.png"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            quality={90}
+            sizes="100vw"
           />
         </div>
+
+        {/* ── Tmavomodrý gradient z ĽAVEJ strany ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 2,
+            background: "linear-gradient(to right, rgba(5,25,55,0.97) 0%, rgba(5,25,55,0.85) 25%, rgba(5,25,55,0.4) 50%, transparent 70%)",
+          }}
+        />
+
+        {/* ── Tmavomodrý gradient z PRAVEJ strany ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 2,
+            background: "linear-gradient(to left, rgba(5,25,55,0.95) 0%, rgba(5,25,55,0.7) 20%, transparent 50%)",
+          }}
+        />
+
+        {/* ── Spodný gradient ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 2,
+            background: "linear-gradient(to top, rgba(5,25,55,0.9) 0%, transparent 35%)",
+          }}
+        />
 
         {/* ── Hráčka — maximálna, vycentrovaná ── */}
         <div
@@ -112,12 +135,11 @@ export function SzphHero() {
           />
         </div>
 
-        {/* ── #wearehockey — vertikálny text na ľavom okraji ── */}
         {/* ── Mobilný gradient pre čitateľnosť ── */}
         <div
           className="md:hidden absolute inset-0 pointer-events-none"
           style={{
-            background: "linear-gradient(to right, rgba(245,245,245,0.95) 0%, rgba(245,245,245,0.7) 55%, transparent 100%)",
+            background: "linear-gradient(to right, rgba(5,25,55,0.95) 0%, rgba(5,25,55,0.7) 55%, transparent 100%)",
             zIndex: 4,
           }}
         />
@@ -135,7 +157,7 @@ export function SzphHero() {
           >
             {/* Hlavný nadpis — veľký */}
             <h1
-              className="font-garet font-bold italic leading-[0.88] text-[#051937]"
+              className="font-garet font-bold italic leading-[0.88] text-white"
               style={{ fontSize: "clamp(2.8rem, 5.2vw, 5.6rem)", letterSpacing: "-0.03em" }}
             >
               JEDEN TÍM.
@@ -153,7 +175,7 @@ export function SzphHero() {
 
             {/* Label POD nadpismi */}
             <p
-              className="mt-4 font-semibold uppercase tracking-[0.18em] text-[#051937]/40"
+              className="mt-4 font-semibold uppercase tracking-[0.18em] text-white/40"
               style={{ fontSize: "0.6rem" }}
             >
               K rozvoju pozemného hokeja na Slovensku
@@ -170,14 +192,14 @@ export function SzphHero() {
               <Link
                 href="/o-szph"
                 className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all hover:opacity-80"
-                style={{ background: "rgba(5,25,55,0.08)", color: "#051937" }}
+                style={{ background: "rgba(255,255,255,0.12)", color: "#ffffff" }}
               >
                 O SZPH
               </Link>
               <Link
                 href="/novinky"
                 className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition-all hover:opacity-90"
-                style={{ background: "#051937" }}
+                style={{ background: "#C8102E" }}
               >
                 Aktuality
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -192,7 +214,7 @@ export function SzphHero() {
         {/* ── #wearehockey + Scroll — jeden kontajner, jedna os ── */}
         <div
           className="hidden md:flex absolute left-4 inset-y-0 flex-col items-center justify-between py-8 pointer-events-none"
-          style={{ zIndex: 6, color: "rgba(5,25,55,0.45)" }}
+          style={{ zIndex: 6, color: "rgba(255,255,255,0.4)" }}
         >
           <div />
           <span

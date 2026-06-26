@@ -61,6 +61,28 @@ export async function getMatchesByCompetition(
   return (data ?? []) as Match[];
 }
 
+export async function getRecentMatches(
+  supabase: SupabaseClient,
+  options: { site?: VisibleOn; limit?: number } = {}
+): Promise<Match[]> {
+  const { site, limit = 6 } = options;
+
+  let query = supabase
+    .from("matches")
+    .select(MATCH_SELECT)
+    .eq("status", "finished")
+    .order("match_date", { ascending: false })
+    .limit(limit);
+
+  if (site && site !== "both") {
+    query = query.in("visible_on", [site, "both"]);
+  }
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return (data ?? []) as Match[];
+}
+
 export async function getAllMatches(
   supabase: SupabaseClient,
   options: { limit?: number; offset?: number } = {}
