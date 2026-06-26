@@ -5,5 +5,6 @@ export { ArticleCard } from "./components/ArticleCard";
 export { VideoCard } from "./components/VideoCard";
 export { MatchCenter } from "./components/MatchCenter";
 export { Navbar } from "./components/Navbar";
+export { NavbarSzph } from "./components/NavbarSzph";
 export { Footer } from "./components/Footer";
 export { cn, formatDate, formatTime, formatDateTime, slugify } from "./lib/utils";

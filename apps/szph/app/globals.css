@@ -1,1 +1,211 @@
-@import "@szph/ui/styles";
+@import "tailwindcss";
+@source "../../../packages/ui/src";
+
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-bolditalic.otf") format("opentype");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-extrabolditalic.otf") format("opentype");
+  font-weight: 800; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-heavy.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-heavyitalic.otf") format("opentype");
+  font-weight: 900; font-style: italic; font-display: swap;
+}
+
+:root {
+  --navy:        #051937;
+  --navy-deep:   #011a4a;
+  --navy-mid:    #051937;
+  --navy-light:  #016fb4;
+  --red:         #016fb4;
+  --red-dark:    #015a96;
+  --white:       #FFFFFF;
+  --ink:         #0d1117;
+  --sky:         #016fb4;
+  --sky-light:   #2a8fc8;
+  --font-garet:  "Garet", "Inter", sans-serif;
+  --font-inter:  "Inter", system-ui, sans-serif;
+  --bg:          #ffffff;
+  --bg-alt:      #f5f7fb;
+  --bg-blue:     #e8f0fb;
+  --bg-dark:     #080c18;
+  --text:        #0d1117;
+  --text-muted:  #64748b;
+  --border:      rgba(1, 45, 116, 0.08);
+  --shadow-card: 0 1px 3px rgba(1,45,116,0.06), 0 4px 16px rgba(1,45,116,0.05);
+  --shadow-card-hover: 0 4px 20px rgba(1,45,116,0.12), 0 1px 4px rgba(1,45,116,0.06);
+  --shadow-md:   0 4px 24px rgba(1,45,116,0.10);
+  --glass:           rgba(255,255,255,0.07);
+  --glass-border:    rgba(255,255,255,0.13);
+  --shadow-glass:    0 4px 30px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.12);
+  --brand-primary:   var(--navy);
+  --brand-accent:    var(--red);
+  --brand-nav-bg:    #020817;
+}
+
+[data-brand="szph"] {
+  --brand-primary: var(--navy);
+  --brand-accent:  var(--red);
+  --brand-nav-bg:  #010d2e;
+}
+
+[data-brand="fieldhockey"] {
+  --brand-primary: var(--sky);
+  --brand-accent:  var(--red);
+  --brand-nav-bg:  #011a4a;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.font-garet { font-family: var(--font-garet) !important; }
+
+.text-hero {
+  font-family: var(--font-garet);
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.text-display {
+  font-family: var(--font-garet);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+}
+
+.text-headline {
+  font-family: var(--font-garet);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.label-wide {
+  font-family: var(--font-inter);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  border-radius: 0.875rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
+}
+
+.surface {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 0.875rem;
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+  border-radius: 1rem;
+}
+
+.section-dark {
+  background: linear-gradient(135deg, #010c20 0%, #012050 100%);
+  color: #fff;
+}
+
+.section-navy {
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-mid) 100%);
+  color: #fff;
+}
+
+.container-szph {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+@media (min-width: 768px) {
+  .container-szph { padding-left: 2rem; padding-right: 2rem; }
+}
+@media (min-width: 1280px) {
+  .container-szph { padding-left: 3rem; padding-right: 3rem; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-up { animation: fadeUp 0.55s ease-out both; }
+.animate-fade-in { animation: fadeIn 0.4s ease-out both; }
+.stagger-1 { animation-delay: 0.08s; }
+.stagger-2 { animation-delay: 0.16s; }
+.stagger-3 { animation-delay: 0.24s; }
+.stagger-4 { animation-delay: 0.32s; }
+
+.badge-scheduled { background: rgba(77,124,255,0.1); color: var(--sky); border: 1px solid rgba(77,124,255,0.25); }
+.badge-live      { background: rgba(238,28,37,0.1);  color: var(--red); border: 1px solid rgba(238,28,37,0.25); }
+.badge-finished  { background: #F7F9FF; color: #94a3b8; border: 1px solid var(--border); }
+.badge-postponed { background: rgba(245,158,11,0.1); color: #d97706; border: 1px solid rgba(245,158,11,0.25); }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb { background: rgba(10,36,114,0.18); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(10,36,114,0.32); }
+
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }

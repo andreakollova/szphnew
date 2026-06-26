@@ -2,214 +2,622 @@ import Image from "next/image";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { createServerSupabaseClient } from "@szph/db/client";
-import { getPublishedArticles, getPublishedVideos, getUpcomingMatches, getAllCompetitions, getPartners } from "@szph/db";
-import { ArticleCard, VideoCard, MatchCenter, GlassCard, GlassPanel } from "@szph/ui";
+import { getPublishedArticles, getUpcomingMatches, getAllCompetitions } from "@szph/db";
+import { MatchCenter } from "@szph/ui";
+import { SzphHero } from "./components/SzphHero";
+import { RychleOdkazy } from "./components/RychleOdkazy";
+
+const MOCK_ARTICLES = [
+  {
+    id: "s1", slug: "vyrocna-konferencia-szph-2025", title: "Výročná konferencia SZPH 2025 — prijaté rozhodnutia",
+    excerpt: "Delegáti výročnej konferencie SZPH schválili nový rozpočet, plán rozvoja mládeže a aktualizáciu stanov zväzu. Prinášame kompletný prehľad prijatých uznesení.",
+    cover_image_url: "/images/banner2.jpg", category: "oznamy", published_at: "2025-06-12T09:00:00Z", site: "szph", status: "published",
+  },
+  {
+    id: "s2", slug: "novy-sutazny-poriadok-2025", title: "Nový súťažný poriadok pre sezónu 2025/2026 je schválený",
+    excerpt: "Riadiaci zbor SZPH schválil aktualizovaný súťažný poriadok. Hlavné zmeny sa týkajú disciplinárnych konaní, registrácie hráčov a organizácie mládežníckych turnajov.",
+    cover_image_url: "/images/banner1.jpg", category: "oznamy", published_at: "2025-06-08T11:00:00Z", site: "szph", status: "published",
+  },
+  {
+    id: "s3", slug: "dotacie-msv-2025", title: "SZPH získal dotácie MŠVVaŠ SR na rozvoj mládeže 2025",
+    excerpt: "Ministerstvo školstva, vedy, výskumu a športu SR pridelilo SZPH dotácie na rozvoj mládežníckeho pozemného hokeja. Finančné prostriedky budú smerovať do klubov.",
+    cover_image_url: "/images/banner3.jpg", category: "novinky", published_at: "2025-06-03T14:00:00Z", site: "szph", status: "published",
+  },
+] as any[];
 
 async function getData() {
   const cookieStore = await cookies();
   const supabase = createServerSupabaseClient(cookieStore);
-
-  const [articles, videos, matches, competitions, partners] = await Promise.allSettled([
+  const [articles, matches, competitions] = await Promise.allSettled([
     getPublishedArticles(supabase, { site: "szph", limit: 6 }),
-    getPublishedVideos(supabase, { site: "szph", limit: 6 }),
     getUpcomingMatches(supabase, { site: "szph", limit: 20 }),
     getAllCompetitions(supabase),
-    getPartners(supabase),
   ]);
-
   return {
-    articles:     articles.status === "fulfilled"     ? articles.value     : [],
-    videos:       videos.status === "fulfilled"       ? videos.value       : [],
-    matches:      matches.status === "fulfilled"      ? matches.value      : [],
+    articles:     articles.status === "fulfilled" && articles.value.length > 0 ? articles.value : MOCK_ARTICLES,
+    matches:      matches.status === "fulfilled"  ? matches.value  : [],
     competitions: competitions.status === "fulfilled" ? competitions.value : [],
-    partners:     partners.status === "fulfilled"     ? partners.value     : [],
   };
 }
 
+function CardSection({ title, href, articles, cols = 3 }: { title: string; href: string; articles: any[]; cols?: number }) {
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "13px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            {title}
+          </h2>
+          <div className="mt-1.5" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
+        </div>
+        <Link
+          href={href}
+          className="flex items-center gap-2 font-bold text-[#051937] hover:text-[#C8102E] transition-colors"
+          style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}
+        >
+          Zobraziť všetky
+          <div className="flex items-center justify-center rounded-full border border-[#051937]" style={{ width: "26px", height: "26px" }}>
+            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </Link>
+      </div>
+      <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
+        {articles.map((article) => (
+          <Link key={article.id} href={`/novinky/${article.slug}`} className="group block overflow-hidden">
+            <div className="relative overflow-hidden" style={{ height: "180px" }}>
+              {article.cover_image_url ? (
+                <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+              ) : (
+                <div className="w-full h-full bg-[#e2e8f0]" />
+              )}
+            </div>
+            <div className="pt-3">
+              <span className="block font-bold uppercase text-[#C8102E] mb-1" style={{ fontSize: "9px", letterSpacing: "0.14em" }}>
+                {article.category}
+              </span>
+              <h3 className="font-garet font-bold text-[#051937] leading-snug group-hover:text-[#012D74] transition-colors line-clamp-2" style={{ fontSize: "13px" }}>
+                {article.title}
+              </h3>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SectionHeading({ label, title, href, hrefLabel, light = false }: {
+  label?: string; title: string; href?: string; hrefLabel?: string; light?: boolean;
+}) {
+  return (
+    <div className="flex items-end justify-between mb-8">
+      <div>
+        {label && <span className={`label-wide block mb-1.5 ${light ? "text-white/50" : "text-[var(--sky)]"}`}>{label}</span>}
+        <h2 className="font-garet font-black text-[var(--sky)] leading-tight"
+          style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)", fontStyle: "italic" }}>
+          {title}
+        </h2>
+      </div>
+      {href && (
+        <Link href={href} className={`hidden sm:flex items-center gap-1 text-sm font-semibold transition-colors ${light ? "text-white/50 hover:text-white" : "text-[var(--sky)] hover:text-[var(--navy)]"}`}>
+          {hrefLabel || "Viac"}
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
+      )}
+    </div>
+  );
+}
+
 export default async function SzphHome() {
-  const { articles, videos, matches, competitions, partners } = await getData();
+  const { articles, matches, competitions } = await getData();
 
   return (
     <>
-      {/* ======================================================
-          HERO — striedmejší, inštitucionálny
-          ====================================================== */}
-      <section className="relative min-h-[70vh] flex items-end pb-16 pt-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/banner2.jpg"
-            alt="SZPH hero"
-            fill
-            className="object-cover object-center"
-            priority
-            quality={85}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-bg)] via-[var(--brand-bg)]/60 to-[var(--brand-bg)]/20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand-bg)]/80 to-transparent" />
-        </div>
+      <SzphHero />
 
-        {/* Bottom accent */}
-        <div
-          className="absolute bottom-0 inset-x-0 h-1"
-          style={{ background: "linear-gradient(90deg, var(--navy) 0%, var(--red) 100%)" }}
-        />
+      {/* ═══════════════════════════════════════════════════════
+          AKTUALITY + RÝCHLE ODKAZY
+          ═══════════════════════════════════════════════════ */}
+      <section style={{ background: "#f8f9fa" }} className="py-12">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-0 items-start">
 
-        <div className="container-szph relative z-10">
-          <span className="label-wide text-[var(--sky)]">Slovenský zväz pozemného hokeja</span>
-          <h1 className="text-display font-garet font-black text-white mt-3 max-w-2xl">
-            Riadime slovenský<br />
-            <span className="text-[var(--sky)]">pozemný hokej</span>
-          </h1>
-          <p className="mt-4 text-white/60 max-w-lg">
-            Oficiálna stránka Slovenského zväzu pozemného hokeja. Informácie pre kluby, funkcionárov, médiá a partnerov.
-          </p>
+            {/* ── Ľavý stĺpec: Aktuality + Novinky + Reprezentácia ── */}
+            <div className="pr-5 xl:pr-8 flex flex-col gap-10">
 
-          {/* Quick links */}
-          <div className="mt-8 flex flex-wrap gap-3">
-            {[
-              { label: "Dokumenty", href: "/dokumenty", icon: "📄" },
-              { label: "Pre kluby", href: "/pre-kluby", icon: "🏒" },
-              { label: "Kontakt",   href: "/kontakt",   icon: "✉️" },
-            ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
-              >
-                {link.icon} {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+              {/* Aktuality */}
+              <CardSection
+                title="Aktuality"
+                href="/novinky"
+                articles={articles.slice(0, 3)}
+              />
 
-      {/* ======================================================
-          RÝCHLE SEKCIE
-          ====================================================== */}
-      <section className="container-szph py-16">
-        <div className="grid gap-4 sm:grid-cols-3">
-          {[
-            {
-              title: "Všetko o pozemnom hokeji",
-              desc:  "História, pravidlá, slovenská liga a medzinárodné súťaže.",
-              href:  "/o-pozemnom-hokeji",
-              icon:  "🏑",
-              color: "var(--sky)",
-            },
-            {
-              title: "Pre kluby",
-              desc:  "Registrácia, pravidlá, formuláre a všetko pre členské kluby.",
-              href:  "/pre-kluby",
-              icon:  "🏛️",
-              color: "var(--navy-light)",
-            },
-            {
-              title: "Dokumenty a smernice",
-              desc:  "Stanovy, predpisy, smernice a oficiálne dokumenty SZPH.",
-              href:  "/dokumenty",
-              icon:  "📋",
-              color: "var(--red)",
-            },
-          ].map((item, i) => (
-            <GlassCard key={item.href} delay={i * 0.1} hover className="p-6 group cursor-pointer">
-              <Link href={item.href} className="block h-full">
-                <span className="text-3xl">{item.icon}</span>
-                <h3
-                  className="font-garet text-lg font-bold text-white mt-4 transition-colors group-hover:text-[var(--sky)]"
-                >
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm text-white/50">{item.desc}</p>
-                <div
-                  className="mt-4 flex items-center gap-1 text-sm font-semibold transition-all group-hover:gap-2"
-                  style={{ color: item.color }}
-                >
-                  Viac info
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </Link>
-            </GlassCard>
-          ))}
-        </div>
-      </section>
+              {/* Novinky */}
+              <CardSection
+                title="Novinky"
+                href="/novinky"
+                articles={articles.slice(3, 6).length > 0 ? articles.slice(3, 6) : articles.slice(0, 3).map((a, i) => ({ ...a, id: a.id + "_n", cover_image_url: ["/images/banner3.jpg", "/images/banner4.jpg", "/images/banner1.jpg"][i] }))}
+              />
 
-      {/* ======================================================
-          NOVINKY
-          ====================================================== */}
-      <section className="container-szph py-16 border-t border-white/5">
-        <div className="mb-8 flex items-end justify-between">
-          <div>
-            <span className="label-wide text-[var(--sky)]">Aktuálne</span>
-            <h2 className="text-headline text-white mt-1">Novinky a oznamy</h2>
-          </div>
-          <Link href="/novinky" className="hidden sm:flex items-center gap-1 text-sm text-white/50 hover:text-white">
-            Všetky novinky →
-          </Link>
-        </div>
 
-        {articles.length === 0 ? (
-          <GlassPanel className="py-12 text-center"><p className="text-white/40">Žiadne novinky</p></GlassPanel>
-        ) : (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {articles.slice(0, 6).map((article, i) => (
-              <ArticleCard key={article.id} article={article} delay={i * 0.06} />
-            ))}
-          </div>
-        )}
-      </section>
-
-      {/* ======================================================
-          MATCH CENTER
-          ====================================================== */}
-      <section className="container-szph py-16 border-t border-white/5">
-        <MatchCenter competitions={competitions} matches={matches} />
-      </section>
-
-      {/* ======================================================
-          VIDEO
-          ====================================================== */}
-      {videos.length > 0 && (
-        <section className="py-16 border-t border-white/5">
-          <div className="container-szph mb-6 flex items-end justify-between">
-            <div>
-              <span className="label-wide text-[var(--sky)]">Multimedia</span>
-              <h2 className="text-headline text-white mt-1">Video</h2>
             </div>
-            <Link href="/video" className="hidden sm:flex items-center gap-1 text-sm text-white/50 hover:text-white">
-              Všetky videá →
+
+            {/* ── Rýchle Odkazy + Posledné zápasy rep. — sticky ── */}
+            <div
+              className="pl-5 xl:pl-8 pt-1 self-start sticky top-[120px] flex flex-col gap-5"
+              style={{ borderLeft: "1px solid rgba(1,45,116,0.08)" }}
+            >
+              <RychleOdkazy />
+
+              {/* Posledné zápasy reprezentácie */}
+              <div className="pt-6">
+                <p className="font-garet font-bold italic text-[#051937] mb-2" style={{ fontSize: "13px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                  Posledné zápasy
+                </p>
+                <div className="mb-4" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
+
+                <div className="flex flex-col gap-1.5">
+                  {[
+                    { home: "SVK", homeFull: "Slovensko", homeFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/500px-Flag_of_Slovakia.svg.png", away: "CRO", awayFull: "Chorvátsko", awayFlag: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg", homeScore: 3, awayScore: 1, date: "12. 6.", competition: "EHC" },
+                    { home: "SVK", homeFull: "Slovensko", homeFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/500px-Flag_of_Slovakia.svg.png", away: "POL", awayFull: "Poľsko", awayFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/500px-Flag_of_Poland.svg.png", homeScore: 1, awayScore: 2, date: "10. 6.", competition: "EHC" },
+                    { home: "AUT", homeFull: "Rakúsko", homeFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_Austria.svg/500px-Flag_of_Austria.svg.png", away: "SVK", awayFull: "Slovensko", awayFlag: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/500px-Flag_of_Slovakia.svg.png", homeScore: 0, awayScore: 4, date: "8. 6.", competition: "EHC" },
+                  ].map((m, i) => {
+                    const win = m.homeScore > m.awayScore;
+                    const draw = m.homeScore === m.awayScore;
+                    return (
+                      <div key={i} className="bg-white" style={{ padding: "12px 14px" }}>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "8px", letterSpacing: "0.14em" }}>
+                            {m.date} · {m.competition}
+                          </span>
+                          <span
+                            className="font-bold uppercase"
+                            style={{
+                              fontSize: "8px",
+                              letterSpacing: "0.1em",
+                              color: win ? "#16a34a" : draw ? "#94a3b8" : "#C8102E",
+                            }}
+                          >
+                            {win ? "Výhra" : draw ? "Remíza" : "Prehra"}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          {/* Home */}
+                          <div className="flex items-center gap-1.5 flex-1 min-w-0">
+                            <div className="relative shrink-0 overflow-hidden" style={{ width: "22px", height: "15px" }}>
+                              <Image src={m.homeFlag} alt={m.homeFull} fill className="object-cover" sizes="22px" />
+                            </div>
+                            <span className="font-extrabold text-[#051937] truncate" style={{ fontSize: "10px" }}>{m.homeFull}</span>
+                          </div>
+                          {/* Score */}
+                          <div className="shrink-0 flex items-center gap-1.5 px-2">
+                            <span className="font-garet font-black text-[#051937]" style={{ fontSize: "18px", lineHeight: 1 }}>{m.homeScore}</span>
+                            <span className="text-[#94a3b8]" style={{ fontSize: "11px" }}>–</span>
+                            <span className="font-garet font-black text-[#051937]" style={{ fontSize: "18px", lineHeight: 1 }}>{m.awayScore}</span>
+                          </div>
+                          {/* Away */}
+                          <div className="flex items-center gap-1.5 flex-1 min-w-0 justify-end">
+                            <span className="font-extrabold text-[#051937] truncate" style={{ fontSize: "10px" }}>{m.awayFull}</span>
+                            <div className="relative shrink-0 overflow-hidden" style={{ width: "22px", height: "15px" }}>
+                              <Image src={m.awayFlag} alt={m.awayFull} fill className="object-cover" sizes="22px" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <Link
+                  href="/reprezentacia"
+                  className="mt-3 flex items-center justify-between px-4 py-3 font-bold text-white w-full"
+                  style={{ background: "#051937", fontSize: "10px", letterSpacing: "0.06em" }}
+                >
+                  Všetky zápasy reprezentácie
+                  <svg className="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          ZAPASOVE CENTRUM
+          ═══════════════════════════════════════════════════ */}
+      <section style={{ background: "#f8f9fa" }} className="py-14">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+          <div className="flex items-center justify-between mb-7">
+            <h2
+              className="font-garet font-bold italic text-[#051937]"
+              style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}
+            >
+              Zápasové centrum
+            </h2>
+            <Link href="/zapasy" className="hidden sm:flex items-center gap-1.5 font-bold text-[#94a3b8] hover:text-[#051937] transition-colors" style={{ fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              Všetky zápasy
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
-          <div className="container-szph">
-            <div className="flex gap-4 overflow-x-auto pb-4 snap-x scrollbar-none -mx-4 px-4">
-              {videos.map((video, i) => (
-                <div key={video.id} className="snap-start">
-                  <VideoCard video={video} delay={i * 0.06} />
+          <MatchCenter competitions={competitions} matches={matches} />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          PODCAST
+          ═══════════════════════════════════════════════════ */}
+      <section style={{ background: "#030f22" }} className="py-16">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+
+
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-8 xl:gap-16 items-center">
+
+            {/* Ľavý — text */}
+            <div>
+              {/* Logo */}
+              <div className="mb-7" style={{ width: "180px", height: "60px", position: "relative" }}>
+                <Image src="/images/podcastlogo2.png" alt="SZPH Podcast" fill className="object-contain object-left" sizes="180px" />
+              </div>
+
+              <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)", textTransform: "uppercase" }}>
+                Vypočujte si najnovšie príbehy zo sveta pozemného hokeja
+              </h3>
+              <p className="text-white/60 mb-8" style={{ fontSize: "13px", fontWeight: 400 }}>
+                Rozhovory s hráčmi, trénermi a funkcionármi slovenského pozemného hokeja.
+              </p>
+
+              <a
+                href="https://www.youtube.com/watch?v=WoHqCQIVHm4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 font-bold text-white transition-all hover:gap-4 mb-8"
+                style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}
+              >
+                <div className="flex items-center justify-center rounded-full shrink-0" style={{ width: "40px", height: "40px", background: "#C8102E" }}>
+                  <svg className="h-4 w-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+                Pozrieť epizódu
+              </a>
+
+              {/* Playlist — posledné 3 epizódy */}
+              <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                {[
+                  { title: "Budeme stavať nový štadión", guest: "Marián Kováč", ep: "EP 03", href: "https://www.youtube.com/watch?v=WoHqCQIVHm4" },
+                  { title: "Ako sa stať profesionálnym hráčom", guest: "Jana Novotná", ep: "EP 02", href: "https://www.youtube.com/watch?v=WoHqCQIVHm4" },
+                  { title: "Pozemný hokej na Slovensku — minulosť a budúcnosť", guest: "Peter Sloboda", ep: "EP 01", href: "https://www.youtube.com/watch?v=WoHqCQIVHm4" },
+                ].map((ep, i) => (
+                  <a
+                    key={i}
+                    href={ep.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 py-3.5 transition-all hover:bg-white/[0.03]"
+                    style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", paddingLeft: "0", paddingRight: "0" }}
+                  >
+                    {/* Play button */}
+                    <div
+                      className="shrink-0 flex items-center justify-center rounded-full transition-all group-hover:bg-[#C8102E]"
+                      style={{ width: "32px", height: "32px", border: "1px solid rgba(255,255,255,0.2)" }}
+                    >
+                      <svg className="h-3 w-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-white truncate" style={{ fontSize: "11px" }}>{ep.title}</p>
+                      <p className="text-white/35 font-bold uppercase mt-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>{ep.ep} · {ep.guest}</p>
+                    </div>
+                    <svg className="h-3.5 w-3.5 text-white/20 shrink-0 group-hover:text-white/60 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                ))}
+                <a
+                  href="https://www.youtube.com/@szph"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 pt-3.5 font-bold text-white hover:text-white/70 transition-colors"
+                  style={{ fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase" }}
+                >
+                  Zobraziť všetky epizódy
+                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Pravý — thumbnail s play overlay */}
+            <a
+              href="https://www.youtube.com/watch?v=WoHqCQIVHm4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative overflow-hidden block"
+            >
+              <Image
+                src="/images/podcast.jpg"
+                alt="SZPH Podcast"
+                width={686}
+                height={386}
+                className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.04]"
+                sizes="(max-width: 768px) 100vw, 55vw"
+              />
+              {/* Tmavý overlay */}
+              <div className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-60"
+                style={{ background: "rgba(3,15,34,0.45)" }} />
+              {/* Play button */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div
+                  className="flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
+                  style={{ width: "64px", height: "64px", background: "#C8102E", boxShadow: "0 0 0 12px rgba(200,16,46,0.15)" }}
+                >
+                  <svg className="h-6 w-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+              {/* YouTube badge */}
+              <div className="absolute bottom-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded"
+                style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)" }}>
+                <svg className="h-3.5 w-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
+                  <path fill="#051937" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
+                </svg>
+                <span className="font-bold text-white" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>YOUTUBE</span>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          NOVINKY Z EURÓPY
+          ═══════════════════════════════════════════════════ */}
+      <section style={{ background: "#f8f9fa" }} className="py-12">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+          <CardSection
+            title="Novinky z Európy"
+            href="/novinky/europa"
+            cols={4}
+            articles={articles.slice(0, 4).length >= 4 ? articles.slice(0, 4) : [
+              ...articles.slice(0, 3).map((a, i) => ({ ...a, id: a.id + "_eu", cover_image_url: ["/images/banner4.jpg", "/images/banner2.jpg", "/images/banner3.jpg"][i] })),
+              { ...articles[0], id: articles[0].id + "_eu3", cover_image_url: "/images/banner1.jpg" },
+            ]}
+          />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          PROJEKTY
+          ═══════════════════════════════════════════════════ */}
+      <section style={{ background: "#f8f9fa" }} className="py-14">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
+                Projekty
+              </h2>
+              <div className="mt-1.5" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
+            </div>
+            <Link
+              href="/projekty"
+              className="flex items-center gap-2 font-bold text-[#051937] hover:text-[#C8102E] transition-colors"
+              style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}
+            >
+              Zobraziť všetky
+              <div className="flex items-center justify-center rounded-full border border-[#051937]" style={{ width: "26px", height: "26px" }}>
+                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {[
+              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#051937" },
+              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#012D74" },
+              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#C8102E" },
+              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#0a0a0a" },
+              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#1a3a5c" },
+            ].map((p, i) => (
+              <Link
+                key={i}
+                href="/projekty"
+                className="group flex flex-col overflow-hidden"
+                style={{ borderRadius: "8px", overflow: "hidden" }}
+              >
+                {/* Thumbnail */}
+                <div
+                  className="relative flex items-center justify-center"
+                  style={{ background: p.bg, aspectRatio: "1/1" }}
+                >
+                  <div className="relative transition-transform duration-500 group-hover:scale-[1.06]" style={{ width: "60%", height: "60%" }}>
+                    <Image src={p.logo} alt={p.name} fill className="object-contain" sizes="200px" />
+                  </div>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: "rgba(255,255,255,0.06)" }} />
+                </div>
+                {/* Tag */}
+                <div className="px-3 py-2.5 flex items-center gap-2" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+                  <span className="px-2 py-0.5 font-bold uppercase text-white rounded" style={{ fontSize: "8px", letterSpacing: "0.1em", background: "rgba(255,255,255,0.12)" }}>{p.name}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          VIDEO ZÓNA
+          ═══════════════════════════════════════════════════ */}
+      <section style={{ background: "#06101f" }} className="py-14">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+
+          {/* Header */}
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
+                Video zóna
+              </h2>
+              <div className="mt-1.5" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
+            </div>
+            <Link href="/video" className="font-bold text-white/35 hover:text-white/80 transition-colors flex items-center gap-2" style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              Všetky videá
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </Link>
+          </div>
+
+          {/* ── STREAMY: horizontálny carousel ── */}
+          <div className="flex gap-4 overflow-x-auto pb-1 mb-8" style={{ scrollbarWidth: "none" }}>
+            {[
+              { id: "W8Umeplx-8o", url: "https://www.youtube.com/watch?v=W8Umeplx-8o&t=1604s", title: "Extraliga muži — kolo 1", meta: "Jun 2025" },
+              { id: "QDL6rHpqd_c", url: "https://www.youtube.com/watch?v=QDL6rHpqd_c&t=4977s", title: "Extraliga muži — kolo 2", meta: "Jun 2025" },
+              { id: "9HxmftfEa0A", url: "https://www.youtube.com/watch?v=9HxmftfEa0A&t=817s", title: "Extraliga muži — kolo 3", meta: "Máj 2025" },
+              { id: "R2xOukt5BgE", url: "https://www.youtube.com/watch?v=R2xOukt5BgE", title: "Extraliga muži — kolo 4", meta: "Máj 2025" },
+            ].map((v) => (
+              <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer"
+                className="group relative overflow-hidden shrink-0 block"
+                style={{ width: "380px", aspectRatio: "16/9", borderRadius: "12px" }}>
+                <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.05]" sizes="380px" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(6,16,31,0.95) 0%, rgba(6,16,31,0.15) 55%, transparent 100%)" }} />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <div className="flex items-center justify-center rounded-full"
+                    style={{ width: "52px", height: "52px", background: "rgba(200,16,46,0.95)", boxShadow: "0 4px 24px rgba(200,16,46,0.5)" }}>
+                    <svg className="h-5 w-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <span className="block mb-1.5 font-bold text-white/40" style={{ fontSize: "8px", letterSpacing: "0.1em", textTransform: "uppercase" }}>STREAM · {v.meta}</span>
+                  <p className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "14px" }}>{v.title}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Separator */}
+          <div style={{ height: "1px", background: "rgba(255,255,255,0.06)" }} className="mb-8" />
+
+          {/* ── SHORTS: 5 portrait kariet vedľa seba ── */}
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <span className="font-garet font-bold italic text-white/50 shrink-0" style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Shorts</span>
+              <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.07)" }} />
+            </div>
+            <div className="grid grid-cols-6 gap-3">
+              {[
+                { id: "QGsvNAgpFuw", url: "https://www.youtube.com/shorts/QGsvNAgpFuw", title: "Extraligový gól týždňa" },
+                { id: "AFiMGDHFfrQ", url: "https://www.youtube.com/shorts/AFiMGDHFfrQ", title: "Top momenty kola" },
+                { id: "jwDGy4oCevE", url: "https://www.youtube.com/shorts/jwDGy4oCevE", title: "Najlepší zákrok kola" },
+                { id: "4P99iVz3e_k", url: "https://www.youtube.com/shorts/4P99iVz3e_k", title: "Reprezentácia v akcii" },
+                { id: "ywGDsIWSPDw", url: "https://www.youtube.com/shorts/ywGDsIWSPDw", title: "Záber týždňa" },
+                { id: "4rgr9GDsQQk", url: "https://www.youtube.com/shorts/4rgr9GDsQQk", title: "Short" },
+              ].map((v) => (
+                <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer"
+                  className="group relative overflow-hidden block" style={{ aspectRatio: "9/16", borderRadius: "10px" }}>
+                  <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.06]" sizes="20vw" unoptimized />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(6,16,31,0.85) 0%, transparent 55%)" }} />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
+                      style={{ width: "40px", height: "40px", background: "rgba(200,16,46,0.92)", backdropFilter: "blur(4px)", boxShadow: "0 4px 16px rgba(200,16,46,0.5)" }}>
+                      <svg className="h-4 w-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                  </div>
+                  <div className="absolute top-2.5 left-2.5 flex items-center gap-1 px-1.5 py-0.5 font-bold text-white"
+                    style={{ background: "rgba(0,0,0,0.5)", fontSize: "7px", letterSpacing: "0.1em", backdropFilter: "blur(4px)", borderRadius: "4px" }}>
+                    <svg className="h-2.5 w-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2h9l7 10-7 10H4l7-10z"/></svg>
+                    SHORT
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          SPONZORI A PARTNERI
+          ═══════════════════════════════════════════════════ */}
+      <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="py-14">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+
+          {/* Oficiálni sponzori */}
+          <div className="mb-12">
+            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "13px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+              Oficiálni sponzori a partneri
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">
+              {[
+                { name: "Union poisťovňa", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdKWEarVJSFkw7eFSCO0vvAC9xtBTP1pn2kA&s", w: 100 },
+                { name: "ING", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/ING_logo.jpg/1280px-ING_logo.jpg", w: 80 },
+                { name: "NN", src: "https://upload.wikimedia.org/wikipedia/commons/b/b3/NN-LOGO.png", w: 70 },
+                { name: "Heineken", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Heineken_Logo.svg/3840px-Heineken_Logo.svg.png", w: 110 },
+              ].map((s) => (
+                <div key={s.name} className="flex items-center justify-center" style={{ height: "48px" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={s.src} alt={s.name} style={{ height: "100%", width: "auto", maxWidth: `${s.w}px`, objectFit: "contain" }} />
                 </div>
               ))}
             </div>
           </div>
-        </section>
-      )}
 
-      {/* ======================================================
-          PARTNERI
-          ====================================================== */}
-      {partners.length > 0 && (
-        <section className="container-szph py-16 border-t border-white/5">
-          <div className="mb-8 text-center">
-            <span className="label-wide text-white/40">Partneri SZPH</span>
+          {/* Divider */}
+          <div style={{ height: "1px", background: "rgba(1,45,116,0.06)" }} className="mb-12" />
+
+          {/* Inštitucionálni partneri */}
+          <div>
+            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "13px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+              Inštitucionálni partneri
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">
+              {[
+                { name: "FIH", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Fih_hockey_logo.svg/1280px-Fih_hockey_logo.svg.png", w: 90 },
+                { name: "EuroHockey", src: "https://eurohockey-u21.athc.cat/wp-content/uploads/2024/05/logo-eurohockey-negre.webp", w: 120 },
+                { name: "MŠVVaŠ SR", src: "https://mincrs.sk/brand/mincrs-logo.png", w: 110 },
+                { name: "SOŠV", src: "https://www.olympic.sk/sites/default/files/logo_sosv_share.png", w: 90 },
+              ].map((s) => (
+                <div key={s.name} className="flex items-center justify-center" style={{ height: "48px" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={s.src} alt={s.name} style={{ height: "100%", width: "auto", maxWidth: `${s.w}px`, objectFit: "contain" }} />
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-10">
-            {partners.map((p) => (
-              <div key={p.id} className="text-sm font-semibold text-white/40">
-                {p.name}
-              </div>
-            ))}
+
+          {/* Partner CTA */}
+          <div className="mt-8 flex items-center justify-between flex-wrap gap-4" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "16px" }}>
+            <p className="text-[#64748b]" style={{ fontSize: "13px" }}>
+              Máte záujem stať sa partnerom SZPH?
+            </p>
+            <Link
+              href="/kontakt"
+              className="inline-flex items-center gap-2 font-bold text-[#051937] hover:text-[#C8102E] transition-colors"
+              style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}
+            >
+              Viac informácií
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
           </div>
-        </section>
-      )}
+
+        </div>
+      </section>
     </>
   );
 }

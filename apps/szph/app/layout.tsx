@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { inter } from "@szph/ui/fonts";
-import { Navbar, Footer } from "@szph/ui";
+import { NavbarSzph, Footer } from "@szph/ui";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,12 +28,9 @@ export default function RootLayout({
   return (
     <html lang="sk" data-brand="szph" className={inter.variable}>
       <body>
-        <Navbar
-          brand="szph"
-          crossSiteUrl="https://fieldhockey.sk"
-          crossSiteLabel="fieldhockey.sk"
-        />
-        <main>{children}</main>
+        <NavbarSzph />
+        {/* 112px = tier1(32) + tier2(80) — mobile uses 64px */}
+        <main className="pt-16 md:pt-[112px]">{children}</main>
         <Footer brand="szph" />
       </body>
     </html>
