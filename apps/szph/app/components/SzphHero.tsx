@@ -76,7 +76,7 @@ export function SzphHero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to right, #051937 0%, #051937 5%, rgba(5,25,55,0.85) 12%, rgba(5,25,55,0.4) 25%, transparent 40%)",
+            background: "linear-gradient(to right, #051937 0%, #051937 10%, rgba(5,25,55,0.9) 13%, rgba(5,25,55,0.3) 18%, transparent 24%)",
           }}
         />
 
@@ -85,7 +85,7 @@ export function SzphHero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to left, #051937 0%, #051937 25%, rgba(5,25,55,0.97) 30%, rgba(5,25,55,0.85) 35%, rgba(5,25,55,0.5) 42%, transparent 55%)",
+            background: "linear-gradient(to left, #051937 0%, #051937 20%, rgba(5,25,55,0.9) 23%, rgba(5,25,55,0.3) 28%, transparent 34%)",
           }}
         />
 
