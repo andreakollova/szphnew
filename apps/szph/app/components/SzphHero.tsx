@@ -207,26 +207,41 @@ export function SzphHero() {
           </div>
         </div>
 
-        {/* ── Annotation: bodka na hráčovi + šikmá čiara k video karte ── */}
-        <svg
+        {/* ── Annotation: bodka na hráčovi + čiara k video karte — animované po videu ── */}
+        <motion.svg
           className="hidden md:block absolute pointer-events-none"
           style={{ zIndex: 13, top: "0", left: "0", width: "100%", height: "100%" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
         >
-          {/* Šikmá čiara od hráča k video karte */}
-          <line
+          {/* Čiara od hráča k video karte */}
+          <motion.line
             x1="66%" y1="28%"
             x2="calc(100% - 60px - 100px)" y2="28%"
             stroke="rgba(255,255,255,0.3)"
             strokeWidth="1"
-            strokeDasharray="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 0.6, delay: 0.9, ease: "easeOut" }}
           />
-          {/* Bodka na hráčovi */}
-          <circle cx="66%" cy="28%" r="5" fill="white" opacity="0.9">
-            <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite" />
-            <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite" />
-          </circle>
-          <circle cx="66%" cy="28%" r="4" fill="white" />
-        </svg>
+          {/* Bodka na hráčovi — pulzujúca */}
+          <motion.circle
+            cx="66%" cy="28%" r="5" fill="white"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 0.9 }}
+            transition={{ duration: 0.3, delay: 0.8 }}
+          >
+            <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite" begin="1.2s" />
+            <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite" begin="1.2s" />
+          </motion.circle>
+          <motion.circle
+            cx="66%" cy="28%" r="4" fill="white"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.8 }}
+          />
+        </motion.svg>
 
         {/* ── Video card — Gól mesiaca ── */}
         <motion.div

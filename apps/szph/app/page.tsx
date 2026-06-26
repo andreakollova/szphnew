@@ -282,8 +282,22 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           PODCAST
           ═══════════════════════════════════════════════════ */}
-      <section className="py-16 mx-4 md:mx-8" style={{ background: "#051937", borderRadius: "24px" }}>
-        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+      <section
+        className="relative py-16 mx-4 md:mx-8 overflow-hidden"
+        style={{
+          borderRadius: "24px",
+          background: "linear-gradient(135deg, #051937 0%, #0a2a5c 25%, #0d3268 50%, #051937 75%, #071e42 100%)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(5,25,55,0.4)",
+        }}
+      >
+        {/* Glass shimmer overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.04) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(255,255,255,0.03) 0%, transparent 50%)",
+          }}
+        />
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
 
           <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-8 xl:gap-16 items-center">
@@ -298,27 +312,46 @@ export default async function SzphHome() {
               <h3 className="font-bold text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
                 Vypočujte si najnovšie príbehy zo sveta pozemného hokeja
               </h3>
-              <p className="text-white/60 mb-8" style={{ fontSize: "13px", fontWeight: 400 }}>
+              <p className="text-white mb-8" style={{ fontSize: "13px", fontWeight: 400 }}>
                 Rozhovory s hráčmi, trénermi a funkcionármi slovenského pozemného hokeja.
               </p>
 
+              {/* CTA — glass button */}
               <a
                 href="https://www.youtube.com/watch?v=WoHqCQIVHm4"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 font-bold text-white transition-all hover:gap-4 mb-8"
-                style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}
+                className="inline-flex items-center gap-3 font-bold text-white transition-all hover:scale-[1.02] mb-8 px-5 py-3"
+                style={{
+                  fontSize: "11px",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  borderRadius: "16px",
+                  background: "rgba(255,255,255,0.06)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)",
+                }}
               >
-                <div className="flex items-center justify-center rounded-full shrink-0" style={{ width: "40px", height: "40px", background: "#C8102E" }}>
-                  <svg className="h-4 w-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center justify-center rounded-full shrink-0" style={{ width: "28px", height: "28px", background: "rgba(200,16,46,0.8)" }}>
+                  <svg className="h-3 w-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
                 Pozrieť epizódu
               </a>
 
-              {/* Playlist — posledné 3 epizódy */}
-              <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+              {/* Playlist — glass card */}
+              <div
+                style={{
+                  borderRadius: "16px",
+                  background: "rgba(255,255,255,0.04)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
+                  padding: "4px",
+                }}
+              >
                 {[
                   { title: "Budeme stavať nový štadión", guest: "Marián Kováč", ep: "EP 03", href: "https://www.youtube.com/watch?v=WoHqCQIVHm4" },
                   { title: "Ako sa stať profesionálnym hráčom", guest: "Jana Novotná", ep: "EP 02", href: "https://www.youtube.com/watch?v=WoHqCQIVHm4" },
@@ -329,40 +362,56 @@ export default async function SzphHome() {
                     href={ep.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-4 py-3.5 transition-all hover:bg-white/[0.03]"
-                    style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", paddingLeft: "0", paddingRight: "0" }}
+                    className="group flex items-center gap-3.5 px-4 py-3 transition-all"
+                    style={{
+                      borderRadius: "12px",
+                      borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.05)" : "none",
+                    }}
                   >
-                    {/* Play button */}
+                    {/* Play button — glass */}
                     <div
-                      className="shrink-0 flex items-center justify-center rounded-full transition-all group-hover:bg-[#C8102E]"
-                      style={{ width: "32px", height: "32px", border: "1px solid rgba(255,255,255,0.2)" }}
+                      className="shrink-0 flex items-center justify-center rounded-full transition-all group-hover:border-white/30"
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        background: "rgba(255,255,255,0.06)",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                      }}
                     >
-                      <svg className="h-3 w-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="h-2.5 w-2.5 text-white/70 group-hover:text-white ml-0.5 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-bold text-white truncate" style={{ fontSize: "11px" }}>{ep.title}</p>
-                      <p className="text-white/35 font-bold uppercase mt-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>{ep.ep} · {ep.guest}</p>
+                      <p className="font-bold text-white/90 truncate group-hover:text-white transition-colors" style={{ fontSize: "11px" }}>{ep.title}</p>
+                      <p className="text-white/30 font-semibold uppercase mt-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>{ep.ep} · {ep.guest}</p>
                     </div>
-                    <svg className="h-3.5 w-3.5 text-white/20 shrink-0 group-hover:text-white/60 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <svg className="h-3 w-3 text-white/15 shrink-0 group-hover:text-white/50 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
                   </a>
                 ))}
-                <a
-                  href="https://www.youtube.com/@szph"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 pt-3.5 font-bold text-white hover:text-white/70 transition-colors"
-                  style={{ fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase" }}
-                >
-                  Zobraziť všetky epizódy
-                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
               </div>
+
+              {/* Zobraziť všetky — glass pill */}
+              <a
+                href="https://www.youtube.com/@szph"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-4 px-4 py-2 font-bold text-white/50 hover:text-white transition-all"
+                style={{
+                  fontSize: "9px",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  borderRadius: "10px",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                Zobraziť všetky epizódy
+                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
 
             {/* Pravý — thumbnail s play overlay */}
@@ -409,6 +458,7 @@ export default async function SzphHome() {
           </div>
         </div>
       </section>
+
 
       {/* ═══════════════════════════════════════════════════════
           NOVINKY Z EURÓPY
