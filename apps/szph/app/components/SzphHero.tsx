@@ -96,45 +96,6 @@ export function SzphHero() {
           }}
         />
 
-        {/* ── Hráčka — maximálna, vycentrovaná ── */}
-        <div
-          className="absolute pointer-events-none hidden md:block"
-          style={{
-            top: "50%",
-            left: "50%",
-            transform: "translate(-35%, -50%)",
-            width: "60vw",
-            height: "110%",
-            zIndex: 3,
-          }}
-        >
-          <Image
-            src="/images/maingraphic.png"
-            alt="Slovenská hráčka pozemného hokeja"
-            fill
-            className="object-contain object-center"
-            priority
-            quality={95}
-            sizes="80vw"
-          />
-        </div>
-
-        {/* Mobilná hráčka */}
-        <div
-          className="absolute pointer-events-none md:hidden"
-          style={{ bottom: 0, right: "-5%", width: "65%", top: 0, zIndex: 3 }}
-        >
-          <Image
-            src="/images/maingraphic.png"
-            alt=""
-            fill
-            className="object-contain object-bottom"
-            priority
-            quality={90}
-            sizes="65vw"
-          />
-        </div>
-
         {/* ── Mobilný gradient pre čitateľnosť ── */}
         <div
           className="md:hidden absolute inset-0 pointer-events-none"
