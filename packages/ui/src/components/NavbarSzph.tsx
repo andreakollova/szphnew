@@ -290,7 +290,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
     <>
       {/* ── ANNOUNCEMENT BAR ── */}
       {announcement && announcementVisible && (
-        <div className="fixed inset-x-0 top-0 z-[60] flex items-center justify-center gap-3 px-4" style={{ background: "#C8102E", height: "36px" }}>
+        <div className="fixed inset-x-0 top-0 z-[60] flex items-center justify-center gap-3 px-4" style={{ background: "#051937", height: "36px" }}>
           {announcement.href ? (
             <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
               <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" />
