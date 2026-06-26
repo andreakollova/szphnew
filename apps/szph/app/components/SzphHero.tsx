@@ -53,7 +53,7 @@ export function SzphHero() {
   return (
     <>
       <section
-        className="relative overflow-hidden w-full -mt-16 md:-mt-[112px] h-[calc(75vh+64px)] md:h-[calc(72vh+112px)] min-h-[560px] max-h-[860px]"
+        className="relative overflow-hidden w-full -mt-16 md:-mt-[112px] h-[calc(82vh+64px)] md:h-[calc(80vh+112px)] min-h-[620px] max-h-[960px]"
         style={{ background: "#051937" }}
       >
         {/* ── Banner fotka — posunutá nižšie, v strede bez gradientu ── */}
