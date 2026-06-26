@@ -584,12 +584,6 @@ export default async function SzphHome() {
                 style={{ width: "340px", aspectRatio: "16/9", borderRadius: "14px" }}>
                 <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" sizes="340px" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="flex items-center justify-center rounded-full"
-                    style={{ width: "44px", height: "44px", background: "rgba(255,255,255,0.12)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                    <svg className="h-5 w-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                </div>
               </a>
             ))}
           </div>

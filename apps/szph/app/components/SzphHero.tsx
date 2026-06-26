@@ -191,20 +191,6 @@ export function SzphHero() {
           {/* Gradient glow line */}
           <div style={{ width: "1px", height: "40px", background: "linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(200,16,46,0.6), transparent)" }} />
 
-          {/* Scroll */}
-          <div className="flex flex-col items-center gap-1.5 mt-3">
-            <motion.svg
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              width="12" height="18" viewBox="0 0 14 20" fill="none"
-            >
-              <line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              <path d="M1 9 L7 16 L13 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-            </motion.svg>
-            <span className="font-bold uppercase tracking-[0.2em]" style={{ fontSize: "0.42rem" }}>
-              Scroll
-            </span>
-          </div>
         </div>
 
         {/* ── Annotation: bodka na hráčovi + čiara k video karte — animované po videu ── */}
