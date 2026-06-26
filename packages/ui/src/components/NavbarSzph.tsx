@@ -293,7 +293,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         <div className="fixed inset-x-0 top-0 z-[60] flex items-center justify-center gap-3 px-4" style={{ background: "#051937", height: "36px" }}>
           {announcement.href ? (
             <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" />
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
               <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -301,7 +301,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             </Link>
           ) : (
             <span className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" />
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
             </span>
           )}
