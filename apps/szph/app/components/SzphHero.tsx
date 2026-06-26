@@ -56,9 +56,9 @@ export function SzphHero() {
         className="relative overflow-hidden w-full -mt-16 md:-mt-[112px] h-[calc(75vh+64px)] md:h-[calc(72vh+112px)] min-h-[560px] max-h-[860px]"
         style={{ background: "#051937" }}
       >
-        {/* ── Banner fotka — zmenšená, vycentrovaná, bočné medzery zakryje gradient ── */}
+        {/* ── Banner fotka — posunutá nižšie, v strede bez gradientu ── */}
         <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 1, background: "#051937" }}>
-          <div className="relative" style={{ width: "70%", height: "100%" }}>
+          <div className="relative" style={{ width: "70%", height: "100%", top: "40px", left: "8%" }}>
             <Image
               src="/images/hlavnybanner.png"
               alt=""
@@ -71,21 +71,21 @@ export function SzphHero() {
           </div>
         </div>
 
-        {/* ── Tmavomodrý gradient z ĽAVEJ strany — plná farba → fade ── */}
+        {/* ── Tmavomodrý gradient z ĽAVEJ strany — silnejší ── */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to right, #051937 0%, #051937 8%, rgba(5,25,55,0.95) 18%, rgba(5,25,55,0.7) 32%, rgba(5,25,55,0.25) 50%, transparent 65%)",
+            background: "linear-gradient(to right, #051937 0%, #051937 15%, rgba(5,25,55,0.95) 25%, rgba(5,25,55,0.6) 38%, transparent 52%)",
           }}
         />
 
-        {/* ── Tmavomodrý gradient z PRAVEJ strany — plná farba → fade ── */}
+        {/* ── Tmavomodrý gradient z PRAVEJ strany — silnejší ── */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to left, #051937 0%, #051937 5%, rgba(5,25,55,0.9) 15%, rgba(5,25,55,0.5) 30%, transparent 50%)",
+            background: "linear-gradient(to left, #051937 0%, #051937 12%, rgba(5,25,55,0.9) 22%, rgba(5,25,55,0.5) 35%, transparent 50%)",
           }}
         />
 
@@ -94,7 +94,7 @@ export function SzphHero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to top, #051937 0%, rgba(5,25,55,0.7) 15%, transparent 35%)",
+            background: "linear-gradient(to top, #051937 0%, rgba(5,25,55,0.5) 12%, transparent 28%)",
           }}
         />
 
