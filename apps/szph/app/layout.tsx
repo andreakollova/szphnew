@@ -50,8 +50,8 @@ export default async function RootLayout({
     <html lang="sk" data-brand="szph" className={inter.variable}>
       <body>
         <NavbarSzph announcement={announcement} />
-        {/* 80px navbar + 40px announcement bar = 120px */}
-        <main className="pt-[96px] md:pt-[120px]">{children}</main>
+        {/* 80px navbar + 36px announcement bar = 116px */}
+        <main className="pt-[96px] md:pt-[116px]">{children}</main>
         <Footer brand="szph" />
       </body>
     </html>

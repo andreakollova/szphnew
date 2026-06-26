@@ -288,59 +288,48 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
 
   return (
     <>
-      {/* ── ANNOUNCEMENT BAR + QUICK LINKS (zlúčené do jedného riadku) ── */}
-      <div className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-between px-6" style={{ background: "#f0f0f0", height: "40px" }}>
-        {/* Ľavá strana — announcement */}
+      {/* ── ANNOUNCEMENT BAR — tmavomodrá ── */}
+      <div className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-center px-6" style={{ background: "#051937", height: "36px" }}>
         {announcement ? (
           announcement.href ? (
-            <Link href={announcement.href} className="flex items-center gap-2 text-[#051937] font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+            <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
               <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </Link>
           ) : (
-            <span className="flex items-center gap-2 text-[#051937] font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
             </span>
           )
         ) : <div />}
-
-        {/* Pravá strana — quick links */}
-        <nav className="flex items-center gap-8 shrink-0">
-          {QUICK_LINKS.map((item) => (
-            <Link key={item.href} href={item.href}
-              className="text-[8.5px] font-bold uppercase tracking-widest text-[#051937]/50 hover:text-[#051937] transition-colors whitespace-nowrap">
-              {item.label}
-            </Link>
-          ))}
-        </nav>
       </div>
 
       {/* Mobilný announcement bar */}
       {announcement && (
-        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "#f0f0f0", height: "32px" }}>
+        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "#051937", height: "32px" }}>
           {announcement.href ? (
-            <Link href={announcement.href} className="flex items-center gap-2 text-[#051937] font-bold truncate" style={{ fontSize: "10px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+            <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "10px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
             </Link>
           ) : (
-            <span className="flex items-center gap-2 text-[#051937] font-bold truncate" style={{ fontSize: "10px" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+            <span className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "10px" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
             </span>
           )}
         </div>
       )}
 
-      <header className="fixed inset-x-0 z-50 flex flex-col" style={{ top: "40px", background: "#ffffff", boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
+      <header className="fixed inset-x-0 z-50 flex flex-col" style={{ top: "36px", background: "#ffffff", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
 
-        {/* ── TIER 2 ── */}
+        {/* ── NAVBAR — logo, nav, quick links as pills, actions ── */}
         <div className="hidden md:flex items-center gap-2 px-6 h-20">
-          <Link href="/" className="shrink-0 mr-10">
+          <Link href="/" className="shrink-0 mr-8">
             <Image src="/images/logo-szph.png" alt="SZPH" height={76} width={234} className="h-[76px] w-auto object-contain" priority />
           </Link>
 
@@ -370,15 +359,32 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3 ml-auto shrink-0">
-            <button className="flex items-center justify-center h-8 w-8 rounded-full border transition-colors hover:bg-[#f0f4fa]"
-              style={{ borderColor: "rgba(1,45,116,0.18)", color: "rgba(1,45,116,0.6)" }} aria-label="Vyhľadať">
+          {/* Quick links — glass pills */}
+          <div className="flex items-center shrink-0 mr-3" style={{ gap: "2px" }}>
+            {QUICK_LINKS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="px-3 py-1.5 rounded-full text-[#051937]/55 hover:text-[#051937] hover:bg-[#051937]/[0.06] transition-all whitespace-nowrap"
+                style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Divider */}
+          <div className="shrink-0" style={{ width: "1px", height: "24px", background: "rgba(1,45,116,0.1)" }} />
+
+          <div className="flex items-center gap-3 ml-3 shrink-0">
+            <button className="flex items-center justify-center h-8 w-8 rounded-full transition-colors hover:bg-[#051937]/[0.05]"
+              style={{ color: "rgba(1,45,116,0.45)" }} aria-label="Vyhľadať">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <button className="flex items-center justify-center h-8 w-8 rounded-full border transition-colors hover:bg-[#f0f4fa]"
-              style={{ borderColor: "rgba(1,45,116,0.18)", color: "rgba(1,45,116,0.6)" }} aria-label="Profil">
+            <button className="flex items-center justify-center h-8 w-8 rounded-full transition-colors hover:bg-[#051937]/[0.05]"
+              style={{ color: "rgba(1,45,116,0.45)" }} aria-label="Profil">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
@@ -475,7 +481,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
       {/* ── MEGA MENU (mimo header aby neprekrýval) ── */}
       <AnimatePresence>
         {activeMega && activeItem?.mega && (
-          <MegaMenu item={activeItem} onLeave={handleLeave} topOffset={120} />
+          <MegaMenu item={activeItem} onLeave={handleLeave} topOffset={116} />
         )}
       </AnimatePresence>
 
@@ -485,7 +491,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-30"
-            style={{ background: "rgba(5,25,55,0.25)", backdropFilter: "blur(2px)", top: "120px" }}
+            style={{ background: "rgba(5,25,55,0.25)", backdropFilter: "blur(2px)", top: "116px" }}
             onClick={() => setActiveMega(null)}
           />
         )}
