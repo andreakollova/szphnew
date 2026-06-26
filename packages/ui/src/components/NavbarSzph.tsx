@@ -289,20 +289,20 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   return (
     <>
       {/* ── ANNOUNCEMENT BAR + QUICK LINKS (zlúčené do jedného riadku) ── */}
-      <div className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-between px-6" style={{ background: "#051937", height: "40px" }}>
+      <div className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-between px-6" style={{ background: "#f0f0f0", height: "40px" }}>
         {/* Ľavá strana — announcement */}
         {announcement ? (
           announcement.href ? (
-            <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+            <Link href={announcement.href} className="flex items-center gap-2 text-[#051937] font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
               {announcement.text}
               <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </Link>
           ) : (
-            <span className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="flex items-center gap-2 text-[#051937] font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
               {announcement.text}
             </span>
           )
@@ -312,7 +312,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         <nav className="flex items-center gap-8 shrink-0">
           {QUICK_LINKS.map((item) => (
             <Link key={item.href} href={item.href}
-              className="text-[8.5px] font-bold uppercase tracking-widest text-white/60 hover:text-white transition-colors whitespace-nowrap">
+              className="text-[8.5px] font-bold uppercase tracking-widest text-[#051937]/50 hover:text-[#051937] transition-colors whitespace-nowrap">
               {item.label}
             </Link>
           ))}
@@ -321,22 +321,22 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
 
       {/* Mobilný announcement bar */}
       {announcement && (
-        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "#051937", height: "32px" }}>
+        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "#f0f0f0", height: "32px" }}>
           {announcement.href ? (
-            <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "10px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+            <Link href={announcement.href} className="flex items-center gap-2 text-[#051937] font-bold truncate" style={{ fontSize: "10px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
               {announcement.text}
             </Link>
           ) : (
-            <span className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "10px" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="flex items-center gap-2 text-[#051937] font-bold truncate" style={{ fontSize: "10px" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
               {announcement.text}
             </span>
           )}
         </div>
       )}
 
-      <header className="fixed inset-x-0 z-50 flex flex-col" style={{ top: "40px", background: "rgba(246,246,248,0.88)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)" }}>
+      <header className="fixed inset-x-0 z-50 flex flex-col" style={{ top: "40px", background: "#ffffff", boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
 
         {/* ── TIER 2 ── */}
         <div className="hidden md:flex items-center gap-2 px-6 h-20">
