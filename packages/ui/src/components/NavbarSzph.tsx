@@ -183,7 +183,7 @@ const MAIN_NAV: NavItem[] = [
   { label: "Kontakt", href: "/kontakt" },
 ];
 
-function MegaMenu({ item, onLeave }: { item: NavItem; onLeave: () => void }) {
+function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => void; topOffset: number }) {
   if (!item.mega) return null;
   const { columns, featured } = item.mega;
 
@@ -194,7 +194,7 @@ function MegaMenu({ item, onLeave }: { item: NavItem; onLeave: () => void }) {
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
       className="fixed inset-x-0 z-40 bg-white"
-      style={{ top: "112px", boxShadow: "0 16px 48px rgba(1,45,116,0.12), 0 2px 8px rgba(1,45,116,0.06)" }}
+      style={{ top: `${topOffset}px`, boxShadow: "0 16px 48px rgba(1,45,116,0.12), 0 2px 8px rgba(1,45,116,0.06)" }}
       onMouseLeave={onLeave}
     >
       <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-[320px_1fr] gap-8">
@@ -264,10 +264,15 @@ function MegaMenu({ item, onLeave }: { item: NavItem; onLeave: () => void }) {
   );
 }
 
-export function NavbarSzph() {
+interface NavbarSzphProps {
+  announcement?: { text: string; href?: string } | null;
+}
+
+export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [activeMega, setActiveMega] = useState<string | null>(null);
+  const [announcementVisible, setAnnouncementVisible] = useState(true);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleEnter = (href: string) => {
@@ -283,7 +288,36 @@ export function NavbarSzph() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 flex flex-col" style={{ background: "rgba(246,246,248,0.88)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)" }}>
+      {/* ── ANNOUNCEMENT BAR ── */}
+      {announcement && announcementVisible && (
+        <div className="fixed inset-x-0 top-0 z-[60] flex items-center justify-center gap-3 px-4" style={{ background: "#C8102E", height: "36px" }}>
+          {announcement.href ? (
+            <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" />
+              {announcement.text}
+              <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          ) : (
+            <span className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" />
+              {announcement.text}
+            </span>
+          )}
+          <button
+            onClick={() => setAnnouncementVisible(false)}
+            className="absolute right-3 text-white/60 hover:text-white transition-colors"
+            aria-label="Zavrieť"
+          >
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      )}
+
+      <header className="fixed inset-x-0 z-50 flex flex-col" style={{ top: announcement && announcementVisible ? "36px" : "0px", background: "rgba(246,246,248,0.88)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", transition: "top 0.3s ease" }}>
 
         {/* ── TIER 1 ── */}
         <div className="hidden md:flex items-center justify-end px-6 h-8 pt-[7px]">
@@ -434,7 +468,7 @@ export function NavbarSzph() {
       {/* ── MEGA MENU (mimo header aby neprekrýval) ── */}
       <AnimatePresence>
         {activeMega && activeItem?.mega && (
-          <MegaMenu item={activeItem} onLeave={handleLeave} />
+          <MegaMenu item={activeItem} onLeave={handleLeave} topOffset={announcement && announcementVisible ? 148 : 112} />
         )}
       </AnimatePresence>
 
@@ -444,7 +478,7 @@ export function NavbarSzph() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-30"
-            style={{ background: "rgba(5,25,55,0.25)", backdropFilter: "blur(2px)", top: "112px" }}
+            style={{ background: "rgba(5,25,55,0.25)", backdropFilter: "blur(2px)", top: announcement && announcementVisible ? "148px" : "112px" }}
             onClick={() => setActiveMega(null)}
           />
         )}
