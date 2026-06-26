@@ -59,7 +59,7 @@ export function SzphHero() {
         {/* ── Banner fotka ── */}
         <div className="absolute inset-0" style={{ zIndex: 1 }}>
           <Image
-            src="/images/banner.png"
+            src="/images/hlavnybanner.png"
             alt=""
             fill
             className="object-cover"
