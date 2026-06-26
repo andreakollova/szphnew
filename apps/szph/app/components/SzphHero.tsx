@@ -53,7 +53,7 @@ export function SzphHero() {
   return (
     <>
       <section
-        className="relative overflow-hidden w-full -mt-16 md:-mt-[112px] h-[calc(65vh+64px)] md:h-[calc(62vh+112px)] min-h-[480px] max-h-[740px]"
+        className="relative overflow-hidden w-full -mt-16 md:-mt-[112px] h-[calc(75vh+64px)] md:h-[calc(72vh+112px)] min-h-[560px] max-h-[860px]"
         style={{ background: "#051937" }}
       >
         {/* ── Banner fotka ── */}
@@ -69,21 +69,21 @@ export function SzphHero() {
           />
         </div>
 
-        {/* ── Tmavomodrý gradient z ĽAVEJ strany ── */}
+        {/* ── Tmavomodrý gradient z ĽAVEJ strany — plná farba → fade ── */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to right, rgba(5,25,55,0.97) 0%, rgba(5,25,55,0.85) 25%, rgba(5,25,55,0.4) 50%, transparent 70%)",
+            background: "linear-gradient(to right, #051937 0%, #051937 8%, rgba(5,25,55,0.95) 18%, rgba(5,25,55,0.7) 32%, rgba(5,25,55,0.25) 50%, transparent 65%)",
           }}
         />
 
-        {/* ── Tmavomodrý gradient z PRAVEJ strany ── */}
+        {/* ── Tmavomodrý gradient z PRAVEJ strany — plná farba → fade ── */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to left, rgba(5,25,55,0.95) 0%, rgba(5,25,55,0.7) 20%, transparent 50%)",
+            background: "linear-gradient(to left, #051937 0%, #051937 5%, rgba(5,25,55,0.9) 15%, rgba(5,25,55,0.5) 30%, transparent 50%)",
           }}
         />
 
@@ -92,7 +92,16 @@ export function SzphHero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to top, rgba(5,25,55,0.9) 0%, transparent 35%)",
+            background: "linear-gradient(to top, #051937 0%, rgba(5,25,55,0.7) 15%, transparent 35%)",
+          }}
+        />
+
+        {/* ── Vrchný gradient ── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            zIndex: 2,
+            background: "linear-gradient(to bottom, rgba(5,25,55,0.6) 0%, transparent 20%)",
           }}
         />
 
