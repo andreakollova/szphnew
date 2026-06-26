@@ -288,10 +288,11 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
 
   return (
     <>
-      {/* ── ANNOUNCEMENT BAR ── */}
-      {announcement && announcementVisible && (
-        <div className="fixed inset-x-0 top-0 z-[60] flex items-center justify-center gap-3 px-4" style={{ background: "#051937", height: "36px" }}>
-          {announcement.href ? (
+      {/* ── ANNOUNCEMENT BAR + QUICK LINKS (zlúčené do jedného riadku) ── */}
+      <div className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-between px-6" style={{ background: "#051937", height: "40px" }}>
+        {/* Ľavá strana — announcement */}
+        {announcement ? (
+          announcement.href ? (
             <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
               <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
@@ -304,32 +305,38 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
               <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
             </span>
+          )
+        ) : <div />}
+
+        {/* Pravá strana — quick links */}
+        <nav className="flex items-center gap-8 shrink-0">
+          {QUICK_LINKS.map((item) => (
+            <Link key={item.href} href={item.href}
+              className="text-[8.5px] font-bold uppercase tracking-widest text-white/60 hover:text-white transition-colors whitespace-nowrap">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
+      {/* Mobilný announcement bar */}
+      {announcement && (
+        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "#051937", height: "32px" }}>
+          {announcement.href ? (
+            <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "10px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+              {announcement.text}
+            </Link>
+          ) : (
+            <span className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "10px" }}>
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+              {announcement.text}
+            </span>
           )}
-          <button
-            onClick={() => setAnnouncementVisible(false)}
-            className="absolute right-3 text-white/60 hover:text-white transition-colors"
-            aria-label="Zavrieť"
-          >
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
         </div>
       )}
 
-      <header className="fixed inset-x-0 z-50 flex flex-col" style={{ top: announcement && announcementVisible ? "36px" : "0px", background: "rgba(246,246,248,0.88)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)", transition: "top 0.3s ease" }}>
-
-        {/* ── TIER 1 ── */}
-        <div className="hidden md:flex items-center justify-end px-6 h-8 pt-[7px]">
-          <nav className="flex items-center gap-8">
-            {QUICK_LINKS.map((item) => (
-              <Link key={item.href} href={item.href}
-                className="text-[8.5px] font-bold uppercase tracking-widest text-[#041834] hover:text-[#041834]/60 transition-colors whitespace-nowrap">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+      <header className="fixed inset-x-0 z-50 flex flex-col" style={{ top: "40px", background: "rgba(246,246,248,0.88)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)" }}>
 
         {/* ── TIER 2 ── */}
         <div className="hidden md:flex items-center gap-2 px-6 h-20">
@@ -468,7 +475,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
       {/* ── MEGA MENU (mimo header aby neprekrýval) ── */}
       <AnimatePresence>
         {activeMega && activeItem?.mega && (
-          <MegaMenu item={activeItem} onLeave={handleLeave} topOffset={announcement && announcementVisible ? 148 : 112} />
+          <MegaMenu item={activeItem} onLeave={handleLeave} topOffset={120} />
         )}
       </AnimatePresence>
 
@@ -478,7 +485,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-30"
-            style={{ background: "rgba(5,25,55,0.25)", backdropFilter: "blur(2px)", top: announcement && announcementVisible ? "148px" : "112px" }}
+            style={{ background: "rgba(5,25,55,0.25)", backdropFilter: "blur(2px)", top: "120px" }}
             onClick={() => setActiveMega(null)}
           />
         )}

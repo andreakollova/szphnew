@@ -58,7 +58,7 @@ export function SzphHero() {
       >
         {/* ── Banner fotka — posunutá nižšie, v strede bez gradientu ── */}
         <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 1, background: "#051937" }}>
-          <div className="relative" style={{ width: "70%", height: "100%", top: "calc(40px + 1%)", left: "1%" }}>
+          <div className="relative" style={{ width: "70%", height: "100%", top: "calc(40px + 3%)", left: "1%" }}>
             <Image
               src="/images/hlavnybanner.png"
               alt=""
@@ -85,7 +85,7 @@ export function SzphHero() {
           className="absolute inset-0 pointer-events-none"
           style={{
             zIndex: 2,
-            background: "linear-gradient(to left, #051937 0%, #051937 20%, rgba(5,25,55,0.98) 26%, rgba(5,25,55,0.8) 33%, rgba(5,25,55,0.3) 42%, transparent 50%)",
+            background: "linear-gradient(to left, #051937 0%, #051937 12%, rgba(5,25,55,0.85) 20%, rgba(5,25,55,0.4) 30%, transparent 42%)",
           }}
         />
 
