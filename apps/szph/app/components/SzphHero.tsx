@@ -15,19 +15,17 @@ export function SzphHero() {
         className="relative overflow-hidden w-[calc(100%-24px)] md:w-[calc(100%-48px)] mx-auto h-[calc(82vh)] md:h-[calc(80vh)] min-h-[520px] max-h-[800px]"
         style={{ background: "#051937", borderRadius: "20px" }}
       >
-        {/* ── Banner fotka — posunutá nižšie, v strede bez gradientu ── */}
-        <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 1, background: "#051937" }}>
-          <div className="relative overflow-hidden" style={{ width: "70%", height: "100%", top: "calc(40px + 3%)", left: "1%", borderRadius: "20px 20px 0 0" }}>
-            <Image
-              src="/images/hlavnybanner.png"
-              alt=""
-              fill
-              className="object-cover object-center"
-              priority
-              quality={90}
-              sizes="70vw"
-            />
-          </div>
+        {/* ── Banner fotka ── */}
+        <div className="absolute inset-0" style={{ zIndex: 1 }}>
+          <Image
+            src="/images/hlavnybanner.png"
+            alt=""
+            fill
+            className="object-cover object-center"
+            priority
+            quality={90}
+            sizes="100vw"
+          />
         </div>
 
         {/* ── Tmavomodrý gradient z ĽAVEJ strany — silnejší ── */}
