@@ -274,6 +274,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const [activeMega, setActiveMega] = useState<string | null>(null);
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const [quickLinksOpen, setQuickLinksOpen] = useState(false);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -394,23 +395,54 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             </ul>
           </nav>
 
-          {/* Quick links — glass pills */}
-          <div className="flex items-center shrink-0 mr-3" style={{ gap: "2px" }}>
-            {QUICK_LINKS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "px-3 py-1.5 rounded-full transition-all duration-300 whitespace-nowrap",
-                  scrolled
-                    ? "text-[#051937]/55 hover:text-[#051937] hover:bg-[#051937]/[0.06]"
-                    : "text-white/50 hover:text-white hover:bg-white/10"
-                )}
-                style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}
-              >
-                {item.label}
-              </Link>
-            ))}
+          {/* Quick links — dropdown */}
+          <div className="relative shrink-0 mr-1">
+            <button
+              onClick={() => setQuickLinksOpen(v => !v)}
+              className={cn(
+                "flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300",
+                scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10"
+              )}
+              style={{ color: scrolled ? "rgba(1,45,116,0.45)" : "rgba(255,255,255,0.6)" }}
+              aria-label="Rýchle odkazy"
+            >
+              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                <circle cx="5" cy="12" r="2" />
+                <circle cx="12" cy="12" r="2" />
+                <circle cx="19" cy="12" r="2" />
+              </svg>
+            </button>
+            <AnimatePresence>
+              {quickLinksOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full mt-2 py-2 rounded-xl overflow-hidden"
+                  style={{
+                    background: "rgba(255,255,255,0.95)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                    boxShadow: "0 8px 32px rgba(1,45,116,0.15), 0 1px 4px rgba(1,45,116,0.08)",
+                    minWidth: "200px",
+                    border: "1px solid rgba(1,45,116,0.08)",
+                  }}
+                >
+                  {QUICK_LINKS.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setQuickLinksOpen(false)}
+                      className="flex items-center gap-3 px-4 py-2.5 text-[#051937] hover:bg-[#051937]/[0.04] transition-colors"
+                      style={{ fontSize: "12px", fontWeight: 600 }}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Divider */}

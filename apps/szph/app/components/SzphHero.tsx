@@ -12,20 +12,22 @@ export function SzphHero() {
     <>
       <div style={{ background: "#051937" }} className="-mt-16 md:-mt-[112px] pt-16 md:pt-[112px]">
       <section
-        className="relative overflow-hidden w-[calc(100%-24px)] md:w-[calc(100%-48px)] mx-auto h-[calc(82vh)] md:h-[calc(80vh)] min-h-[520px] max-h-[800px]"
-        style={{ background: "#051937", borderRadius: "20px" }}
+        className="relative overflow-hidden w-full h-[calc(82vh)] md:h-[calc(80vh)] min-h-[520px] max-h-[800px]"
+        style={{ background: "#051937" }}
       >
-        {/* ── Banner fotka ── */}
-        <div className="absolute inset-0" style={{ zIndex: 1 }}>
-          <Image
-            src="/images/hlavnybanner.png"
-            alt=""
-            fill
-            className="object-cover object-center"
-            priority
-            quality={90}
-            sizes="100vw"
-          />
+        {/* ── Banner fotka — contain, celá viditeľná ── */}
+        <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 1 }}>
+          <div className="relative" style={{ width: "113%", height: "113%" }}>
+            <Image
+              src="/images/hlavnybanner.png"
+              alt=""
+              fill
+              className="object-contain object-center"
+              priority
+              quality={90}
+              sizes="110vw"
+            />
+          </div>
         </div>
 
         {/* ── Tmavomodrý gradient z ĽAVEJ strany — silnejší ── */}
@@ -52,6 +54,17 @@ export function SzphHero() {
           style={{
             zIndex: 2,
             background: "linear-gradient(to top, #051937 0%, rgba(5,25,55,0.5) 12%, transparent 28%)",
+          }}
+        />
+
+        {/* ── Zaoblené spodné rohy — svetlý overlay ── */}
+        <div
+          className="absolute bottom-0 left-0 right-0 pointer-events-none"
+          style={{
+            zIndex: 10,
+            height: "40px",
+            background: "#f8f9fa",
+            borderRadius: "40px 40px 0 0",
           }}
         />
 
@@ -102,17 +115,17 @@ export function SzphHero() {
               JEDNA VÍZIA.
             </h2>
 
-            {/* Label POD nadpismi */}
+            {/* Popis pod nadpisom */}
             <p
-              className="mt-4 font-semibold uppercase tracking-[0.18em] text-white/40"
-              style={{ fontSize: "0.6rem" }}
+              className="mt-5 text-white max-w-md leading-relaxed"
+              style={{ fontSize: "14px" }}
             >
-              K rozvoju pozemného hokeja na Slovensku
+              Spájame kluby, hráčov a fanúšikov pozemného hokeja po celom Slovensku. Rozvíjame mládež a posúvame náš šport na medzinárodnú úroveň.
             </p>
 
             {/* Červená čiara */}
             <div
-              className="rounded-full mt-4 mb-5"
+              className="rounded-full mt-5 mb-5"
               style={{ width: "40px", height: "3px", background: "#C8102E" }}
             />
 
@@ -120,45 +133,62 @@ export function SzphHero() {
             <div className="flex items-center gap-3">
               <Link
                 href="/o-szph"
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all hover:opacity-80"
-                style={{ background: "rgba(255,255,255,0.12)", color: "#ffffff" }}
+                className="flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold text-white transition-all hover:brightness-110"
+                style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)" }}
               >
                 O SZPH
               </Link>
               <Link
                 href="/novinky"
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition-all hover:opacity-90"
+                className="flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold text-white transition-all hover:brightness-110"
                 style={{ background: "#C8102E" }}
               >
                 Aktuality
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
               </Link>
             </div>
 
           </motion.div>
         </div>
 
-        {/* ── #wearehockey + Scroll — jeden kontajner, jedna os ── */}
+        {/* ── Ľavá sidebar — socials · line · #wearehockey · line · scroll ── */}
         <div
-          className="hidden md:flex absolute left-4 inset-y-0 flex-col items-center justify-between py-8 pointer-events-none"
-          style={{ zIndex: 6, color: "rgba(255,255,255,0.4)" }}
+          className="hidden md:flex absolute left-5 flex-col items-center pointer-events-none"
+          style={{ zIndex: 12, color: "rgba(255,255,255,0.85)", top: "140px", bottom: "80px" }}
         >
-          <div />
+          {/* Social icons */}
+          <div className="flex flex-col items-center gap-2.5 pointer-events-auto mb-4">
+            <a href="https://www.instagram.com/szph_sk/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center h-7 w-7 rounded-full transition-all hover:bg-white/15 hover:scale-110" style={{ border: "1px solid rgba(255,255,255,0.2)" }}>
+              <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/szph.sk" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center h-7 w-7 rounded-full transition-all hover:bg-white/15 hover:scale-110" style={{ border: "1px solid rgba(255,255,255,0.2)" }}>
+              <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+          </div>
+
+          {/* Gradient glow line */}
+          <div className="flex-1" style={{ width: "1px", background: "linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(200,16,46,0.8) 30%, rgba(200,16,46,0.8) 70%, rgba(255,255,255,0.3))" }} />
+
+          {/* #wearehockey vertical */}
           <span
-            className="font-bold uppercase tracking-[0.25em]"
+            className="font-bold uppercase tracking-[0.25em] my-4"
             style={{
-              fontSize: "0.48rem",
+              fontSize: "0.44rem",
               writingMode: "vertical-rl",
               transform: "rotate(180deg)",
             }}
           >
             #wearehockey
           </span>
-          {/* Red line */}
-          <div style={{ width: "1px", flex: 1, background: "linear-gradient(to bottom, transparent, #C8102E 40%, #C8102E 60%, transparent)", maxHeight: "60px", marginTop: "8px", marginBottom: "8px" }} />
-          <div className="flex flex-col items-center gap-1">
+
+          {/* Gradient glow line */}
+          <div style={{ width: "1px", height: "40px", background: "linear-gradient(to bottom, rgba(255,255,255,0.3), rgba(200,16,46,0.6), transparent)" }} />
+
+          {/* Scroll */}
+          <div className="flex flex-col items-center gap-1.5 mt-3">
             <motion.svg
               animate={{ y: [0, 5, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -263,7 +293,8 @@ export function SzphHero() {
         </motion.div>
       </section>
       </div>
-
+      {/* Spacer pod bannerom */}
+      <div style={{ height: "24px", background: "#f8f9fa" }} />
     </>
   );
 }
