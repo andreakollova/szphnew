@@ -283,10 +283,10 @@ export default async function SzphHome() {
           PODCAST
           ═══════════════════════════════════════════════════ */}
       <section
-        className="relative py-16 overflow-hidden"
+        className="relative py-16 mx-4 md:mx-8 overflow-hidden"
         style={{
           borderRadius: "24px",
-          background: "linear-gradient(135deg, #051937 0%, #0a2a5c 25%, #0d3268 50%, #051937 75%, #071e42 100%)",
+          background: "linear-gradient(135deg, #020e1f 0%, #051937 25%, #071e42 50%, #020e1f 75%, #041530 100%)",
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(5,25,55,0.4)",
         }}
       >
@@ -310,36 +310,32 @@ export default async function SzphHome() {
               </div>
 
               <h3 className="font-bold text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
-                Vypočujte si najnovšie príbehy zo sveta pozemného hokeja
+                Pozemný hokej — viac ako šport
               </h3>
-              <p className="text-white mb-8" style={{ fontSize: "13px", fontWeight: 400 }}>
+              <p className="text-white mb-5" style={{ fontSize: "13px", fontWeight: 400 }}>
                 Rozhovory s hráčmi, trénermi a funkcionármi slovenského pozemného hokeja.
               </p>
 
-              {/* CTA — glass button */}
-              <a
-                href="https://www.youtube.com/watch?v=WoHqCQIVHm4"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 font-bold text-white transition-all hover:scale-[1.02] mb-8 px-5 py-3"
-                style={{
-                  fontSize: "11px",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  borderRadius: "16px",
-                  background: "rgba(255,255,255,0.06)",
-                  backdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  boxShadow: "0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)",
-                }}
-              >
-                <div className="flex items-center justify-center rounded-full shrink-0" style={{ width: "28px", height: "28px", background: "rgba(200,16,46,0.8)" }}>
-                  <svg className="h-3 w-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
+              {/* Platformy — farebné logá */}
+              <div className="flex items-center gap-3 mb-8">
+                <a href="https://www.youtube.com/@szph" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full transition-all hover:bg-white/10"
+                  style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
+                  <svg className="h-4 w-4" viewBox="0 0 24 24">
+                    <path fill="#FF0000" d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
+                    <path fill="#fff" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
                   </svg>
-                </div>
-                Pozrieť epizódu
-              </a>
+                  <span className="font-bold text-white/70" style={{ fontSize: "10px" }}>YouTube</span>
+                </a>
+                <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full transition-all hover:bg-white/10"
+                  style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
+                  <svg className="h-4 w-4" viewBox="0 0 24 24">
+                    <path fill="#1DB954" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                  </svg>
+                  <span className="font-bold text-white/70" style={{ fontSize: "10px" }}>Spotify</span>
+                </a>
+              </div>
 
               {/* Playlist — glass card */}
               <div
@@ -541,7 +537,7 @@ export default async function SzphHome() {
       <section
         className="relative py-14 overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #0e0e0e 0%, #151515 25%, #111 50%, #0e0e0e 75%, #131313 100%)",
+          background: "#051937",
         }}
       >
         {/* Glass shimmer overlays */}
@@ -555,21 +551,19 @@ export default async function SzphHome() {
 
           {/* Header — rovnaký štýl ako Aktuality/Projekty */}
           <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
-              {/* Vertikálna čiara — červená→biela ako na main banneri */}
-              <div style={{ width: "2px", height: "32px", borderRadius: "1px", background: "linear-gradient(to bottom, rgba(200,16,46,0.8), rgba(255,255,255,0.4))" }} />
-              <h2 className="font-garet font-bold italic text-white shrink-0" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                Video zóna
+            <div>
+              <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
+                Videozóna
               </h2>
-              <span className="font-bold uppercase tracking-[0.2em] text-white/20 shrink-0" style={{ fontSize: "8px" }}>#wearehockey</span>
+              <div className="mt-1.5" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
             </div>
             <Link
               href="/video"
-              className="flex items-center gap-2 font-bold text-white/40 hover:text-white transition-colors"
+              className="flex items-center gap-2 font-bold text-white hover:text-white/70 transition-colors"
               style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}
             >
               Zobraziť všetky
-              <div className="flex items-center justify-center rounded-full border border-white/20" style={{ width: "26px", height: "26px" }}>
+              <div className="flex items-center justify-center rounded-full border border-white/40" style={{ width: "26px", height: "26px" }}>
                 <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -577,82 +571,76 @@ export default async function SzphHome() {
             </Link>
           </div>
 
-          {/* ── STREAMY — 4 videá v rade ── */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          {/* ── STREAMY — 4 landscape videá ── */}
+          <div className="flex gap-4 overflow-x-auto pb-2 mb-10" style={{ scrollbarWidth: "none" }}>
             {[
-              { id: "W8Umeplx-8o", url: "https://www.youtube.com/watch?v=W8Umeplx-8o&t=1604s", title: "Extraliga muži — kolo 1", meta: "Jún 2025" },
-              { id: "QDL6rHpqd_c", url: "https://www.youtube.com/watch?v=QDL6rHpqd_c&t=4977s", title: "Extraliga muži — kolo 2", meta: "Jún 2025" },
-              { id: "9HxmftfEa0A", url: "https://www.youtube.com/watch?v=9HxmftfEa0A&t=817s", title: "Extraliga muži — kolo 3", meta: "Máj 2025" },
-              { id: "R2xOukt5BgE", url: "https://www.youtube.com/watch?v=R2xOukt5BgE", title: "Extraliga muži — kolo 4", meta: "Máj 2025" },
-            ].map((v) => (
-              <Link key={v.id} href={v.url} target="_blank" className="group block overflow-hidden">
-                <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "12px" }}>
-                  <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="25vw" />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%)" }} />
-                  {/* Play on hover */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="flex items-center justify-center rounded-full"
-                      style={{ width: "40px", height: "40px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                      <svg className="h-4 w-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                  </div>
-                </div>
-                <div className="pt-3">
-                  <span className="block font-bold uppercase text-white/35 mb-1" style={{ fontSize: "9px", letterSpacing: "0.14em" }}>
-                    Stream · {v.meta}
-                  </span>
-                  <h3 className="font-bold text-white/90 leading-snug group-hover:text-white transition-colors line-clamp-2" style={{ fontSize: "13px" }}>
-                    {v.title}
-                  </h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {/* ── SHORTS header ── */}
-          <div className="flex items-center justify-between mb-5">
-            <div>
-              <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "13px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                Shorts
-              </h2>
-              <div className="mt-1.5" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
-            </div>
-          </div>
-
-          {/* ── SHORTS — 6 v rade ── */}
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-            {[
-              { id: "QGsvNAgpFuw", url: "https://www.youtube.com/shorts/QGsvNAgpFuw", title: "Gól týždňa" },
-              { id: "AFiMGDHFfrQ", url: "https://www.youtube.com/shorts/AFiMGDHFfrQ", title: "Top momenty" },
-              { id: "jwDGy4oCevE", url: "https://www.youtube.com/shorts/jwDGy4oCevE", title: "Najlepší zákrok" },
-              { id: "4P99iVz3e_k", url: "https://www.youtube.com/shorts/4P99iVz3e_k", title: "Reprezentácia" },
-              { id: "ywGDsIWSPDw", url: "https://www.youtube.com/shorts/ywGDsIWSPDw", title: "Záber týždňa" },
-              { id: "4rgr9GDsQQk", url: "https://www.youtube.com/shorts/4rgr9GDsQQk", title: "Short" },
+              { id: "W8Umeplx-8o", url: "https://www.youtube.com/watch?v=W8Umeplx-8o&t=1604s", title: "Extraliga muži — kolo 1" },
+              { id: "QDL6rHpqd_c", url: "https://www.youtube.com/watch?v=QDL6rHpqd_c&t=4977s", title: "Extraliga muži — kolo 2" },
+              { id: "9HxmftfEa0A", url: "https://www.youtube.com/watch?v=9HxmftfEa0A&t=817s", title: "Extraliga muži — kolo 3" },
+              { id: "R2xOukt5BgE", url: "https://www.youtube.com/watch?v=R2xOukt5BgE", title: "Extraliga muži — kolo 4" },
             ].map((v) => (
               <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer"
-                className="group relative overflow-hidden block" style={{ aspectRatio: "9/16", borderRadius: "12px" }}>
+                className="group relative overflow-hidden shrink-0 block"
+                style={{ width: "340px", aspectRatio: "16/9", borderRadius: "14px" }}>
                 <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.05]" sizes="16vw" unoptimized />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%)" }} />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" sizes="340px" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="flex items-center justify-center rounded-full"
-                    style={{ width: "32px", height: "32px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                    <svg className="h-3 w-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    style={{ width: "44px", height: "44px", background: "rgba(255,255,255,0.12)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.2)" }}>
+                    <svg className="h-5 w-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                   </div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <p className="font-bold text-white leading-tight" style={{ fontSize: "10px" }}>{v.title}</p>
-                </div>
-                <div className="absolute top-2.5 left-2.5 flex items-center gap-1 px-1.5 py-0.5 font-bold text-white"
-                  style={{ background: "rgba(0,0,0,0.4)", fontSize: "7px", letterSpacing: "0.08em", backdropFilter: "blur(4px)", borderRadius: "6px" }}>
-                  <svg className="h-2.5 w-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2h9l7 10-7 10H4l7-10z"/></svg>
-                  SHORT
                 </div>
               </a>
             ))}
-            </div>
           </div>
+
+          {/* ── SHORTS — accordion ── */}
+          <details className="group/shorts mt-8">
+            <summary className="flex items-center justify-center gap-2 cursor-pointer py-3 rounded-xl transition-all hover:bg-white/[0.04] list-none [&::-webkit-details-marker]:hidden">
+              <span className="font-bold text-white/50 uppercase" style={{ fontSize: "11px", letterSpacing: "0.1em" }}>Shorts</span>
+              <svg className="h-4 w-4 text-white/30 transition-transform duration-300 group-open/shorts:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="flex gap-3 overflow-x-auto pb-2 pt-4" style={{ scrollbarWidth: "none" }}>
+              {[
+                { id: "QGsvNAgpFuw", title: "Gól týždňa" },
+                { id: "AFiMGDHFfrQ", title: "Top momenty" },
+                { id: "jwDGy4oCevE", title: "Najlepší zákrok" },
+                { id: "4P99iVz3e_k", title: "Reprezentácia" },
+                { id: "ywGDsIWSPDw", title: "Záber týždňa" },
+                { id: "4rgr9GDsQQk", title: "Short" },
+                { id: "QGsvNAgpFuw", title: "Gól týždňa 2" },
+                { id: "AFiMGDHFfrQ", title: "Top momenty 2" },
+                { id: "jwDGy4oCevE", title: "Najlepší zákrok 2" },
+                { id: "4P99iVz3e_k", title: "Reprezentácia 2" },
+                { id: "ywGDsIWSPDw", title: "Záber týždňa 2" },
+                { id: "4rgr9GDsQQk", title: "Short 2" },
+              ].map((v, i) => (
+                <a key={`${v.id}-${i}`} href={`https://www.youtube.com/shorts/${v.id}`} target="_blank" rel="noopener noreferrer"
+                  className="group relative overflow-hidden block shrink-0" style={{ width: "150px", aspectRatio: "9/16", borderRadius: "12px" }}>
+                  <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.05]" sizes="150px" unoptimized />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 40%)" }} />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <div className="flex items-center justify-center rounded-full"
+                      style={{ width: "32px", height: "32px", background: "rgba(255,255,255,0.12)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.2)" }}>
+                      <svg className="h-3 w-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <p className="font-bold text-white leading-tight" style={{ fontSize: "10px" }}>{v.title}</p>
+                  </div>
+                  <div className="absolute top-2 left-2 px-1.5 py-0.5 font-bold text-white flex items-center gap-1"
+                    style={{ background: "rgba(0,0,0,0.4)", fontSize: "7px", letterSpacing: "0.08em", backdropFilter: "blur(4px)", borderRadius: "6px" }}>
+                    <svg className="h-2.5 w-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2h9l7 10-7 10H4l7-10z"/></svg>
+                    SHORT
+                  </div>
+                </a>
+              ))}
+            </div>
+          </details>
+        </div>
 
       </section>
 
