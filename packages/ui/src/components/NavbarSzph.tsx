@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -273,7 +273,15 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [activeMega, setActiveMega] = useState<string | null>(null);
   const [announcementVisible, setAnnouncementVisible] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const handleEnter = (href: string) => {
     if (leaveTimer.current) clearTimeout(leaveTimer.current);
@@ -288,8 +296,16 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
 
   return (
     <>
-      {/* ── ANNOUNCEMENT BAR — tmavomodrá ── */}
-      <div className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-center px-6" style={{ background: "#051937", height: "36px" }}>
+      {/* ── ANNOUNCEMENT BAR — glass/dark ── */}
+      <div
+        className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-center px-6 transition-all duration-300"
+        style={{
+          height: "36px",
+          background: scrolled ? "rgba(5,25,55,0.85)" : "rgba(5,25,55,0.6)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+        }}
+      >
         {announcement ? (
           announcement.href ? (
             <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
@@ -325,12 +341,29 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         </div>
       )}
 
-      <header className="fixed inset-x-0 z-50 flex flex-col" style={{ top: "36px", background: "#ffffff", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+      <header
+        className="fixed inset-x-0 z-50 flex flex-col transition-all duration-300"
+        style={{
+          top: "36px",
+          background: scrolled ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.08)",
+          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "blur(12px)",
+          WebkitBackdropFilter: scrolled ? "blur(20px) saturate(180%)" : "blur(12px)",
+          boxShadow: scrolled ? "0 1px 3px rgba(0,0,0,0.06)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(1,45,116,0.06)" : "1px solid rgba(255,255,255,0.1)",
+        }}
+      >
 
         {/* ── NAVBAR — logo, nav, quick links as pills, actions ── */}
         <div className="hidden md:flex items-center gap-2 px-6 h-20">
-          <Link href="/" className="shrink-0 mr-8">
-            <Image src="/images/logo-szph.png" alt="SZPH" height={76} width={234} className="h-[76px] w-auto object-contain" priority />
+          <Link href="/" className="shrink-0 mr-8 relative" style={{ height: "76px", width: "234px" }}>
+            <Image
+              src={scrolled ? "/images/logo-szph-dark.png" : "/images/logo-szph-white.png"}
+              alt="SZPH"
+              fill
+              className="object-contain object-left transition-opacity duration-300"
+              priority
+              sizes="234px"
+            />
           </Link>
 
           <nav className="flex-1" onMouseLeave={handleLeave}>
@@ -340,10 +373,12 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                   <Link
                     href={item.href}
                     className={cn(
-                      "flex items-center gap-1 px-3 py-2 text-[11px] font-extrabold uppercase tracking-wide transition-colors rounded-lg whitespace-nowrap",
+                      "flex items-center gap-1 px-3 py-2 text-[11px] font-extrabold uppercase tracking-wide transition-colors duration-300 rounded-lg whitespace-nowrap",
                       activeMega === item.href
                         ? "text-[#C8102E] bg-[rgba(200,16,46,0.06)]"
-                        : "text-[#061b3a] hover:text-[#061b3a]/80 hover:bg-[#f0f4fa]"
+                        : scrolled
+                          ? "text-[#061b3a] hover:text-[#061b3a]/80 hover:bg-[#f0f4fa]"
+                          : "text-white/90 hover:text-white hover:bg-white/10"
                     )}
                   >
                     {item.label}
@@ -365,7 +400,12 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3 py-1.5 rounded-full text-[#051937]/55 hover:text-[#051937] hover:bg-[#051937]/[0.06] transition-all whitespace-nowrap"
+                className={cn(
+                  "px-3 py-1.5 rounded-full transition-all duration-300 whitespace-nowrap",
+                  scrolled
+                    ? "text-[#051937]/55 hover:text-[#051937] hover:bg-[#051937]/[0.06]"
+                    : "text-white/50 hover:text-white hover:bg-white/10"
+                )}
                 style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}
               >
                 {item.label}
@@ -374,17 +414,17 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           </div>
 
           {/* Divider */}
-          <div className="shrink-0" style={{ width: "1px", height: "24px", background: "rgba(1,45,116,0.1)" }} />
+          <div className="shrink-0 transition-colors duration-300" style={{ width: "1px", height: "24px", background: scrolled ? "rgba(1,45,116,0.1)" : "rgba(255,255,255,0.15)" }} />
 
           <div className="flex items-center gap-3 ml-3 shrink-0">
-            <button className="flex items-center justify-center h-8 w-8 rounded-full transition-colors hover:bg-[#051937]/[0.05]"
-              style={{ color: "rgba(1,45,116,0.45)" }} aria-label="Vyhľadať">
+            <button className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
+              style={{ color: scrolled ? "rgba(1,45,116,0.45)" : "rgba(255,255,255,0.6)" }} aria-label="Vyhľadať">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <button className="flex items-center justify-center h-8 w-8 rounded-full transition-colors hover:bg-[#051937]/[0.05]"
-              style={{ color: "rgba(1,45,116,0.45)" }} aria-label="Profil">
+            <button className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
+              style={{ color: scrolled ? "rgba(1,45,116,0.45)" : "rgba(255,255,255,0.6)" }} aria-label="Profil">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
