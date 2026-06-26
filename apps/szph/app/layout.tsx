@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   description:
     "Slovenský zväz pozemného hokeja — oficiálna stránka. Novinky, zápasy, dokumenty a informácie pre kluby.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://szph.sk"
+    process.env.NEXT_PUBLIC_SITE_URL?.startsWith("http")
+      ? process.env.NEXT_PUBLIC_SITE_URL
+      : "https://szph.sk"
   ),
   openGraph: {
     siteName: "szph.sk",
