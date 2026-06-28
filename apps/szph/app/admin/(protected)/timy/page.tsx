@@ -20,6 +20,7 @@ export default async function AdminTimyPage() {
     return acc;
   }, {});
 
+  const CATEGORY_ORDER = ["muzi", "zeny", "U18", "U14", "U12"];
   const CATEGORY_LABELS: Record<string, string> = {
     muzi: "Muži", zeny: "Ženy", U18: "U18", U14: "U14", U12: "U12",
   };
@@ -39,7 +40,9 @@ export default async function AdminTimyPage() {
         </Link>
       </div>
 
-      {Object.entries(byCategory).map(([category, categoryTeams]) => (
+      {CATEGORY_ORDER.filter(cat => byCategory[cat]).map((category) => {
+        const categoryTeams = byCategory[category]!;
+        return (
         <div key={category}>
           <h2 className="font-bold text-[#64748b] mb-3 text-sm uppercase tracking-wider">
             {CATEGORY_LABELS[category] ?? category}
@@ -83,7 +86,8 @@ export default async function AdminTimyPage() {
             ))}
           </div>
         </div>
-      ))}
+        );
+      })}
 
       {teams.length === 0 && (
         <div className="rounded-2xl py-16 text-center" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
