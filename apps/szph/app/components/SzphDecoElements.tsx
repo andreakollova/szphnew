@@ -1,73 +1,113 @@
 /**
- * Dekoratívne elementy inšpirované SZPH logom
- * Hokejky (modré/červené) s gradientom + bodky
+ * SZPH Logo Primitívy — recreated from brand identity
+ * 1. Ball — plný kruh (lopta)
+ * 2. Stick — hokejka (SVG, J-tvar s round caps)
+ * 3. Trail — moving gulička (kapsula s gradient stopou)
  */
+
+const NAVY = "#0A2472";
+const RED = "#EE1C25";
+
+/* ── 1. Ball ── */
+function Ball({ size = 40, color = NAVY, opacity = 0.06, className = "" }: {
+  size?: number; color?: string; opacity?: number; className?: string;
+}) {
+  return (
+    <div
+      className={`absolute rounded-full ${className}`}
+      style={{ width: size, height: size, background: color, opacity }}
+    />
+  );
+}
+
+/* ── 2. Stick (SVG) ── */
+function Stick({ color = NAVY, width = 120, height = 240, strokeWidth = 26, rotate = 0, opacity = 0.06, className = "" }: {
+  color?: string; width?: number; height?: number; strokeWidth?: number; rotate?: number; opacity?: number; className?: string;
+}) {
+  return (
+    <svg
+      className={`absolute ${className}`}
+      width={width}
+      height={height}
+      viewBox="0 0 120 240"
+      style={{ opacity, transform: rotate ? `rotate(${rotate}deg)` : undefined }}
+      fill="none"
+    >
+      <path
+        d="M 90 20 V 150 a 60 60 0 0 1 -60 60"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+/* ── 3. Trail (moving ball) ── */
+function Trail({ color = RED, length = 160, thickness = 40, angle = 0, opacity = 0.06, className = "" }: {
+  color?: string; length?: number; thickness?: number; angle?: number; opacity?: number; className?: string;
+}) {
+  return (
+    <div
+      className={`absolute ${className}`}
+      style={{
+        width: length,
+        height: thickness,
+        borderRadius: 999,
+        opacity,
+        transform: angle ? `rotate(${angle}deg)` : undefined,
+        background: `linear-gradient(90deg, transparent 0%, transparent 8%, ${color} 100%)`,
+      }}
+    />
+  );
+}
+
+/* ── Compositions ── */
 
 interface DecoProps {
   variant?: "light" | "dark";
   className?: string;
 }
 
+/** Full deco — hokejky + guličky + trail */
 export function SzphDecoElements({ variant = "light", className = "" }: DecoProps) {
-  const navy = variant === "dark" ? "rgba(255,255,255,0.06)" : "rgba(5,25,55,0.06)";
-  const red = variant === "dark" ? "rgba(200,16,46,0.08)" : "rgba(200,16,46,0.06)";
-  const navyDot = variant === "dark" ? "rgba(255,255,255,0.04)" : "rgba(5,25,55,0.04)";
-  const redDot = variant === "dark" ? "rgba(200,16,46,0.06)" : "rgba(200,16,46,0.04)";
+  const o = variant === "dark" ? 0.04 : 0.05;
+  const oFaint = variant === "dark" ? 0.025 : 0.035;
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
-      {/* Hokejka 1 — modrá, vľavo */}
-      <svg className="absolute" style={{ left: "-2%", top: "10%", width: "180px", height: "400px", opacity: 0.7 }} viewBox="0 0 80 200" fill="none">
-        <defs>
-          <linearGradient id="stick1" x1="40" y1="0" x2="40" y2="200" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor={navy} stopOpacity="0" />
-            <stop offset="40%" stopColor={navy} stopOpacity="1" />
-            <stop offset="100%" stopColor={navy} stopOpacity="1" />
-          </linearGradient>
-        </defs>
-        <rect x="30" y="0" width="16" height="160" rx="8" fill="url(#stick1)" />
-        <path d="M30 160 L30 180 Q30 195 45 195 L55 195" stroke="none" fill={navy} />
-        <rect x="30" y="155" width="16" height="30" rx="0" fill={navy} />
-        <rect x="38" y="178" width="30" height="16" rx="8" fill={navy} />
-      </svg>
+      {/* Hokejka navy — vľavo, diagonálna */}
+      <Stick color={NAVY} rotate={35} opacity={o} className="left-[-2%] top-[5%]" width={100} height={200} strokeWidth={22} />
 
-      {/* Hokejka 2 — červená, vpravo */}
-      <svg className="absolute" style={{ right: "5%", top: "20%", width: "160px", height: "350px", opacity: 0.6 }} viewBox="0 0 80 200" fill="none">
-        <defs>
-          <linearGradient id="stick2" x1="40" y1="0" x2="40" y2="200" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor={red} stopOpacity="0.3" />
-            <stop offset="50%" stopColor={red} stopOpacity="1" />
-            <stop offset="100%" stopColor={red} stopOpacity="1" />
-          </linearGradient>
-        </defs>
-        <rect x="32" y="10" width="14" height="150" rx="7" fill="url(#stick2)" />
-        <path d="M32 155 L32 175 Q32 190 18 190 L10 190" stroke="none" fill={red} />
-        <rect x="32" y="150" width="14" height="28" rx="0" fill={red} />
-        <rect x="5" y="173" width="35" height="14" rx="7" fill={red} />
-      </svg>
+      {/* Hokejka červená — vpravo */}
+      <Stick color={RED} rotate={0} opacity={oFaint} className="right-[3%] top-[15%]" width={80} height={180} strokeWidth={18} />
 
-      {/* Bodky */}
-      <div className="absolute rounded-full" style={{ width: "20px", height: "20px", background: navyDot, left: "8%", top: "25%" }} />
-      <div className="absolute rounded-full" style={{ width: "14px", height: "14px", background: redDot, right: "12%", top: "15%" }} />
-      <div className="absolute rounded-full" style={{ width: "24px", height: "24px", background: navyDot, left: "15%", bottom: "20%" }} />
-      <div className="absolute rounded-full" style={{ width: "10px", height: "10px", background: redDot, right: "20%", bottom: "30%" }} />
-      <div className="absolute rounded-full" style={{ width: "16px", height: "16px", background: navyDot, right: "8%", bottom: "15%" }} />
-      <div className="absolute rounded-full" style={{ width: "12px", height: "12px", background: redDot, left: "25%", top: "60%" }} />
+      {/* Trail navy — horizontálna */}
+      <Trail color={NAVY} length={140} thickness={28} angle={0} opacity={oFaint} className="left-[10%] bottom-[20%]" />
+
+      {/* Trail červená — vertikálna */}
+      <Trail color={RED} length={120} thickness={24} angle={-90} opacity={oFaint} className="right-[12%] top-[8%]" />
+
+      {/* Guličky */}
+      <Ball size={32} color={NAVY} opacity={o} className="left-[6%] top-[30%]" />
+      <Ball size={18} color={RED} opacity={o} className="right-[8%] top-[60%]" />
+      <Ball size={24} color={NAVY} opacity={oFaint} className="left-[20%] bottom-[12%]" />
+      <Ball size={14} color={RED} opacity={o} className="right-[25%] bottom-[25%]" />
     </div>
   );
 }
 
-/** Minimálna verzia — len bodky */
+/** Minimal — len guličky + trail */
 export function SzphDecoDots({ variant = "light", className = "" }: DecoProps) {
-  const navy = variant === "dark" ? "rgba(255,255,255,0.04)" : "rgba(5,25,55,0.04)";
-  const red = variant === "dark" ? "rgba(200,16,46,0.06)" : "rgba(200,16,46,0.04)";
+  const o = variant === "dark" ? 0.03 : 0.04;
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
-      <div className="absolute rounded-full" style={{ width: "40px", height: "40px", background: navy, left: "5%", top: "15%" }} />
-      <div className="absolute rounded-full" style={{ width: "20px", height: "20px", background: red, right: "10%", top: "20%" }} />
-      <div className="absolute rounded-full" style={{ width: "30px", height: "30px", background: navy, right: "15%", bottom: "10%" }} />
-      <div className="absolute rounded-full" style={{ width: "15px", height: "15px", background: red, left: "20%", bottom: "25%" }} />
+      <Ball size={36} color={NAVY} opacity={o} className="left-[4%] top-[18%]" />
+      <Ball size={16} color={RED} opacity={o} className="right-[8%] top-[25%]" />
+      <Ball size={28} color={NAVY} opacity={o} className="right-[12%] bottom-[12%]" />
+      <Ball size={12} color={RED} opacity={o} className="left-[18%] bottom-[30%]" />
+      <Trail color={NAVY} length={100} thickness={20} angle={15} opacity={o * 0.7} className="right-[5%] top-[10%]" />
     </div>
   );
 }
