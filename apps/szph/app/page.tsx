@@ -6,6 +6,7 @@ import { getPublishedArticles, getUpcomingMatches, getAllCompetitions } from "@s
 import { MatchCenter } from "@szph/ui";
 import { SzphHero } from "./components/SzphHero";
 import { RychleOdkazy } from "./components/RychleOdkazy";
+import { SzphDecoElements, SzphDecoDots } from "./components/SzphDecoElements";
 
 const MOCK_ARTICLES = [
   {
@@ -97,7 +98,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
               )}
             </div>
             <div className="pt-3">
-              <span className="block font-bold uppercase text-[#C8102E] mb-1" style={{ fontSize: "9px", letterSpacing: "0.14em" }}>
+              <span className="inline-block font-bold uppercase text-white mb-1.5 rounded-full px-2.5 py-0.5" style={{ fontSize: "8px", letterSpacing: "0.12em", background: "#C8102E" }}>
                 {article.category}
               </span>
               <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012D74] transition-colors line-clamp-2" style={{ fontSize: "13px" }}>
@@ -145,8 +146,9 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           AKTUALITY + RÝCHLE ODKAZY
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#f8f9fa" }} className="pt-0 pb-12">
-        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+      <section style={{ background: "#f8f9fa" }} className="relative pt-0 pb-12">
+        <SzphDecoDots variant="light" />
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-0 items-start">
 
             {/* ── Ľavý stĺpec: Aktuality + Novinky + Reprezentácia ── */}
@@ -255,8 +257,9 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           ZAPASOVE CENTRUM
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#f8f9fa" }} className="py-14">
-        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+      <section style={{ background: "#f8f9fa" }} className="relative py-14">
+        <SzphDecoElements variant="light" />
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="flex items-center justify-between mb-7">
             <div className="flex items-center gap-4">
               {/* Gradient glow line */}
@@ -473,8 +476,9 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           PROJEKTY
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#f8f9fa" }} className="pt-4 pb-14">
-        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+      <section style={{ background: "#f8f9fa" }} className="relative pt-4 pb-14">
+        <SzphDecoDots variant="light" />
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="flex items-center justify-between mb-8">
             <div>
               <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
