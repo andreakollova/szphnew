@@ -68,11 +68,11 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <div>
+        <div className="flex items-center gap-3">
+          <div style={{ width: "40px", height: "10px", borderRadius: "999px", background: "linear-gradient(90deg, transparent 0%, #C8102E 100%)" }} />
           <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "13px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
             {title}
           </h2>
-          <div className="mt-1.5" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
         </div>
         <Link
           href={href}
@@ -262,8 +262,7 @@ export default async function SzphHome() {
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="flex items-center justify-between mb-7">
             <div className="flex items-center gap-4">
-              {/* Gradient glow line */}
-              <div style={{ width: "2px", height: "32px", borderRadius: "1px", background: "linear-gradient(to bottom, rgba(200,16,46,0.8), rgba(5,25,55,0.3))" }} />
+              <div style={{ width: "50px", height: "12px", borderRadius: "999px", background: "linear-gradient(90deg, transparent 0%, #0A2472 100%)" }} />
               <h2
                 className="font-bold text-[#051937]"
                 style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)" }}
@@ -480,11 +479,11 @@ export default async function SzphHome() {
         <SzphDecoDots variant="light" />
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <div>
+            <div className="flex items-center gap-4">
+              <div style={{ width: "50px", height: "12px", borderRadius: "999px", background: "linear-gradient(90deg, transparent 0%, #C8102E 100%)" }} />
               <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
                 Projekty
               </h2>
-              <div className="mt-1.5" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
             </div>
             <Link
               href="/projekty"
@@ -555,11 +554,11 @@ export default async function SzphHome() {
 
           {/* Header — rovnaký štýl ako Aktuality/Projekty */}
           <div className="flex items-center justify-between mb-8">
-            <div>
+            <div className="flex items-center gap-4">
+              <div style={{ width: "50px", height: "12px", borderRadius: "999px", background: "linear-gradient(90deg, transparent 0%, #C8102E 100%)" }} />
               <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
                 Videozóna
               </h2>
-              <div className="mt-1.5" style={{ width: "28px", height: "2px", background: "#C8102E" }} />
             </div>
             <Link
               href="/video"

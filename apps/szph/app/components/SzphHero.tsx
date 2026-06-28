@@ -98,6 +98,12 @@ export function SzphHero() {
             transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="pl-14 md:pl-20 xl:pl-28"
           >
+            {/* Trail pred nadpisom */}
+            <div className="flex items-center gap-4 mb-2">
+              <div style={{ width: "60px", height: "14px", borderRadius: "999px", background: "linear-gradient(90deg, transparent 0%, rgba(200,16,46,0.8) 100%)" }} />
+              <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#C8102E" }} />
+            </div>
+
             {/* Hlavný nadpis — veľký */}
             <h1
               className="font-garet font-bold italic leading-[0.88] text-white"
@@ -150,6 +156,12 @@ export function SzphHero() {
                 <span className="h-1.5 w-1.5 rounded-full bg-white/50 animate-pulse" />
                 Aktuality
               </Link>
+            </div>
+
+            {/* Navy trail pod buttonmi */}
+            <div className="flex items-center gap-2 mt-6">
+              <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "rgba(255,255,255,0.3)" }} />
+              <div style={{ width: "80px", height: "10px", borderRadius: "999px", background: "linear-gradient(90deg, rgba(255,255,255,0.3) 0%, transparent 100%)" }} />
             </div>
 
           </motion.div>
