@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createBrowserSupabaseClient } from "@szph/db/client";
-import { GlassCard } from "@szph/ui";
 
 export default function NovyTimPage() {
   const router = useRouter();
@@ -58,13 +57,13 @@ export default function NovyTimPage() {
     }
   }
 
-  const inputCls = "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none focus:border-[var(--sky)]/50 transition-all";
-  const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-white/40 mb-1.5";
+  const inputCls = "w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
+  const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
     <div className="space-y-6 max-w-lg">
       <div>
-        <h1 className="font-garet text-2xl font-bold text-white">Nový tím</h1>
+        <h1 className="text-2xl font-bold text-[#051937]">Nový tím</h1>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
@@ -72,7 +71,7 @@ export default function NovyTimPage() {
           <div className="rounded-xl bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">{error}</div>
         )}
 
-        <GlassCard className="p-6" hover={false}>
+        <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <div className="space-y-4">
             <div>
               <label className={labelCls}>Celý názov tímu *</label>
@@ -98,7 +97,7 @@ export default function NovyTimPage() {
               <select
                 value={form.category}
                 onChange={(e) => setForm((f) => ({ ...f, category: e.target.value as typeof form.category }))}
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none [&_option]:bg-[#020817]"
+                className="w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white"
               >
                 <option value="muzi">Muži</option>
                 <option value="zeny">Ženy</option>
@@ -123,25 +122,25 @@ export default function NovyTimPage() {
                 type="file"
                 accept="image/*,.svg"
                 onChange={handleLogoChange}
-                className="w-full text-sm text-white/60 file:mr-4 file:rounded-lg file:border-0 file:bg-white/15 file:px-3 file:py-2 file:text-xs file:font-semibold file:text-white hover:file:bg-white/25"
+                className="w-full text-sm text-[#64748b] file:mr-4 file:rounded-lg file:border-0 file:bg-gray-100 file:px-3 file:py-2 file:text-xs file:font-semibold file:text-[#051937] hover:file:bg-gray-200"
               />
-              <p className="text-xs text-white/30 mt-1">PNG, SVG, JPG — odporúčané: transparentné pozadie, aspoň 200×200px</p>
+              <p className="text-xs text-[#94a3b8] mt-1">PNG, SVG, JPG — odporúčané: transparentné pozadie, aspoň 200×200px</p>
             </div>
           </div>
-        </GlassCard>
+        </div>
 
         <div className="flex gap-3">
           <button
             type="submit"
             disabled={saving}
-            className="rounded-xl bg-[var(--sky)] px-6 py-3 text-sm font-bold text-white hover:bg-[var(--sky-light)] disabled:opacity-50 transition-all"
+            className="rounded-xl bg-[#016fb4] px-6 py-3 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50 transition-all"
           >
             {saving ? "Ukladám..." : "Vytvoriť tím"}
           </button>
           <button
             type="button"
             onClick={() => router.back()}
-            className="rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white/60 hover:bg-white/8 transition-colors"
+            className="rounded-xl border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
           >
             Zrušiť
           </button>

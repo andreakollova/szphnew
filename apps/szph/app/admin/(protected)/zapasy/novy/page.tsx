@@ -18,7 +18,7 @@ export default async function NovyZapaasPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-garet text-2xl font-bold text-white">Nový zápas</h1>
+        <h1 className="text-2xl font-bold text-[#051937]">Nový zápas</h1>
       </div>
       <MatchForm teams={teams} competitions={competitions} />
     </div>

@@ -3,9 +3,9 @@ import { createServerSupabaseClient } from "@szph/db/client";
 import { getAllTeams } from "@szph/db";
 import Link from "next/link";
 import Image from "next/image";
-import { GlassCard } from "@szph/ui";
 import type { Team } from "@szph/db/types";
 import type { Metadata } from "next";
+import { DeleteTeamButton } from "./DeleteTeamButton";
 
 export const metadata: Metadata = { title: "Tímy" };
 
@@ -28,12 +28,12 @@ export default async function AdminTimyPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-garet text-2xl font-bold text-white">Tímy</h1>
-          <p className="text-sm text-white/40 mt-1">{teams.length} tímov celkovo</p>
+          <h1 className="text-2xl font-bold text-[#051937]">Tímy</h1>
+          <p className="text-sm text-[#64748b] mt-1">{teams.length} tímov celkovo</p>
         </div>
         <Link
           href="/admin/timy/novy"
-          className="inline-flex items-center gap-2 rounded-xl bg-[var(--sky)] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[var(--sky-light)]"
+          className="inline-flex items-center gap-2 rounded-xl bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90"
         >
           + Nový tím
         </Link>
@@ -41,12 +41,12 @@ export default async function AdminTimyPage() {
 
       {Object.entries(byCategory).map(([category, categoryTeams]) => (
         <div key={category}>
-          <h2 className="font-garet font-bold text-white/60 mb-3 text-sm uppercase tracking-wider">
+          <h2 className="font-bold text-[#64748b] mb-3 text-sm uppercase tracking-wider">
             {CATEGORY_LABELS[category] ?? category}
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {categoryTeams.map((team) => (
-              <GlassCard key={team.id} className="p-4" hover>
+              <div key={team.id} className="rounded-2xl p-4" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
                 <div className="flex items-center gap-3">
                   {team.logo_url ? (
                     <div className="relative h-12 w-12 shrink-0">
@@ -59,35 +59,36 @@ export default async function AdminTimyPage() {
                       />
                     </div>
                   ) : (
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-white/50 shrink-0">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-[#64748b] shrink-0">
                       {team.short_name?.slice(0, 2) ?? "?"}
                     </div>
                   )}
                   <div className="min-w-0">
-                    <p className="font-garet font-bold text-white text-sm truncate">{team.name}</p>
+                    <p className="font-bold text-[#051937] text-sm truncate">{team.name}</p>
                     {team.short_name && (
-                      <p className="text-xs text-white/40">{team.short_name}</p>
+                      <p className="text-xs text-[#64748b]">{team.short_name}</p>
                     )}
                   </div>
                 </div>
-                <div className="mt-3 flex justify-end">
+                <div className="mt-3 flex items-center justify-between">
+                  <DeleteTeamButton id={team.id} name={team.name} />
                   <Link
                     href={`/admin/timy/${team.id}`}
-                    className="text-xs text-[var(--sky)] hover:underline"
+                    className="text-xs text-[#016fb4] hover:underline"
                   >
                     Upraviť →
                   </Link>
                 </div>
-              </GlassCard>
+              </div>
             ))}
           </div>
         </div>
       ))}
 
       {teams.length === 0 && (
-        <GlassCard hover={false} className="py-16 text-center">
-          <p className="text-white/40">Žiadne tímy. Vytvorte prvý tím!</p>
-        </GlassCard>
+        <div className="rounded-2xl py-16 text-center" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <p className="text-[#64748b]">Žiadne tímy. Vytvorte prvý tím!</p>
+        </div>
       )}
     </div>
   );

@@ -27,8 +27,8 @@ export default async function UpravitClanokPage({ params }: Props) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-garet text-2xl font-bold text-white">Upraviť článok</h1>
-        <p className="text-sm text-white/40 mt-1">{article.title}</p>
+        <h1 className="text-2xl font-bold text-[#051937]">Upraviť článok</h1>
+        <p className="text-sm text-[#64748b] mt-1">{article.title}</p>
       </div>
       <ArticleForm article={article as Article} />
     </div>

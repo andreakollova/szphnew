@@ -33,7 +33,7 @@ export function VideoAdminActions({ video }: { video: Video }) {
       <button
         onClick={toggleStatus}
         disabled={loading}
-        className="rounded-lg bg-white/10 px-3 py-1.5 text-xs font-semibold text-white hover:bg-white/20 transition-colors disabled:opacity-50"
+        className="rounded-lg bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors disabled:opacity-50"
       >
         {video.status === "published" ? "Draft" : "Pub."}
       </button>

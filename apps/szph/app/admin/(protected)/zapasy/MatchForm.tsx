@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createBrowserSupabaseClient } from "@szph/db/client";
-import { GlassCard } from "@szph/ui";
 import type { Team, Competition, Match } from "@szph/db/types";
 
 const matchSchema = z.object({
@@ -91,9 +90,9 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
     }
   }
 
-  const inputCls = "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none focus:border-[var(--sky)]/50 focus:bg-white/8 transition-all";
-  const selectCls = "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none focus:border-[var(--sky)]/50 [&_option]:bg-[#020817]";
-  const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-white/40 mb-1.5";
+  const inputCls = "w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
+  const selectCls = "w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 [&_option]:bg-white";
+  const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 max-w-2xl">
@@ -103,8 +102,8 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
         </div>
       )}
 
-      <GlassCard className="p-6" hover={false}>
-        <h2 className="font-garet font-bold text-white mb-5">Základné informácie</h2>
+      <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <h2 className="font-bold text-[#051937] mb-5">Základné informácie</h2>
         <div className="space-y-4">
           <div>
             <label className={labelCls}>Súťaž</label>
@@ -184,20 +183,20 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
             </div>
           )}
         </div>
-      </GlassCard>
+      </div>
 
       <div className="flex gap-3">
         <button
           type="submit"
           disabled={saving}
-          className="rounded-xl bg-[var(--sky)] px-6 py-3 text-sm font-bold text-white transition-all hover:bg-[var(--sky-light)] disabled:opacity-50"
+          className="rounded-xl bg-[#016fb4] px-6 py-3 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90 disabled:opacity-50"
         >
           {saving ? "Ukladám..." : match ? "Uložiť zmeny" : "Vytvoriť zápas"}
         </button>
         <button
           type="button"
           onClick={() => router.back()}
-          className="rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white/60 hover:bg-white/8 transition-colors"
+          className="rounded-xl border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
         >
           Zrušiť
         </button>

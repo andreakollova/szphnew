@@ -25,7 +25,7 @@ export default async function UpravitZapaasPage({ params }: Props) {
 
   return (
     <div className="space-y-6">
-      <h1 className="font-garet text-2xl font-bold text-white">Upraviť zápas</h1>
+      <h1 className="text-2xl font-bold text-[#051937]">Upraviť zápas</h1>
       <MatchForm match={matchRes.data as Match} teams={teams} competitions={competitions} />
     </div>
   );

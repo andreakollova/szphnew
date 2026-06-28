@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createBrowserSupabaseClient } from "@szph/db/client";
-import { GlassCard } from "@szph/ui";
 import { slugify } from "@szph/ui";
 import type { Article, ArticleCategory, VisibleOn, Status } from "@szph/db/types";
 
@@ -131,8 +130,8 @@ export function ArticleForm({ article }: ArticleFormProps) {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Hlavný obsah */}
         <div className="space-y-5 lg:col-span-2">
-          <GlassCard className="p-6" hover={false}>
-            <h2 className="font-garet font-bold text-white mb-4">Obsah článku</h2>
+          <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <h2 className="font-bold text-[#051937] mb-4">Obsah článku</h2>
 
             <div className="space-y-4">
               {/* Nadpis */}
@@ -176,11 +175,11 @@ export function ArticleForm({ article }: ArticleFormProps) {
                 />
               </div>
             </div>
-          </GlassCard>
+          </div>
 
           {/* Cover image */}
-          <GlassCard className="p-6" hover={false}>
-            <h2 className="font-garet font-bold text-white mb-4">Titulná fotka</h2>
+          <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <h2 className="font-bold text-[#051937] mb-4">Titulná fotka</h2>
             {imagePreview && (
               <div className="mb-4 relative h-48 w-full overflow-hidden rounded-xl">
                 <img src={imagePreview} alt="Preview" className="h-full w-full object-cover" />
@@ -197,21 +196,21 @@ export function ArticleForm({ article }: ArticleFormProps) {
               type="file"
               accept="image/*"
               onChange={handleImageChange}
-              className="w-full text-sm text-white/60 file:mr-4 file:rounded-lg file:border-0 file:bg-white/15 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-white/25"
+              className="w-full text-sm text-[#64748b] file:mr-4 file:rounded-lg file:border-0 file:bg-gray-100 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-[#051937] hover:file:bg-gray-200"
             />
-            <p className="mt-2 text-xs text-white/30">alebo zadaj URL:</p>
+            <p className="mt-2 text-xs text-[#94a3b8]">alebo zadaj URL:</p>
             <input
               {...register("cover_image_url")}
               className="field-input mt-1"
               placeholder="https://..."
             />
-          </GlassCard>
+          </div>
         </div>
 
         {/* Postranný panel */}
         <div className="space-y-4">
-          <GlassCard className="p-5" hover={false}>
-            <h2 className="font-garet font-bold text-white mb-4">Nastavenia</h2>
+          <div className="rounded-2xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <h2 className="font-bold text-[#051937] mb-4">Nastavenia</h2>
             <div className="space-y-4">
 
               {/* Status */}
@@ -244,21 +243,21 @@ export function ArticleForm({ article }: ArticleFormProps) {
                 </select>
               </div>
             </div>
-          </GlassCard>
+          </div>
 
           {/* Akcie */}
           <div className="flex flex-col gap-3">
             <button
               type="submit"
               disabled={saving}
-              className="w-full rounded-xl bg-[var(--sky)] py-3 text-sm font-bold text-white transition-all hover:bg-[var(--sky-light)] disabled:opacity-50"
+              className="w-full rounded-xl bg-[#016fb4] py-3 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90 disabled:opacity-50"
             >
               {saving ? "Ukladám..." : article ? "Uložiť zmeny" : "Vytvoriť článok"}
             </button>
             <button
               type="button"
               onClick={() => router.back()}
-              className="w-full rounded-xl border border-white/15 py-3 text-sm font-semibold text-white/60 transition-colors hover:bg-white/8"
+              className="w-full rounded-xl border border-[rgba(1,45,116,0.08)] py-3 text-sm font-semibold text-[#64748b] transition-colors hover:bg-gray-50"
             >
               Zrušiť
             </button>
@@ -273,39 +272,39 @@ export function ArticleForm({ article }: ArticleFormProps) {
           font-weight: 600;
           letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.4);
+          color: #64748b;
           margin-bottom: 0.375rem;
         }
         .field-input {
           width: 100%;
           border-radius: 0.75rem;
-          border: 1px solid rgba(255,255,255,0.15);
-          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(1,45,116,0.15);
+          background: #ffffff;
           padding: 0.625rem 1rem;
           font-size: 0.875rem;
-          color: white;
+          color: #051937;
           outline: none;
           transition: all 0.15s;
         }
         .field-input:focus {
-          border-color: rgba(77,124,255,0.5);
-          background: rgba(255,255,255,0.08);
+          border-color: rgba(1,111,180,0.5);
+          background: #f8f9fa;
         }
         .field-input::placeholder {
-          color: rgba(255,255,255,0.25);
+          color: #94a3b8;
         }
         .field-select {
           width: 100%;
           border-radius: 0.75rem;
-          border: 1px solid rgba(255,255,255,0.15);
-          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(1,45,116,0.15);
+          background: #ffffff;
           padding: 0.625rem 1rem;
           font-size: 0.875rem;
-          color: white;
+          color: #051937;
           outline: none;
         }
         .field-select option {
-          background: #0a0e1a;
+          background: #ffffff;
         }
         .field-error {
           color: #f87171;

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { createBrowserSupabaseClient } from "@szph/db/client";
-import { GlassCard } from "@szph/ui";
 import type { Partner } from "@szph/db/types";
 
 export default function AdminPartneriPage() {
@@ -50,20 +49,20 @@ export default function AdminPartneriPage() {
     setPartners((prev) => prev.filter((p) => p.id !== id));
   }
 
-  const inputCls = "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none focus:border-[var(--sky)]/50 transition-all placeholder-white/25";
-  const selectCls = "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none [&_option]:bg-[#020817]";
-  const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-white/40 mb-1.5";
+  const inputCls = "w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all placeholder-[#94a3b8]";
+  const selectCls = "w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
+  const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="font-garet text-2xl font-bold text-white">Partneri</h1>
-        <p className="text-sm text-white/40 mt-1">Spravujte logá sponzorov a partnerov</p>
+        <h1 className="text-2xl font-bold text-[#051937]">Partneri</h1>
+        <p className="text-sm text-[#64748b] mt-1">Spravujte logá sponzorov a partnerov</p>
       </div>
 
       {/* Pridať partnera */}
-      <GlassCard className="p-6" hover={false}>
-        <h2 className="font-garet font-bold text-white mb-4">Pridať partnera</h2>
+      <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <h2 className="font-bold text-[#051937] mb-4">Pridať partnera</h2>
         <form onSubmit={handleAdd} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <label className={labelCls}>Názov *</label>
@@ -82,39 +81,39 @@ export default function AdminPartneriPage() {
           </div>
           <div>
             <label className={labelCls}>Logo</label>
-            <input type="file" accept="image/*,.svg" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} className="w-full text-xs text-white/60 file:mr-2 file:rounded-lg file:border-0 file:bg-white/15 file:px-2 file:py-1.5 file:text-xs file:text-white" />
-            <button type="submit" disabled={saving} className="mt-2 w-full rounded-xl bg-[var(--sky)] py-2.5 text-sm font-bold text-white hover:bg-[var(--sky-light)] disabled:opacity-50 transition-all">
+            <input type="file" accept="image/*,.svg" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} className="w-full text-xs text-[#64748b] file:mr-2 file:rounded-lg file:border-0 file:bg-gray-100 file:px-2 file:py-1.5 file:text-xs file:text-[#051937]" />
+            <button type="submit" disabled={saving} className="mt-2 w-full rounded-xl bg-[#016fb4] py-2.5 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50 transition-all">
               {saving ? "Pridávam..." : "Pridať"}
             </button>
           </div>
         </form>
-      </GlassCard>
+      </div>
 
       {/* Zoznam partnerov */}
       {!loading && (
         <div className="space-y-3">
           {partners.map((partner) => (
-            <GlassCard key={partner.id} className="p-4 flex items-center gap-4" hover={false}>
+            <div key={partner.id} className="rounded-2xl p-4 flex items-center gap-4" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
               {partner.logo_url ? (
                 <div className="relative h-10 w-20 shrink-0">
                   <Image src={partner.logo_url} alt={partner.name} fill className="object-contain" sizes="80px" />
                 </div>
               ) : (
-                <div className="h-10 w-20 shrink-0 flex items-center justify-center rounded-lg bg-white/5 text-xs text-white/30">
+                <div className="h-10 w-20 shrink-0 flex items-center justify-center rounded-lg bg-gray-50 text-xs text-[#94a3b8]">
                   Bez loga
                 </div>
               )}
               <div className="flex-1 min-w-0">
-                <p className="font-semibold text-white">{partner.name}</p>
-                {partner.url && <a href={partner.url} target="_blank" rel="noopener noreferrer" className="text-xs text-[var(--sky)] hover:underline truncate block">{partner.url}</a>}
+                <p className="font-semibold text-[#051937]">{partner.name}</p>
+                {partner.url && <a href={partner.url} target="_blank" rel="noopener noreferrer" className="text-xs text-[#016fb4] hover:underline truncate block">{partner.url}</a>}
               </div>
-              <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold shrink-0 ${partner.tier === "oficialny" ? "bg-amber-500/20 text-amber-400" : "bg-white/10 text-white/50"}`}>
+              <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold shrink-0 ${partner.tier === "oficialny" ? "bg-amber-500/20 text-amber-400" : "bg-gray-100 text-[#64748b]"}`}>
                 {partner.tier === "oficialny" ? "Oficiálny" : "Inštit."}
               </span>
               <button onClick={() => handleDelete(partner.id)} className="shrink-0 rounded-lg bg-red-500/20 px-3 py-1.5 text-xs font-semibold text-red-400 hover:bg-red-500/30 transition-colors">
                 Zmazať
               </button>
-            </GlassCard>
+            </div>
           ))}
         </div>
       )}

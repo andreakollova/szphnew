@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createBrowserSupabaseClient } from "@szph/db/client";
-import { GlassCard } from "@szph/ui";
 
 export default function NovaSutazPage() {
   const router = useRouter();
@@ -21,15 +20,15 @@ export default function NovaSutazPage() {
     router.refresh();
   }
 
-  const inputCls = "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none focus:border-[var(--sky)]/50 transition-all";
-  const selectCls = "w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none [&_option]:bg-[#020817]";
-  const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-white/40 mb-1.5";
+  const inputCls = "w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
+  const selectCls = "w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
+  const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
     <div className="space-y-6 max-w-lg">
-      <h1 className="font-garet text-2xl font-bold text-white">Nová súťaž</h1>
+      <h1 className="text-2xl font-bold text-[#051937]">Nová súťaž</h1>
       <form onSubmit={handleSubmit} className="space-y-5">
-        <GlassCard className="p-6" hover={false}>
+        <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <div className="space-y-4">
             <div>
               <label className={labelCls}>Názov súťaže *</label>
@@ -57,12 +56,12 @@ export default function NovaSutazPage() {
               </select>
             </div>
           </div>
-        </GlassCard>
+        </div>
         <div className="flex gap-3">
-          <button type="submit" disabled={saving} className="rounded-xl bg-[var(--sky)] px-6 py-3 text-sm font-bold text-white hover:bg-[var(--sky-light)] disabled:opacity-50">
+          <button type="submit" disabled={saving} className="rounded-xl bg-[#016fb4] px-6 py-3 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50">
             {saving ? "Ukladám..." : "Vytvoriť súťaž"}
           </button>
-          <button type="button" onClick={() => router.back()} className="rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-white/60 hover:bg-white/8">Zrušiť</button>
+          <button type="button" onClick={() => router.back()} className="rounded-xl border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50">Zrušiť</button>
         </div>
       </form>
     </div>
