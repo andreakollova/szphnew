@@ -8,6 +8,7 @@ import { z } from "zod";
 import { createBrowserSupabaseClient } from "@szph/db/client";
 import { slugify } from "@szph/ui";
 import type { Article, ArticleCategory, VisibleOn, Status } from "@szph/db/types";
+import { RichTextEditor } from "./RichTextEditor";
 
 const articleSchema = z.object({
   title: z.string().min(3, "Nadpis musí mať aspoň 3 znaky"),
@@ -164,14 +165,12 @@ export function ArticleForm({ article }: ArticleFormProps) {
                 />
               </div>
 
-              {/* Content */}
+              {/* Content — Rich Text Editor */}
               <div>
-                <label className="field-label">Obsah (Markdown)</label>
-                <textarea
-                  {...register("content")}
-                  rows={14}
-                  className="field-input resize-y font-mono text-xs"
-                  placeholder="## Nadpis\n\nText článku v Markdown formáte..."
+                <label className="field-label">Obsah</label>
+                <RichTextEditor
+                  content={watch("content") ?? ""}
+                  onChange={(html) => setValue("content", html)}
                 />
               </div>
             </div>

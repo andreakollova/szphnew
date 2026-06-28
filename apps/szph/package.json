@@ -22,6 +22,7 @@
     "@tiptap/extension-image": "^2.11.3",
     "@tiptap/extension-link": "^2.11.3",
     "@tiptap/extension-placeholder": "^2.11.3",
+    "@tiptap/extension-youtube": "^2.11.3",
     "framer-motion": "^11.15.0",
     "next": "^15.1.6",
     "react": "^19.0.0",

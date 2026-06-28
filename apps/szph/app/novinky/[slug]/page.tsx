@@ -236,11 +236,30 @@ export default async function ArticleDetailPage({ params }: Props) {
             )}
 
             {/* Article body */}
-            <div className="max-w-none">
-              {article.content ? renderContent(article.content) : (
+            <div className="max-w-none article-content">
+              {article.content ? (
+                article.content.startsWith("<") ? (
+                  <div dangerouslySetInnerHTML={{ __html: article.content }} />
+                ) : (
+                  renderContent(article.content)
+                )
+              ) : (
                 <p className="text-[#64748b]">Obsah článku nie je dostupný.</p>
               )}
             </div>
+
+            <style>{`
+              .article-content h2 { font-size: 22px; font-weight: 700; color: #051937; margin: 32px 0 12px; }
+              .article-content h3 { font-size: 18px; font-weight: 700; color: #051937; margin: 24px 0 8px; }
+              .article-content p { font-size: 15px; line-height: 1.8; color: #334155; margin: 12px 0; }
+              .article-content ul, .article-content ol { padding-left: 24px; margin: 12px 0; }
+              .article-content li { font-size: 15px; line-height: 1.7; color: #334155; margin: 6px 0; }
+              .article-content blockquote { border-left: 3px solid #C8102E; padding-left: 16px; margin: 20px 0; color: #64748b; font-style: italic; font-size: 15px; line-height: 1.7; }
+              .article-content a { color: #016fb4; text-decoration: underline; }
+              .article-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
+              .article-content hr { border: none; border-top: 1px solid rgba(1,45,116,0.08); margin: 32px 0; }
+              .article-content iframe { max-width: 100%; border-radius: 8px; margin: 20px 0; }
+            `}</style>
 
             {/* Tags / share */}
             <div className="mt-12 pt-6 flex items-center justify-between flex-wrap gap-4" style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
