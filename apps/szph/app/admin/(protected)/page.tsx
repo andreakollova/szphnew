@@ -31,8 +31,8 @@ export default async function AdminDashboard() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        <p className="text-sm text-white/40 mt-1">Vitajte v admin paneli SZPH</p>
+        <h1 className="text-2xl font-bold text-[#051937]">Dashboard</h1>
+        <p className="text-sm text-[#64748b] mt-1">Vitajte v admin paneli SZPH</p>
       </div>
 
       {/* Stats */}
@@ -43,10 +43,10 @@ export default async function AdminDashboard() {
           { label: "Tímov",                 value: stats.teamCount,   color: "#34d399" },
           { label: "Nadchádzajúcich zápasov", value: stats.upcomingMatches.length, color: "#C8102E" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+          <div key={stat.label} className="rounded-2xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
             <div className="flex items-start justify-between">
               <div>
-                <p className="text-xs text-white/40">{stat.label}</p>
+                <p className="text-xs text-[#64748b]">{stat.label}</p>
                 <p className="text-3xl font-black mt-1" style={{ color: stat.color }}>{stat.value}</p>
               </div>
             </div>
@@ -56,21 +56,21 @@ export default async function AdminDashboard() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Recent articles */}
-        <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+        <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-bold text-white">Posledné články</h2>
+            <h2 className="font-bold text-[#051937]">Posledné články</h2>
             <a href="/admin/clanky" className="text-xs text-blue-400 hover:underline">Všetky →</a>
           </div>
           {stats.recentArticles.length === 0 ? (
-            <p className="text-sm text-white/40">Žiadne články</p>
+            <p className="text-sm text-[#64748b]">Žiadne články</p>
           ) : (
             <ul className="space-y-3">
               {stats.recentArticles.map((article: any) => (
                 <li key={article.id} className="flex items-center justify-between gap-2">
-                  <a href={`/admin/clanky/upravit/${article.id}`} className="text-sm text-white/80 hover:text-white truncate flex-1">
+                  <a href={`/admin/clanky/upravit/${article.id}`} className="text-sm text-[#051937] hover:text-[#016fb4] truncate flex-1">
                     {article.title}
                   </a>
-                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${article.status === "published" ? "bg-emerald-500/20 text-emerald-400" : "bg-white/10 text-white/40"}`}>
+                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${article.status === "published" ? "bg-emerald-500/20 text-emerald-400" : "bg-white/10 text-[#64748b]"}`}>
                     {article.status === "published" ? "pub." : "draft"}
                   </span>
                 </li>
@@ -80,19 +80,19 @@ export default async function AdminDashboard() {
         </div>
 
         {/* Upcoming matches */}
-        <div className="rounded-2xl p-6" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+        <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-bold text-white">Najbližšie zápasy</h2>
+            <h2 className="font-bold text-[#051937]">Najbližšie zápasy</h2>
             <a href="/admin/zapasy" className="text-xs text-blue-400 hover:underline">Všetky →</a>
           </div>
           {stats.upcomingMatches.length === 0 ? (
-            <p className="text-sm text-white/40">Žiadne naplánované zápasy</p>
+            <p className="text-sm text-[#64748b]">Žiadne naplánované zápasy</p>
           ) : (
             <ul className="space-y-3">
               {stats.upcomingMatches.map((match: any) => (
                 <li key={match.id} className="text-sm">
-                  <span className="text-white/40 text-xs">{formatDate(match.match_date)} </span>
-                  <span className="text-white/80">
+                  <span className="text-[#64748b] text-xs">{formatDate(match.match_date)} </span>
+                  <span className="text-[#051937]">
                     {match.home_team?.name ?? "?"} vs {match.away_team?.name ?? "?"}
                   </span>
                 </li>
@@ -104,7 +104,7 @@ export default async function AdminDashboard() {
 
       {/* Quick actions */}
       <div>
-        <h2 className="font-bold text-white mb-4">Rýchle akcie</h2>
+        <h2 className="font-bold text-[#051937] mb-4">Rýchle akcie</h2>
         <div className="flex flex-wrap gap-3">
           {[
             { label: "Nový článok", href: "/admin/clanky/novy" },
@@ -115,7 +115,7 @@ export default async function AdminDashboard() {
             <a
               key={action.href}
               href={action.href}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/15"
+              className="inline-flex items-center gap-2 rounded-xl border border-[rgba(1,45,116,0.1)] bg-white px-4 py-2.5 text-sm font-semibold text-[#051937] transition-all hover:bg-gray-50"
             >
               + {action.label}
             </a>

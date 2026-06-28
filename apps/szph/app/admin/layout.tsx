@@ -1,8 +1,16 @@
 export default function AdminRootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ background: "#020817", minHeight: "100vh" }}>
-      <style>{`header, [class*="z-[60]"], footer { display: none !important; } main { padding-top: 0 !important; }`}</style>
-      {children}
-    </div>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: `
+        header[class*="fixed"] { display: none !important; }
+        div[class*="z-[60]"] { display: none !important; }
+        div[class*="md:hidden"][class*="z-[60]"] { display: none !important; }
+        body > main { padding-top: 0 !important; }
+        footer { display: none !important; }
+      `}} />
+      <div style={{ background: "#f8f9fa", minHeight: "100vh" }}>
+        {children}
+      </div>
+    </>
   );
 }
