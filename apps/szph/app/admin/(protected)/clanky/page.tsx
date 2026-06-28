@@ -1,8 +1,9 @@
 import { cookies } from "next/headers";
 import { createServerSupabaseClient } from "@szph/db/client";
-import { getAllArticlesAdmin, deleteArticle } from "@szph/db";
+import { getAllArticlesAdmin } from "@szph/db";
 import Link from "next/link";
-import { GlassCard, formatDate } from "@szph/ui";
+import { formatDate } from "@szph/ui";
+import { DeleteButton } from "./DeleteButton";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Články" };
@@ -16,7 +17,7 @@ export default async function AdminClankyPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-garet text-2xl font-bold text-white">Články</h1>
+          <h1 className="text-2xl font-bold text-white">Články</h1>
           <p className="text-sm text-white/40 mt-1">{articles.length} článkov celkovo</p>
         </div>
         <Link
@@ -27,7 +28,7 @@ export default async function AdminClankyPage() {
         </Link>
       </div>
 
-      <GlassCard hover={false} className="overflow-hidden">
+      <div className="rounded-2xl overflow-hidden" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
         {articles.length === 0 ? (
           <div className="py-16 text-center text-white/40">Žiadne články. Vytvorte prvý!</div>
         ) : (
@@ -82,6 +83,7 @@ export default async function AdminClankyPage() {
                       >
                         Upraviť
                       </Link>
+                      <DeleteButton id={article.id} title={article.title} />
                     </div>
                   </td>
                 </tr>
@@ -89,7 +91,7 @@ export default async function AdminClankyPage() {
             </tbody>
           </table>
         )}
-      </GlassCard>
+      </div>
     </div>
   );
 }

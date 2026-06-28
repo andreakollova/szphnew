@@ -12,6 +12,7 @@ export function SzphHero() {
     <>
       <div style={{ background: "#051937" }} className="-mt-16 md:-mt-[112px]">
       <section
+        data-hero
         className="relative overflow-hidden w-full h-[calc(90vh)] md:h-[calc(88vh)] min-h-[600px] max-h-[920px]"
         style={{ background: "#051937" }}
       >

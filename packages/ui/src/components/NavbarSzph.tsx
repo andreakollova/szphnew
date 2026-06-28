@@ -278,7 +278,8 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80);
+    const hasHero = !!document.querySelector("[data-hero]");
+    const onScroll = () => setScrolled(hasHero ? window.scrollY > 80 : true);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
