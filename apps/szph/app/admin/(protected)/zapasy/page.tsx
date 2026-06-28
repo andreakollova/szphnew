@@ -73,7 +73,13 @@ export default async function AdminZapasyPage() {
                     <span className="text-xs text-[#64748b]">{match.competition?.name ?? "—"}</span>
                   </td>
                   <td className="px-4 py-3.5 text-center">
-                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold badge-${match.status}`}>
+                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                      match.status === "scheduled" ? "bg-emerald-500/15 text-emerald-600" :
+                      match.status === "finished" ? "bg-gray-100 text-[#64748b]" :
+                      match.status === "live" ? "bg-blue-500/15 text-blue-600" :
+                      match.status === "postponed" ? "bg-red-500/15 text-red-600" :
+                      "bg-gray-100 text-[#64748b]"
+                    }`}>
                       {STATUS_LABELS[match.status] ?? match.status}
                     </span>
                   </td>
