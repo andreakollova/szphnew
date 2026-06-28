@@ -273,7 +273,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [activeMega, setActiveMega] = useState<string | null>(null);
   const [announcementVisible, setAnnouncementVisible] = useState(true);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(true);
   const [quickLinksOpen, setQuickLinksOpen] = useState(false);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -456,12 +456,12 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <button className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
-              style={{ color: scrolled ? "rgba(1,45,116,0.45)" : "rgba(255,255,255,0.6)" }} aria-label="Profil">
+            <Link href="/admin/prihlasenie" className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
+              style={{ color: scrolled ? "rgba(1,45,116,0.45)" : "rgba(255,255,255,0.6)" }} aria-label="Prihlásenie">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
-            </button>
+            </Link>
             <a href="https://fieldhockey.sk/video-zona/" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold text-white transition-all hover:brightness-110"
               style={{ background: "#C8102E" }}>

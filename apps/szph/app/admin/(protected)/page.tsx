@@ -38,10 +38,10 @@ export default async function AdminDashboard() {
       {/* Stats */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { label: "Publikovaných článkov", value: publishedCount, icon: "📝", color: "#016fb4" },
-          { label: "Videí",                 value: stats.videoCount,  icon: "🎬", color: "#a78bfa" },
-          { label: "Tímov",                 value: stats.teamCount,   icon: "🏒", color: "#34d399" },
-          { label: "Nadchádzajúcich zápasov", value: stats.upcomingMatches.length, icon: "⚽", color: "#C8102E" },
+          { label: "Publikovaných článkov", value: publishedCount, color: "#016fb4" },
+          { label: "Videí",                 value: stats.videoCount,  color: "#a78bfa" },
+          { label: "Tímov",                 value: stats.teamCount,   color: "#34d399" },
+          { label: "Nadchádzajúcich zápasov", value: stats.upcomingMatches.length, color: "#C8102E" },
         ].map((stat) => (
           <div key={stat.label} className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
             <div className="flex items-start justify-between">
@@ -49,7 +49,6 @@ export default async function AdminDashboard() {
                 <p className="text-xs text-white/40">{stat.label}</p>
                 <p className="text-3xl font-black mt-1" style={{ color: stat.color }}>{stat.value}</p>
               </div>
-              <span className="text-2xl">{stat.icon}</span>
             </div>
           </div>
         ))}
@@ -108,17 +107,17 @@ export default async function AdminDashboard() {
         <h2 className="font-bold text-white mb-4">Rýchle akcie</h2>
         <div className="flex flex-wrap gap-3">
           {[
-            { label: "Nový článok", href: "/admin/clanky/novy", icon: "✏️" },
-            { label: "Pridať zápas", href: "/admin/zapasy/novy", icon: "⚽" },
-            { label: "Nový tím",    href: "/admin/timy/novy",   icon: "🏒" },
-            { label: "Pridať video", href: "/admin/videa",       icon: "🎬" },
+            { label: "Nový článok", href: "/admin/clanky/novy" },
+            { label: "Pridať zápas", href: "/admin/zapasy/novy" },
+            { label: "Nový tím",    href: "/admin/timy/novy" },
+            { label: "Pridať video", href: "/admin/videa" },
           ].map((action) => (
             <a
               key={action.href}
               href={action.href}
               className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/15"
             >
-              {action.icon} {action.label}
+              + {action.label}
             </a>
           ))}
         </div>

@@ -240,40 +240,47 @@ export function SzphHero() {
         >
           <div
             className="group/vid relative cursor-pointer"
-            style={{ width: "200px" }}
+            style={{ width: "320px" }}
           >
-            {/* Malá karta */}
+            {/* Malá karta — horizontálny layout */}
             <div
-              className="relative overflow-hidden"
+              className="flex items-center gap-4 overflow-hidden"
               style={{
                 borderRadius: "16px",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+                background: "rgba(5,25,55,0.7)",
+                backdropFilter: "blur(12px)",
                 border: "1px solid rgba(255,255,255,0.1)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+                padding: "10px",
               }}
             >
-              <video
-                className="w-full h-auto block"
-                src="/images/roh.mov"
-                muted
-                playsInline
-                autoPlay
-              />
-              {/* Badge — top left */}
-              <div
-                className="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2 py-1"
-                style={{ borderRadius: "8px", background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
-              >
-                <span style={{ fontSize: "9px" }}>⚡</span>
-                <span className="font-bold text-white uppercase" style={{ fontSize: "7px", letterSpacing: "0.1em" }}>Gol mesiaca</span>
+              {/* Video thumbnail */}
+              <div className="relative shrink-0 overflow-hidden" style={{ width: "120px", height: "75px", borderRadius: "10px" }}>
+                <video
+                  className="w-full h-full object-cover"
+                  src="/images/roh.mov"
+                  muted
+                  playsInline
+                  autoPlay
+                />
+                {/* Play icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex items-center justify-center rounded-full" style={{ width: "28px", height: "28px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(4px)", border: "1px solid rgba(255,255,255,0.2)" }}>
+                    <svg className="h-3 w-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
               </div>
-              {/* Expand icon — top right */}
-              <div
-                className="absolute top-2.5 right-2.5 flex items-center justify-center"
-                style={{ width: "22px", height: "22px", borderRadius: "7px", background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)" }}
-              >
-                <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
-                </svg>
+              {/* Text */}
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-white uppercase mb-1" style={{ fontSize: "11px", letterSpacing: "0.06em" }}>
+                  Gól mesiaca
+                </p>
+                <p className="text-white/70 leading-snug" style={{ fontSize: "10px" }}>
+                  Gól: Tomáš Romanec
+                </p>
+                <p className="text-white/40 leading-snug mt-0.5" style={{ fontSize: "9px" }}>
+                  Asist: D. Petráš, M. Parajka <span className="text-white/25 ml-0.5">›</span>
+                </p>
               </div>
             </div>
 
