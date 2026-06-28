@@ -3,6 +3,7 @@ import { createServerSupabaseClient } from "@szph/db/client";
 import { getAllMatches, getAllCompetitions, getAllTeams } from "@szph/db";
 import Link from "next/link";
 import { formatDate, formatTime } from "@szph/ui";
+import { InlineScore } from "./InlineScore";
 import { DeleteMatchButton } from "./DeleteMatchButton";
 import type { Metadata } from "next";
 
@@ -64,10 +65,13 @@ export default async function AdminZapasyPage() {
                     </p>
                     {match.venue && <p className="text-xs text-[#94a3b8] mt-0.5">{match.venue}</p>}
                   </td>
-                  <td className="px-4 py-3.5 text-center font-bold text-[#051937]">
-                    {match.home_score !== null && match.away_score !== null
-                      ? `${match.home_score} : ${match.away_score}`
-                      : "—"}
+                  <td className="px-4 py-3.5 text-center">
+                    <InlineScore
+                      matchId={match.id}
+                      homeScore={match.home_score}
+                      awayScore={match.away_score}
+                      status={match.status}
+                    />
                   </td>
                   <td className="px-4 py-3.5">
                     <span className="text-xs text-[#64748b]">{match.competition?.name ?? "—"}</span>
