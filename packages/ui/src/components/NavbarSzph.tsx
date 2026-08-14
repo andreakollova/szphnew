@@ -183,7 +183,7 @@ const MAIN_NAV: NavItem[] = [
   { label: "Kontakt", href: "/kontakt" },
 ];
 
-function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => void; topOffset: number }) {
+function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeave: () => void; onEnter: () => void; topOffset: number }) {
   if (!item.mega) return null;
   const { columns, featured } = item.mega;
 
@@ -195,6 +195,7 @@ function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => 
       transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
       className="fixed inset-x-0 z-40 bg-white"
       style={{ top: `${topOffset}px`, boxShadow: "0 16px 48px rgba(1,45,116,0.12), 0 2px 8px rgba(1,45,116,0.06)" }}
+      onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
       <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-[320px_1fr] gap-8">
@@ -204,11 +205,7 @@ function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => 
           <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
           <div className="absolute inset-0 rounded-lg" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.92) 0%, rgba(5,25,55,0.3) 60%, transparent 100%)" }} />
           <div className="absolute bottom-0 p-5">
-            <span className="inline-block px-2 py-0.5 rounded-full text-white font-bold uppercase tracking-widest mb-2" style={{ fontSize: "7px", background: "#012d74" }}>
-              {featured.tag}
-            </span>
             <h3 className="font-garet font-black italic text-white text-lg leading-tight mb-1">{featured.title}</h3>
-            <p className="text-white/65 text-xs leading-relaxed line-clamp-2">{featured.desc}</p>
             <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-white/80 group-hover:text-white transition-colors">
               Zobraziť
               <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -222,7 +219,7 @@ function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => 
         <div className="grid gap-8" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
           {columns.map((col) => (
             <div key={col.title}>
-              <p className="font-bold uppercase tracking-widest text-[#94a3b8] mb-4" style={{ fontSize: "7.5px" }}>
+              <p className="font-bold uppercase tracking-widest text-[#94a3b8] mb-4" style={{ fontSize: "11.5px" }}>
                 {col.title}
               </p>
               <ul className="space-y-1">
@@ -238,8 +235,8 @@ function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => 
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-[#051937] text-sm leading-none group-hover:text-[#012d74] transition-colors">{link.label}</p>
-                        {link.desc && <p className="text-[#94a3b8] text-xs mt-0.5 leading-tight">{link.desc}</p>}
+                        <p className="font-semibold text-[#051937] leading-none group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>{link.label}</p>
+                        {link.desc && <p className="text-[#94a3b8] mt-0.5 leading-tight" style={{ fontSize: "12px" }}>{link.desc}</p>}
                       </div>
                     </Link>
                   </li>
@@ -249,16 +246,6 @@ function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => 
           ))}
         </div>
 
-      </div>
-
-      {/* Spodná lišta */}
-      <div className="border-t border-[rgba(1,45,116,0.06)]" style={{ background: "rgba(1,45,116,0.02)" }}>
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-          <p className="text-xs text-[#94a3b8]">Slovenský zväz pozemného hokeja — <span className="font-semibold text-[#051937]">szph.sk</span></p>
-          <Link href="/kontakt" className="text-xs font-semibold text-[#051937] hover:text-[#012d74] transition-colors">
-            Kontaktujte nás →
-          </Link>
-        </div>
       </div>
     </motion.div>
   );
@@ -392,10 +379,12 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                     className={cn(
                       "flex items-center gap-1 px-3 py-2 text-[11px] font-extrabold uppercase tracking-wide transition-colors duration-300 rounded-lg whitespace-nowrap",
                       activeMega === item.href
-                        ? "text-[#012d74] bg-[rgba(1,45,116,0.06)]"
+                        ? scrolled
+                          ? "text-[#012d74] bg-[rgba(1,45,116,0.06)]"
+                          : "text-white"
                         : scrolled
                           ? "text-[#061b3a] hover:text-[#061b3a]/80 hover:bg-[#f0f4fa]"
-                          : "text-white/90 hover:text-white hover:bg-white/10"
+                          : "text-white/90 hover:text-white/65"
                     )}
                   >
                     {item.label}
@@ -569,7 +558,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
       {/* ── MEGA MENU (mimo header aby neprekrýval) ── */}
       <AnimatePresence>
         {activeMega && activeItem?.mega && (
-          <MegaMenu item={activeItem} onLeave={handleLeave} topOffset={116} />
+          <MegaMenu item={activeItem} onLeave={handleLeave} onEnter={() => { if (leaveTimer.current) clearTimeout(leaveTimer.current); }} topOffset={116} />
         )}
       </AnimatePresence>
 
