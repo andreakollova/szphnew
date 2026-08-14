@@ -199,6 +199,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.106.1
+        version: 2.106.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
