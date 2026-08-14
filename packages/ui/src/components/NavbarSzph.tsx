@@ -200,9 +200,9 @@ function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => 
       <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-[320px_1fr] gap-8">
 
         {/* Featured karta */}
-        <Link href={featured.href} className="group relative overflow-hidden rounded-2xl block" style={{ minHeight: "240px" }}>
+        <Link href={featured.href} className="group relative overflow-hidden rounded-lg block" style={{ minHeight: "240px" }}>
           <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-          <div className="absolute inset-0 rounded-2xl" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.92) 0%, rgba(5,25,55,0.3) 60%, transparent 100%)" }} />
+          <div className="absolute inset-0 rounded-lg" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.92) 0%, rgba(5,25,55,0.3) 60%, transparent 100%)" }} />
           <div className="absolute bottom-0 p-5">
             <span className="inline-block px-2 py-0.5 rounded-full text-white font-bold uppercase tracking-widest mb-2" style={{ fontSize: "7px", background: "#012d74" }}>
               {featured.tag}
