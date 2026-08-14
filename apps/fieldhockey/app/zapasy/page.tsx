@@ -20,7 +20,7 @@ export default async function ZapasyPage() {
 
   return (
     <div className="container-szph pt-28 pb-20">
-      <MatchCenter competitions={competitions} matches={matches} />
+      <MatchCenter matches={matches as any} />
     </div>
   );
 }

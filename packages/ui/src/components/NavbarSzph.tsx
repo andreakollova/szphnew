@@ -204,7 +204,7 @@ function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => 
           <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
           <div className="absolute inset-0 rounded-2xl" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.92) 0%, rgba(5,25,55,0.3) 60%, transparent 100%)" }} />
           <div className="absolute bottom-0 p-5">
-            <span className="inline-block px-2 py-0.5 rounded-full text-white font-bold uppercase tracking-widest mb-2" style={{ fontSize: "7px", background: "#C8102E" }}>
+            <span className="inline-block px-2 py-0.5 rounded-full text-white font-bold uppercase tracking-widest mb-2" style={{ fontSize: "7px", background: "#012d74" }}>
               {featured.tag}
             </span>
             <h3 className="font-garet font-black italic text-white text-lg leading-tight mb-1">{featured.title}</h3>
@@ -238,7 +238,7 @@ function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => 
                         </svg>
                       </div>
                       <div>
-                        <p className="font-semibold text-[#051937] text-sm leading-none group-hover:text-[#C8102E] transition-colors">{link.label}</p>
+                        <p className="font-semibold text-[#051937] text-sm leading-none group-hover:text-[#012d74] transition-colors">{link.label}</p>
                         {link.desc && <p className="text-[#94a3b8] text-xs mt-0.5 leading-tight">{link.desc}</p>}
                       </div>
                     </Link>
@@ -255,7 +255,7 @@ function MegaMenu({ item, onLeave, topOffset }: { item: NavItem; onLeave: () => 
       <div className="border-t border-[rgba(1,45,116,0.06)]" style={{ background: "rgba(1,45,116,0.02)" }}>
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
           <p className="text-xs text-[#94a3b8]">Slovenský zväz pozemného hokeja — <span className="font-semibold text-[#051937]">szph.sk</span></p>
-          <Link href="/kontakt" className="text-xs font-semibold text-[#051937] hover:text-[#C8102E] transition-colors">
+          <Link href="/kontakt" className="text-xs font-semibold text-[#051937] hover:text-[#012d74] transition-colors">
             Kontaktujte nás →
           </Link>
         </div>
@@ -278,11 +278,26 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const hasHero = !!document.querySelector("[data-hero]");
-    const onScroll = () => setScrolled(hasHero ? window.scrollY > 80 : true);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    // Re-check on every route change
+    const check = () => {
+      const hasHero = !!document.querySelector("[data-hero]");
+      if (!hasHero) {
+        setScrolled(true);
+        return;
+      }
+      const onScroll = () => setScrolled(window.scrollY > 80);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    };
+    const cleanup = check();
+    // MutationObserver to detect route changes (data-hero added/removed)
+    const observer = new MutationObserver(() => {
+      const hasHero = !!document.querySelector("[data-hero]");
+      if (!hasHero) setScrolled(true);
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => { cleanup?.(); observer.disconnect(); };
   }, []);
 
   const handleEnter = (href: string) => {
@@ -344,14 +359,14 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
       )}
 
       <header
-        className="fixed inset-x-0 z-50 flex flex-col transition-all duration-300"
+        className="fixed inset-x-0 z-[55] flex flex-col transition-all duration-300"
         style={{
           top: "36px",
-          background: scrolled ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.08)",
-          backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "blur(12px)",
-          WebkitBackdropFilter: scrolled ? "blur(20px) saturate(180%)" : "blur(12px)",
-          boxShadow: scrolled ? "0 1px 3px rgba(0,0,0,0.06)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(1,45,116,0.06)" : "1px solid rgba(255,255,255,0.1)",
+          background: scrolled ? "#ffffff" : "rgba(255,255,255,0.08)",
+          backdropFilter: scrolled ? "none" : "blur(12px)",
+          WebkitBackdropFilter: scrolled ? "none" : "blur(12px)",
+          boxShadow: scrolled ? "0 2px 8px rgba(0,0,0,0.08)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(1,45,116,0.15)" : "1px solid rgba(255,255,255,0.1)",
         }}
       >
 
@@ -377,7 +392,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                     className={cn(
                       "flex items-center gap-1 px-3 py-2 text-[11px] font-extrabold uppercase tracking-wide transition-colors duration-300 rounded-lg whitespace-nowrap",
                       activeMega === item.href
-                        ? "text-[#C8102E] bg-[rgba(200,16,46,0.06)]"
+                        ? "text-[#012d74] bg-[rgba(1,45,116,0.06)]"
                         : scrolled
                           ? "text-[#061b3a] hover:text-[#061b3a]/80 hover:bg-[#f0f4fa]"
                           : "text-white/90 hover:text-white hover:bg-white/10"
@@ -462,9 +477,9 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
             </Link>
-            <a href="https://fieldhockey.sk/video-zona/" target="_blank" rel="noopener noreferrer"
+            <a href="/zapasy"
               className="flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold text-white transition-all hover:brightness-110"
-              style={{ background: "#C8102E" }}>
+              style={{ background: "#012d74" }}>
               <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
                 <circle cx="12" cy="12" r="9" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 8.5l5 3.5-5 3.5V8.5z" />
@@ -482,7 +497,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           <div className="flex items-center gap-2">
             <a href="https://fieldhockey.sk/video-zona/" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold text-white"
-              style={{ background: "#C8102E" }}>
+              style={{ background: "#012d74" }}>
               <span className="h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" />
               Live
             </a>
@@ -540,7 +555,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                   </Link>
                   <a href="https://fieldhockey.sk/video-zona/" target="_blank" rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-bold text-white"
-                    style={{ background: "#C8102E" }}>
+                    style={{ background: "#012d74" }}>
                     <span className="h-2 w-2 rounded-full bg-white/70 animate-pulse" />
                     Zápasové centrum a archív
                   </a>

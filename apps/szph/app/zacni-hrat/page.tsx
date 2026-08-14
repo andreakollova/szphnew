@@ -92,7 +92,7 @@ export default function ZacniHratPage() {
         ].map((section) => (
           <div key={section.num} className="mb-10">
             <div className="flex items-start gap-4 mb-4">
-              <div className="shrink-0 flex items-center justify-center rounded-full font-black text-white" style={{ width: "36px", height: "36px", background: "#C8102E", fontSize: "14px" }}>
+              <div className="shrink-0 flex items-center justify-center rounded-full font-black text-white" style={{ width: "36px", height: "36px", background: "#012d74", fontSize: "14px" }}>
                 {section.num}
               </div>
               <h3 className="font-bold text-[#051937] pt-1.5" style={{ fontSize: "18px" }}>

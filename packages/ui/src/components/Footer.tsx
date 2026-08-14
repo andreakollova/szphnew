@@ -35,10 +35,7 @@ const FOOTER_LINKS_SZPH = [
     { label: "Pravidlá", href: "/pre-kluby/pravidla" },
     { label: "Formuláre", href: "/pre-kluby/formulare" },
   ]},
-  { group: "Kontakt", items: [
-    { label: "fieldhockey.sk", href: "https://fieldhockey.sk" },
-    { label: "Kontakt", href: "/kontakt" },
-  ]},
+  { group: "__photos__", items: [] },
 ];
 
 export function Footer({ brand, logoSrc = "/images/logo-szph.png" }: FooterProps) {
@@ -115,7 +112,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.png" }: FooterProps
             </div>
           </div>
 
-          {links.map(group => (
+          {links.filter(g => g.group !== "__photos__").map(group => (
             <div key={group.group}>
               <h4 className="font-garet font-bold italic text-[#051937] mb-4" style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}>{group.group}</h4>
               <ul className="space-y-2.5">
@@ -129,6 +126,21 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.png" }: FooterProps
               </ul>
             </div>
           ))}
+
+          {/* Partner logá */}
+          {!isFieldhockey && (
+            <div>
+              <h4 className="font-garet font-bold italic text-[#051937] mb-4" style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Príspevok uznanému športu</h4>
+              <div className="flex flex-col gap-4">
+                {["/images/footer-1.jpg", "/images/footer-2.png", "/images/footer-3.png"].map((src, i) => (
+                  <div key={i}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt="" style={{ height: "auto", width: "220px", objectFit: "contain" }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="mt-10 flex flex-col gap-2 pt-6 text-xs text-[#94a3b8] sm:flex-row sm:justify-between" style={{ borderTop: "1px solid rgba(1,45,116,0.07)" }}>

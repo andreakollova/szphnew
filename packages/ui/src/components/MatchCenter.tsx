@@ -4,15 +4,33 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../lib/utils";
-import type { Match, Competition, TeamCategory } from "@szph/db/types";
+
+interface DbMatch {
+  id: string;
+  home_team: string;
+  away_team: string;
+  home_short?: string;
+  away_short?: string;
+  home_logo?: string;
+  away_logo?: string;
+  home_score?: number | null;
+  away_score?: number | null;
+  date: string;
+  match_time?: string;
+  league?: string;
+  venue?: string;
+  status?: string;
+  video_url?: string | null;
+  site?: string;
+}
 
 interface MatchCenterProps {
-  competitions: Competition[];
-  matches: Match[];
+  competitions?: any[];
+  matches: DbMatch[];
   className?: string;
 }
 
-const CATEGORY_TABS: { key: TeamCategory | "all"; label: string }[] = [
+const CATEGORY_TABS: { key: string; label: string }[] = [
   { key: "all",  label: "Všetky" },
   { key: "muzi", label: "Muži" },
   { key: "zeny", label: "Ženy" },
@@ -21,15 +39,29 @@ const CATEGORY_TABS: { key: TeamCategory | "all"; label: string }[] = [
   { key: "U12",  label: "U12" },
 ];
 
-const COUNTRY_FLAGS: Record<string, string> = {
-  "Slovensko":   "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Flag_of_Slovakia.svg/500px-Flag_of_Slovakia.svg.png",
-  "Chorvátsko":  "https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg",
-  "Poľsko":      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flag_of_Poland.svg/500px-Flag_of_Poland.svg.png",
-  "Česko":       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_Czech_Republic.svg/500px-Flag_of_the_Czech_Republic.svg.png",
-  "Rakúsko":     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_Austria.svg/500px-Flag_of_Austria.svg.png",
-  "Maďarsko":    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/500px-Flag_of_Hungary.svg.png",
-  "Nemecko":     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Flag_of_Germany.svg/500px-Flag_of_Germany.svg.png",
+const COUNTRY_CODES: Record<string, string> = {
+  "Slovensko": "sk", "Chorvátsko": "hr", "Poľsko": "pl", "Česko": "cz",
+  "Rakúsko": "at", "Maďarsko": "hu", "Nemecko": "de", "Švajčiarsko": "ch",
+  "Francúzsko": "fr", "Španielsko": "es", "Taliansko": "it", "Belgicko": "be",
+  "Holandsko": "nl", "Anglicko": "gb-eng", "Veľká Británia": "gb", "Írsko": "ie",
+  "Škótsko": "gb-sct", "Wales": "gb-wls", "Dánsko": "dk", "Švédsko": "se",
+  "Nórsko": "no", "Fínsko": "fi", "Rusko": "ru", "Ukrajina": "ua",
+  "Bielorusko": "by", "Litva": "lt", "Lotyšsko": "lv", "Estónsko": "ee",
+  "Rumunsko": "ro", "Bulharsko": "bg", "Srbsko": "rs", "Čierna Hora": "me",
+  "Slovinsko": "si", "Bosna a Hercegovina": "ba", "Severné Macedónsko": "mk",
+  "Albánsko": "al", "Grécko": "gr", "Turecko": "tr", "Cyprus": "cy",
+  "Malta": "mt", "Luxembursko": "lu", "Lichtenštajnsko": "li", "Island": "is",
+  "Portugalsko": "pt", "India": "in", "Pakistan": "pk", "Argentína": "ar",
+  "Austrália": "au", "Nový Zéland": "nz", "Japonsko": "jp", "Južná Kórea": "kr",
+  "Čína": "cn", "Malajzia": "my", "USA": "us", "Kanada": "ca",
+  "Juhoafrická republika": "za", "Egypt": "eg", "Ghana": "gh", "Keňa": "ke",
+  "Singapur": "sg", "Thajsko": "th", "Indonézia": "id", "Filipíny": "ph",
 };
+
+function flagUrl(name: string): string | null {
+  const code = COUNTRY_CODES[name];
+  return code ? `https://flagcdn.com/w40/${code}.png` : null;
+}
 
 const TEAM_LOGOS: Record<string, string> = {
   "KPH Rača":              "/images/timy/Raca-logo-70x58-1-32x27.png",
@@ -90,42 +122,68 @@ const MOCK_PAST: MockMatch[] = [
   { id: "p9", homeTeam: "HK Senkvice",        awayTeam: "TJ Slavia Šamorín",  date: "2025-05-26T10:00:00Z", competition: "Extraliga ženy",  venue: "Senkvice",      status: "finished", homeScore: 2, awayScore: 1 },
 ];
 
-function TeamLogo({ name }: { name: string }) {
-  const logo = TEAM_LOGOS[name];
-  const flag = COUNTRY_FLAGS[name];
-
-  if (logo) {
+function TeamLogoFromDb({ logo, name, size = 28 }: { logo?: string; name: string; size?: number }) {
+  if (logo?.startsWith("flag:")) {
+    const code = logo.replace("flag:", "");
     return (
-      <div className="relative shrink-0" style={{ width: 28, height: 28 }}>
-        <Image src={logo} alt={name} fill className="object-contain" sizes="28px" />
+      <div className="shrink-0 overflow-hidden rounded-full" style={{ width: size, height: size }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={`https://flagcdn.com/w80/${code}.png`} alt={name} width={size} height={size} style={{ width: size, height: size, objectFit: "cover" }} />
       </div>
     );
   }
+  if (logo?.startsWith("circle:")) {
+    const [, letter, color] = logo.split(":");
+    return (
+      <div className="shrink-0 flex items-center justify-center rounded-full text-white font-black" style={{ width: size, height: size, background: color, fontSize: size * 0.4 }}>
+        {letter}
+      </div>
+    );
+  }
+  if (logo?.startsWith("/") || logo?.startsWith("https://")) {
+    return (
+      <div className="shrink-0" style={{ width: size, height: size }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logo} alt={name} width={size} height={size} style={{ width: size, height: size, objectFit: "contain" }} />
+      </div>
+    );
+  }
+  // Fallback — try country flag
+  const flag = flagUrl(name);
   if (flag) {
     return (
-      <div className="relative shrink-0 overflow-hidden" style={{ width: 32, height: 22, borderRadius: 2 }}>
-        <Image src={flag} alt={name} fill className="object-cover" sizes="32px" />
+      <div className="shrink-0 overflow-hidden rounded-full" style={{ width: size, height: size }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={flag} alt={name} width={size} height={size} style={{ width: size, height: size, objectFit: "cover" }} />
       </div>
     );
   }
   return (
-    <div
-      className="shrink-0 flex items-center justify-center"
-      style={{ width: 28, height: 28, background: "rgba(255,255,255,0.07)", borderRadius: 4 }}
-    >
-      <span className="font-black text-white/50" style={{ fontSize: "7px" }}>
+    <div className="shrink-0 flex items-center justify-center rounded-full" style={{ width: size, height: size, background: "#e2e8f0" }}>
+      <span className="font-black text-[#64748b]" style={{ fontSize: size * 0.3 }}>
         {name.split(" ").map(w => w[0]).join("").slice(0, 3).toUpperCase()}
       </span>
     </div>
   );
 }
 
-function MatchRow({ m, index }: { m: MockMatch; index: number }) {
+// Keep old TeamLogo for backward compat
+function TeamLogo({ name }: { name: string }) {
+  const logo = TEAM_LOGOS[name];
+  const flag = flagUrl(name);
+  if (logo) return <div className="relative shrink-0" style={{ width: 28, height: 28 }}><Image src={logo} alt={name} fill className="object-contain" sizes="28px" /></div>;
+  if (flag) return <div className="relative shrink-0 overflow-hidden rounded-full" style={{ width: 28, height: 28 }}><Image src={flag} alt={name} fill className="object-cover" sizes="28px" /></div>;
+  return <div className="shrink-0 flex items-center justify-center rounded-full" style={{ width: 28, height: 28, background: "#e2e8f0" }}><span className="font-black text-[#64748b]" style={{ fontSize: "8px" }}>{name.split(" ").map(w => w[0]).join("").slice(0, 3).toUpperCase()}</span></div>;
+}
+
+function MatchRow({ m, index }: { m: DbMatch; index: number }) {
   const finished = m.status === "finished";
-  const homeWin = finished && (m.homeScore ?? 0) > (m.awayScore ?? 0);
-  const awayWin = finished && (m.awayScore ?? 0) > (m.homeScore ?? 0);
+  const hs = m.home_score ?? 0;
+  const as = m.away_score ?? 0;
+  const homeWin = finished && hs > as;
+  const awayWin = finished && as > hs;
   const d = new Date(m.date);
-  const time = d.toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
+  const time = m.match_time || d.toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
 
   return (
     <motion.div
@@ -135,99 +193,104 @@ function MatchRow({ m, index }: { m: MockMatch; index: number }) {
       className="flex flex-col bg-white"
       style={{ borderBottom: "1px solid rgba(1,45,116,0.07)", borderLeft: "3px solid transparent" }}
     >
-      {/* Súťaž + dátum */}
+      {/* Liga + dátum + video */}
       <div className="px-4 pt-4 flex items-center justify-between">
-        <span className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "8px", letterSpacing: "0.14em" }}>
-          {m.competition}
+        <span className="font-bold uppercase text-[#64748b]" style={{ fontSize: "8px", letterSpacing: "0.12em" }}>
+          {(m.league || "Zápas").replace(/\s*\(.*miesto\)/, "").replace(/\s*\(finále\)/, "")}
         </span>
-        <span className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>
-          {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" })}
-        </span>
+        <div className="flex items-center gap-2">
+          {m.video_url && (
+            <a href={m.video_url} target="_blank" rel="noopener noreferrer" className="text-[#012d74] hover:text-[#051937]">
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </a>
+          )}
+          <span className="font-bold uppercase text-[#64748b]" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>
+            {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short", year: "numeric" })} · {time}
+          </span>
+        </div>
       </div>
 
       {/* Tímy + skóre */}
       <div className="px-4 py-3 flex items-center gap-3">
         {/* Domáci */}
-        <div className={cn("flex items-center gap-2 flex-1 min-w-0", awayWin && "opacity-35")}>
-          <TeamLogo name={m.homeTeam} />
-          <span className="font-bold text-[#051937] truncate" style={{ fontSize: "11px", letterSpacing: "0.02em" }}>
-            {m.homeTeam}
+        <div className={cn("flex items-center gap-2.5 flex-1 min-w-0", "")}>
+          <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={32} />
+          <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>
+            {m.home_short || m.home_team}
           </span>
         </div>
 
-        {/* Skóre / čas */}
-        <div className="shrink-0 flex items-center gap-2 px-2">
-          {finished ? (
-            <>
-              <span className={cn("font-garet font-black leading-none", homeWin ? "text-[#051937]" : "text-[#94a3b8]")} style={{ fontSize: "22px" }}>
-                {m.homeScore}
-              </span>
-              <span className="text-[#94a3b8] font-bold" style={{ fontSize: "13px" }}>:</span>
-              <span className={cn("font-garet font-black leading-none", awayWin ? "text-[#051937]" : "text-[#94a3b8]")} style={{ fontSize: "22px" }}>
-                {m.awayScore}
-              </span>
-            </>
-          ) : (
-            <span className="font-black" style={{ fontSize: "13px", color: "#C8102E" }}>{time}</span>
+        {/* Skóre */}
+        <div className="shrink-0 flex flex-col items-center px-3" style={{ minWidth: "80px" }}>
+          {/* Finále / O bronz — alebo prázdny placeholder pre rovnakú výšku */}
+          <div style={{ height: "16px" }} className="flex items-center justify-center">
+            {(m.league?.includes("finále") || m.league?.includes("miesto") || m.league?.includes("Final")) && (
+              <div className="flex items-center gap-1">
+                <svg className="h-3 w-3" fill={m.league?.includes("finále") || m.league?.includes("Final") ? "#d4a017" : "#b87333"} viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span className="font-bold uppercase" style={{ fontSize: "7px", letterSpacing: "0.06em", color: m.league?.includes("finále") || m.league?.includes("Final") ? "#d4a017" : "#b87333" }}>
+                  {m.league?.includes("finále") || m.league?.includes("Final") ? "FINÁLE" : "O BRONZ"}
+                </span>
+              </div>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            {finished ? (
+              <>
+                <span style={{ fontSize: "20px", fontWeight: 700, lineHeight: 1, color: "#051937" }}>{m.home_score ?? 0}</span>
+                <span style={{ fontSize: "11px", fontWeight: 700, color: "#64748b" }}>:</span>
+                <span style={{ fontSize: "20px", fontWeight: 700, lineHeight: 1, color: "#051937" }}>{m.away_score ?? 0}</span>
+              </>
+            ) : (
+              <span style={{ fontSize: "13px", fontWeight: 700, color: "#012d74" }}>{time}</span>
+            )}
+          </div>
+          {m.venue && (
+            <span className="font-bold uppercase text-[#64748b] mt-1.5" style={{ fontSize: "7px", letterSpacing: "0.08em" }}>
+              {m.venue}
+            </span>
           )}
         </div>
 
-        {/* Hosť */}
-        <div className={cn("flex items-center gap-2 flex-1 min-w-0 justify-end", homeWin && "opacity-35")}>
-          <span className="font-bold text-[#051937] truncate text-right" style={{ fontSize: "11px", letterSpacing: "0.02em" }}>
-            {m.awayTeam}
+        {/* Hostia */}
+        <div className={cn("flex items-center gap-2.5 flex-1 min-w-0 justify-end", "")}>
+          <span className="font-bold text-[#051937] truncate text-right" style={{ fontSize: "12px" }}>
+            {m.away_short || m.away_team}
           </span>
-          <TeamLogo name={m.awayTeam} />
+          <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={32} />
         </div>
-      </div>
-
-      {/* Miesto */}
-      <div className="px-4 pb-4">
-        <span className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>
-          {m.venue}
-        </span>
       </div>
     </motion.div>
   );
 }
 
-export function MatchCenter({ competitions, matches, className }: MatchCenterProps) {
-  const [activeCategory, setActiveCategory] = useState<TeamCategory | "all">("all");
-  const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
+export function MatchCenter({ matches, className }: MatchCenterProps) {
+  const [activeTab, setActiveTab] = useState<"upcoming" | "past">("past");
   const [activeSection, setActiveSection] = useState<"liga" | "reprezentacia">("liga");
+  const [page, setPage] = useState(0);
+  const PAGE_SIZE = 12;
 
-  const hasRealMatches = matches.length > 0;
+  // Split by liga vs reprezentácia
+  // Reprezentácia = SVK matches that are NOT Czech league
+  const isRep = (m: DbMatch) => (m.home_short === "SVK" || m.away_short === "SVK") && !m.league?.includes("ČESKÁ");
+  const ligaMatches = matches.filter(m => !isRep(m));
+  const repMatches = matches.filter(m => isRep(m));
 
-  const toMock = (m: Match, finished: boolean): MockMatch => ({
-    id: m.id,
-    homeTeam: m.home_team?.name ?? "Domáci",
-    awayTeam: m.away_team?.name ?? "Hosťujúci",
-    date: m.match_date,
-    competition: m.competition?.name ?? "Súťaž",
-    venue: m.venue ?? "",
-    status: finished ? "finished" : (m.status as "scheduled" | "live"),
-    homeScore: m.home_score ?? undefined,
-    awayScore: m.away_score ?? undefined,
-  });
+  const currentMatches = activeSection === "liga" ? ligaMatches : repMatches;
+  const now = new Date().getTime();
 
-  const displayUpcoming: MockMatch[] = hasRealMatches
-    ? matches.filter(m => m.status === "scheduled" || m.status === "live")
-        .sort((a, b) => new Date(a.match_date).getTime() - new Date(b.match_date).getTime())
-        .slice(0, 9).map(m => toMock(m, false))
-    : MOCK_UPCOMING;
+  const allPast = currentMatches
+    .filter(m => new Date(m.date).getTime() < now)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const displayPast: MockMatch[] = hasRealMatches
-    ? matches.filter(m => m.status === "finished")
-        .sort((a, b) => new Date(b.match_date).getTime() - new Date(a.match_date).getTime())
-        .slice(0, 9).map(m => toMock(m, true))
-    : MOCK_PAST;
+  const allUpcoming = currentMatches
+    .filter(m => new Date(m.date).getTime() >= now)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  const repUpcoming = MOCK_REP_UPCOMING;
-  const repPast = MOCK_REP_PAST;
-
-  const list = activeSection === "liga"
-    ? (activeTab === "upcoming" ? displayUpcoming : displayPast)
-    : (activeTab === "upcoming" ? repUpcoming : repPast);
+  const allList = activeTab === "past" ? allPast : allUpcoming;
+  const totalPages = Math.ceil(allList.length / PAGE_SIZE);
+  const list = allList.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
 
   return (
     <div className={cn("", className)}>
@@ -236,80 +299,101 @@ export function MatchCenter({ competitions, matches, className }: MatchCenterPro
         {/* Riadok 1: Liga / Reprezentácia + Nasledujúce/Minulé */}
         <div className="flex items-center justify-between gap-4">
           {/* Liga / Reprezentácia */}
-          <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "10px" }}>
-            {([{ key: "liga", label: "Liga" }, { key: "reprezentacia", label: "Reprezentácia" }] as const).map((tab, i) => (
+          <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "8px" }}>
+            {([
+              { key: "liga" as const, label: "Liga", logo: "/images/logo-liga.png" },
+              { key: "reprezentacia" as const, label: "Reprezentácia", logo: "/images/logo-reprezentacia.png" },
+            ]).map((tab, i) => (
               <button
                 key={tab.key}
-                onClick={() => setActiveSection(tab.key)}
+                onClick={() => { setActiveSection(tab.key); setPage(0); }}
                 className={cn(
-                  "px-5 py-2.5 font-bold uppercase transition-all",
+                  "flex items-center gap-2.5 px-5 py-2.5 font-bold uppercase transition-all",
                   i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
-                  activeSection === tab.key ? "text-white" : "text-[#94a3b8] hover:text-[#051937]"
+                  activeSection === tab.key ? "text-white" : "text-[#64748b] hover:text-[#051937]"
                 )}
                 style={{
                   fontSize: "10px", letterSpacing: "0.1em",
-                  background: activeSection === tab.key ? "#C8102E" : "transparent",
+                  background: activeSection === tab.key ? "#012d74" : "transparent",
                 }}
               >
+                <div className="relative shrink-0" style={{ width: 22, height: 22 }}>
+                  <Image src={tab.logo} alt="" fill className="object-contain" sizes="22px" style={activeSection === tab.key ? { filter: "brightness(0) invert(1)" } : undefined} />
+                </div>
+                <div style={{ width: "1px", height: "16px", background: activeSection === tab.key ? "rgba(255,255,255,0.3)" : "rgba(1,45,116,0.12)" }} />
                 {tab.label}
               </button>
             ))}
           </div>
 
-          {/* Nasledujúce / Minulé */}
+          {/* Nasledujúce / Minulé + šípky */}
+          <div className="flex items-center gap-3">
+          {/* Šípky */}
+          {totalPages > 1 && (
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setPage(p => Math.max(0, p - 1))}
+                disabled={page === 0}
+                className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
+                style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
+              >
+                <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <span className="font-bold text-[#64748b] px-1" style={{ fontSize: "10px" }}>{page + 1}/{totalPages}</span>
+              <button
+                onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+                disabled={page >= totalPages - 1}
+                className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
+                style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
+              >
+                <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          )}
           <div className="flex items-center shrink-0 overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "10px" }}>
             {([{ key: "upcoming", label: "Nasledujúce" }, { key: "past", label: "Minulé" }] as const).map((tab, i) => (
               <button
                 key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
+                onClick={() => { setActiveTab(tab.key); setPage(0); }}
                 className={cn(
                   "px-5 py-2.5 font-bold uppercase transition-all",
                   i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
-                  activeTab === tab.key ? "bg-[#051937] text-white" : "text-[#94a3b8] hover:text-[#051937]"
+                  activeTab === tab.key ? "bg-[#012d74] text-white" : "text-[#64748b] hover:text-[#051937]"
                 )}
                 style={{ fontSize: "10px", letterSpacing: "0.1em" }}
               >
                 {tab.label}
               </button>
             ))}
+          </div>
           </div>
         </div>
 
-        {/* Riadok 2: Kategórie — len pre Ligu */}
-        {activeSection === "liga" && (
-          <div className="flex items-center overflow-x-auto gap-0 overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "10px" }}>
-            {CATEGORY_TABS.map((tab, i) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveCategory(tab.key)}
-                className={cn(
-                  "shrink-0 px-4 py-2 font-bold uppercase transition-all",
-                  i > 0 && "border-l border-[rgba(1,45,116,0.08)]",
-                  activeCategory === tab.key ? "bg-[#051937] text-white" : "text-[#94a3b8] hover:text-[#051937]"
-                )}
-                style={{ fontSize: "10px", letterSpacing: "0.1em" }}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        )}
       </div>
 
-      {/* Zápasy grid */}
+      {/* Zápasy grid s paginovaním */}
+      {list.length === 0 ? (
+        <div className="py-12 text-center text-[#64748b] font-bold" style={{ fontSize: "13px" }}>
+          {activeTab === "upcoming" ? "Žiadne nasledujúce zápasy" : "Žiadne minulé zápasy"}
+        </div>
+      ) : (
       <AnimatePresence mode="wait">
         <motion.div
-          key={activeTab}
+          key={activeTab + activeSection}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 overflow-hidden"
-          style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "16px" }}
+          style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "8px" }}
         >
           {list.map((m, i) => (
             <div
-              key={m.id}
+              key={m.id + '-' + i}
               style={{
                 borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(1,45,116,0.07)" : undefined,
               }}
@@ -319,6 +403,7 @@ export function MatchCenter({ competitions, matches, className }: MatchCenterPro
           ))}
         </motion.div>
       </AnimatePresence>
+      )}
     </div>
   );
 }

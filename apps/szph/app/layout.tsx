@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
+import { unstable_cache } from "next/cache";
+import { createClient } from "@supabase/supabase-js";
 import { inter } from "@szph/ui/fonts";
 import { NavbarSzph, Footer } from "@szph/ui";
-import { createServerSupabaseClient } from "@szph/db/client";
-import { getPublishedArticles } from "@szph/db";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,19 +24,31 @@ export const metadata: Metadata = {
   },
 };
 
-async function getAnnouncement() {
-  try {
-    const cookieStore = await cookies();
-    const supabase = createServerSupabaseClient(cookieStore);
-    const articles = await getPublishedArticles(supabase, { site: "szph", limit: 1 });
-    if (articles.length > 0) {
-      return { text: articles[0].title, href: `/novinky/${articles[0].slug}` };
+const getAnnouncement = unstable_cache(
+  async () => {
+    try {
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      const { data } = await supabase
+        .from("articles")
+        .select("title, slug")
+        .eq("site", "szph")
+        .eq("status", "published")
+        .order("published_at", { ascending: false })
+        .limit(1);
+      if (data && data.length > 0) {
+        return { text: data[0].title, href: `/novinky/${data[0].slug}` };
+      }
+    } catch {
+      // ignore
     }
-  } catch {
-    // ignore
-  }
-  return null;
-}
+    return null;
+  },
+  ["announcement"],
+  { revalidate: 300 }
+);
 
 export default async function RootLayout({
   children,

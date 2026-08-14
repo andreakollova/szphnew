@@ -37,7 +37,7 @@ export default function PravidlaPage() {
             "Neexistuje žiadny čas predlženia alebo nastavenia. Čas počas zápasu zastavuje rozhodca, napríklad pri zranení alebo pri vykartovaní hráča. Pozemný hokej má čistý čas zápasu.",
           ].map((text, i) => (
             <div key={i} className="flex gap-3 items-start">
-              <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+              <span className="text-[#012d74] font-bold shrink-0">➜</span>
               <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>{text}</p>
             </div>
           ))}
@@ -102,7 +102,7 @@ export default function PravidlaPage() {
             { name: "Vysoký push", desc: "je naberací pohyb hokejky, ktorý spôsobuje, že loptička stúpa." },
           ].map((item) => (
             <div key={item.name} className="flex gap-3 items-start">
-              <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+              <span className="text-[#012d74] font-bold shrink-0">➜</span>
               <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
                 <strong>{item.name}</strong> {item.desc}
               </p>
@@ -124,7 +124,7 @@ export default function PravidlaPage() {
             "Zámerné hranie lopty cez vlastnú zadnú čiaru.",
           ].map((text, i) => (
             <div key={i} className="flex gap-3 items-start">
-              <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+              <span className="text-[#012d74] font-bold shrink-0">➜</span>
               <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>{text}</p>
             </div>
           ))}
@@ -143,13 +143,13 @@ export default function PravidlaPage() {
         </h2>
         <div className="space-y-4 mb-8">
           <div className="flex gap-3 items-start">
-            <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               Nájazdy sú súboje 1 na 1 medzi hráčom a brankárom. Sú nariadené iba vtedy, ak je potrebné určiť víťaza a zápas skončil remízou. K rozstrelu nikdy nedochádza počas riadneho hracieho času.
             </p>
           </div>
           <div className="flex gap-3 items-start">
-            <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               Zo štvrtinovej čiary sa útočník rozbehne smerom k bránke. Snaží sa skórovať do 8 sekúnd. Počas týchto 8 sekúnd môže urobiť niekoľko pokusov o gól, pokiaľ lopta zostáva v hre alebo na ihrisku.
             </p>

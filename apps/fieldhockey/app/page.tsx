@@ -223,7 +223,7 @@ export default async function FieldhockeyHome() {
       <section className="bg-[var(--bg-alt)] py-16">
         <div className="container-szph">
           <SectionHeading title="Zápasové centrum" href="/zapasy" hrefLabel="Všetky zápasy" />
-          <MatchCenter competitions={competitions} matches={matches} />
+          <MatchCenter matches={matches as any} />
         </div>
       </section>
 

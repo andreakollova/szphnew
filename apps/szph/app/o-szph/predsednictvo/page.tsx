@@ -66,7 +66,7 @@ export default function PredsednictvoPage() {
               <p className="font-bold text-[#051937]" style={{ fontSize: "16px" }}>
                 {predseda.name}
               </p>
-              <p className="text-[#C8102E] font-semibold uppercase" style={{ fontSize: "11px", letterSpacing: "0.1em" }}>
+              <p className="text-[#012d74] font-semibold uppercase" style={{ fontSize: "11px", letterSpacing: "0.1em" }}>
                 {predseda.role}
               </p>
             </div>
@@ -116,7 +116,7 @@ export default function PredsednictvoPage() {
               href="https://sport.iedu.sk/Company/Company/10896"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-[#C8102E] underline underline-offset-2"
+              className="font-semibold text-[#012d74] underline underline-offset-2"
             >
               priloženom linku
             </a>

@@ -37,19 +37,19 @@ export default function PozemnyHokejPage() {
         </h3>
         <div className="space-y-4 mb-8">
           <div className="flex gap-3 items-start">
-            <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               <strong>Ihrisko:</strong> Hra sa odohráva na umelej tráve. Rozmery ihriska sú 91,4 metra na dĺžku a 55 metrov na šírku. Na každom konci ihriska je bránka, ktorá je o rovnaká ako bránka na hádzanú.
             </p>
           </div>
           <div className="flex gap-3 items-start">
-            <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               <strong>Lopta:</strong> Lopta používaná v pozemnom hokeji je tvrdá, malá a vyrobená z plastu. Jej veľkosť je podobná tenisovej loptičke, ale je oveľa ťažšia a pevnejšia. Pevnosť by sme mohli prirovnať ku golfovej loptičke.
             </p>
           </div>
           <div className="flex gap-3 items-start">
-            <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               <strong>Hokejka:</strong> Hráči používajú špeciálnu hokejku, ktorá je zakrivená na jednom konci. Na rozdiel od hokeja na ľade, kde hráči môžu používať obe strany hokejky, v pozemnom hokeji môžu používať iba plochú stranu.
             </p>
@@ -100,19 +100,19 @@ export default function PozemnyHokejPage() {
         </h2>
         <div className="space-y-4 mb-8">
           <div className="flex gap-3 items-start">
-            <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               <strong>Pohyb s loptou:</strong> Hráči môžu loptu posúvať po ihrisku buď krátkymi prihrávkami medzi spoluhráčmi, alebo tzv. driblingom, čo znamená, že hráč vedie loptu po ihrisku pomocou hokejky.
             </p>
           </div>
           <div className="flex gap-3 items-start">
-            <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               <strong>Prihrávky a streľba:</strong> Prihrávky sú rýchle a presné a môžu byť buď krátke alebo dlhé. Lopta sa pri streľbe do bránky zasahuje pomocou plochej strany hokejky.
             </p>
           </div>
           <div className="flex gap-3 items-start">
-            <span className="text-[#C8102E] font-bold shrink-0">➜</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               <strong>Rýchlosť a technika:</strong> Hra sa odohráva rýchlym tempom, pričom hráči musia mať dobrú kondíciu, obratnosť a koordináciu. Technická zručnosť pri ovládaní lopty je nevyhnutná, pretože hráčom nie je dovolené používať zadnú stranu hokejky ani iné časti tela na kontrolu lopty.
             </p>

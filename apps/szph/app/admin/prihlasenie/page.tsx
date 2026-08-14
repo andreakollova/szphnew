@@ -84,7 +84,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-[#C8102E] py-3 text-sm font-bold text-white transition-all hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+              className="w-full rounded-xl bg-[#012d74] py-3 text-sm font-bold text-white transition-all hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed mt-2"
             >
               {loading ? "Prihlasovanie..." : "Prihlásiť sa"}
             </button>

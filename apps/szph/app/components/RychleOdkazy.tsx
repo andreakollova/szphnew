@@ -56,7 +56,7 @@ export function RychleOdkazy() {
 
   return (
     <div>
-      <p className="font-garet font-bold italic text-[#051937] mb-6" style={{ fontSize: "13px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+      <p className="font-garet font-bold italic text-[#051937] mb-6" style={{ fontSize: "14px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
         Rýchle odkazy
       </p>
       <div className="flex flex-col">
@@ -68,7 +68,7 @@ export function RychleOdkazy() {
             >
               <span
                 className="font-bold text-[#051937] group-hover:text-[#012D74] transition-colors"
-                style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}
+                style={{ fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase" }}
               >
                 {item.label}
               </span>
@@ -89,7 +89,7 @@ export function RychleOdkazy() {
                     className="flex items-center gap-2 text-[#64748b] hover:text-[#012D74] transition-colors"
                     style={{ fontSize: "11px" }}
                   >
-                    <span className="h-1 w-1 rounded-full bg-[#C8102E] shrink-0" />
+                    <span className="h-1 w-1 rounded-full bg-[#012d74] shrink-0" />
                     {s.label}
                   </Link>
                 ))}

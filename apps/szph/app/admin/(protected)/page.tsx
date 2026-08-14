@@ -41,7 +41,7 @@ export default async function AdminDashboard() {
           { label: "Publikovaných článkov", value: publishedCount, color: "#016fb4" },
           { label: "Videí",                 value: stats.videoCount,  color: "#a78bfa" },
           { label: "Tímov",                 value: stats.teamCount,   color: "#34d399" },
-          { label: "Nadchádzajúcich zápasov", value: stats.upcomingMatches.length, color: "#C8102E" },
+          { label: "Nadchádzajúcich zápasov", value: stats.upcomingMatches.length, color: "#012d74" },
         ].map((stat) => (
           <div key={stat.label} className="rounded-2xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
             <div className="flex items-start justify-between">

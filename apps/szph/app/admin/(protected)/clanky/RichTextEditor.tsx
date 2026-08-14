@@ -137,7 +137,7 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
         .ProseMirror p { margin: 8px 0; }
         .ProseMirror ul, .ProseMirror ol { padding-left: 24px; margin: 8px 0; }
         .ProseMirror li { margin: 4px 0; }
-        .ProseMirror blockquote { border-left: 3px solid #C8102E; padding-left: 16px; margin: 16px 0; color: #64748b; font-style: italic; }
+        .ProseMirror blockquote { border-left: 3px solid #012d74; padding-left: 16px; margin: 16px 0; color: #64748b; font-style: italic; }
         .ProseMirror a { color: #016fb4; text-decoration: underline; }
         .ProseMirror img { max-width: 100%; height: auto; border-radius: 8px; margin: 16px 0; }
         .ProseMirror hr { border: none; border-top: 1px solid rgba(1,45,116,0.1); margin: 24px 0; }

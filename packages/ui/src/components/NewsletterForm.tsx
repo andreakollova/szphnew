@@ -12,7 +12,7 @@ export function NewsletterForm() {
       <button
         type="submit"
         className="shrink-0 px-5 py-2.5 font-bold text-white transition-all hover:bg-[#a00d24]"
-        style={{ background: "#C8102E", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase" }}
+        style={{ background: "#012d74", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase" }}
       >
         Odoberať
       </button>
