@@ -72,7 +72,7 @@ export default async function SzphZapasyPage() {
                   <span className="font-bold" style={{ fontSize: "9px" }}>{t.venue}</span>
                 </div>
                 <span className="font-bold text-[#64748b]" style={{ fontSize: "9px" }}>{t.date}</span>
-                <span className="text-[#64748b] italic" style={{ fontSize: "8px" }}>Rozpis zápasov zatiaľ nie je k dispozícii</span>
+{/* removed "Rozpis zápasov" notice */}
               </div>
             ))}
           </div>

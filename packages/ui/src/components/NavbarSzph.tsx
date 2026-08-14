@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../lib/utils";
+import { createClient } from "@supabase/supabase-js";
 
 interface MegaLink { label: string; href: string; desc?: string; }
 interface MegaColumn { title: string; links: MegaLink[]; }
@@ -262,6 +263,12 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [scrolled, setScrolled] = useState(true);
   const [quickLinksOpen, setQuickLinksOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<{ articles: any[]; matches: any[] }>({ articles: [], matches: [] });
+  const [searchLoading, setSearchLoading] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -286,6 +293,57 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
     observer.observe(document.body, { childList: true, subtree: true });
     return () => { cleanup?.(); observer.disconnect(); };
   }, []);
+
+  // Search
+  const doSearch = useCallback(async (q: string) => {
+    if (q.trim().length < 2) {
+      setSearchResults({ articles: [], matches: [] });
+      return;
+    }
+    setSearchLoading(true);
+    try {
+      const sb = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      const [articlesRes, matchesRes] = await Promise.allSettled([
+        sb.from("articles").select("id, slug, title, category, cover_image_url").eq("site", "szph").eq("status", "published").ilike("title", `%${q}%`).order("published_at", { ascending: false }).limit(6),
+        sb.from("matches").select("id, home_team, away_team, home_short, away_short, home_score, away_score, date, league, status, home_logo, away_logo").eq("site", "szph").or(`home_team.ilike.%${q}%,away_team.ilike.%${q}%,league.ilike.%${q}%`).order("date", { ascending: false }).limit(6),
+      ]);
+      setSearchResults({
+        articles: articlesRes.status === "fulfilled" ? (articlesRes.value.data ?? []) : [],
+        matches: matchesRes.status === "fulfilled" ? (matchesRes.value.data ?? []) : [],
+      });
+    } catch {
+      setSearchResults({ articles: [], matches: [] });
+    }
+    setSearchLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      setTimeout(() => searchInputRef.current?.focus(), 100);
+    }
+    if (!searchOpen) {
+      setSearchQuery("");
+      setSearchResults({ articles: [], matches: [] });
+    }
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (searchTimer.current) clearTimeout(searchTimer.current);
+    searchTimer.current = setTimeout(() => doSearch(searchQuery), 300);
+    return () => { if (searchTimer.current) clearTimeout(searchTimer.current); };
+  }, [searchQuery, doSearch]);
+
+  // Close search on Escape
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && searchOpen) setSearchOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [searchOpen]);
 
   const handleEnter = (href: string) => {
     if (leaveTimer.current) clearTimeout(leaveTimer.current);
@@ -454,7 +512,9 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           <div className="shrink-0 transition-colors duration-300" style={{ width: "1px", height: "24px", background: scrolled ? "rgba(1,45,116,0.1)" : "rgba(255,255,255,0.15)" }} />
 
           <div className="flex items-center gap-3 ml-3 shrink-0">
-            <button className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
               style={{ color: scrolled ? "rgba(1,45,116,0.45)" : "rgba(255,255,255,0.6)" }} aria-label="Vyhľadať">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -571,6 +631,169 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             style={{ background: "rgba(5,25,55,0.25)", backdropFilter: "blur(2px)", top: "116px" }}
             onClick={() => setActiveMega(null)}
           />
+        )}
+      </AnimatePresence>
+
+      {/* ── SEARCH OVERLAY ── */}
+      <AnimatePresence>
+        {searchOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[70] flex flex-col"
+            style={{ background: "rgba(5,25,55,0.6)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }}
+            onClick={(e) => { if (e.target === e.currentTarget) setSearchOpen(false); }}
+          >
+            <div className="w-full max-w-2xl mx-auto mt-[120px] px-4">
+              {/* Search input */}
+              <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.2, delay: 0.05 }}
+              >
+                <div
+                  className="flex items-center gap-3 bg-white px-5"
+                  style={{ borderRadius: "14px", height: "56px", boxShadow: "0 8px 40px rgba(0,0,0,0.2)" }}
+                >
+                  <svg className="h-5 w-5 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Hľadať články, zápasy, tímy..."
+                    className="flex-1 bg-transparent text-[#051937] placeholder-[#94a3b8] outline-none font-semibold"
+                    style={{ fontSize: "15px" }}
+                  />
+                  {searchQuery && (
+                    <button onClick={() => setSearchQuery("")} className="text-[#94a3b8] hover:text-[#051937] transition-colors">
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  )}
+                  <button onClick={() => setSearchOpen(false)} className="text-[#94a3b8] hover:text-[#051937] transition-colors ml-1">
+                    <kbd className="px-2 py-0.5 rounded text-[10px] font-bold" style={{ background: "rgba(1,45,116,0.06)", color: "#94a3b8" }}>ESC</kbd>
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* Results */}
+              {searchQuery.trim().length >= 2 && (
+                <motion.div
+                  initial={{ y: -10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.15, delay: 0.1 }}
+                  className="mt-3 bg-white overflow-hidden overflow-y-auto"
+                  style={{ borderRadius: "14px", maxHeight: "60vh", boxShadow: "0 8px 40px rgba(0,0,0,0.15)" }}
+                >
+                  {searchLoading ? (
+                    <div className="px-5 py-8 text-center text-[#94a3b8] font-semibold" style={{ fontSize: "13px" }}>
+                      Hľadám...
+                    </div>
+                  ) : searchResults.articles.length === 0 && searchResults.matches.length === 0 ? (
+                    <div className="px-5 py-8 text-center text-[#94a3b8] font-semibold" style={{ fontSize: "13px" }}>
+                      Žiadne výsledky pre &quot;{searchQuery}&quot;
+                    </div>
+                  ) : (
+                    <div>
+                      {/* Articles */}
+                      {searchResults.articles.length > 0 && (
+                        <div>
+                          <p className="px-5 pt-4 pb-2 font-bold uppercase text-[#94a3b8]" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
+                            Články
+                          </p>
+                          {searchResults.articles.map((a: any) => (
+                            <Link
+                              key={a.id}
+                              href={`/novinky/${a.slug}`}
+                              onClick={() => setSearchOpen(false)}
+                              className="flex items-center gap-3 px-5 py-3 hover:bg-[#f5f7fb] transition-colors"
+                            >
+                              {a.cover_image_url && (
+                                <div className="shrink-0 overflow-hidden" style={{ width: 48, height: 32, borderRadius: "4px" }}>
+                                  <Image src={a.cover_image_url} alt="" width={48} height={32} className="w-full h-full object-cover" />
+                                </div>
+                              )}
+                              <div className="flex-1 min-w-0">
+                                <p className="font-semibold text-[#051937] truncate" style={{ fontSize: "13px" }}>{a.title}</p>
+                                {a.category && (
+                                  <span className="font-bold uppercase text-[#012d74]" style={{ fontSize: "9px", letterSpacing: "0.08em" }}>
+                                    / {a.category}
+                                  </span>
+                                )}
+                              </div>
+                              <svg className="h-3.5 w-3.5 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                              </svg>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Matches */}
+                      {searchResults.matches.length > 0 && (
+                        <div>
+                          <p className="px-5 pt-4 pb-2 font-bold uppercase text-[#94a3b8]" style={{ fontSize: "10px", letterSpacing: "0.1em", borderTop: searchResults.articles.length > 0 ? "1px solid rgba(1,45,116,0.06)" : "none" }}>
+                            Zápasy
+                          </p>
+                          {searchResults.matches.map((m: any) => {
+                            const d = m.date ? new Date(m.date) : null;
+                            return (
+                              <Link
+                                key={m.id}
+                                href="/zapasy"
+                                onClick={() => setSearchOpen(false)}
+                                className="flex items-center gap-3 px-5 py-3 hover:bg-[#f5f7fb] transition-colors"
+                              >
+                                <div className="flex items-center gap-2 flex-1 min-w-0">
+                                  {m.home_logo?.startsWith("flag:") ? (
+                                    <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 20, height: 20 }}>
+                                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                                      <img src={`https://flagcdn.com/w40/${m.home_logo.replace("flag:", "")}.png`} alt="" width={20} height={20} style={{ width: 20, height: 20, objectFit: "cover" }} />
+                                    </div>
+                                  ) : null}
+                                  <span className="font-semibold text-[#051937] truncate" style={{ fontSize: "13px" }}>
+                                    {m.home_short || m.home_team}
+                                  </span>
+                                  {m.status === "finished" && (
+                                    <span className="font-bold text-[#051937] shrink-0" style={{ fontSize: "14px" }}>
+                                      {m.home_score} – {m.away_score}
+                                    </span>
+                                  )}
+                                  {m.status === "scheduled" && (
+                                    <span className="font-bold text-[#94a3b8] shrink-0" style={{ fontSize: "11px" }}>vs</span>
+                                  )}
+                                  <span className="font-semibold text-[#051937] truncate" style={{ fontSize: "13px" }}>
+                                    {m.away_short || m.away_team}
+                                  </span>
+                                  {m.away_logo?.startsWith("flag:") ? (
+                                    <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 20, height: 20 }}>
+                                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                                      <img src={`https://flagcdn.com/w40/${m.away_logo.replace("flag:", "")}.png`} alt="" width={20} height={20} style={{ width: 20, height: 20, objectFit: "cover" }} />
+                                    </div>
+                                  ) : null}
+                                </div>
+                                <div className="text-right shrink-0">
+                                  {d && <p className="text-[#94a3b8] font-bold" style={{ fontSize: "10px" }}>{d.toLocaleDateString("sk-SK", { day: "numeric", month: "short", year: "numeric" })}</p>}
+                                  {m.league && <p className="text-[#94a3b8] truncate" style={{ fontSize: "9px", maxWidth: "120px" }}>{m.league}</p>}
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
