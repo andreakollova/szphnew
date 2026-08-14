@@ -3,17 +3,33 @@
 
 @font-face {
   font-family: "Garet";
-  src: url("/fonts/garet-regular.woff2") format("woff2"),
-       url("/fonts/garet-regular.otf") format("opentype");
-  font-weight: 100 499;
-  font-display: swap;
+  src: url("/fonts/garet-regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Garet";
-  src: url("/fonts/garet-heavy.woff2") format("woff2"),
-       url("/fonts/garet-heavy.otf") format("opentype");
-  font-weight: 500 900;
-  font-display: swap;
+  src: url("/fonts/garet-bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-bolditalic.otf") format("opentype");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-extrabolditalic.otf") format("opentype");
+  font-weight: 800; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-heavy.otf") format("opentype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Garet";
+  src: url("/fonts/garet-heavyitalic.otf") format("opentype");
+  font-weight: 900; font-style: italic; font-display: swap;
 }
 
 :root {
