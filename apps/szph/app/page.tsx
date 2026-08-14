@@ -108,7 +108,7 @@ const getWorldNews = unstable_cache(
     } catch { return []; }
   },
   ["world-news"],
-  { revalidate: 300 }
+  { revalidate: 60 }
 );
 
 function getSupabase() {
@@ -348,55 +348,6 @@ export default async function SzphHome() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          NAJBLIŽŠIE TURNAJE
-          ═══════════════════════════════════════════════════ */}
-      {(() => {
-        const upcoming = (matches as any[]).filter((m: any) => m.status === 'scheduled').sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        if (upcoming.length === 0) return null;
-        return (
-          <section style={{ background: "#f8f9fa" }} className="relative pt-10 pb-6">
-            <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
-              <h2 className="font-garet font-bold italic text-[#051937] mb-6" style={{ fontSize: "14px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                Najbližšie turnaje
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
-                {upcoming.map((t: any, i: number) => {
-                  const d = new Date(t.date);
-                  return (
-                    <div key={t.id || i} className="bg-white px-5 py-4 flex flex-col gap-2" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                      <span className="font-bold uppercase text-[#012d74]" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>
-                        {t.league}
-                      </span>
-                      <div className="flex items-center gap-2">
-                        {t.home_logo?.startsWith("flag:") ? (
-                          <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 22, height: 22 }}>
-                            <img src={`https://flagcdn.com/w40/${t.home_logo.replace("flag:","")}.png`} alt="" width={22} height={22} style={{ width: 22, height: 22, objectFit: "cover" }} />
-                          </div>
-                        ) : t.home_logo?.startsWith("/") ? (
-                          <div className="shrink-0" style={{ width: 22, height: 22 }}>
-                            <img src={t.home_logo} alt="" width={22} height={22} style={{ width: 22, height: 22, objectFit: "contain" }} />
-                          </div>
-                        ) : null}
-                        <span className="font-bold text-[#051937]" style={{ fontSize: "12px" }}>
-                          {t.home_team}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-[#94a3b8]">
-                        <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                        <span className="font-bold" style={{ fontSize: "9px" }}>{t.venue}</span>
-                      </div>
-                      <span className="font-bold text-[#94a3b8]" style={{ fontSize: "9px" }}>
-                        {d.toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric" })}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        );
-      })()}
 
       {/* ═══════════════════════════════════════════════════════
           ZAPASOVE CENTRUM
@@ -607,7 +558,7 @@ export default async function SzphHome() {
             title="Novinky zo sveta"
             href="/novinky/svet"
             cols={4}
-            articles={worldNews.length >= 4 ? worldNews : articles.slice(0, 4)}
+            articles={worldNews.length > 0 ? worldNews.slice(0, 4) : articles.slice(0, 4)}
           />
         </div>
       </section>
