@@ -294,22 +294,22 @@ export function SzphHero() {
           />
 
           {/* NAJBLIŽŠÍ ZÁPAS */}
-          <p className="absolute font-garet font-bold" style={{ left: "7.42%", top: "8.25%", fontSize: "clamp(6px, 0.82vw, 25px)", letterSpacing: "0.08em", color: "#2a2a72" }}>
+          <p className="absolute font-garet font-bold" style={{ left: "7.42%", top: "8.25%", fontSize: "clamp(6px, 0.82vw, 25px)", letterSpacing: "0.08em", color: "#051937" }}>
             NAJBLIŽŠÍ ZÁPAS
           </p>
 
           {/* 15 */}
-          <p className="absolute font-garet font-bold" style={{ left: "7.62%", top: "18.03%", fontSize: "clamp(18px, 2.27vw, 69px)", lineHeight: 0.88, color: "#072357" }}>
+          <p className="absolute font-garet font-bold" style={{ left: "7.62%", top: "18.03%", fontSize: "clamp(18px, 2.27vw, 69px)", lineHeight: 0.88, color: "#051937" }}>
             15
           </p>
 
           {/* JÚN */}
-          <p className="absolute font-garet font-bold" style={{ left: "25.88%", top: "23.13%", fontSize: "clamp(6px, 0.82vw, 25px)", color: "#2a2a72" }}>
+          <p className="absolute font-garet font-bold" style={{ left: "25.88%", top: "23.13%", fontSize: "clamp(6px, 0.82vw, 25px)", color: "#051937" }}>
             JÚN
           </p>
 
           {/* 15:00 */}
-          <p className="absolute font-garet font-bold" style={{ left: "25.88%", top: "28.10%", fontSize: "clamp(10px, 1.27vw, 38px)", lineHeight: 1, color: "rgba(0,82,255,0.8)" }}>
+          <p className="absolute font-garet font-bold" style={{ left: "25.88%", top: "28.10%", fontSize: "clamp(10px, 1.27vw, 38px)", lineHeight: 1, color: "#012d74" }}>
             15:00
           </p>
 
@@ -326,12 +326,12 @@ export function SzphHero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://flagcdn.com/w80/sk.png" alt="SK" className="w-full h-full object-cover" />
           </div>
-          <p className="absolute font-garet font-bold" style={{ left: "27.25%", top: "45.15%", fontSize: "clamp(8px, 0.98vw, 30px)", color: "#20204d" }}>Slovensko</p>
-          <p className="absolute font-garet font-bold" style={{ left: "27.25%", top: "50.60%", fontSize: "clamp(6px, 0.74vw, 22px)", color: "#9a9a9f" }}>MUŽI</p>
+          <p className="absolute font-garet font-bold" style={{ left: "27.25%", top: "45.15%", fontSize: "clamp(8px, 0.98vw, 30px)", color: "#051937" }}>Slovensko</p>
+          <p className="absolute font-garet font-bold" style={{ left: "27.25%", top: "50.60%", fontSize: "clamp(6px, 0.74vw, 22px)", color: "#64748b" }}>MUŽI</p>
 
           {/* VS */}
           <div className="absolute" style={{ left: "8.30%", top: "60.39%", width: "30.66%", height: "1px", background: "rgba(0,0,0,0.08)" }} />
-          <p className="absolute font-garet font-bold" style={{ left: "44.53%", top: "58.51%", fontSize: "clamp(6px, 0.74vw, 22px)", color: "#9a9a9f" }}>VS</p>
+          <p className="absolute font-garet font-bold" style={{ left: "44.53%", top: "58.51%", fontSize: "clamp(6px, 0.74vw, 22px)", color: "#64748b" }}>VS</p>
           <div className="absolute" style={{ left: "56.64%", top: "60.39%", width: "30.66%", height: "1px", background: "rgba(0,0,0,0.08)" }} />
 
           {/* HR */}
@@ -339,15 +339,15 @@ export function SzphHero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="https://flagcdn.com/w80/hr.png" alt="HR" className="w-full h-full object-cover" />
           </div>
-          <p className="absolute font-garet font-bold" style={{ left: "27.83%", top: "67.81%", fontSize: "clamp(8px, 0.98vw, 30px)", color: "#20204d" }}>Chorvátsko</p>
-          <p className="absolute font-garet font-bold" style={{ left: "27.25%", top: "72.63%", fontSize: "clamp(6px, 0.74vw, 22px)", color: "#9a9a9f" }}>MUŽI</p>
+          <p className="absolute font-garet font-bold" style={{ left: "27.83%", top: "67.81%", fontSize: "clamp(8px, 0.98vw, 30px)", color: "#051937" }}>Chorvátsko</p>
+          <p className="absolute font-garet font-bold" style={{ left: "27.25%", top: "72.63%", fontSize: "clamp(6px, 0.74vw, 22px)", color: "#64748b" }}>MUŽI</p>
 
           {/* Bottom divider */}
           <div className="absolute" style={{ left: "7.42%", top: "80%", width: "84.08%", height: "1px", background: "rgba(0,0,0,0.1)" }} />
 
           {/* Eurohockey 5s */}
-          <p className="absolute font-garet font-bold" style={{ left: "7.42%", top: "87.45%", fontSize: "clamp(8px, 0.98vw, 30px)", color: "#9a9a9f" }}>Eurohockey 5s</p>
-          <svg className="absolute" style={{ left: "83.69%", top: "89.33%", width: "clamp(8px, 0.6vw, 18px)", height: "clamp(8px, 0.6vw, 18px)" }} fill="none" viewBox="0 0 24 24" stroke="#9a9a9f" strokeWidth={2.5}>
+          <p className="absolute font-garet font-bold" style={{ left: "7.42%", top: "87.45%", fontSize: "clamp(8px, 0.98vw, 30px)", color: "#64748b" }}>Eurohockey 5s</p>
+          <svg className="absolute" style={{ left: "83.69%", top: "89.33%", width: "clamp(8px, 0.6vw, 18px)", height: "clamp(8px, 0.6vw, 18px)" }} fill="none" viewBox="0 0 24 24" stroke="#64748b" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </div>
