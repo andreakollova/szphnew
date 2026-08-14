@@ -6,15 +6,6 @@
   src: url("/fonts/garet-regular.woff2") format("woff2"),
        url("/fonts/garet-regular.otf") format("opentype");
   font-weight: 100 499;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Garet";
-  src: url("/fonts/garet-regular.woff2") format("woff2"),
-       url("/fonts/garet-regular.otf") format("opentype");
-  font-weight: 100 499;
-  font-style: italic;
   font-display: swap;
 }
 @font-face {
@@ -22,15 +13,6 @@
   src: url("/fonts/garet-heavy.woff2") format("woff2"),
        url("/fonts/garet-heavy.otf") format("opentype");
   font-weight: 500 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Garet";
-  src: url("/fonts/garet-heavy.woff2") format("woff2"),
-       url("/fonts/garet-heavy.otf") format("opentype");
-  font-weight: 500 900;
-  font-style: italic;
   font-display: swap;
 }
 
