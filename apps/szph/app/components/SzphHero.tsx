@@ -240,9 +240,9 @@ export function SzphHero() {
           <h1
             className="font-garet italic text-white"
             style={{
-              fontSize: "clamp(1.4rem, 4.5vw, 130px)",
+              fontSize: "clamp(1.6rem, 4.9vw, 136px)",
               lineHeight: 1.22,
-              fontWeight: 600,
+              fontWeight: 500,
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
           >
@@ -265,10 +265,10 @@ export function SzphHero() {
             className="relative inline-flex items-center justify-center font-garet font-bold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
             style={{
               background: "#d80027",
-              borderRadius: "clamp(18px, 1.2vw, 40px)",
-              width: "clamp(140px, 10vw, 300px)",
-              height: "clamp(36px, 2.5vw, 72px)",
-              fontSize: "clamp(12px, 1.1vw, 30px)",
+              borderRadius: "clamp(20px, 1.5vw, 46px)",
+              width: "clamp(160px, 12vw, 360px)",
+              height: "clamp(40px, 3vw, 88px)",
+              fontSize: "clamp(13px, 1.3vw, 36px)",
             }}
           >
             Zistiť viac
