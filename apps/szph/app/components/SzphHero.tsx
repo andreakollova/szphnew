@@ -238,10 +238,11 @@ export function SzphHero() {
           }}
         >
           <h1
-            className="font-garet font-bold italic text-white"
+            className="font-garet italic text-white"
             style={{
               fontSize: "clamp(1.4rem, 4.5vw, 130px)",
               lineHeight: 1.22,
+              fontWeight: 600,
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
           >
