@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6" style={{ background: "#f8f9fa" }}>
-      <p className="font-garet font-bold italic text-[#051937] mb-2" style={{ fontSize: "72px", lineHeight: 1 }}>404</p>
+      <p className="font-bold text-[#051937] mb-2" style={{ fontSize: "72px", lineHeight: 1 }}>404</p>
       <p className="text-[#64748b] mb-6" style={{ fontSize: "15px" }}>Hmm, nenašli sme čo hľadáš.</p>
       <Link
         href="/"

@@ -356,8 +356,8 @@ export default async function SzphHome() {
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="flex items-center justify-between mb-7">
             <h2
-              className="font-bold text-[#051937]"
-              style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)" }}
+              className="font-garet font-bold italic text-[#051937]"
+              style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}
             >
               Zápasové centrum
             </h2>
@@ -402,7 +402,7 @@ export default async function SzphHome() {
                 <Image src="/images/podcastlogo2.png" alt="SZPH Podcast" fill className="object-contain object-left" sizes="180px" />
               </div>
 
-              <h3 className="font-bold text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
+              <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
                 Pozemný hokej — viac ako šport
               </h3>
               <p className="text-white mb-5" style={{ fontSize: "13px", fontWeight: 400 }}>
