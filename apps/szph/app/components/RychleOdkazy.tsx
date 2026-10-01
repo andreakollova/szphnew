@@ -121,7 +121,7 @@ export function RychleOdkazy() {
               <span className="shrink-0 text-[#012d74]">{item.icon}</span>
               <span
                 className="flex-1 font-bold text-[#051937] group-hover:text-[#012D74] transition-colors"
-                style={{ fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase" }}
+                style={{ fontSize: "13px" }}
               >
                 {item.label}
               </span>
