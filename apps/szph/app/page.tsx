@@ -581,8 +581,8 @@ export default async function SzphHome() {
           <div className="flex md:grid md:grid-cols-5 gap-3 md:gap-4 overflow-x-auto pb-2 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
             {[
               { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#051937", href: "/podcast" },
-              { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.png", bg: "#012d74", href: "/projekty/hokej-na-skolach" },
-              { name: "Hokejová akadémia", logo: "/images/hokejova-akademia-logo.png", bg: "#051937", href: "/projekty/hokejova-akademia" },
+              { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.png", bg: "#0078fe", href: "/projekty/hokej-na-skolach" },
+              { name: "Hokejová akadémia", logo: "/images/hokejova-akademia-logo.png", bg: "#a4b45b", href: "/projekty/hokejova-akademia" },
               { name: "Rozhodcovia", logo: "/images/rozhodcovia-logo.png", bg: "#d80027", href: "/projekty/vzdelavanie-rozhodcov" },
               { name: "Hockey TV", logo: "/images/hockey-tv-logo.png", bg: "#012d74", href: "/projekty/hockey-tv" },
             ].map((p, i) => (
