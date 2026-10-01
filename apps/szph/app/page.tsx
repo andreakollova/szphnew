@@ -292,7 +292,7 @@ export default async function SzphHome() {
                 </p>
                 <div className="mb-4" style={{ width: "28px", height: "2px", background: "#012d74" }} />
 
-                <div className="flex flex-col gap-1.5 overflow-hidden" style={{ borderRadius: "8px" }}>
+                <div className="flex flex-col gap-1.5 overflow-hidden" style={{ borderRadius: "14px" }}>
                   {(matches as any[])
                     .filter((m: any) => m.status === "finished" && (m.home_short === "SVK" || m.away_short === "SVK") && !m.league?.includes("ČESKÁ"))
                     .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
