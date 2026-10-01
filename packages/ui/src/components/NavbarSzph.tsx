@@ -29,7 +29,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Pozemný hokej", href: "/pozemny-hokej",
     mega: {
       featured: {
-        image: "/images/banner1.jpg",
+        image: "/images/mega-pozemny-hokej.png",
         tag: "Šport",
         title: "Čo je pozemný hokej?",
         desc: "Rýchly, technický a taktický šport pre celú rodinu. Zisti prečo si ho zamilujú tisíce hráčov.",
@@ -61,7 +61,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Reprezentácia", href: "/reprezentacia",
     mega: {
       featured: {
-        image: "/images/banner2.jpg",
+        image: "/images/mega-reprezentacia.png",
         tag: "Národný tím",
         title: "Slovenská reprezentácia",
         desc: "Sleduj výsledky, zostavy a príbehy slovenských národných tímov na medzinárodnej scéne.",
@@ -93,7 +93,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Súťaže", href: "/sutaze",
     mega: {
       featured: {
-        image: "/images/banner3.jpg",
+        image: "/images/mega-sutaze.jpg",
         tag: "Súťažný systém",
         title: "Slovenské ligy a turnaje",
         desc: "Kompletný prehľad všetkých súťaží — od extraligy až po mládežnícke turnaje po celom Slovensku.",
@@ -124,7 +124,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Kluby", href: "/kluby",
     mega: {
       featured: {
-        image: "/images/bannerbg.png",
+        image: "/images/mega-kluby.jpg",
         tag: "Pre kluby",
         title: "Všetko pre váš klub",
         desc: "Registrácie, dokumenty, ekonomické tlačivá a podpora pre všetky členské kluby SZPH.",
@@ -155,7 +155,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Vzdelávanie", href: "/vzdelavanie",
     mega: {
       featured: {
-        image: "/images/banner2.jpg",
+        image: "/images/mega-vzdelavanie.png",
         tag: "Vzdelávanie",
         title: "Rozvíjaj sa s SZPH",
         desc: "Kurzy, semináre a školenia pre hráčov, trénerov aj rozhodcov. Investuj do svojho rozvoja.",
@@ -202,7 +202,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
       <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-[320px_1fr] gap-8">
 
         {/* Featured karta */}
-        <Link href={featured.href} className="group relative overflow-hidden rounded-lg block" style={{ minHeight: "240px" }}>
+        <Link href={featured.href} className="group relative overflow-hidden rounded-lg block" style={{ height: "280px" }}>
           <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
           <div className="absolute inset-0 rounded-lg" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.92) 0%, rgba(5,25,55,0.3) 60%, transparent 100%)" }} />
           <div className="absolute bottom-0 p-5">
@@ -220,7 +220,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
         <div className="grid gap-8" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
           {columns.map((col) => (
             <div key={col.title}>
-              <p className="font-bold uppercase tracking-widest text-[#94a3b8] mb-4" style={{ fontSize: "11.5px" }}>
+              <p className="font-bold uppercase tracking-widest text-[#051937] mb-4" style={{ fontSize: "11.5px" }}>
                 {col.title}
               </p>
               <ul className="space-y-1">
