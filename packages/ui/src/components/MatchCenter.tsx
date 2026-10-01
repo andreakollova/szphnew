@@ -275,7 +275,7 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
   const [activeSection, setActiveSection] = useState<"liga" | "reprezentacia">("liga");
   const [page, setPage] = useState(0);
-  const PAGE_SIZE = 12;
+  const PAGE_SIZE = 100;
 
   // Split by liga vs reprezentácia
   // Reprezentácia = SVK matches that are NOT Czech league

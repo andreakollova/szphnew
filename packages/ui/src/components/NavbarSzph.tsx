@@ -40,7 +40,7 @@ const MAIN_NAV: NavItem[] = [
           title: "O športe",
           links: [
             { label: "Čo je pozemný hokej", href: "/pozemny-hokej", desc: "Základy a pravidlá" },
-            { label: "História na Slovensku", href: "/pozemny-hokej/historia", desc: "Od roku 1928" },
+            { label: "História a osobnosti", href: "/pozemny-hokej/historia", desc: "Od roku 1928" },
             { label: "Pravidlá hry", href: "/pozemny-hokej/pravidla", desc: "Oficiálne pravidlá FIH" },
             { label: "Medzinárodné súťaže", href: "/pozemny-hokej/medzinarodne-sutaze", desc: "OH, MS, EH" },
           ],
@@ -49,9 +49,9 @@ const MAIN_NAV: NavItem[] = [
           title: "Začni hrať",
           links: [
             { label: "Nájdi klub", href: "/kluby", desc: "Klub vo tvojom meste" },
-            { label: "Začni hrať hokej", href: "/zacni-hrat", desc: "Pre začiatočníkov" },
+            { label: "Začni hrať hokej", href: "/zacni-hrat/hrac", desc: "Pre začiatočníkov" },
             { label: "Vybavenie", href: "/pozemny-hokej/vybavenie", desc: "Čo potrebuješ" },
-            { label: "Trénerské licencie", href: "/vzdelavanie/treneri", desc: "Pre trénerov" },
+            { label: "Trénerské licencie", href: "/zacni-hrat/trener", desc: "Pre trénerov" },
           ],
         },
       ],
@@ -105,7 +105,8 @@ const MAIN_NAV: NavItem[] = [
           links: [
             { label: "Extraliga muži", href: "/sutaze/muzska-liga", desc: "Najvyššia súťaž" },
             { label: "Extraliga ženy", href: "/sutaze/zenska-liga", desc: "Najvyššia súťaž" },
-            { label: "Plážový hokej", href: "/sutaze/plazovy-hokej", desc: "Letná sezóna" },
+            { label: "Pozemný hokej", href: "/sutaze/pozemny-hokej", desc: "Vonkajšia sezóna" },
+            { label: "Halový hokej", href: "/sutaze/halovy-hokej", desc: "Halová sezóna" },
           ],
         },
         {
@@ -199,15 +200,15 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-[320px_1fr] gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-[340px_1fr] gap-8">
 
         {/* Featured karta */}
-        <Link href={featured.href} className="group relative overflow-hidden rounded-lg block" style={{ height: "280px" }}>
+        <Link href={featured.href} className="group relative overflow-hidden block" style={{ height: "100%", minHeight: "240px", borderRadius: "4px" }}>
           <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-          <div className="absolute inset-0 rounded-lg" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.92) 0%, rgba(5,25,55,0.3) 60%, transparent 100%)" }} />
+          <div className="absolute inset-0" style={{ borderRadius: "4px", background: "linear-gradient(to top, rgba(5,25,55,0.92) 0%, rgba(5,25,55,0.3) 60%, transparent 100%)" }} />
           <div className="absolute bottom-0 p-5">
-            <h3 className="font-garet font-black italic text-white text-lg leading-tight mb-1">{featured.title}</h3>
-            <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-white/80 group-hover:text-white transition-colors">
+            <h3 className="font-garet font-black italic text-white text-lg leading-tight mb-2">{featured.title}</h3>
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white px-3 py-1.5 transition-all hover:brightness-110" style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "20px" }}>
               Zobraziť
               <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -420,7 +421,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-center px-6 transition-all duration-300"
         style={{
           height: "36px",
-          background: scrolled ? "rgba(5,25,55,0.85)" : "rgba(5,25,55,0.6)",
+          background: scrolled ? "#051937" : "rgba(5,25,55,0.6)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
         }}
@@ -543,7 +544,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                     boxShadow: "0 8px 32px rgba(1,45,116,0.15), 0 1px 4px rgba(1,45,116,0.08)",
                     minWidth: "200px",
                     border: "1px solid rgba(1,45,116,0.08)",
-                    borderRadius: "6px",
+                    borderRadius: "3px",
                   }}
                 >
                   {QUICK_LINKS.map((item) => (
