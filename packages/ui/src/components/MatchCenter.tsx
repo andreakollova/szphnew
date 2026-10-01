@@ -180,7 +180,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
   const finished = m.status === "finished";
   const d = new Date(m.date);
   const time = m.match_time || d.toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
-  const dateStr = d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" });
+  const dateStr = `${d.getDate()}. ${d.getMonth() + 1}.${String(d.getFullYear()).slice(2)}`;
   const isFinal = m.league?.includes("finále") || m.league?.includes("Final");
   const isBronze = m.league?.includes("miesto");
 
