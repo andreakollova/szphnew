@@ -269,7 +269,7 @@ export function SzphHero() {
               fontSize: "clamp(2rem, 5.8vw, 160px)",
               lineHeight: 1.05,
               fontWeight: 500,
-              WebkitTextStroke: "0.5px white",
+              WebkitTextStroke: "1px white",
               fontStyle: "italic",
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
@@ -278,7 +278,7 @@ export function SzphHero() {
             <br />
             SPOLOČNÝ
             <br />
-            <span style={{ color: "#0078fd", WebkitTextStroke: "0.5px #0078fd" }}>CIEĽ.</span>
+            <span style={{ color: "#0078fd", WebkitTextStroke: "1px #0078fd" }}>CIEĽ.</span>
           </h1>
           <div style={{ marginTop: "clamp(12px, 1.5vw, 36px)" }}>
             <Link
@@ -311,15 +311,15 @@ export function SzphHero() {
             borderRadius: "clamp(12px, 1vw, 20px)",
             boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
             overflow: "visible",
-            WebkitMaskImage: "radial-gradient(circle 10px at 0px 28%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 28%, transparent 9px, black 10px)",
+            WebkitMaskImage: "radial-gradient(circle 10px at 0px 25%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 25%, transparent 9px, black 10px)",
             WebkitMaskComposite: "destination-in",
-            maskImage: "radial-gradient(circle 10px at 0px 28%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 28%, transparent 9px, black 10px)",
+            maskImage: "radial-gradient(circle 10px at 0px 25%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 25%, transparent 9px, black 10px)",
             maskComposite: "intersect",
           }}
         >
           {/* Dashed line between notches */}
           <div className="absolute pointer-events-none" style={{
-            left: "8px", right: "8px", top: "calc(28% - 1px)",
+            left: "8px", right: "8px", top: "calc(25% - 1px)",
             height: "1px",
             backgroundImage: "repeating-linear-gradient(to right, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 4px, transparent 4px, transparent 8px)",
           }} />
