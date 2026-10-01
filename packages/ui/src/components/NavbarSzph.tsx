@@ -206,7 +206,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-[320px_1fr] gap-4">
+      <div className="max-w-5xl mx-auto px-6 py-6 grid grid-cols-[280px_1fr] gap-5">
 
         {/* Featured karta — landscape */}
         <div className="flex flex-col">

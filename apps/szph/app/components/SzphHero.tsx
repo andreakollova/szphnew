@@ -345,14 +345,14 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="h-2 w-2 rounded-full bg-[#0078fd] animate-pulse shrink-0" />
                   <span className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.65vw, 13px)", letterSpacing: "0.12em" }}>
-                    Najbližší zápas
+                    {(nextMatch.home_short || nextMatch.home_team)} vs. {(nextMatch.away_short || nextMatch.away_team)}
                   </span>
                   {nextMatch.video_url && (
                     <svg className="h-3.5 w-3.5 text-[#d80027] shrink-0 ml-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                   )}
                 </div>
                 <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(12px, 1.1vw, 22px)", letterSpacing: "0.06em" }}>
-                  {nextMatch.isRep ? "Reprezentácia" : (nextMatch.home_short || nextMatch.home_team)} <span className="text-[#94a3b8] mx-0.5">&#x2502;</span> {nextMatch.isRep ? (nextMatch.away_short || nextMatch.away_team) : (nextMatch.away_short || nextMatch.away_team)}
+                  Najbližší zápas
                 </p>
                 <p className="text-[#64748b] mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600 }}>
                   {nextMatch.league || "Zápas"}
