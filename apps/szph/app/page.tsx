@@ -299,6 +299,9 @@ export default async function SzphHome() {
                           <h3 className="font-bold text-white leading-snug group-hover:text-white/90 transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
                             {article.title}
                           </h3>
+                          <span className="inline-block mt-2 font-bold text-white/60 group-hover:text-white transition-colors underline underline-offset-2" style={{ fontSize: "11px" }}>
+                            Zobraziť
+                          </span>
                         </div>
                       </Link>
                     ))}
