@@ -83,10 +83,10 @@ export function RychleOdkazy() {
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, rgba(1,26,74,0.92) 0%, rgba(1,45,116,0.75) 100%)" }}
+          style={{ background: "linear-gradient(135deg, rgba(1,26,74,0.7) 0%, rgba(1,45,116,0.45) 100%)" }}
         />
         <div className="absolute inset-0 flex flex-col justify-center px-5">
-          <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "18px" }}>
+          <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
             Staň sa súčasťou hry
           </p>
           <p className="text-white/60 mt-1" style={{ fontSize: "11px" }}>
