@@ -262,10 +262,12 @@ export function SzphHero() {
             Slovenský pozemný hokej
           </p>
           <h1
-            className="font-garet font-bold italic text-white"
+            className="font-garet text-white"
             style={{
               fontSize: "clamp(2rem, 5.8vw, 160px)",
               lineHeight: 1.05,
+              fontWeight: 800,
+              fontStyle: "italic",
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
           >
