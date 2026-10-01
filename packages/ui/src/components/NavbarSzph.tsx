@@ -231,7 +231,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
                       href={link.href}
                       className="group flex items-start gap-3 px-3 py-2.5 rounded-lg transition-colors hover:bg-[#f5f7fb]"
                     >
-                      <div className="mt-[7px] shrink-0 transition-all duration-200" style={{ width: "5px", height: "5px", borderRadius: "50%", background: "rgba(1,45,116,0.15)" }}>
+                      <div className="mt-[7px] shrink-0 transition-all duration-200" style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#051937" }}>
                         <div className="w-full h-full rounded-full transition-all duration-200 scale-0 group-hover:scale-100" style={{ background: "#012d74" }} />
                       </div>
                       <div>
@@ -331,25 +331,24 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
 
   useEffect(() => {
     // Re-check on every route change
+    let scrollCleanup: (() => void) | undefined;
     const check = () => {
       const hasHero = !!document.querySelector("[data-hero]");
       if (!hasHero) {
         setScrolled(true);
+        if (scrollCleanup) { scrollCleanup(); scrollCleanup = undefined; }
         return;
       }
       const onScroll = () => setScrolled(window.scrollY > 80);
       onScroll();
       window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
+      scrollCleanup = () => window.removeEventListener("scroll", onScroll);
     };
-    const cleanup = check();
+    check();
     // MutationObserver to detect route changes (data-hero added/removed)
-    const observer = new MutationObserver(() => {
-      const hasHero = !!document.querySelector("[data-hero]");
-      if (!hasHero) setScrolled(true);
-    });
+    const observer = new MutationObserver(() => check());
     observer.observe(document.body, { childList: true, subtree: true });
-    return () => { cleanup?.(); observer.disconnect(); };
+    return () => { scrollCleanup?.(); observer.disconnect(); };
   }, []);
 
   // Search

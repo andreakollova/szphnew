@@ -345,9 +345,9 @@ export default async function SzphHome() {
                               <span className="font-bold text-[#051937] truncate" style={{ fontSize: "11px" }}>{m.home_short}</span>
                             </div>
                             <div className="shrink-0 flex items-center gap-1.5 px-2">
-                              <span style={{ fontSize: "18px", fontWeight: 700, lineHeight: 1, color: "#051937" }}>{m.home_score}</span>
-                              <span style={{ fontSize: "11px", color: "#64748b" }}>–</span>
-                              <span style={{ fontSize: "18px", fontWeight: 700, lineHeight: 1, color: "#051937" }}>{m.away_score}</span>
+                              <span style={{ fontSize: "18px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.home_score}</span>
+                              <span style={{ fontSize: "11px", fontWeight: 700, color: "#012d74" }}>:</span>
+                              <span style={{ fontSize: "18px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.away_score}</span>
                             </div>
                             <div className="flex items-center gap-1.5 flex-1 min-w-0 justify-end">
                               <span className="font-bold text-[#051937] truncate" style={{ fontSize: "11px" }}>{m.away_short}</span>
@@ -420,7 +420,7 @@ export default async function SzphHome() {
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
 
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.6fr] gap-8 xl:gap-16 items-center">
+          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8 xl:gap-12 items-center">
 
             {/* Ľavý — text */}
             <div>
@@ -430,14 +430,17 @@ export default async function SzphHome() {
               </div>
 
               <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
-                Vypočujte si najnovšiu časť nášho podcastu!
+                Rozhovor o infraštruktúre a výstavbe nového štadióna
               </h3>
-              <p className="text-white mb-5" style={{ fontSize: "13px", fontWeight: 400 }}>
+              <p className="text-white/50 font-bold uppercase mb-1" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
+                Richard Garaj / Matej Boho
+              </p>
+              <p className="text-white/40 mb-6" style={{ fontSize: "13px" }}>
                 Rozhovory s hráčmi, trénermi a funkcionármi slovenského pozemného hokeja.
               </p>
 
-              {/* Platformy — farebné logá */}
-              <div className="flex items-center gap-3 mb-8">
+              {/* Platformy */}
+              <div className="flex items-center gap-3 mb-6">
                 <a href="https://www.youtube.com/@szph" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all hover:bg-white/10"
                   style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
@@ -457,64 +460,12 @@ export default async function SzphHome() {
                 </a>
               </div>
 
-              {/* Playlist — glass card */}
-              <div
-                style={{
-                  borderRadius: "3px",
-                  background: "rgba(255,255,255,0.04)",
-                  backdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06)",
-                  padding: "4px",
-                }}
-              >
-                {[
-                  { title: "Budeme stavať nový štadión", guest: "Marián Kováč", ep: "EP 03", href: "https://www.youtube.com/watch?v=WoHqCQIVHm4" },
-                  { title: "Ako sa stať profesionálnym hráčom", guest: "Jana Novotná", ep: "EP 02", href: "https://www.youtube.com/watch?v=WoHqCQIVHm4" },
-                  { title: "Pozemný hokej na Slovensku — minulosť a budúcnosť", guest: "Peter Sloboda", ep: "EP 01", href: "https://www.youtube.com/watch?v=WoHqCQIVHm4" },
-                ].map((ep, i) => (
-                  <a
-                    key={i}
-                    href={ep.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center gap-3.5 px-4 py-3 transition-all"
-                    style={{
-                      borderRadius: "3px",
-                      borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.05)" : "none",
-                    }}
-                  >
-                    {/* Play button — glass */}
-                    <div
-                      className="shrink-0 flex items-center justify-center rounded-full transition-all group-hover:border-white/30"
-                      style={{
-                        width: "30px",
-                        height: "30px",
-                        background: "rgba(255,255,255,0.06)",
-                        border: "1px solid rgba(255,255,255,0.12)",
-                      }}
-                    >
-                      <svg className="h-2.5 w-2.5 text-white/70 group-hover:text-white ml-0.5 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-bold text-white/90 truncate group-hover:text-white transition-colors" style={{ fontSize: "11px" }}>{ep.title}</p>
-                      <p className="text-white/30 font-semibold uppercase mt-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>{ep.ep} · {ep.guest}</p>
-                    </div>
-                    <svg className="h-3 w-3 text-white/15 shrink-0 group-hover:text-white/50 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                ))}
-              </div>
-
-              {/* Zobraziť všetky — glass pill */}
+              {/* Zobraziť všetky */}
               <a
                 href="https://www.youtube.com/@szph"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-4 px-4 py-2 font-bold text-white/50 hover:text-white transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2 font-bold text-white/50 hover:text-white transition-all"
                 style={{
                   fontSize: "9px",
                   letterSpacing: "0.12em",
