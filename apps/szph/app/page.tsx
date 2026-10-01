@@ -152,7 +152,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "16px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+        <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
           {title}
         </h2>
         <Link
@@ -266,7 +266,7 @@ export default async function SzphHome() {
 
               {/* Posledné zápasy — reálne dáta z DB */}
               <div className="pt-6">
-                <p className="font-garet font-bold italic text-[#051937] mb-2" style={{ fontSize: "16px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                <p className="font-garet font-bold italic text-[#051937] mb-2" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
                   Posledné zápasy
                 </p>
                 <div className="mb-4" style={{ width: "28px", height: "2px", background: "#012d74" }} />
@@ -727,7 +727,7 @@ export default async function SzphHome() {
 
           {/* Oficiálni sponzori */}
           <div className="mb-12">
-            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "16px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               Oficiálni sponzori a partneri
             </p>
             <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">
@@ -750,7 +750,7 @@ export default async function SzphHome() {
 
           {/* Inštitucionálni partneri */}
           <div>
-            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "16px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               Inštitucionálni partneri
             </p>
             <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">

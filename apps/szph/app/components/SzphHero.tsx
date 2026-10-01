@@ -311,15 +311,15 @@ export function SzphHero() {
             borderRadius: "clamp(12px, 1vw, 20px)",
             boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
             overflow: "visible",
-            WebkitMaskImage: "radial-gradient(circle 10px at 0px 25%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 25%, transparent 9px, black 10px)",
+            WebkitMaskImage: "radial-gradient(circle 10px at 0px 26%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 26%, transparent 9px, black 10px)",
             WebkitMaskComposite: "destination-in",
-            maskImage: "radial-gradient(circle 10px at 0px 25%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 25%, transparent 9px, black 10px)",
+            maskImage: "radial-gradient(circle 10px at 0px 26%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 26%, transparent 9px, black 10px)",
             maskComposite: "intersect",
           }}
         >
           {/* Dashed line between notches */}
           <div className="absolute pointer-events-none" style={{
-            left: "8px", right: "8px", top: "calc(25% - 1px)",
+            left: "8px", right: "8px", top: "calc(26% - 1px)",
             height: "1px",
             backgroundImage: "repeating-linear-gradient(to right, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 4px, transparent 4px, transparent 8px)",
           }} />
