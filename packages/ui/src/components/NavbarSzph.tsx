@@ -258,12 +258,12 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
     <div className="relative shrink-0">
       <button
         onClick={() => setOpen(v => !v)}
-        className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
+        className={cn("flex items-center justify-center h-8 px-1 rounded-lg transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
         aria-label="Jazyk"
       >
-        <div className="overflow-hidden rounded-full" style={{ width: 20, height: 20 }}>
+        <div className="overflow-hidden" style={{ width: 24, height: 16, borderRadius: "2px" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://flagcdn.com/w40/sk.png" alt="SK" width={20} height={20} style={{ width: 20, height: 20, objectFit: "cover" }} />
+          <img src="https://flagcdn.com/w40/sk.png" alt="SK" width={24} height={16} style={{ width: 24, height: 16, objectFit: "cover" }} />
         </div>
       </button>
       <AnimatePresence>
@@ -285,23 +285,23 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
           >
             <button
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 w-full px-4 py-2 text-[#051937] hover:bg-[#051937]/[0.04] transition-colors"
+              className="flex items-center gap-3 w-full px-4 py-2.5 text-[#051937] hover:bg-[#051937]/[0.04] transition-colors"
               style={{ fontSize: "12px", fontWeight: 600 }}
             >
-              <div className="overflow-hidden rounded-full" style={{ width: 18, height: 18 }}>
+              <div className="overflow-hidden" style={{ width: 22, height: 15, borderRadius: "2px" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://flagcdn.com/w40/sk.png" alt="SK" width={18} height={18} style={{ width: 18, height: 18, objectFit: "cover" }} />
+                <img src="https://flagcdn.com/w40/sk.png" alt="SK" width={22} height={15} style={{ width: 22, height: 15, objectFit: "cover" }} />
               </div>
               Slovenčina
             </button>
             <button
               onClick={() => setOpen(false)}
-              className="flex items-center gap-3 w-full px-4 py-2 text-[#051937]/50 hover:bg-[#051937]/[0.04] transition-colors"
+              className="flex items-center gap-3 w-full px-4 py-2.5 text-[#051937]/50 hover:bg-[#051937]/[0.04] transition-colors"
               style={{ fontSize: "12px", fontWeight: 600 }}
             >
-              <div className="overflow-hidden rounded-full" style={{ width: 18, height: 18 }}>
+              <div className="overflow-hidden" style={{ width: 22, height: 15, borderRadius: "2px" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://flagcdn.com/w40/gb.png" alt="EN" width={18} height={18} style={{ width: 18, height: 18, objectFit: "cover" }} />
+                <img src="https://flagcdn.com/w40/gb.png" alt="EN" width={22} height={15} style={{ width: 22, height: 15, objectFit: "cover" }} />
               </div>
               English
             </button>
