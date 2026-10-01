@@ -462,7 +462,7 @@ export default async function SzphHome() {
                   </svg>
                   <span className="font-bold text-white" style={{ fontSize: "10px" }}>YouTube</span>
                 </a>
-                <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer"
+                <a href="https://open.spotify.com/show/5ZVmsgOAe7W7SQkTfrkkrc?si=e96b6415fd8040b4" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all hover:bg-white/10"
                   style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
                   <svg className="h-4 w-4" viewBox="0 0 24 24">
