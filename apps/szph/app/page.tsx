@@ -149,16 +149,19 @@ const getData = unstable_cache(
 );
 
 function CardSection({ title, href, articles, cols = 3 }: { title: string; href: string; articles: any[]; cols?: number }) {
+  const colsClass = cols === 4
+    ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
+    : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3";
   return (
     <div>
-      <div className="flex items-center justify-between mb-5">
-        <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+      <div className="flex items-center justify-between mb-4 md:mb-5">
+        <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(16px, 4vw, 20px)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
           {title}
         </h2>
         <Link
           href={href}
-          className="flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors"
-          style={{ fontSize: "13px" }}
+          className="flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors shrink-0"
+          style={{ fontSize: "clamp(11px, 2.5vw, 13px)" }}
         >
           Zobraziť všetky
           <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -166,7 +169,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
           </svg>
         </Link>
       </div>
-      <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
+      <div className={`grid gap-4 ${colsClass}`}>
         {articles.map((article) => (
           <Link key={article.id} href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
             <div className="relative overflow-hidden" style={{ height: "180px" }}>
@@ -219,7 +222,7 @@ export default async function SzphHome() {
   const { articles, aktuality, reprezentacia, oznamy, matches, competitions, worldNews } = await getData();
 
   return (
-    <>
+    <div className="overflow-x-hidden">
       <SzphHero nextMatch={(() => {
         const now = Date.now();
         const upcoming = (matches as any[]).filter((m: any) => m.status === "scheduled" && new Date(m.date).getTime() > now).sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -239,7 +242,7 @@ export default async function SzphHome() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-0 items-start">
 
             {/* ── Ľavý stĺpec: Aktuality + Reprezentácia + Organizácia ── */}
-            <div className="pr-5 xl:pr-8 flex flex-col gap-10">
+            <div className="lg:pr-5 xl:pr-8 flex flex-col gap-8 md:gap-10">
 
               {/* Aktuality (vrátane oznamy) */}
               <CardSection
@@ -278,7 +281,7 @@ export default async function SzphHome() {
                       </h2>
                     </div>
                   </div>
-                  <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {[
                       { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
                       { title: "Program Olympiáda 2036", image: "/images/pinned-kyselicova.webp", slug: "program-olympiada-2036" },
@@ -304,9 +307,9 @@ export default async function SzphHome() {
 
             </div>
 
-            {/* ── Rýchle Odkazy + Posledné zápasy rep. — sticky ── */}
+            {/* ── Rýchle Odkazy + Posledné zápasy rep. — sticky (hidden on mobile) ── */}
             <div
-              className="pl-5 xl:pl-8 pt-1 self-start sticky top-[120px] flex flex-col gap-5"
+              className="hidden lg:flex pl-5 xl:pl-8 pt-1 self-start sticky top-[120px] flex-col gap-5"
               style={{ borderLeft: "1px solid rgba(1,45,116,0.08)" }}
             >
               <RychleOdkazy />
@@ -390,10 +393,10 @@ export default async function SzphHome() {
           ═══════════════════════════════════════════════════ */}
       <section style={{ background: "#f8f9fa" }} className="relative py-14">
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
-          <div className="flex items-center justify-between mb-7">
+          <div className="flex items-center justify-between mb-5 md:mb-7">
             <h2
               className="font-garet font-bold italic text-[#051937]"
-              style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}
+              style={{ fontSize: "clamp(1.1rem, 4vw, 2rem)", textTransform: "uppercase" }}
             >
               Zápasové centrum
             </h2>
@@ -555,8 +558,8 @@ export default async function SzphHome() {
           ═══════════════════════════════════════════════════ */}
       <section style={{ background: "#f8f9fa" }} className="relative pt-4 pb-14">
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
+          <div className="flex items-center justify-between mb-6 md:mb-8">
+            <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(1.1rem, 4vw, 2rem)", textTransform: "uppercase" }}>
               Projekty
             </h2>
             <Link
@@ -625,8 +628,8 @@ export default async function SzphHome() {
         <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
           {/* Header — rovnaký štýl ako Aktuality/Projekty */}
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
+          <div className="flex items-center justify-between mb-6 md:mb-8">
+            <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1.1rem, 4vw, 2rem)", textTransform: "uppercase" }}>
               Videozóna
             </h2>
             <Link
@@ -782,6 +785,6 @@ export default async function SzphHome() {
 
         </div>
       </section>
-    </>
+    </div>
   );
 }

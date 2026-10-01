@@ -39,9 +39,102 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
 
   return (
     <div className="-mt-16 md:-mt-[112px]">
+      {/* ═══ MOBILE HERO (below md) ═══ */}
       <section
         data-hero
-        className="relative w-full overflow-hidden"
+        className="relative w-full overflow-hidden md:hidden"
+        style={{ minHeight: "85vh" }}
+      >
+        {/* Mobile background photo */}
+        <Image
+          src="/images/hero-mobile-photo.jpg"
+          alt="SZPH"
+          fill
+          className="object-cover"
+          style={{ objectPosition: "center 30%" }}
+          priority
+          quality={90}
+          sizes="100vw"
+        />
+        {/* Mobile overlay pattern */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "url(/images/hero-mobile-bg.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            mixBlendMode: "multiply",
+          }}
+        />
+        {/* Dark gradient at bottom for text readability */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "linear-gradient(to top, rgba(5,25,55,0.95) 0%, rgba(5,25,55,0.6) 35%, transparent 65%)",
+          }}
+        />
+
+        {/* Headline + CTA — positioned at bottom-left */}
+        <div className="absolute bottom-12 left-5 right-5">
+          <p
+            className="font-garet"
+            style={{
+              fontSize: "0.7rem",
+              fontStyle: "italic",
+              fontWeight: 500,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase" as const,
+              marginBottom: "6px",
+              textShadow: "0 2px 20px rgba(0,0,0,0.3)",
+              background: "linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(200,210,225,0.6) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Nová generácia, veľké ambície
+          </p>
+          <h1
+            className="font-garet text-white"
+            style={{
+              fontSize: "2.4rem",
+              lineHeight: 1.05,
+              fontWeight: 500,
+              WebkitTextStroke: "1px white",
+              fontStyle: "italic",
+              textShadow: "0 4px 40px rgba(0,0,0,0.3)",
+            }}
+          >
+            JEDEN TÝM,
+            <br />
+            SPOLOČNÝ
+            <br />
+            <span style={{ color: "#0078fd", WebkitTextStroke: "1px #0078fd" }}>CIEĽ.</span>
+          </h1>
+          <div style={{ marginTop: "16px" }}>
+            <Link
+              href="/o-nas"
+              className="relative flex items-center justify-center font-garet font-bold text-white transition-transform hover:scale-[1.03] active:scale-[0.98] w-full"
+              style={{
+                background: "#d80027",
+                borderRadius: "20px",
+                height: "44px",
+                fontSize: "14px",
+              }}
+            >
+              Zistiť viac
+              <svg className="ml-2" style={{ width: "14px", height: "14px" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ DESKTOP HERO (md and above) ═══ */}
+      <section
+        data-hero
+        className="relative w-full overflow-hidden hidden md:block"
         style={{ aspectRatio: "3022 / 1578" }}
       >
         {/* ═══ Background photos — fade rotation ═══ */}
@@ -411,7 +504,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
             </Link>
           );
         })()}
-      </section>
+      </section>{/* end desktop hero */}
     </div>
   );
 }

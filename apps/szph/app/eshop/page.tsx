@@ -96,9 +96,9 @@ export default function EshopPage() {
   const filtered = activeCategory === "all" ? PRODUCTS : PRODUCTS.filter(p => p.category === activeCategory);
 
   return (
-    <article style={{ background: "#f8f9fa" }} className="pb-20">
+    <article style={{ background: "#f8f9fa" }} className="pb-20 overflow-x-hidden">
       {/* Hero */}
-      <div className="py-14 px-6" style={{ background: "#051937" }}>
+      <div className="py-10 sm:py-14 px-4 sm:px-6" style={{ background: "#051937" }}>
         <div className="max-w-[1600px] mx-auto px-0 lg:px-4">
           <span className="font-bold uppercase text-white mb-3 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Oficiálny obchod
@@ -112,15 +112,15 @@ export default function EshopPage() {
         </div>
       </div>
 
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8">
 
         {/* Kategórie */}
-        <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+        <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
           {CATEGORIES.map(cat => (
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className="shrink-0 px-5 py-2 font-bold uppercase transition-all"
+              className="shrink-0 px-5 py-2.5 font-bold uppercase transition-all"
               style={{
                 fontSize: "10px",
                 letterSpacing: "0.1em",
@@ -136,7 +136,7 @@ export default function EshopPage() {
         </div>
 
         {/* Produkty grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
           {filtered.map(product => (
             <Link
               key={product.id}
@@ -169,11 +169,11 @@ export default function EshopPage() {
                 )}
               </div>
               {/* Info */}
-              <div className="p-4">
-                <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "13px" }}>
+              <div className="p-3 sm:p-4">
+                <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2 text-xs sm:text-[13px]">
                   {product.name}
                 </h3>
-                <p className="font-garet font-bold text-[#012d74] mt-2" style={{ fontSize: "16px" }}>
+                <p className="font-garet font-bold text-[#012d74] mt-1.5 sm:mt-2 text-sm sm:text-base">
                   {product.price.toFixed(2)} €
                 </p>
               </div>

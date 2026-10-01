@@ -288,14 +288,14 @@ function renderContent(content: string, galleries?: any[]) {
     // Headings
     if (block.startsWith("### ")) {
       return (
-        <h3 key={i} className="font-garet font-bold text-[#051937] mt-8 mb-3" style={{ fontSize: "18px" }}>
+        <h3 key={i} className="font-garet font-bold text-[#051937] mt-6 sm:mt-8 mb-2 sm:mb-3 text-base sm:text-lg">
           {block.replace("### ", "")}
         </h3>
       );
     }
     if (block.startsWith("## ")) {
       return (
-        <h2 key={i} className="font-garet font-bold text-[#051937] mt-10 mb-4" style={{ fontSize: "22px" }}>
+        <h2 key={i} className="font-garet font-bold text-[#051937] mt-8 sm:mt-10 mb-3 sm:mb-4 text-lg sm:text-[22px]">
           {block.replace("## ", "")}
         </h2>
       );
@@ -352,14 +352,14 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   return (
     <article className="pb-20" style={{ background: "#f8f9fa" }}>
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-0 items-start">
 
           {/* ── Main content ── */}
           <div className="pr-0 lg:pr-10 xl:pr-14">
             {/* Banner image */}
             {article.cover_image_url && (
-              <div className="relative w-full overflow-hidden" style={{ height: "clamp(250px, 35vw, 450px)", borderRadius: "8px" }}>
+              <div className="relative w-full overflow-hidden rounded-none sm:rounded-lg" style={{ height: "clamp(200px, 35vw, 450px)" }}>
                 <Image
                   src={article.cover_image_url}
                   alt={article.title}
@@ -381,7 +381,7 @@ export default async function ArticleDetailPage({ params }: Props) {
               </span>
               <h1
                 className="font-garet font-bold italic text-[#051937] leading-tight"
-                style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.4rem)" }}
+                style={{ fontSize: "clamp(1.3rem, 3.5vw, 2.4rem)" }}
               >
                 {article.title}
               </h1>
@@ -443,6 +443,13 @@ export default async function ArticleDetailPage({ params }: Props) {
               .article-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; }
               .article-content hr { border: none; border-top: 1px solid rgba(1,45,116,0.08); margin: 32px 0; }
               .article-content iframe { max-width: 100%; border-radius: 8px; margin: 20px 0; }
+              @media (max-width: 639px) {
+                .article-content h2 { font-size: 18px; margin: 24px 0 10px; }
+                .article-content h3 { font-size: 16px; margin: 18px 0 6px; }
+                .article-content p { font-size: 14px; }
+                .article-content li { font-size: 14px; }
+                .article-content blockquote { font-size: 14px; }
+              }
             `}</style>
 
             {/* Tags / share */}

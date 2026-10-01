@@ -199,12 +199,13 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, delay: index * 0.03 }}
-        className="flex items-center bg-white px-5 py-3 gap-4 hover:bg-[#f8fafd] transition-colors cursor-pointer"
+        className="flex items-center bg-white px-3 sm:px-5 py-3 gap-2 sm:gap-4 hover:bg-[#f8fafd] transition-colors cursor-pointer"
       >
         {/* Dátum + čas na jednom riadku */}
-        <div className="shrink-0" style={{ width: "110px" }}>
-          <span className="font-bold text-[#051937] whitespace-nowrap" style={{ fontSize: "12px" }}>
-            {dateStr} · {time}
+        <div className="shrink-0 w-[70px] sm:w-[110px]">
+          <span className="font-bold text-[#051937] whitespace-nowrap" style={{ fontSize: "11px" }}>
+            <span className="sm:hidden">{dateStr}</span>
+            <span className="hidden sm:inline">{dateStr} · {time}</span>
           </span>
         </div>
 
@@ -319,7 +320,7 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
       {/* Controls — dva riadky */}
       <div className="flex flex-col gap-3 mb-6">
         {/* Riadok 1: Liga / Reprezentácia + Nasledujúce/Minulé */}
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
           {/* Liga / Reprezentácia */}
           <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
             {([
@@ -330,7 +331,7 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
                 key={tab.key}
                 onClick={() => { setActiveSection(tab.key); setPage(0); }}
                 className={cn(
-                  "flex items-center gap-2.5 px-5 py-2.5 font-bold uppercase transition-all",
+                  "flex items-center gap-1.5 sm:gap-2.5 px-3 sm:px-5 py-2 sm:py-2.5 font-bold uppercase transition-all",
                   i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
                   activeSection === tab.key ? "text-white" : "text-[#64748b] hover:text-[#051937]"
                 )}
@@ -382,7 +383,7 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
                 key={tab.key}
                 onClick={() => { setActiveTab(tab.key); setPage(0); }}
                 className={cn(
-                  "px-5 py-2.5 font-bold uppercase transition-all",
+                  "px-3 sm:px-5 py-2 sm:py-2.5 font-bold uppercase transition-all",
                   i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
                   activeTab === tab.key ? "bg-[#012d74] text-white" : "text-[#64748b] hover:text-[#051937]"
                 )}

@@ -356,6 +356,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const [activeMega, setActiveMega] = useState<string | null>(null);
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [scrolled, setScrolled] = useState(true);
+  const [hasHero, setHasHero] = useState(false);
   const [quickLinksOpen, setQuickLinksOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -369,8 +370,9 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
     // Re-check on every route change
     let scrollCleanup: (() => void) | undefined;
     const check = () => {
-      const hasHero = !!document.querySelector("[data-hero]");
-      if (!hasHero) {
+      const heroExists = !!document.querySelector("[data-hero]");
+      setHasHero(heroExists);
+      if (!heroExists) {
         setScrolled(true);
         if (scrollCleanup) { scrollCleanup(); scrollCleanup = undefined; }
         return;
@@ -456,7 +458,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-center px-6 transition-all duration-300"
         style={{
           height: "36px",
-          background: scrolled ? "#051937" : "rgba(5,25,55,0.6)",
+          background: (!hasHero || scrolled) ? "#051937" : "rgba(5,25,55,0.6)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
         }}
@@ -479,17 +481,17 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         ) : <div />}
       </div>
 
-      {/* Mobilný announcement bar */}
+      {/* Mobilny announcement bar */}
       {announcement && (
-        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "#051937", height: "32px" }}>
+        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "#051937", height: "28px" }}>
           {announcement.href ? (
-            <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "10px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+            <Link href={announcement.href} className="flex items-center gap-1.5 text-white font-bold truncate" style={{ fontSize: "9px", letterSpacing: "0.03em" }}>
+              <span className="shrink-0 h-1 w-1 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
             </Link>
           ) : (
-            <span className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "10px" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="flex items-center gap-1.5 text-white font-bold truncate" style={{ fontSize: "9px" }}>
+              <span className="shrink-0 h-1 w-1 rounded-full bg-green-400 animate-pulse" />
               {announcement.text}
             </span>
           )}
@@ -497,14 +499,16 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
       )}
 
       <header
-        className="fixed inset-x-0 z-[55] flex flex-col transition-all duration-300"
+        className={cn(
+          "fixed inset-x-0 z-[55] flex flex-col transition-all duration-300",
+          announcement ? "top-[28px] md:top-[36px]" : "top-0 md:top-[36px]"
+        )}
         style={{
-          top: "36px",
-          background: scrolled ? "linear-gradient(135deg, #011a4a 0%, #012d74 100%)" : "linear-gradient(135deg, rgba(1,26,74,0.75) 0%, rgba(1,45,116,0.45) 50%, rgba(1,60,150,0.3) 100%)",
-          backdropFilter: scrolled ? "none" : "blur(18px) saturate(1.4)",
-          WebkitBackdropFilter: scrolled ? "none" : "blur(18px) saturate(1.4)",
-          boxShadow: scrolled ? "0 2px 12px rgba(0,0,0,0.15)" : "0 1px 0 rgba(255,255,255,0.08) inset",
-          borderBottom: scrolled ? "1px solid rgba(1,45,116,0.3)" : "1px solid rgba(255,255,255,0.08)",
+          background: (!hasHero || scrolled) ? "#051937" : "linear-gradient(135deg, rgba(1,26,74,0.75) 0%, rgba(1,45,116,0.45) 50%, rgba(1,60,150,0.3) 100%)",
+          backdropFilter: (!hasHero || scrolled) ? "none" : "blur(18px) saturate(1.4)",
+          WebkitBackdropFilter: (!hasHero || scrolled) ? "none" : "blur(18px) saturate(1.4)",
+          boxShadow: (!hasHero || scrolled) ? "0 2px 12px rgba(0,0,0,0.15)" : "0 1px 0 rgba(255,255,255,0.08) inset",
+          borderBottom: (!hasHero || scrolled) ? "1px solid rgba(1,45,116,0.3)" : "1px solid rgba(255,255,255,0.08)",
         }}
       >
 
@@ -630,76 +634,107 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           </div>
         </div>
 
-        {/* ── MOBILNÁ HLAVIČKA ── */}
-        <div className="flex md:hidden items-center justify-between px-4 h-16">
-          <Link href="/" className="shrink-0">
-            <Image src="/images/logo-szph.png" alt="SZPH" height={36} width={110} className="h-9 w-auto object-contain" priority />
+        {/* ── MOBILNA HLAVICKA ── */}
+        <div className="relative flex md:hidden items-center justify-between px-4" style={{ height: "56px", background: "#051937" }}>
+          {/* Left — user/login icon */}
+          <Link href="/admin/prihlasenie" className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-white/10 transition-colors" aria-label="Prihlasenie">
+            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
           </Link>
-          <div className="flex items-center gap-2">
-            <a href="https://fieldhockey.sk/video-zona/" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold text-white"
-              style={{ background: "#012d74" }}>
-              <span className="h-1.5 w-1.5 rounded-full bg-white/70 animate-pulse" />
-              Live
-            </a>
-            <button onClick={() => setMobileOpen(v => !v)}
-              className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-lg"
-              aria-label="Menu" aria-expanded={mobileOpen}>
-              <span className={cn("h-0.5 w-5 bg-[#051937] transition-all duration-300", mobileOpen && "translate-y-2 rotate-45")} />
-              <span className={cn("h-0.5 w-5 bg-[#051937] transition-all duration-300", mobileOpen && "opacity-0")} />
-              <span className={cn("h-0.5 w-5 bg-[#051937] transition-all duration-300", mobileOpen && "-translate-y-2 -rotate-45")} />
-            </button>
-          </div>
+          {/* Center — white logo */}
+          <Link href="/" className="absolute left-1/2 -translate-x-1/2 shrink-0">
+            <Image src="/images/logo-szph-white.png" alt="SZPH" height={32} width={100} className="h-8 w-auto object-contain" priority />
+          </Link>
+          {/* Right — hamburger */}
+          <button onClick={() => setMobileOpen(v => !v)}
+            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-white/10 transition-colors"
+            aria-label="Menu" aria-expanded={mobileOpen}>
+            <span className={cn("h-0.5 w-5 bg-white transition-all duration-300", mobileOpen && "translate-y-2 rotate-45")} />
+            <span className={cn("h-0.5 w-5 bg-white transition-all duration-300", mobileOpen && "opacity-0")} />
+            <span className={cn("h-0.5 w-5 bg-white transition-all duration-300", mobileOpen && "-translate-y-2 -rotate-45")} />
+          </button>
         </div>
 
-        {/* ── MOBILNÉ MENU ── */}
+        {/* ── MOBILNE MENU — fullscreen slide-in from right ── */}
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.22 }}
-              className="overflow-hidden border-t border-[rgba(1,45,116,0.08)] md:hidden bg-white">
-              <div className="px-4 py-4 space-y-1">
-                {MAIN_NAV.map(item => (
-                  <div key={item.href}>
-                    <button onClick={() => setMobileExpanded(mobileExpanded === item.href ? null : item.href)}
-                      className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm font-semibold text-[#051937] hover:bg-[#f0f4fa] transition-colors">
-                      {item.label}
-                      {item.mega && (
-                        <svg className={cn("h-4 w-4 transition-transform text-[#64748b]", mobileExpanded === item.href && "rotate-180")}
-                          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="fixed inset-0 z-[65] md:hidden bg-white overflow-y-auto"
+              style={{ top: announcement ? "84px" : "56px" }}
+            >
+              <div className="flex flex-col min-h-full px-5 pt-6 pb-8">
+                {/* Nav items */}
+                <div className="flex-1 space-y-1">
+                  {MAIN_NAV.map(item => (
+                    <div key={item.href}>
+                      {item.mega ? (
+                        <button onClick={() => setMobileExpanded(mobileExpanded === item.href ? null : item.href)}
+                          className="flex w-full items-center justify-between py-3 text-[15px] font-bold text-[#051937] transition-colors"
+                          style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
+                          {item.label}
+                          <svg className={cn("h-4 w-4 transition-transform duration-200 text-[#94a3b8]", mobileExpanded === item.href && "rotate-180")}
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+                      ) : (
+                        <Link href={item.href} onClick={() => setMobileOpen(false)}
+                          className="flex w-full items-center py-3 text-[15px] font-bold text-[#051937] transition-colors"
+                          style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
+                          {item.label}
+                        </Link>
                       )}
-                    </button>
-                    <AnimatePresence>
-                      {item.mega && mobileExpanded === item.href && (
-                        <motion.div initial={{ height: 0 }} animate={{ height: "auto" }}
-                          exit={{ height: 0 }} transition={{ duration: 0.15 }} className="overflow-hidden">
-                          <div className="ml-3 mt-1 space-y-0.5 border-l border-[rgba(1,45,116,0.1)] pl-3 pb-1">
-                            {item.mega.columns.flatMap(col => col.links).map(link => (
-                              <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}
-                                className="block rounded px-2 py-1.5 text-sm text-[#051937]/60 hover:text-[#051937] transition-colors">
-                                {link.label}
-                              </Link>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ))}
-                <div className="pt-3 border-t border-[rgba(1,45,116,0.08)] space-y-2">
-                  <Link href="/zacni-hrat" onClick={() => setMobileOpen(false)}
-                    className="block rounded-lg px-4 py-2.5 text-center text-sm font-bold text-white transition-all"
-                    style={{ background: "#051937" }}>
-                    Začni hrať hokej
-                  </Link>
-                  <a href="https://fieldhockey.sk/video-zona/" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-bold text-white"
+                      <AnimatePresence>
+                        {item.mega && mobileExpanded === item.href && (
+                          <motion.div initial={{ height: 0 }} animate={{ height: "auto" }}
+                            exit={{ height: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
+                            <div className="py-2 space-y-3">
+                              {item.mega.columns.map(col => (
+                                <div key={col.title}>
+                                  <p className="font-bold uppercase text-[#94a3b8] mb-1.5" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>{col.title}</p>
+                                  <div className="space-y-0.5">
+                                    {col.links.map(link => (
+                                      <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}
+                                        className="flex items-center gap-2.5 py-2 pl-1 text-[14px] text-[#051937]/70 hover:text-[#051937] transition-colors">
+                                        <span className="shrink-0 h-1 w-1 rounded-full bg-[#051937]/20" />
+                                        {link.label}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Bottom CTAs */}
+                <div className="pt-6 mt-4 space-y-3" style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
+                  <Link href="/zapasy" onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 text-sm font-bold text-white transition-all hover:brightness-110"
                     style={{ background: "#012d74" }}>
-                    <span className="h-2 w-2 rounded-full bg-white/70 animate-pulse" />
-                    Zápasové centrum a archív
-                  </a>
+                    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
+                      <circle cx="12" cy="12" r="9" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 8.5l5 3.5-5 3.5V8.5z" />
+                    </svg>
+                    Zápasové centrum
+                  </Link>
+                  <Link href="/admin/prihlasenie" onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 text-sm font-bold text-[#051937] transition-all"
+                    style={{ border: "1.5px solid rgba(1,45,116,0.15)" }}>
+                    <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                    Prihlásenie
+                  </Link>
                 </div>
               </div>
             </motion.div>
