@@ -612,15 +612,15 @@ export default async function SzphHome() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {[
-              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#051937" },
-              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#012D74" },
-              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#012d74" },
-              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#0a0a0a" },
-              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#1a3a5c" },
+              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#051937", href: "/podcast" },
+              { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.png", bg: "#012D74", href: "/projekty/hokej-na-skolach" },
+              { name: "Hokejová akadémia", logo: "/images/hokejova-akademia-logo.png", bg: "#012d74", href: "/projekty/hokejova-akademia" },
+              { name: "Rozhodcovia", logo: "/images/rozhodcovia-logo.png", bg: "#0a0a0a", href: "/projekty/vzdelavanie-rozhodcov" },
+              { name: "Hockey TV", logo: "/images/hockey-tv-logo.png", bg: "#1a3a5c", href: "/projekty/hockey-tv" },
             ].map((p, i) => (
               <Link
                 key={i}
-                href="/projekty"
+                href={p.href}
                 className="group flex flex-col overflow-hidden"
                 style={{ borderRadius: "10px", overflow: "hidden" }}
               >
