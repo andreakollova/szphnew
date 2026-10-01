@@ -511,7 +511,7 @@ export default async function SzphHome() {
                   fontSize: "9px",
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
-                  borderRadius: "6px",
+                  borderRadius: "20px",
                   border: "1px solid rgba(255,255,255,0.08)",
                 }}
               >

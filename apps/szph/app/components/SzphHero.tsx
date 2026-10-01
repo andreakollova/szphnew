@@ -290,7 +290,7 @@ export function SzphHero() {
               className="relative inline-flex items-center justify-center font-garet font-bold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
               style={{
                 background: "#d80027",
-                borderRadius: "clamp(16px, 1.2vw, 36px)",
+                borderRadius: "20px",
                 width: "clamp(130px, 9.5vw, 280px)",
                 height: "clamp(34px, 2.4vw, 68px)",
                 fontSize: "clamp(11px, 1vw, 28px)",
