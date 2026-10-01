@@ -437,7 +437,7 @@ export default async function SzphHome() {
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
 
-          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-12 xl:gap-20 items-center">
+          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[0.9fr_1.5fr] gap-14 xl:gap-24 items-center">
 
             {/* Ľavý — text */}
             <div>
