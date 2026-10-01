@@ -414,7 +414,7 @@ export default async function SzphHome() {
       <section
         className="relative py-16 mx-4 md:mx-8 overflow-hidden"
         style={{
-          borderRadius: "3px",
+          borderRadius: "20px 20px 20px 20px",
           background: "linear-gradient(135deg, #020e1f 0%, #051937 25%, #071e42 50%, #020e1f 75%, #041530 100%)",
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(5,25,55,0.4)",
         }}
@@ -562,7 +562,7 @@ export default async function SzphHome() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div
                   className="flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
-                  style={{ width: "64px", height: "64px", background: "#012d74", boxShadow: "0 0 0 12px rgba(200,16,46,0.15)" }}
+                  style={{ width: "64px", height: "64px", background: "#d80027", boxShadow: "0 0 0 12px rgba(216,0,39,0.2)" }}
                 >
                   <svg className="h-6 w-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
