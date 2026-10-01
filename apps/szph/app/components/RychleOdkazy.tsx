@@ -89,7 +89,7 @@ export function RychleOdkazy() {
           <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
             Začni s pozemným hokejom!
           </p>
-          <p className="text-white/60 mt-1" style={{ fontSize: "11px" }}>
+          <p className="text-white mt-1" style={{ fontSize: "11px" }}>
             Nájdi svoj tím a pridaj sa.
           </p>
           <div
@@ -131,7 +131,7 @@ export function RychleOdkazy() {
           <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
             Oficiálny eshop
           </p>
-          <p className="text-white/70 mt-1" style={{ fontSize: "11px" }}>
+          <p className="text-white mt-1" style={{ fontSize: "11px" }}>
             Dresy, merch a vybavenie.
           </p>
           <div

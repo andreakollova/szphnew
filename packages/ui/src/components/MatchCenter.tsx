@@ -183,28 +183,23 @@ function TeamLogo({ name }: { name: string }) {
   return <div className="shrink-0 flex items-center justify-center rounded-full" style={{ width: 28, height: 28, background: "#e2e8f0" }}><span className="font-black text-[#64748b]" style={{ fontSize: "8px" }}>{name.split(" ").map(w => w[0]).join("").slice(0, 3).toUpperCase()}</span></div>;
 }
 
-function MatchRow({ m, index, expanded, onToggle }: { m: DbMatch; index: number; expanded: boolean; onToggle: () => void }) {
+function MatchRow({ m, index }: { m: DbMatch; index: number }) {
   const finished = m.status === "finished";
   const d = new Date(m.date);
   const time = m.match_time || d.toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
   const dateStr = `${d.getDate()}. ${d.getMonth() + 1}.${String(d.getFullYear()).slice(2)}`;
-  const fullDateStr = d.toLocaleDateString("sk-SK", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   const isFinal = m.league?.includes("finále") || m.league?.includes("Final");
   const isBronze = m.league?.includes("miesto");
   const homeWin = finished && (m.home_score ?? 0) > (m.away_score ?? 0);
   const awayWin = finished && (m.away_score ?? 0) > (m.home_score ?? 0);
-  const goals = m.goals ?? [];
-  const homeGoals = goals.filter(g => g.team === "home");
-  const awayGoals = goals.filter(g => g.team === "away");
 
   return (
-    <div>
+    <a href={`/zapasy/${m.id}`}>
       <motion.div
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, delay: index * 0.03 }}
         className="flex items-center bg-white px-5 py-3 gap-4 hover:bg-[#f8fafd] transition-colors cursor-pointer"
-        onClick={onToggle}
       >
         {/* Dátum + čas na jednom riadku */}
         <div className="shrink-0" style={{ width: "110px" }}>
@@ -276,136 +271,19 @@ function MatchRow({ m, index, expanded, onToggle }: { m: DbMatch; index: number;
           </span>
         </div>
 
-        {/* Miesto + chevron */}
+        {/* Miesto + arrow */}
         <div className="shrink-0 hidden lg:flex items-center gap-2 justify-end" style={{ width: "140px" }}>
           {m.venue && (
             <span className="font-bold text-[#012d74]/40 truncate" style={{ fontSize: "10px" }}>
               {m.venue}
             </span>
           )}
-          <svg className={cn("h-3.5 w-3.5 text-[#94a3b8] shrink-0 transition-transform duration-200", expanded && "rotate-180")} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          <svg className="h-3.5 w-3.5 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </div>
       </motion.div>
-
-      {/* Expandovaný detail */}
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden"
-          >
-            <div className="px-5 pb-5 pt-2 bg-[#f8fafd]" style={{ borderTop: "1px solid rgba(1,45,116,0.06)" }}>
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_280px] gap-5">
-
-                {/* Ľavá — detail zápasu */}
-                <div>
-                  {/* Info riadky */}
-                  <div className="flex flex-wrap gap-x-6 gap-y-2 mb-5">
-                    <div className="flex items-center gap-1.5">
-                      <svg className="h-3.5 w-3.5 text-[#94a3b8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                      <span className="font-semibold text-[#051937]" style={{ fontSize: "12px" }}>{fullDateStr}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <svg className="h-3.5 w-3.5 text-[#94a3b8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                      <span className="font-semibold text-[#051937]" style={{ fontSize: "12px" }}>{time}</span>
-                    </div>
-                    {m.league && (
-                      <div className="flex items-center gap-1.5">
-                        <svg className="h-3.5 w-3.5 text-[#94a3b8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                        <span className="font-semibold text-[#051937]" style={{ fontSize: "12px" }}>{m.league}</span>
-                      </div>
-                    )}
-                    {m.venue && (
-                      <div className="flex items-center gap-1.5">
-                        <svg className="h-3.5 w-3.5 text-[#94a3b8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                        <span className="font-semibold text-[#051937]" style={{ fontSize: "12px" }}>{m.venue}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Výsledok veľký */}
-                  {finished && (
-                    <div className="flex items-center gap-5 mb-5 p-4 bg-white" style={{ borderRadius: "4px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                      <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
-                        <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={36} />
-                        <span className={cn("font-bold truncate text-right", homeWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "14px" }}>{m.home_short || m.home_team}</span>
-                      </div>
-                      <div className="flex items-center gap-3 shrink-0">
-                        <span style={{ fontSize: "28px", fontWeight: 800, color: homeWin ? "#16a34a" : "#051937" }}>{m.home_score ?? 0}</span>
-                        <span style={{ fontSize: "14px", fontWeight: 700, color: "#012d74" }}>:</span>
-                        <span style={{ fontSize: "28px", fontWeight: 800, color: awayWin ? "#16a34a" : "#051937" }}>{m.away_score ?? 0}</span>
-                      </div>
-                      <div className="flex items-center gap-3 flex-1 min-w-0">
-                        <span className={cn("font-bold truncate", awayWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "14px" }}>{m.away_short || m.away_team}</span>
-                        <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={36} />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Strelci gólov */}
-                  {goals.length > 0 && (
-                    <div className="mb-4">
-                      <p className="font-bold uppercase text-[#94a3b8] mb-2" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>Strelci gólov</p>
-                      <div className="grid grid-cols-2 gap-x-4">
-                        {/* Domáci góly */}
-                        <div className="space-y-1">
-                          {homeGoals.map((g, i) => (
-                            <div key={i} className="flex items-center gap-2">
-                              <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={16} />
-                              <span className="font-semibold text-[#051937]" style={{ fontSize: "12px" }}>{g.player}</span>
-                              {g.minute && <span className="text-[#94a3b8] font-bold" style={{ fontSize: "10px" }}>{g.minute}&apos;</span>}
-                            </div>
-                          ))}
-                        </div>
-                        {/* Hosťujúci góly */}
-                        <div className="space-y-1">
-                          {awayGoals.map((g, i) => (
-                            <div key={i} className="flex items-center gap-2">
-                              <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={16} />
-                              <span className="font-semibold text-[#051937]" style={{ fontSize: "12px" }}>{g.player}</span>
-                              {g.minute && <span className="text-[#94a3b8] font-bold" style={{ fontSize: "10px" }}>{g.minute}&apos;</span>}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Video link */}
-                  {m.video_url && (
-                    <a href={m.video_url} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="inline-flex items-center gap-2 font-bold text-white px-4 py-2 transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", fontSize: "11px" }}>
-                      <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                      Sledovať záznam
-                    </a>
-                  )}
-                </div>
-
-                {/* Pravá — mapa miesta */}
-                {m.venue && (
-                  <div className="hidden md:block">
-                    <div className="overflow-hidden" style={{ borderRadius: "4px", border: "1px solid rgba(1,45,116,0.06)", height: "180px" }}>
-                      <iframe
-                        src={`https://www.openstreetmap.org/export/embed.html?bbox=17.0%2C48.0%2C17.3%2C48.3&layer=mapnik`}
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        loading="lazy"
-                      />
-                    </div>
-                    <p className="font-bold text-[#94a3b8] mt-1.5" style={{ fontSize: "10px" }}>{m.venue}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    </a>
   );
 }
 
@@ -413,7 +291,6 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
   const [activeSection, setActiveSection] = useState<"liga" | "reprezentacia">("liga");
   const [page, setPage] = useState(0);
-  const [expandedId, setExpandedId] = useState<string | null>(null);
   const PAGE_SIZE = 100;
 
   // Split by liga vs reprezentácia
@@ -543,7 +420,7 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
                 borderBottom: i < list.length - 1 ? "1px solid rgba(1,45,116,0.07)" : undefined,
               }}
             >
-              <MatchRow m={m} index={i} expanded={expandedId === m.id} onToggle={() => setExpandedId(expandedId === m.id ? null : m.id)} />
+              <MatchRow m={m} index={i} />
             </div>
           ))}
         </motion.div>

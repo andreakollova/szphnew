@@ -206,13 +206,13 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-[280px_1fr] gap-6">
+      <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-[320px_1fr] gap-4">
 
         {/* Featured karta — landscape */}
         <div className="flex flex-col">
           {featured.banners ? (
             /* Two banner cards instead of featured image */
-            <div className="flex flex-col gap-2" style={{ height: "220px" }}>
+            <div className="flex flex-col gap-2 h-full">
               {featured.banners.map((b) => (
                 <Link key={b.label} href={b.href} className="group flex-1 relative overflow-hidden flex items-center px-5" style={{ borderRadius: "4px", background: b.bg }}>
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "rgba(255,255,255,0.06)" }} />
@@ -254,7 +254,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
         </div>
 
         {/* Stĺpce s linkami */}
-        <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
+        <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
           {columns.map((col) => (
             <div key={col.title}>
               <p className="font-bold uppercase tracking-widest text-[#051937] mb-4" style={{ fontSize: "11.5px" }}>
