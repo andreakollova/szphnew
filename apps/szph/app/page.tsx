@@ -573,7 +573,7 @@ export default async function SzphHome() {
               </svg>
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
+          <div className="flex md:grid md:grid-cols-5 gap-3 md:gap-4 overflow-x-auto pb-2 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
             {[
               { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#051937", href: "/podcast" },
               { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.png", bg: "#012d74", href: "/projekty/hokej-na-skolach" },
@@ -585,6 +585,7 @@ export default async function SzphHome() {
                 key={i}
                 href={p.href}
                 className="group flex flex-col overflow-hidden"
+                className="shrink-0 w-[140px] md:w-auto"
                 style={{ borderRadius: "10px", overflow: "hidden" }}
               >
                 {/* Thumbnail */}

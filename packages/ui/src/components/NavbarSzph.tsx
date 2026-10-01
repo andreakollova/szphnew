@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -366,8 +366,16 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const searchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Detect hero immediately on mount to avoid flash
+  useLayoutEffect(() => {
+    const heroExists = !!document.querySelector("[data-hero]");
+    if (heroExists) {
+      setHasHero(true);
+      setScrolled(window.scrollY > 80);
+    }
+  }, []);
+
   useEffect(() => {
-    // Re-check on every route change
     let scrollCleanup: (() => void) | undefined;
     const check = () => {
       const heroExists = !!document.querySelector("[data-hero]");
@@ -383,7 +391,6 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
       scrollCleanup = () => window.removeEventListener("scroll", onScroll);
     };
     check();
-    // MutationObserver to detect route changes (data-hero added/removed)
     const observer = new MutationObserver(() => check());
     observer.observe(document.body, { childList: true, subtree: true });
     return () => { scrollCleanup?.(); observer.disconnect(); };
@@ -655,7 +662,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           </Link>
           {/* Center — white logo */}
           <Link href="/" className="absolute left-1/2 -translate-x-1/2 shrink-0">
-            <Image src="/images/logo-szph-white.png" alt="SZPH" height={32} width={100} className="h-8 w-auto object-contain" priority />
+            <Image src="/images/logo-szph-white.png" alt="SZPH" height={40} width={130} className="h-10 w-auto object-contain" priority />
           </Link>
           {/* Right — hamburger */}
           <button onClick={() => setMobileOpen(v => !v)}

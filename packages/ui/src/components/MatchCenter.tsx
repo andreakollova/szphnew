@@ -199,7 +199,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, delay: index * 0.03 }}
-        className="flex items-center bg-white px-3 sm:px-5 py-3 gap-2 sm:gap-4 hover:bg-[#f8fafd] transition-colors cursor-pointer"
+        className="flex items-center bg-white px-3 sm:px-5 py-3 gap-2 sm:gap-4 hover:bg-[#f8fafd] transition-colors cursor-pointer min-w-[600px] sm:min-w-0"
       >
         {/* Dátum + čas na jednom riadku */}
         <div className="shrink-0 w-[70px] sm:w-[110px]">
@@ -411,8 +411,8 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className="flex flex-col overflow-hidden"
-          style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "20px" }}
+          className="flex flex-col overflow-x-auto"
+          style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "20px", WebkitOverflowScrolling: "touch" } as any}
         >
           {list.map((m, i) => (
             <div
