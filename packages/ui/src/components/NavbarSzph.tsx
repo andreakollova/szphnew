@@ -290,8 +290,19 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
 
 function LangSelector({ scrolled }: { scrolled: boolean }) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("[data-lang-selector]")) setOpen(false);
+    };
+    document.addEventListener("click", handler);
+    return () => document.removeEventListener("click", handler);
+  }, [open]);
+
   return (
-    <div className="relative shrink-0">
+    <div className="relative shrink-0" data-lang-selector>
       <button
         onClick={() => setOpen(v => !v)}
         className={cn("flex items-center justify-center h-8 px-1 rounded transition-all duration-300", "hover:bg-white/10")}
@@ -309,13 +320,15 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full mt-2 py-1 overflow-hidden"
+            className="absolute right-0 top-full mt-2 py-2 overflow-hidden"
             style={{
-              background: "#fff",
-              boxShadow: "0 4px 16px rgba(1,45,116,0.12), 0 1px 3px rgba(1,45,116,0.06)",
+              background: "rgba(255,255,255,0.95)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              boxShadow: "0 8px 32px rgba(1,45,116,0.15), 0 1px 4px rgba(1,45,116,0.08)",
               minWidth: "130px",
               border: "1px solid rgba(1,45,116,0.08)",
-              borderRadius: "6px",
+              borderRadius: "3px",
             }}
           >
             <button
