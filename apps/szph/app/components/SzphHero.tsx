@@ -346,13 +346,13 @@ export function SzphHero() {
           {/* Teams */}
           <div className="flex items-center justify-center gap-4" style={{ padding: "clamp(10px, 1vw, 20px) clamp(14px, 1.4vw, 28px)" }}>
             {/* SK */}
-            <div className="flex flex-col items-center gap-1.5 flex-1">
+            <div className="flex flex-col items-center gap-0.5 flex-1">
               <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="https://flagcdn.com/w160/sk.png" alt="SK" className="w-full h-full object-cover" />
               </div>
-              <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)" }}>Slovensko</p>
-              <p className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "clamp(5px, 0.5vw, 10px)", letterSpacing: "0.1em" }}>Muži</p>
+              <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>Slovensko</p>
+              <p className="font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(5px, 0.5vw, 10px)", letterSpacing: "0.1em" }}>Muži</p>
             </div>
 
             {/* VS */}
@@ -363,13 +363,13 @@ export function SzphHero() {
             </div>
 
             {/* HR */}
-            <div className="flex flex-col items-center gap-1.5 flex-1">
+            <div className="flex flex-col items-center gap-0.5 flex-1">
               <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="https://flagcdn.com/w160/hr.png" alt="HR" className="w-full h-full object-cover" />
               </div>
-              <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)" }}>Chorvátsko</p>
-              <p className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "clamp(5px, 0.5vw, 10px)", letterSpacing: "0.1em" }}>Muži</p>
+              <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>Chorvátsko</p>
+              <p className="font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(5px, 0.5vw, 10px)", letterSpacing: "0.1em" }}>Muži</p>
             </div>
           </div>
 
