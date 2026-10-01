@@ -319,10 +319,10 @@ export function SzphHero() {
                 Najbližší zápas
               </span>
             </div>
-            <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(8px, 0.7vw, 14px)", letterSpacing: "0.08em" }}>
-              Reprezentácia | M
+            <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(12px, 1.1vw, 22px)", letterSpacing: "0.06em" }}>
+              Reprezentácia <span className="text-[#94a3b8] mx-0.5">&#x2502;</span> M
             </p>
-            <p className="font-garet font-bold text-[#051937] mt-0.5" style={{ fontSize: "clamp(10px, 0.9vw, 18px)", lineHeight: 1.2 }}>
+            <p className="text-[#64748b] mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600 }}>
               EuroHockey 5s Championship Men 2026
             </p>
           </div>
