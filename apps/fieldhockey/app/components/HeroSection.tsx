@@ -8,7 +8,7 @@ export function HeroSection() {
   return (
     <section className="relative w-full overflow-hidden" style={{ height: "clamp(360px, 55vw, 620px)" }}>
       <Image
-        src="/images/banner1.jpg"
+        src="/images/banner1.webp"
         alt="Pozemny hokej"
         fill
         className="object-cover object-center"

@@ -45,10 +45,10 @@ const PINNED_ARTICLES: Record<string, any> = {
       {
         title: "Fotogaléria",
         images: [
-          "/images/articles/hokej-vo-svete/1.png",
+          "/images/articles/hokej-vo-svete/1.webp",
           "/images/articles/hokej-vo-svete/2.webp",
-          "/images/articles/hokej-vo-svete/3.png",
-          "/images/articles/hokej-vo-svete/4.png",
+          "/images/articles/hokej-vo-svete/3.webp",
+          "/images/articles/hokej-vo-svete/4.webp",
         ],
       },
     ],
@@ -160,10 +160,10 @@ Regenerácia a prevencia zranení budú integrované do každého tréningového
       {
         title: "Fotogaléria",
         images: [
-          "/images/articles/kyselicova/1.png",
-          "/images/articles/kyselicova/2.png",
-          "/images/articles/kyselicova/3.png",
-          "/images/articles/kyselicova/4.png",
+          "/images/articles/kyselicova/1.webp",
+          "/images/articles/kyselicova/2.webp",
+          "/images/articles/kyselicova/3.webp",
+          "/images/articles/kyselicova/4.webp",
         ],
       },
     ],
@@ -482,7 +482,7 @@ export default async function ArticleDetailPage({ params }: Props) {
               style={{ borderRadius: "3px", height: "140px" }}
             >
               <Image
-                src="/images/hockey-field-bg.jpg"
+                src="/images/hockey-field-bg.webp"
                 alt="Staň sa súčasťou hry"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -516,7 +516,7 @@ export default async function ArticleDetailPage({ params }: Props) {
               style={{ borderRadius: "3px", height: "140px" }}
             >
               <Image
-                src="/images/eshop-banner.jpg"
+                src="/images/eshop-banner.webp"
                 alt="Oficiálny eshop"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"

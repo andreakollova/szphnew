@@ -52,7 +52,7 @@ export default function PodcastPage() {
             </div>
           </div>
           <div className="hidden lg:block shrink-0" style={{ width: "180px", height: "60px", position: "relative" }}>
-            <Image src="/images/podcastlogo2.png" alt="SZPH Podcast" fill className="object-contain" sizes="180px" />
+            <Image src="/images/podcastlogo2.webp" alt="SZPH Podcast" fill className="object-contain" sizes="180px" />
           </div>
         </div>
       </div>

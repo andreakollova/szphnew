@@ -71,14 +71,14 @@ function flagUrl(name: string): string | null {
 }
 
 const TEAM_LOGOS: Record<string, string> = {
-  "KPH Rača":              "/images/timy/Raca-logo-70x58-1-32x27.png",
-  "HKM Nová Dubnica":      "/images/timy/nova-dubnica-32x32.png",
-  "HOKO Zlaté Moravce":    "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.png",
-  "TJ Slavia Holíč":       "/images/timy/SK-slavia-logo-300x300-1-32x32.png",
-  "TJ Slavia Šamorín":     "/images/timy/SK-slavia-logo-300x300-1-32x32.png",
-  "HA Senkvice":           "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.png",
-  "HK Senkvice":           "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.png",
-  "SK Senec":              "/images/timy/Zumi-32x32.png",
+  "KPH Rača":              "/images/timy/Raca-logo-70x58-1-32x27.webp",
+  "HKM Nová Dubnica":      "/images/timy/nova-dubnica-32x32.webp",
+  "HOKO Zlaté Moravce":    "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp",
+  "TJ Slavia Holíč":       "/images/timy/SK-slavia-logo-300x300-1-32x32.webp",
+  "TJ Slavia Šamorín":     "/images/timy/SK-slavia-logo-300x300-1-32x32.webp",
+  "HA Senkvice":           "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.webp",
+  "HK Senkvice":           "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.webp",
+  "SK Senec":              "/images/timy/Zumi-32x32.webp",
 };
 
 interface MockMatch {
@@ -324,8 +324,8 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
           {/* Liga / Reprezentácia */}
           <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
             {([
-              { key: "liga" as const, label: "Liga", logo: "/images/logo-liga.png" },
-              { key: "reprezentacia" as const, label: "Reprezentácia", logo: "/images/logo-reprezentacia.png" },
+              { key: "liga" as const, label: "Liga", logo: "/images/logo-liga.webp" },
+              { key: "reprezentacia" as const, label: "Reprezentácia", logo: "/images/logo-reprezentacia.webp" },
             ]).map((tab, i) => (
               <button
                 key={tab.key}

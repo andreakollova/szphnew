@@ -11,79 +11,79 @@ const MOCK_ARTICLES = [
     id: "a1", slug: "bronz-eurohockey-5s-u16-championship-gruzinsko-2026",
     title: "Bronz pre slovenské reprezentantky na EuroHockey 5s U16 Championship II v Gruzínsku",
     excerpt: "Slovenská dievčenská reprezentácia do 16 rokov si na turnaji EuroHockey 5s U16 Championship II Girls 2026 v gruzínskom Kutaisi vybojovala výborné 3. miesto.",
-    cover_image_url: "/images/bronz-eurohockey-banner.jpg", category: "novinky", published_at: "2026-07-08T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/bronz-eurohockey-banner.webp", category: "novinky", published_at: "2026-07-08T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "a2", slug: "slovenky-u16-turnaj-kutaisi-2026",
     title: "Vyvrcholenie programu prípravy je tu. Slovenky U16 čaká turnaj v Kutaisi",
     excerpt: "Slovenská dievčenská reprezentácia do 16 rokov vstupuje do dôležitého medzinárodného turnaja EuroHockey 5s U16 Championship II Girls 2026 v gruzínskom Kutaisi.",
-    cover_image_url: "/images/kutaisi-banner.png", category: "novinky", published_at: "2026-07-01T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/kutaisi-banner.webp", category: "novinky", published_at: "2026-07-01T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "a3", slug: "sarlota-medvikova-youth-leadership-committee-eurohockey",
     title: "Šarlota Medviková sa zúčastnila prvého stretnutia novej Youth Leadership Committee EuroHockey",
     excerpt: "Začiatkom mája sa v Bruseli uskutočnilo prvé osobné stretnutie nového Youth Leadership Committee EuroHockey. Medzi členmi komisie nechýbala ani slovenská zástupkyňa Šarlota Medviková.",
-    cover_image_url: "/images/sarlota-youth-leadership-banner.jpg", category: "novinky", published_at: "2026-06-01T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/sarlota-youth-leadership-banner.webp", category: "novinky", published_at: "2026-06-01T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "a4", slug: "eurohockey-development-committee-brusel-natalia-fondrkova",
     title: "EuroHockey Development Committee v Bruseli aj s účasťou členky Natálie Fondrkovej",
     excerpt: "Koncom marca sa uskutočnilo stretnutie EuroHockey Development Committee, ktorého sa zúčastnila aj zástupkyňa Slovenska Natália Fondrková.",
-    cover_image_url: "/images/natalia-dev-committee-banner.jpg", category: "novinky", published_at: "2026-04-30T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/natalia-dev-committee-banner.webp", category: "novinky", published_at: "2026-04-30T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "a5", slug: "rozhodca-michal-korim-u4e-seminar-eurohockey-nemecko",
     title: "Rozhodca Michal Korim absolvoval medzinárodný U4E seminár EuroHockey v Nemecku (Russelsheim)",
     excerpt: "Slovenský rozhodca Michal Korim sa začiatkom apríla zúčastnil medzinárodného rozhodcovského seminára U4E (Umpires for Europe), ktorý organizuje EuroHockey.",
-    cover_image_url: "/images/korim-u4e-banner.jpg", category: "novinky", published_at: "2026-04-30T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/korim-u4e-banner.webp", category: "novinky", published_at: "2026-04-30T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "a6", slug: "pozemny-hokej-pod-novou-strechou-expo-dom-stan",
     title: "Pozemný hokej pod novou strechou: Ďakujeme spoločnosti EXPO DOM za sponzorský stan!",
     excerpt: "Vďaka štedrosti spoločnosti EXPO DOM sme zaradili do nášho vybavenia nový, profesionálny rýchlorozkladací stan.",
-    cover_image_url: "/images/expodom-banner.jpg", category: "novinky", published_at: "2026-04-09T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/expodom-banner.webp", category: "novinky", published_at: "2026-04-09T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "a7", slug: "slovensko-hostit-eurohockey-u18-championship-2027",
     title: "Slovensko bude hostiť EuroHockey U18 Championship III chlapcov v roku 2027!",
     excerpt: "EuroHockey zverejnil detaily mládežníckych majstrovstiev Európy do 18 rokov pre rok 2027. Slovensko sa zaradí medzi organizátorské krajiny a v Bratislave privíta turnaj.",
-    cover_image_url: "/images/u18-championship-banner.png", category: "novinky", published_at: "2026-03-27T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/u18-championship-banner.webp", category: "novinky", published_at: "2026-03-27T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "a8", slug: "verejna-obchodna-sutaz-ihrisko-zlate-moravce",
     title: "VEREJNÁ OBCHODNÁ SÚŤAŽ – Ihrisko Zlaté Moravce",
     excerpt: "Klub pozemného hokeja HOKO Zlaté Moravce vyhlasuje obchodnú verejnú súťaž na výber zhotoviteľa stavebných prác na projekt rekonštrukcie ihriska pre pozemný hokej.",
-    cover_image_url: "/images/vos-ihrisko-zlate-moravce-banner.png", category: "oznamy", published_at: "2026-03-17T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/vos-ihrisko-zlate-moravce-banner.webp", category: "oznamy", published_at: "2026-03-17T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "a9", slug: "rozhodcovsky-seminar-szph-jar-2026",
     title: "Rozhodcovský seminár SZPH Jar 2026: Príďte si prehĺbiť svoje znalosti pravidiel a rozhodovania",
     excerpt: "Slovenský zväz pozemného hokeja pozýva všetkých záujemcov na Rozhodcovský seminár SZPH Jar 2026 v Šenkviciach.",
-    cover_image_url: "/images/rozhodcovsky-seminar-jar-2026-banner.jpg", category: "oznamy", published_at: "2026-03-10T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/rozhodcovsky-seminar-jar-2026-banner.webp", category: "oznamy", published_at: "2026-03-10T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "a10", slug: "finalne-poradie-eurohockey-indoor-club-championships-2026",
     title: "Finálne poradie – EuroHockey Indoor Club Championships 2026 (muži a ženy)",
     excerpt: "Európska federácia pozemného hokeja potvrdila konečné výsledky klubových halových majstrovstiev Európy 2026.",
-    cover_image_url: "/images/indoor-club-championships-banner.jpg", category: "novinky", published_at: "2026-03-03T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/indoor-club-championships-banner.webp", category: "novinky", published_at: "2026-03-03T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "s1", slug: "vyrocna-konferencia-szph-2025",
     title: "Výročná konferencia SZPH 2025 — prijaté rozhodnutia",
     excerpt: "Delegáti výročnej konferencie SZPH schválili nový rozpočet, plán rozvoja mládeže a aktualizáciu stanov zväzu. Prinášame kompletný prehľad prijatých uznesení.",
-    cover_image_url: "/images/banner2.jpg", category: "oznamy", published_at: "2025-06-12T09:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/banner2.webp", category: "oznamy", published_at: "2025-06-12T09:00:00Z", site: "szph", status: "published",
   },
   {
     id: "s2", slug: "novy-sutazny-poriadok-2025",
     title: "Nový súťažný poriadok pre sezónu 2025/2026 je schválený",
     excerpt: "Riadiaci zbor SZPH schválil aktualizovaný súťažný poriadok. Hlavné zmeny sa týkajú disciplinárnych konaní, registrácie hráčov a organizácie mládežníckych turnajov.",
-    cover_image_url: "/images/banner1.jpg", category: "oznamy", published_at: "2025-06-08T11:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/banner1.webp", category: "oznamy", published_at: "2025-06-08T11:00:00Z", site: "szph", status: "published",
   },
   {
     id: "s3", slug: "dotacie-msv-2025",
     title: "SZPH získal dotácie MŠVVaŠ SR na rozvoj mládeže 2025",
     excerpt: "Ministerstvo školstva, vedy, výskumu a športu SR pridelilo SZPH dotácie na rozvoj mládežníckeho pozemného hokeja. Finančné prostriedky budú smerovať do klubov.",
-    cover_image_url: "/images/banner3.jpg", category: "novinky", published_at: "2025-06-03T14:00:00Z", site: "szph", status: "published",
+    cover_image_url: "/images/banner3.webp", category: "novinky", published_at: "2025-06-03T14:00:00Z", site: "szph", status: "published",
   },
 ] as any[];
 
@@ -443,7 +443,7 @@ export default async function SzphHome() {
             <div>
               {/* Logo */}
               <div className="mb-7" style={{ width: "180px", height: "60px", position: "relative" }}>
-                <Image src="/images/podcastlogo2.png" alt="SZPH Podcast" fill className="object-contain object-left" sizes="180px" />
+                <Image src="/images/podcastlogo2.webp" alt="SZPH Podcast" fill className="object-contain object-left" sizes="180px" />
               </div>
 
               <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
@@ -507,7 +507,7 @@ export default async function SzphHome() {
               style={{ borderRadius: "3px" }}
             >
               <Image
-                src="/images/podcast.jpg"
+                src="/images/podcast.webp"
                 alt="SZPH Podcast"
                 width={686}
                 height={386}
@@ -580,11 +580,11 @@ export default async function SzphHome() {
           </div>
           <div className="flex md:grid md:grid-cols-5 gap-3 md:gap-4 overflow-x-auto pb-2 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
             {[
-              { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#051937", href: "/podcast" },
-              { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.png", bg: "#0078fe", href: "/projekty/hokej-na-skolach" },
-              { name: "Hokejová akadémia", logo: "/images/hokejova-akademia-logo.png", bg: "#a4b45b", href: "/projekty/hokejova-akademia" },
-              { name: "Rozhodcovia", logo: "/images/rozhodcovia-logo.png", bg: "#d80027", href: "/projekty/vzdelavanie-rozhodcov" },
-              { name: "Hockey TV", logo: "/images/hockey-tv-logo.png", bg: "#012d74", href: "/projekty/hockey-tv" },
+              { name: "SZPH Podcast", logo: "/images/podcastlogo.webp", bg: "#051937", href: "/podcast" },
+              { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.webp", bg: "#0078fe", href: "/projekty/hokej-na-skolach" },
+              { name: "Hokejová akadémia", logo: "/images/hokejova-akademia-logo.webp", bg: "#a4b45b", href: "/projekty/hokejova-akademia" },
+              { name: "Rozhodcovia", logo: "/images/rozhodcovia-logo.webp", bg: "#d80027", href: "/projekty/vzdelavanie-rozhodcov" },
+              { name: "Hockey TV", logo: "/images/hockey-tv-logo.webp", bg: "#012d74", href: "/projekty/hockey-tv" },
             ].map((p, i) => (
               <Link
                 key={i}

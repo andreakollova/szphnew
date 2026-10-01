@@ -40,11 +40,11 @@ export default function ZacniHratPage() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { name: "KPH Rača", logo: "/images/timy/RAC.png", city: "Bratislava - Rača" },
-              { name: "HA Senkvice", logo: "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.png", city: "Šenkvice" },
-              { name: "HK Senkvice", logo: "/images/timy/SEN.png", city: "Šenkvice" },
-              { name: "HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.png", city: "Zlaté Moravce" },
-              { name: "HKM Nová Dubnica", logo: "/images/timy/nova-dubnica-32x32.png", city: "Nová Dubnica" },
+              { name: "KPH Rača", logo: "/images/timy/RAC.webp", city: "Bratislava - Rača" },
+              { name: "HA Senkvice", logo: "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.webp", city: "Šenkvice" },
+              { name: "HK Senkvice", logo: "/images/timy/SEN.webp", city: "Šenkvice" },
+              { name: "HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp", city: "Zlaté Moravce" },
+              { name: "HKM Nová Dubnica", logo: "/images/timy/nova-dubnica-32x32.webp", city: "Nová Dubnica" },
             ].map((club) => (
               <Link key={club.name} href="/kluby" className="flex items-center gap-4 bg-white p-4 hover:bg-[#f8fafd] transition-colors" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
                 <div className="shrink-0 flex items-center justify-center" style={{ width: 40, height: 40 }}>

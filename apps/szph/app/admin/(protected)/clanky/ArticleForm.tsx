@@ -111,6 +111,19 @@ export function ArticleForm({ article }: ArticleFormProps) {
         await supabase.from("articles").insert(payload);
       }
 
+      // Slack notification when article is published
+      const isNewPublish = values.status === "published" && (!article || article.status !== "published");
+      if (isNewPublish) {
+        fetch("/api/slack", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "article_published",
+            data: { title: values.title, slug: values.slug, category: values.category, visible_on: values.visible_on },
+          }),
+        }).catch(() => {});
+      }
+
       router.push("/admin/clanky");
       router.refresh();
     } catch (err) {

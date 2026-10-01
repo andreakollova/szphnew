@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const HERO_IMAGES = [
-  "/images/hero-banner3.png",
-  "/images/hero-banner3b.png",
-  "/images/hero-banner7.png",
-  "/images/hero-banner-blue-player.jpg",
-  "/images/hero-banner2.png",
+  "/images/hero-banner3.webp",
+  "/images/hero-banner3b.webp",
+  "/images/hero-banner7.webp",
+  "/images/hero-banner-blue-player.webp",
+  "/images/hero-banner2.webp",
 ];
 
 interface NextMatch {
@@ -67,7 +67,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: "url(/images/hero-mobile-bg.png)",
+            backgroundImage: "url(/images/hero-mobile-bg.webp)",
             backgroundSize: "cover",
             backgroundPosition: "center",
             mixBlendMode: "multiply",
@@ -167,7 +167,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: "url(/images/hero-overlay.png)",
+            backgroundImage: "url(/images/hero-overlay.webp)",
             backgroundSize: "cover",
             backgroundPosition: "top left",
             mixBlendMode: "normal",

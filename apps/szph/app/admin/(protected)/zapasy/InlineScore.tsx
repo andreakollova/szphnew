@@ -9,9 +9,11 @@ interface InlineScoreProps {
   homeScore: number | null;
   awayScore: number | null;
   status: string;
+  homeTeamName?: string;
+  awayTeamName?: string;
 }
 
-export function InlineScore({ matchId, homeScore, awayScore, status }: InlineScoreProps) {
+export function InlineScore({ matchId, homeScore, awayScore, status, homeTeamName, awayTeamName }: InlineScoreProps) {
   const [home, setHome] = useState(homeScore?.toString() ?? "");
   const [away, setAway] = useState(awayScore?.toString() ?? "");
   const [saving, setSaving] = useState(false);
@@ -33,6 +35,18 @@ export function InlineScore({ matchId, homeScore, awayScore, status }: InlineSco
       status: newStatus,
       updated_at: new Date().toISOString(),
     }).eq("id", matchId);
+
+    // Slack notification when result is filled in
+    if (h !== null && a !== null && (homeScore === null || awayScore === null)) {
+      fetch("/api/slack", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "match_result",
+          data: { home_team: homeTeamName ?? "Domaci", away_team: awayTeamName ?? "Hostia", home_score: h, away_score: a },
+        }),
+      }).catch(() => {});
+    }
 
     setSaving(false);
     setSaved(true);

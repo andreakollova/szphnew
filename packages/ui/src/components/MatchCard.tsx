@@ -28,18 +28,18 @@ const STATUS_CLASSES: Record<string, string> = {
 
 // Fallback logo mapping by team name
 const TEAM_LOGOS: Record<string, string> = {
-  "KPH Raca":                     "/images/timy/Raca-logo-70x58-1-32x27.png",
-  "HKM Nova Dubnica":              "/images/timy/nova-dubnica-32x32.png",
-  "KPH HOKO Zlaté Moravce":        "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.png",
-  "HOKO ZM":                       "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.png",
-  "TJ Slavia Holic":               "/images/timy/SK-slavia-logo-300x300-1-32x32.png",
-  "TJ Slavia Samorín":             "/images/timy/SK-slavia-logo-300x300-1-32x32.png",
-  "HA Senkvice":                   "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.png",
-  "HK Senkvice":                   "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.png",
-  "Hokejovy klub 1952 Senkvice":   "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.png",
-  "Hokejova akademia Senkvice":    "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.png",
-  "SK Senec":                      "/images/timy/Zumi-32x32.png",
-  "Kaptar SE":                     "/images/timy/3949307b-0db4-45ed-a37a-e87dc843fbd7-32x30.jpg",
+  "KPH Raca":                     "/images/timy/Raca-logo-70x58-1-32x27.webp",
+  "HKM Nova Dubnica":              "/images/timy/nova-dubnica-32x32.webp",
+  "KPH HOKO Zlaté Moravce":        "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp",
+  "HOKO ZM":                       "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp",
+  "TJ Slavia Holic":               "/images/timy/SK-slavia-logo-300x300-1-32x32.webp",
+  "TJ Slavia Samorín":             "/images/timy/SK-slavia-logo-300x300-1-32x32.webp",
+  "HA Senkvice":                   "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.webp",
+  "HK Senkvice":                   "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.webp",
+  "Hokejovy klub 1952 Senkvice":   "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.webp",
+  "Hokejova akademia Senkvice":    "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.webp",
+  "SK Senec":                      "/images/timy/Zumi-32x32.webp",
+  "Kaptar SE":                     "/images/timy/3949307b-0db4-45ed-a37a-e87dc843fbd7-32x30.webp",
 };
 
 export function MatchCard({ match, className, delay = 0, compact = false }: MatchCardProps) {

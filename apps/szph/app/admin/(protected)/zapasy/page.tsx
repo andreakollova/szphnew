@@ -82,6 +82,8 @@ export default async function AdminZapasyPage() {
                       homeScore={match.home_score}
                       awayScore={match.away_score}
                       status={match.status}
+                      homeTeamName={match.home_team?.name}
+                      awayTeamName={match.away_team?.name}
                     />
                   </td>
                   <td className="px-4 py-3.5">

@@ -204,7 +204,7 @@ interface NavbarProps {
 
 export function Navbar({
   brand = "fieldhockey",
-  logoSrc = "/images/logo-szph.png",
+  logoSrc = "/images/logo-szph.webp",
   logoAlt = "fieldhockey.sk",
   crossSiteUrl,
   crossSiteLabel,

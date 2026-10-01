@@ -29,7 +29,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Pozemný hokej", href: "/pozemny-hokej",
     mega: {
       featured: {
-        image: "/images/mega-pozemny-hokej.png",
+        image: "/images/mega-pozemny-hokej.webp",
         tag: "Šport",
         title: "Čo je pozemný hokej?",
         desc: "Rýchly, technický a taktický šport pre celú rodinu. Zisti prečo si ho zamilujú tisíce hráčov.",
@@ -61,7 +61,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Reprezentácia", href: "/reprezentacia",
     mega: {
       featured: {
-        image: "/images/mega-reprezentacia.png",
+        image: "/images/mega-reprezentacia.webp",
         imagePosition: "top",
         tag: "Národný tím",
         title: "Slovenská reprezentácia",
@@ -94,7 +94,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Súťaže", href: "/sutaze",
     mega: {
       featured: {
-        image: "/images/mega-sutaze.jpg",
+        image: "/images/mega-sutaze.webp",
         tag: "Súťažný systém",
         title: "Slovenské ligy a turnaje",
         desc: "Kompletný prehľad všetkých súťaží — od extraligy až po mládežnícke turnaje po celom Slovensku.",
@@ -130,7 +130,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Kluby", href: "/kluby",
     mega: {
       featured: {
-        image: "/images/mega-kluby.jpg",
+        image: "/images/mega-kluby.webp",
         tag: "Pre kluby",
         title: "Všetko pre váš klub",
         desc: "Registrácie, dokumenty, ekonomické tlačivá a podpora pre všetky členské kluby SZPH.",
@@ -161,7 +161,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Vzdelávanie", href: "/vzdelavanie",
     mega: {
       featured: {
-        image: "/images/korim-u4e-gallery0.jpg",
+        image: "/images/korim-u4e-gallery0.webp",
         tag: "Vzdelávanie",
         title: "Rozvíjaj sa s SZPH",
         desc: "Kurzy, semináre a školenia pre hráčov, trénerov aj rozhodcov. Investuj do svojho rozvoja.",
@@ -535,7 +535,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         <div className="hidden md:flex items-center gap-2 px-6 h-20">
           <Link href="/" className="shrink-0 mr-8 relative" style={{ height: "76px", width: "234px" }}>
             <Image
-              src="/images/logo-szph-white.png"
+              src="/images/logo-szph-white.webp"
               alt="SZPH"
               fill
               className="object-contain object-left transition-opacity duration-300"
@@ -663,7 +663,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           </Link>
           {/* Center — white logo */}
           <Link href="/" className="absolute left-1/2 -translate-x-1/2 shrink-0">
-            <Image src="/images/logo-szph-white.png" alt="SZPH" height={40} width={130} className="h-10 w-auto object-contain" priority />
+            <Image src="/images/logo-szph-white.webp" alt="SZPH" height={40} width={130} className="h-10 w-auto object-contain" priority />
           </Link>
           {/* Right — hamburger */}
           <button onClick={() => setMobileOpen(v => !v)}

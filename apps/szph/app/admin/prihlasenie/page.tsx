@@ -36,7 +36,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
           <Image
-            src="/images/logo-szph-white.png"
+            src="/images/logo-szph-white.webp"
             alt="SZPH"
             width={120}
             height={46}

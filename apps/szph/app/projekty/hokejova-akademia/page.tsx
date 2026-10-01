@@ -47,7 +47,7 @@ export default function HokejovaAkademiaPage() {
             </Link>
           </div>
           <div className="hidden lg:block shrink-0">
-            <Image src="/images/hokejova-akademia-logo.png" alt="Hokejová akadémia" width={200} height={200} className="object-contain" />
+            <Image src="/images/hokejova-akademia-logo.webp" alt="Hokejová akadémia" width={200} height={200} className="object-contain" />
           </div>
         </div>
       </div>

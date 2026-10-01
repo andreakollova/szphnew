@@ -72,7 +72,7 @@ export function CookieBanner() {
         }}
       >
         <div className="flex items-start gap-4">
-          <Image src="/images/cookie-icon.png" alt="Cookie" width={36} height={36} className="shrink-0 mt-0.5" />
+          <Image src="/images/cookie-icon.webp" alt="Cookie" width={36} height={36} className="shrink-0 mt-0.5" />
           <div className="flex-1 min-w-0">
             <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "15px" }}>
               Súbory cookies

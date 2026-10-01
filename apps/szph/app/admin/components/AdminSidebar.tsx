@@ -68,7 +68,7 @@ export function AdminSidebar() {
       <aside className="hidden lg:flex lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:w-64 lg:flex-col">
         <div className="flex flex-1 flex-col gap-4 overflow-y-auto border-r border-[rgba(1,45,116,0.08)] px-4 py-6 bg-white">
           <div className="mb-2 px-2">
-            <Image src="/images/logo-szph-dark.png" alt="SZPH Admin" width={100} height={38} className="h-9 w-auto object-contain" priority />
+            <Image src="/images/logo-szph-dark.webp" alt="SZPH Admin" width={100} height={38} className="h-9 w-auto object-contain" priority />
             <p className="mt-1 text-xs text-[#94a3b8]">Admin panel</p>
           </div>
 
@@ -128,7 +128,7 @@ export function AdminSidebar() {
       </aside>
 
       <div className="flex lg:hidden items-center justify-between border-b border-[rgba(1,45,116,0.08)] bg-white px-4 py-3 sticky top-0 z-40">
-        <Image src="/images/logo-szph-dark.png" alt="SZPH" width={80} height={30} className="h-7 w-auto" />
+        <Image src="/images/logo-szph-dark.webp" alt="SZPH" width={80} height={30} className="h-7 w-auto" />
         <span className="text-xs text-[#94a3b8]">Admin</span>
       </div>
     </>

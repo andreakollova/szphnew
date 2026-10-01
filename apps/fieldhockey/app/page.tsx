@@ -12,31 +12,31 @@ const MOCK_ARTICLES = [
   {
     id: "m1", slug: "olympijsky-festival-pozemny-hokej", title: "Olympijský festival sme odštartovali s pozemným hokejom",
     excerpt: "Slovenský pozemný hokej sa predstavil na Olympijskom festivale mládeže v Bratislave. Stovky detí si vyskúšali šport pod vedením slovenských reprezentantov.",
-    cover_image_url: "/images/banner1.jpg", category: "novinky", published_at: "2025-06-15T10:00:00Z", site: "fieldhockey", status: "published",
+    cover_image_url: "/images/banner1.webp", category: "novinky", published_at: "2025-06-15T10:00:00Z", site: "fieldhockey", status: "published",
   },
   {
     id: "m2", slug: "reprezentacia-fih-nations-cup", title: "Reprezentácia odcestovala na FIH Nations Cup do Maďarska",
     excerpt: "Slovenská mužská reprezentácia odcestovala na medzinárodný turnaj FIH Nations Cup, kde ich čakajú súboje s Maďarskom, Rakúskom a Českou republikou.",
-    cover_image_url: "/images/banner2.jpg", category: "reprezentacia", published_at: "2025-06-10T08:00:00Z", site: "fieldhockey", status: "published",
+    cover_image_url: "/images/banner2.webp", category: "reprezentacia", published_at: "2025-06-10T08:00:00Z", site: "fieldhockey", status: "published",
   },
   {
     id: "m3", slug: "nova-sezona-2025-2026", title: "Nová sezóna pozemného hokeja 2025/2026 je tu — čo nás čaká?",
     excerpt: "Nový ročník Mužskej ligy a Ženskej ligy štartuje v septembri. Zistite, kto sú favoriti a aké zmeny prináša nová sezóna.",
-    cover_image_url: "/images/banner3.jpg", category: "novinky", published_at: "2025-06-05T12:00:00Z", site: "fieldhockey", status: "published",
+    cover_image_url: "/images/banner3.webp", category: "novinky", published_at: "2025-06-05T12:00:00Z", site: "fieldhockey", status: "published",
   },
   {
     id: "m4", slug: "mladeznicke-turnaje-vysledky", title: "Mládežnícke turnaje: Výsledky z víkendových kôl U14 a U18",
     excerpt: "Víkend bol plný akcie na trávnikoch po celom Slovensku. Prinášame prehľad výsledkov z mládežníckych kôl kategórií U14 a U18.",
-    cover_image_url: "/images/banner4.jpg", category: "kluby", published_at: "2025-06-02T16:00:00Z", site: "fieldhockey", status: "published",
+    cover_image_url: "/images/banner4.webp", category: "kluby", published_at: "2025-06-02T16:00:00Z", site: "fieldhockey", status: "published",
   },
 ] as any[];
 
 const MOCK_VIDEOS = [
-  { id: "v1", title: "Zápas KPH Rača vs. HOKO ZM — najlepšie momenty", youtube_url: null, thumbnail_url: "/images/banner1.jpg", duration: "4:32" },
-  { id: "v2", title: "Tréningový záber — slovenská reprezentácia", youtube_url: null, thumbnail_url: "/images/banner2.jpg", duration: "2:15" },
-  { id: "v3", title: "Olympijský festival mládeže 2025", youtube_url: null, thumbnail_url: "/images/banner3.jpg", duration: "6:48" },
-  { id: "v4", title: "Rozhovor s trénerom Petrom Novákom", youtube_url: null, thumbnail_url: "/images/banner4.jpg", duration: "8:12" },
-  { id: "v5", title: "Projekt Začni hrať hokej — školy 2025", youtube_url: null, thumbnail_url: "/images/banner1.jpg", duration: "3:27" },
+  { id: "v1", title: "Zápas KPH Rača vs. HOKO ZM — najlepšie momenty", youtube_url: null, thumbnail_url: "/images/banner1.webp", duration: "4:32" },
+  { id: "v2", title: "Tréningový záber — slovenská reprezentácia", youtube_url: null, thumbnail_url: "/images/banner2.webp", duration: "2:15" },
+  { id: "v3", title: "Olympijský festival mládeže 2025", youtube_url: null, thumbnail_url: "/images/banner3.webp", duration: "6:48" },
+  { id: "v4", title: "Rozhovor s trénerom Petrom Novákom", youtube_url: null, thumbnail_url: "/images/banner4.webp", duration: "8:12" },
+  { id: "v5", title: "Projekt Začni hrať hokej — školy 2025", youtube_url: null, thumbnail_url: "/images/banner1.webp", duration: "3:27" },
 ] as any[];
 
 async function getData() {
@@ -307,25 +307,25 @@ export default async function FieldhockeyHome() {
               {
                 name: "Olympijská akadémia",
                 desc: "Rozvoj mladých talentov v spolupráci s SOV a FIH.",
-                img: "/images/banner1.jpg",
+                img: "/images/banner1.webp",
                 href: "/projekty/olympijska-akademia",
               },
               {
                 name: "Mládežnícke súťaže",
                 desc: "Komplexný systém súťaží od U12 až po U18.",
-                img: "/images/banner3.jpg",
+                img: "/images/banner3.webp",
                 href: "/projekty/mladeznicke-sutaze",
               },
               {
                 name: "Začni hrať hokej",
                 desc: "Program na popularizáciu pozemného hokeja na školách.",
-                img: "/images/banner4.jpg",
+                img: "/images/banner4.webp",
                 href: "/projekty/zacni-hrat",
               },
               {
                 name: "FIH Nations League",
                 desc: "Slovensko v medzinárodných súťažiach FIH Nations League.",
-                img: "/images/banner2.jpg",
+                img: "/images/banner2.webp",
                 href: "/projekty/fih-nations-league",
               },
             ].map((proj) => (

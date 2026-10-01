@@ -75,7 +75,7 @@ export function RychleOdkazy() {
         style={{ borderRadius: "3px", height: "140px" }}
       >
         <Image
-          src="/images/hockey-field-bg.jpg"
+          src="/images/hockey-field-bg.webp"
           alt="Staň sa súčasťou hry"
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -117,7 +117,7 @@ export function RychleOdkazy() {
         style={{ borderRadius: "3px", height: "140px" }}
       >
         <Image
-          src="/images/eshop-banner.jpg"
+          src="/images/eshop-banner.webp"
           alt="Oficiálny eshop"
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"

@@ -38,7 +38,7 @@ const FOOTER_LINKS_SZPH = [
   { group: "__photos__", items: [] },
 ];
 
-export function Footer({ brand, logoSrc = "/images/logo-szph.png" }: FooterProps) {
+export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProps) {
   const links = brand === "fieldhockey" ? FOOTER_LINKS_FIELDHOCKEY : FOOTER_LINKS_SZPH;
   const isFieldhockey = brand === "fieldhockey";
 
@@ -132,7 +132,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.png" }: FooterProps
             <div>
               <h4 className="font-garet font-bold italic text-[#051937] mb-4" style={{ fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Príspevok uznanému športu</h4>
               <div className="flex flex-col gap-4">
-                {["/images/footer-1.jpg", "/images/footer-2.png", "/images/footer-3.png"].map((src, i) => (
+                {["/images/footer-1.webp", "/images/footer-2.webp", "/images/footer-3.webp"].map((src, i) => (
                   <div key={i}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={src} alt="" style={{ height: "auto", width: "220px", objectFit: "contain" }} />

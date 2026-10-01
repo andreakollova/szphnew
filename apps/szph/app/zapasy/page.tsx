@@ -48,8 +48,8 @@ export default async function SzphZapasyPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
             {[
               { league: "EuroHockey Indoor U21 II Men", team: "Slovensko U21", flag: "sk", venue: "Alanya (TUR)", date: "22.–24. januára 2027" },
-              { league: "EuroHockey Indoor Club Challenge I Women", team: "KPH Rača", logo: "/images/timy/RAC.png", venue: "Alanya (TUR)", date: "12.–14. februára 2027" },
-              { league: "EuroHockey Indoor Club Challenge I Men", team: "KPH Rača", logo: "/images/timy/RAC.png", venue: "Lousada (POR)", date: "19.–21. februára 2027" },
+              { league: "EuroHockey Indoor Club Challenge I Women", team: "KPH Rača", logo: "/images/timy/RAC.webp", venue: "Alanya (TUR)", date: "12.–14. februára 2027" },
+              { league: "EuroHockey Indoor Club Challenge I Men", team: "KPH Rača", logo: "/images/timy/RAC.webp", venue: "Lousada (POR)", date: "19.–21. februára 2027" },
               { league: "EuroHockey U18 III Boys", team: "Slovensko U18 Boys", flag: "sk", venue: "Bratislava", date: "11.–17. júla 2027" },
               { league: "EuroHockey U18 III Girls", team: "Slovensko U18 Girls", flag: "sk", venue: "Sveti Ivan Zelina (CRO)", date: "12.–17. júla 2027" },
             ].map((t: any, i: number) => (
