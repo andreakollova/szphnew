@@ -523,11 +523,15 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           announcement ? "top-[28px] md:top-[36px]" : "top-0 md:top-[36px]"
         )}
         style={{
-          background: (hasHero && !scrolled) ? "linear-gradient(135deg, rgba(1,26,74,0.75) 0%, rgba(1,45,116,0.45) 50%, rgba(1,60,150,0.3) 100%)" : "linear-gradient(135deg, #031028 0%, #051937 100%)",
-          backdropFilter: (hasHero && !scrolled) ? "blur(18px) saturate(1.4)" : "none",
-          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(18px) saturate(1.4)" : "none",
-          boxShadow: (hasHero && !scrolled) ? "0 1px 0 rgba(255,255,255,0.08) inset" : "0 2px 12px rgba(0,0,0,0.15)",
-          borderBottom: (hasHero && !scrolled) ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(1,45,116,0.3)",
+          background: (hasHero && !scrolled)
+            ? "linear-gradient(135deg, rgba(3,16,40,0.88) 0%, rgba(5,25,55,0.82) 50%, rgba(1,35,90,0.78) 100%)"
+            : (hasHero && scrolled)
+              ? "rgba(255,255,255,0.97)"
+              : "linear-gradient(135deg, #031028 0%, #051937 100%)",
+          backdropFilter: (hasHero && !scrolled) ? "blur(20px) saturate(1.3)" : (hasHero && scrolled) ? "blur(12px)" : "none",
+          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(20px) saturate(1.3)" : (hasHero && scrolled) ? "blur(12px)" : "none",
+          boxShadow: (hasHero && !scrolled) ? "0 1px 0 rgba(255,255,255,0.06) inset" : (hasHero && scrolled) ? "0 2px 16px rgba(0,0,0,0.08)" : "0 2px 12px rgba(0,0,0,0.15)",
+          borderBottom: (hasHero && !scrolled) ? "1px solid rgba(255,255,255,0.06)" : (hasHero && scrolled) ? "1px solid rgba(1,45,116,0.08)" : "1px solid rgba(1,45,116,0.3)",
         }}
       >
 
@@ -535,7 +539,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         <div className="hidden md:flex items-center gap-2 px-6 h-20">
           <Link href="/" className="shrink-0 mr-8 relative" style={{ height: "76px", width: "234px" }}>
             <Image
-              src="/images/logo-szph-white.webp"
+              src={(hasHero && scrolled) ? "/images/logo-szph.webp" : "/images/logo-szph-white.webp"}
               alt="SZPH"
               fill
               className="object-contain object-left transition-opacity duration-300"
@@ -552,9 +556,9 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                     href={item.href}
                     className={cn(
                       "flex items-center gap-1 px-3 py-2 text-[11px] font-extrabold uppercase tracking-wide transition-colors duration-300 rounded-lg whitespace-nowrap",
-                      activeMega === item.href
-                        ? "text-white bg-white/10"
-                        : "text-white/90 hover:text-white/65"
+                      (hasHero && scrolled)
+                        ? (activeMega === item.href ? "text-[#051937] bg-[#051937]/8" : "text-[#051937]/80 hover:text-[#051937]/50")
+                        : (activeMega === item.href ? "text-white bg-white/10" : "text-white/90 hover:text-white/65")
                     )}
                   >
                     {item.label}
@@ -578,7 +582,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                 "flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300",
                 "hover:bg-white/10"
               )}
-              style={{ color: "rgba(255,255,255,0.6)" }}
+              style={{ color: (hasHero && scrolled) ? "rgba(5,25,55,0.5)" : "rgba(255,255,255,0.6)" }}
               aria-label="Rýchle odkazy"
             >
               <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -629,21 +633,21 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             <LangSelector scrolled={scrolled} />
             <button
               onClick={() => setSearchOpen(true)}
-              className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", "hover:bg-white/10")}
-              style={{ color: "rgba(255,255,255,0.6)" }} aria-label="Vyhľadať">
+              className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", (hasHero && scrolled) ? "hover:bg-[#051937]/8" : "hover:bg-white/10")}
+              style={{ color: (hasHero && scrolled) ? "rgba(5,25,55,0.5)" : "rgba(255,255,255,0.6)" }} aria-label="Vyhľadať">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <Link href="/admin/prihlasenie" className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", "hover:bg-white/10")}
-              style={{ color: "rgba(255,255,255,0.6)" }} aria-label="Prihlásenie">
+            <Link href="/admin/prihlasenie" className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", (hasHero && scrolled) ? "hover:bg-[#051937]/8" : "hover:bg-white/10")}
+              style={{ color: (hasHero && scrolled) ? "rgba(5,25,55,0.5)" : "rgba(255,255,255,0.6)" }} aria-label="Prihlásenie">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
             </Link>
             <a href="/zapasy"
-              className="flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold text-white transition-all hover:brightness-110"
-              style={{ background: "#012d74" }}>
+              className={cn("flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold transition-all hover:brightness-110", (hasHero && scrolled) ? "text-white" : "text-white")}
+              style={{ background: (hasHero && scrolled) ? "#051937" : "#012d74" }}>
               <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
                 <circle cx="12" cy="12" r="9" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 8.5l5 3.5-5 3.5V8.5z" />

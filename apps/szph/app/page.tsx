@@ -437,7 +437,7 @@ export default async function SzphHome() {
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
 
-          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-10 xl:gap-16 items-center">
+          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-12 xl:gap-20 items-center">
 
             {/* Ľavý — text */}
             <div>
@@ -581,10 +581,10 @@ export default async function SzphHome() {
           <div className="flex md:grid md:grid-cols-5 gap-3 md:gap-4 overflow-x-auto pb-2 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
             {[
               { name: "SZPH Podcast", logo: "/images/podcastlogo.webp", bg: "#051937", href: "/podcast" },
-              { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.webp", bg: "#0078fe", href: "/projekty/hokej-na-skolach" },
-              { name: "Hokejová akadémia", logo: "/images/hokejova-akademia-logo.webp", bg: "#a4b45b", href: "/projekty/hokejova-akademia" },
+              { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.webp", bg: "#012d74", href: "/projekty/hokej-na-skolach" },
               { name: "Rozhodcovia", logo: "/images/rozhodcovia-logo.webp", bg: "#d80027", href: "/projekty/vzdelavanie-rozhodcov" },
-              { name: "Hockey TV", logo: "/images/hockey-tv-logo.webp", bg: "#012d74", href: "/projekty/hockey-tv" },
+              { name: "Hokejová akadémia", logo: "/images/hokejova-akademia-logo.webp", bg: "#a4b45b", href: "/projekty/hokejova-akademia" },
+              { name: "Hockey TV", logo: "/images/hockey-tv-logo.webp", bg: "#0078fe", href: "/projekty/hockey-tv" },
             ].map((p, i) => (
               <Link
                 key={i}
