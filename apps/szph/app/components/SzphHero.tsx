@@ -266,6 +266,7 @@ export function SzphHero() {
               fontSize: "clamp(2rem, 5.8vw, 160px)",
               lineHeight: 1.05,
               fontWeight: 500,
+              WebkitTextStroke: "0.5px white",
               fontStyle: "italic",
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
