@@ -20,10 +20,11 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  novinky: "bg-[#e8f4fd] text-[#016fb4]",
-  reprezentacia: "bg-[#012d74]/10 text-[#012d74]",
-  kluby: "bg-[#f0f4fa] text-[#012d74]/70",
-  oznamy: "bg-amber-50 text-amber-700",
+  novinky: "bg-[#0078fe]/10 text-[#0078fe]",
+  reprezentacia: "bg-[#0078fe]/10 text-[#0078fe]",
+  kluby: "bg-[#0078fe]/10 text-[#0078fe]",
+  oznamy: "bg-[#0078fe]/10 text-[#0078fe]",
+  svet: "bg-[#0078fe]/10 text-[#0078fe]",
 };
 
 interface Props {
@@ -447,7 +448,8 @@ export default async function ArticleDetailPage({ params }: Props) {
             {/* Tags / share */}
             <div className="mt-12 pt-6 flex items-center justify-between flex-wrap gap-4" style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
               <span
-                className={`inline-block rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${CATEGORY_COLORS[article.category] ?? CATEGORY_COLORS.novinky}`}
+                className={`inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${CATEGORY_COLORS[article.category] ?? CATEGORY_COLORS.novinky}`}
+                style={{ borderRadius: "3px" }}
               >
                 {CATEGORY_LABELS[article.category] ?? article.category}
               </span>
@@ -466,10 +468,78 @@ export default async function ArticleDetailPage({ params }: Props) {
 
           {/* ── Sidebar ── */}
           <aside className="hidden lg:block self-start sticky top-[120px]">
+            {/* Hockey banner */}
+            <Link
+              href="/zacni-hrat"
+              className="group block relative overflow-hidden mb-4"
+              style={{ borderRadius: "3px", height: "140px" }}
+            >
+              <Image
+                src="/images/hockey-field-bg.jpg"
+                alt="Staň sa súčasťou hry"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="320px"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(135deg, rgba(1,26,74,0.7) 0%, rgba(1,45,116,0.45) 100%)" }}
+              />
+              <div className="absolute inset-0 flex flex-col justify-center px-5">
+                <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
+                  Začni s pozemným hokejom
+                </p>
+                <p className="text-white/60 mt-1" style={{ fontSize: "11px" }}>
+                  Nájdi svoj tím a pridaj sa.
+                </p>
+                <div
+                  className="mt-3 inline-flex items-center gap-2 self-start px-3.5 py-1.5 font-bold text-white"
+                  style={{ fontSize: "10px", background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "20px", letterSpacing: "0.04em" }}
+                >
+                  Chcem sa stať hráčom
+                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </div>
+              </div>
+            </Link>
+
+            {/* Eshop banner */}
+            <Link
+              href="/eshop"
+              className="group block relative overflow-hidden mb-4"
+              style={{ borderRadius: "3px", height: "140px" }}
+            >
+              <Image
+                src="/images/eshop-banner.jpg"
+                alt="Oficiálny eshop"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="320px"
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to right, rgba(216,0,39,0.85) 0%, rgba(216,0,39,0.4) 50%, transparent 100%)" }}
+              />
+              <div className="absolute inset-0 flex flex-col justify-center px-5">
+                <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
+                  Oficiálny eshop
+                </p>
+                <p className="text-white/70 mt-1" style={{ fontSize: "11px" }}>
+                  Dresy, merch a vybavenie.
+                </p>
+                <div
+                  className="mt-2.5 inline-flex items-center gap-2 self-start px-3.5 py-1.5 font-bold text-white"
+                  style={{ fontSize: "10px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: "20px", letterSpacing: "0.04em" }}
+                >
+                  Zobraziť obchod
+                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </div>
+              </div>
+            </Link>
+
             <div className="flex flex-col gap-0" style={{ background: "#fff", borderRadius: "8px", overflow: "hidden", boxShadow: "0 1px 3px rgba(1,45,116,0.06)" }}>
               {/* Header */}
               <div className="px-5 py-4" style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
-                <p className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "13px", letterSpacing: "0.03em" }}>
+                <p className="font-garet font-bold italic text-[#051937] uppercase" style={{ fontSize: "13px", letterSpacing: "0.03em" }}>
                   Ďalšie články
                 </p>
               </div>

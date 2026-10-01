@@ -311,7 +311,7 @@ export function SzphHero() {
             top: "35%",
             width: "clamp(240px, 18vw, 340px)",
             background: "rgba(255,255,255,0.97)",
-            borderRadius: "clamp(12px, 1vw, 20px)",
+            borderRadius: "clamp(6px, 0.6vw, 10px)",
             boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
             overflow: "visible",
             WebkitMaskImage: "radial-gradient(circle 10px at 0px 26%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 26%, transparent 9px, black 10px)",
