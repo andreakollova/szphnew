@@ -87,7 +87,7 @@ export function RychleOdkazy() {
         />
         <div className="absolute inset-0 flex flex-col justify-center px-5">
           <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
-            Začni s pozemným hokejom!
+            Začni hrať pozemný hokej!
           </p>
           <p className="text-white mt-1" style={{ fontSize: "11px" }}>
             Nájdi svoj tím a pridaj sa.
@@ -129,7 +129,7 @@ export function RychleOdkazy() {
         />
         <div className="absolute inset-0 flex flex-col justify-center px-5">
           <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
-            Oficiálny eshop
+            Oficiálny e-shop
           </p>
           <p className="text-white mt-1" style={{ fontSize: "11px" }}>
             Dresy, merch a vybavenie.
