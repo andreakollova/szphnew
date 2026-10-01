@@ -250,7 +250,7 @@ export function SzphHero() {
           }}
         >
           <p
-            className="font-garet text-white/75"
+            className="font-garet"
             style={{
               fontSize: "clamp(0.6rem, 0.85vw, 20px)",
               fontStyle: "italic",
@@ -259,6 +259,10 @@ export function SzphHero() {
               textTransform: "uppercase" as const,
               marginBottom: "clamp(4px, 0.6vw, 14px)",
               textShadow: "0 2px 20px rgba(0,0,0,0.3)",
+              background: "linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(200,210,225,0.6) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
             }}
           >
             Nová generácia, veľké ambície
