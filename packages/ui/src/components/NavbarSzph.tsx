@@ -230,7 +230,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
           ) : (
             <Link href={featured.href} className="group relative overflow-hidden block" style={{ height: "220px", borderRadius: "4px" }}>
               <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" style={featured.imagePosition ? { objectPosition: featured.imagePosition } : undefined} />
-              <div className="absolute inset-0" style={{ borderRadius: "4px", background: "linear-gradient(to top, #051937 0%, rgba(5,25,55,0.85) 35%, rgba(5,25,55,0.2) 70%, transparent 100%)" }} />
+              <div className="absolute inset-0" style={{ borderRadius: "4px", background: "linear-gradient(to top, #012d74 0%, rgba(1,45,116,0.9) 30%, rgba(1,45,116,0.3) 55%, transparent 75%)" }} />
               <div className="absolute bottom-0 p-4">
                 <h3 className="font-garet font-black italic text-white leading-tight mb-2" style={{ fontSize: "16px" }}>{featured.title}</h3>
                 <span className="inline-flex items-center gap-1.5 font-bold text-white px-3 py-1.5 transition-all hover:brightness-110" style={{ fontSize: "10px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "20px" }}>

@@ -13,43 +13,71 @@ const PRODUCTS: Record<string, {
   images: string[]; description: string; details: string[];
   badge?: string; colors?: { name: string; hex: string; id: string }[];
 }> = {
-  "mikina-biela": {
-    id: "mikina-biela", name: "Mikina SZPH — biela", price: 44.90, category: "Mikiny", badge: "Novinka",
-    images: ["/images/eshop/mikina-biela-1.png", "/images/eshop/mikina-biela-2.png", "/images/eshop/mikina-biela-3.png", "/images/eshop/mikina-biela-4.png"],
-    description: "Oficiálna mikina Slovenského zväzu pozemného hokeja v bielej farbe. Logo SZPH (hokejka so slovenským znakom) vpredu, nápis Slovakia Field Hockey na chrbte.",
-    details: ["Materiál: 80% bavlna, 20% polyester", "Kapucňa s tmavomodrými šnúrkami", "Predné klokaní vrecko", "Potlač vpredu a na chrbte", "Dostupné veľkosti: XS — XXL"],
-    colors: [{ name: "Biela", hex: "#f5f5f5", id: "mikina-biela" }, { name: "Tmavomodrá", hex: "#051937", id: "mikina-modra" }],
+  "mikina-biela-logo": {
+    id: "mikina-biela-logo", name: "Mikina SZPH biela — logo v predu", price: 44.90, category: "Mikiny", badge: "Novinka",
+    images: ["/images/eshop/mikina-biela-1.png", "/images/eshop/mikina-biela-2.png"],
+    description: "Oficiálna mikina SZPH v bielej farbe s veľkým logom hokejky so slovenským znakom na hrudi. Na chrbte nápis Slovakia Field Hockey. Kapucňa s tmavomodrými šnúrkami a klokaním vreckom.",
+    details: ["Materiál: 80% bavlna, 20% polyester", "Kapucňa s tmavomodrými šnúrkami", "Predné klokaní vrecko", "Veľké logo SZPH na hrudi", "Nápis Slovakia Field Hockey na chrbte", "Dostupné veľkosti: XS — XXL"],
+    colors: [{ name: "Biela", hex: "#f5f5f5", id: "mikina-biela-logo" }, { name: "Tmavomodrá", hex: "#051937", id: "mikina-modra-logo" }],
   },
-  "mikina-modra": {
-    id: "mikina-modra", name: "Mikina SZPH — tmavomodrá", price: 44.90, category: "Mikiny", badge: "Novinka",
-    images: ["/images/eshop/mikina-modra-1.png", "/images/eshop/mikina-modra-2.png", "/images/eshop/mikina-modra-3.png", "/images/eshop/mikina-modra-4.png"],
-    description: "Oficiálna mikina Slovenského zväzu pozemného hokeja v tmavomodrej farbe. Biele logo SZPH vpredu, nápis Slovakia Field Hockey na chrbte.",
-    details: ["Materiál: 80% bavlna, 20% polyester", "Kapucňa so šnúrkami", "Predné klokaní vrecko", "Potlač vpredu a na chrbte", "Dostupné veľkosti: XS — XXL"],
-    colors: [{ name: "Biela", hex: "#f5f5f5", id: "mikina-biela" }, { name: "Tmavomodrá", hex: "#051937", id: "mikina-modra" }],
+  "mikina-biela-rukav": {
+    id: "mikina-biela-rukav", name: "Mikina SZPH biela — logo na rukáve", price: 44.90, category: "Mikiny", badge: "Novinka",
+    images: ["/images/eshop/mikina-biela-3.png", "/images/eshop/mikina-biela-4.png"],
+    description: "Biela mikina SZPH s malým logom na hrudi a výrazným nápisom HOCKEY na rukáve. Minimalistický dizajn pre fanúšikov pozemného hokeja.",
+    details: ["Materiál: 80% bavlna, 20% polyester", "Kapucňa s tmavomodrými šnúrkami", "Predné klokaní vrecko", "Malé logo SZPH na hrudi", "Nápis HOCKEY na rukáve", "Dostupné veľkosti: XS — XXL"],
+    colors: [{ name: "Biela", hex: "#f5f5f5", id: "mikina-biela-rukav" }, { name: "Tmavomodrá", hex: "#051937", id: "mikina-modra-rukav" }],
   },
-  "tricko-biele": {
-    id: "tricko-biele", name: "Tričko Slovakia Field Hockey — biele", price: 24.90, category: "Tričká",
-    images: ["/images/eshop/tricko-1.png", "/images/eshop/tricko-2.png", "/images/eshop/tricko-3.png"],
-    description: "Biele športové tričko s logom SZPH na hrudi. Ľahký a priedušný materiál vhodný na tréning aj voľný čas.",
-    details: ["Materiál: 100% polyester", "Logo SZPH na hrudi", "Priedušný materiál", "Dostupné veľkosti: XS — XXL"],
+  "mikina-modra-logo": {
+    id: "mikina-modra-logo", name: "Mikina SZPH tmavomodrá — logo v predu", price: 44.90, category: "Mikiny", badge: "Novinka",
+    images: ["/images/eshop/mikina-modra-1.png", "/images/eshop/mikina-modra-2.png"],
+    description: "Tmavomodrá mikina SZPH s bielym logom hokejky so slovenským znakom na hrudi. Na chrbte nápis Slovakia Field Hockey. Klasický strih s kapucňou a klokaním vreckom.",
+    details: ["Materiál: 80% bavlna, 20% polyester", "Kapucňa so šnúrkami", "Predné klokaní vrecko", "Biele logo SZPH na hrudi", "Nápis Slovakia Field Hockey na chrbte", "Dostupné veľkosti: XS — XXL"],
+    colors: [{ name: "Biela", hex: "#f5f5f5", id: "mikina-biela-logo" }, { name: "Tmavomodrá", hex: "#051937", id: "mikina-modra-logo" }],
   },
-  "tricko-potlac": {
-    id: "tricko-potlac", name: "Tričko Slovakia Field Hockey — s potlačou", price: 27.90, category: "Tričká",
-    images: ["/images/eshop/tricko-4.png", "/images/eshop/tricko-5.png", "/images/eshop/tricko-6.png"],
-    description: "Tričko s plnofarebnou potlačou Slovakia Field Hockey. Reprezentačný dizajn vhodný na turnaje aj bežné nosenie.",
-    details: ["Materiál: 100% polyester", "Sublimačná potlač", "Priedušný materiál", "Dostupné veľkosti: XS — XXL"],
+  "mikina-modra-rukav": {
+    id: "mikina-modra-rukav", name: "Mikina SZPH tmavomodrá — logo na rukáve", price: 44.90, category: "Mikiny", badge: "Novinka",
+    images: ["/images/eshop/mikina-modra-3.png", "/images/eshop/mikina-modra-4.png"],
+    description: "Tmavomodrá mikina SZPH s malým bielym logom na hrudi a nápisom HOCKEY na rukáve. Športový minimalistický dizajn.",
+    details: ["Materiál: 80% bavlna, 20% polyester", "Kapucňa so šnúrkami", "Predné klokaní vrecko", "Malé biele logo SZPH na hrudi", "Nápis HOCKEY na rukáve", "Dostupné veľkosti: XS — XXL"],
+    colors: [{ name: "Biela", hex: "#f5f5f5", id: "mikina-biela-rukav" }, { name: "Tmavomodrá", hex: "#051937", id: "mikina-modra-rukav" }],
   },
-  "polokosela": {
-    id: "polokosela", name: "Polokošeľa Field Hockey Slovakia", price: 39.90, category: "Polokošele",
-    images: ["/images/eshop/polokosela-1.png", "/images/eshop/polokosela-2.png"],
-    description: "Elegantná tmavomodrá polokošeľa s logom Field Hockey Slovakia. Červeno-biele detaily na golieri a rukávoch.",
-    details: ["Materiál: 95% bavlna, 5% elastan", "Tmavomodrá farba", "Logo na hrudi", "Červeno-biele lemovanie", "Dostupné veľkosti: S — XXL"],
+  "tricko-biele-male-logo": {
+    id: "tricko-biele-male-logo", name: "Tričko SZPH biele — malé logo", price: 24.90, category: "Tričká",
+    images: ["/images/eshop/tricko-1.png", "/images/eshop/tricko-2.png"],
+    description: "Biele športové tričko s malým logom SZPH na hrudi a nápisom Slovakia Field Hockey na chrbte. Ľahký priedušný materiál vhodný na tréning aj voľný čas.",
+    details: ["Materiál: 100% polyester", "Malé logo SZPH na hrudi", "Nápis Slovakia Field Hockey na chrbte", "Priedušný a rýchloschnúci materiál", "Dostupné veľkosti: XS — XXL"],
+  },
+  "tricko-biele-velke-logo": {
+    id: "tricko-biele-velke-logo", name: "Tričko SZPH biele — logo v predu", price: 27.90, category: "Tričká",
+    images: ["/images/eshop/tricko-3.png", "/images/eshop/tricko-4.png"],
+    description: "Biele tričko s veľkým logom SZPH na hrudi. Reprezentačný dizajn s hokejkou a slovenským znakom. Čistý zadný diel bez potlače.",
+    details: ["Materiál: 100% polyester", "Veľké logo SZPH na hrudi", "Priedušný a rýchloschnúci materiál", "Dostupné veľkosti: XS — XXL"],
+  },
+  "tricko-bielo-modre": {
+    id: "tricko-bielo-modre", name: "Tričko SZPH bielo-modré — malé logo", price: 27.90, category: "Tričká",
+    images: ["/images/eshop/tricko-5.png", "/images/eshop/tricko-6.png"],
+    description: "Športové tričko v bielo-modrom prevedení s tmavomodrými raglánovými rukávmi. Malé logo Field Hockey Slovakia na hrudi, nápis Slovakia Field Hockey na chrbte.",
+    details: ["Materiál: 100% polyester", "Biely trup, tmavomodré raglánové rukávy", "Logo Field Hockey Slovakia na hrudi", "Nápis Slovakia Field Hockey na chrbte", "Dostupné veľkosti: XS — XXL"],
+  },
+  "polokosela-modra": {
+    id: "polokosela-modra", name: "Polokošeľa SZPH tmavomodrá", price: 39.90, category: "Polokošele",
+    images: ["/images/eshop/polokosela-1.png"],
+    description: "Elegantná tmavomodrá polokošeľa s logom Field Hockey Slovakia na hrudi. Červeno-biele detaily na golieri a lemoch rukávov. Vhodná na oficiálne podujatia aj bežné nosenie.",
+    details: ["Materiál: 95% bavlna, 5% elastan", "Tmavomodrá farba", "Logo Field Hockey Slovakia na hrudi", "Červeno-biele lemovanie goliera", "Dostupné veľkosti: S — XXL"],
+    colors: [{ name: "Tmavomodrá", hex: "#051937", id: "polokosela-modra" }, { name: "Biela", hex: "#f5f5f5", id: "polokosela-biela" }],
+  },
+  "polokosela-biela": {
+    id: "polokosela-biela", name: "Polokošeľa SZPH biela", price: 39.90, category: "Polokošele",
+    images: ["/images/eshop/polokosela-2.png"],
+    description: "Biela polokošeľa s logom Field Hockey Slovakia na hrudi. Červené detaily na golieri. Elegantný a čistý dizajn pre reprezentáciu aj voľný čas.",
+    details: ["Materiál: 95% bavlna, 5% elastan", "Biela farba", "Logo Field Hockey Slovakia na hrudi", "Červené lemovanie goliera", "Dostupné veľkosti: S — XXL"],
+    colors: [{ name: "Tmavomodrá", hex: "#051937", id: "polokosela-modra" }, { name: "Biela", hex: "#f5f5f5", id: "polokosela-biela" }],
   },
   "vetrovka": {
-    id: "vetrovka", name: "Vetrovka Slovakia Field Hockey", price: 59.90, category: "Bundy", badge: "Limitovaná edícia",
+    id: "vetrovka", name: "Vetrovka SZPH biela", price: 59.90, category: "Bundy", badge: "Limitovaná edícia",
     images: ["/images/eshop/vetrovka-1.png"],
-    description: "Športová vetrovka s kapucňou v bielo-modrom prevedení. Nápis Slovakia Field Hockey na chrbte. Ideálna na tréningy a turnaje v chladnejšom počasí.",
-    details: ["Materiál: 100% polyester, vodoodpudivá úprava", "Kapucňa", "Bielo-modré prevedenie", "Potlač na chrbte", "Dostupné veľkosti: S — XXL"],
+    description: "Športová vetrovka s kapucňou v bielo-modrom prevedení. Tmavomodré raglánové rukávy, nápis Slovakia Field Hockey na chrbte. Ideálna na tréningy a turnaje v chladnejšom počasí.",
+    details: ["Materiál: 100% polyester, vodoodpudivá úprava", "Kapucňa", "Biely trup, tmavomodré rukávy", "Nápis Slovakia Field Hockey na chrbte", "Dostupné veľkosti: S — XXL"],
   },
 };
 
@@ -182,16 +210,16 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Objednať */}
-              <a
-                href={`mailto:szph@szph.sk?subject=Objednávka: ${product.name}${selectedSize ? ` (${selectedSize})` : ""}&body=Dobrý deň, mám záujem o: ${product.name}${selectedSize ? `, veľkosť ${selectedSize}` : ""}.`}
+              <Link
+                href={`/eshop/objednavka?produkt=${encodeURIComponent(product.name)}${selectedSize ? `&velkost=${selectedSize}` : ""}`}
                 className="flex items-center justify-center gap-2 w-full mt-6 font-garet font-bold text-white transition-all hover:brightness-110"
                 style={{ background: "#012d74", borderRadius: "4px", padding: "14px", fontSize: "14px" }}
               >
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
-                Objednať e-mailom
-              </a>
+                Objednať
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </Link>
               <p className="text-[#94a3b8] text-center mt-2" style={{ fontSize: "11px" }}>
-                alebo zavolajte na <a href="tel:+421918555519" className="font-bold text-[#012d74]">+421 918 555 519</a>
+                Platba na mieste pri prevzatí
               </p>
 
               {/* Popis */}

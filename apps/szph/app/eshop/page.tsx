@@ -14,45 +14,75 @@ const CATEGORIES = [
 
 const PRODUCTS = [
   {
-    id: "mikina-biela",
-    name: "Mikina SZPH — biela",
+    id: "mikina-biela-logo",
+    name: "Mikina SZPH biela — logo v predu",
     price: 44.90,
     category: "mikiny",
-    images: ["/images/eshop/mikina-biela-1.png", "/images/eshop/mikina-biela-2.png", "/images/eshop/mikina-biela-3.png", "/images/eshop/mikina-biela-4.png"],
+    images: ["/images/eshop/mikina-biela-1.png", "/images/eshop/mikina-biela-2.png"],
     badge: "Novinka",
   },
   {
-    id: "mikina-modra",
-    name: "Mikina SZPH — tmavomodrá",
+    id: "mikina-biela-rukav",
+    name: "Mikina SZPH biela — logo na rukáve",
     price: 44.90,
     category: "mikiny",
-    images: ["/images/eshop/mikina-modra-1.png", "/images/eshop/mikina-modra-2.png", "/images/eshop/mikina-modra-3.png", "/images/eshop/mikina-modra-4.png"],
+    images: ["/images/eshop/mikina-biela-3.png", "/images/eshop/mikina-biela-4.png"],
     badge: "Novinka",
   },
   {
-    id: "tricko-biele",
-    name: "Tričko Slovakia Field Hockey — biele",
+    id: "mikina-modra-logo",
+    name: "Mikina SZPH tmavomodrá — logo v predu",
+    price: 44.90,
+    category: "mikiny",
+    images: ["/images/eshop/mikina-modra-1.png", "/images/eshop/mikina-modra-2.png"],
+    badge: "Novinka",
+  },
+  {
+    id: "mikina-modra-rukav",
+    name: "Mikina SZPH tmavomodrá — logo na rukáve",
+    price: 44.90,
+    category: "mikiny",
+    images: ["/images/eshop/mikina-modra-3.png", "/images/eshop/mikina-modra-4.png"],
+    badge: "Novinka",
+  },
+  {
+    id: "tricko-biele-male-logo",
+    name: "Tričko SZPH biele — malé logo",
     price: 24.90,
     category: "tricka",
-    images: ["/images/eshop/tricko-1.png", "/images/eshop/tricko-2.png", "/images/eshop/tricko-3.png"],
+    images: ["/images/eshop/tricko-1.png", "/images/eshop/tricko-2.png"],
   },
   {
-    id: "tricko-potlac",
-    name: "Tričko Slovakia Field Hockey — s potlačou",
+    id: "tricko-biele-velke-logo",
+    name: "Tričko SZPH biele — logo v predu",
     price: 27.90,
     category: "tricka",
-    images: ["/images/eshop/tricko-4.png", "/images/eshop/tricko-5.png", "/images/eshop/tricko-6.png"],
+    images: ["/images/eshop/tricko-3.png", "/images/eshop/tricko-4.png"],
   },
   {
-    id: "polokosela",
-    name: "Polokošeľa Field Hockey Slovakia",
+    id: "tricko-bielo-modre",
+    name: "Tričko SZPH bielo-modré — malé logo",
+    price: 27.90,
+    category: "tricka",
+    images: ["/images/eshop/tricko-5.png", "/images/eshop/tricko-6.png"],
+  },
+  {
+    id: "polokosela-modra",
+    name: "Polokošeľa SZPH tmavomodrá",
     price: 39.90,
     category: "polokosele",
-    images: ["/images/eshop/polokosela-1.png", "/images/eshop/polokosela-2.png"],
+    images: ["/images/eshop/polokosela-1.png"],
+  },
+  {
+    id: "polokosela-biela",
+    name: "Polokošeľa SZPH biela",
+    price: 39.90,
+    category: "polokosele",
+    images: ["/images/eshop/polokosela-2.png"],
   },
   {
     id: "vetrovka",
-    name: "Vetrovka Slovakia Field Hockey",
+    name: "Vetrovka SZPH biela",
     price: 59.90,
     category: "bundy",
     images: ["/images/eshop/vetrovka-1.png"],
@@ -114,15 +144,24 @@ export default function EshopPage() {
               className="group block bg-white overflow-hidden transition-all hover:shadow-md"
               style={{ borderRadius: "4px", border: "1px solid rgba(1,45,116,0.06)" }}
             >
-              {/* Obrázok */}
+              {/* Obrázok s hover swap */}
               <div className="relative overflow-hidden" style={{ aspectRatio: "4/5", background: "#f0f2f5" }}>
                 <Image
                   src={product.images[0]}
                   alt={product.name}
                   fill
-                  className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                  className={`object-contain p-4 transition-all duration-500 ${product.images.length > 1 ? "group-hover:opacity-0" : "group-hover:scale-105"}`}
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
+                {product.images.length > 1 && (
+                  <Image
+                    src={product.images[1]}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-4 transition-all duration-500 opacity-0 group-hover:opacity-100"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  />
+                )}
                 {product.badge && (
                   <span className="absolute top-3 left-3 px-2.5 py-1 font-bold text-white" style={{ fontSize: "9px", background: "#d80027", borderRadius: "3px", letterSpacing: "0.05em" }}>
                     {product.badge}
