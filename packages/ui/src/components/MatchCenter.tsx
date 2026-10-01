@@ -215,7 +215,10 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
 
       {/* Domáci */}
       <div className="flex items-center gap-2.5 flex-1 min-w-0 justify-end">
-        <span className="font-bold text-[#051937] truncate text-right" style={{ fontSize: "13px" }}>
+        <span className="font-bold text-[#051937] truncate text-right hidden md:block" style={{ fontSize: "13px" }}>
+          {m.home_team}
+        </span>
+        <span className="font-bold text-[#051937] truncate text-right md:hidden" style={{ fontSize: "13px" }}>
           {m.home_short || m.home_team}
         </span>
         <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={28} />
@@ -241,18 +244,16 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
       {/* Hostia */}
       <div className="flex items-center gap-2.5 flex-1 min-w-0">
         <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={28} />
-        <span className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
+        <span className="font-bold text-[#051937] truncate hidden md:block" style={{ fontSize: "13px" }}>
+          {m.away_team}
+        </span>
+        <span className="font-bold text-[#051937] truncate md:hidden" style={{ fontSize: "13px" }}>
           {m.away_short || m.away_team}
         </span>
       </div>
 
-      {/* Miesto + video */}
-      <div className="shrink-0 hidden md:flex items-center gap-2">
-        {m.venue && (
-          <span className="font-bold uppercase text-[#012d74]/40" style={{ fontSize: "9px", letterSpacing: "0.06em" }}>
-            {m.venue}
-          </span>
-        )}
+      {/* Video */}
+      <div className="shrink-0 hidden md:flex items-center" style={{ width: "24px" }}>
         {m.video_url && (
           <a href={m.video_url} target="_blank" rel="noopener noreferrer" className="text-[#012d74] hover:text-[#051937]">
             <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
