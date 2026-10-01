@@ -301,8 +301,7 @@ export function SzphHero() {
           className="absolute hidden lg:flex flex-col"
           style={{
             right: "4%",
-            top: "50%",
-            transform: "translateY(-50%)",
+            top: "35%",
             width: "clamp(240px, 18vw, 340px)",
             background: "rgba(255,255,255,0.97)",
             borderRadius: "clamp(12px, 1vw, 20px)",
