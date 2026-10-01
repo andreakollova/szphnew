@@ -728,16 +728,16 @@ export default async function SzphHome() {
             <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               Oficiálni sponzori a partneri
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 lg:gap-20">
               {[
                 { name: "Union poisťovňa", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdKWEarVJSFkw7eFSCO0vvAC9xtBTP1pn2kA&s", w: 100 },
                 { name: "ING", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/ING_logo.jpg/1280px-ING_logo.jpg", w: 80 },
                 { name: "NN", src: "https://upload.wikimedia.org/wikipedia/commons/b/b3/NN-LOGO.png", w: 70 },
                 { name: "Heineken", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Heineken_Logo.svg/3840px-Heineken_Logo.svg.png", w: 110 },
               ].map((s) => (
-                <div key={s.name} className="flex items-center justify-center" style={{ height: "48px" }}>
+                <div key={s.name} className="flex items-center justify-center h-8 sm:h-10 md:h-12">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={s.src} alt={s.name} style={{ height: "100%", width: "auto", maxWidth: `${s.w}px`, objectFit: "contain" }} />
+                  <img src={s.src} alt={s.name} className="h-full w-auto object-contain" style={{ maxWidth: `${s.w}px` }} />
                 </div>
               ))}
             </div>

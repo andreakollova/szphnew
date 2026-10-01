@@ -92,7 +92,7 @@ export default function ProductDetailPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Breadcrumb */}
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6 pb-4">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6 pb-4">
         <div className="flex items-center gap-2 text-[#94a3b8]" style={{ fontSize: "11px" }}>
           <Link href="/eshop" className="hover:text-[#051937] transition-colors font-bold">Eshop</Link>
           <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
@@ -100,7 +100,7 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-8 xl:gap-12">
 
           {/* Ľavá — galéria */}
@@ -129,13 +129,13 @@ export default function ProductDetailPage() {
                   <button
                     key={i}
                     onClick={() => setActiveImage(i)}
-                    className="relative overflow-hidden bg-white transition-all"
+                    className="relative overflow-hidden bg-white transition-all w-[60px] h-[60px] sm:w-[80px] sm:h-[80px]"
                     style={{
-                      width: "80px", height: "80px", borderRadius: "4px",
+                      borderRadius: "4px",
                       border: activeImage === i ? "2px solid #012d74" : "1px solid rgba(1,45,116,0.08)",
                     }}
                   >
-                    <Image src={img} alt="" fill className="object-contain p-2" sizes="80px" />
+                    <Image src={img} alt="" fill className="object-contain p-1.5 sm:p-2" sizes="(max-width: 640px) 60px, 80px" />
                   </button>
                 ))}
               </div>
@@ -152,12 +152,12 @@ export default function ProductDetailPage() {
               </span>
 
               {/* Názov */}
-              <h1 className="font-garet font-bold text-[#051937] mt-2 leading-tight" style={{ fontSize: "24px" }}>
+              <h1 className="font-garet font-bold text-[#051937] mt-2 leading-tight text-xl sm:text-2xl">
                 {product.name}
               </h1>
 
               {/* Cena */}
-              <p className="font-garet font-bold text-[#012d74] mt-3" style={{ fontSize: "28px" }}>
+              <p className="font-garet font-bold text-[#012d74] mt-3 text-2xl sm:text-[28px]">
                 {product.price.toFixed(2)} €
               </p>
 
