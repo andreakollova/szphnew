@@ -152,7 +152,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+        <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
           {title}
         </h2>
         <Link
@@ -168,15 +168,15 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
       </div>
       <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
         {articles.map((article) => (
-          <Link key={article.id} href={`/novinky/${article.slug}`} className="group block overflow-hidden">
-            <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "3px" }}>
+          <Link key={article.id} href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <div className="relative overflow-hidden" style={{ height: "180px" }}>
               {article.cover_image_url ? (
                 <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               ) : (
                 <div className="w-full h-full bg-[#e2e8f0]" />
               )}
             </div>
-            <div className="pt-3">
+            <div className="px-4 py-3.5">
               <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                 / {article.category}
               </span>
@@ -249,7 +249,7 @@ export default async function SzphHome() {
               {/* Pripnuté články */}
               <div>
                 <div className="flex items-center justify-between mb-5">
-                  <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                  <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
                     Pripnuté články
                   </h2>
                 </div>
@@ -259,15 +259,16 @@ export default async function SzphHome() {
                     { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
                     { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                   ].map((article) => (
-                    <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden">
-                      <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "3px" }}>
-                        <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "10px", background: "#051937", boxShadow: "0 4px 20px rgba(5,25,55,0.15)" }}>
+                      <div className="relative overflow-hidden" style={{ height: "180px" }}>
+                        <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-90" />
+                        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.8) 0%, transparent 60%)" }} />
                       </div>
-                      <div className="pt-3">
+                      <div className="px-4 py-3.5">
                         <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                           / neprehliadnite
                         </span>
-                        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
+                        <h3 className="font-bold text-white leading-snug group-hover:text-white/80 transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
                           {article.title}
                         </h3>
                       </div>
@@ -287,7 +288,7 @@ export default async function SzphHome() {
 
               {/* Posledné zápasy — reálne dáta z DB */}
               <div className="pt-6">
-                <p className="font-garet font-bold italic text-[#051937] mb-2" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                <p className="font-garet font-bold italic text-[#051937] mb-2" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
                   Posledné zápasy
                 </p>
                 <div className="mb-4" style={{ width: "28px", height: "2px", background: "#012d74" }} />
@@ -748,7 +749,7 @@ export default async function SzphHome() {
 
           {/* Oficiálni sponzori */}
           <div className="mb-12">
-            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               Oficiálni sponzori a partneri
             </p>
             <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">
@@ -771,7 +772,7 @@ export default async function SzphHome() {
 
           {/* Inštitucionálni partneri */}
           <div>
-            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               Inštitucionálni partneri
             </p>
             <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">

@@ -69,8 +69,6 @@ Pozemný hokej dnes zahŕňa niekoľko významných líg, ktoré formujú globá
 - Euro Hockey League (EHL) je naopak najprestížnejšou klubovou súťažou v Európe, ktorá pritiahne špičkové tímy a hráčov.
 - Hockey India League (HIL) bola obnovená v roku 2024 s hráčskou aukciou, v ktorej tímy investovali viac ako 2 milióny USD do nákupu hráčov z celého sveta.`,
   },
-};
-
   "program-olympiada-2036": {
     id: "pinned-2",
     slug: "program-olympiada-2036",

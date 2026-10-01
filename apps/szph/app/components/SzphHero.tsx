@@ -6,11 +6,11 @@ import { useState, useEffect } from "react";
 
 const HERO_IMAGES = [
   "/images/hero-banner3.png",
-  "/images/hero-banner3b.png",
-  "/images/hero-banner2.png",
   "/images/hero-banner4.png",
   "/images/hero-banner7.png",
   "/images/hero-banner.png",
+  "/images/hero-banner2.png",
+  "/images/hero-banner3b.png",
 ];
 
 export function SzphHero() {
