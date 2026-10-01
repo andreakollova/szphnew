@@ -299,79 +299,89 @@ export function SzphHero() {
 
         {/* ═══ Ticket card ═══ */}
         <div
-          className="absolute hidden lg:block"
+          className="absolute hidden lg:flex flex-col"
           style={{
-            left: "77.04%",
-            top: "36.95%",
-            width: "16.88%",
-            height: "45.15%",
+            right: "4%",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "clamp(240px, 18vw, 340px)",
+            background: "rgba(255,255,255,0.97)",
+            borderRadius: "clamp(12px, 1vw, 20px)",
+            boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
+            overflow: "hidden",
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/hero-card-shape.svg"
-            alt=""
-            className="absolute inset-0 w-full h-full"
-            style={{ filter: "drop-shadow(0 8px 30px rgba(0,0,0,0.18))" }}
-          />
-
-          {/* NAJBLIŽŠÍ ZÁPAS */}
-          <p className="absolute font-garet font-bold" style={{ left: "7.42%", top: "8.25%", fontSize: "clamp(6px, 0.82vw, 25px)", letterSpacing: "0.08em", color: "#051937" }}>
-            NAJBLIŽŠÍ ZÁPAS
-          </p>
-
-          {/* 15 */}
-          <p className="absolute font-garet font-bold" style={{ left: "7.62%", top: "18.03%", fontSize: "clamp(18px, 2.27vw, 69px)", lineHeight: 0.88, color: "#051937" }}>
-            15
-          </p>
-
-          {/* JÚN */}
-          <p className="absolute font-garet font-bold" style={{ left: "25.88%", top: "23.13%", fontSize: "clamp(6px, 0.82vw, 25px)", color: "#051937" }}>
-            JÚN
-          </p>
-
-          {/* 15:00 */}
-          <p className="absolute font-garet font-bold" style={{ left: "25.88%", top: "28.10%", fontSize: "clamp(10px, 1.27vw, 38px)", lineHeight: 1, color: "#012d74" }}>
-            15:00
-          </p>
-
-          {/* QR */}
-          <div className="absolute overflow-hidden bg-white" style={{ left: "56.15%", top: "11.95%", width: "31.25%", height: "22.37%", borderRadius: "clamp(4px, 0.66vw, 20px)" }}>
-            <Image src="/images/qr-eurohockey.png" alt="QR" width={160} height={160} className="w-full h-full object-cover" style={{ borderRadius: "clamp(4px, 0.66vw, 20px)" }} />
+          {/* Header */}
+          <div style={{ padding: "clamp(12px, 1.2vw, 24px) clamp(14px, 1.4vw, 28px) clamp(8px, 0.8vw, 16px)" }}>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="h-2 w-2 rounded-full bg-[#0078fd] animate-pulse shrink-0" />
+              <span className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.65vw, 13px)", letterSpacing: "0.12em" }}>
+                Najbližší zápas
+              </span>
+            </div>
+            <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(14px, 1.4vw, 28px)", lineHeight: 1.1 }}>
+              Eurohockey 5s
+            </p>
+            <span className="inline-block mt-1 px-2 py-0.5 font-bold uppercase text-[#0078fd] rounded" style={{ fontSize: "clamp(6px, 0.55vw, 11px)", letterSpacing: "0.1em", background: "rgba(0,120,253,0.08)" }}>
+              Muži
+            </span>
           </div>
 
-          {/* Top divider */}
-          <div className="absolute" style={{ left: "7.42%", top: "38.10%", width: "84.08%", height: "1px", background: "rgba(0,0,0,0.1)" }} />
+          {/* Teams */}
+          <div className="flex items-center justify-center gap-4" style={{ padding: "clamp(10px, 1vw, 20px) clamp(14px, 1.4vw, 28px)" }}>
+            {/* SK */}
+            <div className="flex flex-col items-center gap-1.5 flex-1">
+              <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://flagcdn.com/w160/sk.png" alt="SK" className="w-full h-full object-cover" />
+              </div>
+              <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)" }}>Slovensko</p>
+              <p className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "clamp(5px, 0.5vw, 10px)", letterSpacing: "0.1em" }}>Muži</p>
+            </div>
 
-          {/* SK */}
-          <div className="absolute overflow-hidden rounded-full" style={{ left: "8.30%", top: "44.74%", width: "13.96%", height: "9.99%" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://flagcdn.com/w80/sk.png" alt="SK" className="w-full h-full object-cover" />
+            {/* VS */}
+            <div className="flex items-center gap-2 shrink-0">
+              <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
+              <span className="font-bold text-[#94a3b8]" style={{ fontSize: "clamp(7px, 0.6vw, 12px)" }}>VS</span>
+              <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
+            </div>
+
+            {/* HR */}
+            <div className="flex flex-col items-center gap-1.5 flex-1">
+              <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://flagcdn.com/w160/hr.png" alt="HR" className="w-full h-full object-cover" />
+              </div>
+              <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)" }}>Chorvátsko</p>
+              <p className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "clamp(5px, 0.5vw, 10px)", letterSpacing: "0.1em" }}>Muži</p>
+            </div>
           </div>
-          <p className="absolute font-garet font-bold" style={{ left: "27.25%", top: "45.15%", fontSize: "clamp(8px, 0.98vw, 30px)", color: "#051937" }}>Slovensko</p>
-          <p className="absolute font-garet font-bold" style={{ left: "27.25%", top: "50.60%", fontSize: "clamp(6px, 0.74vw, 22px)", color: "#64748b" }}>MUŽI</p>
 
-          {/* VS */}
-          <div className="absolute" style={{ left: "8.30%", top: "60.39%", width: "30.66%", height: "1px", background: "rgba(0,0,0,0.08)" }} />
-          <p className="absolute font-garet font-bold" style={{ left: "44.53%", top: "58.51%", fontSize: "clamp(6px, 0.74vw, 22px)", color: "#64748b" }}>VS</p>
-          <div className="absolute" style={{ left: "56.64%", top: "60.39%", width: "30.66%", height: "1px", background: "rgba(0,0,0,0.08)" }} />
-
-          {/* HR */}
-          <div className="absolute overflow-hidden rounded-full" style={{ left: "8.98%", top: "66.46%", width: "13.96%", height: "9.99%" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://flagcdn.com/w80/hr.png" alt="HR" className="w-full h-full object-cover" />
+          {/* Date/Time */}
+          <div className="flex items-center" style={{ margin: "0 clamp(14px, 1.4vw, 28px)", padding: "clamp(8px, 0.8vw, 16px) 0", background: "#f0f4fa", borderRadius: "clamp(6px, 0.5vw, 10px)" }}>
+            <div className="flex-1 text-center" style={{ borderRight: "1px solid rgba(1,45,116,0.1)" }}>
+              <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 0.9 }}>15.</p>
+              <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 13px)" }}>Jún</p>
+            </div>
+            <div className="flex-1 text-center">
+              <p className="font-garet font-bold text-[#012d74]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1 }}>15:00</p>
+            </div>
           </div>
-          <p className="absolute font-garet font-bold" style={{ left: "27.83%", top: "67.81%", fontSize: "clamp(8px, 0.98vw, 30px)", color: "#051937" }}>Chorvátsko</p>
-          <p className="absolute font-garet font-bold" style={{ left: "27.25%", top: "72.63%", fontSize: "clamp(6px, 0.74vw, 22px)", color: "#64748b" }}>MUŽI</p>
 
-          {/* Bottom divider */}
-          <div className="absolute" style={{ left: "7.42%", top: "80%", width: "84.08%", height: "1px", background: "rgba(0,0,0,0.1)" }} />
-
-          {/* Eurohockey 5s */}
-          <p className="absolute font-garet font-bold" style={{ left: "7.42%", top: "87.45%", fontSize: "clamp(8px, 0.98vw, 30px)", color: "#64748b" }}>Eurohockey 5s</p>
-          <svg className="absolute" style={{ left: "83.69%", top: "89.33%", width: "clamp(8px, 0.6vw, 18px)", height: "clamp(8px, 0.6vw, 18px)" }} fill="none" viewBox="0 0 24 24" stroke="#64748b" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
+          {/* Footer — QR + Detail */}
+          <div style={{ padding: "clamp(10px, 1vw, 20px) clamp(14px, 1.4vw, 28px)", borderTop: "1px solid rgba(0,0,0,0.06)", marginTop: "clamp(8px, 0.8vw, 16px)" }}>
+            <div className="flex items-center gap-3">
+              <div style={{ width: "clamp(36px, 3vw, 56px)", height: "clamp(36px, 3vw, 56px)" }}>
+                <Image src="/images/qr-eurohockey.png" alt="QR" width={56} height={56} className="w-full h-full object-contain" />
+              </div>
+              <div className="flex items-center gap-2 flex-1" style={{ borderLeft: "1px solid rgba(0,0,0,0.08)", paddingLeft: "clamp(8px, 0.8vw, 16px)" }}>
+                <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(8px, 0.75vw, 15px)" }}>Detail zápasu</p>
+                <svg className="shrink-0 text-[#0078fd]" style={{ width: "clamp(10px, 0.8vw, 16px)", height: "clamp(10px, 0.8vw, 16px)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
