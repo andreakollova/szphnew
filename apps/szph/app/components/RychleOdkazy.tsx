@@ -72,7 +72,7 @@ export function RychleOdkazy() {
       <Link
         href="/zacni-hrat"
         className="group block relative overflow-hidden mb-5"
-        style={{ borderRadius: "10px", height: "140px" }}
+        style={{ borderRadius: "3px", height: "140px" }}
       >
         <Image
           src="/images/hockey-field-bg.jpg"
