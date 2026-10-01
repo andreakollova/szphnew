@@ -65,7 +65,7 @@ export default async function RootLayout({
         {/* 80px navbar + 36px announcement bar = 116px */}
         <main className="pt-[96px] md:pt-[116px]">{children}</main>
         <Footer brand="szph" />
-        {/* <CookieBanner /> */}
+        <CookieBanner />
       </body>
     </html>
   );
