@@ -24,12 +24,12 @@ export function CookieBanner() {
 
   return (
     <div
-      className="fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 z-[100] md:max-w-[420px]"
+      className="fixed bottom-0 left-0 right-0 z-[100]"
       style={{
         background: "rgba(5,25,55,0.95)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        borderRadius: "16px",
+        borderRadius: "0",
         boxShadow: "0 12px 40px rgba(0,0,0,0.3)",
         border: "1px solid rgba(255,255,255,0.08)",
       }}

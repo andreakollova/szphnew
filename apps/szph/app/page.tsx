@@ -232,11 +232,11 @@ export default async function SzphHome() {
             {/* ── Ľavý stĺpec: Aktuality + Reprezentácia + Organizácia ── */}
             <div className="pr-5 xl:pr-8 flex flex-col gap-10">
 
-              {/* Aktuality */}
+              {/* Aktuality (vrátane oznamy) */}
               <CardSection
                 title="Aktuality"
                 href="/novinky"
-                articles={aktuality.slice(0, 3)}
+                articles={[...aktuality, ...oznamy].sort((a: any, b: any) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()).slice(0, 3)}
               />
 
               {/* Reprezentácia */}
@@ -246,14 +246,35 @@ export default async function SzphHome() {
                 articles={reprezentacia.slice(0, 3)}
               />
 
-              {/* Organizácia */}
-              {oznamy.length > 0 && (
-                <CardSection
-                  title="Organizácia"
-                  href="/novinky"
-                  articles={oznamy.slice(0, 3)}
-                />
-              )}
+              {/* Pripnuté články */}
+              <div>
+                <div className="flex items-center justify-between mb-5">
+                  <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "18px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                    Pripnuté články
+                  </h2>
+                </div>
+                <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+                  {[
+                    { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
+                    { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
+                    { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
+                  ].map((article) => (
+                    <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden">
+                      <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "3px" }}>
+                        <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                      </div>
+                      <div className="pt-3">
+                        <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
+                          / neprehliadnite
+                        </span>
+                        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
+                          {article.title}
+                        </h3>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
 
             </div>
 
