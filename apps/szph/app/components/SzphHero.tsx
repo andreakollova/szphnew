@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const HERO_IMAGES = [
+  "/images/hero-banner-blue-player.jpg",
   "/images/hero-banner3.png",
   "/images/hero-banner3b.png",
   "/images/hero-banner7.png",
