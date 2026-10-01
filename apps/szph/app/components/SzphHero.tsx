@@ -1,14 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
-/*
-  Hero banner — Figma frame 19:1157
-  Design: 3022 × 1578
-  Blue decorative SVGs positioned from Figma insets.
-  Bottom stripes use CSS gradients with transforms.
-*/
+const HERO_IMAGES = [
+  "/images/hero-banner.png",
+  "/images/hero-banner2.png",
+  "/images/hero-banner3.png",
+];
 
 export function SzphHero() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="-mt-16 md:-mt-[112px]">
       <section
@@ -16,17 +27,24 @@ export function SzphHero() {
         className="relative w-full overflow-hidden"
         style={{ aspectRatio: "3022 / 1578" }}
       >
-        {/* ═══ Background photo ═══ */}
-        <Image
-          src="/images/hero-banner.png"
-          alt="SZPH"
-          fill
-          className="object-cover"
-          style={{ objectPosition: "center 55%" }}
-          priority
-          quality={90}
-          sizes="100vw"
-        />
+        {/* ═══ Background photos — fade rotation ═══ */}
+        {HERO_IMAGES.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt="SZPH"
+            fill
+            className="object-cover"
+            style={{
+              objectPosition: "center 55%",
+              opacity: current === i ? 1 : 0,
+              transition: "opacity 1s ease-in-out",
+            }}
+            priority={i === 0}
+            quality={90}
+            sizes="100vw"
+          />
+        ))}
 
         {/* ═══ Top vignette ═══ */}
         <div
@@ -240,8 +258,8 @@ export function SzphHero() {
           <p
             className="font-garet font-bold text-white/60 uppercase"
             style={{
-              fontSize: "clamp(0.5rem, 0.85vw, 22px)",
-              letterSpacing: "0.18em",
+              fontSize: "clamp(0.5rem, 0.75vw, 18px)",
+              letterSpacing: "0.1em",
               marginBottom: "clamp(4px, 0.6vw, 14px)",
               textShadow: "0 2px 20px rgba(0,0,0,0.3)",
             }}
