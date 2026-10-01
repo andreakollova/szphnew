@@ -307,9 +307,26 @@ export function SzphHero() {
             background: "rgba(255,255,255,0.97)",
             borderRadius: "clamp(12px, 1vw, 20px)",
             boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
-            overflow: "hidden",
+            overflow: "visible",
           }}
         >
+          {/* Ticket notches (dierky) */}
+          <div className="absolute pointer-events-none" style={{
+            left: "-8px", top: "68%", width: "16px", height: "16px",
+            borderRadius: "50%", background: "rgba(0,0,0,0.85)",
+            boxShadow: "inset 2px 0 4px rgba(0,0,0,0.3)",
+          }} />
+          <div className="absolute pointer-events-none" style={{
+            right: "-8px", top: "68%", width: "16px", height: "16px",
+            borderRadius: "50%", background: "rgba(0,0,0,0.85)",
+            boxShadow: "inset -2px 0 4px rgba(0,0,0,0.3)",
+          }} />
+          {/* Dashed line between notches */}
+          <div className="absolute pointer-events-none" style={{
+            left: "8px", right: "8px", top: "calc(68% + 7px)",
+            height: "1px",
+            backgroundImage: "repeating-linear-gradient(to right, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 4px, transparent 4px, transparent 8px)",
+          }} />
           {/* Header */}
           <div style={{ padding: "clamp(12px, 1.2vw, 24px) clamp(14px, 1.4vw, 28px) clamp(8px, 0.8vw, 16px)" }}>
             <div className="flex items-center gap-2 mb-2">
