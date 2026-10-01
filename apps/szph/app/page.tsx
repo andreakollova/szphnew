@@ -437,7 +437,7 @@ export default async function SzphHome() {
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
 
-          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8 xl:gap-12 items-center">
+          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-10 xl:gap-16 items-center">
 
             {/* Ľavý — text */}
             <div>
@@ -449,7 +449,7 @@ export default async function SzphHome() {
               <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
                 Rozhovor o infraštruktúre a výstavbe nového štadióna
               </h3>
-              <p className="text-white font-bold uppercase mb-1" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
+              <p className="text-white/50 font-bold uppercase mb-1" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
                 Richard Garaj / Matej Boho
               </p>
               <p className="text-white mb-6" style={{ fontSize: "13px", fontWeight: 500 }}>
