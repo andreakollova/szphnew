@@ -117,9 +117,8 @@ export default function CookiePolicyPage() {
               cookies spravovať priamo v nastaveniach vášho prehliadača — v sekcii Súkromie/Cookies.
               Majte na pamäti, že blokovanie niektorých cookies môže ovplyvniť funkčnosť stránky.
             </p>
-            <button
-              onClick={() => {}}
-              id="reset-cookies"
+            <Link
+              href="/"
               className="mt-4 inline-flex items-center gap-2 font-garet font-bold text-white transition-all hover:brightness-110"
               style={{
                 background: "#012d74",
@@ -129,7 +128,7 @@ export default function CookiePolicyPage() {
               }}
             >
               Zmeniť nastavenia cookies
-            </button>
+            </Link>
           </section>
 
           <section>
