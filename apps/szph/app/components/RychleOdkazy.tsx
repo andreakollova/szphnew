@@ -87,10 +87,10 @@ export function RychleOdkazy() {
         />
         <div className="absolute inset-0 flex flex-col justify-center px-5">
           <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
-            Staň sa súčasťou hry
+            Začni s pozemným hokejom
           </p>
           <p className="text-white/60 mt-1" style={{ fontSize: "11px" }}>
-            Tvoj príbeh sa začína na ihrisku.
+            Nájdi svoj tím a pridaj sa.
           </p>
           <div
             className="mt-3 inline-flex items-center gap-2 self-start px-3.5 py-1.5 font-bold text-white"
