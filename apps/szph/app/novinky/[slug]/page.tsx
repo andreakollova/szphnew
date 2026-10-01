@@ -40,11 +40,16 @@ const PINNED_ARTICLES: Record<string, any> = {
     category: "novinky",
     published_at: "2026-10-01T09:00:00Z",
     status: "published",
-    gallery: [
-      "/images/articles/hokej-vo-svete/1.png",
-      "/images/articles/hokej-vo-svete/2.webp",
-      "/images/articles/hokej-vo-svete/3.png",
-      "/images/articles/hokej-vo-svete/4.png",
+    galleries: [
+      {
+        title: "Fotogaléria",
+        images: [
+          "/images/articles/hokej-vo-svete/1.png",
+          "/images/articles/hokej-vo-svete/2.webp",
+          "/images/articles/hokej-vo-svete/3.png",
+          "/images/articles/hokej-vo-svete/4.png",
+        ],
+      },
     ],
     content: `## DÔLEŽITOSŤ POZEMNÉHO HOKEJA
 
@@ -63,6 +68,85 @@ Pozemný hokej dnes zahŕňa niekoľko významných líg, ktoré formujú globá
 - FIH Pro League, založená v roku 2019, je elitnou medzinárodnou súťažou, kde súťažia najlepšie národné tímy (reprezentácie).
 - Euro Hockey League (EHL) je naopak najprestížnejšou klubovou súťažou v Európe, ktorá pritiahne špičkové tímy a hráčov.
 - Hockey India League (HIL) bola obnovená v roku 2024 s hráčskou aukciou, v ktorej tímy investovali viac ako 2 milióny USD do nákupu hráčov z celého sveta.`,
+  },
+};
+
+  "program-olympiada-2036": {
+    id: "pinned-2",
+    slug: "program-olympiada-2036",
+    title: "Program Olympiáda 2036",
+    excerpt: "Akčný plán pre rozvoj slovenského pozemného hokeja. SZPH predkladá tento akčný plán ako súčasť iniciatívy Program Olympiáda 2036.",
+    cover_image_url: "/images/pinned-olympiada-2036.webp",
+    category: "novinky",
+    published_at: "2026-09-15T09:00:00Z",
+    status: "published",
+    galleries: [
+      {
+        title: "Fotogaléria",
+        images: [
+          "/images/articles/olympiada-2036/g1-1.webp",
+          "/images/articles/olympiada-2036/g1-2.webp",
+          "/images/articles/olympiada-2036/g1-3.webp",
+          "/images/articles/olympiada-2036/g1-4.webp",
+        ],
+      },
+      {
+        title: "Fotogaléria",
+        images: [
+          "/images/articles/olympiada-2036/g2-1.webp",
+          "/images/articles/olympiada-2036/g2-2.webp",
+          "/images/articles/olympiada-2036/g2-3.webp",
+          "/images/articles/olympiada-2036/g2-4.webp",
+        ],
+      },
+    ],
+    content: `## Akčný plán pre rozvoj slovenského pozemného hokeja
+
+Slovenský zväz pozemného hokeja (SZPH) predkladá tento akčný plán ako súčasť iniciatívy Program Olympiáda 2036, ktorej cieľom je systematická príprava slovenských športovcov na účasť na Olympijských hrách v roku 2036. Tento dokument identifikuje kľúčové strategické oblasti, v ktorých je potrebné sústrediť zdroje a úsilie s cieľom zvýšiť konkurencieschopnosť našich športovcov na medzinárodnej úrovni.
+
+## Dlhodobý rozvoj hráčskej základne
+
+Zvýšenie záujmu o pozemný hokej na všetkých úrovniach, so zameraním na mládež, amatérske a profesionálne tímy. Cieľom je vytvoriť širokú základňu talentovaných športovcov, ktorí budú pripravení na vrcholové medzinárodné súťaže.
+
+## Zlepšenie infraštruktúry a podmienok na prípravu
+
+Vybudovanie nových moderných tréningových a súťažných zariadení v súlade s normami FIH (Medzinárodná federácia pozemného hokeja), ktoré umožnia efektívnu prípravu a organizáciu medzinárodných podujatí.
+
+## Finančná udržateľnosť a získavanie zdrojov
+
+Zabezpečenie dlhodobej finančnej stability zväzu prostredníctvom spolupráce so sponzormi, grantmi a štátnou podporou, čím sa zabezpečia dostatočné zdroje pre prípravu športovcov a modernizáciu infraštruktúry.
+
+## Kvalitné vzdelávanie a rozvoj trénerov a rozhodcov
+
+Zameranie sa na ďalšie vzdelávanie a profesionalizáciu trénerov a rozhodcov prostredníctvom medzinárodných školení a výmenných programov. Zabezpečenie svetovej úrovne prípravy našich športovcov.
+
+## Medzinárodná spolupráca a partnerstvá
+
+Rozšírenie spolupráce s medzinárodnými organizáciami, federáciami a významnými klubmi v Európe a vo svete. Získanie cenných skúseností, výmeny know-how a príležitostí pre slovenských hráčov súťažiť na najvyššej úrovni.
+
+## Popularizácia športu a marketingová stratégia
+
+Zvýšenie viditeľnosti a prestíže pozemného hokeja na Slovensku prostredníctvom intenzívnej marketingovej kampane, zameranej na zapojenie širokej verejnosti, mládeže a médií.
+
+{{GALLERY:0}}
+
+## Fyzická príprava
+
+Fyzická príprava bude rozdelená do makrocyklov a mezocyklov, ktoré postupne zvýšia silu, vytrvalosť, rýchlosť a agilitu hráčov. Počas roka sa tréningy zamerajú na rozvoj maximálnej sily, explozívnej sily, ako aj na zlepšenie aeróbnej kapacity prostredníctvom intervalových tréningov. Okrem toho budú zavedené špecifické cvičenia na zlepšenie rýchlosti reakcií a agility.
+
+## Technická a taktická príprava
+
+Technická príprava bude zahŕňať nácvik driblingu v obmedzených priestoroch, prihrávky a prijímanie loptičky pod tlakom, ako aj streľbu na bránu za prítomnosti obrany. V rámci taktickej prípravy sa hráči budú venovať nácviku obranných a útočných formácií, simulácii herných situácií a špecifickým taktickým scenárom, ako je zónové bránenie a prechod do protiútoku. Štandardné situácie, vrátane krátkych rohov, budú systematicky trénované.
+
+## Mentálna príprava
+
+Mentálna príprava bude kľúčovou súčasťou tréningového procesu, pričom bude zahŕňať vedenie športového psychológa zamerané na zvládanie stresu a zlepšenie sebavedomia hráčov. Tímová komunikácia bude posilnená interaktívnymi cvičeniami, ktoré simulujú herné situácie pod tlakom. Hráči budú využívať vizualizačné techniky na mentálnu prípravu na dôležité herné momenty.
+
+## Regenerácia a prevencia zranení
+
+Regenerácia a prevencia zranení budú integrované do každého tréningového cyklu. Zahŕňajú aktívny oddych, ľahké tréningy, fyzioterapiu a monitorovanie regenerácie hráčov prostredníctvom moderných technológií, čím sa zníži riziko zranení a pretrénovania. Každý hráč bude mať individuálny regeneračný plán.
+
+{{GALLERY:1}}`,
   },
 };
 
@@ -132,11 +216,34 @@ function SidebarMatchCard({ match }: { match: any }) {
   );
 }
 
-function renderContent(content: string) {
+function GalleryGrid({ gallery }: { gallery: { title: string; images: string[] } }) {
+  return (
+    <div className="my-10">
+      <h3 className="font-garet font-bold text-[#051937] mb-4" style={{ fontSize: "18px" }}>{gallery.title || "Fotogaléria"}</h3>
+      <div className="grid grid-cols-2 gap-3">
+        {gallery.images.map((img, i) => (
+          <div key={i} className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "3px" }}>
+            <Image src={img} alt={`Foto ${i + 1}`} fill className="object-cover" sizes="(max-width: 1024px) 50vw, 35vw" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function renderContent(content: string, galleries?: any[]) {
   // Parse markdown-like content into HTML
   const blocks = content.split("\n\n").filter(Boolean);
 
   return blocks.map((block, i) => {
+    // Gallery placeholder
+    const galleryMatch = block.match(/^\{\{GALLERY:(\d+)\}\}$/);
+    if (galleryMatch && galleries) {
+      const idx = parseInt(galleryMatch[1]);
+      if (galleries[idx]) return <GalleryGrid key={i} gallery={galleries[idx]} />;
+      return null;
+    }
+
     // Headings
     if (block.startsWith("### ")) {
       return (
@@ -259,26 +366,30 @@ export default async function ArticleDetailPage({ params }: Props) {
                 article.content.startsWith("<") ? (
                   <div dangerouslySetInnerHTML={{ __html: article.content }} />
                 ) : (
-                  renderContent(article.content)
+                  renderContent(article.content, article.galleries)
                 )
               ) : (
                 <p className="text-[#64748b]">Obsah článku nie je dostupný.</p>
               )}
             </div>
 
-            {/* Photo gallery */}
-            {article.gallery && article.gallery.length > 0 && (
-              <div className="mt-10">
-                <h3 className="font-garet font-bold text-[#051937] mb-4" style={{ fontSize: "18px" }}>Fotogaléria</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {article.gallery.map((img: string, i: number) => (
-                    <div key={i} className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "3px" }}>
-                      <Image src={img} alt={`Foto ${i + 1}`} fill className="object-cover" sizes="(max-width: 1024px) 50vw, 35vw" />
-                    </div>
-                  ))}
+            {/* Photo galleries */}
+            {article.galleries && article.galleries.length > 0 && article.galleries.map((g: any, gi: number) => {
+              const inContent = article.content?.includes(`{{GALLERY:${gi}}}`);
+              if (inContent) return null;
+              return (
+                <div key={gi} className="mt-10">
+                  <h3 className="font-garet font-bold text-[#051937] mb-4" style={{ fontSize: "18px" }}>{g.title || "Fotogaléria"}</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {g.images.map((img: string, i: number) => (
+                      <div key={i} className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "3px" }}>
+                        <Image src={img} alt={`Foto ${i + 1}`} fill className="object-cover" sizes="(max-width: 1024px) 50vw, 35vw" />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })}
 
             <style>{`
               .article-content h2 { font-size: 22px; font-weight: 700; color: #051937; margin: 32px 0 12px; }
