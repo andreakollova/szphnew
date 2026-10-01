@@ -478,10 +478,10 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         style={{
           height: "36px",
           background: (hasHero && !scrolled)
-            ? "linear-gradient(135deg, rgba(16,43,80,0.75) 0%, rgba(16,43,80,0.6) 50%, rgba(16,43,80,0.5) 100%)"
+            ? "linear-gradient(135deg, rgba(16,43,80,0.92) 0%, rgba(16,43,80,0.88) 100%)"
             : "linear-gradient(135deg, #0a1f3d 0%, #102b50 100%)",
-          backdropFilter: (hasHero && !scrolled) ? "blur(16px) saturate(1.2)" : "none",
-          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(16px) saturate(1.2)" : "none",
+          backdropFilter: (hasHero && !scrolled) ? "blur(20px)" : "none",
+          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(20px)" : "none",
         }}
       >
         {announcement ? (
@@ -526,14 +526,14 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         )}
         style={{
           background: (hasHero && !scrolled)
-            ? "linear-gradient(135deg, rgba(0,33,93,0.8) 0%, rgba(0,33,93,0.65) 50%, rgba(0,33,93,0.55) 100%)"
+            ? "linear-gradient(135deg, rgba(0,33,93,0.92) 0%, rgba(0,33,93,0.88) 100%)"
             : (hasHero && scrolled)
               ? "rgba(255,255,255,0.97)"
               : "linear-gradient(135deg, #001a4a 0%, #00215d 100%)",
-          backdropFilter: (hasHero && !scrolled) ? "blur(20px) saturate(1.3)" : (hasHero && scrolled) ? "blur(12px)" : "none",
-          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(20px) saturate(1.3)" : (hasHero && scrolled) ? "blur(12px)" : "none",
-          boxShadow: (hasHero && !scrolled) ? "0 1px 0 rgba(255,255,255,0.08) inset" : (hasHero && scrolled) ? "0 2px 16px rgba(0,0,0,0.08)" : "0 2px 12px rgba(0,0,0,0.15)",
-          borderBottom: (hasHero && !scrolled) ? "1px solid rgba(255,255,255,0.08)" : (hasHero && scrolled) ? "1px solid rgba(1,45,116,0.08)" : "1px solid rgba(0,33,93,0.3)",
+          backdropFilter: (hasHero && !scrolled) ? "blur(20px)" : (hasHero && scrolled) ? "blur(12px)" : "none",
+          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(20px)" : (hasHero && scrolled) ? "blur(12px)" : "none",
+          boxShadow: (hasHero && !scrolled) ? "0 1px 0 rgba(255,255,255,0.06) inset" : (hasHero && scrolled) ? "0 2px 16px rgba(0,0,0,0.08)" : "0 2px 12px rgba(0,0,0,0.15)",
+          borderBottom: (hasHero && !scrolled) ? "1px solid rgba(255,255,255,0.06)" : (hasHero && scrolled) ? "1px solid rgba(1,45,116,0.08)" : "1px solid rgba(0,33,93,0.3)",
         }}
       >
 
