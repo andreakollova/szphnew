@@ -1,119 +1,156 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "E-shop | SZPH",
-  description:
-    "Oficiálny e-shop Slovenského zväzu pozemného hokeja. Dresy, merch a vybavenie pre pozemný hokej.",
-};
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
+const CATEGORIES = [
+  { key: "all", label: "Všetko" },
+  { key: "mikiny", label: "Mikiny" },
+  { key: "tricka", label: "Tričká" },
+  { key: "polokosele", label: "Polokošele" },
+  { key: "bundy", label: "Bundy" },
+];
+
+const PRODUCTS = [
+  {
+    id: "mikina-biela",
+    name: "Mikina SZPH — biela",
+    price: 44.90,
+    category: "mikiny",
+    images: ["/images/eshop/mikina-biela-1.png", "/images/eshop/mikina-biela-2.png", "/images/eshop/mikina-biela-3.png", "/images/eshop/mikina-biela-4.png"],
+    badge: "Novinka",
+  },
+  {
+    id: "mikina-modra",
+    name: "Mikina SZPH — tmavomodrá",
+    price: 44.90,
+    category: "mikiny",
+    images: ["/images/eshop/mikina-modra-1.png", "/images/eshop/mikina-modra-2.png", "/images/eshop/mikina-modra-3.png", "/images/eshop/mikina-modra-4.png"],
+    badge: "Novinka",
+  },
+  {
+    id: "tricko-biele",
+    name: "Tričko Slovakia Field Hockey — biele",
+    price: 24.90,
+    category: "tricka",
+    images: ["/images/eshop/tricko-1.png", "/images/eshop/tricko-2.png", "/images/eshop/tricko-3.png"],
+  },
+  {
+    id: "tricko-potlac",
+    name: "Tričko Slovakia Field Hockey — s potlačou",
+    price: 27.90,
+    category: "tricka",
+    images: ["/images/eshop/tricko-4.png", "/images/eshop/tricko-5.png", "/images/eshop/tricko-6.png"],
+  },
+  {
+    id: "polokosela",
+    name: "Polokošeľa Field Hockey Slovakia",
+    price: 39.90,
+    category: "polokosele",
+    images: ["/images/eshop/polokosela-1.png", "/images/eshop/polokosela-2.png"],
+  },
+  {
+    id: "vetrovka",
+    name: "Vetrovka Slovakia Field Hockey",
+    price: 59.90,
+    category: "bundy",
+    images: ["/images/eshop/vetrovka-1.png"],
+    badge: "Limitovaná edícia",
+  },
+];
 
 export default function EshopPage() {
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const filtered = activeCategory === "all" ? PRODUCTS : PRODUCTS.filter(p => p.category === activeCategory);
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
-      <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
-          <span
-            className="font-bold uppercase text-white/40 mb-4 block"
-            style={{ fontSize: "10px", letterSpacing: "0.14em" }}
-          >
-            Nakupovanie
+      {/* Hero */}
+      <div className="py-14 px-6" style={{ background: "#051937" }}>
+        <div className="max-w-[1600px] mx-auto px-0 lg:px-4">
+          <span className="font-bold uppercase text-white/40 mb-3 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
+            Oficiálny obchod
           </span>
-          <h1
-            className="font-garet font-bold italic text-white leading-tight"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-          >
-            Oficiálny e-shop SZPH
+          <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+            SZPH Eshop
           </h1>
-          <p
-            className="text-white/50 mt-3 max-w-xl"
-            style={{ fontSize: "15px" }}
-          >
-            Dresy, merchandise a vybavenie pre pozemný hokej na jednom mieste.
+          <p className="text-white/50 mt-2 max-w-xl" style={{ fontSize: "14px" }}>
+            Oficiálne oblečenie a merch Slovenského zväzu pozemného hokeja.
           </p>
         </div>
       </div>
 
-      <div className="max-w-[900px] mx-auto px-6 pt-12">
-        <div
-          className="rounded-2xl border border-[#e2e8f0] bg-white p-10 text-center"
-          style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
-        >
-          <div
-            className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full"
-            style={{ background: "#051937" }}
-          >
-            <svg
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+      <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8">
+
+        {/* Kategórie */}
+        <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat.key}
+              onClick={() => setActiveCategory(cat.key)}
+              className="shrink-0 px-5 py-2 font-bold uppercase transition-all"
+              style={{
+                fontSize: "10px",
+                letterSpacing: "0.1em",
+                borderRadius: "20px",
+                border: "1px solid rgba(1,45,116,0.12)",
+                background: activeCategory === cat.key ? "#012d74" : "transparent",
+                color: activeCategory === cat.key ? "#fff" : "#64748b",
+              }}
             >
-              <circle cx="9" cy="21" r="1" />
-              <circle cx="20" cy="21" r="1" />
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-            </svg>
-          </div>
+              {cat.label}
+            </button>
+          ))}
+        </div>
 
-          <h2
-            className="font-garet font-bold text-[#051937] mb-3"
-            style={{ fontSize: "24px" }}
-          >
-            E-shop sa pripravuje
-          </h2>
-
-          <p
-            className="text-[#334155] leading-relaxed max-w-lg mx-auto mb-6"
-            style={{ fontSize: "15px" }}
-          >
-            Pracujeme na spustení oficiálneho e-shopu Slovenského zväzu
-            pozemného hokeja. Čoskoro tu nájdete oficiálne dresy, tréningové
-            oblečenie, merchandise a vybavenie pre pozemný hokej.
-          </p>
-
-          <div className="space-y-3 max-w-sm mx-auto text-left">
-            <div className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 rounded-full bg-[#012d74] shrink-0" />
-              <p className="text-[#334155]" style={{ fontSize: "15px" }}>
-                Oficiálne dresy a reprezentačné oblečenie
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 rounded-full bg-[#012d74] shrink-0" />
-              <p className="text-[#334155]" style={{ fontSize: "15px" }}>
-                Tréningový merch a doplnky s logom SZPH
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 rounded-full bg-[#012d74] shrink-0" />
-              <p className="text-[#334155]" style={{ fontSize: "15px" }}>
-                Hokejky, loptičky a ochranné vybavenie
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="mt-1 h-2 w-2 rounded-full bg-[#012d74] shrink-0" />
-              <p className="text-[#334155]" style={{ fontSize: "15px" }}>
-                Brankárska výstroj a tréningové pomôcky
-              </p>
-            </div>
-          </div>
-
-          <p
-            className="text-[#94a3b8] mt-8"
-            style={{ fontSize: "13px" }}
-          >
-            Pre aktuálne informácie o spustení e-shopu sledujte naše sociálne
-            siete alebo nás kontaktujte na{" "}
-            <a
-              href="mailto:szph@szph.sk"
-              className="font-bold text-[#012d74] hover:underline"
+        {/* Produkty grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {filtered.map(product => (
+            <Link
+              key={product.id}
+              href={`/eshop/${product.id}`}
+              className="group block bg-white overflow-hidden transition-all hover:shadow-md"
+              style={{ borderRadius: "4px", border: "1px solid rgba(1,45,116,0.06)" }}
             >
-              szph@szph.sk
-            </a>
-            .
-          </p>
+              {/* Obrázok */}
+              <div className="relative overflow-hidden" style={{ aspectRatio: "4/5", background: "#f0f2f5" }}>
+                <Image
+                  src={product.images[0]}
+                  alt={product.name}
+                  fill
+                  className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
+                {product.badge && (
+                  <span className="absolute top-3 left-3 px-2.5 py-1 font-bold text-white" style={{ fontSize: "9px", background: "#d80027", borderRadius: "3px", letterSpacing: "0.05em" }}>
+                    {product.badge}
+                  </span>
+                )}
+              </div>
+              {/* Info */}
+              <div className="p-4">
+                <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "13px" }}>
+                  {product.name}
+                </h3>
+                <p className="font-garet font-bold text-[#012d74] mt-2" style={{ fontSize: "16px" }}>
+                  {product.price.toFixed(2)} €
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* Info banner */}
+        <div className="mt-10 p-6 flex items-start gap-4" style={{ background: "#fff", borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+          <svg className="h-5 w-5 text-[#012d74] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <div>
+            <p className="font-bold text-[#051937] mb-1" style={{ fontSize: "14px" }}>Objednávky a doprava</p>
+            <p className="text-[#64748b]" style={{ fontSize: "13px" }}>
+              Pre objednanie produktu nás kontaktujte na <a href="mailto:szph@szph.sk" className="font-bold text-[#012d74] hover:underline">szph@szph.sk</a> alebo <a href="tel:+421918555519" className="font-bold text-[#012d74] hover:underline">+421 918 555 519</a>. Doručenie po celom Slovensku.
+            </p>
+          </div>
         </div>
       </div>
     </article>
