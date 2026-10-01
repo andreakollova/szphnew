@@ -240,7 +240,7 @@ export default async function FieldhockeyHome() {
             <div>
               <span className="label-wide text-[var(--sky)] block mb-3">Podcast</span>
               <p className="text-white/70 leading-relaxed max-w-sm">
-                Vypočujte si najnovšie príbehy zo sveta pozemného hokeja. Rozhovory, analýzy a zákulisie slovenskej ligy.
+                Vypočujte si najnovšiu časť nášho podcastu!
               </p>
               <Link
                 href="/podcast"
