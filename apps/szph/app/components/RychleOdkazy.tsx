@@ -125,7 +125,7 @@ export function RychleOdkazy() {
         />
         <div
           className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, rgba(216,0,39,0.65) 0%, rgba(140,0,25,0.5) 100%)" }}
+          style={{ background: "linear-gradient(to right, rgba(216,0,39,0.85) 0%, rgba(216,0,39,0.4) 50%, transparent 100%)" }}
         />
         <div className="absolute inset-0 flex flex-col justify-center px-5">
           <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
