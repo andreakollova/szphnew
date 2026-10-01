@@ -220,7 +220,16 @@ export default async function SzphHome() {
 
   return (
     <>
-      <SzphHero />
+      <SzphHero nextMatch={(() => {
+        const now = Date.now();
+        const upcoming = (matches as any[]).filter((m: any) => m.status === "scheduled" && new Date(m.date).getTime() > now).sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        const isRep = (m: any) => (m.home_short === "SVK" || m.away_short === "SVK") && !m.league?.includes("ČESKÁ");
+        const repMatch = upcoming.find(isRep);
+        const ligaMatch = upcoming.find((m: any) => !isRep(m));
+        const m = repMatch || ligaMatch;
+        if (!m) return null;
+        return { id: m.id, home_team: m.home_team, away_team: m.away_team, home_short: m.home_short, away_short: m.away_short, home_logo: m.home_logo, away_logo: m.away_logo, date: m.date, league: m.league, venue: m.venue, video_url: m.video_url, isRep: isRep(m) };
+      })()} />
 
       {/* ═══════════════════════════════════════════════════════
           AKTUALITY + RÝCHLE ODKAZY

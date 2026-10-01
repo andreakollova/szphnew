@@ -12,7 +12,22 @@ const HERO_IMAGES = [
   "/images/hero-banner2.png",
 ];
 
-export function SzphHero() {
+interface NextMatch {
+  id: string;
+  home_team: string;
+  away_team: string;
+  home_short?: string;
+  away_short?: string;
+  home_logo?: string;
+  away_logo?: string;
+  date: string;
+  league?: string;
+  venue?: string;
+  video_url?: string | null;
+  isRep?: boolean;
+}
+
+export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -304,100 +319,98 @@ export function SzphHero() {
         </div>
 
         {/* ═══ Ticket card ═══ */}
-        <div
-          className="absolute hidden lg:flex flex-col"
-          style={{
-            right: "4%",
-            top: "35%",
-            width: "clamp(240px, 18vw, 340px)",
-            background: "rgba(255,255,255,0.97)",
-            borderRadius: "clamp(6px, 0.6vw, 10px)",
-            boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
-            overflow: "visible",
-            WebkitMaskImage: "radial-gradient(circle 10px at 0px 26%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 26%, transparent 9px, black 10px)",
-            WebkitMaskComposite: "destination-in",
-            maskImage: "radial-gradient(circle 10px at 0px 26%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 26%, transparent 9px, black 10px)",
-            maskComposite: "intersect",
-          }}
-        >
-          {/* Dashed line between notches */}
-          <div className="absolute pointer-events-none" style={{
-            left: "8px", right: "8px", top: "calc(26% - 1px)",
-            height: "1px",
-            backgroundImage: "repeating-linear-gradient(to right, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 4px, transparent 4px, transparent 8px)",
-          }} />
-          {/* Header */}
-          <div style={{ padding: "clamp(12px, 1.2vw, 24px) clamp(14px, 1.4vw, 28px) clamp(8px, 0.8vw, 16px)" }}>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="h-2 w-2 rounded-full bg-[#0078fd] animate-pulse shrink-0" />
-              <span className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.65vw, 13px)", letterSpacing: "0.12em" }}>
-                Najbližší zápas
-              </span>
-            </div>
-            <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(12px, 1.1vw, 22px)", letterSpacing: "0.06em" }}>
-              Reprezentácia <span className="text-[#94a3b8] mx-0.5">&#x2502;</span> M
-            </p>
-            <p className="text-[#64748b] mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600 }}>
-              EuroHockey 5s Championship Men 2026
-            </p>
-          </div>
+        {nextMatch && (() => {
+          const md = new Date(nextMatch.date);
+          const day = md.getDate();
+          const month = md.toLocaleDateString("sk-SK", { month: "short" });
+          const time = md.toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
+          const matchUrl = `/zapasy/${nextMatch.id}`;
+          const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(`https://szph.sk${matchUrl}`)}`;
+          const homeLogo = nextMatch.home_logo?.startsWith("flag:") ? `https://flagcdn.com/w160/${nextMatch.home_logo.replace("flag:", "")}.png` : nextMatch.home_logo;
+          const awayLogo = nextMatch.away_logo?.startsWith("flag:") ? `https://flagcdn.com/w160/${nextMatch.away_logo.replace("flag:", "")}.png` : nextMatch.away_logo;
 
-          {/* Teams */}
-          <div className="flex items-center justify-center gap-4" style={{ padding: "clamp(10px, 1vw, 20px) clamp(14px, 1.4vw, 28px)" }}>
-            {/* SK */}
-            <div className="flex flex-col items-center gap-0.5 flex-1">
-              <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://flagcdn.com/w160/sk.png" alt="SK" className="w-full h-full object-cover" />
+          return (
+            <Link href={matchUrl} className="absolute hidden lg:flex flex-col" style={{
+              right: "4%", top: "35%", width: "clamp(240px, 18vw, 340px)",
+              background: "rgba(255,255,255,0.97)", borderRadius: "clamp(6px, 0.6vw, 10px)",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.2)", overflow: "visible",
+              WebkitMaskImage: "radial-gradient(circle 10px at 0px 26%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 26%, transparent 9px, black 10px)",
+              WebkitMaskComposite: "destination-in",
+              maskImage: "radial-gradient(circle 10px at 0px 26%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 26%, transparent 9px, black 10px)",
+              maskComposite: "intersect",
+            }}>
+              <div className="absolute pointer-events-none" style={{ left: "8px", right: "8px", top: "calc(26% - 1px)", height: "1px", backgroundImage: "repeating-linear-gradient(to right, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 4px, transparent 4px, transparent 8px)" }} />
+              {/* Header */}
+              <div style={{ padding: "clamp(12px, 1.2vw, 24px) clamp(14px, 1.4vw, 28px) clamp(8px, 0.8vw, 16px)" }}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="h-2 w-2 rounded-full bg-[#0078fd] animate-pulse shrink-0" />
+                  <span className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.65vw, 13px)", letterSpacing: "0.12em" }}>
+                    Najbližší zápas
+                  </span>
+                  {nextMatch.video_url && (
+                    <svg className="h-3.5 w-3.5 text-[#d80027] shrink-0 ml-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                  )}
+                </div>
+                <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(12px, 1.1vw, 22px)", letterSpacing: "0.06em" }}>
+                  {nextMatch.isRep ? "Reprezentácia" : (nextMatch.home_short || nextMatch.home_team)} <span className="text-[#94a3b8] mx-0.5">&#x2502;</span> {nextMatch.isRep ? (nextMatch.away_short || nextMatch.away_team) : (nextMatch.away_short || nextMatch.away_team)}
+                </p>
+                <p className="text-[#64748b] mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600 }}>
+                  {nextMatch.league || "Zápas"}
+                </p>
               </div>
-              <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>Slovensko</p>
-              <p className="font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(5px, 0.5vw, 10px)", letterSpacing: "0.1em" }}>Muži</p>
-            </div>
 
-            {/* VS */}
-            <div className="flex items-center gap-2 shrink-0">
-              <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
-              <span className="font-bold text-[#94a3b8]" style={{ fontSize: "clamp(7px, 0.6vw, 12px)" }}>VS</span>
-              <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
-            </div>
-
-            {/* HR */}
-            <div className="flex flex-col items-center gap-0.5 flex-1">
-              <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="https://flagcdn.com/w160/hr.png" alt="HR" className="w-full h-full object-cover" />
+              {/* Teams */}
+              <div className="flex items-center justify-center gap-4" style={{ padding: "clamp(10px, 1vw, 20px) clamp(14px, 1.4vw, 28px)" }}>
+                <div className="flex flex-col items-center gap-0.5 flex-1">
+                  <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {homeLogo && <img src={homeLogo} alt="" className="w-full h-full object-cover" />}
+                  </div>
+                  <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>{nextMatch.home_short || nextMatch.home_team}</p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
+                  <span className="font-bold text-[#94a3b8]" style={{ fontSize: "clamp(7px, 0.6vw, 12px)" }}>VS</span>
+                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
+                </div>
+                <div className="flex flex-col items-center gap-0.5 flex-1">
+                  <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    {awayLogo && <img src={awayLogo} alt="" className="w-full h-full object-cover" />}
+                  </div>
+                  <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>{nextMatch.away_short || nextMatch.away_team}</p>
+                </div>
               </div>
-              <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>Chorvátsko</p>
-              <p className="font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(5px, 0.5vw, 10px)", letterSpacing: "0.1em" }}>Muži</p>
-            </div>
-          </div>
 
-          {/* Date/Time */}
-          <div className="flex items-center" style={{ margin: "0 clamp(14px, 1.4vw, 28px)", padding: "clamp(8px, 0.8vw, 16px) 0", background: "#f0f4fa", borderRadius: "clamp(6px, 0.5vw, 10px)" }}>
-            <div className="flex-1 text-center" style={{ borderRight: "1px solid rgba(1,45,116,0.1)" }}>
-              <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 0.9 }}>15.</p>
-              <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 13px)" }}>Jún</p>
-            </div>
-            <div className="flex-1 text-center">
-              <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1 }}>15:00</p>
-            </div>
-          </div>
+              {/* Date/Time */}
+              <div className="flex items-center" style={{ margin: "0 clamp(14px, 1.4vw, 28px)", padding: "clamp(8px, 0.8vw, 16px) 0", background: "#f0f4fa", borderRadius: "clamp(6px, 0.5vw, 10px)" }}>
+                <div className="flex-1 text-center" style={{ borderRight: "1px solid rgba(1,45,116,0.1)" }}>
+                  <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 0.9 }}>{day}.</p>
+                  <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 13px)" }}>{month}</p>
+                </div>
+                <div className="flex-1 text-center">
+                  <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1 }}>{time}</p>
+                </div>
+              </div>
 
-          {/* Footer — QR + Detail */}
-          <div style={{ padding: "clamp(10px, 1vw, 20px) clamp(14px, 1.4vw, 28px)", borderTop: "1px solid rgba(0,0,0,0.06)", marginTop: "clamp(8px, 0.8vw, 16px)" }}>
-            <div className="flex items-center gap-3">
-              <div style={{ width: "clamp(36px, 3vw, 56px)", height: "clamp(36px, 3vw, 56px)" }}>
-                <Image src="/images/qr-eurohockey.png" alt="QR" width={56} height={56} className="w-full h-full object-contain" />
+              {/* Footer — QR + Detail */}
+              <div style={{ padding: "clamp(10px, 1vw, 20px) clamp(14px, 1.4vw, 28px)", borderTop: "1px solid rgba(0,0,0,0.06)", marginTop: "clamp(8px, 0.8vw, 16px)" }}>
+                <div className="flex items-center gap-3">
+                  <div style={{ width: "clamp(36px, 3vw, 56px)", height: "clamp(36px, 3vw, 56px)" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={qrUrl} alt="QR" className="w-full h-full object-contain" style={{ borderRadius: "4px" }} />
+                  </div>
+                  <div className="flex items-center gap-2 flex-1" style={{ borderLeft: "1px solid rgba(0,0,0,0.08)", paddingLeft: "clamp(8px, 0.8vw, 16px)" }}>
+                    <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(8px, 0.75vw, 15px)" }}>Detail zápasu</p>
+                    <svg className="shrink-0 text-[#0078fd]" style={{ width: "clamp(10px, 0.8vw, 16px)", height: "clamp(10px, 0.8vw, 16px)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2 flex-1" style={{ borderLeft: "1px solid rgba(0,0,0,0.08)", paddingLeft: "clamp(8px, 0.8vw, 16px)" }}>
-                <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(8px, 0.75vw, 15px)" }}>Detail zápasu</p>
-                <svg className="shrink-0 text-[#0078fd]" style={{ width: "clamp(10px, 0.8vw, 16px)", height: "clamp(10px, 0.8vw, 16px)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
+            </Link>
+          );
+        })()}
       </section>
     </div>
   );
