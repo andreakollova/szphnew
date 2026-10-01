@@ -252,6 +252,66 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
   );
 }
 
+function LangSelector({ scrolled }: { scrolled: boolean }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="relative shrink-0">
+      <button
+        onClick={() => setOpen(v => !v)}
+        className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
+        aria-label="Jazyk"
+      >
+        <div className="overflow-hidden rounded-full" style={{ width: 20, height: 20 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="https://flagcdn.com/w40/sk.png" alt="SK" width={20} height={20} style={{ width: 20, height: 20, objectFit: "cover" }} />
+        </div>
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -8, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="absolute right-0 top-full mt-2 py-1.5 rounded-xl overflow-hidden"
+            style={{
+              background: "rgba(255,255,255,0.95)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              boxShadow: "0 8px 32px rgba(1,45,116,0.15), 0 1px 4px rgba(1,45,116,0.08)",
+              minWidth: "140px",
+              border: "1px solid rgba(1,45,116,0.08)",
+            }}
+          >
+            <button
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 w-full px-4 py-2 text-[#051937] hover:bg-[#051937]/[0.04] transition-colors"
+              style={{ fontSize: "12px", fontWeight: 600 }}
+            >
+              <div className="overflow-hidden rounded-full" style={{ width: 18, height: 18 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://flagcdn.com/w40/sk.png" alt="SK" width={18} height={18} style={{ width: 18, height: 18, objectFit: "cover" }} />
+              </div>
+              Slovenčina
+            </button>
+            <button
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 w-full px-4 py-2 text-[#051937]/50 hover:bg-[#051937]/[0.04] transition-colors"
+              style={{ fontSize: "12px", fontWeight: 600 }}
+            >
+              <div className="overflow-hidden rounded-full" style={{ width: 18, height: 18 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="https://flagcdn.com/w40/gb.png" alt="EN" width={18} height={18} style={{ width: 18, height: 18, objectFit: "cover" }} />
+              </div>
+              English
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 interface NavbarSzphProps {
   announcement?: { text: string; href?: string } | null;
 }
@@ -512,6 +572,8 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           <div className="shrink-0 transition-colors duration-300" style={{ width: "1px", height: "24px", background: scrolled ? "rgba(1,45,116,0.1)" : "rgba(255,255,255,0.15)" }} />
 
           <div className="flex items-center gap-3 ml-3 shrink-0">
+            {/* Language selector */}
+            <LangSelector scrolled={scrolled} />
             <button
               onClick={() => setSearchOpen(true)}
               className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
