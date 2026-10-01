@@ -20,7 +20,7 @@ export function SzphHero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 4000);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
@@ -245,7 +245,7 @@ export function SzphHero() {
         <div
           className="absolute"
           style={{
-            left: "8.73%",
+            left: "6.5%",
             top: "35%",
             width: "51.82%",
           }}
@@ -266,7 +266,7 @@ export function SzphHero() {
             style={{
               fontSize: "clamp(2rem, 5.8vw, 160px)",
               lineHeight: 1.05,
-              fontWeight: 800,
+              fontWeight: 700,
               fontStyle: "italic",
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
