@@ -309,8 +309,8 @@ export default async function SzphHome() {
 
             {/* ── Rýchle Odkazy + Posledné zápasy rep. — sticky (hidden on mobile) ── */}
             <div
-              className="hidden lg:flex pl-5 xl:pl-8 pt-1 self-start sticky top-[120px] flex-col gap-5"
-              style={{ borderLeft: "1px solid rgba(1,45,116,0.08)" }}
+              className="hidden lg:flex pl-5 xl:pl-8 pt-1 self-start sticky top-[120px] flex-col gap-5 max-h-[calc(100vh-140px)] overflow-y-auto"
+              style={{ borderLeft: "1px solid rgba(1,45,116,0.08)", scrollbarWidth: "none" } as any}
             >
               <RychleOdkazy />
 
@@ -447,13 +447,13 @@ export default async function SzphHome() {
               <p className="text-white font-bold uppercase mb-1" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
                 Richard Garaj / Matej Boho
               </p>
-              <p className="text-white mb-6" style={{ fontSize: "13px" }}>
+              <p className="text-white mb-6" style={{ fontSize: "13px", fontWeight: 500 }}>
                 Rozhovory s hráčmi, trénermi a funkcionármi slovenského pozemného hokeja.
               </p>
 
               {/* Platformy */}
               <div className="flex items-center gap-3 mb-6">
-                <a href="https://www.youtube.com/@szph" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.youtube.com/@zvaz_pozemneho_hokeja" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all hover:bg-white/10"
                   style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
                   <svg className="h-4 w-4" viewBox="0 0 24 24">
@@ -474,7 +474,7 @@ export default async function SzphHome() {
 
               {/* Zobraziť všetky */}
               <a
-                href="https://www.youtube.com/@szph"
+                href="https://www.youtube.com/@zvaz_pozemneho_hokeja"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 font-bold text-white hover:text-white transition-all"
