@@ -64,7 +64,7 @@ function TeamLogo({ logo, name, size = 48 }: { logo?: string; name: string; size
   }
   return (
     <div className="shrink-0 flex items-center justify-center rounded-full" style={{ width: size, height: size, background: "rgba(255,255,255,0.1)" }}>
-      <span className="font-black text-white/50" style={{ fontSize: size * 0.3 }}>
+      <span className="font-black text-white" style={{ fontSize: size * 0.3 }}>
         {name.split(" ").map(w => w[0]).join("").slice(0, 3).toUpperCase()}
       </span>
     </div>
@@ -94,7 +94,7 @@ export default async function MatchDetailPage({ params }: Props) {
       {/* Hero */}
       <div className="py-8 sm:py-10 px-4 sm:px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
-          <Link href="/zapasy" className="inline-flex items-center gap-2 font-bold text-white/40 hover:text-white/70 transition-colors mb-5" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <Link href="/zapasy" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-5" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             <svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             Zápasové centrum
           </Link>
@@ -105,7 +105,7 @@ export default async function MatchDetailPage({ params }: Props) {
               {m.league}
             </p>
           )}
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-white/60 mb-6" style={{ fontSize: "12px" }}>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-white mb-6" style={{ fontSize: "12px" }}>
             <span>{fullDate}</span>
             <span>·</span>
             <span>{time}</span>
@@ -131,7 +131,7 @@ export default async function MatchDetailPage({ params }: Props) {
               {finished ? (
                 <div className="flex items-center gap-2 sm:gap-3">
                   <span className="font-garet font-black text-[32px] sm:text-[48px] leading-none" style={{ color: homeWin ? "#4ade80" : "#fff" }}>{m.home_score ?? 0}</span>
-                  <span className="font-bold text-white/40 text-base sm:text-xl">:</span>
+                  <span className="font-bold text-white text-base sm:text-xl">:</span>
                   <span className="font-garet font-black text-[32px] sm:text-[48px] leading-none" style={{ color: awayWin ? "#4ade80" : "#fff" }}>{m.away_score ?? 0}</span>
                 </div>
               ) : (

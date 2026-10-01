@@ -11,7 +11,7 @@ export default function PravidlaPage() {
       {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
-          <span className="font-bold uppercase text-white/40 mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
+          <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Pravidlá
           </span>
           <h1 className="font-bold text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
@@ -132,7 +132,7 @@ export default function PravidlaPage() {
 
         <div className="rounded-2xl p-6 mb-12" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Takto funguje malý roh</h3>
-          <p className="text-white/70" style={{ fontSize: "14px", lineHeight: 1.8 }}>
+          <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Útočiace družstvo hrá loptu od zadnej čiary v kruhu a musí byť lopta prihraná mimo kruh, potom môže útočiace družstvo skórovať. Prvý výstrel, úderom alebo šrúberom, nesmie skončiť vyššie ako doska v bráne. Ak sa rozhodne hráč vystreliť pushom, táto strela môže ísť vyššie ako nad dosku v bráne.
           </p>
         </div>

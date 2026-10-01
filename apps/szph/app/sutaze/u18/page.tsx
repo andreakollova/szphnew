@@ -12,13 +12,13 @@ export default function U18Page() {
       {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
-          <span className="font-bold uppercase text-white/40 mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
+          <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Sutaze
           </span>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
             U18
           </h1>
-          <p className="text-white/50 mt-3 max-w-xl" style={{ fontSize: "15px" }}>
+          <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px" }}>
             Mladeznicka kategoria hracov do 18 rokov.
           </p>
         </div>
@@ -63,7 +63,7 @@ export default function U18Page() {
 
         <div className="rounded-2xl p-6 mb-8" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Pre kluby a trenerov</h3>
-          <p className="text-white/70" style={{ fontSize: "14px", lineHeight: 1.8 }}>
+          <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Prihlasovanie timov do mladeznicskych sutazi prebieha prostrednictvom Slovenskeho pozemnohokejoveho zvazu. Aktualne informacie o terminoch, rozpise zapasov a pravidlach najdete v sekcii dokumentov alebo kontaktujte priamo SZPH.
           </p>
         </div>

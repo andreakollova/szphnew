@@ -24,14 +24,14 @@ export default function HockeyTvPage() {
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.04) 0%, transparent 60%)" }} />
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto py-16 flex items-center gap-10">
           <div className="flex-1">
-            <Link href="/projekty" className="inline-flex items-center gap-2 font-bold text-white/40 hover:text-white/70 transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <Link href="/projekty" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
               <svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               Projekty
             </Link>
             <h1 className="font-garet font-bold italic text-white leading-tight mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
               Hockey TV
             </h1>
-            <p className="text-white/60 max-w-xl leading-relaxed" style={{ fontSize: "15px" }}>
+            <p className="text-white max-w-xl leading-relaxed" style={{ fontSize: "15px" }}>
               Zápasy, zostrihy a rozhovory na jednom mieste. Sledujte slovenský pozemný hokej a dianie v kluboch aj reprezentácii.
             </p>
             <a href="/video" className="mt-6 inline-flex items-center gap-2 font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "12px 24px", fontSize: "13px" }}>

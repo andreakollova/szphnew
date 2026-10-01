@@ -50,13 +50,13 @@ export default function SutazePage() {
       {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
-          <span className="font-bold uppercase text-white/40 mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
+          <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Sutaze
           </span>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
             Sutaze v pozemnom hokeji
           </h1>
-          <p className="text-white/50 mt-3 max-w-xl" style={{ fontSize: "15px" }}>
+          <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px" }}>
             Kompletny prehlad sutazi organizovanych Slovenskym pozemnohokejovym zvazom.
           </p>
         </div>

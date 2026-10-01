@@ -60,7 +60,7 @@ export default function KlubyPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z" />
               </svg>
               <p className="font-garet font-bold text-white" style={{ fontSize: "18px" }}>Mapa klubov</p>
-              <p className="text-white/50 mt-1" style={{ fontSize: "12px" }}>{CLUBS.length} klubov po celom Slovensku</p>
+              <p className="text-white mt-1" style={{ fontSize: "12px" }}>{CLUBS.length} klubov po celom Slovensku</p>
             </div>
           </div>
         </div>

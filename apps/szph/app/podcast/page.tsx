@@ -30,14 +30,14 @@ export default function PodcastPage() {
         <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.04) 0%, transparent 60%)" }} />
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto py-16 flex items-center gap-10">
           <div className="flex-1">
-            <Link href="/" className="inline-flex items-center gap-2 font-bold text-white/40 hover:text-white/70 transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <Link href="/" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
               <svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               Späť
             </Link>
             <h1 className="font-garet font-bold italic text-white leading-tight mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
               Pozemný hokej — viac ako šport
             </h1>
-            <p className="text-white/60 max-w-xl leading-relaxed" style={{ fontSize: "15px" }}>
+            <p className="text-white max-w-xl leading-relaxed" style={{ fontSize: "15px" }}>
               Podcast o ľuďoch, ktorí tvoria slovenský pozemný hokej. Rozhovory s hráčmi, trénermi, rozhodcami a ďalšími hosťami.
             </p>
             <div className="flex items-center gap-3 mt-6">
@@ -47,7 +47,7 @@ export default function PodcastPage() {
               </a>
               <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2.5 rounded-full transition-all hover:bg-white/10" style={{ border: "1px solid rgba(255,255,255,0.15)" }}>
                 <svg className="h-4 w-4" viewBox="0 0 24 24"><path fill="#1DB954" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-                <span className="font-bold text-white/70" style={{ fontSize: "12px" }}>Spotify</span>
+                <span className="font-bold text-white" style={{ fontSize: "12px" }}>Spotify</span>
               </a>
             </div>
           </div>

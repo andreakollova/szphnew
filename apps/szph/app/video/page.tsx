@@ -18,7 +18,7 @@ export default async function SzphVideoPage() {
         <h1 className="text-display text-white mt-2">Video</h1>
       </div>
       {videos.length === 0 ? (
-        <div className="py-20 text-center text-white/40">Žiadne videá</div>
+        <div className="py-20 text-center text-white">Žiadne videá</div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {videos.map((video, i) => (

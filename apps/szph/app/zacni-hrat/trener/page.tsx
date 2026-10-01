@@ -21,12 +21,12 @@ export default function ChcemSaStatTreneromPage() {
       <div className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)", minHeight: "320px" }}>
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto py-16">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-white/40 hover:text-white/70 transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <Link href="/" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             <svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             Späť
           </Link>
           <h1 className="font-garet font-bold italic text-white leading-tight mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>Chcem sa stať trénerom</h1>
-          <p className="text-white/60 max-w-xl leading-relaxed" style={{ fontSize: "15px" }}>Pomáhaj hráčom napredovať a odovzdaj im svoj vzťah k športu.</p>
+          <p className="text-white max-w-xl leading-relaxed" style={{ fontSize: "15px" }}>Pomáhaj hráčom napredovať a odovzdaj im svoj vzťah k športu.</p>
           <Link href="#formular" className="mt-6 inline-flex items-center gap-2 font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "12px 24px", fontSize: "13px" }}>
             Mám záujem o trénovanie
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>

@@ -24,14 +24,14 @@ function OrderFormContent() {
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-14 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[700px] mx-auto">
-          <Link href="/eshop" className="inline-flex items-center gap-2 font-bold text-white/40 hover:text-white/70 transition-colors mb-4" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+          <Link href="/eshop" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-4" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             <svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             Späť do eshopu
           </Link>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)" }}>
             Objednávka
           </h1>
-          <p className="text-white/50 mt-2" style={{ fontSize: "14px" }}>
+          <p className="text-white mt-2" style={{ fontSize: "14px" }}>
             Vyplňte údaje a my sa vám ozveme s potvrdením. Platba pri prevzatí.
           </p>
         </div>

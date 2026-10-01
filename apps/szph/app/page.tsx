@@ -200,14 +200,14 @@ function SectionHeading({ label, title, href, hrefLabel, light = false }: {
   return (
     <div className="flex items-end justify-between mb-8">
       <div>
-        {label && <span className={`label-wide block mb-1.5 ${light ? "text-white/50" : "text-[var(--sky)]"}`}>{label}</span>}
+        {label && <span className={`label-wide block mb-1.5 ${light ? "text-white" : "text-[var(--sky)]"}`}>{label}</span>}
         <h2 className="font-garet font-black text-[var(--sky)] leading-tight"
           style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)", fontStyle: "italic" }}>
           {title}
         </h2>
       </div>
       {href && (
-        <Link href={href} className={`hidden sm:flex items-center gap-1 text-sm font-semibold transition-colors ${light ? "text-white/50 hover:text-white" : "text-[var(--sky)] hover:text-[var(--navy)]"}`}>
+        <Link href={href} className={`hidden sm:flex items-center gap-1 text-sm font-semibold transition-colors ${light ? "text-white hover:text-white" : "text-[var(--sky)] hover:text-[var(--navy)]"}`}>
           {hrefLabel || "Viac"}
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -444,10 +444,10 @@ export default async function SzphHome() {
               <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
                 Rozhovor o infraštruktúre a výstavbe nového štadióna
               </h3>
-              <p className="text-white/50 font-bold uppercase mb-1" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
+              <p className="text-white font-bold uppercase mb-1" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
                 Richard Garaj / Matej Boho
               </p>
-              <p className="text-white/40 mb-6" style={{ fontSize: "13px" }}>
+              <p className="text-white mb-6" style={{ fontSize: "13px" }}>
                 Rozhovory s hráčmi, trénermi a funkcionármi slovenského pozemného hokeja.
               </p>
 
@@ -460,7 +460,7 @@ export default async function SzphHome() {
                     <path fill="#FF0000" d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
                     <path fill="#fff" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
                   </svg>
-                  <span className="font-bold text-white/70" style={{ fontSize: "10px" }}>YouTube</span>
+                  <span className="font-bold text-white" style={{ fontSize: "10px" }}>YouTube</span>
                 </a>
                 <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all hover:bg-white/10"
@@ -468,7 +468,7 @@ export default async function SzphHome() {
                   <svg className="h-4 w-4" viewBox="0 0 24 24">
                     <path fill="#1DB954" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
                   </svg>
-                  <span className="font-bold text-white/70" style={{ fontSize: "10px" }}>Spotify</span>
+                  <span className="font-bold text-white" style={{ fontSize: "10px" }}>Spotify</span>
                 </a>
               </div>
 
@@ -477,7 +477,7 @@ export default async function SzphHome() {
                 href="https://www.youtube.com/@szph"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 font-bold text-white/50 hover:text-white transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2 font-bold text-white hover:text-white transition-all"
                 style={{
                   fontSize: "9px",
                   letterSpacing: "0.12em",
@@ -634,7 +634,7 @@ export default async function SzphHome() {
             </h2>
             <Link
               href="/video"
-              className="flex items-center gap-1.5 font-garet font-bold text-white hover:text-white/70 transition-colors shrink-0"
+              className="flex items-center gap-1.5 font-garet font-bold text-white hover:text-white transition-colors shrink-0"
               style={{ fontSize: "clamp(11px, 2.5vw, 13px)" }}
             >
               Zobraziť všetky

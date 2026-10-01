@@ -16,7 +16,7 @@ export default function RegistraciaPage() {
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
-          <span className="font-bold uppercase text-white/40 mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Dokumenty</span>
+          <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Dokumenty</span>
           <h1 className="font-bold text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>Registrácia</h1>
         </div>
       </div>

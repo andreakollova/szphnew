@@ -13,7 +13,7 @@ export default function VzdelavaniePage() {
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
           <span
-            className="font-bold uppercase text-white/40 mb-4 block"
+            className="font-bold uppercase text-white mb-4 block"
             style={{ fontSize: "10px", letterSpacing: "0.14em" }}
           >
             Vzdelavanie
@@ -25,7 +25,7 @@ export default function VzdelavaniePage() {
             Vzdelavanie v polnom hokeji
           </h1>
           <p
-            className="text-white/50 mt-3 max-w-xl"
+            className="text-white mt-3 max-w-xl"
             style={{ fontSize: "15px" }}
           >
             Komplexny system vzdelavania pre trenerov, rozhodcov a funkcionarov
@@ -179,7 +179,7 @@ export default function VzdelavaniePage() {
           >
             Hokejova akademia
           </h2>
-          <p className="text-white/70 mb-4" style={{ fontSize: "15px" }}>
+          <p className="text-white mb-4" style={{ fontSize: "15px" }}>
             Pozrite si nas projekt Hokejovej akademie, ktory prepaja vzdelavanie
             s praktickym rozvojom hracov a trenerov na Slovensku.
           </p>

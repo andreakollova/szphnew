@@ -12,7 +12,7 @@ export default function OchranaOsobnychUdajovPage() {
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
           <span
-            className="font-bold uppercase text-white/40 mb-4 block"
+            className="font-bold uppercase text-white mb-4 block"
             style={{ fontSize: "10px", letterSpacing: "0.14em" }}
           >
             Právne informácie
@@ -24,7 +24,7 @@ export default function OchranaOsobnychUdajovPage() {
             Ochrana osobných údajov
           </h1>
           <p
-            className="text-white/50 mt-3 max-w-xl"
+            className="text-white mt-3 max-w-xl"
             style={{ fontSize: "15px" }}
           >
             Zásady spracúvania osobných údajov v súlade s nariadením GDPR.
