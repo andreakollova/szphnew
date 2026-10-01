@@ -45,17 +45,24 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
         className="relative w-full overflow-hidden md:hidden"
         style={{ minHeight: "85vh" }}
       >
-        {/* Mobile background photo */}
-        <Image
-          src="/images/hero-mobile-photo.jpg"
-          alt="SZPH"
-          fill
-          className="object-cover"
-          style={{ objectPosition: "center 30%" }}
-          priority
-          quality={90}
-          sizes="100vw"
-        />
+        {/* Mobile rotating background photos */}
+        {HERO_IMAGES.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt="SZPH"
+            fill
+            className="object-cover"
+            style={{
+              objectPosition: "center 40%",
+              opacity: current === i ? 1 : 0,
+              transition: "opacity 1s ease-in-out",
+            }}
+            priority={i === 0}
+            quality={90}
+            sizes="100vw"
+          />
+        ))}
         {/* Mobile overlay pattern */}
         <div
           className="absolute inset-0 pointer-events-none"
@@ -113,7 +120,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
           </h1>
           <div style={{ marginTop: "16px" }}>
             <Link
-              href="/o-nas"
+              href="#aktuality"
               className="relative flex items-center justify-center font-garet font-bold text-white transition-transform hover:scale-[1.03] active:scale-[0.98] w-full"
               style={{
                 background: "#d80027",
@@ -393,7 +400,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
           </h1>
           <div style={{ marginTop: "clamp(12px, 1.5vw, 36px)" }}>
             <Link
-              href="/o-nas"
+              href="#aktuality"
               className="relative inline-flex items-center justify-center font-garet font-bold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
               style={{
                 background: "#d80027",

@@ -682,7 +682,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed inset-0 z-[65] md:hidden bg-white overflow-y-auto"
+              className="fixed left-0 right-0 bottom-0 z-[65] md:hidden bg-white overflow-y-auto"
               style={{ top: announcement ? "84px" : "56px" }}
             >
               <div className="flex flex-col min-h-full px-5 pt-6 pb-8">

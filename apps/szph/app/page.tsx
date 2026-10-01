@@ -237,7 +237,8 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           AKTUALITY + RÝCHLE ODKAZY
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#f8f9fa" }} className="relative pt-10 pb-12">
+      <section id="aktuality" className="scroll-mt-32" style={{ background: "#f8f9fa" }}>
+      <div className="relative pt-10 pb-12">
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-0 items-start">
 
@@ -385,6 +386,7 @@ export default async function SzphHome() {
 
           </div>
         </div>
+      </div>
       </section>
 
 
