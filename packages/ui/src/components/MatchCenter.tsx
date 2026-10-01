@@ -388,14 +388,14 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 overflow-hidden"
+          className="flex flex-col overflow-hidden"
           style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "20px" }}
         >
           {list.map((m, i) => (
             <div
               key={m.id + '-' + i}
               style={{
-                borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(1,45,116,0.07)" : undefined,
+                borderBottom: i < list.length - 1 ? "1px solid rgba(1,45,116,0.07)" : undefined,
               }}
             >
               <MatchRow m={m} index={i} />
