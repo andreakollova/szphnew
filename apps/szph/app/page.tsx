@@ -171,7 +171,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
       <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
         {articles.map((article) => (
           <Link key={article.id} href={`/novinky/${article.slug}`} className="group block overflow-hidden">
-            <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "10px" }}>
+            <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "3px" }}>
               {article.cover_image_url ? (
                 <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               ) : (
