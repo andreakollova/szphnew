@@ -351,7 +351,7 @@ export default async function ArticleDetailPage({ params }: Props) {
   const recentMatches: any[] = [];
 
   return (
-    <article className="pb-20" style={{ background: "#f8f9fa" }}>
+    <article className="pb-20 overflow-x-hidden" style={{ background: "#f8f9fa" }}>
       <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-0 items-start">
 
@@ -462,8 +462,8 @@ export default async function ArticleDetailPage({ params }: Props) {
               </span>
               <Link
                 href="/novinky"
-                className="flex items-center gap-2 font-bold text-[#051937] hover:text-[#012d74] transition-colors"
-                style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase" }}
+                className="flex items-center gap-2 font-bold text-[#051937] hover:text-[#012d74] transition-colors py-2"
+                style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", minHeight: "44px" }}
               >
                 <svg className="h-3.5 w-3.5 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

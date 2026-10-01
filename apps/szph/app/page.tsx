@@ -276,7 +276,7 @@ export default async function SzphHome() {
                       <svg className="h-4 w-4 text-[#0078fd]" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                       </svg>
-                      <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                      <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(16px, 4vw, 20px)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
                         Neprehliadnite
                       </h2>
                     </div>
@@ -415,7 +415,7 @@ export default async function SzphHome() {
           PODCAST
           ═══════════════════════════════════════════════════ */}
       <section
-        className="relative py-16 mx-4 md:mx-8 overflow-hidden"
+        className="relative py-10 md:py-16 mx-2 sm:mx-4 md:mx-8 overflow-hidden"
         style={{
           borderRadius: "20px 20px 20px 20px",
           background: "linear-gradient(135deg, #020e1f 0%, #051937 25%, #071e42 50%, #020e1f 75%, #041530 100%)",
@@ -564,8 +564,8 @@ export default async function SzphHome() {
             </h2>
             <Link
               href="/projekty"
-              className="flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors"
-              style={{ fontSize: "13px" }}
+              className="flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors shrink-0"
+              style={{ fontSize: "clamp(11px, 2.5vw, 13px)" }}
             >
               Zobraziť všetky
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -573,7 +573,7 @@ export default async function SzphHome() {
               </svg>
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
             {[
               { name: "SZPH Podcast", logo: "/images/podcastlogo.png", bg: "#051937", href: "/podcast" },
               { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.png", bg: "#012d74", href: "/projekty/hokej-na-skolach" },
@@ -634,8 +634,8 @@ export default async function SzphHome() {
             </h2>
             <Link
               href="/video"
-              className="flex items-center gap-1.5 font-garet font-bold text-white hover:text-white/70 transition-colors"
-              style={{ fontSize: "13px" }}
+              className="flex items-center gap-1.5 font-garet font-bold text-white hover:text-white/70 transition-colors shrink-0"
+              style={{ fontSize: "clamp(11px, 2.5vw, 13px)" }}
             >
               Zobraziť všetky
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -645,7 +645,7 @@ export default async function SzphHome() {
           </div>
 
           {/* ── STREAMY — 4 landscape videá ── */}
-          <div className="flex gap-4 overflow-x-auto pb-2 mb-10" style={{ scrollbarWidth: "none" }}>
+          <div className="flex gap-3 md:gap-4 overflow-x-auto pb-2 mb-10 -mx-6 px-6 lg:mx-0 lg:px-0" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
             {[
               { id: "W8Umeplx-8o", url: "https://www.youtube.com/watch?v=W8Umeplx-8o&t=1604s", title: "Extraliga muži — kolo 1" },
               { id: "QDL6rHpqd_c", url: "https://www.youtube.com/watch?v=QDL6rHpqd_c&t=4977s", title: "Extraliga muži — kolo 2" },
@@ -653,8 +653,8 @@ export default async function SzphHome() {
               { id: "R2xOukt5BgE", url: "https://www.youtube.com/watch?v=R2xOukt5BgE", title: "Extraliga muži — kolo 4" },
             ].map((v) => (
               <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer"
-                className="group relative overflow-hidden shrink-0 block"
-                style={{ width: "340px", aspectRatio: "16/9", borderRadius: "8px" }}>
+                className="group relative overflow-hidden shrink-0 block w-[280px] md:w-[340px]"
+                style={{ aspectRatio: "16/9", borderRadius: "8px" }}>
                 <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" sizes="340px" />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -675,7 +675,7 @@ export default async function SzphHome() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </summary>
-            <div className="flex gap-3 overflow-x-auto pb-2 pt-4" style={{ scrollbarWidth: "none" }}>
+            <div className="flex gap-3 overflow-x-auto pb-2 pt-4 -mx-6 px-6 lg:mx-0 lg:px-0" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
               {[
                 { id: "QGsvNAgpFuw", title: "Gól týždňa" },
                 { id: "AFiMGDHFfrQ", title: "Top momenty" },
@@ -725,7 +725,7 @@ export default async function SzphHome() {
 
           {/* Oficiálni sponzori */}
           <div className="mb-12">
-            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            <p className="font-garet font-bold italic text-[#051937] text-center mb-6 md:mb-10" style={{ fontSize: "clamp(16px, 4vw, 20px)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               Oficiálni sponzori a partneri
             </p>
             <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 lg:gap-20">
@@ -748,19 +748,19 @@ export default async function SzphHome() {
 
           {/* Inštitucionálni partneri */}
           <div>
-            <p className="font-garet font-bold italic text-[#051937] text-center mb-10" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+            <p className="font-garet font-bold italic text-[#051937] text-center mb-6 md:mb-10" style={{ fontSize: "clamp(16px, 4vw, 20px)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               Inštitucionálni partneri
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-12 lg:gap-20">
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12 lg:gap-20">
               {[
                 { name: "FIH", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Fih_hockey_logo.svg/1280px-Fih_hockey_logo.svg.png", w: 90 },
                 { name: "EuroHockey", src: "https://eurohockey-u21.athc.cat/wp-content/uploads/2024/05/logo-eurohockey-negre.webp", w: 120 },
                 { name: "MŠVVaŠ SR", src: "https://mincrs.sk/brand/mincrs-logo.png", w: 110 },
                 { name: "SOŠV", src: "https://www.olympic.sk/sites/default/files/logo_sosv_share.png", w: 90 },
               ].map((s) => (
-                <div key={s.name} className="flex items-center justify-center" style={{ height: "48px" }}>
+                <div key={s.name} className="flex items-center justify-center h-8 sm:h-10 md:h-12">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={s.src} alt={s.name} style={{ height: "100%", width: "auto", maxWidth: `${s.w}px`, objectFit: "contain" }} />
+                  <img src={s.src} alt={s.name} className="h-full w-auto object-contain" style={{ maxWidth: `${s.w}px` }} />
                 </div>
               ))}
             </div>

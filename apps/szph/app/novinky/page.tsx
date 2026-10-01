@@ -34,7 +34,7 @@ export default async function SzphNovinkyPage() {
 
   return (
     <div style={{ background: "#f8f9fa", minHeight: "100vh" }}>
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8 pb-20">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8 pb-20">
         <div className="mb-8">
           <h1 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
             Novinky a oznamy
@@ -43,7 +43,7 @@ export default async function SzphNovinkyPage() {
         {articles.length === 0 ? (
           <div className="py-20 text-center text-[#94a3b8]">Žiadne novinky</div>
         ) : (
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article: any) => (
               <Link key={article.id} href={`/novinky/${article.slug}`} className="group block overflow-hidden">
                 <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "3px" }}>

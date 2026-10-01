@@ -18,9 +18,9 @@ export default function KontaktPage() {
   const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
 
   return (
-    <article className="pb-20" style={{ background: "#f8f9fa" }}>
+    <article className="pb-20 overflow-x-hidden" style={{ background: "#f8f9fa" }}>
       {/* Hero */}
-      <div className="py-16 px-6" style={{ background: "#051937" }}>
+      <div className="py-10 sm:py-16 px-4 sm:px-6" style={{ background: "#051937" }}>
         <div className="max-w-[1100px] mx-auto">
           <span className="font-bold uppercase text-white/40 mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Kontakt
@@ -34,7 +34,7 @@ export default function KontaktPage() {
         </div>
       </div>
 
-      <div className="max-w-[1100px] mx-auto px-6 pt-12">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 pt-8 sm:pt-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8">
 
           {/* Ľavá strana — info + mapa */}
@@ -65,7 +65,7 @@ export default function KontaktPage() {
             </div>
 
             {/* Mapa */}
-            <div className="overflow-hidden" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)", height: "280px" }}>
+            <div className="overflow-hidden h-[220px] sm:h-[280px]" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
               <iframe
                 src="https://www.openstreetmap.org/export/embed.html?bbox=17.1450%2C48.2030%2C17.1620%2C48.2110&layer=mapnik&marker=48.2070%2C17.1530"
                 width="100%"
@@ -88,7 +88,7 @@ export default function KontaktPage() {
           </div>
 
           {/* Pravá strana — formulár */}
-          <div className="bg-white p-8" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+          <div className="bg-white p-5 sm:p-8" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
             <h2 className="font-garet font-bold text-[#051937] mb-2" style={{ fontSize: "20px" }}>
               Napíšte nám
             </h2>
@@ -120,8 +120,8 @@ export default function KontaktPage() {
                         type={f.type || "text"}
                         value={(formData as any)[f.key]}
                         onChange={e => setFormData({ ...formData, [f.key]: e.target.value })}
-                        className="w-full px-4 py-2.5 bg-[#f8f9fa] text-[#051937] outline-none focus:ring-2 focus:ring-[#012d74]/20"
-                        style={{ borderRadius: "8px", border: "1px solid rgba(1,45,116,0.1)", fontSize: "13px" }}
+                        className="w-full px-4 py-3 bg-[#f8f9fa] text-[#051937] outline-none focus:ring-2 focus:ring-[#012d74]/20"
+                        style={{ borderRadius: "8px", border: "1px solid rgba(1,45,116,0.1)", fontSize: "14px", minHeight: "44px" }}
                       />
                     </div>
                   ))}
@@ -133,11 +133,11 @@ export default function KontaktPage() {
                     value={formData.message}
                     onChange={e => setFormData({ ...formData, message: e.target.value })}
                     rows={5}
-                    className="w-full px-4 py-2.5 bg-[#f8f9fa] text-[#051937] outline-none resize-none focus:ring-2 focus:ring-[#012d74]/20"
-                    style={{ borderRadius: "8px", border: "1px solid rgba(1,45,116,0.1)", fontSize: "13px" }}
+                    className="w-full px-4 py-3 bg-[#f8f9fa] text-[#051937] outline-none resize-none focus:ring-2 focus:ring-[#012d74]/20"
+                    style={{ borderRadius: "8px", border: "1px solid rgba(1,45,116,0.1)", fontSize: "14px" }}
                   />
                 </div>
-                <button type="submit" className="font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#012d74", borderRadius: "20px", padding: "12px 28px", fontSize: "13px" }}>
+                <button type="submit" className="font-garet font-bold text-white transition-all hover:brightness-110 w-full sm:w-auto" style={{ background: "#012d74", borderRadius: "20px", padding: "14px 28px", fontSize: "13px", minHeight: "44px" }}>
                   Odoslať správu
                 </button>
               </form>

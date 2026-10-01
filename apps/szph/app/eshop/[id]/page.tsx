@@ -90,7 +90,7 @@ export default function ProductDetailPage() {
   if (!product) return notFound();
 
   return (
-    <article style={{ background: "#f8f9fa" }} className="pb-20">
+    <article style={{ background: "#f8f9fa" }} className="pb-20 overflow-x-hidden">
       {/* Breadcrumb */}
       <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6 pb-4">
         <div className="flex items-center gap-2 text-[#94a3b8]" style={{ fontSize: "11px" }}>

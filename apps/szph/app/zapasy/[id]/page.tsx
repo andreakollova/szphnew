@@ -90,7 +90,7 @@ export default async function MatchDetailPage({ params }: Props) {
   const coords = m.venue ? getVenueCoords(m.venue) : null;
 
   return (
-    <article style={{ background: "#f8f9fa" }} className="pb-20">
+    <article style={{ background: "#f8f9fa" }} className="pb-20 overflow-x-hidden">
       {/* Hero */}
       <div className="py-8 sm:py-10 px-4 sm:px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">

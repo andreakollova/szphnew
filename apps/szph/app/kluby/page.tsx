@@ -31,7 +31,7 @@ const CLUBS = [
 export default function KlubyPage() {
   return (
     <div style={{ background: "#f8f9fa", minHeight: "100vh" }}>
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8 pb-20">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8 pb-20">
         <div className="mb-8">
           <h1 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
             Kluby pozemného hokeja
@@ -42,7 +42,7 @@ export default function KlubyPage() {
         </div>
 
         {/* Map */}
-        <div className="relative w-full overflow-hidden mb-10" style={{ height: "420px", borderRadius: "4px" }}>
+        <div className="relative w-full overflow-hidden mb-10 h-[280px] sm:h-[420px]" style={{ borderRadius: "4px" }}>
           <iframe
             src="https://www.google.com/maps/d/embed?mid=1_placeholder&z=8&ll=48.7,19.0"
             width="100%"
