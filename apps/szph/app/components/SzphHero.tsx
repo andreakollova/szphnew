@@ -308,27 +308,12 @@ export function SzphHero() {
             borderRadius: "clamp(12px, 1vw, 20px)",
             boxShadow: "0 12px 40px rgba(0,0,0,0.2)",
             overflow: "visible",
+            WebkitMaskImage: "radial-gradient(circle 10px at 0px 33%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 33%, transparent 9px, black 10px)",
+            WebkitMaskComposite: "destination-in",
+            maskImage: "radial-gradient(circle 10px at 0px 33%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 33%, transparent 9px, black 10px)",
+            maskComposite: "intersect",
           }}
         >
-          {/* Ticket notches (dierky) — between header and teams */}
-          <div className="absolute pointer-events-none z-10" style={{
-            left: "-8px", top: "calc(33% - 8px)", width: "16px", height: "16px",
-            borderRadius: "50%",
-            boxShadow: "0 0 0 20px rgba(255,255,255,0.97)",
-            background: "transparent",
-            clipPath: "circle(50%)",
-          }}>
-            <div style={{ width: "100%", height: "100%", borderRadius: "50%", background: "rgba(0,0,0,0.15)" }} />
-          </div>
-          <div className="absolute pointer-events-none z-10" style={{
-            right: "-8px", top: "calc(33% - 8px)", width: "16px", height: "16px",
-            borderRadius: "50%",
-            boxShadow: "0 0 0 20px rgba(255,255,255,0.97)",
-            background: "transparent",
-            clipPath: "circle(50%)",
-          }}>
-            <div style={{ width: "100%", height: "100%", borderRadius: "50%", background: "rgba(0,0,0,0.15)" }} />
-          </div>
           {/* Dashed line between notches */}
           <div className="absolute pointer-events-none" style={{
             left: "8px", right: "8px", top: "calc(33% - 1px)",
