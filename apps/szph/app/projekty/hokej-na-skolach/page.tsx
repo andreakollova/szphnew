@@ -50,7 +50,7 @@ export default function HokejNaSkolachPage() {
             </Link>
           </div>
           <div className="hidden lg:block shrink-0">
-            <Image src="/images/hokej-na-skolach-logo.png" alt="Pozemný hokej na školách" width={200} height={200} className="object-contain opacity-80" />
+            <Image src="/images/hokej-na-skolach-logo.png" alt="Pozemný hokej na školách" width={200} height={200} className="object-contain " />
           </div>
         </div>
       </div>

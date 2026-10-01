@@ -40,7 +40,7 @@ export default function HockeyTvPage() {
             </a>
           </div>
           <div className="hidden lg:block shrink-0">
-            <Image src="/images/hockey-tv-logo.png" alt="Hockey TV" width={200} height={200} className="object-contain opacity-80" />
+            <Image src="/images/hockey-tv-logo.png" alt="Hockey TV" width={200} height={200} className="object-contain " />
           </div>
         </div>
       </div>

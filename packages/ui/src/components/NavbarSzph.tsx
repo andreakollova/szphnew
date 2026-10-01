@@ -440,6 +440,17 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [searchOpen]);
 
+  // Close quick links on click outside
+  useEffect(() => {
+    if (!quickLinksOpen) return;
+    const onClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("[data-quick-links]")) setQuickLinksOpen(false);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, [quickLinksOpen]);
+
   const handleEnter = (href: string) => {
     if (leaveTimer.current) clearTimeout(leaveTimer.current);
     setActiveMega(href);
@@ -552,7 +563,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           </nav>
 
           {/* Quick links — dropdown */}
-          <div className="relative shrink-0 mr-1">
+          <div className="relative shrink-0 mr-1" data-quick-links>
             <button
               onClick={() => setQuickLinksOpen(v => !v)}
               className={cn(
