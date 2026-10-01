@@ -437,7 +437,7 @@ export default async function SzphHome() {
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
 
-          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[0.9fr_1.5fr] gap-14 xl:gap-24 items-center">
+          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[0.85fr_1.55fr] gap-16 xl:gap-28 items-center">
 
             {/* Ľavý — text */}
             <div>
@@ -583,7 +583,7 @@ export default async function SzphHome() {
               { name: "SZPH Podcast", logo: "/images/podcastlogo.webp", bg: "#051937", href: "/podcast" },
               { name: "Hokej na školách", logo: "/images/hokej-na-skolach-logo.webp", bg: "#012d74", href: "/projekty/hokej-na-skolach" },
               { name: "Rozhodcovia", logo: "/images/rozhodcovia-logo.webp", bg: "#d80027", href: "/projekty/vzdelavanie-rozhodcov" },
-              { name: "Hokejová akadémia", logo: "/images/hokejova-akademia-logo.webp", bg: "#a4b45b", href: "/projekty/hokejova-akademia" },
+              { name: "Hokejová akadémia", logo: "/images/hokejova-akademia-logo.webp", bg: "#4a5568", href: "/projekty/hokejova-akademia" },
               { name: "Hockey TV", logo: "/images/hockey-tv-logo.webp", bg: "#0078fe", href: "/projekty/hockey-tv" },
             ].map((p, i) => (
               <Link

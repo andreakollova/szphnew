@@ -59,7 +59,7 @@ export default async function AdminClankyPage() {
                     </span>
                   </td>
                   <td className="hidden px-4 py-4 sm:table-cell">
-                    <span className="text-xs text-[#64748b]">{article.visible_on}</span>
+                    <span className="text-xs text-[#64748b]">{(article as any).visible_on ?? (article as any).site ?? "—"}</span>
                   </td>
                   <td className="px-4 py-4 text-center">
                     <span

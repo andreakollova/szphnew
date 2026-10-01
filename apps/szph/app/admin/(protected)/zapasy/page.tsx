@@ -56,12 +56,12 @@ export default async function AdminZapasyPage() {
               {matches.map((match) => (
                 <tr key={match.id} className="border-b border-[rgba(1,45,116,0.08)] hover:bg-gray-50 transition-colors">
                   <td className="px-5 py-3.5 text-[#64748b] whitespace-nowrap">
-                    <p>{formatDate(match.match_date)}</p>
-                    <p className="text-xs text-[#94a3b8]">{formatTime(match.match_date)}</p>
+                    <p>{formatDate((match as any).date ?? match.match_date)}</p>
+                    <p className="text-xs text-[#94a3b8]">{formatTime((match as any).date ?? match.match_date)}</p>
                   </td>
                   <td className="px-4 py-3.5">
                     <p className="text-[#051937] font-semibold">
-                      {match.home_team?.name ?? "?"} <span className="text-[#94a3b8]">vs</span> {match.away_team?.name ?? "?"}
+                      {(match as any).home_team ?? "?"} <span className="text-[#94a3b8]">vs</span> {(match as any).away_team ?? "?"}
                     </p>
                     {match.venue && <p className="text-xs text-[#94a3b8] mt-0.5">{match.venue}</p>}
                     <div className="flex items-center gap-1.5 mt-0.5">
@@ -82,12 +82,12 @@ export default async function AdminZapasyPage() {
                       homeScore={match.home_score}
                       awayScore={match.away_score}
                       status={match.status}
-                      homeTeamName={match.home_team?.name}
-                      awayTeamName={match.away_team?.name}
+                      homeTeamName={(match as any).home_team}
+                      awayTeamName={(match as any).away_team}
                     />
                   </td>
                   <td className="px-4 py-3.5">
-                    <span className="text-xs text-[#64748b]">{match.competition?.name ?? "—"}</span>
+                    <span className="text-xs text-[#64748b]">{(match as any).league ?? "—"}</span>
                   </td>
                   <td className="px-4 py-3.5 text-center">
                     <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${

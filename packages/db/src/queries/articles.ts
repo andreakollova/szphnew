@@ -14,7 +14,7 @@ export async function getPublishedArticles(
 
   let query = supabase
     .from("articles")
-    .select("*, author:profiles(id, email, full_name, avatar_url)")
+    .select("*")
     .eq("status", "published")
     .order("published_at", { ascending: false })
     .range(offset, offset + limit - 1);
@@ -37,7 +37,7 @@ export async function getArticleBySlug(
 ): Promise<Article | null> {
   const { data, error } = await supabase
     .from("articles")
-    .select("*, author:profiles(id, email, full_name, avatar_url)")
+    .select("*")
     .eq("slug", slug)
     .eq("status", "published")
     .single();
@@ -54,7 +54,7 @@ export async function getAllArticlesAdmin(
 
   let query = supabase
     .from("articles")
-    .select("*, author:profiles(id, email, full_name)")
+    .select("*")
     .order("created_at", { ascending: false })
     .range(offset, offset + limit - 1);
 

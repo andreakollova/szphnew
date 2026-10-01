@@ -38,7 +38,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
   }, []);
 
   return (
-    <div className="-mt-16 md:-mt-[112px]">
+    <div className="-mt-16 md:-mt-[116px]">
       {/* ═══ MOBILE HERO (below md) ═══ */}
       <section
         data-hero
