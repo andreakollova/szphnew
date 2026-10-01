@@ -157,15 +157,13 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
         </h2>
         <Link
           href={href}
-          className="flex items-center gap-2 font-bold text-[#051937] hover:text-[#012d74] transition-colors"
-          style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}
+          className="flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors"
+          style={{ fontSize: "13px" }}
         >
           Zobraziť všetky
-          <div className="flex items-center justify-center rounded-full border border-[#051937]" style={{ width: "26px", height: "26px" }}>
-            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </div>
+          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
         </Link>
       </div>
       <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
@@ -574,15 +572,13 @@ export default async function SzphHome() {
             </h2>
             <Link
               href="/projekty"
-              className="flex items-center gap-2 font-bold text-[#051937] hover:text-[#012d74] transition-colors"
-              style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}
+              className="flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors"
+              style={{ fontSize: "13px" }}
             >
               Zobraziť všetky
-              <div className="flex items-center justify-center rounded-lg border border-[#051937]" style={{ width: "26px", height: "26px" }}>
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -646,15 +642,13 @@ export default async function SzphHome() {
             </h2>
             <Link
               href="/video"
-              className="flex items-center gap-2 font-bold text-white hover:text-white/70 transition-colors"
-              style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase" }}
+              className="flex items-center gap-1.5 font-garet font-bold text-white hover:text-white/70 transition-colors"
+              style={{ fontSize: "13px" }}
             >
               Zobraziť všetky
-              <div className="flex items-center justify-center rounded-lg border border-white/40" style={{ width: "26px", height: "26px" }}>
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
 
