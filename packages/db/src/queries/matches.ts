@@ -1,100 +1,88 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Match, MatchStatus, TeamCategory, VisibleOn, StandingsRow } from "../types";
 
-const MATCH_SELECT = `
-  *,
-  competition:competitions(*),
-  home_team:teams!matches_home_team_id_fkey(*),
-  away_team:teams!matches_away_team_id_fkey(*)
-`;
+const MATCH_SELECT = `*`;
 
 export async function getUpcomingMatches(
   supabase: SupabaseClient,
   options: {
-    site?: VisibleOn;
+    site?: VisibleOn | string;
     category?: TeamCategory;
     limit?: number;
   } = {}
-): Promise<Match[]> {
-  const { site, category, limit = 10 } = options;
+): Promise<any[]> {
+  const { site, limit = 50 } = options;
 
   let query = supabase
     .from("matches")
     .select(MATCH_SELECT)
-    .in("status", ["scheduled", "live"])
-    .gte("match_date", new Date().toISOString())
-    .order("match_date", { ascending: true })
+    .order("date", { ascending: false })
     .limit(limit);
 
   if (site && site !== "both") {
-    query = query.in("visible_on", [site, "both"]);
+    query = query.in("site", [site, "szph", "both"]);
   }
 
   const { data, error } = await query;
   if (error) throw error;
-
-  let matches = (data ?? []) as Match[];
-  if (category) {
-    matches = matches.filter((m) => m.competition?.category === category);
-  }
-  return matches;
+  return data ?? [];
 }
 
 export async function getMatchesByCompetition(
   supabase: SupabaseClient,
   competitionId: string,
   options: { status?: MatchStatus; limit?: number } = {}
-): Promise<Match[]> {
+): Promise<any[]> {
   const { status, limit = 50 } = options;
 
   let query = supabase
     .from("matches")
     .select(MATCH_SELECT)
     .eq("competition_id", competitionId)
-    .order("match_date", { ascending: true })
+    .order("date", { ascending: true })
     .limit(limit);
 
   if (status) query = query.eq("status", status);
 
   const { data, error } = await query;
   if (error) throw error;
-  return (data ?? []) as Match[];
+  return data ?? [];
 }
 
 export async function getRecentMatches(
   supabase: SupabaseClient,
-  options: { site?: VisibleOn; limit?: number } = {}
-): Promise<Match[]> {
+  options: { site?: VisibleOn | string; limit?: number } = {}
+): Promise<any[]> {
   const { site, limit = 6 } = options;
 
   let query = supabase
     .from("matches")
     .select(MATCH_SELECT)
     .eq("status", "finished")
-    .order("match_date", { ascending: false })
+    .order("date", { ascending: false })
     .limit(limit);
 
   if (site && site !== "both") {
-    query = query.in("visible_on", [site, "both"]);
+    query = query.in("site", [site, "szph", "both"]);
   }
 
   const { data, error } = await query;
   if (error) throw error;
-  return (data ?? []) as Match[];
+  return data ?? [];
 }
 
 export async function getAllMatches(
   supabase: SupabaseClient,
   options: { limit?: number; offset?: number } = {}
-): Promise<Match[]> {
+): Promise<any[]> {
   const { limit = 50, offset = 0 } = options;
   const { data, error } = await supabase
     .from("matches")
     .select(MATCH_SELECT)
-    .order("match_date", { ascending: false })
+    .order("date", { ascending: false })
     .range(offset, offset + limit - 1);
   if (error) throw error;
-  return (data ?? []) as Match[];
+  return data ?? [];
 }
 
 export async function createMatch(
