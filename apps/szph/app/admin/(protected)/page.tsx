@@ -1,125 +1,234 @@
 import { cookies } from "next/headers";
 import { createServerSupabaseClient } from "@szph/db/client";
-import { formatDate } from "@szph/ui";
+import { formatDate, formatTime } from "@szph/ui";
+import Link from "next/link";
 import type { Metadata } from "next";
+import { InlineScore } from "./zapasy/InlineScore";
+import { DeleteMatchButton } from "./zapasy/DeleteMatchButton";
 
 export const metadata: Metadata = { title: "Dashboard" };
 
-async function getDashboardStats() {
+async function getDashboardData() {
   const cookieStore = await cookies();
   const supabase = createServerSupabaseClient(cookieStore);
 
-  const [articles, videos, matches, teams] = await Promise.allSettled([
-    supabase.from("articles").select("id, status, title, updated_at").order("updated_at", { ascending: false }).limit(5),
-    supabase.from("videos").select("id", { count: "exact" }),
-    supabase.from("matches").select("id, match_date, status, home_team:teams!matches_home_team_id_fkey(name), away_team:teams!matches_away_team_id_fkey(name)").eq("status", "scheduled").gte("match_date", new Date().toISOString()).order("match_date").limit(5),
+  const now = new Date().toISOString();
+  const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString();
+
+  const [articles, allMatches, teams, videos] = await Promise.allSettled([
+    supabase.from("articles").select("id, status, title, category, published_at, updated_at").order("updated_at", { ascending: false }).limit(8),
+    supabase.from("matches").select("*, home_team:teams!matches_home_team_id_fkey(name, short_name), away_team:teams!matches_away_team_id_fkey(name, short_name)").order("match_date", { ascending: false }).limit(30),
     supabase.from("teams").select("id", { count: "exact" }),
+    supabase.from("videos").select("id", { count: "exact" }),
   ]);
 
+  const matchesData = allMatches.status === "fulfilled" ? (allMatches.value.data ?? []) : [];
+
+  // Find overdue matches: scheduled, started 2h+ ago, no score
+  const overdueMatches = matchesData.filter((m: any) =>
+    m.status === "scheduled" && m.match_date < twoHoursAgo
+  );
+
+  // Upcoming matches
+  const upcomingMatches = matchesData.filter((m: any) =>
+    m.status === "scheduled" && m.match_date >= now
+  ).sort((a: any, b: any) => new Date(a.match_date).getTime() - new Date(b.match_date).getTime());
+
+  // Recent finished
+  const recentFinished = matchesData.filter((m: any) =>
+    m.status === "finished"
+  ).slice(0, 5);
+
   return {
-    recentArticles: articles.status === "fulfilled" ? (articles.value.data ?? []) : [],
-    videoCount:     videos.status === "fulfilled"   ? (videos.value.count ?? 0)  : 0,
-    upcomingMatches: matches.status === "fulfilled" ? (matches.value.data ?? []) : [],
-    teamCount:      teams.status === "fulfilled"    ? (teams.value.count ?? 0)   : 0,
+    articles: articles.status === "fulfilled" ? (articles.value.data ?? []) : [],
+    overdueMatches,
+    upcomingMatches: upcomingMatches.slice(0, 8),
+    recentFinished,
+    teamCount: teams.status === "fulfilled" ? (teams.value.count ?? 0) : 0,
+    videoCount: videos.status === "fulfilled" ? (videos.value.count ?? 0) : 0,
+    totalMatches: matchesData.length,
   };
 }
 
 export default async function AdminDashboard() {
-  const stats = await getDashboardStats();
-  const publishedCount = stats.recentArticles.filter((a: any) => a.status === "published").length;
+  const data = await getDashboardData();
+  const publishedCount = data.articles.filter((a: any) => a.status === "published").length;
+
+  const STATUS_LABELS: Record<string, string> = {
+    scheduled: "Plánovaný", live: "Naživo", finished: "Odohraný", postponed: "Preložený",
+  };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-[#051937]">Dashboard</h1>
         <p className="text-sm text-[#64748b] mt-1">Vitajte v admin paneli SZPH</p>
       </div>
 
       {/* Stats */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { label: "Publikovaných článkov", value: publishedCount, color: "#016fb4" },
-          { label: "Videí",                 value: stats.videoCount,  color: "#a78bfa" },
-          { label: "Tímov",                 value: stats.teamCount,   color: "#34d399" },
-          { label: "Nadchádzajúcich zápasov", value: stats.upcomingMatches.length, color: "#012d74" },
+          { label: "Článkov", value: publishedCount, color: "#016fb4", href: "/admin/clanky" },
+          { label: "Zápasov", value: data.totalMatches, color: "#012d74", href: "/admin/zapasy" },
+          { label: "Tímov", value: data.teamCount, color: "#34d399", href: "/admin/timy" },
+          { label: "Videí", value: data.videoCount, color: "#a78bfa", href: "/admin/videa" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-2xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-xs text-[#64748b]">{stat.label}</p>
-                <p className="text-3xl font-black mt-1" style={{ color: stat.color }}>{stat.value}</p>
-              </div>
-            </div>
-          </div>
+          <Link key={stat.label} href={stat.href} className="rounded-xl p-4 hover:bg-gray-50 transition-colors" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <p className="text-[10px] font-bold uppercase text-[#64748b] tracking-wider">{stat.label}</p>
+            <p className="text-2xl font-black mt-1" style={{ color: stat.color }}>{stat.value}</p>
+          </Link>
         ))}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Recent articles */}
-        <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-bold text-[#051937]">Posledné články</h2>
-            <a href="/admin/clanky" className="text-xs text-blue-400 hover:underline">Všetky →</a>
+      {/* OVERDUE MATCHES — red alert */}
+      {data.overdueMatches.length > 0 && (
+        <div className="rounded-xl p-5" style={{ background: "rgba(220,38,38,0.05)", border: "1px solid rgba(220,38,38,0.15)" }}>
+          <div className="flex items-center gap-2 mb-3">
+            <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+            <h2 className="font-bold text-red-600" style={{ fontSize: "14px" }}>Zápasy bez výsledku</h2>
+            <span className="text-red-400 font-bold" style={{ fontSize: "11px" }}>({data.overdueMatches.length})</span>
           </div>
-          {stats.recentArticles.length === 0 ? (
-            <p className="text-sm text-[#64748b]">Žiadne články</p>
-          ) : (
-            <ul className="space-y-3">
-              {stats.recentArticles.map((article: any) => (
-                <li key={article.id} className="flex items-center justify-between gap-2">
-                  <a href={`/admin/clanky/upravit/${article.id}`} className="text-sm text-[#051937] hover:text-[#016fb4] truncate flex-1">
-                    {article.title}
-                  </a>
-                  <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${article.status === "published" ? "bg-emerald-500/20 text-emerald-400" : "bg-white/10 text-[#64748b]"}`}>
-                    {article.status === "published" ? "pub." : "draft"}
-                  </span>
-                </li>
-              ))}
-            </ul>
+          <p className="text-red-400 mb-4" style={{ fontSize: "12px" }}>Tieto zápasy sa už mali odohrať, ale nemajú zadaný výsledok.</p>
+          <div className="space-y-2">
+            {data.overdueMatches.map((m: any) => (
+              <div key={m.id} className="flex items-center gap-3 bg-white rounded-lg p-3" style={{ border: "1px solid rgba(220,38,38,0.12)" }}>
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
+                    {m.home_team?.short_name || m.home_team?.name || "?"} vs {m.away_team?.short_name || m.away_team?.name || "?"}
+                  </p>
+                  <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{formatDate(m.match_date)} · {formatTime(m.match_date)}</p>
+                </div>
+                <InlineScore matchId={m.id} homeScore={m.home_score} awayScore={m.away_score} status={m.status} />
+                <Link href={`/admin/zapasy/${m.id}`} className="shrink-0 rounded-lg bg-red-500 px-3 py-1.5 text-xs font-bold text-white hover:bg-red-600 transition-colors">
+                  Zadať výsledok
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Matches section — main focus */}
+      <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+
+        {/* Zápasy */}
+        <div className="space-y-5">
+
+          {/* Nadchádzajúce */}
+          <div className="rounded-xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Nadchádzajúce zápasy</h2>
+              <div className="flex gap-2">
+                <Link href="/admin/zapasy/novy" className="rounded-lg bg-[#016fb4] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#016fb4]/90 transition-colors">
+                  + Nový zápas
+                </Link>
+                <Link href="/admin/zapasy" className="text-xs text-[#016fb4] hover:underline self-center">Všetky</Link>
+              </div>
+            </div>
+            {data.upcomingMatches.length === 0 ? (
+              <p className="text-sm text-[#64748b] py-4">Žiadne naplánované zápasy</p>
+            ) : (
+              <div className="space-y-1">
+                {data.upcomingMatches.map((m: any) => (
+                  <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded-lg p-2.5 hover:bg-gray-50 transition-colors">
+                    <div className="shrink-0 text-[#94a3b8]" style={{ fontSize: "11px", width: "70px" }}>
+                      <p className="font-bold">{formatDate(m.match_date)}</p>
+                      <p>{formatTime(m.match_date)}</p>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
+                        {m.home_team?.short_name || m.home_team?.name || "?"} vs {m.away_team?.short_name || m.away_team?.name || "?"}
+                      </p>
+                      {m.venue && <p className="text-[#94a3b8] truncate" style={{ fontSize: "10px" }}>{m.venue}</p>}
+                    </div>
+                    <span className="shrink-0 rounded-full px-2 py-0.5 text-[9px] font-semibold bg-emerald-500/15 text-emerald-600">
+                      {STATUS_LABELS[m.status] ?? m.status}
+                    </span>
+                    <svg className="h-3.5 w-3.5 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Posledné odohraté */}
+          {data.recentFinished.length > 0 && (
+            <div className="rounded-xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Posledné výsledky</h2>
+              </div>
+              <div className="space-y-1">
+                {data.recentFinished.map((m: any) => (
+                  <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded-lg p-2.5 hover:bg-gray-50 transition-colors">
+                    <div className="shrink-0 text-[#94a3b8]" style={{ fontSize: "11px", width: "70px" }}>
+                      <p className="font-bold">{formatDate(m.match_date)}</p>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
+                        {m.home_team?.short_name || m.home_team?.name || "?"} vs {m.away_team?.short_name || m.away_team?.name || "?"}
+                      </p>
+                    </div>
+                    <div className="shrink-0 flex items-center gap-1 font-bold" style={{ fontSize: "14px" }}>
+                      <span className="text-[#051937]">{m.home_score ?? 0}</span>
+                      <span className="text-[#94a3b8]" style={{ fontSize: "10px" }}>:</span>
+                      <span className="text-[#051937]">{m.away_score ?? 0}</span>
+                    </div>
+                    <svg className="h-3.5 w-3.5 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                  </Link>
+                ))}
+              </div>
+            </div>
           )}
         </div>
 
-        {/* Upcoming matches */}
-        <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-bold text-[#051937]">Najbližšie zápasy</h2>
-            <a href="/admin/zapasy" className="text-xs text-blue-400 hover:underline">Všetky →</a>
+        {/* Články — compact */}
+        <div className="space-y-5">
+          <div className="rounded-xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Posledné články</h2>
+              <div className="flex gap-2">
+                <Link href="/admin/clanky/novy" className="rounded-lg bg-[#016fb4] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#016fb4]/90 transition-colors">
+                  + Nový článok
+                </Link>
+                <Link href="/admin/clanky" className="text-xs text-[#016fb4] hover:underline self-center">Všetky</Link>
+              </div>
+            </div>
+            {data.articles.length === 0 ? (
+              <p className="text-sm text-[#64748b]">Žiadne články</p>
+            ) : (
+              <div className="space-y-1">
+                {data.articles.map((a: any) => (
+                  <Link key={a.id} href={`/admin/clanky/upravit/${a.id}`} className="flex items-center gap-2 rounded-lg p-2 hover:bg-gray-50 transition-colors">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[#051937] font-semibold truncate" style={{ fontSize: "12px" }}>{a.title}</p>
+                      <p className="text-[#94a3b8]" style={{ fontSize: "10px" }}>{a.category} · {formatDate(a.updated_at)}</p>
+                    </div>
+                    <span className={`shrink-0 rounded-full px-2 py-0.5 text-[9px] font-semibold ${a.status === "published" ? "bg-emerald-500/15 text-emerald-600" : "bg-gray-100 text-[#64748b]"}`}>
+                      {a.status === "published" ? "pub." : "draft"}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
-          {stats.upcomingMatches.length === 0 ? (
-            <p className="text-sm text-[#64748b]">Žiadne naplánované zápasy</p>
-          ) : (
-            <ul className="space-y-3">
-              {stats.upcomingMatches.map((match: any) => (
-                <li key={match.id} className="text-sm">
-                  <span className="text-[#64748b] text-xs">{formatDate(match.match_date)} </span>
-                  <span className="text-[#051937]">
-                    {match.home_team?.name ?? "?"} vs {match.away_team?.name ?? "?"}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
 
-      {/* Quick actions */}
-      <div>
-        <h2 className="font-bold text-[#051937] mb-4">Rýchle akcie</h2>
-        <div className="flex flex-wrap gap-3">
-          {[
-            { label: "Nový článok", href: "/admin/clanky/novy" },
-            { label: "Pridať zápas", href: "/admin/zapasy/novy" },
-            { label: "Nový tím",    href: "/admin/timy/novy" },
-            { label: "Pridať video", href: "/admin/videa" },
-          ].map((action) => (
-            <a
-              key={action.href}
-              href={action.href}
-              className="inline-flex items-center gap-2 rounded-xl border border-[rgba(1,45,116,0.1)] bg-white px-4 py-2.5 text-sm font-semibold text-[#051937] transition-all hover:bg-gray-50"
-            >
-              + {action.label}
-            </a>
-          ))}
+          {/* Rýchle akcie */}
+          <div className="rounded-xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <h2 className="font-bold text-[#051937] mb-3" style={{ fontSize: "14px" }}>Rýchle akcie</h2>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                { label: "Nový článok", href: "/admin/clanky/novy", icon: "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" },
+                { label: "Nový zápas", href: "/admin/zapasy/novy", icon: "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" },
+                { label: "Nový tím", href: "/admin/timy/novy", icon: "M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" },
+                { label: "Nová súťaž", href: "/admin/sutaze/nova", icon: "M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" },
+              ].map((a) => (
+                <Link key={a.href} href={a.href} className="flex items-center gap-2 rounded-lg border border-[rgba(1,45,116,0.08)] p-3 text-[12px] font-semibold text-[#051937] hover:bg-gray-50 transition-colors">
+                  <svg className="h-4 w-4 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d={a.icon} /></svg>
+                  {a.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
