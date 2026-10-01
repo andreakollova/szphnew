@@ -272,7 +272,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
 }
 
 export function MatchCenter({ matches, className }: MatchCenterProps) {
-  const [activeTab, setActiveTab] = useState<"upcoming" | "past">("past");
+  const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
   const [activeSection, setActiveSection] = useState<"liga" | "reprezentacia">("liga");
   const [page, setPage] = useState(0);
   const PAGE_SIZE = 12;
