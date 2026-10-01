@@ -250,12 +250,13 @@ export function SzphHero() {
           }}
         >
           <p
-            className="font-garet text-white/45"
+            className="font-garet text-white/55"
             style={{
-              fontSize: "clamp(0.45rem, 0.65vw, 15px)",
+              fontSize: "clamp(0.5rem, 0.7vw, 16px)",
               fontStyle: "italic",
               fontWeight: 500,
-              letterSpacing: "0.06em",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase" as const,
               marginBottom: "clamp(4px, 0.6vw, 14px)",
               textShadow: "0 2px 20px rgba(0,0,0,0.3)",
             }}
