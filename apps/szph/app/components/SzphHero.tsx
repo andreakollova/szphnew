@@ -270,7 +270,7 @@ export function SzphHero() {
             className="font-garet font-bold italic text-white"
             style={{
               fontSize: "clamp(2rem, 5.8vw, 160px)",
-              lineHeight: 1.1,
+              lineHeight: 0.95,
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
           >
