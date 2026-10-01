@@ -228,21 +228,21 @@ export function SzphHero() {
           />
         </div>
 
-        {/* ═══ Headline ═══ */}
+        {/* ═══ Headline + CTA ═══ */}
         <div
           className="absolute"
           style={{
             left: "9.73%",
-            top: "41.51%",
+            top: "35%",
             width: "51.82%",
           }}
         >
           <p
-            className="font-garet font-bold text-white/70 uppercase"
+            className="font-garet font-bold text-white/60 uppercase"
             style={{
-              fontSize: "clamp(0.7rem, 1.2vw, 32px)",
-              letterSpacing: "0.15em",
-              marginBottom: "clamp(6px, 0.8vw, 20px)",
+              fontSize: "clamp(0.5rem, 0.85vw, 22px)",
+              letterSpacing: "0.18em",
+              marginBottom: "clamp(4px, 0.6vw, 14px)",
               textShadow: "0 2px 20px rgba(0,0,0,0.3)",
             }}
           >
@@ -252,51 +252,32 @@ export function SzphHero() {
             className="font-garet font-bold italic text-white"
             style={{
               fontSize: "clamp(1.6rem, 4.9vw, 136px)",
-              lineHeight: 1.22,
+              lineHeight: 1.15,
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
           >
             JEDEN TÝM,
             <br />
-            SPOLOČNÝ
+            SPOLOČNÝ <span style={{ color: "#0078fd" }}>CIEĽ</span>
           </h1>
-          <h1
-            className="font-garet font-bold italic"
-            style={{
-              fontSize: "clamp(1.6rem, 4.9vw, 136px)",
-              lineHeight: 1.22,
-              color: "#0078fd",
-              textShadow: "0 4px 40px rgba(0,0,0,0.3)",
-            }}
-          >
-            CIEĽ
-          </h1>
-        </div>
-
-        {/* ═══ CTA Button ═══ */}
-        <div
-          className="absolute"
-          style={{
-            left: "9.73%",
-            top: "71.67%",
-          }}
-        >
-          <Link
-            href="/o-nas"
-            className="relative inline-flex items-center justify-center font-garet font-bold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
-            style={{
-              background: "#d80027",
-              borderRadius: "clamp(16px, 1.2vw, 36px)",
-              width: "clamp(130px, 9.5vw, 280px)",
-              height: "clamp(34px, 2.4vw, 68px)",
-              fontSize: "clamp(11px, 1vw, 28px)",
-            }}
-          >
-            Zistiť viac
-            <svg className="ml-2" style={{ width: "clamp(12px, 0.9vw, 22px)", height: "clamp(12px, 0.9vw, 22px)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
+          <div style={{ marginTop: "clamp(12px, 1.5vw, 36px)" }}>
+            <Link
+              href="/o-nas"
+              className="relative inline-flex items-center justify-center font-garet font-bold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
+              style={{
+                background: "#d80027",
+                borderRadius: "clamp(16px, 1.2vw, 36px)",
+                width: "clamp(130px, 9.5vw, 280px)",
+                height: "clamp(34px, 2.4vw, 68px)",
+                fontSize: "clamp(11px, 1vw, 28px)",
+              }}
+            >
+              Zistiť viac
+              <svg className="ml-2" style={{ width: "clamp(12px, 0.9vw, 22px)", height: "clamp(12px, 0.9vw, 22px)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
         </div>
 
         {/* ═══ Ticket card ═══ */}
