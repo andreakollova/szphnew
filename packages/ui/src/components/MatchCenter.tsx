@@ -189,17 +189,18 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
       initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, delay: index * 0.03 }}
-      className="flex items-center bg-white px-4 py-2.5 gap-3 hover:bg-[#f8fafd] transition-colors"
+      className="flex items-center bg-white px-5 py-3 gap-4 hover:bg-[#f8fafd] transition-colors"
     >
-      {/* Dátum + čas */}
-      <div className="shrink-0 text-center" style={{ width: "52px" }}>
-        <span className="block font-bold text-[#051937]" style={{ fontSize: "11px", lineHeight: 1.2 }}>{dateStr}</span>
-        <span className="block font-bold text-[#64748b]" style={{ fontSize: "10px" }}>{time}</span>
+      {/* Dátum + čas na jednom riadku */}
+      <div className="shrink-0" style={{ width: "80px" }}>
+        <span className="font-bold text-[#051937]" style={{ fontSize: "12px" }}>
+          {dateStr} · {time}
+        </span>
       </div>
 
       {/* Liga */}
-      <div className="shrink-0 hidden sm:block" style={{ width: "100px" }}>
-        <span className="font-bold uppercase text-[#64748b] truncate block" style={{ fontSize: "8px", letterSpacing: "0.08em" }}>
+      <div className="shrink-0 hidden sm:block" style={{ width: "110px" }}>
+        <span className="font-bold uppercase text-[#012d74] truncate block" style={{ fontSize: "9px", letterSpacing: "0.08em" }}>
           {(m.league || "Zápas").replace(/\s*\(.*miesto\)/, "").replace(/\s*\(finále\)/, "")}
         </span>
         {(isFinal || isBronze) && (
@@ -213,30 +214,34 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
       </div>
 
       {/* Domáci */}
-      <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
-        <span className="font-bold text-[#051937] truncate text-right" style={{ fontSize: "12px" }}>
+      <div className="flex items-center gap-2.5 flex-1 min-w-0 justify-end">
+        <span className="font-bold text-[#051937] truncate text-right" style={{ fontSize: "13px" }}>
           {m.home_short || m.home_team}
         </span>
-        <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={26} />
+        <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={28} />
       </div>
 
       {/* Skóre */}
-      <div className="shrink-0 flex items-center justify-center" style={{ minWidth: "56px" }}>
+      <div className="shrink-0 flex items-center justify-center" style={{ minWidth: "60px" }}>
         {finished ? (
-          <div className="flex items-center gap-1.5">
-            <span style={{ fontSize: "16px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.home_score ?? 0}</span>
-            <span style={{ fontSize: "10px", fontWeight: 700, color: "#94a3b8" }}>:</span>
-            <span style={{ fontSize: "16px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.away_score ?? 0}</span>
+          <div className="flex items-center gap-2">
+            <span style={{ fontSize: "18px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.home_score ?? 0}</span>
+            <span style={{ fontSize: "11px", fontWeight: 700, color: "#012d74" }}>:</span>
+            <span style={{ fontSize: "18px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.away_score ?? 0}</span>
           </div>
         ) : (
-          <span className="font-bold text-[#012d74] bg-[#e8f0fb] px-2 py-0.5 rounded" style={{ fontSize: "11px" }}>vs</span>
+          <div className="flex items-center gap-2">
+            <div style={{ width: "16px", height: "1px", background: "#012d74", opacity: 0.2 }} />
+            <span className="font-bold text-[#012d74]" style={{ fontSize: "11px" }}>vs</span>
+            <div style={{ width: "16px", height: "1px", background: "#012d74", opacity: 0.2 }} />
+          </div>
         )}
       </div>
 
       {/* Hostia */}
-      <div className="flex items-center gap-2 flex-1 min-w-0">
-        <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={26} />
-        <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>
+      <div className="flex items-center gap-2.5 flex-1 min-w-0">
+        <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={28} />
+        <span className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
           {m.away_short || m.away_team}
         </span>
       </div>
@@ -244,7 +249,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
       {/* Miesto + video */}
       <div className="shrink-0 hidden md:flex items-center gap-2">
         {m.venue && (
-          <span className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "8px", letterSpacing: "0.06em" }}>
+          <span className="font-bold uppercase text-[#012d74]/40" style={{ fontSize: "9px", letterSpacing: "0.06em" }}>
             {m.venue}
           </span>
         )}
