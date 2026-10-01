@@ -114,7 +114,7 @@ export function RychleOdkazy() {
       <Link
         href="/eshop"
         className="group block relative overflow-hidden mb-5"
-        style={{ borderRadius: "3px", height: "120px" }}
+        style={{ borderRadius: "3px", height: "140px" }}
       >
         <Image
           src="/images/eshop-banner.jpg"
