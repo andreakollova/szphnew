@@ -177,7 +177,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
               )}
             </div>
             <div className="pt-3">
-              <span className="inline-block font-extrabold uppercase text-[#012d74] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
+              <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                 / {article.category}
               </span>
               <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "14px" }}>

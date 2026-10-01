@@ -269,7 +269,7 @@ export function SzphHero() {
               fontSize: "clamp(2rem, 5.8vw, 160px)",
               lineHeight: 1.05,
               fontWeight: 500,
-              WebkitTextStroke: "1px white",
+              WebkitTextStroke: "1.5px white",
               fontStyle: "italic",
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
@@ -278,7 +278,7 @@ export function SzphHero() {
             <br />
             SPOLOČNÝ
             <br />
-            <span style={{ color: "#0078fd", WebkitTextStroke: "1px #0078fd" }}>CIEĽ.</span>
+            <span style={{ color: "#0078fd", WebkitTextStroke: "1.5px #0078fd" }}>CIEĽ.</span>
           </h1>
           <div style={{ marginTop: "clamp(12px, 1.5vw, 36px)" }}>
             <Link
