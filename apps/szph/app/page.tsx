@@ -256,8 +256,8 @@ export default async function SzphHome() {
                 <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
                   {[
                     { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
-                    { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
-                    { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
+                    { title: "Program Olympiáda 2036", image: "/images/pinned-kyselicova.webp", slug: "program-olympiada-2036" },
+                    { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-olympiada-2036.webp", slug: "reportaz-alena-kyselicova" },
                   ].map((article) => (
                     <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
                       <div className="relative overflow-hidden" style={{ height: "180px" }}>
