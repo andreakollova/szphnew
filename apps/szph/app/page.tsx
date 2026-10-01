@@ -368,6 +368,48 @@ export default async function SzphHome() {
                 </div>
 
               </div>
+
+              {/* Eshop banner */}
+              <Link
+                href="/eshop"
+                className="group block relative overflow-hidden mt-5"
+                style={{ borderRadius: "3px", height: "140px" }}
+              >
+                <Image
+                  src="/images/eshop-banner.jpg"
+                  alt="Oficiálny eshop"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="300px"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(135deg, rgba(216,0,39,0.85) 0%, rgba(140,0,25,0.7) 100%)" }}
+                />
+                <div className="absolute inset-0 flex flex-col justify-center px-5">
+                  <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
+                    Oficiálny eshop
+                  </p>
+                  <p className="text-white/60 mt-1" style={{ fontSize: "11px" }}>
+                    Dresy, merch a vybavenie.
+                  </p>
+                  <div
+                    className="mt-3 inline-flex items-center gap-2 self-start px-3.5 py-1.5 font-bold text-white"
+                    style={{
+                      fontSize: "10px",
+                      background: "rgba(255,255,255,0.15)",
+                      border: "1px solid rgba(255,255,255,0.25)",
+                      borderRadius: "20px",
+                      letterSpacing: "0.04em",
+                    }}
+                  >
+                    Nakupovať
+                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
             </div>
 
           </div>

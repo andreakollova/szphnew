@@ -24,12 +24,12 @@ export function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-[560px]">
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-[560px]">
       <div
         className="flex items-center gap-5 px-6 py-4"
         style={{
           background: "#fff",
-          borderRadius: "16px",
+          borderRadius: "16px 16px 0 0",
           boxShadow: "0 8px 32px rgba(1,45,116,0.12), 0 1px 4px rgba(1,45,116,0.06)",
           border: "1px solid rgba(1,45,116,0.08)",
         }}
@@ -54,7 +54,7 @@ export function CookieBanner() {
               fontSize: "11px",
             }}
           >
-            Prijať
+            Prijať všetky
           </button>
           <button
             onClick={decline}
