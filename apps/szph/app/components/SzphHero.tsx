@@ -46,23 +46,14 @@ export function SzphHero() {
           />
         ))}
 
-        {/* ═══ Top vignette ═══ */}
+        {/* ═══ Overlay gradient image ═══ */}
         <div
-          className="absolute top-0 left-0 right-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            height: "19.33%",
-            opacity: 0.5,
-            background: "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%)",
-          }}
-        />
-
-        {/* ═══ Bottom dark gradient ═══ */}
-        <div
-          className="absolute left-0 right-0 bottom-0 pointer-events-none"
-          style={{
-            height: "47%",
-            opacity: 0.5,
-            background: "linear-gradient(to top, rgba(0,5,20,1) 0%, rgba(0,5,20,0.8) 30%, transparent 100%)",
+            backgroundImage: "url(/images/hero-overlay.png)",
+            backgroundSize: "cover",
+            backgroundPosition: "top left",
+            mixBlendMode: "normal",
           }}
         />
 
