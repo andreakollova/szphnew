@@ -100,13 +100,13 @@ export default function EshopPage() {
       {/* Hero */}
       <div className="py-14 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[1600px] mx-auto px-0 lg:px-4">
-          <span className="font-bold uppercase text-white/40 mb-3 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
+          <span className="font-bold uppercase text-white mb-3 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Oficiálny obchod
           </span>
-          <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
-            SZPH Eshop
+          <h1 className="font-garet font-bold italic text-white leading-tight uppercase" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>
+            Oficiálny E-shop
           </h1>
-          <p className="text-white/50 mt-2 max-w-xl" style={{ fontSize: "14px" }}>
+          <p className="text-white mt-2 max-w-xl" style={{ fontSize: "14px" }}>
             Oficiálne oblečenie a merch Slovenského zväzu pozemného hokeja.
           </p>
         </div>
@@ -145,7 +145,7 @@ export default function EshopPage() {
               style={{ borderRadius: "4px", border: "1px solid rgba(1,45,116,0.06)" }}
             >
               {/* Obrázok s hover swap */}
-              <div className="relative overflow-hidden" style={{ aspectRatio: "4/5", background: "#f0f2f5" }}>
+              <div className="relative overflow-hidden" style={{ aspectRatio: "4/5", background: "#f7f7f9" }}>
                 <Image
                   src={product.images[0]}
                   alt={product.name}
