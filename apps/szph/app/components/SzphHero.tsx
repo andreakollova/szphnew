@@ -8,6 +8,7 @@ const HERO_IMAGES = [
   "/images/hero-banner.png",
   "/images/hero-banner2.png",
   "/images/hero-banner3.png",
+  "/images/hero-banner3b.png",
   "/images/hero-banner4.png",
   "/images/hero-banner5.png",
   "/images/hero-banner6.png",
