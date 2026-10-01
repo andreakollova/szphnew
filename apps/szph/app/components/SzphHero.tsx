@@ -310,22 +310,30 @@ export function SzphHero() {
             overflow: "visible",
           }}
         >
-          {/* Ticket notches (dierky) */}
-          <div className="absolute pointer-events-none" style={{
-            left: "-8px", top: "68%", width: "16px", height: "16px",
-            borderRadius: "50%", background: "rgba(0,0,0,0.85)",
-            boxShadow: "inset 2px 0 4px rgba(0,0,0,0.3)",
-          }} />
-          <div className="absolute pointer-events-none" style={{
-            right: "-8px", top: "68%", width: "16px", height: "16px",
-            borderRadius: "50%", background: "rgba(0,0,0,0.85)",
-            boxShadow: "inset -2px 0 4px rgba(0,0,0,0.3)",
-          }} />
+          {/* Ticket notches (dierky) — between header and teams */}
+          <div className="absolute pointer-events-none z-10" style={{
+            left: "-8px", top: "calc(33% - 8px)", width: "16px", height: "16px",
+            borderRadius: "50%",
+            boxShadow: "0 0 0 20px rgba(255,255,255,0.97)",
+            background: "transparent",
+            clipPath: "circle(50%)",
+          }}>
+            <div style={{ width: "100%", height: "100%", borderRadius: "50%", background: "rgba(0,0,0,0.15)" }} />
+          </div>
+          <div className="absolute pointer-events-none z-10" style={{
+            right: "-8px", top: "calc(33% - 8px)", width: "16px", height: "16px",
+            borderRadius: "50%",
+            boxShadow: "0 0 0 20px rgba(255,255,255,0.97)",
+            background: "transparent",
+            clipPath: "circle(50%)",
+          }}>
+            <div style={{ width: "100%", height: "100%", borderRadius: "50%", background: "rgba(0,0,0,0.15)" }} />
+          </div>
           {/* Dashed line between notches */}
           <div className="absolute pointer-events-none" style={{
-            left: "8px", right: "8px", top: "calc(68% + 7px)",
+            left: "8px", right: "8px", top: "calc(33% - 1px)",
             height: "1px",
-            backgroundImage: "repeating-linear-gradient(to right, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 4px, transparent 4px, transparent 8px)",
+            backgroundImage: "repeating-linear-gradient(to right, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 4px, transparent 4px, transparent 8px)",
           }} />
           {/* Header */}
           <div style={{ padding: "clamp(12px, 1.2vw, 24px) clamp(14px, 1.4vw, 28px) clamp(8px, 0.8vw, 16px)" }}>
