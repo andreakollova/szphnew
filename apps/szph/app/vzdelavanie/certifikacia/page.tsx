@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Certifikacia | SzPH",
+  title: "Certifikácia | SzPH",
   description:
-    "Podmienky certifikacie a obnovenia licencii pre trenerov a rozhodcov polneho hokeja.",
+    "Podmienky certifikácie a obnovenia licencií pre trénerov a rozhodcov pozemného hokeja.",
 };
 
 export default function CertifikaciaPage() {
@@ -16,19 +16,19 @@ export default function CertifikaciaPage() {
             className="font-bold uppercase text-white mb-4 block"
             style={{ fontSize: "10px", letterSpacing: "0.14em" }}
           >
-            Vzdelavanie
+            Vzdelávanie
           </span>
           <h1
             className="font-garet font-bold italic text-white leading-tight"
             style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
           >
-            Certifikacia
+            Certifikácia
           </h1>
           <p
             className="text-white mt-3 max-w-xl"
             style={{ fontSize: "15px" }}
           >
-            Podmienky a postup certifikacie pre trenerov a rozhodcov polneho
+            Podmienky a postup certifikácie pre trénerov a rozhodcov pozemného
             hokeja.
           </p>
         </div>
@@ -40,17 +40,17 @@ export default function CertifikaciaPage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Certifikacny proces
+            Certifikačný proces
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
-            Certifikacia je formalny proces, ktorym SzPH potvrdzuje, ze trener
-            alebo rozhodca splna vsetky poziadavky na vykon svojej funkcie.
-            Certifikacia zahrnuje overenie vzdelania, praktickych skusenosti a
-            uspesne zlozenie predpisanych skusok.
+            Certifikácia je formálny proces, ktorým SzPH potvrdzuje, že tréner
+            alebo rozhodca spĺňa všetky požiadavky na výkon svojej funkcie.
+            Certifikácia zahŕňa overenie vzdelania, praktických skúseností a
+            úspešné zloženie predpísaných skúšok.
           </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Kazda certifikacia ma definovanu dobu platnosti. Po jej uplynuti je
-            potrebne absolvovat proces recertifikacie.
+            Každá certifikácia má definovanú dobu platnosti. Po jej uplynutí je
+            potrebné absolvovať proces recertifikácie.
           </p>
         </section>
 
@@ -59,29 +59,29 @@ export default function CertifikaciaPage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Podmienky prvej certifikacie
+            Podmienky prvej certifikácie
           </h2>
           <div className="space-y-4">
             <div className="p-5 bg-white rounded-xl border border-gray-200">
               <h3 className="font-garet font-bold text-[#051937] mb-1.5">
-                Pre trenerov
+                Pre trénerov
               </h3>
               <ul className="space-y-1.5 text-sm text-[#666]">
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-                  <span>Absolvovanie prislusneho trenerskeho kurzu (Level 1-4)</span>
+                  <span>Absolvovanie príslušného trénerského kurzu (Level 1-4)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-                  <span>Uspesne zlozenie teoretickej a praktickej skusky</span>
+                  <span>Úspešné zloženie teoretickej a praktickej skúšky</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-                  <span>Predlozenie dokladu o bezuhonnosti</span>
+                  <span>Predloženie dokladu o bezúhonnosti</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-                  <span>Uhradenie certifikacneho poplatku</span>
+                  <span>Uhradenie certifikačného poplatku</span>
                 </li>
               </ul>
             </div>
@@ -96,15 +96,15 @@ export default function CertifikaciaPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-                  <span>Uspesne zlozenie pisomneho testu z pravidiel</span>
+                  <span>Úspešné zloženie písomného testu z pravidiel</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-                  <span>Prakticka skuska - rozhodovanie zapasu pod dohladom</span>
+                  <span>Praktická skúška - rozhodovanie zápasu pod dohľadom</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-                  <span>Splnenie fyzickeho testu (pre medzinarodnu certifikaciu)</span>
+                  <span>Splnenie fyzického testu (pre medzinárodnú certifikáciu)</span>
                 </li>
               </ul>
             </div>
@@ -116,61 +116,61 @@ export default function CertifikaciaPage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Recertifikacia
+            Recertifikácia
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
-            Platnost certifikacie je obvykle 2-4 roky v zavislosti od typu
-            licencie. Pre obnovenie certifikacie je potrebne:
+            Platnosť certifikácie je obvykle 2-4 roky v závislosti od typu
+            licencie. Pre obnovenie certifikácie je potrebné:
           </p>
           <ul className="space-y-2 text-[#333] mb-6" style={{ fontSize: "15px" }}>
             <li className="flex items-start gap-2">
               <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
               <span>
-                Dokladovat aktivnu cinnost pocas platnosti certifikacie
-                (rozhodovanie/trenerovanie v danom obdobi)
+                Dokladovať aktívnu činnosť počas platnosti certifikácie
+                (rozhodovanie/trénerovanie v danom období)
               </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
               <span>
-                Preukzat ucast na povinnych vzdelavacich seminaroch a
-                workshopoch organizovanych SzPH
+                Preukázať účasť na povinných vzdelávacích seminároch a
+                workshopoch organizovaných SzPH
               </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
               <span>
-                V pripade medzinarodnych licencii absolvovat doplnujuce skusky
-                podla poziadaviek FIH
+                V prípade medzinárodných licencií absolvovať doplňujúce skúšky
+                podľa požiadaviek FIH
               </span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-              <span>Uhradit poplatok za obnovenie certifikacie</span>
+              <span>Uhradiť poplatok za obnovenie certifikácie</span>
             </li>
           </ul>
         </section>
 
         <section className="p-6 bg-white rounded-xl border border-gray-200">
           <h3 className="font-garet font-bold text-[#051937] mb-2">
-            Mate otazky k certifikacii?
+            Máte otázky k certifikácii?
           </h3>
           <p className="text-sm text-[#666] mb-4">
-            Kontaktujte nas pre individualne poradenstvo ohladom certifikacneho
-            procesu, poziadaviek a terminov.
+            Kontaktujte nás pre individuálne poradenstvo ohľadom certifikačného
+            procesu, požiadaviek a termínov.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/vzdelavanie/licencie"
               className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
             >
-              Prehlad licencii
+              Prehľad licencií
             </Link>
             <Link
               href="/kontakt"
               className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
             >
-              Kontaktovat nas
+              Kontaktovať nás
             </Link>
           </div>
         </section>

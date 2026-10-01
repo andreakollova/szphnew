@@ -4,6 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import { inter } from "@szph/ui/fonts";
 import { NavbarSzph, Footer } from "@szph/ui";
 import { CookieBanner } from "./components/CookieBanner";
+import { MobileBottomNav } from "./components/MobileBottomNav";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -63,8 +64,9 @@ export default async function RootLayout({
       <body>
         <NavbarSzph announcement={announcement} />
         {/* 80px navbar + 36px announcement bar = 116px */}
-        <main className="pt-[96px] md:pt-[116px]">{children}</main>
+        <main className="pt-[96px] md:pt-[116px] pb-[72px] md:pb-0">{children}</main>
         <Footer brand="szph" />
+        <MobileBottomNav />
         <CookieBanner />
       </body>
     </html>

@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "FIH licencie | SzPH",
   description:
-    "Medzinarodne licencie FIH pre trenerov a rozhodcov polneho hokeja na Slovensku.",
+    "Medzinárodné licencie FIH pre trénerov a rozhodcov pozemného hokeja na Slovensku.",
 };
 
 export default function FihLicenciePage() {
@@ -16,7 +16,7 @@ export default function FihLicenciePage() {
             className="font-bold uppercase text-white mb-4 block"
             style={{ fontSize: "10px", letterSpacing: "0.14em" }}
           >
-            Vzdelavanie
+            Vzdelávanie
           </span>
           <h1
             className="font-garet font-bold italic text-white leading-tight"
@@ -28,8 +28,8 @@ export default function FihLicenciePage() {
             className="text-white mt-3 max-w-xl"
             style={{ fontSize: "15px" }}
           >
-            Medzinarodne licencie a certifikacie vydavane Medzinarodnou
-            hokejovou federaciou.
+            Medzinárodné licencie a certifikácie vydávané Medzinárodnou
+            hokejovou federáciou.
           </p>
         </div>
       </div>
@@ -40,18 +40,18 @@ export default function FihLicenciePage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Co su FIH licencie?
+            Čo sú FIH licencie?
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
-            Medzinarodna hokejova federacia (FIH - Federation Internationale de
-            Hockey) definuje globalny standard vzdelavania a licencovania pre
-            trenerov aj rozhodcov polneho hokeja. FIH licencie su uznvane po
-            celom svete a opravnuju ich drzitelov posobit na medzinarodnych
-            sutaziach.
+            Medzinárodná hokejová federácia (FIH - Federation Internationale de
+            Hockey) definuje globálny štandard vzdelávania a licencovania pre
+            trénerov aj rozhodcov pozemného hokeja. FIH licencie sú uznávané po
+            celom svete a oprávňujú ich držiteľov pôsobiť na medzinárodných
+            súťažiach.
           </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            SzPH ako clen FIH zabezpecuje pristup k medzinarodnym licencnym
-            programom pre slovenskych trenerov a rozhodcov.
+            SzPH ako člen FIH zabezpečuje prístup k medzinárodným licenčným
+            programom pre slovenských trénerov a rozhodcov.
           </p>
         </section>
 
@@ -60,7 +60,7 @@ export default function FihLicenciePage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            FIH trenerske licencie
+            FIH trénerské licencie
           </h2>
           <div className="space-y-4 mb-6">
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -68,9 +68,9 @@ export default function FihLicenciePage() {
                 FIH Level 1 - Community Coach
               </h3>
               <p className="text-sm text-[#666]">
-                Medzinarodne uznvana zakladna trenerska kvalifikacia.
-                Ekvivalent slovenskej licencie C. Kurz je mozne absolvovat na
-                Slovensku v organizacii SzPH.
+                Medzinárodne uznávaná základná trénerská kvalifikácia.
+                Ekvivalent slovenskej licencie C. Kurz je možné absolvovať na
+                Slovensku v organizácii SzPH.
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -78,8 +78,8 @@ export default function FihLicenciePage() {
                 FIH Level 2 - Development Coach
               </h3>
               <p className="text-sm text-[#666]">
-                Stredna uroven medzinarodnej kvalifikacie. Ekvivalent slovenskej
-                licencie B. Organizovany na regionalnej urovni v spolupraci s
+                Stredná úroveň medzinárodnej kvalifikácie. Ekvivalent slovenskej
+                licencie B. Organizovaný na regionálnej úrovni v spolupráci s
                 EHF.
               </p>
             </div>
@@ -88,9 +88,9 @@ export default function FihLicenciePage() {
                 FIH Level 3 a 4 - Performance / High Performance
               </h3>
               <p className="text-sm text-[#666]">
-                Najvyssie medzinarodne kvalifikacie organizovane priamo FIH.
-                Urcene pre trenerov narodnych timov a elitnych programov.
-                Kandidati su nominovani cez narodne zvazy.
+                Najvyššie medzinárodné kvalifikácie organizované priamo FIH.
+                Určené pre trénerov národných tímov a elitných programov.
+                Kandidáti sú nominovaní cez národné zväzy.
               </p>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function FihLicenciePage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            FIH rozhodcovske licencie
+            FIH rozhodcovské licencie
           </h2>
           <div className="space-y-4 mb-6">
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -109,10 +109,10 @@ export default function FihLicenciePage() {
                 FIH Indoor/Outdoor Umpire
               </h3>
               <p className="text-sm text-[#666]">
-                Medzinarodna rozhodcovska licencia opravnujuca k rozhodovaniu na
-                medzinarodnych zapasoch a turnajoch. Kandidati musia splnit
-                fyzicke testy, teoreticke skusky a mat odporucenie narodneho
-                zvazu.
+                Medzinárodná rozhodcovská licencia oprávňujúca k rozhodovaniu na
+                medzinárodných zápasoch a turnajoch. Kandidáti musia splniť
+                fyzické testy, teoretické skúšky a mať odporúčanie národného
+                zväzu.
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -120,8 +120,8 @@ export default function FihLicenciePage() {
                 FIH Technical Official
               </h3>
               <p className="text-sm text-[#666]">
-                Licencia pre technickych delegatov a dalsich oficialov na
-                medzinarodnych sutaziach. Zahrnuje pozicie ako Technical
+                Licencia pre technických delegátov a ďalších oficiálov na
+                medzinárodných súťažiach. Zahŕňa pozície ako Technical
                 Delegate, Judge a Recorder.
               </p>
             </div>
@@ -133,32 +133,32 @@ export default function FihLicenciePage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Ako ziskat FIH licenciu
+            Ako získať FIH licenciu
           </h2>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Cesta k medzinarodnej licencii vedie cez narodny vzdelavaci system.
-            Najprv je potrebne absolvovat prislusne kurzy na narodnej urovni a
-            nasledne sa uchazdhat o medzinarodnu certifikaciu prostrednictvom
-            SzPH. Kontaktujte nas pre viac informacii o aktualnych moznostiach.
+            Cesta k medzinárodnej licencii vedie cez národný vzdelávací systém.
+            Najprv je potrebné absolvovať príslušné kurzy na národnej úrovni a
+            následne sa uchádzať o medzinárodnú certifikáciu prostredníctvom
+            SzPH. Kontaktujte nás pre viac informácií o aktuálnych možnostiach.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/vzdelavanie/licencie"
               className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
             >
-              Narodne licencie
+              Národné licencie
             </Link>
             <Link
               href="/vzdelavanie/certifikacia"
               className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
             >
-              Podmienky certifikacie
+              Podmienky certifikácie
             </Link>
             <Link
               href="/kontakt"
               className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
             >
-              Kontaktovat nas
+              Kontaktovať nás
             </Link>
           </div>
         </section>

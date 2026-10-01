@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "../lib/utils";
 import { createClient } from "@supabase/supabase-js";
@@ -365,8 +366,15 @@ interface NavbarSzphProps {
 }
 
 export function NavbarSzph({ announcement }: NavbarSzphProps) {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+    setMobileExpanded(null);
+  }, [pathname]);
   const [activeMega, setActiveMega] = useState<string | null>(null);
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [scrolled, setScrolled] = useState(true);

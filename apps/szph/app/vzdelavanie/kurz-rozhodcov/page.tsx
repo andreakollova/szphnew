@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Kurz rozhodcov | SzPH",
   description:
-    "Detailne informacie o kurze rozhodcov polneho hokeja - obsah, podmienky a prihlasenie.",
+    "Detailné informácie o kurze rozhodcov pozemného hokeja - obsah, podmienky a prihlásenie.",
 };
 
 export default function KurzRozhodcovPage() {
@@ -16,7 +16,7 @@ export default function KurzRozhodcovPage() {
             className="font-bold uppercase text-white mb-4 block"
             style={{ fontSize: "10px", letterSpacing: "0.14em" }}
           >
-            Vzdelavanie
+            Vzdelávanie
           </span>
           <h1
             className="font-garet font-bold italic text-white leading-tight"

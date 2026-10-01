@@ -2,45 +2,45 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sutaze - Slovensky pozemnohokejovy zvaz",
-  description: "Prehlad sutazi v pozemnom hokeji na Slovensku. Extraliga muzov, Extraliga zien, mladeznicke kategorie U18, U14, U12, halovy a pozemny hokej.",
+  title: "Súťaže - Slovenský pozemnohokejový zväz",
+  description: "Prehľad súťaží v pozemnom hokeji na Slovensku. Extraliga mužov, Extraliga žien, mládežnícke kategórie U18, U14, U12, halový a pozemný hokej.",
 };
 
 export default function SutazePage() {
   const competitions = [
     {
-      title: "Extraliga muzov",
-      description: "Najvyssia muzska sutaz v pozemnom hokeji na Slovensku.",
+      title: "Extraliga mužov",
+      description: "Najvyššia mužská súťaž v pozemnom hokeji na Slovensku.",
       href: "/sutaze/muzska-liga",
     },
     {
-      title: "Extraliga zien",
-      description: "Najvyssia zienska sutaz v pozemnom hokeji na Slovensku.",
+      title: "Extraliga žien",
+      description: "Najvyššia ženská súťaž v pozemnom hokeji na Slovensku.",
       href: "/sutaze/zenska-liga",
     },
     {
-      title: "Pozemny hokej",
-      description: "Outdoorova sezona na umelej trave.",
+      title: "Pozemný hokej",
+      description: "Vonkajšia sezóna na umelej tráve.",
       href: "/sutaze/pozemny-hokej",
     },
     {
-      title: "Halovy hokej",
-      description: "Halova sezona v zimnych mesiacoch.",
+      title: "Halový hokej",
+      description: "Halová sezóna v zimných mesiacoch.",
       href: "/sutaze/halovy-hokej",
     },
     {
       title: "U18",
-      description: "Mladeznicka kategoria do 18 rokov.",
+      description: "Mládežnícka kategória do 18 rokov.",
       href: "/sutaze/u18",
     },
     {
       title: "U14",
-      description: "Mladeznicka kategoria do 14 rokov.",
+      description: "Mládežnícka kategória do 14 rokov.",
       href: "/sutaze/u14",
     },
     {
       title: "U12",
-      description: "Mladeznicka kategoria do 12 rokov.",
+      description: "Mládežnícka kategória do 12 rokov.",
       href: "/sutaze/u12",
     },
   ];
@@ -51,13 +51,13 @@ export default function SutazePage() {
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
-            Sutaze
+            Súťaže
           </span>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Sutaze v pozemnom hokeji
+            Súťaže v pozemnom hokeji
           </h1>
           <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px" }}>
-            Kompletny prehlad sutazi organizovanych Slovenskym pozemnohokejovym zvazom.
+            Kompletný prehľad súťaží organizovaných Slovenským pozemnohokejovým zväzom.
           </p>
         </div>
       </div>
@@ -65,28 +65,28 @@ export default function SutazePage() {
       {/* Content */}
       <div className="max-w-[900px] mx-auto px-6 pt-12">
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Slovensky pozemnohokejovy zvaz organizuje sutaze v pozemnom aj halovom hokeji pre muzov, zeny a mladez. Sutazna sezona sa deli na dve hlavne casti: outdoorovu sezonu na umelej trave (jar a jesen) a halovu sezonu (zimne mesiace). V kazdej z tychto disciplin prebiehaju samostatne ligy a turnaje.
+          Slovenský pozemnohokejový zväz organizuje súťaže v pozemnom aj halovom hokeji pre mužov, ženy a mládež. Súťažná sezóna sa delí na dve hlavné časti: vonkajšiu sezónu na umelej tráve (jar a jeseň) a halovú sezónu (zimné mesiace). V každej z týchto disciplín prebiehajú samostatné ligy a turnaje.
         </p>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Seniorske sutaze
+          Seniorské súťaže
         </h2>
         <p className="text-[#334155] mb-6" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Najvyssou sutazou v slovenskom pozemnom hokeji je Extraliga, ktora sa hra oddelene pre muzov a zeny. Extraliga je hlavnou celostatnou ligou, v ktorej sa stretavaju najlepsie kluby zo vsetkych regionov Slovenska. Vitaz Extraligy ziskava titul Majstra Slovenska.
+          Najvyššou súťažou v slovenskom pozemnom hokeji je Extraliga, ktorá sa hrá oddelene pre mužov a ženy. Extraliga je hlavnou celoštátnou ligou, v ktorej sa stretávajú najlepšie kluby zo všetkých regiónov Slovenska. Víťaz Extraligy získava titul Majstra Slovenska.
         </p>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Mladeznicke kategorie
+          Mládežnícke kategórie
         </h2>
         <p className="text-[#334155] mb-6" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Mladeznicke sutaze su rozdelene podla vekovych kategorii: U18 (do 18 rokov), U14 (do 14 rokov) a U12 (do 12 rokov). Tieto kategorie su zakladom pre rozvoj pozemnohokejovych talentov na Slovensku. V mladsich kategoriach sa hrava na mensich ihriskach s upravenym poctom hracov, aby sa deti mohli postupne adaptovat na plnoformatovu hru.
+          Mládežnícke súťaže sú rozdelené podľa vekových kategórií: U18 (do 18 rokov), U14 (do 14 rokov) a U12 (do 12 rokov). Tieto kategórie sú základom pre rozvoj pozemnohokejových talentov na Slovensku. V mladších kategóriách sa hráva na menších ihriskách s upraveným počtom hráčov, aby sa deti mohli postupne adaptovať na plnoformátovú hru.
         </p>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Discipliny
+          Disciplíny
         </h2>
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Pozemny hokej sa na Slovensku hra v dvoch zakladnych disciplinach. Pozemny (outdoor) hokej sa hra na umelej trave v letnych mesiacoch a halovy (indoor) hokej prebieha v sportovych halach pocas zimy. Kazda disciplina ma vlastne pravidla a format sutazi.
+          Pozemný hokej sa na Slovensku hrá v dvoch základných disciplínach. Pozemný (outdoor) hokej sa hrá na umelej tráve v letných mesiacoch a halový (indoor) hokej prebieha v športových halách počas zimy. Každá disciplína má vlastné pravidlá a formát súťaží.
         </p>
 
         {/* Grid of competitions */}
@@ -107,7 +107,7 @@ export default function SutazePage() {
         {/* Link to results */}
         <div className="mt-12">
           <Link href="/zapasy" className="inline-flex items-center gap-2 font-bold text-[#012d74] hover:underline" style={{ fontSize: "15px" }}>
-            Vysledky a tabulky
+            Výsledky a tabuľky
             <span>&#8594;</span>
           </Link>
         </div>
