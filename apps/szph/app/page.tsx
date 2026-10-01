@@ -439,7 +439,7 @@ export default async function SzphHome() {
               </div>
 
               <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
-                Vypočujte si najnovšiu časť podcastu
+                Vypočujte si najnovšiu časť nášho podcastu!
               </h3>
               <p className="text-white mb-5" style={{ fontSize: "13px", fontWeight: 400 }}>
                 Rozhovory s hráčmi, trénermi a funkcionármi slovenského pozemného hokeja.
