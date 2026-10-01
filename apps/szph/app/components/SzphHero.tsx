@@ -319,12 +319,12 @@ export function SzphHero() {
                 Najbližší zápas
               </span>
             </div>
-            <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(14px, 1.4vw, 28px)", lineHeight: 1.1 }}>
-              Eurohockey 5s
+            <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(8px, 0.7vw, 14px)", letterSpacing: "0.08em" }}>
+              Reprezentácia | M
             </p>
-            <span className="inline-block mt-1 px-2 py-0.5 font-bold uppercase text-[#0078fd] rounded" style={{ fontSize: "clamp(6px, 0.55vw, 11px)", letterSpacing: "0.1em", background: "rgba(0,120,253,0.08)" }}>
-              Muži
-            </span>
+            <p className="font-garet font-bold text-[#051937] mt-0.5" style={{ fontSize: "clamp(10px, 0.9vw, 18px)", lineHeight: 1.2 }}>
+              EuroHockey 5s Championship Men 2026
+            </p>
           </div>
 
           {/* Teams */}
@@ -364,7 +364,7 @@ export function SzphHero() {
               <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 13px)" }}>Jún</p>
             </div>
             <div className="flex-1 text-center">
-              <p className="font-garet font-bold text-[#012d74]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1 }}>15:00</p>
+              <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1 }}>15:00</p>
             </div>
           </div>
 
