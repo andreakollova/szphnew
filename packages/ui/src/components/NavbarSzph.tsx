@@ -477,7 +477,9 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-center px-6 transition-all duration-300"
         style={{
           height: "36px",
-          background: "#031028",
+          background: (hasHero && !scrolled) ? "rgba(5,25,55,0.6)" : "#031028",
+          backdropFilter: (hasHero && !scrolled) ? "blur(16px)" : "none",
+          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(16px)" : "none",
         }}
       >
         {announcement ? (
@@ -521,9 +523,11 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           announcement ? "top-[28px] md:top-[36px]" : "top-0 md:top-[36px]"
         )}
         style={{
-          background: "linear-gradient(135deg, #031028 0%, #051937 100%)",
-          boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
-          borderBottom: "1px solid rgba(1,45,116,0.3)",
+          background: (hasHero && !scrolled) ? "linear-gradient(135deg, rgba(1,26,74,0.75) 0%, rgba(1,45,116,0.45) 50%, rgba(1,60,150,0.3) 100%)" : "linear-gradient(135deg, #031028 0%, #051937 100%)",
+          backdropFilter: (hasHero && !scrolled) ? "blur(18px) saturate(1.4)" : "none",
+          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(18px) saturate(1.4)" : "none",
+          boxShadow: (hasHero && !scrolled) ? "0 1px 0 rgba(255,255,255,0.08) inset" : "0 2px 12px rgba(0,0,0,0.15)",
+          borderBottom: (hasHero && !scrolled) ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(1,45,116,0.3)",
         }}
       >
 
