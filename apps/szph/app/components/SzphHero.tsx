@@ -246,7 +246,7 @@ export function SzphHero() {
         <div
           className="absolute"
           style={{
-            left: "9.73%",
+            left: "8.73%",
             top: "35%",
             width: "51.82%",
           }}

@@ -299,7 +299,7 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
         {/* Riadok 1: Liga / Reprezentácia + Nasledujúce/Minulé */}
         <div className="flex items-center justify-between gap-4">
           {/* Liga / Reprezentácia */}
-          <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "8px" }}>
+          <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "10px" }}>
             {([
               { key: "liga" as const, label: "Liga", logo: "/images/logo-liga.png" },
               { key: "reprezentacia" as const, label: "Reprezentácia", logo: "/images/logo-reprezentacia.png" },
@@ -389,7 +389,7 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
           className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 overflow-hidden"
-          style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "8px" }}
+          style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "10px" }}
         >
           {list.map((m, i) => (
             <div

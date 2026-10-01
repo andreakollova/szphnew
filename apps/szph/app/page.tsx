@@ -171,7 +171,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
       <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
         {articles.map((article) => (
           <Link key={article.id} href={`/novinky/${article.slug}`} className="group block overflow-hidden">
-            <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "3px" }}>
+            <div className="relative overflow-hidden" style={{ height: "180px", borderRadius: "10px" }}>
               {article.cover_image_url ? (
                 <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
               ) : (
@@ -334,7 +334,7 @@ export default async function SzphHome() {
                 <Link
                   href="/zapasy"
                   className="mt-3 flex items-center justify-between px-4 py-3 font-bold text-white w-full"
-                  style={{ background: "#051937", fontSize: "10px", letterSpacing: "0.06em", borderRadius: "6px" }}
+                  style={{ background: "#051937", fontSize: "10px", letterSpacing: "0.06em", borderRadius: "10px" }}
                 >
                   Všetky zápasy
                   <svg className="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -597,7 +597,7 @@ export default async function SzphHome() {
                 key={i}
                 href="/projekty"
                 className="group flex flex-col overflow-hidden"
-                style={{ borderRadius: "5px", overflow: "hidden" }}
+                style={{ borderRadius: "10px", overflow: "hidden" }}
               >
                 {/* Thumbnail */}
                 <div
