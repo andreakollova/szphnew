@@ -477,9 +477,11 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         className="fixed inset-x-0 top-0 z-[60] hidden md:flex items-center justify-center px-6 transition-all duration-300"
         style={{
           height: "36px",
-          background: (hasHero && !scrolled) ? "rgba(5,25,55,0.6)" : "#031028",
-          backdropFilter: (hasHero && !scrolled) ? "blur(16px)" : "none",
-          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(16px)" : "none",
+          background: (hasHero && !scrolled)
+            ? "linear-gradient(135deg, rgba(16,43,80,0.75) 0%, rgba(16,43,80,0.6) 50%, rgba(16,43,80,0.5) 100%)"
+            : "linear-gradient(135deg, #0a1f3d 0%, #102b50 100%)",
+          backdropFilter: (hasHero && !scrolled) ? "blur(16px) saturate(1.2)" : "none",
+          WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(16px) saturate(1.2)" : "none",
         }}
       >
         {announcement ? (
@@ -502,7 +504,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
 
       {/* Mobilny announcement bar */}
       {announcement && (
-        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "#051937", height: "28px" }}>
+        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "linear-gradient(135deg, #0a1f3d 0%, #102b50 100%)", height: "28px" }}>
           {announcement.href ? (
             <Link href={announcement.href} className="flex items-center gap-1.5 text-white font-bold truncate" style={{ fontSize: "9px", letterSpacing: "0.03em" }}>
               <span className="shrink-0 h-1 w-1 rounded-full bg-green-400 animate-pulse" />
@@ -524,14 +526,14 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         )}
         style={{
           background: (hasHero && !scrolled)
-            ? "linear-gradient(135deg, rgba(3,16,40,0.88) 0%, rgba(5,25,55,0.82) 50%, rgba(1,35,90,0.78) 100%)"
+            ? "linear-gradient(135deg, rgba(0,33,93,0.8) 0%, rgba(0,33,93,0.65) 50%, rgba(0,33,93,0.55) 100%)"
             : (hasHero && scrolled)
               ? "rgba(255,255,255,0.97)"
-              : "linear-gradient(135deg, #031028 0%, #051937 100%)",
+              : "linear-gradient(135deg, #001a4a 0%, #00215d 100%)",
           backdropFilter: (hasHero && !scrolled) ? "blur(20px) saturate(1.3)" : (hasHero && scrolled) ? "blur(12px)" : "none",
           WebkitBackdropFilter: (hasHero && !scrolled) ? "blur(20px) saturate(1.3)" : (hasHero && scrolled) ? "blur(12px)" : "none",
-          boxShadow: (hasHero && !scrolled) ? "0 1px 0 rgba(255,255,255,0.06) inset" : (hasHero && scrolled) ? "0 2px 16px rgba(0,0,0,0.08)" : "0 2px 12px rgba(0,0,0,0.15)",
-          borderBottom: (hasHero && !scrolled) ? "1px solid rgba(255,255,255,0.06)" : (hasHero && scrolled) ? "1px solid rgba(1,45,116,0.08)" : "1px solid rgba(1,45,116,0.3)",
+          boxShadow: (hasHero && !scrolled) ? "0 1px 0 rgba(255,255,255,0.08) inset" : (hasHero && scrolled) ? "0 2px 16px rgba(0,0,0,0.08)" : "0 2px 12px rgba(0,0,0,0.15)",
+          borderBottom: (hasHero && !scrolled) ? "1px solid rgba(255,255,255,0.08)" : (hasHero && scrolled) ? "1px solid rgba(1,45,116,0.08)" : "1px solid rgba(0,33,93,0.3)",
         }}
       >
 
