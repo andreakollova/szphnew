@@ -701,7 +701,7 @@ export default async function SzphHome() {
           {/* ── SHORTS — accordion ── */}
           <details className="group/shorts mt-8">
             <summary className="flex items-center justify-center gap-2 cursor-pointer py-3 rounded-lg transition-all hover:bg-white/[0.04] list-none [&::-webkit-details-marker]:hidden">
-              <span className="font-bold text-white/50 uppercase" style={{ fontSize: "11px", letterSpacing: "0.1em" }}>Shorts</span>
+              <span className="font-bold text-white uppercase" style={{ fontSize: "11px", letterSpacing: "0.1em" }}>Zobraziť shorts</span>
               <svg className="h-4 w-4 text-white/30 transition-transform duration-300 group-open/shorts:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
