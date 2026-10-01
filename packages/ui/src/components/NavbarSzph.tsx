@@ -258,12 +258,12 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
     <div className="relative shrink-0">
       <button
         onClick={() => setOpen(v => !v)}
-        className={cn("flex items-center justify-center h-8 px-1 rounded-lg transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
+        className={cn("flex items-center justify-center h-8 px-1 rounded transition-all duration-300", scrolled ? "hover:bg-[#051937]/[0.05]" : "hover:bg-white/10")}
         aria-label="Jazyk"
       >
-        <div className="overflow-hidden" style={{ width: 24, height: 16, borderRadius: "2px" }}>
+        <div className="overflow-hidden" style={{ width: 20, height: 14, borderRadius: "2px" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://flagcdn.com/w40/sk.png" alt="SK" width={24} height={16} style={{ width: 24, height: 16, objectFit: "cover" }} />
+          <img src="https://flagcdn.com/w40/sk.png" alt="SK" width={20} height={14} style={{ width: 20, height: 14, objectFit: "cover" }} />
         </div>
       </button>
       <AnimatePresence>
@@ -273,14 +273,13 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full mt-2 py-1.5 rounded-xl overflow-hidden"
+            className="absolute right-0 top-full mt-2 py-1 overflow-hidden"
             style={{
-              background: "rgba(255,255,255,0.95)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
-              boxShadow: "0 8px 32px rgba(1,45,116,0.15), 0 1px 4px rgba(1,45,116,0.08)",
-              minWidth: "140px",
+              background: "#fff",
+              boxShadow: "0 4px 16px rgba(1,45,116,0.12), 0 1px 3px rgba(1,45,116,0.06)",
+              minWidth: "130px",
               border: "1px solid rgba(1,45,116,0.08)",
+              borderRadius: "6px",
             }}
           >
             <button
