@@ -30,7 +30,44 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+const PINNED_ARTICLES: Record<string, any> = {
+  "pozemny-hokej-vo-svete": {
+    id: "pinned-1",
+    slug: "pozemny-hokej-vo-svete",
+    title: "Pozemný hokej vo svete",
+    excerpt: "30 miliónov hráčov a miliardový trh. Pozemný hokej je tretím najhranejším športom na svete, s viac ako 30 miliónov aktívnych hráčov na globálnej úrovni.",
+    cover_image_url: "/images/pinned-hokej-vo-svete.webp",
+    category: "novinky",
+    published_at: "2026-10-01T09:00:00Z",
+    status: "published",
+    gallery: [
+      "/images/articles/hokej-vo-svete/1.png",
+      "/images/articles/hokej-vo-svete/2.webp",
+      "/images/articles/hokej-vo-svete/3.png",
+      "/images/articles/hokej-vo-svete/4.png",
+    ],
+    content: `## DÔLEŽITOSŤ POZEMNÉHO HOKEJA
+
+Pozemný hokej je tretím najhranejším športom na svete, s viac ako 30 miliónov aktívnych hráčov na globálnej úrovni. Tento šport má významné zastúpenie v Európe, Indii a Austrálii, kde pôsobí tisíce klubov a profesionálne ligy ako FIH Pro League a Euro Hockey League.
+
+## História pozemného hokeja
+
+Pozemný hokej v Európe má bohatú a dlhú históriu, ktorá siaha až do konca 19. storočia, kedy sa stal obľúbeným športom britskej aristokracie. V roku 1908 debutoval na olympijských hrách, čo výrazne zvýšilo jeho globálnu prestíž.
+
+Európske krajiny, najmä Holandsko, Belgicko a Nemecko, začali formovať silné národné tímy, ktoré dnes dominujú svetovej scéne. Nielen história, ale aj neustále inovácie v tréningových metódach a technológiách prispeli k tomu, že pozemný hokej si v Európe drží vysokú úroveň a prestíž.
+
+## Aktuálny trh a súťaže
+
+Pozemný hokej dnes zahŕňa niekoľko významných líg, ktoré formujú globálnu športovú scénu.
+
+- FIH Pro League, založená v roku 2019, je elitnou medzinárodnou súťažou, kde súťažia najlepšie národné tímy (reprezentácie).
+- Euro Hockey League (EHL) je naopak najprestížnejšou klubovou súťažou v Európe, ktorá pritiahne špičkové tímy a hráčov.
+- Hockey India League (HIL) bola obnovená v roku 2024 s hráčskou aukciou, v ktorej tímy investovali viac ako 2 milióny USD do nákupu hráčov z celého sveta.`,
+  },
+};
+
 async function getArticle(slug: string) {
+  if (PINNED_ARTICLES[slug]) return PINNED_ARTICLES[slug];
   const sb = getSupabase();
   const { data } = await sb.from("articles").select("*").eq("slug", slug).eq("status", "published").single();
   return data;
@@ -228,6 +265,20 @@ export default async function ArticleDetailPage({ params }: Props) {
                 <p className="text-[#64748b]">Obsah článku nie je dostupný.</p>
               )}
             </div>
+
+            {/* Photo gallery */}
+            {article.gallery && article.gallery.length > 0 && (
+              <div className="mt-10">
+                <h3 className="font-garet font-bold text-[#051937] mb-4" style={{ fontSize: "18px" }}>Fotogaléria</h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {article.gallery.map((img: string, i: number) => (
+                    <div key={i} className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "3px" }}>
+                      <Image src={img} alt={`Foto ${i + 1}`} fill className="object-cover" sizes="(max-width: 1024px) 50vw, 35vw" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <style>{`
               .article-content h2 { font-size: 22px; font-weight: 700; color: #051937; margin: 32px 0 12px; }
