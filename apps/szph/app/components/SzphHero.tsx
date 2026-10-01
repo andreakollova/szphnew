@@ -428,6 +428,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
           const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(`https://szph.sk${matchUrl}`)}`;
           const homeLogo = nextMatch.home_logo?.startsWith("flag:") ? `https://flagcdn.com/w160/${nextMatch.home_logo.replace("flag:", "")}.png` : nextMatch.home_logo;
           const awayLogo = nextMatch.away_logo?.startsWith("flag:") ? `https://flagcdn.com/w160/${nextMatch.away_logo.replace("flag:", "")}.png` : nextMatch.away_logo;
+          const clean = (s: string) => s.replace(/\s*\([A-Z]{2}\)\s*$/, "").trim();
 
           return (
             <Link href={matchUrl} className="absolute hidden lg:flex flex-col" style={{
@@ -445,7 +446,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="h-2 w-2 rounded-full bg-[#0078fd] animate-pulse shrink-0" />
                   <span className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.65vw, 13px)", letterSpacing: "0.12em" }}>
-                    {(nextMatch.home_team || nextMatch.home_short)} vs. {(nextMatch.away_team || nextMatch.away_short)}
+                    {clean(nextMatch.home_team || nextMatch.home_short || "")} vs. {clean(nextMatch.away_team || nextMatch.away_short || "")}
                   </span>
                   {nextMatch.video_url && (
                     <svg className="h-3.5 w-3.5 text-[#d80027] shrink-0 ml-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
@@ -466,7 +467,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     {homeLogo && <img src={homeLogo} alt="" className="w-full h-full object-cover" />}
                   </div>
-                  <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>{nextMatch.home_short || nextMatch.home_team}</p>
+                  <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>{clean(nextMatch.home_short || nextMatch.home_team)}</p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
@@ -478,7 +479,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     {awayLogo && <img src={awayLogo} alt="" className="w-full h-full object-cover" />}
                   </div>
-                  <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>{nextMatch.away_short || nextMatch.away_team}</p>
+                  <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>{clean(nextMatch.away_short || nextMatch.away_team)}</p>
                 </div>
               </div>
 
