@@ -36,6 +36,8 @@ export function CookieBanner() {
   const [marketing, setMarketing] = useState(false);
 
   useEffect(() => {
+    // Hide cookie banner in native Capacitor app
+    if (typeof window !== "undefined" && (window as any).Capacitor) return;
     const existing = getConsent();
     if (!existing) {
       setVisible(true);

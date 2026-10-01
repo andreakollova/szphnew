@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Trenerske kurzy | SzPH",
+  title: "Trénerské kurzy | SzPH",
   description:
-    "Trenerske kurzy polneho hokeja na Slovensku - od zakladnych po pokrocile FIH urovne.",
+    "Trénerské kurzy pozemného hokeja na Slovensku - od základných po pokročilé FIH úrovne.",
 };
 
 export default function TrenerskeKurzyPage() {
@@ -16,20 +16,20 @@ export default function TrenerskeKurzyPage() {
             className="font-bold uppercase text-white mb-4 block"
             style={{ fontSize: "10px", letterSpacing: "0.14em" }}
           >
-            Vzdelavanie
+            Vzdelávanie
           </span>
           <h1
             className="font-garet font-bold italic text-white leading-tight"
             style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
           >
-            Trenerske kurzy
+            Trénerské kurzy
           </h1>
           <p
             className="text-white mt-3 max-w-xl"
             style={{ fontSize: "15px" }}
           >
-            Komplexna ponuka trenerských kurzov od zakladnej urovne po
-            medzinarodne certifikacie.
+            Komplexná ponuka trénerských kurzov od základnej úrovne po
+            medzinárodné certifikácie.
           </p>
         </div>
       </div>
@@ -40,13 +40,13 @@ export default function TrenerskeKurzyPage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Ponuka trenerských kurzov
+            Ponuka trénerských kurzov
           </h2>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            SzPH organizuje trenerske kurzy v sulade s metodikou Medzinarodnej
-            hokejovej federacie (FIH). Kurzy su rozdelene do viacerych urovni,
-            pricom kazda uroven pripravuje trenerov na pracu s inou cielovou
-            skupinou a na roznej urovni sutazenia.
+            SzPH organizuje trénerské kurzy v súlade s metodikou Medzinárodnej
+            hokejovej federácie (FIH). Kurzy sú rozdelené do viacerých úrovní,
+            pričom každá úroveň pripravuje trénerov na prácu s inou cieľovou
+            skupinou a na rôznej úrovni súťaženia.
           </p>
         </section>
 
@@ -55,7 +55,7 @@ export default function TrenerskeKurzyPage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Kurzy podla urovne
+            Kurzy podľa úrovne
           </h2>
           <div className="space-y-4">
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -64,16 +64,16 @@ export default function TrenerskeKurzyPage() {
                   Level 1
                 </span>
                 <h3 className="font-garet font-bold text-[#051937]">
-                  Zakladny trenersky kurz
+                  Základný trénerský kurz
                 </h3>
               </div>
               <p className="text-sm text-[#666] mb-2">
-                Urceny pre zacinajucich trenerov bez predchadzajuceho
-                trenerskeho vzdelania. Zameranie na zaklady techniky, treningove
-                metodiky pre deti a bezpecnost na ihrisku.
+                Určený pre začínajúcich trénerov bez predchádzajúceho
+                trénerského vzdelania. Zameranie na základy techniky, tréningové
+                metodiky pre deti a bezpečnosť na ihrisku.
               </p>
               <p className="text-xs text-[#999]">
-                Trvanie: 2 dni | Podmienka: ziadne
+                Trvanie: 2 dni | Podmienka: žiadne
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -82,13 +82,13 @@ export default function TrenerskeKurzyPage() {
                   Level 2
                 </span>
                 <h3 className="font-garet font-bold text-[#051937]">
-                  Rozvojovy trenersky kurz
+                  Rozvojový trénerský kurz
                 </h3>
               </div>
               <p className="text-sm text-[#666] mb-2">
-                Pre trenerov s praxou, ktori chcu prehlobit svoje vedomosti.
-                Taktika hry, planovanie treningovych cyklov, individualny rozvoj
-                hracov a zaklady sportovej analyzy.
+                Pre trénerov s praxou, ktorí chcú prehĺbiť svoje vedomosti.
+                Taktika hry, plánovanie tréningových cyklov, individuálny rozvoj
+                hráčov a základy športovej analýzy.
               </p>
               <p className="text-xs text-[#999]">
                 Trvanie: 3 dni | Podmienka: Level 1 + min. 1 rok praxe
@@ -100,13 +100,13 @@ export default function TrenerskeKurzyPage() {
                   Level 3
                 </span>
                 <h3 className="font-garet font-bold text-[#051937]">
-                  Vykonnostny trenersky kurz
+                  Výkonnostný trénerský kurz
                 </h3>
               </div>
               <p className="text-sm text-[#666] mb-2">
-                Pokrocily kurz pre trenerov sutaznych druzstiev. Pokrocila
-                taktika, analyza hry, periodizacia treningu, psychologicka
-                priprava a vedenie timu na vysokej urovni.
+                Pokročilý kurz pre trénerov súťažných družstiev. Pokročilá
+                taktika, analýza hry, periodizácia tréningu, psychologická
+                príprava a vedenie tímu na vysokej úrovni.
               </p>
               <p className="text-xs text-[#999]">
                 Trvanie: 4-5 dni | Podmienka: Level 2 + min. 2 roky praxe
@@ -118,16 +118,16 @@ export default function TrenerskeKurzyPage() {
                   Level 4
                 </span>
                 <h3 className="font-garet font-bold text-[#051937]">
-                  Elitny trenersky kurz
+                  Elitný trénerský kurz
                 </h3>
               </div>
               <p className="text-sm text-[#666] mb-2">
-                Najvyssia uroven pre trenerov narodnych timov. Strategicke
-                vedenie, sportova veda, medzinarodne standardy a priprava na
-                vrcholove sutaze. Realizovany v spolupraci s FIH.
+                Najvyššia úroveň pre trénerov národných tímov. Strategické
+                vedenie, športová veda, medzinárodné štandardy a príprava na
+                vrcholové súťaže. Realizovaný v spolupráci s FIH.
               </p>
               <p className="text-xs text-[#999]">
-                Trvanie: individualne | Podmienka: Level 3 + nomninacia SzPH
+                Trvanie: individuálne | Podmienka: Level 3 + nominácia SzPH
               </p>
             </div>
           </div>
@@ -138,31 +138,31 @@ export default function TrenerskeKurzyPage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Prihlasenie a terminy
+            Prihlásenie a termíny
           </h2>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Terminy trenerských kurzov su zverejnovane na webovej stranke SzPH a
-            na nasich socialnych sietach. Pre prihlasenie na kurz alebo
-            doplnujuce informacie nas kontaktujte.
+            Termíny trénerských kurzov sú zverejňované na webovej stránke SzPH a
+            na našich sociálnych sieťach. Pre prihlásenie na kurz alebo
+            doplňujúce informácie nás kontaktujte.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/zacni-hrat/trener"
               className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
             >
-              Chcem byt trener
+              Chcem byť tréner
             </Link>
             <Link
               href="/vzdelavanie/licencie"
               className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
             >
-              Licencne podmienky
+              Licenčné podmienky
             </Link>
             <Link
               href="/kontakt"
               className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
             >
-              Kontaktovat nas
+              Kontaktovať nás
             </Link>
           </div>
         </section>

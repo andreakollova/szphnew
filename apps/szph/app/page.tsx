@@ -218,6 +218,78 @@ function SectionHeading({ label, title, href, hrefLabel, light = false }: {
   );
 }
 
+function NextMatchTicket({ matches }: { matches: any[] }) {
+  const now = Date.now();
+  const upcoming = matches
+    .filter((m: any) => m.status === "scheduled" && new Date(m.date).getTime() > now)
+    .sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const m = upcoming[0];
+  if (!m) return null;
+
+  const d = new Date(m.date);
+  const dateStr = d.toLocaleDateString("sk-SK", { day: "numeric", month: "long" });
+  const time = m.match_time || d.toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
+
+  const TeamLogo = ({ logo, name }: { logo?: string; name: string }) => {
+    if (logo?.startsWith("flag:")) {
+      const code = logo.replace("flag:", "");
+      return (
+        <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 36, height: 36 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={`https://flagcdn.com/w80/${code}.png`} alt={name} width={36} height={36} style={{ width: 36, height: 36, objectFit: "cover" }} />
+        </div>
+      );
+    }
+    if (logo?.startsWith("/") || logo?.startsWith("https://")) {
+      return (
+        <div className="shrink-0" style={{ width: 36, height: 36 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logo} alt={name} width={36} height={36} style={{ width: 36, height: 36, objectFit: "contain" }} />
+        </div>
+      );
+    }
+    return (
+      <div className="shrink-0 flex items-center justify-center rounded-full" style={{ width: 36, height: 36, background: "#e2e8f0" }}>
+        <span className="font-black text-[#64748b]" style={{ fontSize: "10px" }}>{name.split(" ").map(w => w[0]).join("").slice(0, 3)}</span>
+      </div>
+    );
+  };
+
+  return (
+    <div className="md:hidden px-4 mt-3 relative z-10" style={{ marginBottom: "-8px" }}>
+      <Link
+        href={`/zapasy/${m.id}`}
+        className="flex items-center gap-3 px-4 py-3 bg-white"
+        style={{
+          borderRadius: "14px",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04)",
+        }}
+      >
+        {/* Home */}
+        <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
+          <span className="font-bold text-[#051937] truncate text-right" style={{ fontSize: "13px" }}>{m.home_short || m.home_team}</span>
+          <TeamLogo logo={m.home_logo} name={m.home_team} />
+        </div>
+
+        {/* Center info */}
+        <div className="flex flex-col items-center shrink-0 px-1">
+          <span className="font-black text-[#d00027] uppercase" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>Najbližší zápas</span>
+          {m.league && <span className="font-semibold text-[#051937] text-center" style={{ fontSize: "9px" }}>{m.league}</span>}
+          <span className="font-bold text-[#051937]" style={{ fontSize: "11px" }}>{time}</span>
+          <span className="text-[#94a3b8] font-semibold" style={{ fontSize: "9px" }}>{dateStr}</span>
+          {m.venue && <span className="text-[#94a3b8]" style={{ fontSize: "8px" }}>{m.venue}</span>}
+        </div>
+
+        {/* Away */}
+        <div className="flex items-center gap-2 flex-1 min-w-0">
+          <TeamLogo logo={m.away_logo} name={m.away_team} />
+          <span className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>{m.away_short || m.away_team}</span>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
 export default async function SzphHome() {
   const { articles, aktuality, reprezentacia, oznamy, matches, competitions, worldNews } = await getData();
 
@@ -233,6 +305,9 @@ export default async function SzphHome() {
         if (!m) return null;
         return { id: m.id, home_team: m.home_team, away_team: m.away_team, home_short: m.home_short, away_short: m.away_short, home_logo: m.home_logo, away_logo: m.away_logo, date: m.date, league: m.league, venue: m.venue, video_url: m.video_url, isRep: isRep(m) };
       })()} />
+
+      {/* ═══ NEXT MATCH TICKET (mobile only) ═══ */}
+      <NextMatchTicket matches={matches as any[]} />
 
       {/* ═══════════════════════════════════════════════════════
           AKTUALITY + RÝCHLE ODKAZY

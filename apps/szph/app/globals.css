@@ -1,6 +1,39 @@
 @import "tailwindcss";
 @source "../../../packages/ui/src";
 
+html, body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Solid dark blue block that sits OVER the status bar area — z-70, pointer-events none */
+.mobile-statusbar-cover {
+  height: env(safe-area-inset-top, 54px);
+  background: #0e264a;
+}
+/* Header starts at very top, announcement has padding for safe area */
+.mobile-header-top {
+  top: 0;
+}
+.mobile-announcement-bar {
+  padding-top: 42px;
+}
+/* Background for the header container */
+.mobile-fixed-header {
+  background: #0e264a;
+}
+.mobile-header-offset {
+  padding-top: calc(42px + 28px + 64px);
+}
+.mobile-hero-pull {
+  margin-top: 0;
+}
+@media (min-width: 768px) {
+  .mobile-statusbar-cover { display: none; }
+  .mobile-header-top { top: 0; }
+  .mobile-header-offset { padding-top: 116px; }
+}
+
 @font-face {
   font-family: "Garet";
   src: url("/fonts/garet-regular.otf") format("opentype");

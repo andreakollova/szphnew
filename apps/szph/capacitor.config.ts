@@ -5,13 +5,15 @@ const config: CapacitorConfig = {
   appName: "SZPH",
   webDir: ".next",
   server: {
-    url: "https://szphnew-fieldhockey.vercel.app",
+    url: "http://192.168.1.228:3011",
     cleartext: true,
   },
   ios: {
     scheme: "SZPH",
     contentInset: "automatic",
+    backgroundColor: "#0e264a",
   },
+  backgroundColor: "#0e264a",
   android: {
     allowMixedContent: true,
   },

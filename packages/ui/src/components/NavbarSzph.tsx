@@ -361,6 +361,47 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
   );
 }
 
+function MobileNotificationButton() {
+  const [enabled, setEnabled] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setEnabled(localStorage.getItem("szph-notif") === "on");
+    }
+  }, []);
+
+  const toggle = () => {
+    const next = !enabled;
+    setEnabled(next);
+    localStorage.setItem("szph-notif", next ? "on" : "off");
+  };
+
+  return (
+    <button
+      onClick={toggle}
+      className="relative flex items-center justify-center h-11 w-11 rounded-full hover:bg-[#051937]/5 transition-colors"
+      aria-label={enabled ? "Notifikácie zapnuté" : "Notifikácie vypnuté"}
+    >
+      {enabled ? (
+        <svg className="h-6 w-6 text-[#012d74]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M5.85 3.5a.75.75 0 00-1.117-1 9.719 9.719 0 00-2.348 4.876.75.75 0 001.479.248A8.219 8.219 0 015.85 3.5zM19.267 2.5a.75.75 0 10-1.118 1 8.22 8.22 0 011.987 4.124.75.75 0 001.48-.248A9.72 9.72 0 0019.266 2.5z" />
+          <path fillRule="evenodd" d="M12 2.25A6.75 6.75 0 005.25 9v.75a8.217 8.217 0 01-2.119 5.52.75.75 0 00.298 1.206c1.544.57 3.16.99 4.831 1.243a3.75 3.75 0 107.48 0 24.583 24.583 0 004.83-1.244.75.75 0 00.298-1.205 8.217 8.217 0 01-2.118-5.52V9A6.75 6.75 0 0012 2.25zM9.75 18c0-.034 0-.067.002-.1a25.05 25.05 0 004.496 0l.002.1a2.25 2.25 0 11-4.5 0z" clipRule="evenodd" />
+        </svg>
+      ) : (
+        <svg className="h-6 w-6 text-[#b0b8c9]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+        </svg>
+      )}
+      {enabled && (
+        <span
+          className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-[#012d74]"
+          style={{ boxShadow: "0 0 0 2px #fff" }}
+        />
+      )}
+    </button>
+  );
+}
+
 interface NavbarSzphProps {
   announcement?: { text: string; href?: string } | null;
 }
@@ -523,27 +564,44 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         ) : <div />}
       </div>
 
-      {/* Mobilny announcement bar */}
-      {announcement && (
-        <div className="fixed inset-x-0 top-0 z-[60] flex md:hidden items-center justify-center px-4" style={{ background: "linear-gradient(135deg, #0a1f3d 0%, #102b50 100%)", height: "28px" }}>
-          {announcement.href ? (
-            <Link href={announcement.href} className="flex items-center gap-1.5 text-white font-bold truncate" style={{ fontSize: "9px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1 w-1 rounded-full bg-green-400 animate-pulse" />
-              {announcement.text}
-            </Link>
-          ) : (
-            <span className="flex items-center gap-1.5 text-white font-bold truncate" style={{ fontSize: "9px" }}>
-              <span className="shrink-0 h-1 w-1 rounded-full bg-green-400 animate-pulse" />
-              {announcement.text}
-            </span>
+      {/* ── MOBILE FIXED HEADER — starts at top:0, bg extends under status bar ── */}
+      <div className="fixed inset-x-0 z-[60] flex flex-col md:hidden mobile-fixed-header mobile-header-top">
+        {/* Announcement bar — padding-top pushes content below status bar icons */}
+        {/* Dark blue zone: safe area + announcement */}
+        <div className="mobile-announcement-bar flex items-end justify-center px-4 pb-1.5" style={{ background: "#0e264a" }}>
+          {announcement && (
+            announcement.href ? (
+              <Link href={announcement.href} className="flex items-center gap-1.5 text-white font-bold" style={{ fontSize: "10px", letterSpacing: "0.03em", maxWidth: "100%" }}>
+                <span className="shrink-0 h-1 w-1 rounded-full bg-green-400 animate-pulse" />
+                <span className="truncate">{announcement.text.length > 50 ? announcement.text.slice(0, 50) + "..." : announcement.text}</span>
+                <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </Link>
+            ) : (
+              <span className="flex items-center gap-1.5 text-white font-bold truncate" style={{ fontSize: "9px" }}>
+                <span className="shrink-0 h-1 w-1 rounded-full bg-green-400 animate-pulse" />
+                <span className="truncate">{announcement.text.length > 50 ? announcement.text.slice(0, 50) + "..." : announcement.text}</span>
+              </span>
+            )
           )}
         </div>
-      )}
+        {/* Navbar */}
+        <div className="relative flex items-center justify-between px-5" style={{ height: "64px", background: "#ffffff", borderBottom: "1px solid rgba(1,45,116,0.08)" }}>
+          <MobileNotificationButton />
+          <Link href="/" className="absolute left-1/2 -translate-x-1/2 shrink-0">
+            <Image src="/images/logo-szph.webp" alt="SZPH" height={56} width={190} className="h-14 w-auto object-contain" priority />
+          </Link>
+          <Link href="/admin/prihlasenie" className="flex items-center justify-center h-11 w-11 rounded-full hover:bg-[#051937]/5 transition-colors" aria-label="Prihlásenie">
+            <svg className="h-6 w-6 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+          </Link>
+        </div>
+      </div>
 
       <header
         className={cn(
-          "fixed inset-x-0 z-[55] flex flex-col transition-all duration-300",
-          announcement ? "top-[28px] md:top-[36px]" : "top-0 md:top-[36px]"
+          "fixed inset-x-0 z-[55] hidden md:flex flex-col transition-all duration-300",
+          "top-[36px]"
         )}
         style={{
           background: (hasHero && !scrolled)
@@ -680,27 +738,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           </div>
         </div>
 
-        {/* ── MOBILNA HLAVICKA ── */}
-        <div className="relative flex md:hidden items-center justify-between px-4" style={{ height: "56px", background: "#051937" }}>
-          {/* Left — user/login icon */}
-          <Link href="/admin/prihlasenie" className="flex items-center justify-center h-9 w-9 rounded-full hover:bg-white/10 transition-colors" aria-label="Prihlasenie">
-            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-            </svg>
-          </Link>
-          {/* Center — white logo */}
-          <Link href="/" className="absolute left-1/2 -translate-x-1/2 shrink-0">
-            <Image src="/images/logo-szph-white.webp" alt="SZPH" height={40} width={130} className="h-10 w-auto object-contain" priority />
-          </Link>
-          {/* Right — hamburger */}
-          <button onClick={() => setMobileOpen(v => !v)}
-            className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-white/10 transition-colors"
-            aria-label="Menu" aria-expanded={mobileOpen}>
-            <span className={cn("h-0.5 w-5 bg-white transition-all duration-300", mobileOpen && "translate-y-2 rotate-45")} />
-            <span className={cn("h-0.5 w-5 bg-white transition-all duration-300", mobileOpen && "opacity-0")} />
-            <span className={cn("h-0.5 w-5 bg-white transition-all duration-300", mobileOpen && "-translate-y-2 -rotate-45")} />
-          </button>
-        </div>
+        {/* Mobile header is rendered separately above as a fixed block */}
 
         {/* ── MOBILNE MENU — fullscreen slide-in from right ── */}
         <AnimatePresence>
@@ -711,7 +749,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="fixed left-0 right-0 bottom-0 z-[65] md:hidden bg-white overflow-y-auto"
-              style={{ top: announcement ? "84px" : "56px" }}
+              style={{ top: "calc(env(safe-area-inset-top, 0px) + " + (announcement ? "92px" : "64px") + ")" }}
             >
               <div className="flex flex-col min-h-full px-5 pt-6 pb-8">
                 {/* Nav items */}

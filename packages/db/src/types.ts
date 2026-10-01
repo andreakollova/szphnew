@@ -129,6 +129,28 @@ export interface Page {
   updated_at: string;
 }
 
+export type ExerciseCategory = "utok" | "obrana" | "nahravky" | "technika" | "kondicia";
+
+export interface Exercise {
+  id: string;
+  title: string;
+  slug: string;
+  players: number | null;
+  age_group: string | null;
+  duration: string | null;
+  goal: string | null;
+  equipment: string | null;
+  description: string | null;
+  tips: string | null;
+  easier: string | null;
+  harder: string | null;
+  diagram_url: string | null;
+  category: ExerciseCategory;
+  status: Status;
+  created_at: string;
+  updated_at: string;
+}
+
 // Formulárové typy
 export interface ArticleFormData {
   slug: string;

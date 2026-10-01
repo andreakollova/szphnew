@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Trenerske vzdelavanie | SzPH",
+  title: "Trénerské vzdelávanie | SzPH",
   description:
-    "Vzdelavanie trenerov polneho hokeja na Slovensku - FIH coaching urovne, licencie a kurzy.",
+    "Vzdelávanie trénerov pozemného hokeja na Slovensku - FIH coaching úrovne, licencie a kurzy.",
 };
 
 export default function TreneriPage() {
@@ -16,20 +16,20 @@ export default function TreneriPage() {
             className="font-bold uppercase text-white mb-4 block"
             style={{ fontSize: "10px", letterSpacing: "0.14em" }}
           >
-            Vzdelavanie
+            Vzdelávanie
           </span>
           <h1
             className="font-garet font-bold italic text-white leading-tight"
             style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
           >
-            Trenerske vzdelavanie
+            Trénerské vzdelávanie
           </h1>
           <p
             className="text-white mt-3 max-w-xl"
             style={{ fontSize: "15px" }}
           >
-            System vzdelavania a licencovania trenerov polneho hokeja v sulade s
-            medzinarodnou metodikou FIH.
+            Systém vzdelávania a licencovania trénerov pozemného hokeja v súlade s
+            medzinárodnou metodikou FIH.
           </p>
         </div>
       </div>
@@ -40,13 +40,13 @@ export default function TreneriPage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            FIH Coaching urovne
+            FIH Coaching úrovne
           </h2>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Medzinarodna hokejova federacia (FIH) definuje jednotny system
-            trenerských urovni, ktory SzPH implementuje na Slovensku. Kazda
-            uroven pripravuje trenerov na pracu s inou cielovou skupinou a na
-            inej urovni sutazenia.
+            Medzinárodná hokejová federácia (FIH) definuje jednotný systém
+            trénerských úrovní, ktorý SzPH implementuje na Slovensku. Každá
+            úroveň pripravuje trénerov na prácu s inou cieľovou skupinou a na
+            inej úrovni súťaženia.
           </p>
 
           <div className="space-y-4 mb-8">
@@ -55,9 +55,9 @@ export default function TreneriPage() {
                 Level 1 - Community Coach
               </h3>
               <p className="text-sm text-[#666]">
-                Zakladna uroven pre trenerov pracujucich s detmi a zaciatocnikmi.
-                Zameranie na zaklady techniky, hernych zrucnosti a bezpecnosti.
-                Vhodne pre trenerov v skolskych kruzkoch a rekreacnych kluboch.
+                Základná úroveň pre trénerov pracujúcich s deťmi a začiatočníkmi.
+                Zameranie na základy techniky, herných zručností a bezpečnosti.
+                Vhodné pre trénerov v školských krúžkoch a rekreačných kluboch.
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -65,9 +65,9 @@ export default function TreneriPage() {
                 Level 2 - Development Coach
               </h3>
               <p className="text-sm text-[#666]">
-                Stredna uroven pre trenerov mladeznickeho a juniorského hokeja.
-                Rozsirene vedomosti o taktike, planovani treningovych cyklov a
-                individualnom rozvoji hracov.
+                Stredná úroveň pre trénerov mládežníckeho a juniorského hokeja.
+                Rozšírené vedomosti o taktike, plánovaní tréningových cyklov a
+                individuálnom rozvoji hráčov.
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -75,9 +75,9 @@ export default function TreneriPage() {
                 Level 3 - Performance Coach
               </h3>
               <p className="text-sm text-[#666]">
-                Pokrocila uroven pre trenerov sutaznych druzstiev. Hlboka analyza
-                hry, periodizacia treningu, priprava na medzinarodne sutaze a
-                vedenie timov na vysokej urovni.
+                Pokročilá úroveň pre trénerov súťažných družstiev. Hlboká analýza
+                hry, periodizácia tréningu, príprava na medzinárodné súťaže a
+                vedenie tímov na vysokej úrovni.
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -85,9 +85,9 @@ export default function TreneriPage() {
                 Level 4 - High Performance Coach
               </h3>
               <p className="text-sm text-[#666]">
-                Najvyssia uroven pre trenerov narodnych timov a elitnych
-                klubových druzstiev. Specializacia na strategicke vedenie,
-                sportovu vedu a medzinarodne standardy.
+                Najvyššia úroveň pre trénerov národných tímov a elitných
+                klubových družstiev. Špecializácia na strategické vedenie,
+                športovú vedu a medzinárodné štandardy.
               </p>
             </div>
           </div>
@@ -98,29 +98,29 @@ export default function TreneriPage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Ako sa stat trenerom
+            Ako sa stať trénerom
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
-            Ak mate zaujem o trenersku karieru v polnom hokeji, SzPH vam ponuka
-            jasnu cestu od zakladnych kurzov az po medzinarodne certifikacie.
-            Prvy krok je absolvovanie zakladneho trenerskeho kurzu Level 1.
+            Ak máte záujem o trénerskú kariéru v pozemnom hokeji, SzPH vám ponúka
+            jasnú cestu od základných kurzov až po medzinárodné certifikácie.
+            Prvý krok je absolvovanie základného trénerského kurzu Level 1.
           </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Pre viac informacii o tom, ako zacat, navstivte stranku pre
-            zaujemcov o trenerovanie alebo nas kontaktujte priamo.
+            Pre viac informácií o tom, ako začať, navštívte stránku pre
+            záujemcov o trénerovanie alebo nás kontaktujte priamo.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/zacni-hrat/trener"
               className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
             >
-              Chcem byt trener
+              Chcem byť tréner
             </Link>
             <Link
               href="/vzdelavanie/trenerske-kurzy"
               className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
             >
-              Prehlad kurzov
+              Prehľad kurzov
             </Link>
             <Link
               href="/vzdelavanie/fih-licencie"
@@ -133,17 +133,17 @@ export default function TreneriPage() {
 
         <section className="p-6 bg-white rounded-xl border border-gray-200">
           <h3 className="font-garet font-bold text-[#051937] mb-2">
-            Potrebujete viac informacii?
+            Potrebujete viac informácií?
           </h3>
           <p className="text-sm text-[#666] mb-4">
-            Kontaktujte nas pre individualne poradenstvo ohladom trenerskeho
-            vzdelavania a licencii.
+            Kontaktujte nás pre individuálne poradenstvo ohľadom trénerského
+            vzdelávania a licencií.
           </p>
           <Link
             href="/kontakt"
             className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
           >
-            Kontaktovat nas
+            Kontaktovať nás
           </Link>
         </section>
       </div>

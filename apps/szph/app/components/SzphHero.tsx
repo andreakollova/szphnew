@@ -38,12 +38,12 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
   }, []);
 
   return (
-    <div className="-mt-16 md:-mt-[116px]">
+    <div className="mobile-hero-pull md:-mt-[116px]">
       {/* ═══ MOBILE HERO (below md) ═══ */}
       <section
         data-hero
         className="relative w-full overflow-hidden md:hidden"
-        style={{ minHeight: "85vh" }}
+        style={{ minHeight: "82vh" }}
       >
         {/* Mobile rotating background photos */}
         {HERO_IMAGES.map((src, i) => (
@@ -59,8 +59,9 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
               transition: "opacity 1s ease-in-out",
             }}
             priority={i === 0}
-            quality={90}
+            quality={100}
             sizes="100vw"
+            unoptimized
           />
         ))}
         {/* Mobile overlay pattern */}

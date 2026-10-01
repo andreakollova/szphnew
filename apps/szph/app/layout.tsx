@@ -7,6 +7,14 @@ import { CookieBanner } from "./components/CookieBanner";
 import { MobileBottomNav } from "./components/MobileBottomNav";
 import "./globals.css";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: "cover" as const,
+  themeColor: "#0e264a",
+};
+
 export const metadata: Metadata = {
   title: {
     default: "SZPH — Slovenský zväz pozemného hokeja",
@@ -61,10 +69,13 @@ export default async function RootLayout({
 
   return (
     <html lang="sk" data-brand="szph" className={inter.variable}>
+      <head>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      </head>
       <body>
         <NavbarSzph announcement={announcement} />
         {/* 80px navbar + 36px announcement bar = 116px */}
-        <main className="pt-[96px] md:pt-[116px] pb-[72px] md:pb-0">{children}</main>
+        <main className="mobile-header-offset pb-[90px] md:pb-0">{children}</main>
         <Footer brand="szph" />
         <MobileBottomNav />
         <CookieBanner />

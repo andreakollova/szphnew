@@ -28,7 +28,7 @@ export default function KurzRozhodcovPage() {
             className="text-white mt-3 max-w-xl"
             style={{ fontSize: "15px" }}
           >
-            Vsetko, co potrebujete vediet o kurze rozhodcov polneho hokeja.
+            Všetko, čo potrebujete vedieť o kurze rozhodcov pozemného hokeja.
           </p>
         </div>
       </div>
@@ -42,14 +42,14 @@ export default function KurzRozhodcovPage() {
             O kurze
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
-            Kurz rozhodcov polneho hokeja je urceny pre vsetkych zaujemcov o
-            rozhodovanie, bez ohladu na predchadzajuce skusenosti s polnym
-            hokejom. Kurz poskytuje komplexne vzdelanie potrebne na ziskanie
+            Kurz rozhodcov pozemného hokeja je určený pre všetkých záujemcov o
+            rozhodovanie, bez ohľadu na predchádzajúce skúsenosti s pozemným
+            hokejom. Kurz poskytuje komplexné vzdelanie potrebné na získanie
             rozhodcovskej licencie SzPH.
           </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Absolventi kurzu ziskavaju opravnenie rozhodovat zapasy slovenskej
-            ligy polneho hokeja a dalsich sutazi organizovanych SzPH.
+            Absolventi kurzu získavajú oprávnenie rozhodovať zápasy slovenskej
+            ligy pozemného hokeja a ďalších súťaží organizovaných SzPH.
           </p>
         </section>
 
@@ -63,39 +63,39 @@ export default function KurzRozhodcovPage() {
           <div className="space-y-4">
             <div className="p-5 bg-white rounded-xl border border-gray-200">
               <h3 className="font-garet font-bold text-[#051937] mb-1.5">
-                Teoreticka cast
+                Teoretická časť
               </h3>
               <p className="text-sm text-[#666]">
-                Pravidla polneho hokeja podla FIH, signalizacia rozhodcov,
-                disciplinarne postihy, organizacia zapasu a administrativne
+                Pravidlá pozemného hokeja podľa FIH, signalizácia rozhodcov,
+                disciplinárne postihy, organizácia zápasu a administratívne
                 povinnosti rozhodcu.
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
               <h3 className="font-garet font-bold text-[#051937] mb-1.5">
-                Prakticka cast
+                Praktická časť
               </h3>
               <p className="text-sm text-[#666]">
-                Pozicovanie na ihrisku, rozhodovanie modelovych situacii,
-                spoluprace s dalsim rozhodcom, komunikacia s hracmi a trenermi.
+                Pozicovanie na ihrisku, rozhodovanie modelových situácií,
+                spolupráca s ďalším rozhodcom, komunikácia s hráčmi a trénermi.
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
               <h3 className="font-garet font-bold text-[#051937] mb-1.5">
-                Video analyza
+                Video analýza
               </h3>
               <p className="text-sm text-[#666]">
-                Rozbor realnych zapasovych situacii, identifikacia prestupkov,
-                spravne rozhodnutia a rozbor chyb.
+                Rozbor reálnych zápasových situácií, identifikácia priestupkov,
+                správne rozhodnutia a rozbor chýb.
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
               <h3 className="font-garet font-bold text-[#051937] mb-1.5">
-                Skuska
+                Skúška
               </h3>
               <p className="text-sm text-[#666]">
-                Pisomny test z pravidiel a prakticka skuska rozhodovanie
-                zapasu pod dohladom skusenych rozhodcov.
+                Písomný test z pravidiel a praktická skúška rozhodovanie
+                zápasu pod dohľadom skúsených rozhodcov.
               </p>
             </div>
           </div>
@@ -106,24 +106,24 @@ export default function KurzRozhodcovPage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Podmienky ucasti
+            Podmienky účasti
           </h2>
           <ul className="space-y-2 text-[#333] mb-6" style={{ fontSize: "15px" }}>
             <li className="flex items-start gap-2">
               <span className="text-[#051937] mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-              <span>Minimalne 16 rokov veku</span>
+              <span>Minimálne 16 rokov veku</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#051937] mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-              <span>Zaujem o polny hokej a rozhodovanie</span>
+              <span>Záujem o pozemný hokej a rozhodovanie</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#051937] mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-              <span>Dobra fyzicka kondicia</span>
+              <span>Dobrá fyzická kondícia</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-[#051937] mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
-              <span>Predchadzajuce skusenosti s polnym hokejom su vyhodou, nie podmienkou</span>
+              <span>Predchádzajúce skúsenosti s pozemným hokejom sú výhodou, nie podmienkou</span>
             </li>
           </ul>
           <div className="flex flex-wrap gap-3">
@@ -131,13 +131,13 @@ export default function KurzRozhodcovPage() {
               href="/zacni-hrat/rozhodca"
               className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
             >
-              Chcem byt rozhodca
+              Chcem byť rozhodca
             </Link>
             <Link
               href="/kontakt"
               className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
             >
-              Prihlasit sa na kurz
+              Prihlásiť sa na kurz
             </Link>
           </div>
         </section>

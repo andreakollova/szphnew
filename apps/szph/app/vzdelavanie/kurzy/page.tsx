@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Kurzy | SzPH",
   description:
-    "Prehlad kurzov a skoleni v polnom hokeji na Slovensku - trenerske, rozhodcovske a specializovane kurzy.",
+    "Prehľad kurzov a školení v pozemnom hokeji na Slovensku - trénerské, rozhodcovské a špecializované kurzy.",
 };
 
 export default function KurzyPage() {
@@ -16,7 +16,7 @@ export default function KurzyPage() {
             className="font-bold uppercase text-white mb-4 block"
             style={{ fontSize: "10px", letterSpacing: "0.14em" }}
           >
-            Vzdelavanie
+            Vzdelávanie
           </span>
           <h1
             className="font-garet font-bold italic text-white leading-tight"
@@ -28,7 +28,7 @@ export default function KurzyPage() {
             className="text-white mt-3 max-w-xl"
             style={{ fontSize: "15px" }}
           >
-            Aktualne kurzy a skolenia organizovane Slovenskym zvazom polneho
+            Aktuálne kurzy a školenia organizované Slovenským zväzom pozemného
             hokeja.
           </p>
         </div>
@@ -43,15 +43,15 @@ export default function KurzyPage() {
             Ponuka kurzov
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
-            SzPH pravidelne organizuje vzdelavacie kurzy pre vsetky zainteresovane
-            skupiny v polnom hokeji. Kurzy su urcene pre trenerov, rozhodcov,
-            funkcionarov aj dalsich zaujemcov o rozvoj tohto sportu na Slovensku.
+            SzPH pravidelne organizuje vzdelávacie kurzy pre všetky zainteresované
+            skupiny v pozemnom hokeji. Kurzy sú určené pre trénerov, rozhodcov,
+            funkcionárov aj ďalších záujemcov o rozvoj tohto športu na Slovensku.
           </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Aktualne terminy kurzov su zverejnovane na webovej stranke SzPH a na
-            nasich profiloch na socialnych sietach. Sledujte nas, aby vam
-            neunikli ziadne novinky a prihlaste sa vcas - kapacita kurzov je
-            obmedzena.
+            Aktuálne termíny kurzov sú zverejňované na webovej stránke SzPH a na
+            našich profiloch na sociálnych sieťach. Sledujte nás, aby vám
+            neunikli žiadne novinky a prihláste sa včas - kapacita kurzov je
+            obmedzená.
           </p>
         </section>
 
@@ -68,11 +68,11 @@ export default function KurzyPage() {
               className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-[#051937]/30 transition-colors"
             >
               <h3 className="font-garet font-bold text-[#051937] mb-1.5">
-                Trenerske kurzy
+                Trénerské kurzy
               </h3>
               <p className="text-sm text-[#666]">
-                Kurzy pre zaujemcov o trenerovanie polneho hokeja na roznych
-                urovniach - od zakladnych po pokrocile FIH licencie.
+                Kurzy pre záujemcov o trénerovanie pozemného hokeja na rôznych
+                úrovniach - od základných po pokročilé FIH licencie.
               </p>
             </Link>
             <Link
@@ -80,11 +80,11 @@ export default function KurzyPage() {
               className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-[#051937]/30 transition-colors"
             >
               <h3 className="font-garet font-bold text-[#051937] mb-1.5">
-                Rozhodcovske kurzy
+                Rozhodcovské kurzy
               </h3>
               <p className="text-sm text-[#666]">
-                Zakladne a pokrocile kurzy pre rozhodcov. Teoreticka a prakticka
-                priprava na rozhodovanie zapasov polneho hokeja.
+                Základné a pokročilé kurzy pre rozhodcov. Teoretická a praktická
+                príprava na rozhodovanie zápasov pozemného hokeja.
               </p>
             </Link>
             <Link
@@ -92,11 +92,11 @@ export default function KurzyPage() {
               className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-[#051937]/30 transition-colors"
             >
               <h3 className="font-garet font-bold text-[#051937] mb-1.5">
-                Seminare a workshopy
+                Semináre a workshopy
               </h3>
               <p className="text-sm text-[#666]">
-                Kratkodoba forma vzdelavania zamerana na specificke temy, novinky
-                v pravidlach a metodicke trendy.
+                Krátkodobá forma vzdelávania zameraná na špecifické témy, novinky
+                v pravidlách a metodické trendy.
               </p>
             </Link>
           </div>
@@ -104,18 +104,18 @@ export default function KurzyPage() {
 
         <section className="p-6 bg-white rounded-xl border border-gray-200">
           <h3 className="font-garet font-bold text-[#051937] mb-2">
-            Prihlasenie na kurzy
+            Prihlásenie na kurzy
           </h3>
           <p className="text-sm text-[#666] mb-4">
-            Informacie o prihlasovani, terminoch a podmienkach ucastii na
-            kurzoch ziskate na nasej kontaktnej stranke alebo sledovanim nasich
-            socialnych sieti.
+            Informácie o prihlasovaní, termínoch a podmienkach účasti na
+            kurzoch získate na našej kontaktnej stránke alebo sledovaním našich
+            sociálnych sietí.
           </p>
           <Link
             href="/kontakt"
             className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
           >
-            Kontaktovat nas
+            Kontaktovať nás
           </Link>
         </section>
       </div>

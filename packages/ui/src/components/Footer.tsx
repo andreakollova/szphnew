@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { NewsletterForm } from "./NewsletterForm";
@@ -41,6 +44,32 @@ const FOOTER_LINKS_SZPH = [
 export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProps) {
   const links = brand === "fieldhockey" ? FOOTER_LINKS_FIELDHOCKEY : FOOTER_LINKS_SZPH;
   const isFieldhockey = brand === "fieldhockey";
+  const [isNative, setIsNative] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && (window as any).Capacitor) {
+      setIsNative(true);
+    }
+  }, []);
+
+  // In native app, only show newsletter section
+  if (isNative) {
+    return (
+      <footer>
+        <div style={{ background: "#051937" }}>
+          <div className="px-6 py-8">
+            <p className="font-garet font-bold italic text-white mb-1" style={{ fontSize: "18px", textTransform: "uppercase" }}>
+              Odber noviniek
+            </p>
+            <p className="text-white/40 mb-5" style={{ fontSize: "11px" }}>
+              Dostávajte najnovšie správy priamo do e-mailu.
+            </p>
+            <NewsletterForm />
+          </div>
+        </div>
+      </footer>
+    );
+  }
 
   return (
     <footer style={{ background: "#f8f9fa", borderTop: "1px solid rgba(1,45,116,0.07)" }}>

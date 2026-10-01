@@ -6,3 +6,4 @@ export * from "./queries/teams";
 export * from "./queries/videos";
 export * from "./queries/partners";
 export * from "./queries/pages";
+export * from "./queries/exercises";
