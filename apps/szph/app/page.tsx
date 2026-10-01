@@ -247,32 +247,49 @@ export default async function SzphHome() {
               />
 
               {/* Pripnuté články */}
-              <div>
-                <div className="flex items-center justify-between mb-5">
-                  <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                    Pripnuté články
-                  </h2>
-                </div>
-                <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
-                  {[
-                    { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
-                    { title: "Program Olympiáda 2036", image: "/images/pinned-kyselicova.webp", slug: "program-olympiada-2036" },
-                    { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-olympiada-2036.webp", slug: "reportaz-alena-kyselicova" },
-                  ].map((article) => (
-                    <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                      <div className="relative overflow-hidden" style={{ height: "180px" }}>
-                        <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                      </div>
-                      <div className="px-4 py-3.5">
-                        <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
-                          / neprehliadnite
-                        </span>
-                        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
-                          {article.title}
-                        </h3>
-                      </div>
-                    </Link>
-                  ))}
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, #051937 0%, #012d74 100%)",
+                  borderRadius: "3px",
+                  padding: "clamp(20px, 2vw, 32px)",
+                }}
+              >
+                {/* Decorative glow */}
+                <div className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl rounded-full" style={{ background: "#0078fd" }} />
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center gap-2">
+                      <svg className="h-4 w-4 text-[#0078fd]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                      </svg>
+                      <h2 className="font-garet font-bold italic text-white" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
+                        Neprehliadnite
+                      </h2>
+                    </div>
+                  </div>
+                  <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+                    {[
+                      { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
+                      { title: "Program Olympiáda 2036", image: "/images/pinned-kyselicova.webp", slug: "program-olympiada-2036" },
+                      { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-olympiada-2036.webp", slug: "reportaz-alena-kyselicova" },
+                    ].map((article) => (
+                      <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "3px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                        <div className="relative overflow-hidden" style={{ height: "180px" }}>
+                          <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <div className="px-4 py-3.5">
+                          <span className="inline-block font-extrabold uppercase text-[#0078fd] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
+                            / neprehliadnite
+                          </span>
+                          <h3 className="font-bold text-white leading-snug group-hover:text-white/70 transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
+                            {article.title}
+                          </h3>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
 
