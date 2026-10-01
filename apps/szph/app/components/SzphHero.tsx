@@ -250,15 +250,17 @@ export function SzphHero() {
           }}
         >
           <p
-            className="font-garet font-bold text-white/60 uppercase"
+            className="font-garet text-white/45"
             style={{
-              fontSize: "clamp(0.5rem, 0.75vw, 18px)",
-              letterSpacing: "0.1em",
+              fontSize: "clamp(0.45rem, 0.65vw, 15px)",
+              fontStyle: "italic",
+              fontWeight: 500,
+              letterSpacing: "0.06em",
               marginBottom: "clamp(4px, 0.6vw, 14px)",
               textShadow: "0 2px 20px rgba(0,0,0,0.3)",
             }}
           >
-            Slovenský pozemný hokej
+            Nová generácia, veľké ambície
           </p>
           <h1
             className="font-garet text-white"
