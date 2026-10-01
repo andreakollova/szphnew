@@ -192,8 +192,8 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
       className="flex items-center bg-white px-5 py-3 gap-4 hover:bg-[#f8fafd] transition-colors"
     >
       {/* Dátum + čas na jednom riadku */}
-      <div className="shrink-0" style={{ width: "80px" }}>
-        <span className="font-bold text-[#051937]" style={{ fontSize: "12px" }}>
+      <div className="shrink-0" style={{ width: "110px" }}>
+        <span className="font-bold text-[#051937] whitespace-nowrap" style={{ fontSize: "12px" }}>
           {dateStr} · {time}
         </span>
       </div>
