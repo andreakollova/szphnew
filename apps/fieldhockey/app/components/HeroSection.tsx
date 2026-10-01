@@ -51,7 +51,7 @@ export function HeroSection() {
           className="font-garet font-black text-white max-w-2xl leading-tight"
           style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.5rem)", letterSpacing: "-0.02em" }}
         >
-          Olympijský festival sme odštartovali s pozemným hokejom
+          JEDEN TÝM SPOLOČNÝ <span style={{ color: "#0078fd" }}>CIEĽ</span>
         </motion.h2>
 
         <motion.div
