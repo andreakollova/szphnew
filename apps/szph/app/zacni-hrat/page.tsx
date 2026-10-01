@@ -14,7 +14,7 @@ export default function ZacniHratPage() {
             Začni hrať
           </span>
           <h1 className="font-bold text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Chcem začať
+            Chcem začať hrať pozemný hokej
           </h1>
         </div>
       </div>

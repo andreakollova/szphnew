@@ -9,7 +9,8 @@ import { createClient } from "@supabase/supabase-js";
 
 interface MegaLink { label: string; href: string; desc?: string; }
 interface MegaColumn { title: string; links: MegaLink[]; }
-interface MegaFeatured { image: string; tag: string; title: string; desc: string; href: string; }
+interface MegaBanner { label: string; href: string; bg: string; }
+interface MegaFeatured { image: string; tag: string; title: string; desc: string; href: string; cta?: { label: string; href: string }; banners?: MegaBanner[]; imagePosition?: string; }
 interface NavItem {
   label: string;
   href: string;
@@ -20,7 +21,6 @@ const QUICK_LINKS = [
   { label: "SZPH",              href: "/o-szph" },
   { label: "Dokumenty",         href: "/dokumenty" },
   { label: "Ostatné",           href: "/ostatne" },
-  { label: "Kalendár akcií",    href: "/kalendar" },
   { label: "Najbližšie zápasy", href: "/zapasy" },
 ];
 
@@ -62,6 +62,7 @@ const MAIN_NAV: NavItem[] = [
     mega: {
       featured: {
         image: "/images/mega-reprezentacia.png",
+        imagePosition: "top",
         tag: "Národný tím",
         title: "Slovenská reprezentácia",
         desc: "Sleduj výsledky, zostavy a príbehy slovenských národných tímov na medzinárodnej scéne.",
@@ -98,6 +99,10 @@ const MAIN_NAV: NavItem[] = [
         title: "Slovenské ligy a turnaje",
         desc: "Kompletný prehľad všetkých súťaží — od extraligy až po mládežnícke turnaje po celom Slovensku.",
         href: "/sutaze",
+        banners: [
+          { label: "Pozemný hokej", href: "/sutaze/pozemny-hokej", bg: "#051937" },
+          { label: "Halový hokej", href: "/sutaze/halovy-hokej", bg: "#d80027" },
+        ],
       },
       columns: [
         {
@@ -156,11 +161,12 @@ const MAIN_NAV: NavItem[] = [
     label: "Vzdelávanie", href: "/vzdelavanie",
     mega: {
       featured: {
-        image: "/images/mega-vzdelavanie.png",
+        image: "/images/korim-u4e-gallery0.jpg",
         tag: "Vzdelávanie",
         title: "Rozvíjaj sa s SZPH",
         desc: "Kurzy, semináre a školenia pre hráčov, trénerov aj rozhodcov. Investuj do svojho rozvoja.",
         href: "/vzdelavanie",
+        cta: { label: "Vzdelávacia platforma SZPH Akadémia", href: "/projekty/hokejova-akademia" },
       },
       columns: [
         {
@@ -200,25 +206,55 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-[340px_1fr] gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-[280px_1fr] gap-6">
 
-        {/* Featured karta */}
-        <Link href={featured.href} className="group relative overflow-hidden block" style={{ height: "100%", minHeight: "240px", borderRadius: "4px" }}>
-          <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-          <div className="absolute inset-0" style={{ borderRadius: "4px", background: "linear-gradient(to top, rgba(5,25,55,0.92) 0%, rgba(5,25,55,0.3) 60%, transparent 100%)" }} />
-          <div className="absolute bottom-0 p-5">
-            <h3 className="font-garet font-black italic text-white text-lg leading-tight mb-2">{featured.title}</h3>
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-white px-3 py-1.5 transition-all hover:brightness-110" style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "20px" }}>
-              Zobraziť
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </span>
-          </div>
-        </Link>
+        {/* Featured karta — landscape */}
+        <div className="flex flex-col">
+          {featured.banners ? (
+            /* Two banner cards instead of featured image */
+            <div className="flex flex-col gap-2" style={{ height: "220px" }}>
+              {featured.banners.map((b) => (
+                <Link key={b.label} href={b.href} className="group flex-1 relative overflow-hidden flex items-center px-5" style={{ borderRadius: "4px", background: b.bg }}>
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "rgba(255,255,255,0.06)" }} />
+                  <div className="relative flex items-center justify-between w-full">
+                    <div>
+                      <span className="font-garet font-bold italic text-white" style={{ fontSize: "18px" }}>{b.label}</span>
+                    </div>
+                    <svg className="h-4 w-4 text-white/40 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <Link href={featured.href} className="group relative overflow-hidden block" style={{ height: "220px", borderRadius: "4px" }}>
+              <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" style={featured.imagePosition ? { objectPosition: featured.imagePosition } : undefined} />
+              <div className="absolute inset-0" style={{ borderRadius: "4px", background: "linear-gradient(to top, #051937 0%, rgba(5,25,55,0.85) 35%, rgba(5,25,55,0.2) 70%, transparent 100%)" }} />
+              <div className="absolute bottom-0 p-4">
+                <h3 className="font-garet font-black italic text-white leading-tight mb-2" style={{ fontSize: "16px" }}>{featured.title}</h3>
+                <span className="inline-flex items-center gap-1.5 font-bold text-white px-3 py-1.5 transition-all hover:brightness-110" style={{ fontSize: "10px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "20px" }}>
+                  Zobraziť
+                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </div>
+            </Link>
+          )}
+
+          {/* CTA button pod featured */}
+          {featured.cta && (
+            <Link href={featured.cta.href} className="flex items-center gap-2 mt-2 px-4 py-2.5 font-bold text-white transition-all hover:brightness-110" style={{ background: "#012d74", borderRadius: "4px", fontSize: "11px" }}>
+              <svg className="h-3.5 w-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" /></svg>
+              {featured.cta.label}
+              <svg className="h-3 w-3 shrink-0 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </Link>
+          )}
+        </div>
 
         {/* Stĺpce s linkami */}
-        <div className="grid gap-8" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
+        <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
           {columns.map((col) => (
             <div key={col.title}>
               <p className="font-bold uppercase tracking-widest text-[#051937] mb-4" style={{ fontSize: "11.5px" }}>
