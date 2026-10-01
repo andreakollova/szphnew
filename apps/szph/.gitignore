@@ -1,1 +1,8 @@
 .vercel
+# Capacitor native builds
+ios/App/Pods/
+ios/App/App/public/
+ios/App/output/
+android/app/src/main/assets/public/
+android/.gradle/
+android/app/build/
