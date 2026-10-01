@@ -275,7 +275,7 @@ export function SzphHero() {
             <br />
             SPOLOČNÝ
             <br />
-            <span style={{ color: "#0078fd" }}>CIEĽ.</span>
+            <span style={{ color: "#0078fd", WebkitTextStroke: "0.5px #0078fd" }}>CIEĽ.</span>
           </h1>
           <div style={{ marginTop: "clamp(12px, 1.5vw, 36px)" }}>
             <Link
