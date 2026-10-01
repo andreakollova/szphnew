@@ -251,14 +251,16 @@ export function SzphHero() {
           <h1
             className="font-garet font-bold italic text-white"
             style={{
-              fontSize: "clamp(1.6rem, 4.9vw, 136px)",
-              lineHeight: 1.15,
+              fontSize: "clamp(2rem, 5.8vw, 160px)",
+              lineHeight: 1.1,
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
           >
             JEDEN TÝM,
             <br />
-            SPOLOČNÝ <span style={{ color: "#0078fd" }}>CIEĽ</span>
+            SPOLOČNÝ
+            <br />
+            <span style={{ color: "#0078fd" }}>CIEĽ</span>
           </h1>
           <div style={{ marginTop: "clamp(12px, 1.5vw, 36px)" }}>
             <Link
