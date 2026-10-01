@@ -586,8 +586,7 @@ export default async function SzphHome() {
               <Link
                 key={i}
                 href={p.href}
-                className="group flex flex-col overflow-hidden"
-                className="shrink-0 w-[140px] md:w-auto"
+                className="group flex flex-col overflow-hidden shrink-0 w-[140px] md:w-auto"
                 style={{ borderRadius: "10px", overflow: "hidden" }}
               >
                 {/* Thumbnail */}
