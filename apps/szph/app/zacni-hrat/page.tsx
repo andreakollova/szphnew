@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Chcem začať s pozemným hokejom",
@@ -29,6 +31,38 @@ export default function ZacniHratPage() {
         <p className="text-[#334155] mb-10" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Začať s pozemným hokejom je skvelá príležitosť pre ľudí všetkých vekových kategórií pre mužov a ženy. Tento šport podporuje tímovú prácu, rozvíja kondíciu a techniku a poskytuje skvelé spoločenské zážitky. S pomocou tréningov, základného výstroja a odhodlania sa môžete rýchlo zlepšovať a užívať si všetky výhody, ktoré pozemný hokej ponúka.
         </p>
+
+        {/* Kluby */}
+        <div className="mb-12">
+          <h2 className="font-bold text-[#051937] mb-4" style={{ fontSize: "20px" }}>Kde začať? Pridaj sa ku klubu</h2>
+          <p className="text-[#334155] mb-5" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+            Na Slovensku pôsobí niekoľko klubov, ktoré prijímajú nových hráčov a hráčky. Kontaktuj ktorýkoľvek z nich.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              { name: "KPH Rača", logo: "/images/timy/RAC.png", city: "Bratislava - Rača" },
+              { name: "HA Senkvice", logo: "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.png", city: "Šenkvice" },
+              { name: "HK Senkvice", logo: "/images/timy/SEN.png", city: "Šenkvice" },
+              { name: "HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.png", city: "Zlaté Moravce" },
+              { name: "HKM Nová Dubnica", logo: "/images/timy/nova-dubnica-32x32.png", city: "Nová Dubnica" },
+            ].map((club) => (
+              <Link key={club.name} href="/kluby" className="flex items-center gap-4 bg-white p-4 hover:bg-[#f8fafd] transition-colors" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+                <div className="shrink-0 flex items-center justify-center" style={{ width: 40, height: 40 }}>
+                  <Image src={club.logo} alt={club.name} width={40} height={40} className="object-contain" />
+                </div>
+                <div>
+                  <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>{club.name}</p>
+                  <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{club.city}</p>
+                </div>
+                <svg className="h-3.5 w-3.5 text-[#94a3b8] ml-auto shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </Link>
+            ))}
+          </div>
+          <Link href="/kluby" className="inline-flex items-center gap-2 mt-4 font-bold text-[#012d74] hover:text-[#051937] transition-colors" style={{ fontSize: "13px" }}>
+            Zobraziť všetky kluby
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </Link>
+        </div>
 
         {[
           {
