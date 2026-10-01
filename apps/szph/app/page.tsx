@@ -397,7 +397,7 @@ export default async function SzphHome() {
       <section
         className="relative py-16 mx-4 md:mx-8 overflow-hidden"
         style={{
-          borderRadius: "16px",
+          borderRadius: "3px",
           background: "linear-gradient(135deg, #020e1f 0%, #051937 25%, #071e42 50%, #020e1f 75%, #041530 100%)",
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 40px rgba(5,25,55,0.4)",
         }}
@@ -452,7 +452,7 @@ export default async function SzphHome() {
               {/* Playlist — glass card */}
               <div
                 style={{
-                  borderRadius: "10px",
+                  borderRadius: "3px",
                   background: "rgba(255,255,255,0.04)",
                   backdropFilter: "blur(12px)",
                   border: "1px solid rgba(255,255,255,0.08)",
@@ -472,7 +472,7 @@ export default async function SzphHome() {
                     rel="noopener noreferrer"
                     className="group flex items-center gap-3.5 px-4 py-3 transition-all"
                     style={{
-                      borderRadius: "8px",
+                      borderRadius: "3px",
                       borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.05)" : "none",
                     }}
                   >
@@ -528,7 +528,7 @@ export default async function SzphHome() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative overflow-hidden block"
-              style={{ borderRadius: "10px" }}
+              style={{ borderRadius: "3px" }}
             >
               <Image
                 src="/images/podcast.jpg"
