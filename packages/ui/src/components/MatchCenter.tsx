@@ -178,88 +178,83 @@ function TeamLogo({ name }: { name: string }) {
 
 function MatchRow({ m, index }: { m: DbMatch; index: number }) {
   const finished = m.status === "finished";
-  const hs = m.home_score ?? 0;
-  const as = m.away_score ?? 0;
-  const homeWin = finished && hs > as;
-  const awayWin = finished && as > hs;
   const d = new Date(m.date);
   const time = m.match_time || d.toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
+  const dateStr = d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" });
+  const isFinal = m.league?.includes("finále") || m.league?.includes("Final");
+  const isBronze = m.league?.includes("miesto");
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.28, delay: index * 0.04 }}
-      className="flex flex-col bg-white"
-      style={{ borderBottom: "1px solid rgba(1,45,116,0.07)", borderLeft: "3px solid transparent" }}
+      transition={{ duration: 0.2, delay: index * 0.03 }}
+      className="flex items-center bg-white px-4 py-2.5 gap-3 hover:bg-[#f8fafd] transition-colors"
     >
-      {/* Liga + dátum + video */}
-      <div className="px-4 pt-4 flex items-center justify-between">
-        <span className="font-bold uppercase text-[#64748b]" style={{ fontSize: "8px", letterSpacing: "0.12em" }}>
-          {(m.league || "Zápas").replace(/\s*\(.*miesto\)/, "").replace(/\s*\(finále\)/, "")}
-        </span>
-        <div className="flex items-center gap-2">
-          {m.video_url && (
-            <a href={m.video_url} target="_blank" rel="noopener noreferrer" className="text-[#012d74] hover:text-[#051937]">
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </a>
-          )}
-          <span className="font-bold uppercase text-[#64748b]" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>
-            {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short", year: "numeric" })} · {time}
-          </span>
-        </div>
+      {/* Dátum + čas */}
+      <div className="shrink-0 text-center" style={{ width: "52px" }}>
+        <span className="block font-bold text-[#051937]" style={{ fontSize: "11px", lineHeight: 1.2 }}>{dateStr}</span>
+        <span className="block font-bold text-[#64748b]" style={{ fontSize: "10px" }}>{time}</span>
       </div>
 
-      {/* Tímy + skóre */}
-      <div className="px-4 py-3 flex items-center gap-3">
-        {/* Domáci */}
-        <div className={cn("flex items-center gap-2.5 flex-1 min-w-0", "")}>
-          <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={32} />
-          <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>
-            {m.home_short || m.home_team}
-          </span>
-        </div>
-
-        {/* Skóre */}
-        <div className="shrink-0 flex flex-col items-center px-3" style={{ minWidth: "80px" }}>
-          {/* Finále / O bronz — alebo prázdny placeholder pre rovnakú výšku */}
-          <div style={{ height: "16px" }} className="flex items-center justify-center">
-            {(m.league?.includes("finále") || m.league?.includes("miesto") || m.league?.includes("Final")) && (
-              <div className="flex items-center gap-1">
-                <svg className="h-3 w-3" fill={m.league?.includes("finále") || m.league?.includes("Final") ? "#d4a017" : "#b87333"} viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <span className="font-bold uppercase" style={{ fontSize: "7px", letterSpacing: "0.06em", color: m.league?.includes("finále") || m.league?.includes("Final") ? "#d4a017" : "#b87333" }}>
-                  {m.league?.includes("finále") || m.league?.includes("Final") ? "FINÁLE" : "O BRONZ"}
-                </span>
-              </div>
-            )}
-          </div>
-          <div className="flex items-center gap-2">
-            {finished ? (
-              <>
-                <span style={{ fontSize: "20px", fontWeight: 700, lineHeight: 1, color: "#051937" }}>{m.home_score ?? 0}</span>
-                <span style={{ fontSize: "11px", fontWeight: 700, color: "#64748b" }}>:</span>
-                <span style={{ fontSize: "20px", fontWeight: 700, lineHeight: 1, color: "#051937" }}>{m.away_score ?? 0}</span>
-              </>
-            ) : (
-              <span style={{ fontSize: "13px", fontWeight: 700, color: "#012d74" }}>{time}</span>
-            )}
-          </div>
-          {m.venue && (
-            <span className="font-bold uppercase text-[#64748b] mt-1.5" style={{ fontSize: "7px", letterSpacing: "0.08em" }}>
-              {m.venue}
+      {/* Liga */}
+      <div className="shrink-0 hidden sm:block" style={{ width: "100px" }}>
+        <span className="font-bold uppercase text-[#64748b] truncate block" style={{ fontSize: "8px", letterSpacing: "0.08em" }}>
+          {(m.league || "Zápas").replace(/\s*\(.*miesto\)/, "").replace(/\s*\(finále\)/, "")}
+        </span>
+        {(isFinal || isBronze) && (
+          <div className="flex items-center gap-0.5 mt-0.5">
+            <svg className="h-2.5 w-2.5" fill={isFinal ? "#d4a017" : "#b87333"} viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span className="font-bold uppercase" style={{ fontSize: "7px", color: isFinal ? "#d4a017" : "#b87333" }}>
+              {isFinal ? "FINÁLE" : "O BRONZ"}
             </span>
-          )}
-        </div>
+          </div>
+        )}
+      </div>
 
-        {/* Hostia */}
-        <div className={cn("flex items-center gap-2.5 flex-1 min-w-0 justify-end", "")}>
-          <span className="font-bold text-[#051937] truncate text-right" style={{ fontSize: "12px" }}>
-            {m.away_short || m.away_team}
+      {/* Domáci */}
+      <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
+        <span className="font-bold text-[#051937] truncate text-right" style={{ fontSize: "12px" }}>
+          {m.home_short || m.home_team}
+        </span>
+        <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={26} />
+      </div>
+
+      {/* Skóre */}
+      <div className="shrink-0 flex items-center justify-center" style={{ minWidth: "56px" }}>
+        {finished ? (
+          <div className="flex items-center gap-1.5">
+            <span style={{ fontSize: "16px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.home_score ?? 0}</span>
+            <span style={{ fontSize: "10px", fontWeight: 700, color: "#94a3b8" }}>:</span>
+            <span style={{ fontSize: "16px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.away_score ?? 0}</span>
+          </div>
+        ) : (
+          <span className="font-bold text-[#012d74] bg-[#e8f0fb] px-2 py-0.5 rounded" style={{ fontSize: "11px" }}>vs</span>
+        )}
+      </div>
+
+      {/* Hostia */}
+      <div className="flex items-center gap-2 flex-1 min-w-0">
+        <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={26} />
+        <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>
+          {m.away_short || m.away_team}
+        </span>
+      </div>
+
+      {/* Miesto + video */}
+      <div className="shrink-0 hidden md:flex items-center gap-2">
+        {m.venue && (
+          <span className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "8px", letterSpacing: "0.06em" }}>
+            {m.venue}
           </span>
-          <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={32} />
-        </div>
+        )}
+        {m.video_url && (
+          <a href={m.video_url} target="_blank" rel="noopener noreferrer" className="text-[#012d74] hover:text-[#051937]">
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </a>
+        )}
       </div>
     </motion.div>
   );
