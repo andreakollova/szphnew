@@ -283,7 +283,7 @@ export default async function SzphHome() {
                           <span className="inline-block font-extrabold uppercase text-[#0078fd] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                             / neprehliadnite
                           </span>
-                          <h3 className="font-bold text-white leading-snug group-hover:text-white/70 transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
+                          <h3 className="font-bold text-white leading-snug group-hover:text-white/90 transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
                             {article.title}
                           </h3>
                         </div>
