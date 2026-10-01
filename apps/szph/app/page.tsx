@@ -259,16 +259,15 @@ export default async function SzphHome() {
                     { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
                     { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                   ].map((article) => (
-                    <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "10px", background: "#051937", boxShadow: "0 4px 20px rgba(5,25,55,0.15)" }}>
+                    <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
                       <div className="relative overflow-hidden" style={{ height: "180px" }}>
-                        <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-90" />
-                        <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.8) 0%, transparent 60%)" }} />
+                        <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                       </div>
                       <div className="px-4 py-3.5">
                         <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                           / neprehliadnite
                         </span>
-                        <h3 className="font-bold text-white leading-snug group-hover:text-white/80 transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
+                        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
                           {article.title}
                         </h3>
                       </div>
