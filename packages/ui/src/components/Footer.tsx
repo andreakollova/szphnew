@@ -70,7 +70,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.png" }: FooterProps
               <Image src={logoSrc} alt="SZPH" width={160} height={60}
                 className="h-14 w-auto object-contain" />
             </div>
-            <p className="leading-relaxed max-w-xs text-[#64748b]" style={{ fontSize: "13px" }}>
+            <p className="leading-relaxed max-w-xs text-[#334155]" style={{ fontSize: "14px" }}>
               {isFieldhockey
                 ? "Pozemný hokej je viac ako šport. Príbehy, emócie a komunita slovenského pozemného hokeja."
                 : "Slovenský zväz pozemného hokeja — riadiaci orgán pozemného hokeja na Slovensku od roku 1928."}
@@ -114,11 +114,11 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.png" }: FooterProps
 
           {links.filter(g => g.group !== "__photos__").map(group => (
             <div key={group.group}>
-              <h4 className="font-garet font-bold italic text-[#051937] mb-4" style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}>{group.group}</h4>
+              <h4 className="font-garet font-bold italic text-[#051937] mb-4" style={{ fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase" }}>{group.group}</h4>
               <ul className="space-y-2.5">
                 {group.items.map(item => (
                   <li key={item.href}>
-                    <Link href={item.href} className="text-[#64748b] transition-colors hover:text-[#051937]" style={{ fontSize: "13px" }}>
+                    <Link href={item.href} className="text-[#334155] transition-colors hover:text-[#051937]" style={{ fontSize: "14px" }}>
                       {item.label}
                     </Link>
                   </li>
@@ -130,7 +130,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.png" }: FooterProps
           {/* Partner logá */}
           {!isFieldhockey && (
             <div>
-              <h4 className="font-garet font-bold italic text-[#051937] mb-4" style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Príspevok uznanému športu</h4>
+              <h4 className="font-garet font-bold italic text-[#051937] mb-4" style={{ fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Príspevok uznanému športu</h4>
               <div className="flex flex-col gap-4">
                 {["/images/footer-1.jpg", "/images/footer-2.png", "/images/footer-3.png"].map((src, i) => (
                   <div key={i}>
@@ -143,7 +143,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.png" }: FooterProps
           )}
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 pt-6 text-xs text-[#94a3b8] sm:flex-row sm:justify-between" style={{ borderTop: "1px solid rgba(1,45,116,0.07)" }}>
+        <div className="mt-10 flex flex-col gap-2 pt-6 text-[#334155] sm:flex-row sm:justify-between" style={{ borderTop: "1px solid rgba(1,45,116,0.07)", fontSize: "13px" }}>
           <p>© {new Date().getFullYear()} Slovenský zväz pozemného hokeja</p>
           <p className="flex gap-3">
             <Link href="/ochrana-osobnych-udajov" className="hover:text-[#051937] transition-colors">Ochrana osobných údajov</Link>
