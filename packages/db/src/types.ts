@@ -81,6 +81,12 @@ export interface Competition {
   created_at: string;
 }
 
+export interface MatchGoal {
+  team: "home" | "away";
+  player: string;
+  minute?: string;
+}
+
 export interface Match {
   id: string;
   competition_id: string;
@@ -92,6 +98,8 @@ export interface Match {
   away_score: number | null;
   status: MatchStatus;
   visible_on: VisibleOn;
+  video_url: string | null;
+  goals: MatchGoal[] | null;
   created_at: string;
   updated_at: string;
   // joined
@@ -143,6 +151,8 @@ export interface MatchFormData {
   home_score: number | null;
   away_score: number | null;
   visible_on: VisibleOn;
+  video_url: string;
+  goals: MatchGoal[];
 }
 
 export interface TeamFormData {

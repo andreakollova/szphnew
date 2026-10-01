@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createBrowserSupabaseClient } from "@szph/db/client";
-import type { Team, Competition, Match } from "@szph/db/types";
+import type { Team, Competition, Match, MatchGoal } from "@szph/db/types";
 
 const matchSchema = z.object({
   competition_id: z.string().min(1, "Vyberte súťaž"),
@@ -18,6 +18,7 @@ const matchSchema = z.object({
   home_score:     z.coerce.number().int().min(0).nullable().optional(),
   away_score:     z.coerce.number().int().min(0).nullable().optional(),
   visible_on:     z.enum(["fieldhockey", "szph", "both"]),
+  video_url:      z.string().optional(),
 });
 
 type MatchFormValues = z.infer<typeof matchSchema>;
@@ -32,6 +33,7 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
   const [error, setError]   = useState<string | null>(null);
+  const [goals, setGoals]   = useState<MatchGoal[]>(match?.goals ?? []);
   const supabase = createBrowserSupabaseClient();
 
   const {
@@ -53,6 +55,7 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
       home_score:     match?.home_score ?? null,
       away_score:     match?.away_score ?? null,
       visible_on:     match?.visible_on ?? "both",
+      video_url:      match?.video_url ?? "",
     },
   });
 
@@ -73,6 +76,8 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
         home_score:     values.status === "finished" ? (values.home_score ?? null) : null,
         away_score:     values.status === "finished" ? (values.away_score ?? null) : null,
         visible_on:     values.visible_on,
+        video_url:      values.video_url || null,
+        goals:          goals.length > 0 ? goals : null,
       };
 
       if (match) {
@@ -182,6 +187,69 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
               </div>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Video a góly */}
+      <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <h2 className="font-bold text-[#051937] mb-5">Video a strelci gólov</h2>
+        <div className="space-y-4">
+          <div>
+            <label className={labelCls}>Video URL (YouTube, atď.)</label>
+            <input {...register("video_url")} className={inputCls} placeholder="https://www.youtube.com/watch?v=..." />
+          </div>
+
+          {/* Strelci gólov */}
+          <div>
+            <label className={labelCls}>Strelci gólov</label>
+            <div className="space-y-2 mb-3">
+              {goals.map((goal, i) => {
+                const homeTeam = teams.find(t => t.id === watch("home_team_id"));
+                const awayTeam = teams.find(t => t.id === watch("away_team_id"));
+                return (
+                  <div key={i} className="flex items-center gap-2">
+                    <select
+                      value={goal.team}
+                      onChange={e => { const g = [...goals]; g[i] = { ...g[i], team: e.target.value as "home" | "away" }; setGoals(g); }}
+                      className={selectCls}
+                      style={{ width: "160px", flexShrink: 0 }}
+                    >
+                      <option value="home">{homeTeam?.short_name || homeTeam?.name || "Domáci"}</option>
+                      <option value="away">{awayTeam?.short_name || awayTeam?.name || "Hostia"}</option>
+                    </select>
+                    <input
+                      value={goal.player}
+                      onChange={e => { const g = [...goals]; g[i] = { ...g[i], player: e.target.value }; setGoals(g); }}
+                      className={inputCls}
+                      placeholder="#číslo Meno Priezvisko"
+                    />
+                    <input
+                      value={goal.minute || ""}
+                      onChange={e => { const g = [...goals]; g[i] = { ...g[i], minute: e.target.value }; setGoals(g); }}
+                      className={inputCls}
+                      style={{ width: "80px", flexShrink: 0 }}
+                      placeholder="min."
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setGoals(goals.filter((_, j) => j !== i))}
+                      className="shrink-0 flex items-center justify-center h-9 w-9 rounded-lg text-red-400 hover:bg-red-50 transition-colors"
+                    >
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+            <button
+              type="button"
+              onClick={() => setGoals([...goals, { team: "home", player: "", minute: "" }])}
+              className="flex items-center gap-2 rounded-xl border border-dashed border-[rgba(1,45,116,0.15)] px-4 py-2.5 text-sm font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+              Pridať gól
+            </button>
+          </div>
         </div>
       </div>
 

@@ -64,6 +64,17 @@ export default async function AdminZapasyPage() {
                       {match.home_team?.name ?? "?"} <span className="text-[#94a3b8]">vs</span> {match.away_team?.name ?? "?"}
                     </p>
                     {match.venue && <p className="text-xs text-[#94a3b8] mt-0.5">{match.venue}</p>}
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      {(match as any).video_url && (
+                        <span className="inline-flex items-center gap-1 text-[9px] font-bold text-[#d80027]">
+                          <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                          VIDEO
+                        </span>
+                      )}
+                      {(match as any).goals?.length > 0 && (
+                        <span className="text-[9px] font-bold text-[#16a34a]">{(match as any).goals.length} gólov</span>
+                      )}
+                    </div>
                   </td>
                   <td className="px-4 py-3.5 text-center">
                     <InlineScore
