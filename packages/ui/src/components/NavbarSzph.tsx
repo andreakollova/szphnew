@@ -407,11 +407,11 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         className="fixed inset-x-0 z-[55] flex flex-col transition-all duration-300"
         style={{
           top: "36px",
-          background: scrolled ? "#ffffff" : "rgba(255,255,255,0.08)",
-          backdropFilter: scrolled ? "none" : "blur(12px)",
-          WebkitBackdropFilter: scrolled ? "none" : "blur(12px)",
-          boxShadow: scrolled ? "0 2px 8px rgba(0,0,0,0.08)" : "none",
-          borderBottom: scrolled ? "1px solid rgba(1,45,116,0.15)" : "1px solid rgba(255,255,255,0.1)",
+          background: scrolled ? "#ffffff" : "linear-gradient(135deg, rgba(1,26,74,0.75) 0%, rgba(1,45,116,0.45) 50%, rgba(1,60,150,0.3) 100%)",
+          backdropFilter: scrolled ? "none" : "blur(18px) saturate(1.4)",
+          WebkitBackdropFilter: scrolled ? "none" : "blur(18px) saturate(1.4)",
+          boxShadow: scrolled ? "0 2px 8px rgba(0,0,0,0.08)" : "0 1px 0 rgba(255,255,255,0.08) inset",
+          borderBottom: scrolled ? "1px solid rgba(1,45,116,0.15)" : "1px solid rgba(255,255,255,0.08)",
         }}
       >
 
