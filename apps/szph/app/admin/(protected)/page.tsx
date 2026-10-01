@@ -15,11 +15,12 @@ async function getDashboardData() {
   const now = new Date().toISOString();
   const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString();
 
-  const [articles, allMatches, teams, videos] = await Promise.allSettled([
+  const [articles, allMatches, teams, videos, partners] = await Promise.allSettled([
     supabase.from("articles").select("id, status, title, category, published_at, updated_at").order("updated_at", { ascending: false }).limit(8),
     supabase.from("matches").select("*, home_team:teams!matches_home_team_id_fkey(name, short_name), away_team:teams!matches_away_team_id_fkey(name, short_name)").order("match_date", { ascending: false }).limit(30),
     supabase.from("teams").select("id", { count: "exact" }),
     supabase.from("videos").select("id", { count: "exact" }),
+    supabase.from("partners").select("id, name, logo_url, tier, url").order("sort_order"),
   ]);
 
   const matchesData = allMatches.status === "fulfilled" ? (allMatches.value.data ?? []) : [];
@@ -46,6 +47,7 @@ async function getDashboardData() {
     recentFinished,
     teamCount: teams.status === "fulfilled" ? (teams.value.count ?? 0) : 0,
     videoCount: videos.status === "fulfilled" ? (videos.value.count ?? 0) : 0,
+    partners: partners.status === "fulfilled" ? (partners.value.data ?? []) : [],
     totalMatches: matchesData.length,
   };
 }
@@ -62,19 +64,20 @@ export default async function AdminDashboard() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-[#051937]">Dashboard</h1>
-        <p className="text-sm text-[#64748b] mt-1">Vitajte v admin paneli SZPH</p>
+        <p className="text-sm text-[#334155] mt-1">Vitajte v admin paneli SZPH</p>
       </div>
 
       {/* Stats */}
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
         {[
           { label: "Článkov", value: publishedCount, color: "#016fb4", href: "/admin/clanky" },
           { label: "Zápasov", value: data.totalMatches, color: "#012d74", href: "/admin/zapasy" },
           { label: "Tímov", value: data.teamCount, color: "#34d399", href: "/admin/timy" },
           { label: "Videí", value: data.videoCount, color: "#a78bfa", href: "/admin/videa" },
+          { label: "Partnerov", value: data.partners.length, color: "#f59e0b", href: "/admin/partneri" },
         ].map((stat) => (
           <Link key={stat.label} href={stat.href} className="rounded-xl p-4 hover:bg-gray-50 transition-colors" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-            <p className="text-[10px] font-bold uppercase text-[#64748b] tracking-wider">{stat.label}</p>
+            <p className="text-[10px] font-bold uppercase text-[#334155] tracking-wider">{stat.label}</p>
             <p className="text-2xl font-black mt-1" style={{ color: stat.color }}>{stat.value}</p>
           </Link>
         ))}
@@ -126,7 +129,7 @@ export default async function AdminDashboard() {
               </div>
             </div>
             {data.upcomingMatches.length === 0 ? (
-              <p className="text-sm text-[#64748b] py-4">Žiadne naplánované zápasy</p>
+              <p className="text-sm text-[#334155] py-4">Žiadne naplánované zápasy</p>
             ) : (
               <div className="space-y-1">
                 {data.upcomingMatches.map((m: any) => (
@@ -194,7 +197,7 @@ export default async function AdminDashboard() {
               </div>
             </div>
             {data.articles.length === 0 ? (
-              <p className="text-sm text-[#64748b]">Žiadne články</p>
+              <p className="text-sm text-[#334155]">Žiadne články</p>
             ) : (
               <div className="space-y-1">
                 {data.articles.map((a: any) => (
@@ -203,7 +206,7 @@ export default async function AdminDashboard() {
                       <p className="text-[#051937] font-semibold truncate" style={{ fontSize: "12px" }}>{a.title}</p>
                       <p className="text-[#94a3b8]" style={{ fontSize: "10px" }}>{a.category} · {formatDate(a.updated_at)}</p>
                     </div>
-                    <span className={`shrink-0 rounded-full px-2 py-0.5 text-[9px] font-semibold ${a.status === "published" ? "bg-emerald-500/15 text-emerald-600" : "bg-gray-100 text-[#64748b]"}`}>
+                    <span className={`shrink-0 rounded-full px-2 py-0.5 text-[9px] font-semibold ${a.status === "published" ? "bg-emerald-500/15 text-emerald-600" : "bg-gray-100 text-[#334155]"}`}>
                       {a.status === "published" ? "pub." : "draft"}
                     </span>
                   </Link>
@@ -211,6 +214,34 @@ export default async function AdminDashboard() {
               </div>
             )}
           </div>
+
+          {/* Partneri */}
+          {data.partners.length > 0 && (
+            <div className="rounded-xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Partneri ({data.partners.length})</h2>
+                <Link href="/admin/partneri" className="text-xs text-[#016fb4] hover:underline">Spravovať</Link>
+              </div>
+              <div className="space-y-1">
+                {data.partners.map((p: any) => (
+                  <div key={p.id} className="flex items-center gap-3 rounded-lg p-2">
+                    {p.logo_url ? (
+                      <div className="relative h-6 w-14 shrink-0">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={p.logo_url} alt={p.name} className="h-full w-full object-contain" />
+                      </div>
+                    ) : (
+                      <div className="h-6 w-14 shrink-0 rounded bg-gray-50" />
+                    )}
+                    <span className="text-[#051937] font-semibold truncate" style={{ fontSize: "12px" }}>{p.name}</span>
+                    <span className={`ml-auto shrink-0 rounded-full px-2 py-0.5 text-[8px] font-bold ${p.tier === "oficialny" ? "bg-amber-100 text-amber-600" : "bg-gray-100 text-[#334155]"}`}>
+                      {p.tier === "oficialny" ? "OFF" : "INST"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Rýchle akcie */}
           <div className="rounded-xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
