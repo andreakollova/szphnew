@@ -245,9 +245,9 @@ export function SzphHero() {
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
           >
-            Jeden tím,
+            JEDEN TÝM,
             <br />
-            spoločný cieľ
+            SPOLOČNÝ <span style={{ color: "#0078fd" }}>CIEĽ</span>
           </h1>
         </div>
 
