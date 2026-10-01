@@ -148,6 +148,48 @@ Regenerácia a prevencia zranení budú integrované do každého tréningového
 
 {{GALLERY:1}}`,
   },
+  "reportaz-alena-kyselicova": {
+    id: "pinned-3",
+    slug: "reportaz-alena-kyselicova",
+    title: "Reportáž s Olympioničkou – Alena Kyselicová",
+    excerpt: "Alena Kyselicová Mejzlíková je dnes uznávaná ako jedna z najvýznamnejších športových osobností v oblasti pozemného hokeja v bývalom Československu.",
+    cover_image_url: "/images/pinned-kyselicova.webp",
+    category: "reprezentacia",
+    published_at: "2026-09-01T09:00:00Z",
+    status: "published",
+    galleries: [
+      {
+        title: "Fotogaléria",
+        images: [
+          "/images/articles/kyselicova/1.png",
+          "/images/articles/kyselicova/2.png",
+          "/images/articles/kyselicova/3.png",
+          "/images/articles/kyselicova/4.png",
+        ],
+      },
+    ],
+    content: `## Alena Kyselicová Mejzlíková
+
+### Strieborná medailistka z olympiády 1980
+
+Alena Kyselicová Mejzlíková je dnes uznávaná ako jedna z najvýznamnejších športových osobností v oblasti pozemného hokeja v bývalom Československu.
+
+Alena Kyselicová Mejzlíková, spolu s Vierou Podhányiovou a Ivetou Hritzovou Šrankovou, patrí medzi významné osobnosti slovenského a československého pozemného hokeja, pričom všetky tri hráčky boli súčasťou tímu, ktorý získal striebornú medailu na Letných olympijských hrách v Moskve v roku 1980.
+
+## Spoluhráčky z olympiády
+
+Viera Podhányiová, narodená 19. septembra 1960 v Zlatých Moravciach, pôsobila ako brankárka a bola kľúčovou členkou tímu TJ Calex Moravce. Iveta Hritzová Šranková, najmladšia členka tímu, mala počas olympiády len 16 rokov. Aj ona pochádzala zo Zlatých Moraviec a počas svojej kariéry bola stabilnou súčasťou reprezentácie, kde sa zúčastnila viacerých medzinárodných turnajov.
+
+## Reportáž – Alena Kyselicová Mejzlíková
+
+Narodila sa 14. novembra 1957 v Trenčianskych Tepliciach a preslávila sa ako hráčka československého ženského tímu, ktorý podal vynikajúci výkon počas Letných olympijských hier 1980. Tento úspech je jedným z vrcholov jej športovej kariéry.
+
+Počas svojej kariéry bola Kyselicová súčasťou klubu Slavia Praha, s ktorým päťkrát získala titul majstra Československa. V rokoch 1985 a 1989 bola vyhlásená za najlepšiu pozemnú hokejistku Československa.
+
+Po ukončení aktívnej hráčskej kariéry sa stala trénerkou a pracovala s rôznymi vekovými kategóriami vrátane úspešného A-tímu Slavie Praha. Jej dcéry, Tereza a Adéla Mejzlíkové, nasledovali jej kroky a reprezentovali Českú republiku v pozemnom hokeji.
+
+{{GALLERY:0}}`,
+  },
 };
 
 async function getArticle(slug: string) {
