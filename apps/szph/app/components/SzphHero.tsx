@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-const HERO_IMAGES = [
-  { src: "/images/hero-banner3.webp", mobilePos: "center 25%", desktopPos: "center 25%" },
-  { src: "/images/hero-banner3b.webp", mobilePos: "65% 30%", desktopPos: "center 55%" },
-  { src: "/images/hero-banner7.webp", mobilePos: "65% 30%", desktopPos: "center 55%" },
-  { src: "/images/hero-banner-blue-player.webp", mobilePos: "35% 10%", desktopPos: "center top" },
-  { src: "/images/hero-banner2.webp", mobilePos: "center 25%", desktopPos: "center 25%" },
+const DEFAULT_HERO_IMAGES = [
+  { src: "/images/hero-banner3.webp", mobilePos: "50% 25%", desktopPos: "50% 25%" },
+  { src: "/images/hero-banner3b.webp", mobilePos: "65% 30%", desktopPos: "50% 55%" },
+  { src: "/images/hero-banner7.webp", mobilePos: "65% 30%", desktopPos: "50% 55%" },
+  { src: "/images/hero-banner-blue-player.webp", mobilePos: "35% 10%", desktopPos: "50% 0%" },
+  { src: "/images/hero-banner2.webp", mobilePos: "50% 25%", desktopPos: "50% 25%" },
 ];
 
 interface NextMatch {
@@ -27,15 +27,29 @@ interface NextMatch {
   isRep?: boolean;
 }
 
-export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
+interface HeroImage {
+  src: string;
+  mobilePos: string;
+  desktopPos: string;
+}
+
+export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | null; dbBanners?: any[] }) {
   const [current, setCurrent] = useState(0);
+
+  const HERO_IMAGES: HeroImage[] = (dbBanners && dbBanners.length > 0)
+    ? dbBanners.map((b: any) => ({
+        src: b.image_url,
+        mobilePos: `${b.mobile_pos_x}% ${b.mobile_pos_y}%`,
+        desktopPos: `${b.desktop_pos_x}% ${b.desktop_pos_y}%`,
+      }))
+    : DEFAULT_HERO_IMAGES;
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((p) => (p + 1) % HERO_IMAGES.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [HERO_IMAGES.length]);
 
   return (
     <div className="mobile-hero-pull" style={{ background: "#051937" }}>

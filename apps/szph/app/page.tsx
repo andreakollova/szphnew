@@ -125,13 +125,14 @@ function getSupabase() {
 const getData = unstable_cache(
   async () => {
     const supabase = getSupabase();
-    const [aktuality, reprezentacia, oznamy, matches, competitions, worldNews] = await Promise.allSettled([
+    const [aktuality, reprezentacia, oznamy, matches, competitions, worldNews, heroBanners] = await Promise.allSettled([
       supabase.from("articles").select("*").eq("site", "szph").eq("status", "published").eq("category", "novinky").order("published_at", { ascending: false }).limit(6).then(r => r.data ?? []),
       supabase.from("articles").select("*").eq("site", "szph").eq("status", "published").eq("category", "reprezentacia").order("published_at", { ascending: false }).limit(6).then(r => r.data ?? []),
       supabase.from("articles").select("*").eq("site", "szph").eq("status", "published").eq("category", "oznamy").order("published_at", { ascending: false }).limit(6).then(r => r.data ?? []),
       supabase.from("matches").select("*").eq("site", "szph").order("date", { ascending: false }).limit(250).then(r => r.data ?? []),
       supabase.from("competitions").select("*").then(r => r.data ?? []),
       getWorldNews(),
+      supabase.from("hero_banners").select("*").order("sort_order").then(r => r.data ?? []),
     ]);
     const fixImg = (a: any) => ({
       ...a,
@@ -152,6 +153,7 @@ const getData = unstable_cache(
       matches:        matches.status === "fulfilled"  ? matches.value  : [],
       competitions:   competitions.status === "fulfilled" ? competitions.value : [],
       worldNews:      worldNews.status === "fulfilled" ? worldNews.value : [],
+      heroBanners:    heroBanners.status === "fulfilled" ? heroBanners.value : [],
     };
   },
   ["szph-home-data"],
@@ -325,7 +327,7 @@ function NextMatchTicket({ matches }: { matches: any[] }) {
 }
 
 export default async function SzphHome() {
-  const { articles, aktuality, reprezentacia, oznamy, matches, competitions, worldNews } = await getData();
+  const { articles, aktuality, reprezentacia, oznamy, matches, competitions, worldNews, heroBanners } = await getData();
 
   return (
     <div>
@@ -338,7 +340,7 @@ export default async function SzphHome() {
         const m = repMatch || ligaMatch;
         if (!m) return null;
         return { id: m.id, home_team: m.home_team, away_team: m.away_team, home_short: m.home_short, away_short: m.away_short, home_logo: m.home_logo, away_logo: m.away_logo, date: m.date, league: m.league, venue: m.venue, video_url: m.video_url, isRep: isRep(m) };
-      })()} />
+      })()} dbBanners={heroBanners} />
 
       {/* ═══ PERSONALIZED (mobile only) ═══ */}
       <PersonalizedSection matches={matches as any[]} />
