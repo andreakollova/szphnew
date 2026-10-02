@@ -485,7 +485,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
               </div>
 
               {/* Date/Time */}
-              <div className="flex items-center" style={{ margin: "0 clamp(14px, 1.4vw, 28px)", padding: "clamp(8px, 0.8vw, 16px) 0", background: "#f0f4fa", borderRadius: "clamp(6px, 0.5vw, 10px)" }}>
+              <div className="flex items-center" style={{ margin: "0 clamp(14px, 1.4vw, 28px)", padding: "clamp(8px, 0.8vw, 16px) 0", background: "#f8f9fa", borderRadius: "clamp(4px, 0.4vw, 6px)" }}>
                 <div className="flex-1 text-center" style={{ borderRight: "1px solid rgba(1,45,116,0.1)" }}>
                   <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 0.9 }}>{day}.</p>
                   <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 13px)" }}>{month}</p>
@@ -494,6 +494,17 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
                   <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1 }}>{time}</p>
                 </div>
               </div>
+
+              {/* Venue with pin */}
+              {nextMatch.venue && (
+                <div className="flex items-center justify-center gap-1.5" style={{ margin: "clamp(6px, 0.6vw, 12px) clamp(14px, 1.4vw, 28px) 0" }}>
+                  <svg className="shrink-0 text-[#94a3b8]" style={{ width: "clamp(10px, 0.8vw, 14px)", height: "clamp(10px, 0.8vw, 14px)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z" />
+                  </svg>
+                  <span className="font-semibold text-[#64748b]" style={{ fontSize: "clamp(7px, 0.6vw, 11px)" }}>{nextMatch.venue}</span>
+                </div>
+              )}
 
               {/* Footer — QR + Detail */}
               <div style={{ padding: "clamp(10px, 1vw, 20px) clamp(14px, 1.4vw, 28px)", borderTop: "1px solid rgba(0,0,0,0.06)", marginTop: "clamp(8px, 0.8vw, 16px)" }}>
