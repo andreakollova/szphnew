@@ -177,6 +177,7 @@ function matchesCategory(m: Match, prefs: any): boolean {
 export function PersonalizedSection({ matches }: { matches: Match[] }) {
   const [prefs, setPrefs] = useState<any>(null);
   const [mounted, setMounted] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [weather, setWeather] = useState<{ temp: number; code: number } | null>(null);
 
   const fetchWeather = useCallback(async (city: string) => {
@@ -215,9 +216,13 @@ export function PersonalizedSection({ matches }: { matches: Match[] }) {
     .filter((m: any) => m.status === "scheduled" && new Date(m.date).getTime() > now)
     .sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  const hasKategoria = prefs.kategoria && prefs.kategoria !== "none";
+  // Multi-club and multi-category support
+  const clubs: string[] = prefs.clubs?.length > 0 ? prefs.clubs : (prefs.club && prefs.club !== "none" ? [prefs.club] : []);
+  const kategorie: string[] = prefs.kategorie?.length > 0 ? prefs.kategorie : (prefs.kategoria && prefs.kategoria !== "none" ? [prefs.kategoria] : []);
+  const hasClubs = clubs.length > 0;
+  const hasKategorie = kategorie.length > 0;
+  const wantsRep = prefs.notifReprezentacia;
 
-  // Filter by kategoria
   const getMatchCategory = (m: Match) => {
     const l = (m.league || "").toLowerCase();
     if (l.includes("u18") || l.includes("u16")) return "U18";
@@ -227,47 +232,45 @@ export function PersonalizedSection({ matches }: { matches: Match[] }) {
     return "muzi";
   };
 
-  // This week matches (Mon-Sun)
-  const thisWeekStart = getWeekStart(new Date());
-  const thisWeekEnd = new Date(thisWeekStart);
-  thisWeekEnd.setDate(thisWeekEnd.getDate() + 7);
-  const thisWeekMatches = upcoming.filter(m => {
-    const d = new Date(m.date);
-    return d >= thisWeekStart && d < thisWeekEnd;
+  const isRep = (m: Match) => m.home_short === "SVK" || m.away_short === "SVK";
+
+  // Filter matches for user's preferences
+  const filtered = upcoming.filter(m => {
+    // Rep matches always show if enabled
+    if (wantsRep && isRep(m)) return true;
+    // Must match at least one club AND one category
+    const matchClub = !hasClubs || clubs.some(c => matchesClub(m, c));
+    const matchCat = !hasKategorie || kategorie.includes(getMatchCategory(m));
+    if (hasClubs && hasKategorie) return matchClub && matchCat;
+    if (hasClubs) return matchClub;
+    if (hasKategorie) return matchCat;
+    return true; // no filters
   });
 
-  let showMatches: Match[] = [];
-  let sectionTitle = "";
-
-  if (hasKategoria) {
-    // Show matches for selected kategoria + club
-    const filtered = upcoming.filter(m => {
-      const cat = getMatchCategory(m);
-      if (cat !== prefs.kategoria) return false;
-      if (prefs.club && prefs.club !== "none") {
-        return matchesClub(m, prefs.club) || true; // show all in category, club matches first
-      }
-      return true;
+  // Sort: user's club matches first
+  if (hasClubs) {
+    filtered.sort((a, b) => {
+      const aClub = clubs.some(c => matchesClub(a, c)) ? 0 : 1;
+      const bClub = clubs.some(c => matchesClub(b, c)) ? 0 : 1;
+      return aClub - bClub;
     });
-    // Sort club matches first
-    if (prefs.club && prefs.club !== "none") {
-      filtered.sort((a, b) => {
-        const aClub = matchesClub(a, prefs.club) ? 0 : 1;
-        const bClub = matchesClub(b, prefs.club) ? 0 : 1;
-        return aClub - bClub;
-      });
-    }
-    showMatches = filtered.slice(0, 5);
-    const katLabel = prefs.kategoria === "muzi" ? "muži" : prefs.kategoria === "zeny" ? "ženy" : prefs.kategoria;
-    sectionTitle = `Najbližšie zápasy - ${katLabel}`;
-  } else {
-    // No kategoria selected - show this week program
-    showMatches = thisWeekMatches.slice(0, 5);
-    sectionTitle = "Program na tento týždeň";
-    if (showMatches.length === 0) {
-      showMatches = upcoming.slice(0, 3);
-      sectionTitle = "Najbližšie zápasy";
-    }
+  }
+
+  const allFiltered = filtered;
+  const showMatches = expanded ? allFiltered : allFiltered.slice(0, 3);
+  const hasMore = allFiltered.length > 3;
+
+  // Section title
+  let sectionTitle = "Najbližšie zápasy";
+  if (hasClubs && hasKategorie) {
+    const clubNames = clubs.map(c => CLUB_NAMES[c] || c).join(", ");
+    const katLabels = kategorie.map(k => k === "muzi" ? "muži" : k === "zeny" ? "ženy" : k).join(", ");
+    sectionTitle = `${clubNames} - ${katLabels}`;
+  } else if (hasClubs) {
+    sectionTitle = clubs.map(c => CLUB_NAMES[c] || c).join(", ");
+  } else if (hasKategorie) {
+    const katLabels = kategorie.map(k => k === "muzi" ? "muži" : k === "zeny" ? "ženy" : k).join(", ");
+    sectionTitle = `Najbližšie - ${katLabels}`;
   }
 
   return (
@@ -331,6 +334,21 @@ export function PersonalizedSection({ matches }: { matches: Match[] }) {
               );
             })}
           </div>
+          {hasMore && (
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="flex items-center justify-center gap-1.5 w-full mt-3 py-2.5 rounded-xl font-bold text-[#012d74] transition-colors active:bg-[#012d74]/5"
+              style={{ fontSize: "12px", border: "1px solid rgba(1,45,116,0.1)" }}
+            >
+              {expanded ? "Skryť" : `Zobraziť viac (${allFiltered.length - 3})`}
+              <svg
+                className={`h-3.5 w-3.5 transition-transform ${expanded ? "rotate-180" : ""}`}
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
         </div>
       )}
     </div>

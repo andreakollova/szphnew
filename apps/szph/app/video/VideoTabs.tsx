@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { YouTubeInline } from "../components/YouTubeInline";
 
 const ZAPASY_VIDEOS = [
   { id: "W8Umeplx-8o", title: "Extraliga muži — kolo 1", url: "https://www.youtube.com/watch?v=W8Umeplx-8o&t=1604s" },
@@ -108,21 +109,14 @@ export function VideoTabs() {
         {tab === "zapasy" && (
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {ZAPASY_VIDEOS.map((v) => (
-              <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden bg-white" style={{ borderRadius: "12px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                <div className="relative overflow-hidden aspect-video">
-                  <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="400px" unoptimized />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-colors">
-                    <div className="flex items-center justify-center rounded-full bg-white/90 shadow-lg opacity-80 group-hover:opacity-100 transition-opacity" style={{ width: 48, height: 48 }}>
-                      <svg className="h-5 w-5 text-[#051937] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                    </div>
-                  </div>
-                </div>
+              <div key={v.id} className="overflow-hidden bg-white" style={{ borderRadius: "12px", border: "1px solid rgba(1,45,116,0.06)" }}>
+                <YouTubeInline url={v.url} title={v.title} style={{ borderRadius: "12px 12px 0 0" }} />
                 <div className="px-4 py-3">
-                  <h3 className="font-bold text-[#051937] leading-snug line-clamp-2 group-hover:text-[#012d74] transition-colors" style={{ fontSize: "13px" }}>
+                  <h3 className="font-bold text-[#051937] leading-snug line-clamp-2" style={{ fontSize: "13px" }}>
                     {v.title}
                   </h3>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         )}

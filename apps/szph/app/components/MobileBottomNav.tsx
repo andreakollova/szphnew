@@ -17,8 +17,7 @@ const NAV_ITEMS = [
   {
     label: "Video",
     href: "/video",
-    isCenter: true,
-    icon: (_a: boolean) => <svg className="h-[22px] w-[22px] text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8M12 17v4" strokeLinecap="round" /><path d="M9.5 10l5 3-5 3V10z" fill="currentColor" stroke="none" /></svg>,
+    icon: (a: boolean) => <svg className="h-[22px] w-[22px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={a ? 2 : 1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>,
   },
   {
     label: "Zápasy",
@@ -54,28 +53,7 @@ export function MobileBottomNav() {
         }}
       >
         {NAV_ITEMS.map((item) => {
-          const isCenter = "isCenter" in item && item.isCenter;
           const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-
-          if (isCenter) {
-            return (
-              <Link key={item.href} href={item.href} className="flex flex-col items-center -mt-4">
-                <div
-                  className="flex items-center justify-center mb-1"
-                  style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: "50%",
-                    background: active ? "#d00027" : "#051937",
-                    boxShadow: active ? "0 4px 16px rgba(208,0,39,0.35)" : "0 4px 12px rgba(5,25,55,0.2)",
-                  }}
-                >
-                  {item.icon(active)}
-                </div>
-                <span className="font-semibold" style={{ fontSize: "9px", color: active ? "#d00027" : "#8a92a6" }}>{item.label}</span>
-              </Link>
-            );
-          }
 
           return (
             <Link

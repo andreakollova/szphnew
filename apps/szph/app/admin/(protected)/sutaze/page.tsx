@@ -51,7 +51,10 @@ export default async function AdminSutazePage() {
                   </td>
                   <td className="px-4 py-4 text-[#64748b]">{comp.category}</td>
                   <td className="px-4 py-4 text-right">
-                    <CompetitionActions id={comp.id} />
+                    <div className="flex items-center justify-end gap-2">
+                      <Link href={`/admin/sutaze/${comp.id}`} className="rounded bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors">Upravit</Link>
+                      <CompetitionActions id={comp.id} />
+                    </div>
                   </td>
                 </tr>
               ))}

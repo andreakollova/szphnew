@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { YouTubeInline } from "../components/YouTubeInline";
 
 const EPISODES = [
   { title: "Budeme stavať nový štadión", guest: "Marián Kováč", ep: "EP 03", href: "https://www.youtube.com/watch?v=WoHqCQIVHm4" },
@@ -67,17 +68,15 @@ export default function PodcastPage() {
 
         <section className="mb-12">
           <h2 className="font-garet font-bold text-[#051937] mb-6" style={{ fontSize: "22px" }}>Najnovšie epizódy</h2>
-          <div className="space-y-2">
+          <div className="space-y-4">
             {EPISODES.map((ep, i) => (
-              <a key={i} href={ep.href} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 bg-white p-5 transition-colors hover:bg-[#f8fafd]" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                <div className="shrink-0 flex items-center justify-center rounded-full transition-all group-hover:border-[#012d74]/30" style={{ width: 40, height: 40, background: "rgba(1,45,116,0.04)", border: "1px solid rgba(1,45,116,0.08)" }}>
-                  <svg className="h-4 w-4 text-[#012d74] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>{ep.title}</p>
+              <div key={i} className="overflow-hidden bg-white" style={{ borderRadius: "8px", border: "1px solid rgba(1,45,116,0.06)" }}>
+                <YouTubeInline url={ep.href} title={ep.title} style={{ borderRadius: "8px 8px 0 0" }} />
+                <div className="px-5 py-3">
+                  <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>{ep.title}</p>
                   <p className="text-[#94a3b8] font-bold uppercase mt-0.5" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>{ep.ep} · {ep.guest}</p>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </section>

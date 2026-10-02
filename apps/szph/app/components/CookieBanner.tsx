@@ -62,15 +62,15 @@ export function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 z-[100] w-[94%] max-w-[580px]">
+    <div className="fixed bottom-[70px] md:bottom-0 left-1/2 -translate-x-1/2 z-[100] w-[94%] max-w-[580px]">
       <div
         className="px-6 py-5"
         style={{
           background: "#fff",
-          borderRadius: "16px 16px 0 0",
+          borderRadius: "16px",
           boxShadow: "0 -4px 32px rgba(1,45,116,0.1), 0 1px 4px rgba(1,45,116,0.06)",
           border: "1px solid rgba(1,45,116,0.08)",
-          borderBottom: "none",
+          borderBottom: "1px solid rgba(1,45,116,0.08)",
         }}
       >
         <div className="flex items-start gap-4">

@@ -191,10 +191,22 @@ Po ukončení aktívnej hráčskej kariéry sa stala trénerkou a pracovala s r�
   },
 };
 
+function fixImageUrl(url: string | null): string | null {
+  if (!url) return null;
+  // Local images were converted from .png/.jpg to .webp
+  if (url.startsWith("/images/") && (url.endsWith(".png") || url.endsWith(".jpg") || url.endsWith(".jpeg"))) {
+    return url.replace(/\.(png|jpe?g)$/i, ".webp");
+  }
+  return url;
+}
+
 async function getArticle(slug: string) {
   if (PINNED_ARTICLES[slug]) return PINNED_ARTICLES[slug];
   const sb = getSupabase();
   const { data } = await sb.from("articles").select("*").eq("slug", slug).eq("status", "published").single();
+  if (data) {
+    data.cover_image_url = fixImageUrl(data.cover_image_url);
+  }
   return data;
 }
 
@@ -331,10 +343,11 @@ function renderContent(content: string, galleries?: any[]) {
     // Image: ![alt](url)
     const imgMatch = block.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
     if (imgMatch) {
+      const imgSrc = fixImageUrl(imgMatch[2]) || imgMatch[2];
       return (
         <div key={i} className="my-6 overflow-hidden rounded-lg">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={imgMatch[2]} alt={imgMatch[1]} className="w-full h-auto" style={{ maxHeight: "500px", objectFit: "cover" }} />
+          <img src={imgSrc} alt={imgMatch[1]} className="w-full h-auto" style={{ maxHeight: "500px", objectFit: "cover" }} />
           {imgMatch[1] && <p className="text-[#94a3b8] mt-2 text-center" style={{ fontSize: "12px" }}>{imgMatch[1]}</p>}
         </div>
       );
@@ -348,10 +361,11 @@ function renderContent(content: string, galleries?: any[]) {
           {parts.map((part, j) => {
             const inlineImg = part.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
             if (inlineImg) {
+              const inlineSrc = fixImageUrl(inlineImg[2]) || inlineImg[2];
               return (
                 <div key={j} className="my-4 overflow-hidden rounded-lg">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={inlineImg[2]} alt={inlineImg[1]} className="w-full h-auto" style={{ maxHeight: "500px", objectFit: "cover" }} />
+                  <img src={inlineSrc} alt={inlineImg[1]} className="w-full h-auto" style={{ maxHeight: "500px", objectFit: "cover" }} />
                   {inlineImg[1] && <p className="text-[#94a3b8] mt-2 text-center" style={{ fontSize: "12px" }}>{inlineImg[1]}</p>}
                 </div>
               );

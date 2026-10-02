@@ -94,7 +94,7 @@ export default async function AdminDashboard() {
           <p className="text-[#64748b] mb-4" style={{ fontSize: "12px" }}>Tieto zápasy sa už mali odohrať, ale nemajú zadaný výsledok.</p>
           <div className="space-y-2">
             {data.overdueMatches.map((m: any) => (
-              <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 bg-white rounded p-3 hover:bg-gray-50 transition-colors" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
+              <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3 bg-white rounded p-3 hover:bg-gray-50 transition-colors" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
                 <div className="flex-1 min-w-0">
                   <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
                     {m.home_short || m.home_team || "?"} vs {m.away_short || m.away_team || "?"}
@@ -102,7 +102,7 @@ export default async function AdminDashboard() {
                   <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{formatDate(m.date)} · {formatTime(m.date)}{m.venue ? ` · ${m.venue}` : ""}</p>
                 </div>
                 <InlineScore matchId={m.id} homeScore={m.home_score} awayScore={m.away_score} status={m.status} />
-                <span className="shrink-0 rounded bg-[#d00027] px-3 py-1.5 text-xs font-bold text-white">
+                <span className="shrink-0 rounded bg-[#d00027] px-2.5 sm:px-3 py-1.5 text-[10px] sm:text-xs font-bold text-white">
                   Zadať výsledok
                 </span>
               </Link>
@@ -119,10 +119,10 @@ export default async function AdminDashboard() {
 
           {/* Nadchádzajúce */}
           <div className="rounded p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Zápasy tento týždeň</h2>
-              <div className="flex gap-2">
-                <Link href="/admin/zapasy/novy" className="rounded bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
+            <div className="flex items-center justify-between gap-2 mb-4">
+              <h2 className="font-bold text-[#051937] shrink-0" style={{ fontSize: "14px" }}>Zápasy tento týždeň</h2>
+              <div className="flex gap-2 shrink-0">
+                <Link href="/admin/zapasy/novy" className="hidden sm:inline-flex rounded bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
                   + Nový zápas
                 </Link>
                 <Link href="/admin/zapasy" className="text-xs text-[#012d74] hover:underline self-center">Všetky</Link>

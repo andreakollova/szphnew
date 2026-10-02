@@ -1,15 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-
+// Next.js handles scroll restoration on page navigation natively.
+// This component is intentionally empty — no auto-scroll on route change.
 export function ScrollToTop() {
-  const pathname = usePathname();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
-  }, [pathname]);
-
   return null;
 }

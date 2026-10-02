@@ -21,7 +21,12 @@ const getArticles = unstable_cache(
       .in("visible_on", ["szph", "both"])
       .order("published_at", { ascending: false })
       .limit(50);
-    return data ?? [];
+    return (data ?? []).map((a: any) => ({
+      ...a,
+      cover_image_url: a.cover_image_url?.startsWith("/images/") && /\.(png|jpe?g)$/i.test(a.cover_image_url)
+        ? a.cover_image_url.replace(/\.(png|jpe?g)$/i, ".webp")
+        : a.cover_image_url,
+    }));
   },
   ["novinky-all"],
   { revalidate: 300 }

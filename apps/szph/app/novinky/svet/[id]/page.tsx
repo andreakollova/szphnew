@@ -19,7 +19,7 @@ const getArticle = unstable_cache(
       const hr = getHrClient();
       const { data } = await hr
         .from("articles")
-        .select("id, title_sk, text_sk, image_url, url, scraped_at")
+        .select("id, title_sk, text_sk, image_url, url, source, scraped_at")
         .eq("id", id)
         .eq("published", true)
         .single();
@@ -164,11 +164,30 @@ export default async function SvetArticleDetail({ params }: Props) {
               >
                 {article.title_sk}
               </h1>
-              <div className="flex items-center gap-4 mt-3">
+              <div className="flex items-center gap-4 mt-3 flex-wrap">
                 {article.scraped_at && (
                   <span className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
                     {formatDate(article.scraped_at)}
                   </span>
+                )}
+                {(article.source || article.url) && (
+                  <span className="font-bold uppercase text-[#64748b]" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
+                    Zdroj: {article.source || (() => { try { return new URL(article.url).hostname.replace("www.", ""); } catch { return "externý"; } })()}
+                  </span>
+                )}
+                {article.url && (
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-bold uppercase text-[#012d74] hover:text-[#016fb4] transition-colors"
+                    style={{ fontSize: "10px", letterSpacing: "0.08em" }}
+                  >
+                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                    Originál
+                  </a>
                 )}
               </div>
             </div>

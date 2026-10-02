@@ -16,7 +16,9 @@ const CLUBS = [
 interface UserPrefs {
   name: string;
   club: string;
+  clubs?: string[];
   kategoria: string;
+  kategorie?: string[];
   mesto: string;
   notifReprezentacia: boolean;
   notifMojKlub: boolean;
@@ -30,7 +32,9 @@ const MESTA = ["Bratislava", "Šenkvice", "Zlaté Moravce", "Nová Dubnica", "Ko
 const DEFAULT_PREFS: UserPrefs = {
   name: "",
   club: "none",
+  clubs: [],
   kategoria: "none",
+  kategorie: [],
   mesto: "",
   notifReprezentacia: true,
   notifMojKlub: true,
@@ -147,48 +151,73 @@ export default function NastaveniaPage() {
           </div>
 
           <div>
-            <label className="block text-[#94a3b8] font-semibold mb-2" style={{ fontSize: "11px" }}>Môj klub</label>
+            <label className="block text-[#94a3b8] font-semibold mb-1" style={{ fontSize: "11px" }}>Moje kluby</label>
+            <p className="text-[#94a3b8] mb-2" style={{ fontSize: "10px" }}>Vyber jeden alebo viac klubov</p>
             <div className="grid grid-cols-2 gap-2">
-              {CLUBS.map(club => (
-                <button
-                  key={club.id}
-                  onClick={() => update("club", club.id)}
-                  className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all text-left"
-                  style={{
-                    background: prefs.club === club.id ? "rgba(1,45,116,0.06)" : "transparent",
-                    border: prefs.club === club.id ? "2px solid #012d74" : "1px solid rgba(1,45,116,0.06)",
-                  }}
-                >
-                  {club.id !== "none" && "logo" in club && (
-                    <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.08)" }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={(club as any).logo} alt="" className="w-4 h-4 object-contain" />
-                    </div>
-                  )}
-                  <span className="font-bold text-[#051937] truncate" style={{ fontSize: club.id === "none" ? "12px" : "11px" }}>
-                    {(club as any).short || club.name}
-                  </span>
-                </button>
-              ))}
+              {CLUBS.filter(c => c.id !== "none").map(club => {
+                const selected = (prefs.clubs || []).includes(club.id);
+                return (
+                  <button
+                    key={club.id}
+                    onClick={() => {
+                      const current = prefs.clubs || [];
+                      const next = selected ? current.filter(c => c !== club.id) : [...current, club.id];
+                      // Also update legacy single club field
+                      update("clubs", next);
+                      setTimeout(() => update("club", next[0] || "none"), 0);
+                    }}
+                    className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all text-left"
+                    style={{
+                      background: selected ? "rgba(1,45,116,0.06)" : "transparent",
+                      border: selected ? "2px solid #012d74" : "1px solid rgba(1,45,116,0.06)",
+                    }}
+                  >
+                    {"logo" in club && (
+                      <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden" style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.08)" }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={(club as any).logo} alt="" className="w-4 h-4 object-contain" />
+                      </div>
+                    )}
+                    <span className="font-bold text-[#051937] truncate" style={{ fontSize: "11px" }}>
+                      {(club as any).short || club.name}
+                    </span>
+                    {selected && (
+                      <svg className="h-4 w-4 text-[#012d74] shrink-0 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           <div className="mt-4">
-            <label className="block text-[#94a3b8] font-semibold mb-2" style={{ fontSize: "11px" }}>Moja kategória</label>
+            <label className="block text-[#94a3b8] font-semibold mb-1" style={{ fontSize: "11px" }}>Moje kategórie</label>
+            <p className="text-[#94a3b8] mb-2" style={{ fontSize: "10px" }}>Vyber jednu alebo viac kategórií</p>
             <div className="grid grid-cols-2 gap-2">
-              {CATEGORIES.map(cat => (
-                <button
-                  key={cat.id}
-                  onClick={() => update("kategoria", cat.id)}
-                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl transition-all text-left"
-                  style={{
-                    background: prefs.kategoria === cat.id ? "rgba(1,45,116,0.06)" : "transparent",
-                    border: prefs.kategoria === cat.id ? "2px solid #012d74" : "1px solid rgba(1,45,116,0.06)",
-                  }}
-                >
-                  <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>{cat.name}</span>
-                </button>
-              ))}
+              {CATEGORIES.filter(c => c.id !== "none").map(cat => {
+                const selected = (prefs.kategorie || []).includes(cat.id);
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => {
+                      const current = prefs.kategorie || [];
+                      const next = selected ? current.filter(c => c !== cat.id) : [...current, cat.id];
+                      update("kategorie", next);
+                      setTimeout(() => update("kategoria", next[0] || "none"), 0);
+                    }}
+                    className="flex items-center gap-2 px-3 py-2.5 rounded-xl transition-all text-left"
+                    style={{
+                      background: selected ? "rgba(1,45,116,0.06)" : "transparent",
+                      border: selected ? "2px solid #012d74" : "1px solid rgba(1,45,116,0.06)",
+                    }}
+                  >
+                    <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>{cat.name}</span>
+                    {selected && (
+                      <svg className="h-4 w-4 text-[#012d74] shrink-0 ml-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
 

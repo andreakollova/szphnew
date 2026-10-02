@@ -288,9 +288,9 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <div style={{ width: "16px", height: "1px", background: "#012d74", opacity: 0.2 }} />
+                <div style={{ width: "16px", height: "2px", background: "#012d74", opacity: 0.5 }} />
                 <span className="font-bold text-[#012d74]" style={{ fontSize: "11px" }}>vs</span>
-                <div style={{ width: "16px", height: "1px", background: "#012d74", opacity: 0.2 }} />
+                <div style={{ width: "16px", height: "2px", background: "#012d74", opacity: 0.5 }} />
               </div>
             )}
           </div>
@@ -350,54 +350,55 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
 
   return (
     <div className={cn("", className)}>
-      {/* Controls — dva riadky */}
+      {/* Controls */}
       <div className="flex flex-col gap-3 mb-6">
-        {/* Riadok 1: Liga / Reprezentácia + Nasledujúce/Minulé */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
-          {/* Všetky / Liga / Reprezentácia */}
-          <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
-            {([
-              { key: "all" as const, label: "Všetky", logo: "" },
-              { key: "liga" as const, label: "Liga", logo: "/images/logo-liga.webp" },
-              { key: "reprezentacia" as const, label: "Rep.", logo: "/images/logo-reprezentacia.webp" },
-            ]).map((tab, i) => (
-              <button
-                key={tab.key}
-                onClick={() => { setActiveSection(tab.key); setPage(0); }}
-                className={cn(
-                  "flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 font-bold uppercase transition-all flex-1 sm:flex-initial",
-                  i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
-                  activeSection === tab.key ? "text-white" : "text-[#64748b] hover:text-[#051937]"
-                )}
-                style={{
-                  fontSize: "10px", letterSpacing: "0.08em",
-                  background: activeSection === tab.key ? "#012d74" : "transparent",
-                  borderRadius: i === 0 ? "20px 0 0 20px" : i === 2 ? "0 20px 20px 0" : "0",
-                }}
-              >
-                {tab.logo && (
-                  <div className="relative shrink-0 hidden sm:block" style={{ width: 18, height: 18 }}>
-                    <Image src={tab.logo} alt="" fill className="object-contain" sizes="18px" style={activeSection === tab.key ? { filter: "brightness(0) invert(1)" } : undefined} />
-                  </div>
-                )}
-                {tab.label}
-              </button>
-            ))}
-          </div>
+        {/* Row 1: Všetky/Liga/Rep */}
+        <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
+          {([
+            { key: "all" as const, label: "Všetky", logo: "" },
+            { key: "liga" as const, label: "Liga", logo: "/images/logo-liga.webp" },
+            { key: "reprezentacia" as const, label: "Rep.", logo: "/images/logo-reprezentacia.webp" },
+          ]).map((tab, i) => (
+            <button
+              key={tab.key}
+              onClick={() => { setActiveSection(tab.key); setPage(0); }}
+              className={cn(
+                "flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 font-bold uppercase transition-all flex-1 sm:flex-initial",
+                i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
+                activeSection === tab.key ? "text-white" : "text-[#64748b] hover:text-[#051937]"
+              )}
+              style={{
+                fontSize: "10px", letterSpacing: "0.08em",
+                background: activeSection === tab.key ? "#012d74" : "transparent",
+                borderRadius: i === 0 ? "20px 0 0 20px" : i === 2 ? "0 20px 20px 0" : "0",
+              }}
+            >
+              {tab.logo && (
+                <div className="relative shrink-0 hidden sm:block" style={{ width: 18, height: 18 }}>
+                  <Image src={tab.logo} alt="" fill className="object-contain" sizes="18px" style={activeSection === tab.key ? { filter: "brightness(0) invert(1)" } : { filter: "grayscale(1) opacity(0.4)" }} />
+                </div>
+              )}
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-          {/* Program / Výsledky + kategória + šípky */}
-          <div className="flex items-center gap-2 sm:gap-3">
-          <div className="flex items-center shrink-0 overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
-            {([{ key: "upcoming", label: "Program" }, { key: "past", label: "Výsledky" }] as const).map((tab, i) => (
+        {/* Row 2: Program/Výsledky + Kategória + Šípky */}
+        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+          <div className="flex items-center shrink-0 gap-0">
+            {([{ key: "upcoming", label: "Program" }, { key: "past", label: "Výsledky" }] as const).map((tab) => (
               <button
                 key={tab.key}
                 onClick={() => { setActiveTab(tab.key); setPage(0); }}
                 className={cn(
                   "px-3 sm:px-4 py-2 sm:py-2.5 font-bold uppercase transition-all",
-                  i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
-                  activeTab === tab.key ? "bg-[#012d74] text-white" : "text-[#64748b] hover:text-[#051937]"
+                  activeTab === tab.key ? "text-[#012d74]" : "text-[#94a3b8] hover:text-[#051937]"
                 )}
-                style={{ fontSize: "10px", letterSpacing: "0.08em" }}
+                style={{
+                  fontSize: "10px",
+                  letterSpacing: "0.08em",
+                  borderBottom: activeTab === tab.key ? "3px solid #012d74" : "3px solid transparent",
+                }}
               >
                 {tab.label}
               </button>
@@ -406,17 +407,16 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
           <select
             value={categoryFilter}
             onChange={(e) => { setCategoryFilter(e.target.value); setPage(0); }}
-            className="font-bold uppercase text-[#051937] bg-transparent px-3 py-2.5 cursor-pointer outline-none shrink-0"
-            style={{ fontSize: "9px", letterSpacing: "0.08em", border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px", appearance: "none", backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", paddingRight: "24px" }}
+            className="font-bold uppercase text-[#051937] px-3 py-2 sm:py-2.5 cursor-pointer outline-none shrink-0"
+            style={{ fontSize: "9px", letterSpacing: "0.08em", border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px", appearance: "none", background: "#f3f4f6", backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", paddingRight: "24px" }}
           >
             <option value="all">Všetci</option>
             <option value="muzi">Muži</option>
             <option value="zeny">Ženy</option>
             <option value="mladez">Mládež</option>
           </select>
-          {/* Šípky */}
           {totalPages > 1 && (
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 ml-auto">
               <button
                 onClick={() => setPage(p => Math.max(0, p - 1))}
                 disabled={page === 0}
@@ -440,9 +440,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
               </button>
             </div>
           )}
-          </div>
         </div>
-
       </div>
 
       {/* Zápasy grid s paginovaním */}

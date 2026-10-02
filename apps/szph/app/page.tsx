@@ -6,6 +6,7 @@ import { MatchCenter } from "@szph/ui";
 import { SzphHero } from "./components/SzphHero";
 import { RychleOdkazy } from "./components/RychleOdkazy";
 import { PersonalizedSection } from "./components/PersonalizedSection";
+import { HomeStreamCard, HomeShortCard, HomePodcastVideo } from "./components/HomeVideoCards";
 
 const MOCK_ARTICLES = [
   {
@@ -132,16 +133,22 @@ const getData = unstable_cache(
       supabase.from("competitions").select("*").then(r => r.data ?? []),
       getWorldNews(),
     ]);
+    const fixImg = (a: any) => ({
+      ...a,
+      cover_image_url: a.cover_image_url?.startsWith("/images/") && /\.(png|jpe?g)$/i.test(a.cover_image_url)
+        ? a.cover_image_url.replace(/\.(png|jpe?g)$/i, ".webp")
+        : a.cover_image_url,
+    });
     const allArticles = [
-      ...(aktuality.status === "fulfilled" ? aktuality.value : []),
-      ...(reprezentacia.status === "fulfilled" ? reprezentacia.value : []),
-      ...(oznamy.status === "fulfilled" ? oznamy.value : []),
+      ...(aktuality.status === "fulfilled" ? aktuality.value.map(fixImg) : []),
+      ...(reprezentacia.status === "fulfilled" ? reprezentacia.value.map(fixImg) : []),
+      ...(oznamy.status === "fulfilled" ? oznamy.value.map(fixImg) : []),
     ];
     return {
       articles:       allArticles.length > 0 ? allArticles : MOCK_ARTICLES,
-      aktuality:      aktuality.status === "fulfilled" && aktuality.value.length > 0 ? aktuality.value : MOCK_ARTICLES.filter(a => a.category === "novinky").slice(0, 3),
-      reprezentacia:  reprezentacia.status === "fulfilled" && reprezentacia.value.length > 0 ? reprezentacia.value : MOCK_ARTICLES.filter(a => a.category === "reprezentacia").slice(0, 3),
-      oznamy:         oznamy.status === "fulfilled" ? oznamy.value : MOCK_ARTICLES.filter(a => a.category === "oznamy").slice(0, 3),
+      aktuality:      aktuality.status === "fulfilled" && aktuality.value.length > 0 ? aktuality.value.map(fixImg) : MOCK_ARTICLES.filter(a => a.category === "novinky").slice(0, 3),
+      reprezentacia:  reprezentacia.status === "fulfilled" && reprezentacia.value.length > 0 ? reprezentacia.value.map(fixImg) : MOCK_ARTICLES.filter(a => a.category === "reprezentacia").slice(0, 3),
+      oznamy:         oznamy.status === "fulfilled" ? oznamy.value.map(fixImg) : MOCK_ARTICLES.filter(a => a.category === "oznamy").slice(0, 3),
       matches:        matches.status === "fulfilled"  ? matches.value  : [],
       competitions:   competitions.status === "fulfilled" ? competitions.value : [],
       worldNews:      worldNews.status === "fulfilled" ? worldNews.value : [],
@@ -205,7 +212,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
       {/* Mobile: horizontal carousel */}
       <div className="flex gap-3 overflow-x-auto pb-2 sm:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
         {articles.map((article) => (
-          <div key={article.id} className="snap-start shrink-0" style={{ width: "75%" }}>
+          <div key={article.id} className="snap-start shrink-0" style={{ width: "68%" }}>
             <ArticleCard article={article} />
           </div>
         ))}
@@ -627,45 +634,7 @@ export default async function SzphHome() {
 
             {/* Pravý — TV style thumbnail */}
             <div className="flex flex-col items-center">
-              <a
-                href="https://www.youtube.com/watch?v=WoHqCQIVHm4"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative overflow-hidden block w-full"
-                style={{ borderRadius: "12px 12px 0 0", border: "4px solid #0e264a", borderBottom: "4px solid #0e264a" }}
-              >
-                <Image
-                  src="/images/podcast.webp"
-                  alt="SZPH Podcast"
-                  width={686}
-                  height={386}
-                  className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.04]"
-                  sizes="(max-width: 768px) 100vw, 55vw"
-                />
-                {/* Tmavý overlay */}
-                <div className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-60"
-                  style={{ background: "rgba(3,15,34,0.45)" }} />
-                {/* Play button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div
-                    className="flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
-                    style={{ width: "64px", height: "64px", background: "#d80027", boxShadow: "0 0 0 12px rgba(216,0,39,0.2)" }}
-                  >
-                    <svg className="h-6 w-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-                {/* YouTube badge */}
-                <div className="absolute bottom-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded"
-                  style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)" }}>
-                  <svg className="h-3.5 w-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
-                    <path fill="#051937" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
-                  </svg>
-                  <span className="font-bold text-white" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>YOUTUBE</span>
-                </div>
-              </a>
+              <HomePodcastVideo id="WoHqCQIVHm4" url="https://www.youtube.com/watch?v=WoHqCQIVHm4" />
               {/* TV stand */}
               <div className="flex flex-col items-center">
                 <div style={{ width: "60%", height: "6px", background: "#0e264a", borderRadius: "0 0 4px 4px" }} />
@@ -699,16 +668,25 @@ export default async function SzphHome() {
       <section style={{ background: "#f8f9fa" }} className="px-4 pb-4 md:hidden">
         <Link
           href="/eshop"
-          className="group flex items-center justify-between bg-white px-4 py-3.5 active:bg-gray-50 transition-colors max-w-[1600px] mx-auto"
-          style={{ borderRadius: "14px", border: "1px solid rgba(1,45,116,0.06)" }}
+          className="group block relative overflow-hidden active:opacity-90 transition-opacity max-w-[1600px] mx-auto"
+          style={{ borderRadius: "14px", height: "120px" }}
         >
-          <div>
-            <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Oficiálny e-shop</p>
-            <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>Dresy, merch a vybavenie</p>
+          <Image
+            src="/images/eshop-banner.webp"
+            alt="Oficiálny eshop"
+            fill
+            className="object-cover transition-transform duration-500 group-active:scale-105"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(216,0,39,0.9) 0%, rgba(216,0,39,0.5) 50%, transparent 100%)" }} />
+          <div className="absolute inset-0 flex flex-col justify-center px-5">
+            <p className="font-garet font-bold text-white" style={{ fontSize: "16px" }}>Oficiálny e-shop</p>
+            <p className="text-white/80 mt-0.5" style={{ fontSize: "12px" }}>Dresy, merch a vybavenie</p>
+            <div className="mt-2.5 inline-flex items-center gap-2 self-start px-3 py-1.5 font-bold text-white" style={{ fontSize: "10px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: "20px" }}>
+              Zobraziť obchod
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </div>
           </div>
-          <svg className="h-4 w-4 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
         </Link>
       </section>
 
@@ -811,18 +789,7 @@ export default async function SzphHome() {
               { id: "9HxmftfEa0A", url: "https://www.youtube.com/watch?v=9HxmftfEa0A&t=817s", title: "Extraliga muži — kolo 3" },
               { id: "R2xOukt5BgE", url: "https://www.youtube.com/watch?v=R2xOukt5BgE", title: "Extraliga muži — kolo 4" },
             ].map((v) => (
-              <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer"
-                className="group relative overflow-hidden shrink-0 block w-[280px] md:w-[340px]"
-                style={{ aspectRatio: "16/9", borderRadius: "8px" }}>
-                <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" sizes="340px" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <div className="flex items-center justify-center rounded-full"
-                    style={{ width: "48px", height: "48px", background: "rgba(255,255,255,0.15)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.25)" }}>
-                    <svg className="h-5 w-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                </div>
-              </a>
+              <HomeStreamCard key={v.id} video={v} />
             ))}
           </div>
 
@@ -849,26 +816,7 @@ export default async function SzphHome() {
                 { id: "ywGDsIWSPDw", title: "Záber týždňa 2" },
                 { id: "4rgr9GDsQQk", title: "Short 2" },
               ].map((v, i) => (
-                <a key={`${v.id}-${i}`} href={`https://www.youtube.com/shorts/${v.id}`} target="_blank" rel="noopener noreferrer"
-                  className="group relative overflow-hidden block shrink-0" style={{ width: "150px", aspectRatio: "9/16", borderRadius: "8px" }}>
-                  <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.05]" sizes="150px" unoptimized />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 40%)" }} />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <div className="flex items-center justify-center rounded-full"
-                      style={{ width: "32px", height: "32px", background: "rgba(255,255,255,0.12)", backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.2)" }}>
-                      <svg className="h-3 w-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <p className="font-bold text-white leading-tight" style={{ fontSize: "10px" }}>{v.title}</p>
-                  </div>
-                  <div className="absolute top-2 left-2 px-1.5 py-0.5 font-bold text-white flex items-center gap-1"
-                    style={{ background: "rgba(0,0,0,0.4)", fontSize: "7px", letterSpacing: "0.08em", backdropFilter: "blur(4px)", borderRadius: "4px" }}>
-                    <svg className="h-2.5 w-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2h9l7 10-7 10H4l7-10z"/></svg>
-                    SHORT
-                  </div>
-                </a>
+                <HomeShortCard key={`${v.id}-${i}`} id={v.id} title={v.title} />
               ))}
             </div>
           </details>

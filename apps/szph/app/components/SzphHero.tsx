@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 
 const HERO_IMAGES = [
   { src: "/images/hero-banner3.webp", mobilePos: "center 25%", desktopPos: "center 25%" },
-  { src: "/images/hero-banner3b.webp", mobilePos: "30% 40%", desktopPos: "center 55%" },
-  { src: "/images/hero-banner7.webp", mobilePos: "30% 40%", desktopPos: "center 55%" },
-  { src: "/images/hero-banner-blue-player.webp", mobilePos: "center 10%", desktopPos: "center top" },
+  { src: "/images/hero-banner3b.webp", mobilePos: "65% 30%", desktopPos: "center 55%" },
+  { src: "/images/hero-banner7.webp", mobilePos: "65% 30%", desktopPos: "center 55%" },
+  { src: "/images/hero-banner-blue-player.webp", mobilePos: "35% 10%", desktopPos: "center top" },
   { src: "/images/hero-banner2.webp", mobilePos: "center 25%", desktopPos: "center 25%" },
 ];
 
@@ -43,7 +43,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
       <section
         data-hero
         className="relative w-full overflow-hidden md:hidden"
-        style={{ minHeight: "82vh" }}
+        style={{ minHeight: "70vh" }}
       >
         {/* Mobile rotating background photos */}
         {HERO_IMAGES.map((img, i) => (

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { MatchVideo } from "./MatchVideo";
 
 function getSupabase() {
   return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
@@ -221,18 +222,7 @@ export default async function MatchDetailPage({ params }: Props) {
           )}
 
           {/* Video */}
-          {m.video_url && (
-            <a href={m.video_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-white p-5 hover:bg-[#f8fafd] transition-colors" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
-              <div className="shrink-0 flex items-center justify-center rounded-full" style={{ width: 40, height: 40, background: "#d80027" }}>
-                <svg className="h-4 w-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-              </div>
-              <div>
-                <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Sledovať záznam zápasu</p>
-                <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>Otvoriť video v novom okne</p>
-              </div>
-              <svg className="h-4 w-4 text-[#94a3b8] ml-auto shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </a>
-          )}
+          {m.video_url && <MatchVideo url={m.video_url} />}
         </div>
       </div>
     </article>
