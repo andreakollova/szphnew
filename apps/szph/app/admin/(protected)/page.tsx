@@ -179,12 +179,13 @@ export default async function AdminDashboard() {
             )}
           </div>
 
-          {/* Najbližšia schôdza */}
-          <NajblizsiaSkhodza />
-
-          {/* Úlohy */}
-          <DashboardUlohy />
         </div>
+      </div>
+
+      {/* Schôdza + Úlohy vedľa seba */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        <NajblizsiaSkhodza />
+        <DashboardUlohy />
       </div>
     </div>
   );
