@@ -208,7 +208,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <div className="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[260px_1fr] gap-6 items-stretch">
+      <div className="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[200px_1fr] gap-5 items-stretch">
 
         {/* Featured karta — landscape */}
         <div className="flex flex-col">
@@ -256,7 +256,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
         </div>
 
         {/* Stĺpce s linkami */}
-        <div className="grid gap-5" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
+        <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
           {columns.map((col) => (
             <div key={col.title}>
               <p className="font-bold uppercase tracking-widest text-[#051937] mb-2" style={{ fontSize: "11px" }}>
