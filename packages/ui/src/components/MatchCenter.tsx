@@ -310,10 +310,20 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
 
 export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterProps) {
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
-  const [activeSection, setActiveSection] = useState<"all" | "liga" | "reprezentacia">("all");
+  const [activeSections, setActiveSections] = useState<Set<string>>(new Set(["liga", "reprezentacia"]));
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [page, setPage] = useState(0);
   const PAGE_SIZE = pageSize;
+
+  function toggleSection(key: string) {
+    setActiveSections(prev => {
+      const next = new Set(prev);
+      if (next.has(key)) { next.delete(key); } else { next.add(key); }
+      if (next.size === 0) { next.add("liga"); next.add("reprezentacia"); }
+      return next;
+    });
+    setPage(0);
+  }
 
   // Split by liga vs reprezentácia
   const isRep = (m: DbMatch) => (m.home_short === "SVK" || m.away_short === "SVK") && !m.league?.includes("ČESKÁ");
@@ -327,8 +337,10 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
     return "muzi";
   };
 
-  let currentMatches = activeSection === "liga" ? matches.filter(m => !isRep(m))
-    : activeSection === "reprezentacia" ? matches.filter(m => isRep(m))
+  const bothActive = activeSections.has("liga") && activeSections.has("reprezentacia");
+  let currentMatches = bothActive ? matches
+    : activeSections.has("liga") ? matches.filter(m => !isRep(m))
+    : activeSections.has("reprezentacia") ? matches.filter(m => isRep(m))
     : matches;
 
   if (categoryFilter !== "all") {
@@ -352,35 +364,35 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
     <div className={cn("", className)}>
       {/* Controls */}
       <div className="flex flex-col gap-3 mb-6">
-        {/* Row 1: Všetky/Liga/Rep */}
-        <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
+        {/* Row 1: Liga / Rep toggle buttons */}
+        <div className="flex items-center gap-2">
           {([
-            { key: "all" as const, label: "Všetky", logo: "" },
-            { key: "liga" as const, label: "Liga", logo: "/images/logo-liga.webp" },
-            { key: "reprezentacia" as const, label: "Rep.", logo: "/images/logo-reprezentacia.webp" },
-          ]).map((tab, i) => (
-            <button
-              key={tab.key}
-              onClick={() => { setActiveSection(tab.key); setPage(0); }}
-              className={cn(
-                "flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 font-bold uppercase transition-all flex-1 sm:flex-initial",
-                i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
-                activeSection === tab.key ? "text-white" : "text-[#64748b] hover:text-[#051937]"
-              )}
-              style={{
-                fontSize: "10px", letterSpacing: "0.08em",
-                background: activeSection === tab.key ? "#012d74" : "transparent",
-                borderRadius: i === 0 ? "20px 0 0 20px" : i === 2 ? "0 20px 20px 0" : "0",
-              }}
-            >
-              {tab.logo && (
-                <div className="relative shrink-0 hidden sm:block" style={{ width: 18, height: 18 }}>
-                  <Image src={tab.logo} alt="" fill className="object-contain" sizes="18px" style={activeSection === tab.key ? { filter: "brightness(0) invert(1)" } : { filter: "grayscale(1) opacity(0.4)" }} />
+            { key: "liga", label: "Liga", logo: "/images/logo-liga.webp" },
+            { key: "reprezentacia", label: "Rep.", logo: "/images/logo-reprezentacia.webp" },
+          ]).map((tab) => {
+            const active = activeSections.has(tab.key);
+            return (
+              <button
+                key={tab.key}
+                onClick={() => toggleSection(tab.key)}
+                className={cn(
+                  "flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 font-bold uppercase transition-all",
+                  active ? "text-white" : "text-[#64748b] hover:text-[#051937]"
+                )}
+                style={{
+                  fontSize: "10px", letterSpacing: "0.08em",
+                  background: active ? "#012d74" : "transparent",
+                  border: active ? "1px solid #012d74" : "1px solid rgba(1,45,116,0.12)",
+                  borderRadius: "20px",
+                }}
+              >
+                <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
+                  <Image src={tab.logo} alt="" fill className="object-contain" sizes="18px" style={active ? { filter: "brightness(0) invert(1)" } : { filter: "grayscale(1) opacity(0.4)" }} />
                 </div>
-              )}
-              {tab.label}
-            </button>
-          ))}
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Row 2: Program/Výsledky + Kategória + Šípky */}
@@ -407,8 +419,8 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
           <select
             value={categoryFilter}
             onChange={(e) => { setCategoryFilter(e.target.value); setPage(0); }}
-            className="font-bold uppercase text-[#051937] px-3 py-2 sm:py-2.5 cursor-pointer outline-none shrink-0"
-            style={{ fontSize: "9px", letterSpacing: "0.08em", border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px", appearance: "none", background: "#f3f4f6", backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", paddingRight: "24px" }}
+            className="font-bold uppercase text-[#051937] px-2.5 py-1.5 sm:py-2 cursor-pointer outline-none shrink-0"
+            style={{ fontSize: "8px", letterSpacing: "0.08em", border: "1px solid rgba(1,45,116,0.12)", borderRadius: "16px", appearance: "none", background: "#f3f4f6", backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 6px center", paddingRight: "20px" }}
           >
             <option value="all">Všetci</option>
             <option value="muzi">Muži</option>
@@ -451,7 +463,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
       ) : (
       <AnimatePresence mode="wait">
         <motion.div
-          key={activeTab + activeSection}
+          key={activeTab + Array.from(activeSections).join(",")}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
