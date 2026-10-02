@@ -6,11 +6,11 @@ import Image from "next/image";
 
 const CLUBS = [
   { id: "none", name: "Žiadny klub" },
-  { id: "HAŠ", name: "HA Šenkvice", logo: "/images/timy/HAS.webp" },
-  { id: "ŠK", name: "ŠK 1952 Šenkvice", logo: "/images/timy/SEN.webp" },
-  { id: "RAČ", name: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
-  { id: "HOKO", name: "HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
-  { id: "HKM", name: "HKM Nová Dubnica", logo: "/images/timy/nova-dubnica-32x32.webp" },
+  { id: "HAŠ", name: "HA Šenkvice", logo: "/images/timy/HAS.webp", color: "#e67e22" },
+  { id: "ŠK", name: "ŠK 1952 Šenkvice", logo: "/images/timy/SEN.webp", color: "#e67e22" },
+  { id: "RAČ", name: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", color: "#2563eb" },
+  { id: "HOKO", name: "HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp", color: "#16a34a" },
+  { id: "HKM", name: "HKM Nová Dubnica", logo: "/images/timy/nova-dubnica-32x32.webp", color: "#7c3aed" },
 ];
 
 interface UserPrefs {
@@ -106,11 +106,8 @@ export default function NastaveniaPage() {
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <div className="relative">
-            <div className="w-16 h-16 rounded-full bg-[#051937] flex items-center justify-center overflow-hidden">
-              {selectedClub && selectedClub.id !== "none" && "logo" in selectedClub ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={(selectedClub as any).logo} alt="" className="w-10 h-10 object-contain" />
-              ) : prefs.name ? (
+            <div className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden" style={{ background: (selectedClub as any)?.color || "#051937" }}>
+              {prefs.name ? (
                 <span className="font-black text-white text-xl">{prefs.name.charAt(0).toUpperCase()}</span>
               ) : (
                 <svg className="h-7 w-7 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
