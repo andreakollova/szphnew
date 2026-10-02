@@ -22,13 +22,13 @@ export default async function AdminCviceniaPage() {
       </div>
 
       {/* Form */}
-      <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         <h2 className="font-bold text-[#051937] mb-4">Pridať cvičenie</h2>
         <AddExerciseForm />
       </div>
 
       {/* List */}
-      <div className="rounded-2xl overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded-md overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         {exercises.length === 0 ? (
           <div className="py-12 text-center text-[#64748b]">Žiadne cvičenia</div>
         ) : (

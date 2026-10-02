@@ -20,7 +20,7 @@ export function DeleteTeamButton({ id, name }: { id: string; name: string }) {
     <button
       onClick={handleDelete}
       disabled={deleting}
-      className="rounded-lg bg-red-500/15 px-3 py-1.5 text-xs font-semibold text-red-400 transition-colors hover:bg-red-500/25 disabled:opacity-50"
+      className="rounded-md bg-red-500/15 px-3 py-1.5 text-xs font-semibold text-red-400 transition-colors hover:bg-red-500/25 disabled:opacity-50"
     >
       {deleting ? "..." : "Vymazať"}
     </button>

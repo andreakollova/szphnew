@@ -139,7 +139,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {error && (
-        <div className="rounded-xl bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">
+        <div className="rounded-md bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">
           {error}
         </div>
       )}
@@ -147,7 +147,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Hlavný obsah */}
         <div className="space-y-5 lg:col-span-2">
-          <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <h2 className="font-bold text-[#051937] mb-4">Obsah článku</h2>
 
             <div className="space-y-4">
@@ -193,15 +193,15 @@ export function ArticleForm({ article }: ArticleFormProps) {
           </div>
 
           {/* Cover image */}
-          <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <h2 className="font-bold text-[#051937] mb-4">Titulná fotka</h2>
             {imagePreview && (
-              <div className="mb-4 relative h-48 w-full overflow-hidden rounded-xl">
+              <div className="mb-4 relative h-48 w-full overflow-hidden rounded-md">
                 <img src={imagePreview} alt="Preview" className="h-full w-full object-cover" />
                 <button
                   type="button"
                   onClick={() => { setImagePreview(null); setImageFile(null); setValue("cover_image_url", ""); }}
-                  className="absolute right-2 top-2 rounded-lg bg-black/60 px-2 py-1 text-xs text-white"
+                  className="absolute right-2 top-2 rounded-md bg-black/60 px-2 py-1 text-xs text-white"
                 >
                   Odstrániť
                 </button>
@@ -216,7 +216,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
               type="file"
               accept="image/*"
               onChange={handleImageChange}
-              className="w-full text-sm text-[#64748b] file:mr-4 file:rounded-lg file:border-0 file:bg-gray-100 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-[#051937] hover:file:bg-gray-200"
+              className="w-full text-sm text-[#64748b] file:mr-4 file:rounded-md file:border-0 file:bg-gray-100 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-[#051937] hover:file:bg-gray-200"
             />
             <p className="mt-2 text-xs text-[#94a3b8]">alebo zadaj URL:</p>
             <input
@@ -229,7 +229,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
 
         {/* Postranný panel */}
         <div className="space-y-4">
-          <div className="rounded-2xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded-md p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <h2 className="font-bold text-[#051937] mb-4">Nastavenia</h2>
             <div className="space-y-4">
 
@@ -261,14 +261,14 @@ export function ArticleForm({ article }: ArticleFormProps) {
             <button
               type="submit"
               disabled={saving}
-              className="w-full rounded-xl bg-[#016fb4] py-3 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90 disabled:opacity-50"
+              className="w-full rounded-md bg-[#016fb4] py-3 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90 disabled:opacity-50"
             >
               {saving ? "Ukladám..." : article ? "Uložiť zmeny" : "Vytvoriť článok"}
             </button>
             <button
               type="button"
               onClick={() => router.back()}
-              className="w-full rounded-xl border border-[rgba(1,45,116,0.08)] py-3 text-sm font-semibold text-[#64748b] transition-colors hover:bg-gray-50"
+              className="w-full rounded-md border border-[rgba(1,45,116,0.08)] py-3 text-sm font-semibold text-[#64748b] transition-colors hover:bg-gray-50"
             >
               Zrušiť
             </button>

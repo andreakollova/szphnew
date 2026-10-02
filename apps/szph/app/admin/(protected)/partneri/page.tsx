@@ -49,7 +49,7 @@ export default function AdminPartneriPage() {
     setPartners((prev) => prev.filter((p) => p.id !== id));
   }
 
-  const inputCls = "w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#012d74]/50 transition-all placeholder-[#94a3b8]";
+  const inputCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#012d74]/50 transition-all placeholder-[#94a3b8]";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
@@ -60,7 +60,7 @@ export default function AdminPartneriPage() {
       </div>
 
       {/* Pridať partnera */}
-      <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         <h2 className="font-bold text-[#051937] mb-4">Pridať partnera</h2>
         <form onSubmit={handleAdd} className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
@@ -85,13 +85,13 @@ export default function AdminPartneriPage() {
             <input value={form.url} onChange={(e) => setForm((f) => ({ ...f, url: e.target.value }))} className={inputCls} placeholder="https://www.partner.sk" />
           </div>
           {form.logo_url && (
-            <div className="flex items-center gap-3 p-3 rounded-xl bg-[#f8f9fa]">
+            <div className="flex items-center gap-3 p-3 rounded-md bg-[#f8f9fa]">
               <span className="text-[10px] font-semibold text-[#94a3b8] uppercase">Náhľad:</span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={form.logo_url} alt="Preview" className="h-8 object-contain" />
             </div>
           )}
-          <button type="submit" disabled={saving} className="rounded-xl bg-[#012d74] px-6 py-2.5 text-sm font-bold text-white hover:bg-[#012d74]/90 disabled:opacity-50 transition-all">
+          <button type="submit" disabled={saving} className="rounded-md bg-[#012d74] px-6 py-2.5 text-sm font-bold text-white hover:bg-[#012d74]/90 disabled:opacity-50 transition-all">
             {saving ? "Pridávam..." : "Pridať partnera"}
           </button>
         </form>
@@ -101,14 +101,14 @@ export default function AdminPartneriPage() {
       {!loading && partners.length > 0 && (
         <div className="space-y-2">
           {partners.map((p) => (
-            <div key={p.id} className="rounded-xl p-4 flex items-center gap-4" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div key={p.id} className="rounded-md p-4 flex items-center gap-4" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
               {p.logo_url ? (
                 <div className="h-10 w-20 shrink-0 flex items-center">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={p.logo_url} alt={p.name} className="h-full w-full object-contain" />
                 </div>
               ) : (
-                <div className="h-10 w-20 shrink-0 flex items-center justify-center rounded-lg bg-[#f8f9fa] text-xs text-[#94a3b8]">
+                <div className="h-10 w-20 shrink-0 flex items-center justify-center rounded-md bg-[#f8f9fa] text-xs text-[#94a3b8]">
                   Bez loga
                 </div>
               )}
@@ -119,7 +119,7 @@ export default function AdminPartneriPage() {
               <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold shrink-0 ${p.tier === "oficialny" ? "bg-amber-100 text-amber-700" : "bg-[#f0f4fa] text-[#64748b]"}`}>
                 {p.tier === "oficialny" ? "Oficiálny" : "Inštit."}
               </span>
-              <button onClick={() => handleDelete(p.id)} className="shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold text-[#d00027] hover:bg-red-50 transition-colors" style={{ border: "1px solid rgba(208,0,39,0.2)" }}>
+              <button onClick={() => handleDelete(p.id)} className="shrink-0 rounded-md px-3 py-1.5 text-xs font-semibold text-[#d00027] hover:bg-red-50 transition-colors" style={{ border: "1px solid rgba(208,0,39,0.2)" }}>
                 Zmazať
               </button>
             </div>

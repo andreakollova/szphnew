@@ -60,19 +60,19 @@ export function DashboardUlohy() {
     setUlohy((prev) => prev.filter((u) => u.id !== id));
   }
 
-  const inputCls = "w-full rounded-xl border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#012d74]/50 transition-all placeholder-[#94a3b8]";
+  const inputCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#012d74]/50 transition-all placeholder-[#94a3b8]";
 
   return (
-    <div className="rounded-xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+    <div className="rounded-md p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
       <div className="flex items-center justify-between mb-4">
         <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Úlohy</h2>
-        <button onClick={() => setShowForm(!showForm)} className="rounded-lg bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
+        <button onClick={() => setShowForm(!showForm)} className="rounded-md bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
           + Nová úloha
         </button>
       </div>
 
       {showForm && (
-        <form onSubmit={handleAdd} className="mb-4 space-y-3 p-4 rounded-xl" style={{ background: "#f8f9fa" }}>
+        <form onSubmit={handleAdd} className="mb-4 space-y-3 p-4 rounded-md" style={{ background: "#f8f9fa" }}>
           <input required value={form.title} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} className={inputCls} placeholder="Názov úlohy *" />
           <textarea value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} className={inputCls} placeholder="Popis úlohy" rows={2} />
           <div className="grid grid-cols-2 gap-3">
@@ -80,8 +80,8 @@ export function DashboardUlohy() {
             <input value={form.note} onChange={(e) => setForm((f) => ({ ...f, note: e.target.value }))} className={inputCls} placeholder="Poznámka" />
           </div>
           <div className="flex gap-2">
-            <button type="submit" disabled={saving} className="rounded-lg bg-[#012d74] px-4 py-2 text-xs font-bold text-white disabled:opacity-50">{saving ? "..." : "Pridať"}</button>
-            <button type="button" onClick={() => setShowForm(false)} className="rounded-lg px-4 py-2 text-xs font-bold text-[#64748b] hover:bg-gray-100">Zrušiť</button>
+            <button type="submit" disabled={saving} className="rounded-md bg-[#012d74] px-4 py-2 text-xs font-bold text-white disabled:opacity-50">{saving ? "..." : "Pridať"}</button>
+            <button type="button" onClick={() => setShowForm(false)} className="rounded-md px-4 py-2 text-xs font-bold text-[#64748b] hover:bg-gray-100">Zrušiť</button>
           </div>
         </form>
       )}
@@ -93,7 +93,7 @@ export function DashboardUlohy() {
           {ulohy.map((u) => {
             const s = STATUS_COLORS[u.status] || STATUS_COLORS.nesplnena;
             return (
-              <div key={u.id} className="rounded-lg p-3" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
+              <div key={u.id} className="rounded-md p-3" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
                 <div className="flex items-start gap-3">
                   <div className="flex-1 min-w-0">
                     <p className={`font-semibold text-[#051937] ${u.status === "splnena" ? "line-through opacity-50" : ""}`} style={{ fontSize: "13px" }}>{u.title}</p>

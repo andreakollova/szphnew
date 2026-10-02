@@ -57,11 +57,11 @@ export default function LoginPage() {
           <p className="mt-3 text-sm text-white/40">Admin panel</p>
         </div>
 
-        <div className="rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+        <div className="rounded-md p-8" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
           <h1 className="text-xl font-bold text-white mb-6">Prihlásenie</h1>
 
           {error && (
-            <div className="mb-4 rounded-xl bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">
+            <div className="mb-4 rounded-md bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">
               {error}
             </div>
           )}
@@ -76,7 +76,7 @@ export default function LoginPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-blue-500/60 focus:bg-white/8"
+                className="w-full rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-blue-500/60 focus:bg-white/8"
                 placeholder="admin"
               />
             </div>
@@ -89,14 +89,14 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-blue-500/60 focus:bg-white/8"
+                className="w-full rounded-md border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-blue-500/60 focus:bg-white/8"
                 placeholder="••••••••"
               />
             </div>
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-[#012d74] py-3 text-sm font-bold text-white transition-all hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+              className="w-full rounded-md bg-[#012d74] py-3 text-sm font-bold text-white transition-all hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed mt-2"
             >
               {loading ? "Prihlasovanie..." : "Prihlásiť sa"}
             </button>

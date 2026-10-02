@@ -22,13 +22,13 @@ export default async function AdminClankyPage() {
         </div>
         <Link
           href="/admin/clanky/novy"
-          className="inline-flex items-center gap-2 rounded-xl bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90"
+          className="inline-flex items-center gap-2 rounded-md bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90"
         >
           + Nový článok
         </Link>
       </div>
 
-      <div className="rounded-2xl overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded-md overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         {articles.length === 0 ? (
           <div className="py-16 text-center text-[#64748b]">Žiadne články. Vytvorte prvý!</div>
         ) : (
@@ -75,7 +75,7 @@ export default async function AdminClankyPage() {
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/admin/clanky/upravit/${article.id}`}
-                        className="rounded-lg bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] transition-colors hover:bg-gray-200"
+                        className="rounded-md bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] transition-colors hover:bg-gray-200"
                       >
                         Upraviť
                       </Link>

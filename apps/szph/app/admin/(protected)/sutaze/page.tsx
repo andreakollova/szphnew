@@ -21,13 +21,13 @@ export default async function AdminSutazePage() {
         </div>
         <Link
           href="/admin/sutaze/nova"
-          className="inline-flex items-center gap-2 rounded-xl bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#016fb4]/90 transition-all"
+          className="inline-flex items-center gap-2 rounded-md bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#016fb4]/90 transition-all"
         >
           + Nová súťaž
         </Link>
       </div>
 
-      <div className="rounded-2xl overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded-md overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         {competitions.length === 0 ? (
           <div className="py-16 text-center text-[#64748b]">Žiadne súťaže</div>
         ) : (

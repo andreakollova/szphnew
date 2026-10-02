@@ -61,7 +61,7 @@ export function InlineScore({ matchId, homeScore, awayScore, status, homeTeamNam
         min="0"
         value={home}
         onChange={(e) => setHome(e.target.value)}
-        className="w-10 h-8 text-center rounded-lg border text-sm font-bold text-[#051937] outline-none transition-colors focus:border-[#016fb4]"
+        className="w-10 h-8 text-center rounded-md border text-sm font-bold text-[#051937] outline-none transition-colors focus:border-[#016fb4]"
         style={{ border: "1px solid rgba(1,45,116,0.15)", background: home ? "#ffffff" : "#f8f9fa" }}
         placeholder="-"
       />
@@ -71,7 +71,7 @@ export function InlineScore({ matchId, homeScore, awayScore, status, homeTeamNam
         min="0"
         value={away}
         onChange={(e) => setAway(e.target.value)}
-        className="w-10 h-8 text-center rounded-lg border text-sm font-bold text-[#051937] outline-none transition-colors focus:border-[#016fb4]"
+        className="w-10 h-8 text-center rounded-md border text-sm font-bold text-[#051937] outline-none transition-colors focus:border-[#016fb4]"
         style={{ border: "1px solid rgba(1,45,116,0.15)", background: away ? "#ffffff" : "#f8f9fa" }}
         placeholder="-"
       />
@@ -79,7 +79,7 @@ export function InlineScore({ matchId, homeScore, awayScore, status, homeTeamNam
         <button
           onClick={handleSave}
           disabled={saving}
-          className="ml-1 rounded-lg bg-[#016fb4] px-2 py-1 text-[10px] font-bold text-white hover:bg-[#016fb4]/90 transition-colors disabled:opacity-50"
+          className="ml-1 rounded-md bg-[#016fb4] px-2 py-1 text-[10px] font-bold text-white hover:bg-[#016fb4]/90 transition-colors disabled:opacity-50"
         >
           {saving ? "..." : saved ? "OK" : "Uloz"}
         </button>

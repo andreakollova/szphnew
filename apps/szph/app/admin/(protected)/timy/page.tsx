@@ -34,7 +34,7 @@ export default async function AdminTimyPage() {
         </div>
         <Link
           href="/admin/timy/novy"
-          className="inline-flex items-center gap-2 rounded-xl bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90"
+          className="inline-flex items-center gap-2 rounded-md bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90"
         >
           + Nový tím
         </Link>
@@ -49,7 +49,7 @@ export default async function AdminTimyPage() {
           </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {categoryTeams.map((team) => (
-              <div key={team.id} className="rounded-2xl p-4" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+              <div key={team.id} className="rounded-md p-4" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
                 <div className="flex items-center gap-3">
                   {team.logo_url ? (
                     <div className="relative h-12 w-12 shrink-0">
@@ -90,7 +90,7 @@ export default async function AdminTimyPage() {
       })}
 
       {teams.length === 0 && (
-        <div className="rounded-2xl py-16 text-center" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <div className="rounded-md py-16 text-center" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <p className="text-[#64748b]">Žiadne tímy. Vytvorte prvý tím!</p>
         </div>
       )}

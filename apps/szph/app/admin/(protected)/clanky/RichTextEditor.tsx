@@ -19,7 +19,7 @@ function ToolbarButton({ onClick, active, children, title }: { onClick: () => vo
       type="button"
       onClick={onClick}
       title={title}
-      className={`flex items-center justify-center h-8 w-8 rounded-lg text-sm transition-colors ${active ? "bg-[#016fb4] text-white" : "text-[#64748b] hover:bg-gray-100 hover:text-[#051937]"}`}
+      className={`flex items-center justify-center h-8 w-8 rounded-md text-sm transition-colors ${active ? "bg-[#016fb4] text-white" : "text-[#64748b] hover:bg-gray-100 hover:text-[#051937]"}`}
     >
       {children}
     </button>
@@ -77,7 +77,7 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
   if (!editor) return null;
 
   return (
-    <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.15)" }}>
+    <div className="rounded-md overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.15)" }}>
       {/* Toolbar */}
       <div className="flex flex-wrap items-center gap-0.5 px-2 py-1.5 border-b" style={{ borderColor: "rgba(1,45,116,0.1)", background: "#f8f9fa" }}>
         <ToolbarButton onClick={() => editor.chain().focus().toggleBold().run()} active={editor.isActive("bold")} title="Tučné">

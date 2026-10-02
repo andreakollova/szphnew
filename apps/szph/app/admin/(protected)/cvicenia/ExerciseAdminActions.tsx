@@ -30,14 +30,14 @@ export function ExerciseAdminActions({ exercise }: { exercise: Exercise }) {
     <div className="flex items-center justify-end gap-2">
       <button
         onClick={toggleStatus}
-        className="rounded-lg px-2.5 py-1 text-xs font-semibold text-[#016fb4] hover:bg-[#016fb4]/10 transition-colors"
+        className="rounded-md px-2.5 py-1 text-xs font-semibold text-[#016fb4] hover:bg-[#016fb4]/10 transition-colors"
       >
         {exercise.status === "published" ? "Skryť" : "Publikovať"}
       </button>
       <button
         onClick={handleDelete}
         disabled={deleting}
-        className="rounded-lg px-2.5 py-1 text-xs font-semibold text-red-500 hover:bg-red-50 transition-colors disabled:opacity-50"
+        className="rounded-md px-2.5 py-1 text-xs font-semibold text-red-500 hover:bg-red-50 transition-colors disabled:opacity-50"
       >
         {deleting ? "..." : "Vymazať"}
       </button>

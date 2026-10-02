@@ -31,13 +31,13 @@ export default async function AdminZapasyPage() {
         </div>
         <Link
           href="/admin/zapasy/novy"
-          className="inline-flex items-center gap-2 rounded-xl bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90"
+          className="inline-flex items-center gap-2 rounded-md bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90"
         >
           + Nový zápas
         </Link>
       </div>
 
-      <div className="rounded-2xl overflow-x-auto" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded-md overflow-x-auto" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         {matches.length === 0 ? (
           <div className="py-16 text-center text-[#64748b]">Žiadne zápasy</div>
         ) : (
@@ -104,7 +104,7 @@ export default async function AdminZapasyPage() {
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/admin/zapasy/${match.id}`}
-                        className="rounded-lg bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors"
+                        className="rounded-md bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors"
                       >
                         Upraviť
                       </Link>

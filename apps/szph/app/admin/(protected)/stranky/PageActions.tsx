@@ -20,7 +20,7 @@ export function PageActions({ id }: { id: string }) {
     <button
       onClick={handleDelete}
       disabled={loading}
-      className="rounded-lg bg-red-500/20 px-3 py-1.5 text-xs font-semibold text-red-400 hover:bg-red-500/30 transition-colors disabled:opacity-50"
+      className="rounded-md bg-red-500/20 px-3 py-1.5 text-xs font-semibold text-red-400 hover:bg-red-500/30 transition-colors disabled:opacity-50"
     >
       {loading ? "..." : "Zmazať"}
     </button>
