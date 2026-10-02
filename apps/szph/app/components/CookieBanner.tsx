@@ -62,7 +62,7 @@ export function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-[80px] md:bottom-0 left-1/2 -translate-x-1/2 z-[100] w-[94%] max-w-[580px]">
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 z-[100] w-[94%] max-w-[580px]">
       <div
         className="px-6 py-5"
         style={{
