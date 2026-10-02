@@ -37,13 +37,13 @@ export default function U14Page() {
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Pozemná sezóna:</strong> Zápasy sa hrajú na menších ihriskách v upravenom formáte, typicky 7 na 7 alebo 8 na 8. Rozmery ihriska a čas zápasu sú prispôsobené veku hráčov.
+              <strong>Sezóna - pozemný hokej:</strong> Zápasy sa hrajú na menších ihriskách v upravenom formáte, typicky 7 na 7 alebo 8 na 8. Rozmery ihriska a čas zápasu sú prispôsobené veku hráčov.
             </p>
           </div>
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Halová sezóna:</strong> V zimných mesiacoch sa hrá halový hokej vo formáte prispôsobenom tejto vekovej kategórii.
+              <strong>Sezóna - halový hokej:</strong> V zimných mesiacoch sa hrá halový hokej vo formáte prispôsobenom tejto vekovej kategórii.
             </p>
           </div>
           <div className="flex gap-3 items-start">

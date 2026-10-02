@@ -44,13 +44,13 @@ export default function MuskaLigaPage() {
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Pozemná sezóna:</strong> Prebieha na jar a na jeseň na ihriskách s umelou trávou. Zápasy sa hrajú v plnom formáte 11 na 11 na ihrisku s rozmermi 91,4 x 55 metrov.
+              <strong>Sezóna - pozemný hokej:</strong> Prebieha na jar a na jeseň na ihriskách s umelou trávou. Zápasy sa hrajú v plnom formáte 11 na 11 na ihrisku s rozmermi 91,4 x 55 metrov.
             </p>
           </div>
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Halová sezóna:</strong> Prebieha v zimných mesiacoch v športových halách. Halový hokej sa hrá vo formáte 6 na 6 (vrátane brankára) na menšej hracej ploche s odlišnými pravidlami.
+              <strong>Sezóna - halový hokej:</strong> Prebieha v zimných mesiacoch v športových halách. Halový hokej sa hrá vo formáte 6 na 6 (vrátane brankára) na menšej hracej ploche s odlišnými pravidlami.
             </p>
           </div>
         </div>

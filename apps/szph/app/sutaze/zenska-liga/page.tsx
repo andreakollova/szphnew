@@ -44,13 +44,13 @@ export default function ZenskaLigaPage() {
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Pozemná sezóna:</strong> Hrá sa na jar a na jeseň na ihriskách s umelou trávou. Zápasy prebiehajú v plnom formáte 11 na 11.
+              <strong>Sezóna - pozemný hokej:</strong> Hrá sa na jar a na jeseň na ihriskách s umelou trávou. Zápasy prebiehajú v plnom formáte 11 na 11.
             </p>
           </div>
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Halová sezóna:</strong> Zimná časť súťaže prebieha v športových halách vo formáte 6 na 6 s odlišnými pravidlami.
+              <strong>Sezóna - halový hokej:</strong> Zimná časť súťaže prebieha v športových halách vo formáte 6 na 6 s odlišnými pravidlami.
             </p>
           </div>
         </div>

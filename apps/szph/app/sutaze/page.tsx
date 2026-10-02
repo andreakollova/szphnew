@@ -20,12 +20,12 @@ export default function SutazePage() {
     },
     {
       title: "Pozemný hokej",
-      description: "Vonkajšia sezóna na umelej tráve.",
+      description: "Sezóna - pozemný hokej na umelej tráve.",
       href: "/sutaze/pozemny-hokej",
     },
     {
       title: "Halový hokej",
-      description: "Halová sezóna v zimných mesiacoch.",
+      description: "Sezóna - halový hokej v zimných mesiacoch.",
       href: "/sutaze/halovy-hokej",
     },
     {

@@ -111,8 +111,8 @@ const MAIN_NAV: NavItem[] = [
           links: [
             { label: "Extraliga muži", href: "/sutaze/muzska-liga", desc: "Najvyššia súťaž" },
             { label: "Extraliga ženy", href: "/sutaze/zenska-liga", desc: "Najvyššia súťaž" },
-            { label: "Pozemný hokej", href: "/sutaze/pozemny-hokej", desc: "Vonkajšia sezóna" },
-            { label: "Halový hokej", href: "/sutaze/halovy-hokej", desc: "Halová sezóna" },
+            { label: "Pozemný hokej", href: "/sutaze/pozemny-hokej", desc: "Sezóna - pozemný hokej" },
+            { label: "Halový hokej", href: "/sutaze/halovy-hokej", desc: "Sezóna - halový hokej" },
             { label: "Zápasy a výsledky", href: "/zapasy", desc: "Rozpis a skóre" },
           ],
         },

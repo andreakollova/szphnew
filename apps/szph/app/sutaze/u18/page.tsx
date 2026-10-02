@@ -37,13 +37,13 @@ export default function U18Page() {
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Pozemná sezóna:</strong> Zápasy sa hrajú na ihriskách s umelou trávou v plnom formáte 11 na 11, rovnako ako v seniorských kategóriách.
+              <strong>Sezóna - pozemný hokej:</strong> Zápasy sa hrajú na ihriskách s umelou trávou v plnom formáte 11 na 11, rovnako ako v seniorských kategóriách.
             </p>
           </div>
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Halová sezóna:</strong> V zimných mesiacoch sa hrá halový hokej vo formáte 6 na 6 v športových halách.
+              <strong>Sezóna - halový hokej:</strong> V zimných mesiacoch sa hrá halový hokej vo formáte 6 na 6 v športových halách.
             </p>
           </div>
           <div className="flex gap-3 items-start">
