@@ -306,6 +306,9 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
   const [activeSections, setActiveSections] = useState<Set<string>>(new Set(["liga", "reprezentacia"]));
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [teamFilter, setTeamFilter] = useState<string>("all");
+  const [typeFilter, setTypeFilter] = useState<string>("all"); // all | pozemny | halovy
+  const [filterOpen, setFilterOpen] = useState(false);
   const [page, setPage] = useState(0);
   const PAGE_SIZE = pageSize;
 
@@ -340,6 +343,32 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
   if (categoryFilter !== "all") {
     currentMatches = currentMatches.filter(m => getCategory(m) === categoryFilter);
   }
+  if (teamFilter !== "all") {
+    currentMatches = currentMatches.filter(m =>
+      m.home_team.includes(teamFilter) || m.away_team.includes(teamFilter) ||
+      (m.home_short || "").includes(teamFilter) || (m.away_short || "").includes(teamFilter)
+    );
+  }
+  if (typeFilter !== "all") {
+    currentMatches = currentMatches.filter(m => {
+      const l = (m.league || "").toLowerCase();
+      const indoor = l.includes("indoor") || l.includes("halov");
+      return typeFilter === "halovy" ? indoor : !indoor;
+    });
+  }
+
+  // Collect unique teams for filter
+  const teamNames = new Map<string, string>();
+  matches.forEach(m => {
+    const hKey = m.home_short || m.home_team;
+    const aKey = m.away_short || m.away_team;
+    if (hKey && !teamNames.has(hKey)) teamNames.set(hKey, m.home_team);
+    if (aKey && !teamNames.has(aKey)) teamNames.set(aKey, m.away_team);
+  });
+  const sortedTeams = Array.from(teamNames.entries()).sort((a, b) => a[1].localeCompare(b[1], "sk"));
+
+  const hasActiveFilters = categoryFilter !== "all" || teamFilter !== "all" || typeFilter !== "all";
+
   const now = new Date().getTime();
 
   const allPast = currentMatches
@@ -410,17 +439,97 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
               </button>
             ))}
           </div>
-          <select
-            value={categoryFilter}
-            onChange={(e) => { setCategoryFilter(e.target.value); setPage(0); }}
-            className="font-bold uppercase text-[#051937] px-2.5 py-1.5 sm:py-2 cursor-pointer outline-none shrink-0"
-            style={{ fontSize: "8px", letterSpacing: "0.08em", border: "1px solid rgba(1,45,116,0.12)", borderRadius: "16px", appearance: "none", background: "#f3f4f6", backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 6px center", paddingRight: "20px" }}
-          >
-            <option value="all">Všetci</option>
-            <option value="muzi">Muži</option>
-            <option value="zeny">Ženy</option>
-            <option value="mladez">Mládež</option>
-          </select>
+          <div className="relative shrink-0">
+            <button
+              onClick={() => setFilterOpen(!filterOpen)}
+              className="flex items-center justify-center gap-1.5 rounded-full transition-all"
+              style={{
+                width: 36, height: 36,
+                border: hasActiveFilters ? "2px solid #012d74" : "1px solid rgba(1,45,116,0.12)",
+                background: hasActiveFilters ? "rgba(1,45,116,0.06)" : "transparent",
+              }}
+            >
+              <svg className="h-4 w-4" style={{ color: hasActiveFilters ? "#012d74" : "#64748b" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+              </svg>
+            </button>
+            {filterOpen && (
+              <>
+                <div className="fixed inset-0 z-10" onClick={() => setFilterOpen(false)} />
+                <div className="absolute right-0 top-full mt-2 z-20 p-4 rounded-xl" style={{ background: "#fff", boxShadow: "0 8px 32px rgba(0,0,0,0.12)", border: "1px solid rgba(1,45,116,0.08)", width: "260px" }}>
+                  <div className="flex items-center justify-between mb-3">
+                    <p className="font-bold text-[#051937]" style={{ fontSize: "12px" }}>Filtre</p>
+                    {hasActiveFilters && (
+                      <button
+                        onClick={() => { setCategoryFilter("all"); setTeamFilter("all"); setTypeFilter("all"); setPage(0); }}
+                        className="text-[#d00027] font-bold" style={{ fontSize: "10px" }}
+                      >
+                        Zrušiť filtre
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Kategória */}
+                  <div className="mb-3">
+                    <p className="font-semibold text-[#94a3b8] mb-1.5" style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.1em" }}>Kategória</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {[{ v: "all", l: "Všetci" }, { v: "muzi", l: "Muži" }, { v: "zeny", l: "Ženy" }, { v: "mladez", l: "Mládež" }].map(o => (
+                        <button
+                          key={o.v}
+                          onClick={() => { setCategoryFilter(o.v); setPage(0); }}
+                          className="rounded-full px-2.5 py-1 font-bold transition-all"
+                          style={{
+                            fontSize: "9px",
+                            background: categoryFilter === o.v ? "#012d74" : "#f3f4f6",
+                            color: categoryFilter === o.v ? "#fff" : "#051937",
+                          }}
+                        >
+                          {o.l}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Typ */}
+                  <div className="mb-3">
+                    <p className="font-semibold text-[#94a3b8] mb-1.5" style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.1em" }}>Typ</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {[{ v: "all", l: "Všetky" }, { v: "pozemny", l: "Pozemný" }, { v: "halovy", l: "Halový" }].map(o => (
+                        <button
+                          key={o.v}
+                          onClick={() => { setTypeFilter(o.v); setPage(0); }}
+                          className="rounded-full px-2.5 py-1 font-bold transition-all"
+                          style={{
+                            fontSize: "9px",
+                            background: typeFilter === o.v ? "#012d74" : "#f3f4f6",
+                            color: typeFilter === o.v ? "#fff" : "#051937",
+                          }}
+                        >
+                          {o.l}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Tím */}
+                  <div>
+                    <p className="font-semibold text-[#94a3b8] mb-1.5" style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.1em" }}>Tím</p>
+                    <select
+                      value={teamFilter}
+                      onChange={(e) => { setTeamFilter(e.target.value); setPage(0); }}
+                      className="w-full rounded-lg px-3 py-2 font-semibold text-[#051937] outline-none"
+                      style={{ fontSize: "11px", border: "1px solid rgba(1,45,116,0.1)", background: "#f8f9fa", appearance: "auto" }}
+                    >
+                      <option value="all">Všetky tímy</option>
+                      {sortedTeams.map(([key, name]) => (
+                        <option key={key} value={key}>{name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
           {totalPages > 1 && (
             <div className="flex items-center gap-1 ml-auto">
               <button
