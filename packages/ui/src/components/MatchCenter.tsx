@@ -365,6 +365,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
                 style={{
                   fontSize: "9px", letterSpacing: "0.08em",
                   background: activeSection === tab.key ? "#012d74" : "transparent",
+                  borderRadius: i === 0 ? "20px 0 0 20px" : i === 2 ? "0 20px 20px 0" : "0",
                 }}
               >
                 {tab.logo && (
