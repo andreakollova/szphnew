@@ -96,13 +96,15 @@ const getWorldNews = unstable_cache(
         "https://oivzvihdhidpbrjpygfl.supabase.co",
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9pdnp2aWhkaGlkcGJyanB5Z2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI3MTgsImV4cCI6MjA5MDIwODcxOH0.7d917agBywM3D1RlFJ27oHTRvjBaE_pyDxCzLKaKaIE"
       );
-      const { data } = await hr.from("articles").select("id, title_sk, image_url, url, scraped_at").eq("published", true).order("scraped_at", { ascending: false }).limit(4);
+      const { data } = await hr.from("articles").select("id, title_sk, image_url, url, source, scraped_at").eq("published", true).order("scraped_at", { ascending: false }).limit(4);
       return (data ?? []).map((a: any) => ({
         id: String(a.id),
         slug: `svet/${a.id}`,
         title: a.title_sk ?? "",
         cover_image_url: a.image_url,
         category: "svet",
+        source: a.source ?? null,
+        source_url: a.url ?? null,
         published_at: a.scraped_at,
         status: "published",
       }));

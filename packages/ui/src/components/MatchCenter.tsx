@@ -353,35 +353,32 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
       {/* Controls — dva riadky */}
       <div className="flex flex-col gap-3 mb-6">
         {/* Riadok 1: Liga / Reprezentácia + Nasledujúce/Minulé */}
-        <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
           {/* Všetky / Liga / Reprezentácia */}
           <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
             {([
               { key: "all" as const, label: "Všetky", logo: "" },
               { key: "liga" as const, label: "Liga", logo: "/images/logo-liga.webp" },
-              { key: "reprezentacia" as const, label: "Reprezentácia", logo: "/images/logo-reprezentacia.webp" },
+              { key: "reprezentacia" as const, label: "Rep.", logo: "/images/logo-reprezentacia.webp" },
             ]).map((tab, i) => (
               <button
                 key={tab.key}
                 onClick={() => { setActiveSection(tab.key); setPage(0); }}
                 className={cn(
-                  "flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 font-bold uppercase transition-all",
+                  "flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 font-bold uppercase transition-all flex-1 sm:flex-initial",
                   i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
                   activeSection === tab.key ? "text-white" : "text-[#64748b] hover:text-[#051937]"
                 )}
                 style={{
-                  fontSize: "9px", letterSpacing: "0.08em",
+                  fontSize: "10px", letterSpacing: "0.08em",
                   background: activeSection === tab.key ? "#012d74" : "transparent",
                   borderRadius: i === 0 ? "20px 0 0 20px" : i === 2 ? "0 20px 20px 0" : "0",
                 }}
               >
                 {tab.logo && (
-                  <>
-                    <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
-                      <Image src={tab.logo} alt="" fill className="object-contain" sizes="18px" style={activeSection === tab.key ? { filter: "brightness(0) invert(1)" } : undefined} />
-                    </div>
-                    <div style={{ width: "1px", height: "14px", background: activeSection === tab.key ? "rgba(255,255,255,0.3)" : "rgba(1,45,116,0.12)" }} />
-                  </>
+                  <div className="relative shrink-0 hidden sm:block" style={{ width: 18, height: 18 }}>
+                    <Image src={tab.logo} alt="" fill className="object-contain" sizes="18px" style={activeSection === tab.key ? { filter: "brightness(0) invert(1)" } : undefined} />
+                  </div>
                 )}
                 {tab.label}
               </button>
@@ -400,7 +397,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
                   i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
                   activeTab === tab.key ? "bg-[#012d74] text-white" : "text-[#64748b] hover:text-[#051937]"
                 )}
-                style={{ fontSize: "9px", letterSpacing: "0.08em" }}
+                style={{ fontSize: "10px", letterSpacing: "0.08em" }}
               >
                 {tab.label}
               </button>
@@ -409,7 +406,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
           <select
             value={categoryFilter}
             onChange={(e) => { setCategoryFilter(e.target.value); setPage(0); }}
-            className="font-bold uppercase text-[#051937] bg-transparent px-3 py-2 sm:py-2.5 cursor-pointer outline-none shrink-0"
+            className="font-bold uppercase text-[#051937] bg-transparent px-3 py-2.5 cursor-pointer outline-none shrink-0"
             style={{ fontSize: "9px", letterSpacing: "0.08em", border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px", appearance: "none", backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", paddingRight: "24px" }}
           >
             <option value="all">Všetci</option>
