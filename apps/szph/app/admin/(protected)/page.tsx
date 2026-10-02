@@ -18,7 +18,7 @@ async function getDashboardData() {
   const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString();
 
   const [articles, allMatches, matchCount, partners] = await Promise.allSettled([
-    supabase.from("articles").select("id, status, title, category, published_at, updated_at, site").order("updated_at", { ascending: false }).limit(8),
+    supabase.from("articles").select("id, status, title, category, published_at, updated_at, site").order("updated_at", { ascending: false }).limit(9),
     supabase.from("matches").select("*").eq("site", "szph").order("date", { ascending: false }).limit(50),
     supabase.from("matches").select("id", { count: "exact" }).eq("site", "szph"),
     supabase.from("partners").select("id, name, logo_url, tier, url").order("sort_order"),
