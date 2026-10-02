@@ -261,7 +261,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
             <button
               type="submit"
               disabled={saving}
-              className="w-full rounded bg-[#016fb4] py-3 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90 disabled:opacity-50"
+              className="w-full rounded bg-[#012d74] py-3 text-sm font-bold text-white transition-all hover:bg-[#012d74]/90 disabled:opacity-50"
             >
               {saving ? "Ukladám..." : article ? "Uložiť zmeny" : "Vytvoriť článok"}
             </button>

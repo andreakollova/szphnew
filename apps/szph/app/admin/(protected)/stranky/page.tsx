@@ -25,7 +25,7 @@ export default async function AdminStrankyPage() {
         </div>
         <Link
           href="/admin/stranky/nova"
-          className="inline-flex items-center gap-2 rounded bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#016fb4]/90 transition-all"
+          className="inline-flex items-center gap-2 rounded bg-[#012d74] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#012d74]/90 transition-all"
         >
           + Nová stránka
         </Link>

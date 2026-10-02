@@ -19,7 +19,7 @@ function ToolbarButton({ onClick, active, children, title }: { onClick: () => vo
       type="button"
       onClick={onClick}
       title={title}
-      className={`flex items-center justify-center h-8 w-8 rounded text-sm transition-colors ${active ? "bg-[#016fb4] text-white" : "text-[#64748b] hover:bg-gray-100 hover:text-[#051937]"}`}
+      className={`flex items-center justify-center h-8 w-8 rounded text-sm transition-colors ${active ? "bg-[#012d74] text-white" : "text-[#64748b] hover:bg-gray-100 hover:text-[#051937]"}`}
     >
       {children}
     </button>
@@ -138,7 +138,7 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
         .ProseMirror ul, .ProseMirror ol { padding-left: 24px; margin: 8px 0; }
         .ProseMirror li { margin: 4px 0; }
         .ProseMirror blockquote { border-left: 3px solid #012d74; padding-left: 16px; margin: 16px 0; color: #64748b; font-style: italic; }
-        .ProseMirror a { color: #016fb4; text-decoration: underline; }
+        .ProseMirror a { color: #012d74; text-decoration: underline; }
         .ProseMirror img { max-width: 100%; height: auto; border-radius: 8px; margin: 16px 0; }
         .ProseMirror hr { border: none; border-top: 1px solid rgba(1,45,116,0.1); margin: 24px 0; }
         .ProseMirror p.is-editor-empty:first-child::before { content: attr(data-placeholder); float: left; color: #94a3b8; pointer-events: none; height: 0; }

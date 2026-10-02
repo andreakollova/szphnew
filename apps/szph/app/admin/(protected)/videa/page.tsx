@@ -48,7 +48,7 @@ export default async function AdminVideaPage() {
                   <td className="px-5 py-4">
                     <p className="font-semibold text-[#051937] line-clamp-1">{video.title}</p>
                     {video.youtube_url && (
-                      <a href={video.youtube_url} target="_blank" rel="noopener noreferrer" className="text-xs text-[#016fb4] hover:underline truncate block max-w-xs">
+                      <a href={video.youtube_url} target="_blank" rel="noopener noreferrer" className="text-xs text-[#012d74] hover:underline truncate block max-w-xs">
                         {video.youtube_url}
                       </a>
                     )}

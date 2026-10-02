@@ -115,7 +115,7 @@ export default async function AdminDashboard() {
                 <Link href="/admin/zapasy/novy" className="rounded bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
                   + Nový zápas
                 </Link>
-                <Link href="/admin/zapasy" className="text-xs text-[#016fb4] hover:underline self-center">Všetky</Link>
+                <Link href="/admin/zapasy" className="text-xs text-[#012d74] hover:underline self-center">Všetky</Link>
               </div>
             </div>
             {data.upcomingMatches.length === 0 ? (
@@ -157,7 +157,7 @@ export default async function AdminDashboard() {
                 <Link href="/admin/clanky/novy" className="rounded bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
                   + Nový článok
                 </Link>
-                <Link href="/admin/clanky" className="text-xs text-[#016fb4] hover:underline self-center">Všetky</Link>
+                <Link href="/admin/clanky" className="text-xs text-[#012d74] hover:underline self-center">Všetky</Link>
               </div>
             </div>
             {data.articles.length === 0 ? (

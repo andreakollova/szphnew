@@ -1,29 +1,35 @@
 import { cookies } from "next/headers";
 import { createServerSupabaseClient } from "@szph/db/client";
-import { getAllTeams } from "@szph/db";
 import Link from "next/link";
-import Image from "next/image";
-import type { Team } from "@szph/db/types";
 import type { Metadata } from "next";
-import { DeleteTeamButton } from "./DeleteTeamButton";
 
 export const metadata: Metadata = { title: "Tímy" };
+
+async function getTeams(supabase: any) {
+  const { data } = await supabase
+    .from("matches")
+    .select("home_team, home_short, home_logo, away_team, away_short, away_logo")
+    .eq("site", "szph");
+
+  if (!data) return [];
+
+  const teamMap = new Map<string, { name: string; short: string; logo: string | null }>();
+  for (const m of data) {
+    if (m.home_team && !teamMap.has(m.home_team)) {
+      teamMap.set(m.home_team, { name: m.home_team, short: m.home_short || "", logo: m.home_logo || null });
+    }
+    if (m.away_team && !teamMap.has(m.away_team)) {
+      teamMap.set(m.away_team, { name: m.away_team, short: m.away_short || "", logo: m.away_logo || null });
+    }
+  }
+
+  return Array.from(teamMap.values()).sort((a, b) => a.name.localeCompare(b.name, "sk"));
+}
 
 export default async function AdminTimyPage() {
   const cookieStore = await cookies();
   const supabase = createServerSupabaseClient(cookieStore);
-  const teams = await getAllTeams(supabase).catch(() => []);
-
-  const byCategory = teams.reduce<Record<string, Team[]>>((acc, team) => {
-    if (!acc[team.category]) acc[team.category] = [];
-    acc[team.category]!.push(team);
-    return acc;
-  }, {});
-
-  const CATEGORY_ORDER = ["muzi", "zeny", "U18", "U14", "U12"];
-  const CATEGORY_LABELS: Record<string, string> = {
-    muzi: "Muži", zeny: "Ženy", U18: "U18", U14: "U14", U12: "U12",
-  };
+  const teams = await getTeams(supabase);
 
   return (
     <div className="space-y-6">
@@ -34,64 +40,49 @@ export default async function AdminTimyPage() {
         </div>
         <Link
           href="/admin/timy/novy"
-          className="inline-flex items-center gap-2 rounded bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90"
+          className="inline-flex items-center gap-2 rounded bg-[#012d74] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#012d74]/90"
         >
           + Nový tím
         </Link>
       </div>
 
-      {CATEGORY_ORDER.filter(cat => byCategory[cat]).map((category) => {
-        const categoryTeams = byCategory[category]!;
-        return (
-        <div key={category}>
-          <h2 className="font-bold text-[#64748b] mb-3 text-sm uppercase tracking-wider">
-            {CATEGORY_LABELS[category] ?? category}
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {categoryTeams.map((team) => (
-              <div key={team.id} className="rounded p-4" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-                <div className="flex items-center gap-3">
-                  {team.logo_url ? (
-                    <div className="relative h-12 w-12 shrink-0">
-                      <Image
-                        src={team.logo_url}
-                        alt={team.name}
-                        fill
-                        className="object-contain"
-                        sizes="48px"
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-[#64748b] shrink-0">
-                      {team.short_name?.slice(0, 2) ?? "?"}
-                    </div>
-                  )}
-                  <div className="min-w-0">
-                    <p className="font-bold text-[#051937] text-sm truncate">{team.name}</p>
-                    {team.short_name && (
-                      <p className="text-xs text-[#64748b]">{team.short_name}</p>
-                    )}
-                  </div>
-                </div>
-                <div className="mt-3 flex items-center justify-between">
-                  <DeleteTeamButton id={team.id} name={team.name} />
-                  <Link
-                    href={`/admin/timy/${team.id}`}
-                    className="text-xs text-[#016fb4] hover:underline"
-                  >
-                    Upraviť →
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        );
-      })}
-
-      {teams.length === 0 && (
+      {teams.length === 0 ? (
         <div className="rounded py-16 text-center" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-          <p className="text-[#64748b]">Žiadne tímy. Vytvorte prvý tím!</p>
+          <p className="text-[#64748b]">Žiadne tímy</p>
+        </div>
+      ) : (
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {teams.map((team) => (
+            <div key={team.name} className="rounded p-4 flex items-center gap-3" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+              {team.logo ? (
+                (() => {
+                  if (team.logo.startsWith("flag:")) {
+                    const code = team.logo.replace("flag:", "");
+                    return (
+                      <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 40, height: 40 }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={`https://flagcdn.com/w80/${code}.png`} alt={team.name} width={40} height={40} style={{ width: 40, height: 40, objectFit: "cover" }} />
+                      </div>
+                    );
+                  }
+                  return (
+                    <div className="shrink-0" style={{ width: 40, height: 40 }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={team.logo} alt={team.name} width={40} height={40} style={{ width: 40, height: 40, objectFit: "contain" }} />
+                    </div>
+                  );
+                })()
+              ) : (
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-[#64748b] shrink-0">
+                  {team.short?.slice(0, 3) || team.name.slice(0, 2)}
+                </div>
+              )}
+              <div className="min-w-0 flex-1">
+                <p className="font-bold text-[#051937] text-sm truncate">{team.name}</p>
+                {team.short && <p className="text-xs text-[#64748b]">{team.short}</p>}
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>

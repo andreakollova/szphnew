@@ -57,7 +57,7 @@ export default function NovyTimPage() {
     }
   }
 
-  const inputCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
+  const inputCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#012d74]/50 transition-all";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
@@ -133,7 +133,7 @@ export default function NovyTimPage() {
           <button
             type="submit"
             disabled={saving}
-            className="rounded bg-[#016fb4] px-6 py-3 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50 transition-all"
+            className="rounded bg-[#012d74] px-6 py-3 text-sm font-bold text-white hover:bg-[#012d74]/90 disabled:opacity-50 transition-all"
           >
             {saving ? "Ukladám..." : "Vytvoriť tím"}
           </button>

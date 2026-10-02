@@ -73,7 +73,9 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
       <aside className="hidden lg:flex lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:w-64 lg:flex-col">
         <div className="flex flex-1 flex-col gap-4 overflow-y-auto border-r border-[rgba(1,45,116,0.08)] px-4 py-6 bg-white">
           <div className="mb-2 px-2">
-            <Image src="/images/logo-szph-dark.webp" alt="SZPH Admin" width={100} height={38} className="h-9 w-auto object-contain" priority />
+            <Link href="/admin">
+              <Image src="/images/logo-szph-dark.webp" alt="SZPH Admin" width={130} height={50} className="h-12 w-auto object-contain" priority />
+            </Link>
             <p className="mt-1 text-[10px] text-[#94a3b8]">Admin panel</p>
           </div>
 

@@ -30,7 +30,7 @@ export function ExerciseAdminActions({ exercise }: { exercise: Exercise }) {
     <div className="flex items-center justify-end gap-2">
       <button
         onClick={toggleStatus}
-        className="rounded px-2.5 py-1 text-xs font-semibold text-[#016fb4] hover:bg-[#016fb4]/10 transition-colors"
+        className="rounded px-2.5 py-1 text-xs font-semibold text-[#012d74] hover:bg-[#012d74]/10 transition-colors"
       >
         {exercise.status === "published" ? "Skryť" : "Publikovať"}
       </button>

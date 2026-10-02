@@ -22,7 +22,7 @@ export default async function AdminClankyPage() {
         </div>
         <Link
           href="/admin/clanky/novy"
-          className="inline-flex items-center gap-2 rounded bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90"
+          className="inline-flex items-center gap-2 rounded bg-[#012d74] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#012d74]/90"
         >
           + Nový článok
         </Link>
