@@ -37,7 +37,6 @@ export default async function AdminClankyPage() {
               <tr className="border-b border-[rgba(1,45,116,0.08)]">
                 <th className="px-5 py-3.5 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Nadpis</th>
                 <th className="hidden px-4 py-3.5 text-left text-[10px] uppercase tracking-wider text-[#64748b] md:table-cell">Kategória</th>
-                <th className="hidden px-4 py-3.5 text-left text-[10px] uppercase tracking-wider text-[#64748b] sm:table-cell">Viditeľnosť</th>
                 <th className="px-4 py-3.5 text-center text-[10px] uppercase tracking-wider text-[#64748b]">Stav</th>
                 <th className="hidden px-4 py-3.5 text-left text-[10px] uppercase tracking-wider text-[#64748b] lg:table-cell">Dátum</th>
                 <th className="px-4 py-3.5 text-right text-[10px] uppercase tracking-wider text-[#64748b]">Akcie</th>
@@ -57,9 +56,6 @@ export default async function AdminClankyPage() {
                     <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs text-[#64748b]">
                       {article.category}
                     </span>
-                  </td>
-                  <td className="hidden px-4 py-4 sm:table-cell">
-                    <span className="text-xs text-[#64748b]">{(article as any).visible_on ?? (article as any).site ?? "—"}</span>
                   </td>
                   <td className="px-4 py-4 text-center">
                     <span

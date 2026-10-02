@@ -113,6 +113,7 @@ const MAIN_NAV: NavItem[] = [
             { label: "Extraliga ženy", href: "/sutaze/zenska-liga", desc: "Najvyššia súťaž" },
             { label: "Pozemný hokej", href: "/sutaze/pozemny-hokej", desc: "Vonkajšia sezóna" },
             { label: "Halový hokej", href: "/sutaze/halovy-hokej", desc: "Halová sezóna" },
+            { label: "Zápasy a výsledky", href: "/zapasy", desc: "Rozpis a skóre" },
           ],
         },
         {
@@ -121,7 +122,6 @@ const MAIN_NAV: NavItem[] = [
             { label: "U18", href: "/sutaze/u18", desc: "Do 18 rokov" },
             { label: "U14", href: "/sutaze/u14", desc: "Do 14 rokov" },
             { label: "U12", href: "/sutaze/u12", desc: "Do 12 rokov" },
-            { label: "Výsledky a tabuľky", href: "/zapasy", desc: "Aktuálne tabuľky" },
           ],
         },
       ],

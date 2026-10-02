@@ -253,15 +253,6 @@ export function ArticleForm({ article }: ArticleFormProps) {
                 </select>
               </div>
 
-              {/* Viditeľnosť */}
-              <div>
-                <label className="field-label">Viditeľnosť</label>
-                <select {...register("visible_on")} className="field-select">
-                  <option value="both">Oba weby</option>
-                  <option value="fieldhockey">fieldhockey.sk</option>
-                  <option value="szph">szph.sk</option>
-                </select>
-              </div>
             </div>
           </div>
 

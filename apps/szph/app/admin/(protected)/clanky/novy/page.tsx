@@ -8,7 +8,7 @@ export default function NovyClanokPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-[#051937]">Nový článok</h1>
-        <p className="text-sm text-[#64748b] mt-1">Vytvorte nový článok pre fieldhockey.sk alebo szph.sk</p>
+        <p className="text-sm text-[#64748b] mt-1">Vytvorte nový článok</p>
       </div>
       <ArticleForm />
     </div>
