@@ -208,7 +208,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <div className="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[240px_1fr] gap-5 items-start">
+      <div className="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[260px_1fr] gap-6 items-stretch">
 
         {/* Featured karta — landscape */}
         <div className="flex flex-col">
@@ -230,7 +230,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
               ))}
             </div>
           ) : (
-            <Link href={featured.href} className="group relative overflow-hidden block" style={{ height: "100%", minHeight: "180px", borderRadius: "4px" }}>
+            <Link href={featured.href} className="group relative overflow-hidden block" style={{ height: "100%", minHeight: "220px", borderRadius: "4px" }}>
               <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" style={featured.imagePosition ? { objectPosition: featured.imagePosition } : undefined} />
               <div className="absolute inset-0" style={{ borderRadius: "4px", background: "linear-gradient(to top, #012d74 0%, rgba(1,45,116,0.9) 30%, rgba(1,45,116,0.3) 55%, transparent 75%)" }} />
               <div className="absolute bottom-0 p-4">
@@ -256,18 +256,18 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
         </div>
 
         {/* Stĺpce s linkami */}
-        <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
+        <div className="grid gap-5" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
           {columns.map((col) => (
             <div key={col.title}>
               <p className="font-bold uppercase tracking-widest text-[#051937] mb-2" style={{ fontSize: "11px" }}>
                 {col.title}
               </p>
-              <ul className="space-y-1">
+              <ul className="space-y-0">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="group flex items-start gap-2.5 px-2 py-2 rounded-lg transition-colors hover:bg-[#f5f7fb]"
+                      className="group flex items-start gap-2.5 px-2 py-1.5 rounded-lg transition-colors hover:bg-[#f5f7fb]"
                     >
                       <div className="mt-[7px] shrink-0 transition-all duration-200" style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#051937" }}>
                         <div className="w-full h-full rounded-full transition-all duration-200 scale-0 group-hover:scale-100" style={{ background: "#012d74" }} />
