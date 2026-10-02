@@ -20,6 +20,43 @@ const SHORTS_VIDEOS = [
   { id: "4rgr9GDsQQk", title: "Short" },
 ];
 
+function ShortPlayer({ id, title }: { id: string; title: string }) {
+  const [playing, setPlaying] = useState(false);
+
+  if (playing) {
+    return (
+      <div className="bg-black overflow-hidden" style={{ borderRadius: "12px", aspectRatio: "9/16" }}>
+        <iframe
+          src={`https://www.youtube.com/embed/${id}?autoplay=1&loop=1&playlist=${id}&controls=1&modestbranding=1`}
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          className="w-full h-full"
+          style={{ border: 0 }}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <button onClick={() => setPlaying(true)} className="group block overflow-hidden bg-white w-full text-left" style={{ borderRadius: "12px", border: "1px solid rgba(1,45,116,0.06)" }}>
+      <div className="relative overflow-hidden" style={{ aspectRatio: "9/16" }}>
+        <Image src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`} alt={title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="200px" unoptimized />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="flex items-center justify-center rounded-full bg-white/90 shadow-lg" style={{ width: 44, height: 44 }}>
+            <svg className="h-5 w-5 text-[#051937] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 p-3">
+          <h3 className="font-bold text-white leading-snug line-clamp-2" style={{ fontSize: "12px" }}>
+            {title}
+          </h3>
+        </div>
+      </div>
+    </button>
+  );
+}
+
 export function VideoTabs() {
   const [tab, setTab] = useState<"zapasy" | "shorts">("zapasy");
 
@@ -74,9 +111,9 @@ export function VideoTabs() {
               <a key={v.id} href={v.url} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden bg-white" style={{ borderRadius: "12px", border: "1px solid rgba(1,45,116,0.06)" }}>
                 <div className="relative overflow-hidden aspect-video">
                   <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="400px" unoptimized />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/30 transition-colors">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-colors">
                     <div className="flex items-center justify-center rounded-full bg-white/90 shadow-lg opacity-80 group-hover:opacity-100 transition-opacity" style={{ width: 48, height: 48 }}>
-                      <svg className="h-5 w-5 text-[#d00027] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                      <svg className="h-5 w-5 text-[#051937] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                     </div>
                   </div>
                 </div>
@@ -90,27 +127,11 @@ export function VideoTabs() {
           </div>
         )}
 
-        {/* Shorts - vertical */}
+        {/* Shorts - vertical, inline playback */}
         {tab === "shorts" && (
           <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {SHORTS_VIDEOS.map((v) => (
-              <a key={v.id} href={`https://www.youtube.com/shorts/${v.id}`} target="_blank" rel="noopener noreferrer" className="group block overflow-hidden bg-white" style={{ borderRadius: "12px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                <div className="relative overflow-hidden" style={{ aspectRatio: "9/16" }}>
-                  <Image src={`https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`} alt={v.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="200px" unoptimized />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute top-3 right-3">
-                    <svg className="h-6 w-6 text-white drop-shadow-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <rect x="6" y="3" width="12" height="18" rx="2" />
-                      <path d="M10 10l4 2-4 2V10z" fill="currentColor" />
-                    </svg>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <h3 className="font-bold text-white leading-snug line-clamp-2" style={{ fontSize: "12px" }}>
-                      {v.title}
-                    </h3>
-                  </div>
-                </div>
-              </a>
+              <ShortPlayer key={v.id} id={v.id} title={v.title} />
             ))}
           </div>
         )}
