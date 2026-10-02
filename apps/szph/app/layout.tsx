@@ -77,7 +77,7 @@ export default async function RootLayout({
         <ScrollToTop />
         <NavbarSzph announcement={announcement} />
         {/* 80px navbar + 36px announcement bar = 116px */}
-        <main className="mobile-header-offset pb-[130px] md:pb-0">{children}</main>
+        <main className="mobile-header-offset pb-[90px] md:pb-0">{children}</main>
         <Footer brand="szph" />
         <MobileBottomNav />
         <CookieBanner />

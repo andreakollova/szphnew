@@ -38,9 +38,6 @@ body {
 .mobile-hero-pull {
   margin-top: -2px;
 }
-@media (max-width: 767px) {
-  .pb-20 { padding-bottom: 130px !important; }
-}
 @media (min-width: 768px) {
   .mobile-statusbar-cover { display: none; }
   .mobile-header-top { top: 0; }
