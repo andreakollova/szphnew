@@ -167,7 +167,6 @@ const MAIN_NAV: NavItem[] = [
         title: "Rozvíjaj sa s SZPH",
         desc: "Kurzy, semináre a školenia pre hráčov, trénerov aj rozhodcov. Investuj do svojho rozvoja.",
         href: "/vzdelavanie",
-        cta: { label: "Vzdelávacia platforma SZPH Akadémia", href: "/projekty/hokejova-akademia" },
       },
       columns: [
         {
@@ -184,6 +183,7 @@ const MAIN_NAV: NavItem[] = [
             { label: "Rozhodcovské kurzy", href: "/vzdelavanie/rozhodcovia", desc: "Staň sa rozhodcom" },
             { label: "Pravidlá hry", href: "/pozemny-hokej/pravidla", desc: "Aktuálne pravidlá FIH" },
             { label: "Kontakt komisie", href: "/kontakt", desc: "Rozhodcovská komisia" },
+            { label: "SZPH Akadémia", href: "/projekty/hokejova-akademia", desc: "Vzdelávacia platforma" },
           ],
         },
       ],
