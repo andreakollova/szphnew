@@ -146,34 +146,6 @@ export default async function AdminDashboard() {
             )}
           </div>
 
-          {/* Posledné odohraté */}
-          {data.recentFinished.length > 0 && (
-            <div className="rounded p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Posledné výsledky</h2>
-              </div>
-              <div className="space-y-1">
-                {data.recentFinished.map((m: any) => (
-                  <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded p-2.5 hover:bg-gray-50 transition-colors">
-                    <div className="shrink-0 text-[#94a3b8]" style={{ fontSize: "11px", width: "70px" }}>
-                      <p className="font-bold">{formatDate(m.date)}</p>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
-                        {m.home_short || m.home_team || "?"} vs {m.away_short || m.away_team || "?"}
-                      </p>
-                    </div>
-                    <div className="shrink-0 flex items-center gap-1 font-bold" style={{ fontSize: "14px" }}>
-                      <span className="text-[#051937]">{m.home_score ?? 0}</span>
-                      <span className="text-[#94a3b8]" style={{ fontSize: "10px" }}>:</span>
-                      <span className="text-[#051937]">{m.away_score ?? 0}</span>
-                    </div>
-                    <svg className="h-3.5 w-3.5 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
         {/* Články — compact */}
