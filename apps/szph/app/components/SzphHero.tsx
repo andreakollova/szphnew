@@ -38,7 +38,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
   }, []);
 
   return (
-    <div className="mobile-hero-pull md:-mt-[116px]" style={{ background: "#051937" }}>
+    <div className="mobile-hero-pull" style={{ background: "#051937" }}>
       {/* ═══ MOBILE HERO (below md) ═══ */}
       <section
         data-hero
@@ -143,7 +143,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
       <section
         data-hero
         className="relative w-full overflow-hidden hidden md:block"
-        style={{ aspectRatio: "3022 / 1578" }}
+        style={{ aspectRatio: "3022 / 1578", marginTop: "-116px", paddingTop: "116px" }}
       >
         {/* ═══ Background photos — fade rotation ═══ */}
         {HERO_IMAGES.map((img, i) => (
