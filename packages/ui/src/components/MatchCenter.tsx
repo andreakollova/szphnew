@@ -402,7 +402,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
           <select
             value={categoryFilter}
             onChange={(e) => { setCategoryFilter(e.target.value); setPage(0); }}
-            className="font-bold uppercase text-[#051937] bg-white px-3 py-2 sm:py-2.5 cursor-pointer outline-none shrink-0"
+            className="font-bold uppercase text-[#051937] bg-transparent px-3 py-2 sm:py-2.5 cursor-pointer outline-none shrink-0"
             style={{ fontSize: "9px", letterSpacing: "0.08em", border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px", appearance: "none", backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", paddingRight: "24px" }}
           >
             <option value="all">Všetci</option>

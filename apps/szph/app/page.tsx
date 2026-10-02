@@ -533,6 +533,11 @@ export default async function SzphHome() {
             </Link>
           </div>
           <MatchCenter matches={matches as any} pageSize={7} />
+          <div className="mt-4 md:hidden">
+            <Link href="/zapasy" className="block text-center font-bold text-[#012d74] py-3" style={{ fontSize: "13px" }}>
+              Zobraziť všetky
+            </Link>
+          </div>
         </div>
       </section>
 
