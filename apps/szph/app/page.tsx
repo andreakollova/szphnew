@@ -625,7 +625,7 @@ export default async function SzphHome() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative overflow-hidden block w-full"
-                style={{ borderRadius: "16px 16px 0 0", border: "4px solid #0a0a0a", borderBottom: "none" }}
+                style={{ borderRadius: "12px 12px 0 0", border: "4px solid #2a2a2a", borderBottom: "4px solid #2a2a2a" }}
               >
                 <Image
                   src="/images/podcast.webp"
@@ -661,8 +661,8 @@ export default async function SzphHome() {
               </a>
               {/* TV stand */}
               <div className="flex flex-col items-center">
-                <div style={{ width: "60%", height: "6px", background: "#0a0a0a", borderRadius: "0 0 4px 4px" }} />
-                <div style={{ width: "4px", height: "16px", background: "#0a0a0a" }} />
+                <div style={{ width: "60%", height: "6px", background: "#2a2a2a", borderRadius: "0 0 4px 4px" }} />
+                <div style={{ width: "4px", height: "16px", background: "#2a2a2a" }} />
                 <div style={{ width: "80px", height: "4px", background: "rgba(255,255,255,0.1)", borderRadius: "2px" }} />
               </div>
             </div>
