@@ -470,7 +470,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
                 <p className="font-garet font-bold italic uppercase text-[#051937]" style={{ fontSize: "clamp(12px, 1.1vw, 22px)", letterSpacing: "0.06em" }}>
                   Najbližší zápas
                 </p>
-                <p className="text-[#012d74] mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600 }}>
+                <p className="mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600, color: "#041837" }}>
                   {nextMatch.league || "Zápas"}
                 </p>
               </div>
@@ -485,9 +485,9 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
                   <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>{clean(nextMatch.home_short || nextMatch.home_team)}</p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "#012d74", opacity: 0.3 }} />
-                  <span className="font-bold text-[#012d74]" style={{ fontSize: "clamp(7px, 0.6vw, 12px)" }}>VS</span>
-                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "#012d74", opacity: 0.3 }} />
+                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "2px", background: "#041837", opacity: 0.25 }} />
+                  <span className="font-bold" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", color: "#041837" }}>VS</span>
+                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "2px", background: "#041837", opacity: 0.25 }} />
                 </div>
                 <div className="flex flex-col items-center gap-0.5 flex-1">
                   <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
@@ -499,24 +499,24 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               </div>
 
               {/* Date/Time */}
-              <div className="flex items-center" style={{ margin: "0 clamp(14px, 1.4vw, 28px)", padding: "clamp(8px, 0.8vw, 16px) 0", background: "#f8f9fa", borderRadius: "clamp(4px, 0.4vw, 6px)" }}>
-                <div className="flex-1 text-center" style={{ borderRight: "1px solid rgba(1,45,116,0.1)" }}>
-                  <p className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 0.9 }}>{day}.</p>
-                  <p className="font-garet font-bold italic uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 13px)" }}>{month}</p>
+              <div className="flex items-center" style={{ margin: "0 clamp(14px, 1.4vw, 28px)", padding: "clamp(8px, 0.8vw, 16px) 0", background: "#f7f7f9", borderRadius: "clamp(4px, 0.4vw, 6px)" }}>
+                <div className="flex-1 text-center" style={{ borderRight: "1px solid rgba(4,24,55,0.1)" }}>
+                  <p className="font-garet font-bold italic" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 0.9, color: "#041837" }}>{day}.</p>
+                  <p className="font-garet font-bold italic uppercase" style={{ fontSize: "clamp(7px, 0.6vw, 13px)", color: "#041837" }}>{month}</p>
                 </div>
                 <div className="flex-1 text-center">
-                  <p className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1 }}>{time}</p>
+                  <p className="font-garet font-bold italic" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1, color: "#041837" }}>{time}</p>
                 </div>
               </div>
 
               {/* Venue with pin */}
               {nextMatch.venue && (
                 <div className="flex items-center justify-center gap-1.5" style={{ margin: "clamp(6px, 0.6vw, 12px) clamp(14px, 1.4vw, 28px) 0" }}>
-                  <svg className="shrink-0 text-[#012d74]" style={{ width: "clamp(10px, 0.8vw, 14px)", height: "clamp(10px, 0.8vw, 14px)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="shrink-0" style={{ width: "clamp(10px, 0.8vw, 14px)", height: "clamp(10px, 0.8vw, 14px)", color: "#041837" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z" />
                   </svg>
-                  <span className="font-semibold text-[#012d74]" style={{ fontSize: "clamp(7px, 0.6vw, 11px)" }}>{nextMatch.venue}</span>
+                  <span className="font-semibold" style={{ fontSize: "clamp(7px, 0.6vw, 11px)", color: "#041837" }}>{nextMatch.venue}</span>
                 </div>
               )}
 
