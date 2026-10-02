@@ -209,7 +209,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <div className="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[280px_1fr] gap-5 items-start">
+      <div className="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[280px_1fr] gap-5 items-stretch">
 
         {/* Featured karta — landscape */}
         <div className="flex flex-col">
@@ -231,7 +231,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
               ))}
             </div>
           ) : (
-            <Link href={featured.href} className="group relative overflow-hidden block" style={{ height: "160px", borderRadius: "4px" }}>
+            <Link href={featured.href} className="group relative overflow-hidden block" style={{ height: "100%", minHeight: "140px", borderRadius: "4px" }}>
               <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" style={featured.imagePosition ? { objectPosition: featured.imagePosition } : undefined} />
               <div className="absolute inset-0" style={{ borderRadius: "4px", background: "linear-gradient(to top, #012d74 0%, rgba(1,45,116,0.9) 30%, rgba(1,45,116,0.3) 55%, transparent 75%)" }} />
               <div className="absolute bottom-0 p-4">
