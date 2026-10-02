@@ -8,24 +8,11 @@ export const metadata: Metadata = {
 };
 
 const CLUBS = [
-  { name: "KPH Rača", short: "RAC", city: "Bratislava - Rača", lat: 48.2070, lng: 17.1530, logo: "/images/timy/RAC.webp", email: "kph.raca@gmail.com", web: "https://kphraca.sk" },
-  { name: "Slávia STU Bratislava", short: "SLA", city: "Bratislava", lat: 48.1486, lng: 17.1077, logo: "/images/timy/SLA.webp" },
-  { name: "HC Slovan Bratislava", short: "BRA", city: "Bratislava", lat: 48.1534, lng: 17.1303, logo: "/images/timy/BRA.webp" },
-  { name: "ŠKP Bratislava", short: "HRA", city: "Bratislava - Petržalka", lat: 48.1120, lng: 17.1180, logo: "/images/timy/HRA.webp" },
-  { name: "MHC Calex Zlaté Moravce", short: "ZLA", city: "Zlaté Moravce", lat: 48.3873, lng: 18.3968, logo: "/images/timy/ZLA.webp", email: "mhczlatemoravce@gmail.com" },
-  { name: "MHC Nové Zámky", short: "NOV", city: "Nové Zámky", lat: 47.9857, lng: 18.1623, logo: "/images/timy/NOV.webp" },
-  { name: "MHC Šenkvice", short: "SEN", city: "Šenkvice", lat: 48.2919, lng: 17.3419, logo: "/images/timy/SEN.webp" },
-  { name: "HK Apollo Bratislava", short: "AHT", city: "Bratislava", lat: 48.1628, lng: 17.1150, logo: "/images/timy/AHT.webp" },
-  { name: "HC Trnava", short: "TRO", city: "Trnava", lat: 48.3774, lng: 17.5862, logo: "/images/timy/TRO.webp" },
-  { name: "HC Prešov", short: "PRE", city: "Prešov", lat: 48.9986, lng: 21.2395, logo: "/images/timy/PRE.webp" },
-  { name: "HC Považská Bystrica", short: "POM", city: "Považská Bystrica", lat: 49.1215, lng: 18.4216, logo: "/images/timy/POM.webp" },
-  { name: "HC Nitra", short: "CAR", city: "Nitra", lat: 48.3060, lng: 18.0855, logo: "/images/timy/CAR.webp" },
-  { name: "HC Lučenec", short: "LOU", city: "Lučenec", lat: 48.3309, lng: 19.6653, logo: "/images/timy/LOU.webp" },
-  { name: "HC Banská Bystrica", short: "BOL", city: "Banská Bystrica", lat: 48.7358, lng: 19.1461, logo: "/images/timy/BOL.webp" },
-  { name: "HC Invaders Košice", short: "INV", city: "Košice", lat: 48.7164, lng: 21.2611, logo: "/images/timy/INV.webp" },
-  { name: "HC Partizánske", short: "PAR", city: "Partizánske", lat: 48.6288, lng: 18.3754, logo: "/images/timy/PAR.webp" },
-  { name: "HC Budmerice", short: "BUD", city: "Budmerice", lat: 48.3575, lng: 17.4089, logo: "/images/timy/BUD.webp" },
-  { name: "HC Nová Dubnica", short: "NOD", city: "Nová Dubnica", lat: 48.9348, lng: 18.1475, logo: "/images/timy/nova-dubnica-32x32.webp" },
+  { name: "KPH Rača", short: "RAČ", city: "Bratislava - Rača", lat: 48.2070, lng: 17.1530, logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", email: "kph.raca@gmail.com", web: "https://kphraca.sk" },
+  { name: "HA Šenkvice", short: "HAŠ", city: "Šenkvice", lat: 48.2919, lng: 17.3419, logo: "/images/timy/HAS.webp" },
+  { name: "ŠK 1952 Šenkvice", short: "ŠK", city: "Šenkvice", lat: 48.2919, lng: 17.3419, logo: "/images/timy/SEN.webp" },
+  { name: "HOKO Zlaté Moravce", short: "HOKO", city: "Zlaté Moravce", lat: 48.3873, lng: 18.3968, logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
+  { name: "HKM Nová Dubnica", short: "HKM", city: "Nová Dubnica", lat: 48.9348, lng: 18.1475, logo: "/images/timy/nova-dubnica-32x32.webp" },
 ];
 
 export default function KlubyPage() {

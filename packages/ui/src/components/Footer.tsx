@@ -61,7 +61,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
             <p className="font-garet font-bold italic text-white mb-1" style={{ fontSize: "18px", textTransform: "uppercase" }}>
               Odber noviniek
             </p>
-            <p className="text-white/40 mb-5" style={{ fontSize: "11px" }}>
+            <p className="text-white mb-5" style={{ fontSize: "11px" }}>
               Dostávajte najnovšie správy priamo do e-mailu.
             </p>
             <NewsletterForm />
@@ -81,7 +81,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
               <p className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)", textTransform: "uppercase" }}>
                 Odber noviniek
               </p>
-              <p className="text-white/40 mt-0.5" style={{ fontSize: "11px" }}>
+              <p className="text-white mt-0.5" style={{ fontSize: "11px" }}>
                 Dostávajte najnovšie správy priamo do e-mailu.
               </p>
             </div>

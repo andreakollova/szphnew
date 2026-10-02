@@ -6,7 +6,7 @@ export function NewsletterForm() {
       <input
         type="email"
         placeholder="Váš e-mail"
-        className="flex-1 sm:w-64 px-4 py-2.5 font-bold text-[#051937] placeholder-[#94a3b8] outline-none"
+        className="flex-1 sm:w-64 px-4 py-2.5 font-medium text-[#051937] placeholder-[#94a3b8] outline-none"
         style={{ fontSize: "12px", background: "rgba(255,255,255,0.95)" }}
       />
       <button
