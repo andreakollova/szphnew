@@ -89,7 +89,7 @@ export default async function AdminDashboard() {
                   <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
                     {m.home_short || m.home_team || "?"} vs {m.away_short || m.away_team || "?"}
                   </p>
-                  <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{formatDate(m.date)} · {formatTime(m.date)}</p>
+                  <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{formatDate(m.date)} · {formatTime(m.date)}{m.venue ? ` · ${m.venue}` : ""}</p>
                 </div>
                 <InlineScore matchId={m.id} homeScore={m.home_score} awayScore={m.away_score} status={m.status} />
                 <Link href={`/admin/zapasy/${m.id}`} className="shrink-0 rounded bg-[#d00027] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#d00027]/90 transition-colors">

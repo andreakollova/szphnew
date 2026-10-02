@@ -73,15 +73,12 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
         <div className="flex flex-1 flex-col gap-4 overflow-y-auto border-r border-[rgba(1,45,116,0.08)] px-4 py-6 bg-white">
           <div className="mb-2 px-2">
             <Image src="/images/logo-szph-dark.webp" alt="SZPH Admin" width={100} height={38} className="h-9 w-auto object-contain" priority />
-            <div className="flex items-center gap-2 mt-1.5">
-              <p className="text-xs text-[#051937] font-semibold">{username}</p>
-              <span className="rounded-full px-2 py-0.5 text-[8px] font-bold uppercase bg-[#012d74]/10 text-[#012d74]">{ROLE_LABELS[role] || role}</span>
-            </div>
+            <p className="mt-1 text-[10px] text-[#94a3b8]">Admin panel</p>
           </div>
 
           {navItems.map((group) => (
             <div key={group.group}>
-              <p className="mb-1 px-2 text-[10px] font-semibold uppercase tracking-widest text-[#94a3b8]">
+              <p className="mb-1 px-2 text-[10px] font-semibold uppercase tracking-widest text-[#051937]">
                 {group.group}
               </p>
               <ul className="space-y-0.5">
@@ -95,7 +92,7 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
                           "flex items-center gap-3 rounded px-3 py-2 text-sm font-semibold transition-all",
                           isActive
                             ? "bg-[#012d74]/10 text-[#012d74] border border-[#012d74]/20"
-                            : "text-[#64748b] hover:bg-gray-50 hover:text-[#051937]"
+                            : "text-[#334155] hover:bg-gray-50 hover:text-[#051937]"
                         )}
                       >
                         <NavIcon name={item.icon} />
@@ -112,7 +109,7 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
             <a
               href="/"
               target="_blank"
-              className="flex w-full items-center gap-3 rounded px-3 py-2 text-sm font-semibold text-[#94a3b8] transition-colors hover:bg-gray-50 hover:text-[#051937]"
+              className="flex w-full items-center gap-3 rounded px-3 py-2 text-sm font-semibold text-[#334155] transition-colors hover:bg-gray-50 hover:text-[#051937]"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -122,7 +119,7 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
             <form action="/api/admin/logout" method="POST">
               <button
                 type="submit"
-                className="flex w-full items-center gap-3 rounded px-3 py-2 font-semibold text-[#94a3b8] transition-colors hover:bg-gray-50 hover:text-[#051937]"
+                className="flex w-full items-center gap-3 rounded px-3 py-2 font-semibold text-[#334155] transition-colors hover:bg-gray-50 hover:text-[#051937]"
                 style={{ fontSize: "12px" }}
               >
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
