@@ -438,7 +438,7 @@ export function SnakeGame() {
               </div>
 
               <div className="flex flex-col items-center mb-3 relative z-10">
-                <h2 className="font-black text-xl text-white italic tracking-tight">Hadík na ihrisku</h2>
+                <h2 className="font-black text-xl text-white italic tracking-tight">Hra - kondičný tréning</h2>
                 <span className="text-white text-[7px] px-2 py-0.5 rounded font-black uppercase tracking-widest mt-1 italic" style={{ background: "#d00027" }}>Snake Game</span>
               </div>
 
@@ -498,14 +498,14 @@ export function SnakeGame() {
           <div className="absolute inset-0 z-[160] bg-black/40 backdrop-blur-xl flex flex-col items-center justify-center p-3 text-center" onPointerDown={(e) => e.stopPropagation()}>
             {isGameOver ? (
               <div className="flex flex-col items-center w-full max-w-sm px-4">
-                <h2 className="font-black text-4xl italic tracking-tighter uppercase mb-1" style={{ color: "#d00027", textShadow: "0 0 30px rgba(208,0,39,0.4)" }}>Koniec!</h2>
-                <p className="text-white/60 text-[10px] font-black tracking-[0.5em] italic uppercase mb-1">Skóre: {score}</p>
-                {myRank && <p className="text-white/40 text-[9px] font-black tracking-[0.3em] uppercase mb-4">Pozícia: #{myRank}</p>}
+                <h2 className="font-black text-4xl italic tracking-tighter uppercase mb-1" style={{ color: "#ffffff", textShadow: "0 0 30px rgba(255,255,255,0.3)" }}>Koniec!</h2>
+                <p className="text-white text-[10px] font-black tracking-[0.5em] italic uppercase mb-1">Skóre: {score}</p>
+                {myRank && <p className="text-white/80 text-[9px] font-black tracking-[0.3em] uppercase mb-4">Pozícia: #{myRank}</p>}
 
                 {/* Leaderboard */}
                 {leaderboard.length > 0 && (
                   <div className="w-full rounded-lg p-4 mb-5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                    <p className="text-[8px] font-black text-white/40 tracking-[0.3em] uppercase text-center mb-3">Rebríček</p>
+                    <p className="text-[8px] font-black text-white/80 tracking-[0.3em] uppercase text-center mb-3">Rebríček</p>
                     <div className="space-y-1.5">
                       {leaderboard.map((r, i) => {
                         const isMe = r.uid === uidRef.current;
@@ -531,19 +531,19 @@ export function SnakeGame() {
                 <button onClick={resetGame} className="text-white px-8 py-3 rounded-full font-black text-lg italic tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 uppercase" style={{ background: "#d00027", boxShadow: "0 20px 40px rgba(208,0,39,0.3)" }}>
                   ↺ Hrať znova
                 </button>
-                <Link href="/" className="mt-4 text-white/30 text-[10px] font-black tracking-widest uppercase hover:text-white/60 transition-colors">← Späť na web</Link>
+                <Link href="/" className="mt-4 text-white/70 text-[10px] font-black tracking-widest uppercase hover:text-white/60 transition-colors">← Späť na web</Link>
               </div>
             ) : (
               <div className="flex flex-col items-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/logo-szph-white.webp" alt="SZPH" className="h-8 w-auto object-contain mb-6" />
-                <h2 className="font-black text-5xl text-white italic tracking-tighter leading-none uppercase">Hadík na<br /><span style={{ color: "#d00027" }}>ihrisku</span></h2>
+                <h2 className="font-black text-5xl text-white italic tracking-tighter leading-none uppercase">Hra -<br /><span style={{ color: "#d00027" }}>kondičný tréning</span></h2>
                 <p className="text-white/40 text-[9px] mb-12 font-black tracking-[0.4em] italic uppercase mt-4">{username}, ihrisko čaká. Zbieraj loptičky!</p>
                 <button onClick={() => setIsPaused(false)} className="relative group">
                   <div className="absolute inset-0 blur-2xl opacity-20 group-hover:opacity-40 transition-opacity animate-pulse" style={{ background: "#d00027" }} />
                   <div className="relative text-black px-16 py-5 rounded-full font-black text-2xl italic tracking-[0.2em] shadow-2xl transition-all hover:scale-105 active:scale-95 uppercase" style={{ background: "#d00027" }}>Štart</div>
                 </button>
-                <Link href="/" className="mt-8 text-white/30 text-[10px] font-black tracking-widest uppercase hover:text-white/60 transition-colors">← Späť na web</Link>
+                <Link href="/" className="mt-8 text-white/70 text-[10px] font-black tracking-widest uppercase hover:text-white/60 transition-colors">← Späť na web</Link>
               </div>
             )}
           </div>
