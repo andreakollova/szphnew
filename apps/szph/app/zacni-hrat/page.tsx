@@ -119,13 +119,13 @@ export default function ZacniHratPage() {
           },
           {
             num: "6",
-            title: "Zúčastni sa tréningov a zápasov",
-            text: "Keď máš za sebou niekoľko tréningov, skús sa zapojiť do priateľských zápasov. Ak navštevuješ miestny klub, ten ti pomôže a ťa zaradí do skupiny, kde by si mohol/a hrávať zápasy. Týmto spôsobom získaš skúsenosti a lepšie pochopíš dynamiku hry. Zúčastnením sa na zápasoch sa tiež naučíš, ako efektívne komunikovať so spoluhráčmi a reagovať na rôzne herné situácie.",
+            title: "Tréningy a zápasy — najlepšia škola",
+            text: "Po niekoľkých tréningoch prichádza ten najlepší moment — prvé zápasy! Tvoj klub ťa zaradí do skupiny, kde si vyskúšaš všetko, čo si sa naučil/a. Zápasy sú skvelý spôsob, ako sa rýchlo zlepšiť, spoznať nových ľudí a zažiť nezabudnuteľné emócie na ihrisku.",
           },
           {
             num: "7",
-            title: "Buď trpezlivý/á a uč sa z chýb",
-            text: "Ako pri každom športe, aj pri pozemnom hokeji je dôležitá trpezlivosť. Učenie sa správnych techník a získavanie kondície si vyžaduje čas. Neboj sa robiť chyby a pouč sa z nich. Čím viac budeš trénovať a hrať, tým rýchlejšie budeš napredovať.",
+            title: "Každý deň si lepší/a",
+            text: "Pozemný hokej ťa bude baviť od prvého tréningu. Každým tréningom budeš vidieť posun — lepšia technika, rýchlejšie reakcie, silnejšie telo. A tá radosť, keď strelíš prvý gól? Na to sa nezabúda!",
           },
         ].map((section) => (
           <div key={section.num} className="mb-10">
@@ -165,6 +165,43 @@ export default function ZacniHratPage() {
             </div>
           </div>
         ))}
+
+        {/* Kontaktný formulár */}
+        <div className="mt-14 rounded-xl p-6 sm:p-8" style={{ background: "#051937" }}>
+          <h2 className="font-garet font-bold italic text-white mb-2" style={{ fontSize: "22px" }}>
+            Chceš začať hrať?
+          </h2>
+          <p className="text-white/60 mb-6" style={{ fontSize: "13px" }}>
+            Vyplň formulár a my ťa spojíme s najbližším klubom.
+          </p>
+          <form className="grid gap-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+            <div>
+              <label className="block text-[10px] font-semibold uppercase tracking-wider text-white/50 mb-1.5">Meno *</label>
+              <input type="text" required placeholder="Tvoje meno" className="w-full rounded-lg bg-white/10 border border-white/15 px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-white/40 transition-colors" />
+            </div>
+            <div>
+              <label className="block text-[10px] font-semibold uppercase tracking-wider text-white/50 mb-1.5">E-mail *</label>
+              <input type="email" required placeholder="tvoj@email.sk" className="w-full rounded-lg bg-white/10 border border-white/15 px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-white/40 transition-colors" />
+            </div>
+            <div>
+              <label className="block text-[10px] font-semibold uppercase tracking-wider text-white/50 mb-1.5">Telefón</label>
+              <input type="tel" placeholder="+421..." className="w-full rounded-lg bg-white/10 border border-white/15 px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-white/40 transition-colors" />
+            </div>
+            <div>
+              <label className="block text-[10px] font-semibold uppercase tracking-wider text-white/50 mb-1.5">Mesto</label>
+              <input type="text" placeholder="Tvoje mesto" className="w-full rounded-lg bg-white/10 border border-white/15 px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-white/40 transition-colors" />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="block text-[10px] font-semibold uppercase tracking-wider text-white/50 mb-1.5">Správa</label>
+              <textarea placeholder="Chcem začať hrať pozemný hokej..." rows={3} className="w-full rounded-lg bg-white/10 border border-white/15 px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-white/40 transition-colors resize-none" />
+            </div>
+            <div className="sm:col-span-2">
+              <button type="submit" className="rounded-lg bg-[#d80027] px-6 py-3 text-sm font-bold text-white hover:brightness-110 transition-all">
+                Odoslať prihlášku
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </article>
   );
