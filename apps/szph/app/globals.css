@@ -27,7 +27,7 @@ body {
   top: 0;
 }
 .mobile-announcement-bar {
-  padding-top: env(safe-area-inset-top, 54px);
+  padding-top: env(safe-area-inset-top, 0px);
 }
 /* Background for the header container */
 .mobile-fixed-header {
