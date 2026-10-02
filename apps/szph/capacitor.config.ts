@@ -5,8 +5,7 @@ const config: CapacitorConfig = {
   appName: "SZPH",
   webDir: ".next",
   server: {
-    url: "http://192.168.1.228:3011",
-    cleartext: true,
+    url: "https://szphnew-fieldhockey.vercel.app",
   },
   ios: {
     scheme: "SZPH",

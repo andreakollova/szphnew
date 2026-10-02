@@ -8,7 +8,7 @@ const HERO_IMAGES = [
   { src: "/images/hero-banner3.webp", mobilePos: "center 25%", desktopPos: "center 25%" },
   { src: "/images/hero-banner3b.webp", mobilePos: "center 40%", desktopPos: "center 55%" },
   { src: "/images/hero-banner7.webp", mobilePos: "center 40%", desktopPos: "center 55%" },
-  { src: "/images/hero-banner-blue-player.webp", mobilePos: "center 25%", desktopPos: "center 25%" },
+  { src: "/images/hero-banner-blue-player.webp", mobilePos: "center 15%", desktopPos: "center 15%" },
   { src: "/images/hero-banner2.webp", mobilePos: "center 25%", desktopPos: "center 25%" },
 ];
 
