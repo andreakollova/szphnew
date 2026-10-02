@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Semináre | SzPH",
+  title: "Semináre | SZPH",
   description:
     "Vzdelávacie semináre pre trénerov a rozhodcov pozemného hokeja na Slovensku.",
 };
@@ -40,7 +40,7 @@ export default function SeminarePage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Vzdelávacie semináre SzPH
+            Vzdelávacie semináre SZPH
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
             Slovenský zväz pozemného hokeja organizuje pravidelné vzdelávacie
@@ -103,7 +103,7 @@ export default function SeminarePage() {
           </h2>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
             Termíny a miesta konania seminárov sú zverejňované na webovej stránke
-            SzPH a na našich profiloch na sociálnych sieťach. Účasť na
+            SZPH a na našich profiloch na sociálnych sieťach. Účasť na
             seminároch je obvykle podmienená predchádzajúcou registráciou.
           </p>
           <div className="flex flex-wrap gap-3">

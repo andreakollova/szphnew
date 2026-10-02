@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Certifikácia | SzPH",
+  title: "Certifikácia | SZPH",
   description:
     "Podmienky certifikácie a obnovenia licencií pre trénerov a rozhodcov pozemného hokeja.",
 };
@@ -43,7 +43,7 @@ export default function CertifikaciaPage() {
             Certifikačný proces
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
-            Certifikácia je formálny proces, ktorým SzPH potvrdzuje, že tréner
+            Certifikácia je formálny proces, ktorým SZPH potvrdzuje, že tréner
             alebo rozhodca spĺňa všetky požiadavky na výkon svojej funkcie.
             Certifikácia zahŕňa overenie vzdelania, praktických skúseností a
             úspešné zloženie predpísaných skúšok.
@@ -134,7 +134,7 @@ export default function CertifikaciaPage() {
               <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-[#051937] shrink-0" />
               <span>
                 Preukázať účasť na povinných vzdelávacích seminároch a
-                workshopoch organizovaných SzPH
+                workshopoch organizovaných SZPH
               </span>
             </li>
             <li className="flex items-start gap-2">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Vzdelávanie | SzPH",
+  title: "Vzdelávanie | SZPH",
   description:
     "Vzdelávanie v pozemnom hokeji na Slovensku - trénerské licencie, rozhodcovské kurzy, semináre a certifikácie.",
 };
@@ -169,6 +169,43 @@ export default function VzdelavaniePage() {
               </p>
             </Link>
           </div>
+        </section>
+
+        {/* Cvičenia */}
+        <section className="mb-14">
+          <h2
+            className="font-garet font-bold text-[#051937] mb-4"
+            style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
+          >
+            Cvičenia a tréningové materiály
+          </h2>
+          <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
+            Databáza cvičení pre trénerov s podrobnými popismi, obrázkami a video ukážkami. Filtrujte podľa veku, počtu hráčov alebo zamerania tréningu.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-3 mb-6">
+            {[
+              { title: "Herné cvičenia", desc: "Cvičenia zamerané na hernú prípravu", image: "/images/hero-banner3.webp" },
+              { title: "Technické cvičenia", desc: "Dribling, nahrávky, streľba", image: "/images/hero-banner7.webp" },
+              { title: "Kondičná príprava", desc: "Rýchlosť, koordinácia, výdrž", image: "/images/hero-banner2.webp" },
+            ].map((c) => (
+              <Link key={c.title} href="/vzdelavanie/cvicenia" className="group block bg-white rounded-xl overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
+                <div className="relative h-32 overflow-hidden">
+                  <img src={c.image} alt={c.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>{c.title}</h3>
+                  <p className="text-[#94a3b8] mt-0.5" style={{ fontSize: "11px" }}>{c.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <Link
+            href="/vzdelavanie/cvicenia"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
+          >
+            Zobraziť všetky cvičenia
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </Link>
         </section>
 
         {/* Hokejová akadémia */}

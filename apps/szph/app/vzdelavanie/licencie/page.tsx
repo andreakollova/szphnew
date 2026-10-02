@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Licencie | SzPH",
+  title: "Licencie | SZPH",
   description:
     "Licenčné požiadavky a podmienky pre trénerov a rozhodcov pozemného hokeja na Slovensku.",
 };
@@ -40,12 +40,12 @@ export default function LicenciePage() {
             className="font-garet font-bold text-[#051937] mb-4"
             style={{ fontSize: "clamp(1.4rem, 3vw, 1.8rem)" }}
           >
-            Systém licencií SzPH
+            Systém licencií SZPH
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
             Slovenský zväz pozemného hokeja spravuje systém licencií pre trénerov
             a rozhodcov v súlade s medzinárodnou metodikou FIH. Licencia je
-            podmienkou pre oficiálnu činnosť na súťažiach organizovaných SzPH.
+            podmienkou pre oficiálnu činnosť na súťažiach organizovaných SZPH.
           </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
             Každá licencia má definovanú dobu platnosti a podmienky pre jej

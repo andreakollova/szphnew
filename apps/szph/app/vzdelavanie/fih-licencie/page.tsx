@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "FIH licencie | SzPH",
+  title: "FIH licencie | SZPH",
   description:
     "Medzinárodné licencie FIH pre trénerov a rozhodcov pozemného hokeja na Slovensku.",
 };
@@ -50,7 +50,7 @@ export default function FihLicenciePage() {
             súťažiach.
           </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            SzPH ako člen FIH zabezpečuje prístup k medzinárodným licenčným
+            SZPH ako člen FIH zabezpečuje prístup k medzinárodným licenčným
             programom pre slovenských trénerov a rozhodcov.
           </p>
         </section>
@@ -70,7 +70,7 @@ export default function FihLicenciePage() {
               <p className="text-sm text-[#666]">
                 Medzinárodne uznávaná základná trénerská kvalifikácia.
                 Ekvivalent slovenskej licencie C. Kurz je možné absolvovať na
-                Slovensku v organizácii SzPH.
+                Slovensku v organizácii SZPH.
               </p>
             </div>
             <div className="p-5 bg-white rounded-xl border border-gray-200">
@@ -139,7 +139,7 @@ export default function FihLicenciePage() {
             Cesta k medzinárodnej licencii vedie cez národný vzdelávací systém.
             Najprv je potrebné absolvovať príslušné kurzy na národnej úrovni a
             následne sa uchádzať o medzinárodnú certifikáciu prostredníctvom
-            SzPH. Kontaktujte nás pre viac informácií o aktuálnych možnostiach.
+            SZPH. Kontaktujte nás pre viac informácií o aktuálnych možnostiach.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link

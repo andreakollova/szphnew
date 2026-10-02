@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Trénerské kurzy | SzPH",
+  title: "Trénerské kurzy | SZPH",
   description:
     "Trénerské kurzy pozemného hokeja na Slovensku - od základných po pokročilé FIH úrovne.",
 };
@@ -43,7 +43,7 @@ export default function TrenerskeKurzyPage() {
             Ponuka trénerských kurzov
           </h2>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            SzPH organizuje trénerské kurzy v súlade s metodikou Medzinárodnej
+            SZPH organizuje trénerské kurzy v súlade s metodikou Medzinárodnej
             hokejovej federácie (FIH). Kurzy sú rozdelené do viacerých úrovní,
             pričom každá úroveň pripravuje trénerov na prácu s inou cieľovou
             skupinou a na rôznej úrovni súťaženia.
@@ -127,7 +127,7 @@ export default function TrenerskeKurzyPage() {
                 vrcholové súťaže. Realizovaný v spolupráci s FIH.
               </p>
               <p className="text-xs text-[#999]">
-                Trvanie: individuálne | Podmienka: Level 3 + nominácia SzPH
+                Trvanie: individuálne | Podmienka: Level 3 + nominácia SZPH
               </p>
             </div>
           </div>
@@ -141,7 +141,7 @@ export default function TrenerskeKurzyPage() {
             Prihlásenie a termíny
           </h2>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Termíny trénerských kurzov sú zverejňované na webovej stránke SzPH a
+            Termíny trénerských kurzov sú zverejňované na webovej stránke SZPH a
             na našich sociálnych sieťach. Pre prihlásenie na kurz alebo
             doplňujúce informácie nás kontaktujte.
           </p>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Rozhodcovské vzdelávanie | SzPH",
+  title: "Rozhodcovské vzdelávanie | SZPH",
   description:
     "Vzdelávanie rozhodcov pozemného hokeja na Slovensku - kurzy, semináre a medzinárodné certifikácie.",
 };

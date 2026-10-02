@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Kurz rozhodcov | SzPH",
+  title: "Kurz rozhodcov | SZPH",
   description:
     "Detailné informácie o kurze rozhodcov pozemného hokeja - obsah, podmienky a prihlásenie.",
 };
@@ -45,11 +45,11 @@ export default function KurzRozhodcovPage() {
             Kurz rozhodcov pozemného hokeja je určený pre všetkých záujemcov o
             rozhodovanie, bez ohľadu na predchádzajúce skúsenosti s pozemným
             hokejom. Kurz poskytuje komplexné vzdelanie potrebné na získanie
-            rozhodcovskej licencie SzPH.
+            rozhodcovskej licencie SZPH.
           </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
             Absolventi kurzu získavajú oprávnenie rozhodovať zápasy slovenskej
-            ligy pozemného hokeja a ďalších súťaží organizovaných SzPH.
+            ligy pozemného hokeja a ďalších súťaží organizovaných SZPH.
           </p>
         </section>
 

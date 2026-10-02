@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Trénerské vzdelávanie | SzPH",
+  title: "Trénerské vzdelávanie | SZPH",
   description:
     "Vzdelávanie trénerov pozemného hokeja na Slovensku - FIH coaching úrovne, licencie a kurzy.",
 };
@@ -44,7 +44,7 @@ export default function TreneriPage() {
           </h2>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
             Medzinárodná hokejová federácia (FIH) definuje jednotný systém
-            trénerských úrovní, ktorý SzPH implementuje na Slovensku. Každá
+            trénerských úrovní, ktorý SZPH implementuje na Slovensku. Každá
             úroveň pripravuje trénerov na prácu s inou cieľovou skupinou a na
             inej úrovni súťaženia.
           </p>
@@ -101,7 +101,7 @@ export default function TreneriPage() {
             Ako sa stať trénerom
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
-            Ak máte záujem o trénerskú kariéru v pozemnom hokeji, SzPH vám ponúka
+            Ak máte záujem o trénerskú kariéru v pozemnom hokeji, SZPH vám ponúka
             jasnú cestu od základných kurzov až po medzinárodné certifikácie.
             Prvý krok je absolvovanie základného trénerského kurzu Level 1.
           </p>

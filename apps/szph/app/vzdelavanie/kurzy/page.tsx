@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Kurzy | SzPH",
+  title: "Kurzy | SZPH",
   description:
     "Prehľad kurzov a školení v pozemnom hokeji na Slovensku - trénerské, rozhodcovské a špecializované kurzy.",
 };
@@ -43,12 +43,12 @@ export default function KurzyPage() {
             Ponuka kurzov
           </h2>
           <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
-            SzPH pravidelne organizuje vzdelávacie kurzy pre všetky zainteresované
+            SZPH pravidelne organizuje vzdelávacie kurzy pre všetky zainteresované
             skupiny v pozemnom hokeji. Kurzy sú určené pre trénerov, rozhodcov,
             funkcionárov aj ďalších záujemcov o rozvoj tohto športu na Slovensku.
           </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Aktuálne termíny kurzov sú zverejňované na webovej stránke SzPH a na
+            Aktuálne termíny kurzov sú zverejňované na webovej stránke SZPH a na
             našich profiloch na sociálnych sieťach. Sledujte nás, aby vám
             neunikli žiadne novinky a prihláste sa včas - kapacita kurzov je
             obmedzená.
