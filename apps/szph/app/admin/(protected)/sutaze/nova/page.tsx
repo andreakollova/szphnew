@@ -20,15 +20,15 @@ export default function NovaSutazPage() {
     router.refresh();
   }
 
-  const inputCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
-  const selectCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
+  const inputCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
+  const selectCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
     <div className="space-y-6 max-w-lg">
       <h1 className="text-2xl font-bold text-[#051937]">Nová súťaž</h1>
       <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <div className="rounded p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <div className="space-y-4">
             <div>
               <label className={labelCls}>Názov súťaže *</label>
@@ -58,10 +58,10 @@ export default function NovaSutazPage() {
           </div>
         </div>
         <div className="flex gap-3">
-          <button type="submit" disabled={saving} className="rounded-md bg-[#016fb4] px-6 py-3 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50">
+          <button type="submit" disabled={saving} className="rounded bg-[#016fb4] px-6 py-3 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50">
             {saving ? "Ukladám..." : "Vytvoriť súťaž"}
           </button>
-          <button type="button" onClick={() => router.back()} className="rounded-md border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50">Zrušiť</button>
+          <button type="button" onClick={() => router.back()} className="rounded border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50">Zrušiť</button>
         </div>
       </form>
     </div>

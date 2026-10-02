@@ -57,7 +57,7 @@ export default function NovyTimPage() {
     }
   }
 
-  const inputCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
+  const inputCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
@@ -68,10 +68,10 @@ export default function NovyTimPage() {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         {error && (
-          <div className="rounded-md bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">{error}</div>
+          <div className="rounded bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">{error}</div>
         )}
 
-        <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <div className="rounded p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <div className="space-y-4">
             <div>
               <label className={labelCls}>Celý názov tímu *</label>
@@ -97,7 +97,7 @@ export default function NovyTimPage() {
               <select
                 value={form.category}
                 onChange={(e) => setForm((f) => ({ ...f, category: e.target.value as typeof form.category }))}
-                className="w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white"
+                className="w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white"
               >
                 <option value="muzi">Muži</option>
                 <option value="zeny">Ženy</option>
@@ -122,7 +122,7 @@ export default function NovyTimPage() {
                 type="file"
                 accept="image/*,.svg"
                 onChange={handleLogoChange}
-                className="w-full text-sm text-[#64748b] file:mr-4 file:rounded-md file:border-0 file:bg-gray-100 file:px-3 file:py-2 file:text-xs file:font-semibold file:text-[#051937] hover:file:bg-gray-200"
+                className="w-full text-sm text-[#64748b] file:mr-4 file:rounded file:border-0 file:bg-gray-100 file:px-3 file:py-2 file:text-xs file:font-semibold file:text-[#051937] hover:file:bg-gray-200"
               />
               <p className="text-xs text-[#94a3b8] mt-1">PNG, SVG, JPG — odporúčané: transparentné pozadie, aspoň 200×200px</p>
             </div>
@@ -133,14 +133,14 @@ export default function NovyTimPage() {
           <button
             type="submit"
             disabled={saving}
-            className="rounded-md bg-[#016fb4] px-6 py-3 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50 transition-all"
+            className="rounded bg-[#016fb4] px-6 py-3 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50 transition-all"
           >
             {saving ? "Ukladám..." : "Vytvoriť tím"}
           </button>
           <button
             type="button"
             onClick={() => router.back()}
-            className="rounded-md border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
+            className="rounded border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
           >
             Zrušiť
           </button>

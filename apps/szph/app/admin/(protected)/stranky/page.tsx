@@ -25,7 +25,7 @@ export default async function AdminStrankyPage() {
         </div>
         <Link
           href="/admin/stranky/nova"
-          className="inline-flex items-center gap-2 rounded-md bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#016fb4]/90 transition-all"
+          className="inline-flex items-center gap-2 rounded bg-[#016fb4] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#016fb4]/90 transition-all"
         >
           + Nová stránka
         </Link>
@@ -37,7 +37,7 @@ export default async function AdminStrankyPage() {
       ].map(({ label, pages: sitePgs, site }) => (
         <div key={site}>
           <h2 className="text-sm font-bold text-[#64748b] mb-3 uppercase tracking-wider">{label}</h2>
-          <div className="rounded-md overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             {sitePgs.length === 0 ? (
               <div className="py-8 text-center text-sm text-[#94a3b8]">Žiadne stránky pre {label}</div>
             ) : (
@@ -62,7 +62,7 @@ export default async function AdminStrankyPage() {
                       </td>
                       <td className="px-4 py-4 text-right">
                         <div className="flex items-center justify-end gap-2">
-                          <Link href={`/admin/stranky/${page.id}`} className="rounded-md bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors">Upraviť</Link>
+                          <Link href={`/admin/stranky/${page.id}`} className="rounded bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors">Upraviť</Link>
                           <PageActions id={page.id} />
                         </div>
                       </td>

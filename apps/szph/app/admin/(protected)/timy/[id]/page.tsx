@@ -42,8 +42,8 @@ export default function UpravitTimPage() {
     router.refresh();
   }
 
-  const inputCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
-  const selectCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
+  const inputCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
+  const selectCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   if (!team) return <div className="text-[#64748b]">Načítavam...</div>;
@@ -52,7 +52,7 @@ export default function UpravitTimPage() {
     <div className="space-y-6 max-w-lg">
       <h1 className="text-2xl font-bold text-[#051937]">Upraviť tím</h1>
       <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <div className="rounded p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <div className="space-y-4">
             <div>
               <label className={labelCls}>Celý názov *</label>
@@ -75,13 +75,13 @@ export default function UpravitTimPage() {
             <div>
               <label className={labelCls}>Logo</label>
               {logoPreview && <img src={logoPreview} alt="logo" className="h-14 w-14 object-contain mb-2" />}
-              <input type="file" accept="image/*,.svg" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setLogoFile(f); setLogoPreview(URL.createObjectURL(f)); }}} className="w-full text-xs text-[#64748b] file:mr-4 file:rounded-md file:border-0 file:bg-gray-100 file:px-3 file:py-2 file:text-xs file:text-[#051937]" />
+              <input type="file" accept="image/*,.svg" onChange={(e) => { const f = e.target.files?.[0]; if (f) { setLogoFile(f); setLogoPreview(URL.createObjectURL(f)); }}} className="w-full text-xs text-[#64748b] file:mr-4 file:rounded file:border-0 file:bg-gray-100 file:px-3 file:py-2 file:text-xs file:text-[#051937]" />
             </div>
           </div>
         </div>
         <div className="flex gap-3">
-          <button type="submit" disabled={saving} className="rounded-md bg-[#016fb4] px-6 py-3 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50">{saving ? "Ukladám..." : "Uložiť"}</button>
-          <button type="button" onClick={() => router.back()} className="rounded-md border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50">Zrušiť</button>
+          <button type="submit" disabled={saving} className="rounded bg-[#016fb4] px-6 py-3 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50">{saving ? "Ukladám..." : "Uložiť"}</button>
+          <button type="button" onClick={() => router.back()} className="rounded border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50">Zrušiť</button>
         </div>
       </form>
     </div>

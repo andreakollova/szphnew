@@ -95,19 +95,19 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
     }
   }
 
-  const inputCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
-  const selectCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 [&_option]:bg-white";
+  const inputCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all";
+  const selectCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 [&_option]:bg-white";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 max-w-2xl">
       {error && (
-        <div className="rounded-md bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">
+        <div className="rounded bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">
           {error}
         </div>
       )}
 
-      <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         <h2 className="font-bold text-[#051937] mb-5">Základné informácie</h2>
         <div className="space-y-4">
           <div>
@@ -191,7 +191,7 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
       </div>
 
       {/* Video a góly */}
-      <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         <h2 className="font-bold text-[#051937] mb-5">Video a strelci gólov</h2>
         <div className="space-y-4">
           <div>
@@ -233,7 +233,7 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
                     <button
                       type="button"
                       onClick={() => setGoals(goals.filter((_, j) => j !== i))}
-                      className="shrink-0 flex items-center justify-center h-9 w-9 rounded-md text-red-400 hover:bg-red-50 transition-colors"
+                      className="shrink-0 flex items-center justify-center h-9 w-9 rounded text-red-400 hover:bg-red-50 transition-colors"
                     >
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
@@ -244,7 +244,7 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
             <button
               type="button"
               onClick={() => setGoals([...goals, { team: "home", player: "", minute: "" }])}
-              className="flex items-center gap-2 rounded-md border border-dashed border-[rgba(1,45,116,0.15)] px-4 py-2.5 text-sm font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 rounded border border-dashed border-[rgba(1,45,116,0.15)] px-4 py-2.5 text-sm font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
               Pridať gól
@@ -257,14 +257,14 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
         <button
           type="submit"
           disabled={saving}
-          className="rounded-md bg-[#016fb4] px-6 py-3 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90 disabled:opacity-50"
+          className="rounded bg-[#016fb4] px-6 py-3 text-sm font-bold text-white transition-all hover:bg-[#016fb4]/90 disabled:opacity-50"
         >
           {saving ? "Ukladám..." : match ? "Uložiť zmeny" : "Vytvoriť zápas"}
         </button>
         <button
           type="button"
           onClick={() => router.back()}
-          className="rounded-md border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
+          className="rounded border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50 transition-colors"
         >
           Zrušiť
         </button>

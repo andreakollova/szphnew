@@ -58,7 +58,7 @@ export default function AdminSpravcoviaPage() {
     setUsers((prev) => prev.map((u) => u.id === id ? { ...u, active: !active } : u));
   }
 
-  const inputCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#012d74]/50 transition-all placeholder-[#94a3b8]";
+  const inputCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#012d74]/50 transition-all placeholder-[#94a3b8]";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
   return (
@@ -69,7 +69,7 @@ export default function AdminSpravcoviaPage() {
       </div>
 
       {/* Pridať správcu */}
-      <div className="rounded-md p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         <h2 className="font-bold text-[#051937] mb-4">Pridať správcovský účet</h2>
         <form onSubmit={handleAdd} className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-3">
@@ -90,18 +90,18 @@ export default function AdminSpravcoviaPage() {
               </select>
             </div>
           </div>
-          <button type="submit" disabled={saving} className="rounded-md bg-[#012d74] px-6 py-2.5 text-sm font-bold text-white hover:bg-[#012d74]/90 disabled:opacity-50 transition-all">
+          <button type="submit" disabled={saving} className="rounded bg-[#012d74] px-6 py-2.5 text-sm font-bold text-white hover:bg-[#012d74]/90 disabled:opacity-50 transition-all">
             {saving ? "Pridávam..." : "Pridať správcu"}
           </button>
         </form>
       </div>
 
       {/* Popis rolí */}
-      <div className="rounded-md p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+      <div className="rounded p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         <h3 className="font-bold text-[#051937] mb-3" style={{ fontSize: "13px" }}>Prehľad rolí</h3>
         <div className="grid gap-2 sm:grid-cols-3">
           {ROLES.map((r) => (
-            <div key={r.value} className="rounded-md p-3" style={{ background: "#f8f9fa" }}>
+            <div key={r.value} className="rounded p-3" style={{ background: "#f8f9fa" }}>
               <p className="font-bold text-[#051937]" style={{ fontSize: "12px" }}>{r.label}</p>
               <p className="text-[#64748b]" style={{ fontSize: "11px" }}>{r.desc}</p>
             </div>
@@ -114,7 +114,7 @@ export default function AdminSpravcoviaPage() {
         <div className="space-y-2">
           <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Existujúci správcovia</h2>
           {users.map((u) => (
-            <div key={u.id} className="rounded-md p-4 flex items-center gap-4" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)", opacity: u.active ? 1 : 0.5 }}>
+            <div key={u.id} className="rounded p-4 flex items-center gap-4" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)", opacity: u.active ? 1 : 0.5 }}>
               <div className="w-9 h-9 rounded-full bg-[#012d74] flex items-center justify-center shrink-0">
                 <span className="font-bold text-white" style={{ fontSize: "13px" }}>{u.username.charAt(0).toUpperCase()}</span>
               </div>
@@ -126,11 +126,11 @@ export default function AdminSpravcoviaPage() {
               </div>
               <button
                 onClick={() => toggleActive(u.id, u.active)}
-                className={`shrink-0 rounded-md px-3 py-1.5 text-xs font-semibold transition-colors ${u.active ? "bg-emerald-50 text-emerald-600 hover:bg-emerald-100" : "bg-gray-100 text-[#94a3b8] hover:bg-gray-200"}`}
+                className={`shrink-0 rounded px-3 py-1.5 text-xs font-semibold transition-colors ${u.active ? "bg-emerald-50 text-emerald-600 hover:bg-emerald-100" : "bg-gray-100 text-[#94a3b8] hover:bg-gray-200"}`}
               >
                 {u.active ? "Aktívny" : "Neaktívny"}
               </button>
-              <button onClick={() => handleDelete(u.id)} className="shrink-0 rounded-md px-3 py-1.5 text-xs font-semibold text-[#d00027] hover:bg-red-50 transition-colors" style={{ border: "1px solid rgba(208,0,39,0.2)" }}>
+              <button onClick={() => handleDelete(u.id)} className="shrink-0 rounded px-3 py-1.5 text-xs font-semibold text-[#d00027] hover:bg-red-50 transition-colors" style={{ border: "1px solid rgba(208,0,39,0.2)" }}>
                 Zmazať
               </button>
             </div>

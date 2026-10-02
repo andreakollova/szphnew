@@ -75,16 +75,16 @@ export default async function AdminDashboard() {
 
       {/* OVERDUE MATCHES — red alert */}
       {data.overdueMatches.length > 0 && (
-        <div className="rounded-md p-5" style={{ background: "rgba(220,38,38,0.05)", border: "1px solid rgba(220,38,38,0.15)" }}>
+        <div className="rounded p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <div className="flex items-center gap-2 mb-3">
-            <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-            <h2 className="font-bold text-red-600" style={{ fontSize: "14px" }}>Zápasy bez výsledku</h2>
-            <span className="text-red-400 font-bold" style={{ fontSize: "11px" }}>({data.overdueMatches.length})</span>
+            <span className="h-2 w-2 rounded-full bg-[#d00027] animate-pulse" />
+            <h2 className="font-bold text-[#d00027]" style={{ fontSize: "14px" }}>Zápasy bez výsledku</h2>
+            <span className="text-[#d00027]/60 font-bold" style={{ fontSize: "11px" }}>({data.overdueMatches.length})</span>
           </div>
-          <p className="text-red-400 mb-4" style={{ fontSize: "12px" }}>Tieto zápasy sa už mali odohrať, ale nemajú zadaný výsledok.</p>
+          <p className="text-[#64748b] mb-4" style={{ fontSize: "12px" }}>Tieto zápasy sa už mali odohrať, ale nemajú zadaný výsledok.</p>
           <div className="space-y-2">
             {data.overdueMatches.map((m: any) => (
-              <div key={m.id} className="flex items-center gap-3 bg-white rounded-md p-3" style={{ border: "1px solid rgba(220,38,38,0.12)" }}>
+              <div key={m.id} className="flex items-center gap-3 bg-white rounded p-3" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
                 <div className="flex-1 min-w-0">
                   <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
                     {m.home_short || m.home_team || "?"} vs {m.away_short || m.away_team || "?"}
@@ -92,7 +92,7 @@ export default async function AdminDashboard() {
                   <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{formatDate(m.date)} · {formatTime(m.date)}</p>
                 </div>
                 <InlineScore matchId={m.id} homeScore={m.home_score} awayScore={m.away_score} status={m.status} />
-                <Link href={`/admin/zapasy/${m.id}`} className="shrink-0 rounded-md bg-red-500 px-3 py-1.5 text-xs font-bold text-white hover:bg-red-600 transition-colors">
+                <Link href={`/admin/zapasy/${m.id}`} className="shrink-0 rounded bg-[#d00027] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#d00027]/90 transition-colors">
                   Zadať výsledok
                 </Link>
               </div>
@@ -108,11 +108,11 @@ export default async function AdminDashboard() {
         <div className="space-y-5">
 
           {/* Nadchádzajúce */}
-          <div className="rounded-md p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <div className="flex items-center justify-between mb-4">
               <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Nadchádzajúce zápasy</h2>
               <div className="flex gap-2">
-                <Link href="/admin/zapasy/novy" className="rounded-md bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
+                <Link href="/admin/zapasy/novy" className="rounded bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
                   + Nový zápas
                 </Link>
                 <Link href="/admin/zapasy" className="text-xs text-[#016fb4] hover:underline self-center">Všetky</Link>
@@ -123,7 +123,7 @@ export default async function AdminDashboard() {
             ) : (
               <div className="space-y-1">
                 {data.upcomingMatches.map((m: any) => (
-                  <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded-md p-2.5 hover:bg-gray-50 transition-colors">
+                  <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded p-2.5 hover:bg-gray-50 transition-colors">
                     <div className="shrink-0 text-[#94a3b8]" style={{ fontSize: "11px", width: "70px" }}>
                       <p className="font-bold">{formatDate(m.date)}</p>
                       <p>{formatTime(m.date)}</p>
@@ -137,7 +137,7 @@ export default async function AdminDashboard() {
                     <span className="shrink-0 rounded-full px-2 py-0.5 text-[9px] font-semibold text-[#64748b]" style={{ background: "#f0f2f5" }}>
                       {STATUS_LABELS[m.status] ?? m.status}
                     </span>
-                    <span className="shrink-0 rounded-md px-2.5 py-1 text-[10px] font-bold text-[#012d74] hover:bg-[#012d74]/10 transition-colors">
+                    <span className="shrink-0 rounded px-2.5 py-1 text-[10px] font-bold text-[#012d74] hover:bg-[#012d74]/10 transition-colors">
                       Editovať
                     </span>
                   </Link>
@@ -148,13 +148,13 @@ export default async function AdminDashboard() {
 
           {/* Posledné odohraté */}
           {data.recentFinished.length > 0 && (
-            <div className="rounded-md p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div className="rounded p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Posledné výsledky</h2>
               </div>
               <div className="space-y-1">
                 {data.recentFinished.map((m: any) => (
-                  <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded-md p-2.5 hover:bg-gray-50 transition-colors">
+                  <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded p-2.5 hover:bg-gray-50 transition-colors">
                     <div className="shrink-0 text-[#94a3b8]" style={{ fontSize: "11px", width: "70px" }}>
                       <p className="font-bold">{formatDate(m.date)}</p>
                     </div>
@@ -178,11 +178,11 @@ export default async function AdminDashboard() {
 
         {/* Články — compact */}
         <div className="space-y-5">
-          <div className="rounded-md p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <div className="flex items-center justify-between mb-4">
               <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Posledné články</h2>
               <div className="flex gap-2">
-                <Link href="/admin/clanky/novy" className="rounded-md bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
+                <Link href="/admin/clanky/novy" className="rounded bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
                   + Nový článok
                 </Link>
                 <Link href="/admin/clanky" className="text-xs text-[#016fb4] hover:underline self-center">Všetky</Link>
@@ -193,7 +193,7 @@ export default async function AdminDashboard() {
             ) : (
               <div className="space-y-1">
                 {data.articles.map((a: any) => (
-                  <Link key={a.id} href={`/admin/clanky/upravit/${a.id}`} className="flex items-center gap-2 rounded-md p-2 hover:bg-gray-50 transition-colors">
+                  <Link key={a.id} href={`/admin/clanky/upravit/${a.id}`} className="flex items-center gap-2 rounded p-2 hover:bg-gray-50 transition-colors">
                     <div className="flex-1 min-w-0">
                       <p className="text-[#051937] font-semibold truncate" style={{ fontSize: "12px" }}>{a.title}</p>
                       <p className="text-[#94a3b8]" style={{ fontSize: "10px" }}>{a.category} · {formatDate(a.updated_at)}</p>

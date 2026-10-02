@@ -33,14 +33,14 @@ export function VideoAdminActions({ video }: { video: Video }) {
       <button
         onClick={toggleStatus}
         disabled={loading}
-        className="rounded-md bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors disabled:opacity-50"
+        className="rounded bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors disabled:opacity-50"
       >
         {video.status === "published" ? "Draft" : "Pub."}
       </button>
       <button
         onClick={handleDelete}
         disabled={loading}
-        className="rounded-md bg-red-500/20 px-3 py-1.5 text-xs font-semibold text-red-400 hover:bg-red-500/30 transition-colors disabled:opacity-50"
+        className="rounded bg-red-500/20 px-3 py-1.5 text-xs font-semibold text-red-400 hover:bg-red-500/30 transition-colors disabled:opacity-50"
       >
         Zmazať
       </button>

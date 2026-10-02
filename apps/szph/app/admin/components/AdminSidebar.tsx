@@ -91,7 +91,7 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
                       <Link
                         href={item.href}
                         className={cn(
-                          "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold transition-all",
+                          "flex items-center gap-3 rounded px-3 py-2 text-sm font-semibold transition-all",
                           isActive
                             ? "bg-[#012d74]/10 text-[#012d74] border border-[#012d74]/20"
                             : "text-[#64748b] hover:bg-gray-50 hover:text-[#051937]"
@@ -111,7 +111,7 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
             <a
               href="/"
               target="_blank"
-              className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold text-[#94a3b8] transition-colors hover:bg-gray-50 hover:text-[#051937]"
+              className="flex w-full items-center gap-3 rounded px-3 py-2 text-sm font-semibold text-[#94a3b8] transition-colors hover:bg-gray-50 hover:text-[#051937]"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -121,7 +121,7 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
             <form action="/api/admin/logout" method="POST">
               <button
                 type="submit"
-                className="flex w-full items-center gap-3 rounded-md px-3 py-2 font-semibold text-[#94a3b8] transition-colors hover:bg-gray-50 hover:text-[#051937]"
+                className="flex w-full items-center gap-3 rounded px-3 py-2 font-semibold text-[#94a3b8] transition-colors hover:bg-gray-50 hover:text-[#051937]"
                 style={{ fontSize: "12px" }}
               >
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

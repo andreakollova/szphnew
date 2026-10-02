@@ -61,8 +61,8 @@ export function AddExerciseForm() {
     setSaving(false);
   }
 
-  const inputCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all placeholder-[#94a3b8]";
-  const selectCls = "w-full rounded-md border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
+  const inputCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#016fb4]/50 transition-all placeholder-[#94a3b8]";
+  const selectCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
   const textareaCls = inputCls + " min-h-[80px] resize-y";
 
@@ -147,7 +147,7 @@ export function AddExerciseForm() {
         </div>
       </div>
 
-      <button type="submit" disabled={saving} className="rounded-md bg-[#016fb4] px-6 py-2.5 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50 transition-all">
+      <button type="submit" disabled={saving} className="rounded bg-[#016fb4] px-6 py-2.5 text-sm font-bold text-white hover:bg-[#016fb4]/90 disabled:opacity-50 transition-all">
         {saving ? "Pridávam..." : "Pridať cvičenie"}
       </button>
     </form>
