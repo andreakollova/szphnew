@@ -14,8 +14,23 @@ async function getDashboardData() {
   const cookieStore = await cookies();
   const supabase = createServerSupabaseClient(cookieStore);
 
-  const now = new Date().toISOString();
-  const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString();
+  const now = new Date();
+  const nowISO = now.toISOString();
+
+  // This week: Monday 00:00 to Sunday 23:59
+  const dayOfWeek = now.getDay();
+  const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+  const weekStart = new Date(now);
+  weekStart.setDate(now.getDate() + mondayOffset);
+  weekStart.setHours(0, 0, 0, 0);
+  const weekEnd = new Date(weekStart);
+  weekEnd.setDate(weekStart.getDate() + 7);
+
+  // Overdue: 24h after last Sunday (end of weekend)
+  const lastSunday = new Date(weekStart);
+  lastSunday.setDate(lastSunday.getDate() - 1);
+  lastSunday.setHours(23, 59, 59, 999);
+  const overdueThreshold = new Date(lastSunday.getTime() + 24 * 60 * 60 * 1000).toISOString();
 
   const [articles, allMatches, matchCount, partners] = await Promise.allSettled([
     supabase.from("articles").select("id, status, title, category, published_at, updated_at, site").order("updated_at", { ascending: false }).limit(9),
@@ -26,20 +41,16 @@ async function getDashboardData() {
 
   const matchesData = allMatches.status === "fulfilled" ? (allMatches.value.data ?? []) : [];
 
-  // Find overdue matches: scheduled, started 2h+ ago, no score
+  // Find overdue matches: scheduled, 24h+ after last weekend
   const overdueMatches = matchesData.filter((m: any) =>
-    m.status === "scheduled" && m.date < twoHoursAgo
+    m.status === "scheduled" && m.date < overdueThreshold && m.date < nowISO
   );
 
-  // Upcoming matches
-  const upcomingMatches = matchesData.filter((m: any) =>
-    m.status === "scheduled" && m.date >= now
-  ).sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-  // Recent finished
-  const recentFinished = matchesData.filter((m: any) =>
-    m.status === "finished"
-  ).slice(0, 5);
+  // This week matches
+  const thisWeekMatches = matchesData.filter((m: any) => {
+    const d = new Date(m.date);
+    return m.status === "scheduled" && d >= weekStart && d < weekEnd;
+  }).sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   // Count unique teams from matches
   const teamNames = new Set<string>();
@@ -51,8 +62,7 @@ async function getDashboardData() {
   return {
     articles: articles.status === "fulfilled" ? (articles.value.data ?? []) : [],
     overdueMatches,
-    upcomingMatches: upcomingMatches.slice(0, 8),
-    recentFinished,
+    thisWeekMatches: thisWeekMatches.slice(0, 10),
     teamCount: teamNames.size,
     partners: partners.status === "fulfilled" ? (partners.value.data ?? []) : [],
     totalMatches: matchCount.status === "fulfilled" ? (matchCount.value.count ?? 0) : 0,
@@ -110,7 +120,7 @@ export default async function AdminDashboard() {
           {/* Nadchádzajúce */}
           <div className="rounded p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Nadchádzajúce zápasy</h2>
+              <h2 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Zápasy tento týždeň</h2>
               <div className="flex gap-2">
                 <Link href="/admin/zapasy/novy" className="rounded bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90 transition-colors">
                   + Nový zápas
@@ -118,11 +128,11 @@ export default async function AdminDashboard() {
                 <Link href="/admin/zapasy" className="text-xs text-[#012d74] hover:underline self-center">Všetky</Link>
               </div>
             </div>
-            {data.upcomingMatches.length === 0 ? (
-              <p className="text-sm text-[#334155] py-4">Žiadne naplánované zápasy</p>
+            {data.thisWeekMatches.length === 0 ? (
+              <p className="text-sm text-[#334155] py-4">Žiadne zápasy tento týždeň</p>
             ) : (
               <div className="space-y-1">
-                {data.upcomingMatches.map((m: any) => (
+                {data.thisWeekMatches.map((m: any) => (
                   <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded p-2.5 hover:bg-gray-50 transition-colors">
                     <div className="shrink-0 text-[#94a3b8]" style={{ fontSize: "11px", width: "70px" }}>
                       <p className="font-bold">{formatDate(m.date)}</p>
