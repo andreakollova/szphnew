@@ -8,7 +8,7 @@ const CLUBS = [
   { id: "none", name: "Žiadny klub" },
   { id: "HAŠ", name: "HA Šenkvice", logo: "/images/timy/HAS.webp", color: "#e67e22" },
   { id: "ŠK", name: "ŠK 1952 Šenkvice", logo: "/images/timy/SEN.webp", color: "#e67e22" },
-  { id: "RAČ", name: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", color: "#2563eb" },
+  { id: "RAČ", name: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", color: "#234079" },
   { id: "HOKO", name: "HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp", color: "#16a34a" },
   { id: "HKM", name: "HKM Nová Dubnica", logo: "/images/timy/nova-dubnica-32x32.webp", color: "#7c3aed" },
 ];
@@ -131,7 +131,7 @@ export default function NastaveniaPage() {
         </div>
 
         {/* Profil */}
-        <div className="bg-white rounded-lg p-5 mb-5" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
+        <div className="bg-white rounded p-5 mb-5" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
           <h2 className="font-bold text-[#051937] mb-4" style={{ fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Profil</h2>
 
           <div className="mb-4">
@@ -209,7 +209,7 @@ export default function NastaveniaPage() {
         </div>
 
         {/* Notifikácie */}
-        <div className="bg-white rounded-lg p-5 mb-5" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
+        <div className="bg-white rounded p-5 mb-5" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
           <h2 className="font-bold text-[#051937] mb-2" style={{ fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Notifikácie</h2>
           <p className="text-[#94a3b8] mb-4" style={{ fontSize: "11px" }}>Vyber si o čom chceš dostávať upozornenia</p>
 

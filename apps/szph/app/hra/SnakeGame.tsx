@@ -14,7 +14,7 @@ const INITIAL_LENGTH = 6;
 const TEAMS = [
   { id: "HAŠ", name: "HA Senkvice", color: "#000000", secondary: "#ff8c00", skins: ["#ffdbac", "#f1c27d"], hairs: ["#1a1a1a", "#4b2c20", "#8d5524", "#d4a76a", "#c68642"] },
   { id: "ŠEN", name: "HC 1952 Senkvice", color: "#ff8c00", secondary: "#000000", skins: ["#ffdbac", "#f1c27d"], hairs: ["#1a1a1a", "#4b2c20", "#8d5524", "#d4a76a", "#c68642"] },
-  { id: "RAČ", name: "KPH Rača", color: "#0169d4", secondary: "#ffffff", skins: ["#ffdbac", "#f1c27d"], hairs: ["#1a1a1a", "#4b2c20", "#8d5524", "#d4a76a", "#c68642"] },
+  { id: "RAČ", name: "KPH Rača", color: "#ffffff", secondary: "#234079", skins: ["#ffdbac", "#f1c27d"], hairs: ["#1a1a1a", "#4b2c20", "#8d5524", "#d4a76a", "#c68642"] },
   { id: "HOK", name: "HOKO Zlaté Moravce", color: "#4dd906", secondary: "#000000", skins: ["#ffdbac", "#f1c27d"], hairs: ["#1a1a1a", "#4b2c20", "#8d5524", "#d4a76a", "#c68642"] },
   { id: "HKM", name: "HKM Nová Dubnica", color: "#202684", secondary: "#000000", skins: ["#ffdbac", "#f1c27d"], hairs: ["#1a1a1a", "#4b2c20", "#8d5524", "#d4a76a", "#c68642"] },
   { id: "KAP", name: "Kaptar SE", color: "#f5d000", secondary: "#2b77ad", skins: ["#ffdbac", "#f1c27d"], hairs: ["#1a1a1a", "#4b2c20", "#8d5524", "#d4a76a", "#c68642"] },
