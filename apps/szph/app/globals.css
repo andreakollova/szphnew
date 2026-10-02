@@ -2,7 +2,14 @@
 @source "../../../packages/ui/src";
 
 @media (max-width: 767px) {
-  html { overflow-x: hidden; }
+  html {
+    overflow: hidden;
+    height: 100%;
+  }
+  body {
+    overflow-y: auto;
+    height: 100%;
+  }
 }
 body {
   overscroll-behavior-y: none;
