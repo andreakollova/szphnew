@@ -19,6 +19,7 @@ const ALL_NAV_ITEMS = [
     group: "Evidencia",
     items: [
       { label: "Články", href: "/admin/clanky", icon: "article", roles: ["superadmin", "editor"] },
+      { label: "Stránky", href: "/admin/stranky", icon: "page", roles: ["superadmin"] },
       { label: "Zápasy", href: "/admin/zapasy", icon: "match", roles: ["superadmin", "editor", "zapasy"] },
       { label: "Tímy", href: "/admin/timy", icon: "team", roles: ["superadmin", "editor", "zapasy"] },
       { label: "Súťaže", href: "/admin/sutaze", icon: "trophy", roles: ["superadmin", "editor"] },
