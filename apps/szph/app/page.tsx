@@ -319,7 +319,7 @@ export default async function SzphHome() {
   const { articles, aktuality, reprezentacia, oznamy, matches, competitions, worldNews } = await getData();
 
   return (
-    <div className="overflow-x-hidden">
+    <div>
       <SzphHero nextMatch={(() => {
         const now = Date.now();
         const upcoming = (matches as any[]).filter((m: any) => m.status === "scheduled" && new Date(m.date).getTime() > now).sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -532,7 +532,7 @@ export default async function SzphHome() {
               </svg>
             </Link>
           </div>
-          <MatchCenter matches={matches as any} pageSize={5} />
+          <MatchCenter matches={matches as any} pageSize={7} />
         </div>
       </section>
 

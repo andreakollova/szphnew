@@ -34,33 +34,33 @@ export default function U21ZenyPage() {
         </p>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Sutaze a turnaje
+          Súťaže a turnaje
         </h2>
         <div className="space-y-4 mb-8">
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10140;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>EuroHockey Junior Championship Women:</strong> Hlavna europska sutaz juniorskych zienskych timov. Slovensko sa zucastnuje v prislusnej divizi podla aktualneho zaradenia.
+              <strong>EuroHockey Junior Championship Women:</strong> Hlavná európska súťaž juniorských ženských tímov. Slovensko sa zúčastňuje v príslušnej divízii podľa aktuálneho zaradenia.
             </p>
           </div>
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10140;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Pripravne akcie:</strong> Susterenia, treningove kempy a priatelske zapasy pomahaju mladym hrackam rozvijat sa a budovat timovú spolupracu.
+              <strong>Prípravné akcie:</strong> Sústredenia, tréningové kempy a priateľské zápasy pomáhajú mladým hráčkam rozvíjať sa a budovať tímovú spoluprácu.
             </p>
           </div>
         </div>
 
         <div className="mt-12 rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-          <h3 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>Budovanie buducnosti</h3>
+          <h3 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>Budovanie budúcnosti</h3>
           <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
-            Investicia do mladych hracok je investicia do buducnosti slovenskeho pozemneho hokeja. Mladeznicka reprezentacia pomaha vytvarat zakladnu pre rast zienskeho hokeja na Slovensku a motivuje dalsie dievcata, aby sa tomuto sportu venovali.
+            Investícia do mladých hráčok je investícia do budúcnosti slovenského pozemného hokeja. Mládežnícka reprezentácia pomáha vytvárať základňu pre rast ženského hokeja na Slovensku a motivuje ďalšie dievčatá, aby sa tomuto športu venovali.
           </p>
         </div>
 
         <div className="mt-6">
           <Link href="/reprezentacia" className="text-[#012d74] hover:underline" style={{ fontSize: "14px" }}>
-            &#8592; Spat na prehlad reprezentacii
+            &#8592; Späť na prehľad reprezentácií
           </Link>
         </div>
       </div>
