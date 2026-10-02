@@ -15,11 +15,10 @@ async function getDashboardData() {
   const now = new Date().toISOString();
   const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString();
 
-  const [articles, allMatches, teams, videos, partners] = await Promise.allSettled([
-    supabase.from("articles").select("id, status, title, category, published_at, updated_at").order("updated_at", { ascending: false }).limit(8),
-    supabase.from("matches").select("*, home_team:teams!matches_home_team_id_fkey(name, short_name), away_team:teams!matches_away_team_id_fkey(name, short_name)").order("match_date", { ascending: false }).limit(30),
-    supabase.from("teams").select("id", { count: "exact" }),
-    supabase.from("videos").select("id", { count: "exact" }),
+  const [articles, allMatches, matchCount, partners] = await Promise.allSettled([
+    supabase.from("articles").select("id, status, title, category, published_at, updated_at, site").order("updated_at", { ascending: false }).limit(12),
+    supabase.from("matches").select("*").eq("site", "szph").order("date", { ascending: false }).limit(50),
+    supabase.from("matches").select("id", { count: "exact" }).eq("site", "szph"),
     supabase.from("partners").select("id, name, logo_url, tier, url").order("sort_order"),
   ]);
 
@@ -27,28 +26,34 @@ async function getDashboardData() {
 
   // Find overdue matches: scheduled, started 2h+ ago, no score
   const overdueMatches = matchesData.filter((m: any) =>
-    m.status === "scheduled" && m.match_date < twoHoursAgo
+    m.status === "scheduled" && m.date < twoHoursAgo
   );
 
   // Upcoming matches
   const upcomingMatches = matchesData.filter((m: any) =>
-    m.status === "scheduled" && m.match_date >= now
-  ).sort((a: any, b: any) => new Date(a.match_date).getTime() - new Date(b.match_date).getTime());
+    m.status === "scheduled" && m.date >= now
+  ).sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   // Recent finished
   const recentFinished = matchesData.filter((m: any) =>
     m.status === "finished"
   ).slice(0, 5);
 
+  // Count unique teams from matches
+  const teamNames = new Set<string>();
+  matchesData.forEach((m: any) => {
+    if (m.home_team) teamNames.add(m.home_team);
+    if (m.away_team) teamNames.add(m.away_team);
+  });
+
   return {
     articles: articles.status === "fulfilled" ? (articles.value.data ?? []) : [],
     overdueMatches,
     upcomingMatches: upcomingMatches.slice(0, 8),
     recentFinished,
-    teamCount: teams.status === "fulfilled" ? (teams.value.count ?? 0) : 0,
-    videoCount: videos.status === "fulfilled" ? (videos.value.count ?? 0) : 0,
+    teamCount: teamNames.size,
     partners: partners.status === "fulfilled" ? (partners.value.data ?? []) : [],
-    totalMatches: matchesData.length,
+    totalMatches: matchCount.status === "fulfilled" ? (matchCount.value.count ?? 0) : 0,
   };
 }
 
@@ -68,12 +73,11 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Stats */}
-      <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="grid gap-3 grid-cols-2 sm:grid-cols-4">
         {[
           { label: "Článkov", value: publishedCount, color: "#016fb4", href: "/admin/clanky" },
           { label: "Zápasov", value: data.totalMatches, color: "#012d74", href: "/admin/zapasy" },
           { label: "Tímov", value: data.teamCount, color: "#34d399", href: "/admin/timy" },
-          { label: "Videí", value: data.videoCount, color: "#a78bfa", href: "/admin/videa" },
           { label: "Partnerov", value: data.partners.length, color: "#f59e0b", href: "/admin/partneri" },
         ].map((stat) => (
           <Link key={stat.label} href={stat.href} className="rounded-xl p-4 hover:bg-gray-50 transition-colors" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
@@ -97,9 +101,9 @@ export default async function AdminDashboard() {
               <div key={m.id} className="flex items-center gap-3 bg-white rounded-lg p-3" style={{ border: "1px solid rgba(220,38,38,0.12)" }}>
                 <div className="flex-1 min-w-0">
                   <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
-                    {m.home_team?.short_name || m.home_team?.name || "?"} vs {m.away_team?.short_name || m.away_team?.name || "?"}
+                    {m.home_short || m.home_team || "?"} vs {m.away_short || m.away_team || "?"}
                   </p>
-                  <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{formatDate(m.match_date)} · {formatTime(m.match_date)}</p>
+                  <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{formatDate(m.date)} · {formatTime(m.date)}</p>
                 </div>
                 <InlineScore matchId={m.id} homeScore={m.home_score} awayScore={m.away_score} status={m.status} />
                 <Link href={`/admin/zapasy/${m.id}`} className="shrink-0 rounded-lg bg-red-500 px-3 py-1.5 text-xs font-bold text-white hover:bg-red-600 transition-colors">
@@ -135,12 +139,12 @@ export default async function AdminDashboard() {
                 {data.upcomingMatches.map((m: any) => (
                   <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded-lg p-2.5 hover:bg-gray-50 transition-colors">
                     <div className="shrink-0 text-[#94a3b8]" style={{ fontSize: "11px", width: "70px" }}>
-                      <p className="font-bold">{formatDate(m.match_date)}</p>
-                      <p>{formatTime(m.match_date)}</p>
+                      <p className="font-bold">{formatDate(m.date)}</p>
+                      <p>{formatTime(m.date)}</p>
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
-                        {m.home_team?.short_name || m.home_team?.name || "?"} vs {m.away_team?.short_name || m.away_team?.name || "?"}
+                        {m.home_short || m.home_team || "?"} vs {m.away_short || m.away_team || "?"}
                       </p>
                       {m.venue && <p className="text-[#94a3b8] truncate" style={{ fontSize: "10px" }}>{m.venue}</p>}
                     </div>
@@ -164,11 +168,11 @@ export default async function AdminDashboard() {
                 {data.recentFinished.map((m: any) => (
                   <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex items-center gap-3 rounded-lg p-2.5 hover:bg-gray-50 transition-colors">
                     <div className="shrink-0 text-[#94a3b8]" style={{ fontSize: "11px", width: "70px" }}>
-                      <p className="font-bold">{formatDate(m.match_date)}</p>
+                      <p className="font-bold">{formatDate(m.date)}</p>
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
-                        {m.home_team?.short_name || m.home_team?.name || "?"} vs {m.away_team?.short_name || m.away_team?.name || "?"}
+                        {m.home_short || m.home_team || "?"} vs {m.away_short || m.away_team || "?"}
                       </p>
                     </div>
                     <div className="shrink-0 flex items-center gap-1 font-bold" style={{ fontSize: "14px" }}>
