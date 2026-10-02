@@ -618,46 +618,54 @@ export default async function SzphHome() {
               </a>
             </div>
 
-            {/* Pravý — thumbnail s play overlay */}
-            <a
-              href="https://www.youtube.com/watch?v=WoHqCQIVHm4"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden block"
-              style={{ borderRadius: "3px" }}
-            >
-              <Image
-                src="/images/podcast.webp"
-                alt="SZPH Podcast"
-                width={686}
-                height={386}
-                className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.04]"
-                sizes="(max-width: 768px) 100vw, 55vw"
-              />
-              {/* Tmavý overlay */}
-              <div className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-60"
-                style={{ background: "rgba(3,15,34,0.45)" }} />
-              {/* Play button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div
-                  className="flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
-                  style={{ width: "64px", height: "64px", background: "#d80027", boxShadow: "0 0 0 12px rgba(216,0,39,0.2)" }}
-                >
-                  <svg className="h-6 w-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+            {/* Pravý — TV style thumbnail */}
+            <div className="flex flex-col items-center">
+              <a
+                href="https://www.youtube.com/watch?v=WoHqCQIVHm4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden block w-full"
+                style={{ borderRadius: "16px 16px 0 0", border: "3px solid rgba(255,255,255,0.12)", borderBottom: "none" }}
+              >
+                <Image
+                  src="/images/podcast.webp"
+                  alt="SZPH Podcast"
+                  width={686}
+                  height={386}
+                  className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.04]"
+                  sizes="(max-width: 768px) 100vw, 55vw"
+                />
+                {/* Tmavý overlay */}
+                <div className="absolute inset-0 transition-opacity duration-300 group-hover:opacity-60"
+                  style={{ background: "rgba(3,15,34,0.45)" }} />
+                {/* Play button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className="flex items-center justify-center rounded-full transition-all duration-300 group-hover:scale-110"
+                    style={{ width: "64px", height: "64px", background: "#d80027", boxShadow: "0 0 0 12px rgba(216,0,39,0.2)" }}
+                  >
+                    <svg className="h-6 w-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
                 </div>
+                {/* YouTube badge */}
+                <div className="absolute bottom-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded"
+                  style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)" }}>
+                  <svg className="h-3.5 w-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
+                    <path fill="#051937" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
+                  </svg>
+                  <span className="font-bold text-white" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>YOUTUBE</span>
+                </div>
+              </a>
+              {/* TV stand */}
+              <div className="flex flex-col items-center">
+                <div style={{ width: "60%", height: "6px", background: "rgba(255,255,255,0.12)", borderRadius: "0 0 4px 4px" }} />
+                <div style={{ width: "4px", height: "16px", background: "rgba(255,255,255,0.1)" }} />
+                <div style={{ width: "80px", height: "4px", background: "rgba(255,255,255,0.08)", borderRadius: "2px" }} />
               </div>
-              {/* YouTube badge */}
-              <div className="absolute bottom-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded"
-                style={{ background: "rgba(0,0,0,0.6)", backdropFilter: "blur(8px)" }}>
-                <svg className="h-3.5 w-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
-                  <path fill="#051937" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
-                </svg>
-                <span className="font-bold text-white" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>YOUTUBE</span>
-              </div>
-            </a>
+            </div>
 
           </div>
         </div>
