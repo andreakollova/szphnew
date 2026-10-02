@@ -2,9 +2,9 @@ export default function AdminRootLayout({ children }: { children: React.ReactNod
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
-        header[class*="fixed"] { display: none !important; }
-        div[class*="z-[60]"] { display: none !important; }
-        div[class*="md:hidden"][class*="z-[60]"] { display: none !important; }
+        header { display: none !important; }
+        .mobile-fixed-header { display: none !important; }
+        nav[class*="md:hidden"] { display: none !important; }
         body > main { padding-top: 0 !important; }
         footer { display: none !important; }
       `}} />

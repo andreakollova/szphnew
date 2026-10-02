@@ -16,6 +16,7 @@ const articleSchema = z.object({
   excerpt: z.string().optional(),
   content: z.string().optional(),
   cover_image_url: z.string().url("Zadajte platnú URL adresu").optional().or(z.literal("")),
+  video_url: z.string().url("Zadajte platnú URL adresu").optional().or(z.literal("")),
   category: z.enum(["novinky", "reprezentacia", "kluby", "oznamy"]),
   visible_on: z.enum(["fieldhockey", "szph", "both"]),
   status: z.enum(["draft", "published"]),
@@ -50,6 +51,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
       excerpt:         article?.excerpt ?? "",
       content:         article?.content ?? "",
       cover_image_url: article?.cover_image_url ?? "",
+      video_url:       (article as any)?.video_url ?? "",
       category:        article?.category ?? "novinky",
       visible_on:      article?.visible_on ?? "both",
       status:          article?.status ?? "draft",
@@ -99,6 +101,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
       const payload = {
         ...values,
         cover_image_url: coverUrl || null,
+        video_url: values.video_url || null,
         published_at:
           values.status === "published"
             ? (article?.published_at ?? new Date().toISOString())
@@ -204,6 +207,11 @@ export function ArticleForm({ article }: ArticleFormProps) {
                 </button>
               </div>
             )}
+            <div className="mb-4">
+              <label className="field-label">Video URL (YouTube)</label>
+              <input {...register("video_url")} className="field-input" placeholder="https://youtube.com/watch?v=..." />
+              {errors.video_url && <p className="field-error">{errors.video_url.message}</p>}
+            </div>
             <input
               type="file"
               accept="image/*"

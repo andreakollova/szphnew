@@ -302,17 +302,30 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
 
 export function MatchCenter({ matches, className }: MatchCenterProps) {
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
-  const [activeSection, setActiveSection] = useState<"liga" | "reprezentacia">("liga");
+  const [activeSection, setActiveSection] = useState<"all" | "liga" | "reprezentacia">("all");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [page, setPage] = useState(0);
   const PAGE_SIZE = 100;
 
   // Split by liga vs reprezentácia
-  // Reprezentácia = SVK matches that are NOT Czech league
   const isRep = (m: DbMatch) => (m.home_short === "SVK" || m.away_short === "SVK") && !m.league?.includes("ČESKÁ");
-  const ligaMatches = matches.filter(m => !isRep(m));
-  const repMatches = matches.filter(m => isRep(m));
 
-  const currentMatches = activeSection === "liga" ? ligaMatches : repMatches;
+  // Category detection from league name
+  const getCategory = (m: DbMatch) => {
+    const l = (m.league || "").toLowerCase();
+    if (l.includes("ženy") || l.includes("women") || l.includes("girls")) return "zeny";
+    if (l.includes("u18") || l.includes("u16") || l.includes("u14") || l.includes("u12")) return "mladez";
+    if (l.includes("muž") || l.includes("men") || l.includes("boys")) return "muzi";
+    return "muzi";
+  };
+
+  let currentMatches = activeSection === "liga" ? matches.filter(m => !isRep(m))
+    : activeSection === "reprezentacia" ? matches.filter(m => isRep(m))
+    : matches;
+
+  if (categoryFilter !== "all") {
+    currentMatches = currentMatches.filter(m => getCategory(m) === categoryFilter);
+  }
   const now = new Date().getTime();
 
   const allPast = currentMatches
@@ -333,9 +346,10 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
       <div className="flex flex-col gap-3 mb-6">
         {/* Riadok 1: Liga / Reprezentácia + Nasledujúce/Minulé */}
         <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
-          {/* Liga / Reprezentácia */}
+          {/* Všetky / Liga / Reprezentácia */}
           <div className="flex items-center overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
             {([
+              { key: "all" as const, label: "Všetky", logo: "" },
               { key: "liga" as const, label: "Liga", logo: "/images/logo-liga.webp" },
               { key: "reprezentacia" as const, label: "Reprezentácia", logo: "/images/logo-reprezentacia.webp" },
             ]).map((tab, i) => (
@@ -343,26 +357,30 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
                 key={tab.key}
                 onClick={() => { setActiveSection(tab.key); setPage(0); }}
                 className={cn(
-                  "flex items-center gap-1.5 sm:gap-2.5 px-3 sm:px-5 py-2 sm:py-2.5 font-bold uppercase transition-all",
+                  "flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-2 sm:py-2.5 font-bold uppercase transition-all",
                   i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
                   activeSection === tab.key ? "text-white" : "text-[#64748b] hover:text-[#051937]"
                 )}
                 style={{
-                  fontSize: "10px", letterSpacing: "0.1em",
+                  fontSize: "9px", letterSpacing: "0.08em",
                   background: activeSection === tab.key ? "#012d74" : "transparent",
                 }}
               >
-                <div className="relative shrink-0" style={{ width: 22, height: 22 }}>
-                  <Image src={tab.logo} alt="" fill className="object-contain" sizes="22px" style={activeSection === tab.key ? { filter: "brightness(0) invert(1)" } : undefined} />
-                </div>
-                <div style={{ width: "1px", height: "16px", background: activeSection === tab.key ? "rgba(255,255,255,0.3)" : "rgba(1,45,116,0.12)" }} />
+                {tab.logo && (
+                  <>
+                    <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
+                      <Image src={tab.logo} alt="" fill className="object-contain" sizes="18px" style={activeSection === tab.key ? { filter: "brightness(0) invert(1)" } : undefined} />
+                    </div>
+                    <div style={{ width: "1px", height: "14px", background: activeSection === tab.key ? "rgba(255,255,255,0.3)" : "rgba(1,45,116,0.12)" }} />
+                  </>
+                )}
                 {tab.label}
               </button>
             ))}
           </div>
 
-          {/* Nasledujúce / Minulé + šípky */}
-          <div className="flex items-center gap-3">
+          {/* Program / Výsledky + kategória + šípky */}
+          <div className="flex items-center gap-2 sm:gap-3">
           {/* Šípky */}
           {totalPages > 1 && (
             <div className="flex items-center gap-1">
@@ -390,21 +408,32 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
             </div>
           )}
           <div className="flex items-center shrink-0 overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
-            {([{ key: "upcoming", label: "Nasledujúce" }, { key: "past", label: "Minulé" }] as const).map((tab, i) => (
+            {([{ key: "upcoming", label: "Program" }, { key: "past", label: "Výsledky" }] as const).map((tab, i) => (
               <button
                 key={tab.key}
                 onClick={() => { setActiveTab(tab.key); setPage(0); }}
                 className={cn(
-                  "px-3 sm:px-5 py-2 sm:py-2.5 font-bold uppercase transition-all",
+                  "px-3 sm:px-4 py-2 sm:py-2.5 font-bold uppercase transition-all",
                   i > 0 && "border-l border-[rgba(1,45,116,0.12)]",
                   activeTab === tab.key ? "bg-[#012d74] text-white" : "text-[#64748b] hover:text-[#051937]"
                 )}
-                style={{ fontSize: "10px", letterSpacing: "0.1em" }}
+                style={{ fontSize: "9px", letterSpacing: "0.08em" }}
               >
                 {tab.label}
               </button>
             ))}
           </div>
+          <select
+            value={categoryFilter}
+            onChange={(e) => { setCategoryFilter(e.target.value); setPage(0); }}
+            className="font-bold uppercase text-[#051937] bg-white px-3 py-2 sm:py-2.5 cursor-pointer outline-none shrink-0"
+            style={{ fontSize: "9px", letterSpacing: "0.08em", border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px", appearance: "none", backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 8px center", paddingRight: "24px" }}
+          >
+            <option value="all">Všetci</option>
+            <option value="muzi">Muži</option>
+            <option value="zeny">Ženy</option>
+            <option value="mladez">Mládež</option>
+          </select>
           </div>
         </div>
 
@@ -413,7 +442,7 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
       {/* Zápasy grid s paginovaním */}
       {list.length === 0 ? (
         <div className="py-12 text-center text-[#64748b] font-bold" style={{ fontSize: "13px" }}>
-          {activeTab === "upcoming" ? "Žiadne nasledujúce zápasy" : "Žiadne minulé zápasy"}
+          {activeTab === "upcoming" ? "Žiadne plánované zápasy" : "Žiadne výsledky"}
         </div>
       ) : (
       <AnimatePresence mode="wait">

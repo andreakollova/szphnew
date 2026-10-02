@@ -148,6 +148,35 @@ const getData = unstable_cache(
   { revalidate: 300 }
 );
 
+function ArticleCard({ article }: { article: any }) {
+  return (
+    <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white shrink-0" style={{ borderRadius: "10px", border: "1px solid rgba(1,45,116,0.06)" }}>
+      <div className="relative overflow-hidden" style={{ height: "160px" }}>
+        {article.cover_image_url ? (
+          <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+        ) : (
+          <div className="w-full h-full bg-[#e2e8f0]" />
+        )}
+        {article.video_url && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="flex items-center justify-center rounded-full bg-white/90 shadow-lg" style={{ width: 36, height: 36 }}>
+              <svg className="h-3.5 w-3.5 text-[#d00027] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className="px-4 py-3">
+        <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
+          / {article.category}
+        </span>
+        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "13px" }}>
+          {article.title}
+        </h3>
+      </div>
+    </Link>
+  );
+}
+
 function CardSection({ title, href, articles, cols = 3 }: { title: string; href: string; articles: any[]; cols?: number }) {
   const colsClass = cols === 4
     ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
@@ -169,25 +198,20 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
           </svg>
         </Link>
       </div>
-      <div className={`grid gap-4 ${colsClass}`}>
+
+      {/* Mobile: horizontal carousel */}
+      <div className="flex gap-3 overflow-x-auto pb-2 sm:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
         {articles.map((article) => (
-          <Link key={article.id} href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
-            <div className="relative overflow-hidden" style={{ height: "180px" }}>
-              {article.cover_image_url ? (
-                <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-              ) : (
-                <div className="w-full h-full bg-[#e2e8f0]" />
-              )}
-            </div>
-            <div className="px-4 py-3.5">
-              <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
-                / {article.category}
-              </span>
-              <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
-                {article.title}
-              </h3>
-            </div>
-          </Link>
+          <div key={article.id} className="snap-start shrink-0" style={{ width: "75%" }}>
+            <ArticleCard article={article} />
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop: grid */}
+      <div className={`hidden sm:grid gap-4 ${colsClass}`}>
+        {articles.map((article) => (
+          <ArticleCard key={article.id} article={article} />
         ))}
       </div>
     </div>
@@ -357,7 +381,27 @@ export default async function SzphHome() {
                       </h2>
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {/* Mobile: carousel */}
+                  <div className="flex gap-3 overflow-x-auto pb-2 sm:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
+                    {[
+                      { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
+                      { title: "Program Olympiáda 2036", image: "/images/pinned-kyselicova.webp", slug: "program-olympiada-2036" },
+                      { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-olympiada-2036.webp", slug: "reportaz-alena-kyselicova" },
+                    ].map((article) => (
+                      <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden snap-start shrink-0" style={{ borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", width: "75%" }}>
+                        <div className="relative overflow-hidden" style={{ height: "150px" }}>
+                          <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <div className="px-4 py-3">
+                          <h3 className="font-bold text-white leading-snug line-clamp-2" style={{ fontSize: "13px" }}>
+                            {article.title}
+                          </h3>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                  {/* Desktop: grid */}
+                  <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 gap-4">
                     {[
                       { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
                       { title: "Program Olympiáda 2036", image: "/images/pinned-kyselicova.webp", slug: "program-olympiada-2036" },
@@ -512,7 +556,7 @@ export default async function SzphHome() {
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
 
-          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[0.85fr_1.55fr] gap-16 xl:gap-28 items-center">
+          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8 md:gap-16 xl:gap-28 items-center">
 
             {/* Ľavý — text */}
             <div>

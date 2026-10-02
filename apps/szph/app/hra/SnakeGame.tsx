@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import { createBrowserSupabaseClient } from "@szph/db/client";
+
+interface LeaderboardEntry { uid: string; name: string; score: number; team: string; gender: string; }
 
 const PLAYER_SPEED = 5.5;
 const MAX_TURN_SPEED = 0.07;
@@ -45,6 +48,10 @@ export function SnakeGame() {
   const [shake, setShake] = useState(0);
   const [goalPopup, setGoalPopup] = useState<{ x: number; y: number; life: number; text: string } | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [myRank, setMyRank] = useState<number | null>(null);
+  const supabaseRef = useRef(createBrowserSupabaseClient());
+  const uidRef = useRef("");
 
   const selectedTeam = TEAMS.find((t) => t.id === teamId) || TEAMS[0];
   const headRef = useRef<Point>({ x: 0, y: 0, angle: -Math.PI / 2, lean: 0 });
@@ -59,6 +66,13 @@ export function SnakeGame() {
   const runFrameRef = useRef(0);
   const isDesktopRef = useRef(false);
 
+  const fetchLeaderboard = useCallback(async () => {
+    try {
+      const { data } = await supabaseRef.current.from("leaderboard").select("uid,name,score,team,gender").order("score", { ascending: false }).limit(10);
+      if (data) setLeaderboard(data);
+    } catch { /* table might not exist yet */ }
+  }, []);
+
   useEffect(() => {
     setMounted(true);
     const w = Math.min(window.innerWidth, 430);
@@ -66,6 +80,13 @@ export function SnakeGame() {
     isDesktopRef.current = window.innerWidth > 430;
     setGameW(w);
     setGameH(h);
+
+    // Persistent user ID
+    let uid = localStorage.getItem("szph_snake_uid");
+    if (!uid) { uid = crypto.randomUUID(); localStorage.setItem("szph_snake_uid", uid); }
+    uidRef.current = uid;
+
+    fetchLeaderboard();
 
     const saved = localStorage.getItem("szph_snake_username");
     if (saved) setUsername(saved);
@@ -86,14 +107,30 @@ export function SnakeGame() {
     foodRef.current = { x: pad + Math.random() * (w - pad * 2), y: 180 + Math.random() * (h - 250) };
   };
 
-  const handleGameOver = useCallback((finalScore: number) => {
+  const handleGameOver = useCallback(async (finalScore: number) => {
     setIsGameOver(true);
     targetRef.current = null;
     if (finalScore > highScore) {
       setHighScore(finalScore);
       localStorage.setItem("szph_snake_highscore", finalScore.toString());
     }
-  }, [highScore]);
+
+    // Save to Supabase leaderboard
+    try {
+      const uid = uidRef.current;
+      const playerName = username.trim() || "Hráč";
+      const { data: existing } = await supabaseRef.current.from("leaderboard").select("score").eq("uid", uid).single();
+      if (!existing || finalScore > existing.score) {
+        await supabaseRef.current.from("leaderboard").upsert({
+          uid, name: playerName, score: finalScore, team: teamId, gender, created_at: new Date().toISOString(),
+        }, { onConflict: "uid" });
+      }
+      // Fetch updated leaderboard + my rank
+      await fetchLeaderboard();
+      const { count } = await supabaseRef.current.from("leaderboard").select("*", { count: "exact", head: true }).gt("score", finalScore);
+      setMyRank((count ?? 0) + 1);
+    } catch { /* ignore if table doesn't exist */ }
+  }, [highScore, username, teamId, gender, fetchLeaderboard]);
 
   const resetGame = () => {
     headRef.current = { x: gameW / 2, y: gameH * 0.7, angle: -Math.PI / 2, lean: 0 };
@@ -386,6 +423,12 @@ export function SnakeGame() {
         {/* Team selection */}
         {showNamePrompt && (
           <div className="absolute inset-0 z-[200] backdrop-blur-md flex items-start justify-center p-4 overflow-y-auto" style={{ paddingTop: "calc(4rem + env(safe-area-inset-top, 0px))", background: "rgba(5,25,55,0.6)" }}>
+            {/* Back button */}
+            <Link href="/" className="absolute left-5 flex items-center gap-1 text-white/40 hover:text-white transition-colors z-[210]" style={{ top: "calc(env(safe-area-inset-top, 16px) + 14px)" }}>
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+              <span className="text-xs font-black uppercase tracking-wider">Späť</span>
+            </Link>
+
             <div className="w-full max-w-sm p-6 rounded-3xl shadow-2xl relative overflow-hidden" style={{ background: "#0e264a", border: "1px solid rgba(255,255,255,0.08)" }}>
               <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl" style={{ background: "rgba(208,0,39,0.1)" }} />
 
@@ -454,10 +497,38 @@ export function SnakeGame() {
         {(isPaused || isGameOver) && !showNamePrompt && (
           <div className="absolute inset-0 z-[160] bg-black/40 backdrop-blur-xl flex flex-col items-center justify-center p-3 text-center" onPointerDown={(e) => e.stopPropagation()}>
             {isGameOver ? (
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center w-full max-w-sm px-4">
                 <h2 className="font-black text-4xl italic tracking-tighter uppercase mb-1" style={{ color: "#d00027", textShadow: "0 0 30px rgba(208,0,39,0.4)" }}>Koniec!</h2>
-                <p className="text-white/60 text-[10px] font-black tracking-[0.5em] italic uppercase mb-6">Skóre: {score}</p>
-                <button onClick={resetGame} className="text-black px-8 py-3 rounded-full font-black text-lg italic tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 uppercase" style={{ background: "#d00027", boxShadow: "0 20px 40px rgba(208,0,39,0.3)" }}>
+                <p className="text-white/60 text-[10px] font-black tracking-[0.5em] italic uppercase mb-1">Skóre: {score}</p>
+                {myRank && <p className="text-white/40 text-[9px] font-black tracking-[0.3em] uppercase mb-4">Pozícia: #{myRank}</p>}
+
+                {/* Leaderboard */}
+                {leaderboard.length > 0 && (
+                  <div className="w-full rounded-2xl p-4 mb-5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <p className="text-[8px] font-black text-white/40 tracking-[0.3em] uppercase text-center mb-3">Rebríček</p>
+                    <div className="space-y-1.5">
+                      {leaderboard.map((r, i) => {
+                        const isMe = r.uid === uidRef.current;
+                        return (
+                          <div key={r.uid} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg" style={{ background: isMe ? "rgba(208,0,39,0.15)" : "rgba(255,255,255,0.03)", border: isMe ? "1px solid rgba(208,0,39,0.3)" : "1px solid transparent" }}>
+                            <span className="font-black italic text-xs w-5 shrink-0" style={{ color: i === 0 ? "#d00027" : "rgba(255,255,255,0.2)" }}>{i + 1}</span>
+                            {TEAM_LOGOS[r.team] && (
+                              <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={TEAM_LOGOS[r.team]} alt="" className="w-3 h-3 object-contain" />
+                              </div>
+                            )}
+                            <span className="font-black italic text-[10px] text-white flex-1 truncate uppercase">{r.name}</span>
+                            <span className="text-[7px] font-black text-white/30 uppercase">{r.gender === "womens" ? "Ž" : "M"}</span>
+                            <span className="font-black italic text-xs text-white shrink-0">{r.score}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                <button onClick={resetGame} className="text-white px-8 py-3 rounded-full font-black text-lg italic tracking-widest hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 uppercase" style={{ background: "#d00027", boxShadow: "0 20px 40px rgba(208,0,39,0.3)" }}>
                   ↺ Hrať znova
                 </button>
                 <Link href="/" className="mt-4 text-white/30 text-[10px] font-black tracking-widest uppercase hover:text-white/60 transition-colors">← Späť na web</Link>

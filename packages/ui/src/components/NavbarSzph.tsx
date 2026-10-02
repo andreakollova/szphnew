@@ -565,7 +565,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
       </div>
 
       {/* ── MOBILE FIXED HEADER — starts at top:0, bg extends under status bar ── */}
-      <div className="fixed inset-x-0 z-[60] flex flex-col md:hidden mobile-fixed-header mobile-header-top">
+      <div className="flex flex-col md:hidden mobile-fixed-header" style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 60 }}>
         {/* Announcement bar — padding-top pushes content below status bar icons */}
         {/* Dark blue zone: safe area + announcement */}
         <div className="mobile-announcement-bar flex items-end justify-center px-4 pb-1.5" style={{ background: "#0e264a" }}>
@@ -586,11 +586,17 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         </div>
         {/* Navbar */}
         <div className="relative flex items-center justify-between px-5" style={{ height: "64px", background: "#ffffff", borderBottom: "1px solid rgba(1,45,116,0.08)" }}>
-          <MobileNotificationButton />
+          <button onClick={() => setMobileOpen(v => !v)}
+            className="flex items-center justify-center h-11 w-11 rounded-full hover:bg-[#051937]/5 transition-colors"
+            aria-label="Menu" aria-expanded={mobileOpen}>
+            <svg className="h-6 w-6 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
           <Link href="/" className="absolute left-1/2 -translate-x-1/2 shrink-0">
             <Image src="/images/logo-szph.webp" alt="SZPH" height={56} width={190} className="h-14 w-auto object-contain" priority />
           </Link>
-          <Link href="/admin/prihlasenie" className="flex items-center justify-center h-11 w-11 rounded-full hover:bg-[#051937]/5 transition-colors" aria-label="Prihlásenie">
+          <Link href="/nastavenia" className="flex items-center justify-center h-11 w-11 rounded-full hover:bg-[#051937]/5 transition-colors" aria-label="Nastavenia">
             <svg className="h-6 w-6 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
             </svg>
@@ -739,92 +745,119 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         </div>
 
         {/* Mobile header is rendered separately above as a fixed block */}
-
-        {/* ── MOBILNE MENU — fullscreen slide-in from right ── */}
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="fixed left-0 right-0 bottom-0 z-[65] md:hidden bg-white overflow-y-auto"
-              style={{ top: "calc(env(safe-area-inset-top, 0px) + " + (announcement ? "92px" : "64px") + ")" }}
-            >
-              <div className="flex flex-col min-h-full px-5 pt-6 pb-8">
-                {/* Nav items */}
-                <div className="flex-1 space-y-1">
-                  {MAIN_NAV.map(item => (
-                    <div key={item.href}>
-                      {item.mega ? (
-                        <button onClick={() => setMobileExpanded(mobileExpanded === item.href ? null : item.href)}
-                          className="flex w-full items-center justify-between py-3 text-[15px] font-bold text-[#051937] transition-colors"
-                          style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
-                          {item.label}
-                          <svg className={cn("h-4 w-4 transition-transform duration-200 text-[#94a3b8]", mobileExpanded === item.href && "rotate-180")}
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </button>
-                      ) : (
-                        <Link href={item.href} onClick={() => setMobileOpen(false)}
-                          className="flex w-full items-center py-3 text-[15px] font-bold text-[#051937] transition-colors"
-                          style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
-                          {item.label}
-                        </Link>
-                      )}
-                      <AnimatePresence>
-                        {item.mega && mobileExpanded === item.href && (
-                          <motion.div initial={{ height: 0 }} animate={{ height: "auto" }}
-                            exit={{ height: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
-                            <div className="py-2 space-y-3">
-                              {item.mega.columns.map(col => (
-                                <div key={col.title}>
-                                  <p className="font-bold uppercase text-[#94a3b8] mb-1.5" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>{col.title}</p>
-                                  <div className="space-y-0.5">
-                                    {col.links.map(link => (
-                                      <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}
-                                        className="flex items-center gap-2.5 py-2 pl-1 text-[14px] text-[#051937]/70 hover:text-[#051937] transition-colors">
-                                        <span className="shrink-0 h-1 w-1 rounded-full bg-[#051937]/20" />
-                                        {link.label}
-                                      </Link>
-                                    ))}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Bottom CTAs */}
-                <div className="pt-6 mt-4 space-y-3" style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
-                  <Link href="/zapasy" onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 text-sm font-bold text-white transition-all hover:brightness-110"
-                    style={{ background: "#012d74" }}>
-                    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
-                      <circle cx="12" cy="12" r="9" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 8.5l5 3.5-5 3.5V8.5z" />
-                    </svg>
-                    Zápasové centrum
-                  </Link>
-                  <Link href="/admin/prihlasenie" onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 text-sm font-bold text-[#051937] transition-all"
-                    style={{ border: "1.5px solid rgba(1,45,116,0.15)" }}>
-                    <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                    </svg>
-                    Prihlásenie
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </header>
+
+      {/* ── MOBILNE MENU — fullscreen slide-in from right (OUTSIDE header so it's visible on mobile) ── */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="fixed left-0 right-0 bottom-0 md:hidden bg-white overflow-y-auto"
+            style={{ top: 0, zIndex: 90, paddingTop: "env(safe-area-inset-top, 50px)" }}
+          >
+            {/* Header: logo + close */}
+            <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
+              <Image src="/images/logo-szph.webp" alt="SZPH" height={44} width={150} className="h-11 w-auto object-contain" />
+              <button onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center h-10 w-10 rounded-full bg-[#051937]/5">
+                <svg className="h-5 w-5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="flex flex-col min-h-full px-5 pt-4 pb-8">
+              {/* Nav items */}
+              <div className="flex-1 space-y-1">
+                {MAIN_NAV.map(item => (
+                  <div key={item.href}>
+                    {item.mega ? (
+                      <button onClick={() => setMobileExpanded(mobileExpanded === item.href ? null : item.href)}
+                        className="flex w-full items-center justify-between py-3 text-[15px] font-bold text-[#051937] transition-colors"
+                        style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
+                        {item.label}
+                        <svg className={cn("h-4 w-4 transition-transform duration-200 text-[#94a3b8]", mobileExpanded === item.href && "rotate-180")}
+                          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    ) : (
+                      <Link href={item.href} onClick={() => setMobileOpen(false)}
+                        className="flex w-full items-center py-3 text-[15px] font-bold text-[#051937] transition-colors"
+                        style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
+                        {item.label}
+                      </Link>
+                    )}
+                    <AnimatePresence>
+                      {item.mega && mobileExpanded === item.href && (
+                        <motion.div initial={{ height: 0 }} animate={{ height: "auto" }}
+                          exit={{ height: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
+                          <div className="py-2 space-y-3">
+                            {item.mega.columns.map(col => (
+                              <div key={col.title}>
+                                <p className="font-bold uppercase text-[#94a3b8] mb-1.5" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>{col.title}</p>
+                                <div className="space-y-0.5">
+                                  {col.links.map(link => (
+                                    <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}
+                                      className="flex items-center gap-2.5 py-2 pl-1 text-[14px] text-[#051937]/70 hover:text-[#051937] transition-colors">
+                                      <span className="shrink-0 h-1 w-1 rounded-full bg-[#051937]/20" />
+                                      {link.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
+              </div>
+
+              {/* Bottom CTAs */}
+              <div className="pt-6 mt-4 space-y-3" style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
+                <Link href="/projekty/hokejova-akademia" onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 text-sm font-bold text-white transition-all hover:brightness-110"
+                  style={{ background: "#012d74" }}>
+                  <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
+                  </svg>
+                  Vzdelávacia platforma
+                </Link>
+                <Link href="/zapasy" onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 text-sm font-bold text-white transition-all hover:brightness-110"
+                  style={{ background: "#d00027" }}>
+                  <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
+                    <circle cx="12" cy="12" r="9" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 8.5l5 3.5-5 3.5V8.5z" />
+                  </svg>
+                  Zápasové centrum
+                </Link>
+                <Link href="/nastavenia" onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 text-sm font-bold text-[#051937] transition-all"
+                  style={{ border: "1.5px solid rgba(1,45,116,0.15)" }}>
+                  <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 010 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 010-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Nastavenia
+                </Link>
+                <Link href="/admin/prihlasenie" onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 text-sm font-bold text-[#94a3b8] transition-all">
+                  <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                  </svg>
+                  Admin prihlásenie
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── MEGA MENU (mimo header aby neprekrýval) ── */}
       <AnimatePresence>

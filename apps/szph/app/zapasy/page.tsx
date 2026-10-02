@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import { createClient } from "@supabase/supabase-js";
 import { MatchCenter } from "@szph/ui";
 import { TournamentCarousel } from "./TournamentCarousel";
+import { WeeklyMatches } from "./WeeklyMatches";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -48,8 +49,13 @@ export default async function SzphZapasyPage() {
         {/* Najbližšie turnaje — carousel on mobile, grid on desktop */}
         <TournamentCarousel tournaments={TOURNAMENTS} />
 
-        {/* MatchCenter s prepínačmi */}
-        <MatchCenter matches={matches as any} />
+        {/* Mobile: weekly view */}
+        <WeeklyMatches matches={matches as any} />
+
+        {/* Desktop: full MatchCenter */}
+        <div className="hidden sm:block">
+          <MatchCenter matches={matches as any} />
+        </div>
       </div>
     </div>
   );

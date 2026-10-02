@@ -32,7 +32,19 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020817] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-[#020817] flex items-center justify-center p-4 relative">
+      {/* Back button */}
+      <button
+        onClick={() => router.back()}
+        className="absolute left-4 top-4 flex items-center gap-1.5 text-white/40 hover:text-white transition-colors"
+        style={{ top: "calc(env(safe-area-inset-top, 16px) + 12px)" }}
+      >
+        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span className="text-sm font-semibold">Späť</span>
+      </button>
+
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
           <Image
