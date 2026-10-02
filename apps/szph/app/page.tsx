@@ -687,42 +687,21 @@ export default async function SzphHome() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          ESHOP BANNER
+          ESHOP BANNER — mobile app only
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#f8f9fa" }} className="px-4 sm:px-6 lg:px-10 xl:px-16 pb-6 md:pb-10">
+      <section style={{ background: "#f8f9fa" }} className="px-4 pb-4 md:hidden">
         <Link
           href="/eshop"
-          className="group relative block overflow-hidden max-w-[1600px] mx-auto"
-          style={{ borderRadius: "16px", background: "#051937" }}
+          className="group flex items-center justify-between bg-white px-4 py-3.5 active:bg-gray-50 transition-colors max-w-[1600px] mx-auto"
+          style={{ borderRadius: "14px", border: "1px solid rgba(1,45,116,0.06)" }}
         >
-          <div className="flex items-center justify-between px-6 sm:px-10 py-6 sm:py-8">
-            <div className="flex-1">
-              <p className="font-bold uppercase text-[#0078fd] mb-1" style={{ fontSize: "10px", letterSpacing: "0.12em" }}>Oficiálny merch</p>
-              <h3 className="font-garet font-bold italic text-white mb-2" style={{ fontSize: "clamp(1.2rem, 3vw, 1.8rem)" }}>
-                E-Shop SZPH
-              </h3>
-              <p className="text-white/60 hidden sm:block" style={{ fontSize: "13px", maxWidth: 400 }}>
-                Mikiny, tričká, vetrovky a ďalšie produkty s logom SZPH
-              </p>
-              <span className="inline-flex items-center gap-2 mt-3 font-bold text-white uppercase group-hover:gap-3 transition-all" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
-                Nakupovať
-                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </span>
-            </div>
-            <div className="flex items-center gap-3 shrink-0">
-              <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden">
-                <Image src="/images/eshop/mikina-modra-1.webp" alt="Mikina" fill className="object-cover" sizes="120px" />
-              </div>
-              <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden hidden sm:block">
-                <Image src="/images/eshop/tricko-1.webp" alt="Tričko" fill className="object-cover" sizes="120px" />
-              </div>
-              <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden hidden md:block">
-                <Image src="/images/eshop/vetrovka-1.webp" alt="Vetrovka" fill className="object-cover" sizes="120px" />
-              </div>
-            </div>
+          <div>
+            <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Oficiálny e-shop</p>
+            <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>Dresy, merch a vybavenie</p>
           </div>
+          <svg className="h-4 w-4 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
         </Link>
       </section>
 
