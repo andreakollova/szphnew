@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const HERO_IMAGES = [
-  { src: "/images/hero-banner3.webp", pos: "center 50%" },
-  { src: "/images/hero-banner3b.webp", pos: "center 40%" },
-  { src: "/images/hero-banner7.webp", pos: "center 40%" },
-  { src: "/images/hero-banner-blue-player.webp", pos: "center 50%" },
-  { src: "/images/hero-banner2.webp", pos: "center 50%" },
+  { src: "/images/hero-banner3.webp", mobilePos: "center 50%", desktopPos: "center 60%" },
+  { src: "/images/hero-banner3b.webp", mobilePos: "center 40%", desktopPos: "center 55%" },
+  { src: "/images/hero-banner7.webp", mobilePos: "center 40%", desktopPos: "center 55%" },
+  { src: "/images/hero-banner-blue-player.webp", mobilePos: "center 50%", desktopPos: "center 60%" },
+  { src: "/images/hero-banner2.webp", mobilePos: "center 50%", desktopPos: "center 60%" },
 ];
 
 interface NextMatch {
@@ -54,7 +54,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
             fill
             className="object-cover"
             style={{
-              objectPosition: img.pos,
+              objectPosition: img.mobilePos,
               opacity: current === i ? 1 : 0,
               transition: "opacity 1s ease-in-out",
             }}
@@ -154,7 +154,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
             fill
             className="object-cover"
             style={{
-              objectPosition: img.pos,
+              objectPosition: img.desktopPos,
               opacity: current === i ? 1 : 0,
               transition: "opacity 1s ease-in-out",
             }}
