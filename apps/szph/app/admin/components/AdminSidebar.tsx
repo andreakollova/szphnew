@@ -91,7 +91,7 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
                 </p>
               )}
               <ul className="space-y-0.5">
-                {group.items.map((item) => {
+                {group.items.map((item: any) => {
                   const isActive = item.href === "/admin" ? pathname === "/admin" : pathname.startsWith(item.href);
                   return (
                     <li key={item.href}>
