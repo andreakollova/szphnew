@@ -433,7 +433,7 @@ export default async function SzphHome() {
 
             {/* ── Rýchle Odkazy + Posledné zápasy rep. — sticky (hidden on mobile) ── */}
             <div
-              className="hidden lg:flex pl-5 xl:pl-8 pt-1 self-start sticky top-[120px] flex-col gap-5"
+              className="hidden lg:flex pl-5 xl:pl-8 pt-1 self-end sticky bottom-[20px] flex-col gap-5"
               style={{ borderLeft: "1px solid rgba(1,45,116,0.08)" }}
             >
               <RychleOdkazy />
