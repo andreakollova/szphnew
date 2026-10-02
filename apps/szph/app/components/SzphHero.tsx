@@ -498,11 +498,11 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
               {/* Venue with pin */}
               {nextMatch.venue && (
                 <div className="flex items-center justify-center gap-1.5" style={{ margin: "clamp(6px, 0.6vw, 12px) clamp(14px, 1.4vw, 28px) 0" }}>
-                  <svg className="shrink-0 text-[#94a3b8]" style={{ width: "clamp(10px, 0.8vw, 14px)", height: "clamp(10px, 0.8vw, 14px)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="shrink-0 text-[#012d74]" style={{ width: "clamp(10px, 0.8vw, 14px)", height: "clamp(10px, 0.8vw, 14px)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z" />
                   </svg>
-                  <span className="font-semibold text-[#64748b]" style={{ fontSize: "clamp(7px, 0.6vw, 11px)" }}>{nextMatch.venue}</span>
+                  <span className="font-semibold text-[#012d74]" style={{ fontSize: "clamp(7px, 0.6vw, 11px)" }}>{nextMatch.venue}</span>
                 </div>
               )}
 

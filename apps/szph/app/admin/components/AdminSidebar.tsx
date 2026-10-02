@@ -17,6 +17,7 @@ const ALL_NAV_ITEMS = [
   },
   {
     group: "Evidencia",
+    groupHref: "/evidencia",
     items: [
       { label: "Články", href: "/admin/clanky", icon: "article", roles: ["superadmin", "editor"] },
       { label: "Stránky", href: "/admin/stranky", icon: "page", roles: ["superadmin"] },
@@ -76,11 +77,17 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
             <p className="mt-1 text-[10px] text-[#94a3b8]">Admin panel</p>
           </div>
 
-          {navItems.map((group) => (
+          {navItems.map((group: any) => (
             <div key={group.group}>
-              <p className="mb-1 px-2 text-[10px] font-semibold uppercase tracking-widest text-[#051937]">
-                {group.group}
-              </p>
+              {group.groupHref ? (
+                <Link href={group.groupHref} className="mb-1 px-2 text-[11px] font-bold text-[#051937] hover:text-[#012d74] transition-colors block">
+                  {group.group}
+                </Link>
+              ) : (
+                <p className="mb-1 px-2 text-[10px] font-semibold uppercase tracking-widest text-[#051937]">
+                  {group.group}
+                </p>
+              )}
               <ul className="space-y-0.5">
                 {group.items.map((item) => {
                   const isActive = item.href === "/admin" ? pathname === "/admin" : pathname.startsWith(item.href);
