@@ -668,7 +668,7 @@ export default async function SzphHome() {
               <div className="flex flex-col items-center">
                 <div style={{ width: "60%", height: "6px", background: "#0e264a", borderRadius: "0 0 4px 4px" }} />
                 <div style={{ width: "4px", height: "16px", background: "#0e264a" }} />
-                <div style={{ width: "80px", height: "4px", background: "rgba(255,255,255,0.1)", borderRadius: "2px" }} />
+                <div style={{ width: "80px", height: "4px", background: "#0e264a", borderRadius: "2px" }} />
               </div>
             </div>
 
