@@ -17,6 +17,8 @@ const CLUBS = [
 interface UserPrefs {
   name: string;
   club: string;
+  kategoria: string;
+  mesto: string;
   notifReprezentacia: boolean;
   notifMojKlub: boolean;
   notifDospeli: boolean;
@@ -24,15 +26,28 @@ interface UserPrefs {
   notifVsetky: boolean;
 }
 
+const MESTA = ["Bratislava", "Šenkvice", "Zlaté Moravce", "Nová Dubnica", "Košice", "Banská Bystrica", "Žilina", "Trnava", "Nitra", "Prešov"];
+
 const DEFAULT_PREFS: UserPrefs = {
   name: "",
   club: "none",
+  kategoria: "none",
+  mesto: "",
   notifReprezentacia: true,
   notifMojKlub: true,
   notifDospeli: true,
   notifMladez: false,
   notifVsetky: false,
 };
+
+const CATEGORIES = [
+  { id: "none", name: "Žiadna (zobrazí program na týždeň)" },
+  { id: "muzi", name: "Muži" },
+  { id: "zeny", name: "Ženy" },
+  { id: "U18", name: "U18" },
+  { id: "U14", name: "U14" },
+  { id: "U12", name: "U12" },
+];
 
 function Toggle({ enabled, onChange, label, desc }: { enabled: boolean; onChange: () => void; label: string; desc?: string }) {
   return (
@@ -146,6 +161,46 @@ export default function NastaveniaPage() {
                   <span className="font-bold text-[#051937] truncate" style={{ fontSize: club.id === "none" ? "12px" : "11px" }}>
                     {club.id === "none" ? "Žiadny" : club.name.split(" ").slice(-1)[0]}
                   </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <label className="block text-[#94a3b8] font-semibold mb-2" style={{ fontSize: "11px" }}>Moja kategória</label>
+            <div className="grid grid-cols-2 gap-2">
+              {CATEGORIES.map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => update("kategoria", cat.id)}
+                  className="flex items-center gap-2 px-3 py-2.5 rounded-xl transition-all text-left"
+                  style={{
+                    background: prefs.kategoria === cat.id ? "rgba(1,45,116,0.06)" : "transparent",
+                    border: prefs.kategoria === cat.id ? "2px solid #012d74" : "1px solid rgba(1,45,116,0.06)",
+                  }}
+                >
+                  <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>{cat.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-4">
+            <label className="block text-[#94a3b8] font-semibold mb-2" style={{ fontSize: "11px" }}>Moje mesto (počasie)</label>
+            <div className="flex flex-wrap gap-2">
+              {MESTA.map(mesto => (
+                <button
+                  key={mesto}
+                  onClick={() => update("mesto", prefs.mesto === mesto ? "" : mesto)}
+                  className="px-3 py-1.5 rounded-full font-bold transition-all"
+                  style={{
+                    fontSize: "11px",
+                    background: prefs.mesto === mesto ? "#012d74" : "transparent",
+                    color: prefs.mesto === mesto ? "#fff" : "#051937",
+                    border: prefs.mesto === mesto ? "1px solid #012d74" : "1px solid rgba(1,45,116,0.1)",
+                  }}
+                >
+                  {mesto}
                 </button>
               ))}
             </div>

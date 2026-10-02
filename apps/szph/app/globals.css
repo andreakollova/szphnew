@@ -1,8 +1,15 @@
 @import "tailwindcss";
 @source "../../../packages/ui/src";
 
+html {
+  overflow: hidden;
+  height: 100%;
+}
 body {
+  overflow-y: auto;
+  height: 100%;
   overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Solid dark blue block that sits OVER the status bar area — z-70, pointer-events none */
@@ -15,7 +22,7 @@ body {
   top: 0;
 }
 .mobile-announcement-bar {
-  padding-top: env(safe-area-inset-top, 54px);
+  padding-top: calc(env(safe-area-inset-top, 54px) - 14px);
 }
 /* Background for the header container */
 .mobile-fixed-header {
