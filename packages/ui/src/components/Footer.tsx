@@ -52,20 +52,27 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
     }
   }, []);
 
-  // In native app, only show newsletter section
+  // In native app, show eshop banner
   if (isNative) {
     return (
-      <footer>
-        <div style={{ background: "#051937" }}>
-          <div className="px-6 py-8">
-            <p className="font-garet font-bold italic text-white mb-1" style={{ fontSize: "18px", textTransform: "uppercase" }}>
-              Odber noviniek
-            </p>
-            <p className="text-white mb-5" style={{ fontSize: "11px" }}>
-              Dostávajte najnovšie správy priamo do e-mailu.
-            </p>
-            <NewsletterForm />
-          </div>
+      <footer style={{ paddingBottom: "90px" }}>
+        <div className="px-4 py-4">
+          <Link
+            href="/eshop"
+            className="group block relative overflow-hidden active:opacity-90 transition-opacity"
+            style={{ borderRadius: "14px", height: "120px" }}
+          >
+            <Image src="/images/eshop-banner.webp" alt="Oficiálny eshop" fill className="object-cover" sizes="100vw" />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(216,0,39,0.9) 0%, rgba(216,0,39,0.5) 50%, transparent 100%)" }} />
+            <div className="absolute inset-0 flex flex-col justify-center px-5">
+              <p className="font-garet font-bold text-white" style={{ fontSize: "16px" }}>Oficiálny e-shop</p>
+              <p className="text-white/80 mt-0.5" style={{ fontSize: "12px" }}>Dresy, merch a vybavenie</p>
+              <div className="mt-2.5 inline-flex items-center gap-2 self-start px-3 py-1.5 font-bold text-white" style={{ fontSize: "10px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: "20px" }}>
+                Zobraziť obchod
+                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </div>
+            </div>
+          </Link>
         </div>
       </footer>
     );
@@ -73,8 +80,28 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
 
   return (
     <footer style={{ background: "#f8f9fa", borderTop: "1px solid rgba(1,45,116,0.07)" }}>
-      {/* Newsletter bar */}
-      <div style={{ background: "#051937" }}>
+      {/* Mobile: Eshop banner */}
+      <div className="md:hidden px-4 pt-4 pb-2" style={{ paddingBottom: "80px" }}>
+        <Link
+          href="/eshop"
+          className="group block relative overflow-hidden active:opacity-90 transition-opacity"
+          style={{ borderRadius: "14px", height: "120px" }}
+        >
+          <Image src="/images/eshop-banner.webp" alt="Oficiálny eshop" fill className="object-cover" sizes="100vw" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(216,0,39,0.9) 0%, rgba(216,0,39,0.5) 50%, transparent 100%)" }} />
+          <div className="absolute inset-0 flex flex-col justify-center px-5">
+            <p className="font-garet font-bold text-white" style={{ fontSize: "16px" }}>Oficiálny e-shop</p>
+            <p className="text-white/80 mt-0.5" style={{ fontSize: "12px" }}>Dresy, merch a vybavenie</p>
+            <div className="mt-2.5 inline-flex items-center gap-2 self-start px-3 py-1.5 font-bold text-white" style={{ fontSize: "10px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: "20px" }}>
+              Zobraziť obchod
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </div>
+          </div>
+        </Link>
+      </div>
+
+      {/* Desktop: Newsletter bar */}
+      <div className="hidden md:block" style={{ background: "#051937" }}>
         <div className="container-szph py-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
