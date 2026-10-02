@@ -412,11 +412,12 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
   // Close mobile menu on route change
+  const [activeMega, setActiveMega] = useState<string | null>(null);
   useEffect(() => {
     setMobileOpen(false);
     setMobileExpanded(null);
+    setActiveMega(null);
   }, [pathname]);
-  const [activeMega, setActiveMega] = useState<string | null>(null);
   const [announcementVisible, setAnnouncementVisible] = useState(true);
   const [scrolled, setScrolled] = useState(true);
   const [hasHero, setHasHero] = useState(false);
