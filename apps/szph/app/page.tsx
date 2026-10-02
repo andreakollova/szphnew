@@ -679,6 +679,46 @@ export default async function SzphHome() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
+          ESHOP BANNER
+          ═══════════════════════════════════════════════════ */}
+      <section style={{ background: "#f8f9fa" }} className="px-4 sm:px-6 lg:px-10 xl:px-16 pb-6 md:pb-10">
+        <Link
+          href="/eshop"
+          className="group relative block overflow-hidden max-w-[1600px] mx-auto"
+          style={{ borderRadius: "16px", background: "#051937" }}
+        >
+          <div className="flex items-center justify-between px-6 sm:px-10 py-6 sm:py-8">
+            <div className="flex-1">
+              <p className="font-bold uppercase text-[#0078fd] mb-1" style={{ fontSize: "10px", letterSpacing: "0.12em" }}>Oficiálny merch</p>
+              <h3 className="font-garet font-bold italic text-white mb-2" style={{ fontSize: "clamp(1.2rem, 3vw, 1.8rem)" }}>
+                E-Shop SZPH
+              </h3>
+              <p className="text-white/60 hidden sm:block" style={{ fontSize: "13px", maxWidth: 400 }}>
+                Mikiny, tričká, vetrovky a ďalšie produkty s logom SZPH
+              </p>
+              <span className="inline-flex items-center gap-2 mt-3 font-bold text-white uppercase group-hover:gap-3 transition-all" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
+                Nakupovať
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </div>
+            <div className="flex items-center gap-3 shrink-0">
+              <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden">
+                <Image src="/images/eshop/mikina-modra-1.webp" alt="Mikina" fill className="object-cover" sizes="120px" />
+              </div>
+              <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden hidden sm:block">
+                <Image src="/images/eshop/tricko-1.webp" alt="Tričko" fill className="object-cover" sizes="120px" />
+              </div>
+              <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden hidden md:block">
+                <Image src="/images/eshop/vetrovka-1.webp" alt="Vetrovka" fill className="object-cover" sizes="120px" />
+              </div>
+            </div>
+          </div>
+        </Link>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
           PROJEKTY
           ═══════════════════════════════════════════════════ */}
       <section style={{ background: "#f8f9fa" }} className="relative pt-2 pb-6 md:pt-4 md:pb-14">
