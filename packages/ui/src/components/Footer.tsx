@@ -118,13 +118,13 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
 
             <div className="mt-4 flex gap-2">
               <a href="https://www.facebook.com/p/Slovensk%C3%BD-zv%C3%A4z-pozemn%C3%A9ho-hokeja-100061316724338/" target="_blank" rel="noopener noreferrer"
-                className="rounded-lg p-2 text-[#94a3b8] transition-colors hover:bg-[#e2e8f0] hover:text-[#051937]" aria-label="Facebook">
+                className="rounded-lg p-2 text-[#334155] transition-colors hover:bg-[#e2e8f0] hover:text-[#051937]" aria-label="Facebook">
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
                 </svg>
               </a>
               <a href="https://www.instagram.com/fieldhockey_slovakia/" target="_blank" rel="noopener noreferrer"
-                className="rounded-lg p-2 text-[#94a3b8] transition-colors hover:bg-[#e2e8f0] hover:text-[#051937]" aria-label="Instagram">
+                className="rounded-lg p-2 text-[#334155] transition-colors hover:bg-[#e2e8f0] hover:text-[#051937]" aria-label="Instagram">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
@@ -132,7 +132,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
                 </svg>
               </a>
               <a href="https://www.youtube.com/@zvaz_pozemneho_hokeja" target="_blank" rel="noopener noreferrer"
-                className="rounded-lg p-2 text-[#94a3b8] transition-colors hover:bg-[#e2e8f0] hover:text-[#051937]" aria-label="YouTube">
+                className="rounded-lg p-2 text-[#334155] transition-colors hover:bg-[#e2e8f0] hover:text-[#051937]" aria-label="YouTube">
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8z"/>
                   <path fill="#f8f9fa" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
