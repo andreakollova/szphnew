@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const HERO_IMAGES = [
-  "/images/hero-banner3.webp",
-  "/images/hero-banner3b.webp",
-  "/images/hero-banner7.webp",
-  "/images/hero-banner-blue-player.webp",
-  "/images/hero-banner2.webp",
+  { src: "/images/hero-banner3.webp", pos: "center 50%" },
+  { src: "/images/hero-banner3b.webp", pos: "center 40%" },
+  { src: "/images/hero-banner7.webp", pos: "center 40%" },
+  { src: "/images/hero-banner-blue-player.webp", pos: "center 50%" },
+  { src: "/images/hero-banner2.webp", pos: "center 50%" },
 ];
 
 interface NextMatch {
@@ -32,7 +32,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % HERO_IMAGES.length);
+      setCurrent((p) => (p + 1) % HERO_IMAGES.length);
     }, 6000);
     return () => clearInterval(timer);
   }, []);
@@ -46,15 +46,15 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
         style={{ minHeight: "82vh" }}
       >
         {/* Mobile rotating background photos */}
-        {HERO_IMAGES.map((src, i) => (
+        {HERO_IMAGES.map((img, i) => (
           <Image
-            key={src}
-            src={src}
+            key={img.src}
+            src={img.src}
             alt="SZPH"
             fill
             className="object-cover"
             style={{
-              objectPosition: "center 40%",
+              objectPosition: img.pos,
               opacity: current === i ? 1 : 0,
               transition: "opacity 1s ease-in-out",
             }}
@@ -146,15 +146,15 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
         style={{ aspectRatio: "3022 / 1578", paddingTop: "116px", marginTop: "-116px" }}
       >
         {/* ═══ Background photos — fade rotation ═══ */}
-        {HERO_IMAGES.map((src, i) => (
+        {HERO_IMAGES.map((img, i) => (
           <Image
-            key={src}
-            src={src}
+            key={img.src}
+            src={img.src}
             alt="SZPH"
             fill
             className="object-cover"
             style={{
-              objectPosition: "center 55%",
+              objectPosition: img.pos,
               opacity: current === i ? 1 : 0,
               transition: "opacity 1s ease-in-out",
             }}
