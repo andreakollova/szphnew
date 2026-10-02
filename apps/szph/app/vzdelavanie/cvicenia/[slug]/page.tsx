@@ -65,7 +65,7 @@ export default async function ExerciseDetailPage({ params }: Props) {
           {/* Diagram */}
           {ex.diagram_url && (
             <div className="lg:col-span-2">
-              <div className="rounded-2xl overflow-hidden bg-[#2d8a3e] sticky top-28">
+              <div className="rounded-lg overflow-hidden bg-[#2d8a3e] sticky top-28">
                 <Image
                   src={ex.diagram_url}
                   alt={ex.title}
@@ -80,14 +80,14 @@ export default async function ExerciseDetailPage({ params }: Props) {
           {/* Details */}
           <div className={ex.diagram_url ? "lg:col-span-3" : "lg:col-span-5"}>
             {/* Goal */}
-            <div className="rounded-2xl p-6 mb-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div className="rounded-lg p-6 mb-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
               <h2 className="font-bold text-[#051937] mb-2" style={{ fontSize: "16px" }}>Cieľ cvičenia</h2>
               <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.7 }}>{ex.goal}</p>
             </div>
 
             {/* Equipment */}
             {ex.equipment && (
-              <div className="rounded-2xl p-6 mb-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+              <div className="rounded-lg p-6 mb-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
                 <h2 className="font-bold text-[#051937] mb-2" style={{ fontSize: "16px" }}>Čo budeme potrebovať</h2>
                 <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.7 }}>{ex.equipment}</p>
               </div>
@@ -95,7 +95,7 @@ export default async function ExerciseDetailPage({ params }: Props) {
 
             {/* Description */}
             {ex.description && (
-              <div className="rounded-2xl p-6 mb-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+              <div className="rounded-lg p-6 mb-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
                 <h2 className="font-bold text-[#051937] mb-3" style={{ fontSize: "16px" }}>Popis cvičenia</h2>
                 <div className="text-[#334155] space-y-4" style={{ fontSize: "15px", lineHeight: 1.7 }}>
                   {ex.description.split("\n\n").map((block, i) => (
@@ -114,7 +114,7 @@ export default async function ExerciseDetailPage({ params }: Props) {
 
             {/* Harder / Easier */}
             {(ex.harder || ex.easier) && (
-              <div className="rounded-2xl p-6 mb-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+              <div className="rounded-lg p-6 mb-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
                 {ex.easier && (
                   <div className="mb-4">
                     <h2 className="font-bold text-emerald-600 mb-2" style={{ fontSize: "16px" }}>Uľahčenie</h2>

@@ -61,7 +61,7 @@ export default function U12Page() {
           V kategórii U12 je dôraz kladený na rozvoj základných motorických zručností, koordinácie, ovládania hokejky a lopty. Tréneri sa zameriavajú na to, aby deti hrali s radosťou a postupne sa učili základné prvky hry - prihrávanie, driblovanie a strieľanie. Súťažný výsledok je druhoradý, prioritou je športový rozvoj a radosť z hry.
         </p>
 
-        <div className="rounded-2xl p-6 mb-8" style={{ background: "#051937" }}>
+        <div className="rounded-lg p-6 mb-8" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Chcete začať?</h3>
           <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Pozemný hokej je ideálny šport pre deti od 6 rokov. Kontaktujte pozemnohokejový klub vo vašom meste alebo navštívte sekciu klubov na našej stránke. Vaše dieťa môže začať trénovať a postupne sa zapojiť do súťaží v kategórii U12.

@@ -62,7 +62,7 @@ export default function ZenskaLigaPage() {
           Ženský pozemný hokej má na Slovensku rastúce zastúpenie. Slovenský pozemnohokejový zväz aktívne podporuje rozvoj ženského hokeja prostredníctvom súťaží, tréningových programov a zapojenia hráčok do medzinárodných turnajov. Hráčky z Extraligy tvoria jadro ženskej reprezentácie Slovenska.
         </p>
 
-        <div className="rounded-2xl p-6 mb-8" style={{ background: "#051937" }}>
+        <div className="rounded-lg p-6 mb-8" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Reprezentácia žien</h3>
           <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Ženská reprezentácia Slovenska sa zúčastňuje medzinárodných podujatí pod záštitou FIH a EHF. Extraliga je základom pre selekciu a prípravu reprezentantiek na medzinárodné súťaže.

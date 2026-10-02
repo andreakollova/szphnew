@@ -61,7 +61,7 @@ export default function U18Page() {
           Kategória U18 je dôležitá pre rozvoj talentov a budovanie základu pre slovenskú reprezentáciu. Najlepší hráči z tejto kategórie sú nominovaní do mládežníckeho národného tímu, ktorý sa zúčastňuje medzinárodných turnajov a kvalifikácií organizovaných EHF. Úspešný prechod z U18 do seniorských súťaží je jedným z hlavných cieľov systému mládežníckeho hokeja na Slovensku.
         </p>
 
-        <div className="rounded-2xl p-6 mb-8" style={{ background: "#051937" }}>
+        <div className="rounded-lg p-6 mb-8" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Pre kluby a trénerov</h3>
           <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Prihlasovanie tímov do mládežníckych súťaží prebieha prostredníctvom Slovenského pozemnohokejového zväzu. Aktuálne informácie o termínoch, rozpise zápasov a pravidlách nájdete v sekcii dokumentov alebo kontaktujte priamo SZPH.

@@ -53,7 +53,7 @@ export default function PredsednictvoPage() {
         </h2>
         <div className="mb-10">
           <div
-            className="rounded-2xl p-6 flex items-center gap-4"
+            className="rounded-lg p-6 flex items-center gap-4"
             style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}
           >
             <div
@@ -88,7 +88,7 @@ export default function PredsednictvoPage() {
             return (
               <div
                 key={meno}
-                className="rounded-2xl p-5 flex items-center gap-4"
+                className="rounded-lg p-5 flex items-center gap-4"
                 style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}
               >
                 <div
@@ -107,7 +107,7 @@ export default function PredsednictvoPage() {
 
         {/* Footer note */}
         <div
-          className="rounded-2xl p-6"
+          className="rounded-lg p-6"
           style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}
         >
           <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>

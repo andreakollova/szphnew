@@ -155,7 +155,7 @@ export default function ZacniHratPage() {
               {section.items && (
                 <div className="space-y-3">
                   {section.items.map((item) => (
-                    <div key={item.name} className="rounded-2xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+                    <div key={item.name} className="rounded-lg p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
                       <h4 className="font-bold text-[#051937] mb-1" style={{ fontSize: "14px" }}>{item.name}</h4>
                       <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>{item.desc}</p>
                     </div>

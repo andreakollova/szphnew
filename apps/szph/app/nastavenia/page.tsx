@@ -131,7 +131,7 @@ export default function NastaveniaPage() {
         </div>
 
         {/* Profil */}
-        <div className="bg-white rounded-2xl p-5 mb-5" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
+        <div className="bg-white rounded-lg p-5 mb-5" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
           <h2 className="font-bold text-[#051937] mb-4" style={{ fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Profil</h2>
 
           <div className="mb-4">
@@ -209,7 +209,7 @@ export default function NastaveniaPage() {
         </div>
 
         {/* Notifikácie */}
-        <div className="bg-white rounded-2xl p-5 mb-5" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
+        <div className="bg-white rounded-lg p-5 mb-5" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
           <h2 className="font-bold text-[#051937] mb-2" style={{ fontSize: "13px", textTransform: "uppercase", letterSpacing: "0.08em" }}>Notifikácie</h2>
           <p className="text-[#94a3b8] mb-4" style={{ fontSize: "11px" }}>Vyber si o čom chceš dostávať upozornenia</p>
 

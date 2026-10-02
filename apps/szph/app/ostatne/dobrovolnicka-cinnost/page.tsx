@@ -37,7 +37,7 @@ export default function DobrovolnickaPage() {
       <div className="max-w-[900px] mx-auto px-6 pt-12">
         <div className="space-y-3">
           {ITEMS.map((item, i) => (
-            <div key={i} className="flex items-center justify-between rounded-2xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div key={i} className="flex items-center justify-between rounded-lg p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
               <span className="font-semibold text-[#051937]" style={{ fontSize: "15px" }}>{item.note ? `${item.note} ` : ""}{item.name}</span>
               <span className="shrink-0 rounded-full px-3 py-1 font-bold text-[#051937]/50" style={{ fontSize: "12px", background: "rgba(1,45,116,0.06)" }}>{item.year}</span>
             </div>

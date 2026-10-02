@@ -33,7 +33,7 @@ export default function RebricekPage() {
           Medzinárodná hokejová federácia (FIH - Federation Internationale de Hockey) vedie oficiálny svetový rebríček krajín v pozemnom hokeji. Rebríček sa aktualizuje na základe výsledkov medzinárodných zápasov a turnajov. Pozícia v rebríčku ovplyvňuje zaradenie krajiny do divízií na európskych a svetových šampionátoch.
         </p>
 
-        <div className="rounded-2xl p-6 mb-8" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <div className="rounded-lg p-6 mb-8" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <h3 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>Ako funguje hodnotenie</h3>
           <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             FIH rebríček je založený na bodovom systéme, kde krajiny získavajú body za výsledky v oficiálnych medzinárodných zápasoch. Váha zápasu záleží na význame turnaja - svetové šampionáty a olympijské hry majú vyššiu váhu ako priateľské stretnutia. Body sa postupne znižujú s časom, takže nedávne výsledky majú väčší vplyv na pozíciu v rebríčku.

@@ -62,7 +62,7 @@ export default function MuskaLigaPage() {
           V Extralige mužov pôsobili a pôsobia kluby z rôznych miest Slovenska, pretože pozemný hokej má na Slovensku dlhú tradíciu. Medzi najúspešnejšie kluby patria tímy z Bratislavy, Nitry, Trnavy či Trenčína. Mnohí hráči Extraligy sú súčasne členmi národného tímu Slovenska.
         </p>
 
-        <div className="rounded-2xl p-6 mb-8" style={{ background: "#051937" }}>
+        <div className="rounded-lg p-6 mb-8" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Reprezentácia</h3>
           <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Extraliga slúži aj ako základ pre výber hráčov do mužskej reprezentácie Slovenska, ktorá sa zúčastňuje medzinárodných turnajov a kvalifikácií pod hlavičkou FIH (Medzinárodná hokejová federácia) a EHF (Európska hokejová federácia).

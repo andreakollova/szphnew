@@ -407,7 +407,7 @@ export function SnakeGame() {
               <p className="text-[6px] font-black text-white/50 tracking-[0.2em]">{username || "Hráč"} · <span style={{ color: selectedTeam.color }}>{gender === "womens" ? "Ženy" : "Muži"}</span></p>
             </div>
           </div>
-          <div className="flex items-center gap-6 px-4 py-2 rounded-2xl" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.1)" }}>
+          <div className="flex items-center gap-6 px-4 py-2 rounded-lg" style={{ background: "rgba(255,255,255,0.05)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.1)" }}>
             <div className="text-center">
               <p className="text-[6px] font-black text-white/40 tracking-[0.2em]">Skóre</p>
               <p className="font-black text-xl italic leading-none" style={{ color: "#d00027" }}>{score}</p>
@@ -504,7 +504,7 @@ export function SnakeGame() {
 
                 {/* Leaderboard */}
                 {leaderboard.length > 0 && (
-                  <div className="w-full rounded-2xl p-4 mb-5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                  <div className="w-full rounded-lg p-4 mb-5" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
                     <p className="text-[8px] font-black text-white/40 tracking-[0.3em] uppercase text-center mb-3">Rebríček</p>
                     <div className="space-y-1.5">
                       {leaderboard.map((r, i) => {

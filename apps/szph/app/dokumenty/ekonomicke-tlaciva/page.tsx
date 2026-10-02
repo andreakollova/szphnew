@@ -25,7 +25,7 @@ export default function EkonomickeTlacivaPage() {
       <div className="max-w-[900px] mx-auto px-6 pt-12">
         <div className="space-y-3">
           {DOCS.map((doc) => (
-            <a key={doc.name} href={doc.file} download className="flex items-center gap-4 rounded-2xl p-5 transition-all hover:shadow-md" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <a key={doc.name} href={doc.file} download className="flex items-center gap-4 rounded-lg p-5 transition-all hover:shadow-md" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
               <span className="text-[#1d4ed8] font-bold shrink-0" style={{ fontSize: "18px" }}>↓</span>
               <span className="font-semibold text-[#051937]" style={{ fontSize: "15px" }}>{doc.name}</span>
             </a>

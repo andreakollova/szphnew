@@ -61,7 +61,7 @@ export default function U14Page() {
           V kategórii U14 sa kladie dôraz na rozvoj individuálnych zručností, tímovú hru a základy taktiky. Tréning je zameraný na zlepšovanie techniky ovládania lopty, prihrávok, strieľania a pohybu na ihrisku. Cieľom je pripraviť hráčov na plnoformátovú hru v kategórii U18.
         </p>
 
-        <div className="rounded-2xl p-6 mb-8" style={{ background: "#051937" }}>
+        <div className="rounded-lg p-6 mb-8" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Zapojte sa</h3>
           <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Ak máte záujem o zaradenie vášho dieťaťa do mládežníckeho pozemného hokeja, kontaktujte priamo kluby v blízkom okolí alebo Slovenský pozemnohokejový zväz. Pozemný hokej je vhodný pre chlapcov aj dievčatá od útleho veku.

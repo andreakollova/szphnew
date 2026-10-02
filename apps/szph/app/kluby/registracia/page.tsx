@@ -50,7 +50,7 @@ export default function RegistraciaHracovPage() {
         </p>
 
         <div
-          className="rounded-2xl border border-[#e2e8f0] bg-white p-8 mb-8"
+          className="rounded-lg border border-[#e2e8f0] bg-white p-8 mb-8"
           style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
         >
           <h2
@@ -140,7 +140,7 @@ export default function RegistraciaHracovPage() {
         </div>
 
         <div
-          className="rounded-2xl border border-[#e2e8f0] bg-white p-8 mb-8"
+          className="rounded-lg border border-[#e2e8f0] bg-white p-8 mb-8"
           style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
         >
           <h2
@@ -168,7 +168,7 @@ export default function RegistraciaHracovPage() {
         </div>
 
         <div
-          className="rounded-2xl border border-[#012d74]/20 p-8"
+          className="rounded-lg border border-[#012d74]/20 p-8"
           style={{ background: "#f0f4ff" }}
         >
           <h2

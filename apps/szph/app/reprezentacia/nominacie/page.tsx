@@ -33,7 +33,7 @@ export default function NominaciePage() {
           Nominácie do slovenských reprezentácií sú zverejňované pred každým turnajom alebo medzinárodným stretnutím. O nominácii rozhoduje trénerský štáb príslušného národného tímu na základe aktuálnej formy, zdravotného stavu a dostupnosti hráčov.
         </p>
 
-        <div className="rounded-2xl p-8 text-center" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <div className="rounded-lg p-8 text-center" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <p className="text-[#64748b] mb-2" style={{ fontSize: "15px" }}>
             V súčasnosti nie sú zverejnené žiadne aktuálne nominácie.
           </p>

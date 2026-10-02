@@ -67,7 +67,7 @@ export default function HalovyHokejPage() {
           Slovenský pozemnohokejový zväz organizuje halovú ligu pre mužov aj ženy. Halová sezóna je samostatná súťaž s vlastným systémom bodovania a tabuľkami. Víťazi halovej sezóny získavajú titul Majstra Slovenska v halovom hokeji.
         </p>
 
-        <div className="rounded-2xl p-6 mb-8" style={{ background: "#051937" }}>
+        <div className="rounded-lg p-6 mb-8" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Medzinárodné halové súťaže</h3>
           <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Halový hokej má vlastné medzinárodné súťaže vrátane Majstrovstiev Európy a Svetového pohára v halovom hokeji. Slovensko sa zúčastňuje európskych kvalifikácií a turnajov pod hlavičkou EHF.

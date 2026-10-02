@@ -73,7 +73,7 @@ export default function ProjektyPage() {
             <Link
               key={project.href}
               href={project.href}
-              className="block rounded-2xl border border-[#e2e8f0] bg-white p-8 transition-shadow hover:shadow-md"
+              className="block rounded-lg border border-[#e2e8f0] bg-white p-8 transition-shadow hover:shadow-md"
               style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
             >
               <h2

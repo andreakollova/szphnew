@@ -81,7 +81,7 @@ export default function VybaveniePage() {
           {equipment.map((item, i) => (
             <div
               key={i}
-              className="rounded-2xl border border-[#e2e8f0] bg-white p-8"
+              className="rounded-lg border border-[#e2e8f0] bg-white p-8"
               style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
             >
               <h2
@@ -101,7 +101,7 @@ export default function VybaveniePage() {
         </div>
 
         <div
-          className="mt-12 rounded-2xl border border-[#e2e8f0] bg-white p-8"
+          className="mt-12 rounded-lg border border-[#e2e8f0] bg-white p-8"
           style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
         >
           <h2

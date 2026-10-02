@@ -48,7 +48,7 @@ function DocLink({ href, children }: { href: string; children: React.ReactNode }
   return (
     <a
       href={href}
-      className="flex items-center justify-between gap-4 rounded-2xl px-6 py-4 transition-shadow hover:shadow-md group mb-2"
+      className="flex items-center justify-between gap-4 rounded-lg px-6 py-4 transition-shadow hover:shadow-md group mb-2"
       style={{ ...cardStyle, textDecoration: "none", padding: "16px 24px" }}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
@@ -169,7 +169,7 @@ export default function DopingPage() {
         <DocLink href="#">Súhrn zmien v Zozname zakázaných látok a metód 2026</DocLink>
         <DocLink href="#">Monitorovací program 2026 (eng verzia)</DocLink>
 
-        <div className="mt-6 rounded-2xl px-6 py-5" style={cardStyle}>
+        <div className="mt-6 rounded-lg px-6 py-5" style={cardStyle}>
           <Para className="mb-1">
             Na overenie, či konkrétny liek obsahuje zakázanú látku, slúži databáza{" "}
             <a href="https://www.zakazanelatky.sk" target="_blank" rel="noopener noreferrer" style={linkStyle}>
@@ -319,7 +319,7 @@ export default function DopingPage() {
           Ak ste svedkom alebo obeťou porušenia integrity športu, môžete to nahlásiť prostredníctvom
           kontaktov Slovenská antidopingová agentúra:
         </Para>
-        <div className="rounded-2xl px-6 py-5 mt-2" style={cardStyle}>
+        <div className="rounded-lg px-6 py-5 mt-2" style={cardStyle}>
           <SubHeading>Kontakt – Integrita športu (SADA)</SubHeading>
           <Para className="mb-1">
             <span className="font-semibold">Telefón:</span>{" "}

@@ -95,7 +95,7 @@ export default function SutazePage() {
             <Link
               key={comp.href}
               href={comp.href}
-              className="rounded-2xl p-6 transition-colors hover:bg-white"
+              className="rounded-lg p-6 transition-colors hover:bg-white"
               style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}
             >
               <h3 className="font-bold text-[#051937] mb-2" style={{ fontSize: "16px" }}>{comp.title}</h3>

@@ -51,19 +51,19 @@ export default function PravidlaPage() {
           Počas hokejových zápasov môže rozhodca potrestať priestupky kartou. Hokej má 3 karty:
         </p>
         <div className="space-y-4 mb-12">
-          <div className="rounded-2xl p-6 flex gap-4 items-start" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded-lg p-6 flex gap-4 items-start" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <div className="shrink-0 rounded-lg flex items-center justify-center" style={{ width: "36px", height: "48px", background: "#22c55e" }} />
             <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
               Hráč, ktorý dostane <strong>zelenú kartu</strong>, musí na 2 minúty opustiť ihrisko. Jeho tím hrá tie 2 minúty s jedným mužom menej. 2 zelené karty tomu istému hráčovi sú žlté, pokiaľ hráč nedostane kartu v pozícii kapitána.
             </p>
           </div>
-          <div className="rounded-2xl p-6 flex gap-4 items-start" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded-lg p-6 flex gap-4 items-start" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <div className="shrink-0 rounded-lg flex items-center justify-center" style={{ width: "36px", height: "48px", background: "#eab308" }} />
             <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
               V prípade <strong>žltej karty</strong> musí hráč tiež opustiť ihrisko. Aspoň na 5 minút, pri závažnejších priestupkoch 10 minút. 2 žlté karty tomu istému hráčovi znamená červená karta, pokiaľ hráč nedostane kartu v pozícii kapitána.
             </p>
           </div>
-          <div className="rounded-2xl p-6 flex gap-4 items-start" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded-lg p-6 flex gap-4 items-start" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <div className="shrink-0 rounded-lg flex items-center justify-center" style={{ width: "36px", height: "48px", background: "#ef4444" }} />
             <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
               <strong>Červená karta</strong> je pre hráča, ktorý sa dopustí vážneho faulu. Po faule musí ihrisko natrvalo opustiť. To sa v hokeji takmer nestáva.
@@ -130,7 +130,7 @@ export default function PravidlaPage() {
           ))}
         </div>
 
-        <div className="rounded-2xl p-6 mb-12" style={{ background: "#051937" }}>
+        <div className="rounded-lg p-6 mb-12" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Takto funguje malý roh</h3>
           <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Útočiace družstvo hrá loptu od zadnej čiary v kruhu a musí byť lopta prihraná mimo kruh, potom môže útočiace družstvo skórovať. Prvý výstrel, úderom alebo šrúberom, nesmie skončiť vyššie ako doska v bráne. Ak sa rozhodne hráč vystreliť pushom, táto strela môže ísť vyššie ako nad dosku v bráne.

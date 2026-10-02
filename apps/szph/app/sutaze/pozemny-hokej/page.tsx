@@ -61,7 +61,7 @@ export default function PozemnyHokejSutazPage() {
           Počas pozemnej sezóny sa hrajú ligové súťaže pre všetky kategórie: Extraliga mužov, Extraliga žien a mládežnícke ligy (U18, U14, U12). Okrem ligových zápasov sa konajú aj poháre a turnaje. Víťazi pozemnej sezóny získavajú titul Majstra Slovenska v pozemnom hokeji.
         </p>
 
-        <div className="rounded-2xl p-6 mb-8" style={{ background: "#051937" }}>
+        <div className="rounded-lg p-6 mb-8" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Medzinárodný kontext</h3>
           <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Pozemný hokej je olympijský šport. Na medzinárodnej úrovni ho riadi FIH (Medzinárodná hokejová federácia). Slovensko sa zúčastňuje európskych kvalifikácií a turnajov organizovaných EHF (Európska hokejová federácia).

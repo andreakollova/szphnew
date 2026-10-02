@@ -27,7 +27,7 @@ export default function ZmluvyPage() {
       <div className="max-w-[900px] mx-auto px-6 pt-12">
         <div className="space-y-3">
           {DOCS.map((doc) => (
-            <div key={doc.name} className="flex items-center gap-4 rounded-2xl p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div key={doc.name} className="flex items-center gap-4 rounded-lg p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
               <span className="text-[#94a3b8] font-bold shrink-0" style={{ fontSize: "18px" }}>↓</span>
               <span className="font-semibold text-[#051937]" style={{ fontSize: "15px" }}>{doc.name}</span>
             </div>

@@ -51,7 +51,7 @@ export default function ZenyPage() {
           </div>
         </div>
 
-        <div className="mt-12 rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <div className="mt-12 rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <h3 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>Rozvoj ženského pozemného hokeja</h3>
           <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Ženská reprezentácia je dôkazom rastúcej popularity pozemného hokeja medzi ženami na Slovensku. SZPH aktívne podporuje rozvoj ženského hokeja a snaží sa zvyšovať počet hráčok v kluboch po celej krajine.

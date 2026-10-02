@@ -269,7 +269,7 @@ export default function OchranaOsobnychUdajovPage() {
             kontaktujte na adrese:
           </p>
           <div
-            className="mt-4 rounded-2xl border border-[#e2e8f0] bg-white p-6"
+            className="mt-4 rounded-lg border border-[#e2e8f0] bg-white p-6"
             style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
           >
             <p

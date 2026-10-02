@@ -42,7 +42,7 @@ export default async function CviceniaPage() {
               <Link
                 key={ex.id}
                 href={`/vzdelavanie/cvicenia/${ex.slug}`}
-                className="group rounded-2xl overflow-hidden transition-shadow hover:shadow-lg"
+                className="group rounded-lg overflow-hidden transition-shadow hover:shadow-lg"
                 style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}
               >
                 {ex.diagram_url && (

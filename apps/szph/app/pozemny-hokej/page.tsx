@@ -128,21 +128,21 @@ export default function PozemnyHokejPage() {
         </p>
 
         <div className="space-y-6 mb-8">
-          <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <h4 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>1. Voľné údery</h4>
             <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
               Ak sa poruší pravidlo (napr. faul, priestupok alebo iný typ nedovolenej hry), súper získa voľný úder z miesta priestupku. Špecifikom rozohrávky je že hráč si môže ale rozohrať voľný úder sám a tým pádom nemusí loptičku prihrať svoju spoluhráčovi. Toto rozhodnutie je na danom hráčovi či loptičku prihrá alebo ju rozohrá sám z miesta priestupku alebo faulu.
             </p>
           </div>
 
-          <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <h4 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>2. Trestné rohy</h4>
             <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
               Pri vážnych porušeniach v útočnom kruhu sa udeľuje trestný roh. Útočiaci tím má v tejto situácii výhodu, keďže sa hráči rozostavia okolo kruhu a pripravujú sa na streľbu priamo na bránu.
             </p>
           </div>
 
-          <div className="rounded-2xl p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          <div className="rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <h4 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>3. Karty a tresty</h4>
             <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
               Rovnako ako v mnohých iných športoch, aj v pozemnom hokeji môže rozhodca udeliť hráčovi zelenú, žltú alebo červenú kartu za nebezpečnú alebo nešportovú hru. Zelená karta znamená opustenie ihriska na 2 min. Žltá karta znamená, že hráč musí opustiť ihrisko na určitý čas 5–15 min v závislosti od faulu, zatiaľ čo červená karta vedie k vylúčeniu hráča zo zvyšnej časti hry.

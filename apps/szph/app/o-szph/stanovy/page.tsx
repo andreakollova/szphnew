@@ -55,7 +55,7 @@ export default function StanovyPage() {
                 key={doc.name}
                 href={doc.href}
                 download
-                className="flex items-center justify-between gap-4 rounded-2xl px-6 py-5 transition-shadow hover:shadow-md group"
+                className="flex items-center justify-between gap-4 rounded-lg px-6 py-5 transition-shadow hover:shadow-md group"
                 style={{
                   background: "#ffffff",
                   border: "1px solid rgba(1,45,116,0.08)",
@@ -78,7 +78,7 @@ export default function StanovyPage() {
             ) : (
               <div
                 key={doc.name}
-                className="flex items-center justify-between gap-4 rounded-2xl px-6 py-5"
+                className="flex items-center justify-between gap-4 rounded-lg px-6 py-5"
                 style={{
                   background: "#ffffff",
                   border: "1px solid rgba(1,45,116,0.08)",

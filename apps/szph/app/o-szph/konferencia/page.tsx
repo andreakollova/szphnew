@@ -153,7 +153,7 @@ export default function KonferenciaPage() {
           {konferencie.map((k) => (
             <div
               key={k.title}
-              className="rounded-2xl p-6"
+              className="rounded-lg p-6"
               style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}
             >
               <h2 className="font-bold text-[#051937] mb-3" style={{ fontSize: "16px" }}>
