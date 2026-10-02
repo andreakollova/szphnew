@@ -38,7 +38,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
   }, []);
 
   return (
-    <div className="mobile-hero-pull md:-mt-[116px]">
+    <div className="mobile-hero-pull md:-mt-[116px]" style={{ background: "#051937" }}>
       {/* ═══ MOBILE HERO (below md) ═══ */}
       <section
         data-hero
@@ -83,7 +83,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
         />
 
         {/* Headline + CTA — positioned at bottom-left */}
-        <div className="absolute bottom-12 left-5 right-5">
+        <div className="absolute bottom-24 left-5 right-5">
           <p
             className="font-garet"
             style={{

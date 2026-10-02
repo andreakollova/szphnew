@@ -66,6 +66,15 @@ const MENINY: Record<string, string> = {
   "12-21":"Bohdan","12-22":"Adela","12-23":"Nadežda","12-24":"Adam","12-25":"1. sviatok vianočný","12-26":"Štefan","12-27":"Filoména","12-28":"Ivana","12-29":"Milada","12-30":"Dávid","12-31":"Silvester",
 };
 
+function getWeekStart(date: Date): Date {
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+  d.setDate(diff);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
 function getTodayMeniny(): string {
   const d = new Date();
   const key = `${d.getMonth() + 1}-${d.getDate()}`;
@@ -73,17 +82,16 @@ function getTodayMeniny(): string {
 }
 
 const CLUB_LOGOS: Record<string, string> = {
-  HAS: "/images/timy/HAS.webp",
-  SEN: "/images/timy/SEN.webp",
-  RAC: "/images/timy/Raca-logo-70x58-1-32x27.webp",
+  "HAŠ": "/images/timy/HAS.webp",
+  "ŠK": "/images/timy/SEN.webp",
+  "RAČ": "/images/timy/Raca-logo-70x58-1-32x27.webp",
   HOKO: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp",
   HKM: "/images/timy/nova-dubnica-32x32.webp",
-  KAP: "/images/timy/KAP.webp",
 };
 
 const CLUB_NAMES: Record<string, string> = {
-  HAS: "HA Senkvice", SEN: "HC 1952 Senkvice", RAC: "KPH Rača",
-  HOKO: "HOKO Zlaté Moravce", HKM: "HKM Nová Dubnica", KAP: "Kaptar SE",
+  "HAŠ": "HA Šenkvice", "ŠK": "ŠK 1952 Šenkvice", "RAČ": "KPH Rača",
+  HOKO: "HOKO Zlaté Moravce", HKM: "HKM Nová Dubnica",
 };
 
 interface Match {
@@ -265,7 +273,7 @@ export function PersonalizedSection({ matches }: { matches: Match[] }) {
   return (
     <div className="md:hidden px-4 mb-4">
       {/* Greeting */}
-      <div className="flex items-center gap-3 mb-4 mt-2">
+      <div className="flex items-center gap-3 mb-4 mt-4">
         {clubLogo && (
           <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden" style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)", border: "1px solid rgba(1,45,116,0.06)" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -309,25 +317,34 @@ export function PersonalizedSection({ matches }: { matches: Match[] }) {
             {sectionTitle}
           </h3>
           <div className="space-y-2">
-            {showMatches.map(m => {
+            {showMatches.map((m, idx) => {
               const d = new Date(m.date);
               const time = m.match_time || d.toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
-              const dayStr = d.toLocaleDateString("sk-SK", { weekday: "short", day: "numeric", month: "short" });
+              const dayStr = d.toLocaleDateString("sk-SK", { day: "numeric", month: "long" });
+              const isFirst = idx === 0;
 
               return (
-                <Link key={m.id} href={`/zapasy/${m.id}`} className="flex items-center bg-white px-3 py-2.5 active:bg-gray-50 transition-colors" style={{ borderRadius: "12px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                  <div className="shrink-0 mr-3" style={{ minWidth: 52 }}>
-                    <p className="font-bold text-[#051937]" style={{ fontSize: "11px" }}>{dayStr}</p>
-                    <p className="text-[#94a3b8] font-semibold" style={{ fontSize: "10px" }}>{time}</p>
+                <Link key={m.id} href={`/zapasy/${m.id}`} className="flex items-center gap-3 bg-white px-4 py-3 active:bg-gray-50 transition-colors" style={{ borderRadius: "14px", border: "1px solid rgba(1,45,116,0.06)" }}>
+                  {/* Home */}
+                  <div className="flex flex-col items-center gap-1 flex-1 min-w-0">
+                    <TeamLogo logo={m.home_logo} name={m.home_team} size={30} />
+                    <span className="font-bold text-[#051937] truncate text-center w-full" style={{ fontSize: "11px" }}>{m.home_short || m.home_team}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 flex-1 min-w-0">
-                    <TeamLogo logo={m.home_logo} name={m.home_team} size={22} />
-                    <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>{m.home_short || m.home_team}</span>
-                    <span className="text-[#94a3b8] font-bold shrink-0" style={{ fontSize: "9px" }}>vs</span>
-                    <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>{m.away_short || m.away_team}</span>
-                    <TeamLogo logo={m.away_logo} name={m.away_team} size={22} />
+
+                  {/* Center info */}
+                  <div className="flex flex-col items-center shrink-0 px-1">
+                    {isFirst && <span className="font-black text-[#d00027] uppercase" style={{ fontSize: "7px", letterSpacing: "0.1em" }}>Najbližší zápas</span>}
+                    {m.league && <span className="font-semibold text-[#012d74] text-center uppercase" style={{ fontSize: "7px", letterSpacing: "0.06em", maxWidth: 120 }}>{m.league}</span>}
+                    <span className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>{time}</span>
+                    <span className="text-[#94a3b8] font-semibold" style={{ fontSize: "9px" }}>{dayStr}</span>
+                    {m.venue && <span className="text-[#94a3b8] text-center" style={{ fontSize: "8px" }}>{m.venue}</span>}
                   </div>
-                  {m.venue && <span className="text-[#94a3b8] shrink-0 ml-2 truncate" style={{ fontSize: "9px", maxWidth: 70 }}>{m.venue}</span>}
+
+                  {/* Away */}
+                  <div className="flex flex-col items-center gap-1 flex-1 min-w-0">
+                    <TeamLogo logo={m.away_logo} name={m.away_team} size={30} />
+                    <span className="font-bold text-[#051937] truncate text-center w-full" style={{ fontSize: "11px" }}>{m.away_short || m.away_team}</span>
+                  </div>
                 </Link>
               );
             })}

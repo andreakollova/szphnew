@@ -42,7 +42,7 @@ export function TournamentCarousel({ tournaments }: { tournaments: Tournament[] 
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="mb-10">
+    <div className="mb-5">
       <div className="flex items-center justify-between mb-4">
         <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "14px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
           Najbližšie turnaje

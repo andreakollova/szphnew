@@ -22,17 +22,20 @@ body {
   top: 0;
 }
 .mobile-announcement-bar {
-  padding-top: calc(env(safe-area-inset-top, 54px) - 14px);
+  padding-top: env(safe-area-inset-top, 54px);
 }
 /* Background for the header container */
 .mobile-fixed-header {
   background: #0e264a;
 }
 .mobile-header-offset {
-  padding-top: 130px;
+  padding-top: 150px;
 }
 .mobile-hero-pull {
-  margin-top: 0;
+  margin-top: -2px;
+}
+@media (max-width: 767px) {
+  .pb-20 { padding-bottom: 130px !important; }
 }
 @media (min-width: 768px) {
   .mobile-statusbar-cover { display: none; }
@@ -131,7 +134,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overscroll-behavior-y: none;
-  background-color: #051937;
+  background-color: var(--bg);
 }
 
 body {
@@ -140,6 +143,7 @@ body {
   font-family: var(--font-inter);
   line-height: 1.6;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .font-garet { font-family: var(--font-garet) !important; }

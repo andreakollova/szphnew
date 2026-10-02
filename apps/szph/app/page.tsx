@@ -331,9 +331,8 @@ export default async function SzphHome() {
         return { id: m.id, home_team: m.home_team, away_team: m.away_team, home_short: m.home_short, away_short: m.away_short, home_logo: m.home_logo, away_logo: m.away_logo, date: m.date, league: m.league, venue: m.venue, video_url: m.video_url, isRep: isRep(m) };
       })()} />
 
-      {/* ═══ PERSONALIZED + NEXT MATCH (mobile only) ═══ */}
+      {/* ═══ PERSONALIZED (mobile only) ═══ */}
       <PersonalizedSection matches={matches as any[]} />
-      <NextMatchTicket matches={matches as any[]} />
 
       {/* ═══════════════════════════════════════════════════════
           AKTUALITY + RÝCHLE ODKAZY
@@ -442,7 +441,7 @@ export default async function SzphHome() {
               {/* Posledné zápasy — reálne dáta z DB */}
               <div className="pt-6">
                 <p className="font-garet font-bold italic text-[#051937] mb-2" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                  Posledné zápasy
+                  Posledné repre SVK
                 </p>
                 <div className="mb-4" style={{ width: "28px", height: "2px", background: "#012d74" }} />
 
@@ -517,7 +516,7 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           ZAPASOVE CENTRUM
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#f8f9fa" }} className="relative py-14">
+      <section style={{ background: "#f8f9fa" }} className="relative pt-3 pb-6 md:py-14">
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="flex items-center justify-between mb-5 md:mb-7">
             <h2
@@ -533,7 +532,7 @@ export default async function SzphHome() {
               </svg>
             </Link>
           </div>
-          <MatchCenter matches={matches as any} />
+          <MatchCenter matches={matches as any} pageSize={5} />
         </div>
       </section>
 
@@ -558,7 +557,7 @@ export default async function SzphHome() {
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
 
-          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8 md:gap-16 xl:gap-28 items-center">
+          <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-8 md:gap-12 xl:gap-20 items-center">
 
             {/* Ľavý — text */}
             <div>
@@ -682,7 +681,7 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           PROJEKTY
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#f8f9fa" }} className="relative pt-4 pb-14">
+      <section style={{ background: "#f8f9fa" }} className="relative pt-2 pb-6 md:pt-4 md:pb-14">
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
           <div className="flex items-center justify-between mb-6 md:mb-8">
             <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(1.1rem, 4vw, 2rem)", textTransform: "uppercase" }}>
@@ -846,7 +845,7 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           SPONZORI A PARTNERI
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="py-14">
+      <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="py-8 md:py-14">
         <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
           {/* Oficiálni sponzori */}
@@ -893,13 +892,18 @@ export default async function SzphHome() {
           </div>
 
           {/* Partner CTA */}
-          <div className="mt-8 flex items-center justify-between flex-wrap gap-4" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "16px" }}>
-            <p className="text-[#64748b]" style={{ fontSize: "13px" }}>
-              Máte záujem stať sa partnerom SZPH?
-            </p>
+          <div className="mt-6 flex items-center justify-between" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "14px" }}>
+            <div>
+              <p className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>
+                Máte záujem stať sa partnerom SZPH?
+              </p>
+              <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>
+                Kontaktujte nás pre viac informácií o partnerstve
+              </p>
+            </div>
             <Link
               href="/kontakt"
-              className="inline-flex items-center gap-2 font-bold text-[#051937] hover:text-[#012d74] transition-colors"
+              className="inline-flex items-center gap-2 font-bold text-[#051937] hover:text-[#012d74] transition-colors shrink-0"
               style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}
             >
               Viac informácií

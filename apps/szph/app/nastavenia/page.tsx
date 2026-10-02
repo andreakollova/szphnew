@@ -6,12 +6,11 @@ import Image from "next/image";
 
 const CLUBS = [
   { id: "none", name: "Žiadny klub" },
-  { id: "HAS", name: "HA Senkvice", logo: "/images/timy/HAS.webp" },
-  { id: "SEN", name: "HC 1952 Senkvice", logo: "/images/timy/SEN.webp" },
-  { id: "RAC", name: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+  { id: "HAŠ", name: "HA Šenkvice", logo: "/images/timy/HAS.webp" },
+  { id: "ŠK", name: "ŠK 1952 Šenkvice", logo: "/images/timy/SEN.webp" },
+  { id: "RAČ", name: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
   { id: "HOKO", name: "HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
   { id: "HKM", name: "HKM Nová Dubnica", logo: "/images/timy/nova-dubnica-32x32.webp" },
-  { id: "KAP", name: "Kaptar SE", logo: "/images/timy/KAP.webp" },
 ];
 
 interface UserPrefs {
@@ -106,11 +105,21 @@ export default function NastaveniaPage() {
 
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
-          <div className="w-16 h-16 rounded-full bg-[#051937] flex items-center justify-center">
-            {prefs.name ? (
-              <span className="font-black text-white text-xl">{prefs.name.charAt(0).toUpperCase()}</span>
-            ) : (
-              <svg className="h-7 w-7 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+          <div className="relative">
+            <div className="w-16 h-16 rounded-full bg-[#051937] flex items-center justify-center">
+              {selectedClub && selectedClub.id !== "none" ? (
+                <span className="font-black text-white" style={{ fontSize: "15px" }}>{selectedClub.id}</span>
+              ) : prefs.name ? (
+                <span className="font-black text-white text-xl">{prefs.name.charAt(0).toUpperCase()}</span>
+              ) : (
+                <svg className="h-7 w-7 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+              )}
+            </div>
+            {selectedClub && selectedClub.id !== "none" && "logo" in selectedClub && (
+              <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-white flex items-center justify-center shadow-md" style={{ border: "2px solid white" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={(selectedClub as any).logo} alt="" className="w-4 h-4 object-contain" />
+              </div>
             )}
           </div>
           <div>
@@ -186,24 +195,18 @@ export default function NastaveniaPage() {
           </div>
 
           <div className="mt-4">
-            <label className="block text-[#94a3b8] font-semibold mb-2" style={{ fontSize: "11px" }}>Moje mesto (počasie)</label>
-            <div className="flex flex-wrap gap-2">
+            <label className="block text-[#94a3b8] font-semibold mb-1.5" style={{ fontSize: "11px" }}>Moje mesto (počasie)</label>
+            <select
+              value={prefs.mesto || ""}
+              onChange={e => update("mesto", e.target.value)}
+              className="w-full rounded-xl bg-[#f8f9fa] px-4 py-3 text-[#051937] font-semibold outline-none focus:ring-2 focus:ring-[#012d74]/20 transition-all"
+              style={{ fontSize: "14px", border: "1px solid rgba(1,45,116,0.08)", appearance: "none", backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")", backgroundRepeat: "no-repeat", backgroundPosition: "right 12px center", paddingRight: "36px" }}
+            >
+              <option value="">Vyber mesto</option>
               {MESTA.map(mesto => (
-                <button
-                  key={mesto}
-                  onClick={() => update("mesto", prefs.mesto === mesto ? "" : mesto)}
-                  className="px-3 py-1.5 rounded-full font-bold transition-all"
-                  style={{
-                    fontSize: "11px",
-                    background: prefs.mesto === mesto ? "#012d74" : "transparent",
-                    color: prefs.mesto === mesto ? "#fff" : "#051937",
-                    border: prefs.mesto === mesto ? "1px solid #012d74" : "1px solid rgba(1,45,116,0.1)",
-                  }}
-                >
-                  {mesto}
-                </button>
+                <option key={mesto} value={mesto}>{mesto}</option>
               ))}
-            </div>
+            </select>
           </div>
         </div>
 
@@ -246,7 +249,7 @@ export default function NastaveniaPage() {
 
         {/* Saved toast */}
         {saved && (
-          <div className="fixed bottom-24 left-1/2 -translate-x-1/2 bg-[#051937] text-white px-5 py-2.5 rounded-full font-bold shadow-lg z-50" style={{ fontSize: "12px" }}>
+          <div className="fixed bottom-36 left-1/2 -translate-x-1/2 bg-[#051937] text-white px-5 py-2.5 rounded-full font-bold shadow-lg z-50" style={{ fontSize: "12px" }}>
             Uložené
           </div>
         )}

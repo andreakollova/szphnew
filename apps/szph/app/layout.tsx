@@ -5,6 +5,7 @@ import { inter } from "@szph/ui/fonts";
 import { NavbarSzph, Footer } from "@szph/ui";
 import { CookieBanner } from "./components/CookieBanner";
 import { MobileBottomNav } from "./components/MobileBottomNav";
+import { ScrollToTop } from "./components/ScrollToTop";
 import "./globals.css";
 
 export const viewport = {
@@ -73,9 +74,10 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body>
+        <ScrollToTop />
         <NavbarSzph announcement={announcement} />
         {/* 80px navbar + 36px announcement bar = 116px */}
-        <main className="mobile-header-offset pb-[110px] md:pb-0">{children}</main>
+        <main className="mobile-header-offset pb-[130px] md:pb-0">{children}</main>
         <Footer brand="szph" />
         <MobileBottomNav />
         <CookieBanner />

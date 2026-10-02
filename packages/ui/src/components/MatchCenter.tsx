@@ -35,6 +35,7 @@ interface MatchCenterProps {
   competitions?: any[];
   matches: DbMatch[];
   className?: string;
+  pageSize?: number;
 }
 
 const CATEGORY_TABS: { key: string; label: string }[] = [
@@ -300,12 +301,12 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
   );
 }
 
-export function MatchCenter({ matches, className }: MatchCenterProps) {
+export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterProps) {
   const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming");
   const [activeSection, setActiveSection] = useState<"all" | "liga" | "reprezentacia">("all");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [page, setPage] = useState(0);
-  const PAGE_SIZE = 100;
+  const PAGE_SIZE = pageSize;
 
   // Split by liga vs reprezentácia
   const isRep = (m: DbMatch) => (m.home_short === "SVK" || m.away_short === "SVK") && !m.league?.includes("ČESKÁ");
@@ -381,32 +382,6 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
 
           {/* Program / Výsledky + kategória + šípky */}
           <div className="flex items-center gap-2 sm:gap-3">
-          {/* Šípky */}
-          {totalPages > 1 && (
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => setPage(p => Math.max(0, p - 1))}
-                disabled={page === 0}
-                className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
-                style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
-              >
-                <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <span className="font-bold text-[#64748b] px-1" style={{ fontSize: "10px" }}>{page + 1}/{totalPages}</span>
-              <button
-                onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
-                disabled={page >= totalPages - 1}
-                className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
-                style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
-              >
-                <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          )}
           <div className="flex items-center shrink-0 overflow-hidden" style={{ border: "1px solid rgba(1,45,116,0.12)", borderRadius: "20px" }}>
             {([{ key: "upcoming", label: "Program" }, { key: "past", label: "Výsledky" }] as const).map((tab, i) => (
               <button
@@ -434,6 +409,32 @@ export function MatchCenter({ matches, className }: MatchCenterProps) {
             <option value="zeny">Ženy</option>
             <option value="mladez">Mládež</option>
           </select>
+          {/* Šípky */}
+          {totalPages > 1 && (
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setPage(p => Math.max(0, p - 1))}
+                disabled={page === 0}
+                className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
+                style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
+              >
+                <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <span className="font-bold text-[#64748b] px-1" style={{ fontSize: "10px" }}>{page + 1}/{totalPages}</span>
+              <button
+                onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+                disabled={page >= totalPages - 1}
+                className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
+                style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
+              >
+                <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          )}
           </div>
         </div>
 

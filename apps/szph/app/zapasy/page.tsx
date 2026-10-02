@@ -42,7 +42,7 @@ export default async function SzphZapasyPage() {
   return (
     <div style={{ background: "#f8f9fa", minHeight: "100vh" }}>
       <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8 pb-20">
-        <h1 className="font-garet font-bold italic text-[#051937] mb-8" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
+        <h1 className="font-garet font-bold italic text-[#051937] mb-5" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
           Zápasové centrum
         </h1>
 
@@ -54,7 +54,7 @@ export default async function SzphZapasyPage() {
 
         {/* Desktop: full MatchCenter */}
         <div className="hidden sm:block">
-          <MatchCenter matches={matches as any} />
+          <MatchCenter matches={matches as any} pageSize={999} />
         </div>
       </div>
     </div>
