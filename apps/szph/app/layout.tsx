@@ -6,6 +6,7 @@ import { NavbarSzph, Footer } from "@szph/ui";
 import { CookieBanner } from "./components/CookieBanner";
 import { MobileBottomNav } from "./components/MobileBottomNav";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { AppOnboarding } from "./components/AppOnboarding";
 import "./globals.css";
 
 export const viewport = {
@@ -81,6 +82,7 @@ export default async function RootLayout({
         <Footer brand="szph" />
         <MobileBottomNav />
         <CookieBanner />
+        <AppOnboarding />
       </body>
     </html>
   );
