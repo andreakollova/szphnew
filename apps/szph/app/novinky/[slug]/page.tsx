@@ -328,6 +328,41 @@ function renderContent(content: string, galleries?: any[]) {
       );
     }
 
+    // Image: ![alt](url)
+    const imgMatch = block.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (imgMatch) {
+      return (
+        <div key={i} className="my-6 overflow-hidden rounded-lg">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imgMatch[2]} alt={imgMatch[1]} className="w-full h-auto" style={{ maxHeight: "500px", objectFit: "cover" }} />
+          {imgMatch[1] && <p className="text-[#94a3b8] mt-2 text-center" style={{ fontSize: "12px" }}>{imgMatch[1]}</p>}
+        </div>
+      );
+    }
+
+    // Paragraph with inline images
+    if (block.includes("![")) {
+      const parts = block.split(/(!\[[^\]]*\]\([^)]+\))/g);
+      return (
+        <div key={i} className="my-4">
+          {parts.map((part, j) => {
+            const inlineImg = part.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+            if (inlineImg) {
+              return (
+                <div key={j} className="my-4 overflow-hidden rounded-lg">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={inlineImg[2]} alt={inlineImg[1]} className="w-full h-auto" style={{ maxHeight: "500px", objectFit: "cover" }} />
+                  {inlineImg[1] && <p className="text-[#94a3b8] mt-2 text-center" style={{ fontSize: "12px" }}>{inlineImg[1]}</p>}
+                </div>
+              );
+            }
+            if (part.trim()) return <p key={j} className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>{part}</p>;
+            return null;
+          })}
+        </div>
+      );
+    }
+
     // Regular paragraph
     return (
       <p key={i} className="text-[#334155] my-4" style={{ fontSize: "15px", lineHeight: 1.8 }}>
@@ -347,7 +382,7 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   if (!article) notFound();
 
-  const relatedArticles = recentArticles.filter((a: any) => a.id !== article.id);
+  const relatedArticles = recentArticles.filter((a: any) => a.id !== article.id).slice(0, 5);
   const recentMatches: any[] = [];
 
   return (
