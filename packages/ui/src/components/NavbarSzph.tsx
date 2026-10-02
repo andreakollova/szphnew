@@ -821,7 +821,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
               </div>
 
               {/* Bottom CTAs */}
-              <div className="pt-6 mt-4 space-y-3" style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
+              <div className="pt-4 mt-2 space-y-3" style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
                 <Link href="/projekty/hokejova-akademia" onClick={() => setMobileOpen(false)}
                   className="flex items-center justify-center gap-2 w-full rounded-lg px-4 py-3 text-sm font-bold text-white transition-all hover:brightness-110"
                   style={{ background: "#012d74" }}>
