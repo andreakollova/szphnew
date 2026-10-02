@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @source "../../../packages/ui/src";
 
+@media (max-width: 767px) {
+  html { overflow-x: hidden; }
+}
 body {
   overscroll-behavior-y: none;
   -webkit-overflow-scrolling: touch;

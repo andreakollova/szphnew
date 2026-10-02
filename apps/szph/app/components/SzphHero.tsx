@@ -143,7 +143,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
       <section
         data-hero
         className="relative w-full overflow-hidden hidden md:block"
-        style={{ aspectRatio: "3022 / 1578", paddingTop: "116px", marginTop: "-116px" }}
+        style={{ aspectRatio: "3022 / 1578" }}
       >
         {/* ═══ Background photos — fade rotation ═══ */}
         {HERO_IMAGES.map((img, i) => (
