@@ -13,6 +13,7 @@ interface BannerItem {
   desktop_pos_x: number;
   desktop_pos_y: number;
   zoom: number;
+  mobile_zoom: number;
   sort_order: number;
 }
 
@@ -31,11 +32,11 @@ export default function AdminBannerPage() {
     } else {
       // Seed defaults if empty
       const defaults: Omit<BannerItem, "id">[] = [
-        { image_url: "/images/hero-banner3.webp", mobile_pos_x: 50, mobile_pos_y: 25, desktop_pos_x: 50, desktop_pos_y: 25, zoom: 100, sort_order: 0 },
-        { image_url: "/images/hero-banner3b.webp", mobile_pos_x: 65, mobile_pos_y: 30, desktop_pos_x: 50, desktop_pos_y: 55, zoom: 100, sort_order: 1 },
-        { image_url: "/images/hero-banner7.webp", mobile_pos_x: 65, mobile_pos_y: 30, desktop_pos_x: 50, desktop_pos_y: 55, zoom: 100, sort_order: 2 },
-        { image_url: "/images/hero-banner-blue-player.webp", mobile_pos_x: 35, mobile_pos_y: 10, desktop_pos_x: 50, desktop_pos_y: 0, zoom: 100, sort_order: 3 },
-        { image_url: "/images/hero-banner2.webp", mobile_pos_x: 50, mobile_pos_y: 25, desktop_pos_x: 50, desktop_pos_y: 25, zoom: 100, sort_order: 4 },
+        { image_url: "/images/hero-banner3.webp", mobile_pos_x: 50, mobile_pos_y: 25, desktop_pos_x: 50, desktop_pos_y: 25, zoom: 100, mobile_zoom: 100, sort_order: 0 },
+        { image_url: "/images/hero-banner3b.webp", mobile_pos_x: 65, mobile_pos_y: 30, desktop_pos_x: 50, desktop_pos_y: 55, zoom: 100, mobile_zoom: 100, sort_order: 1 },
+        { image_url: "/images/hero-banner7.webp", mobile_pos_x: 65, mobile_pos_y: 30, desktop_pos_x: 50, desktop_pos_y: 55, zoom: 100, mobile_zoom: 100, sort_order: 2 },
+        { image_url: "/images/hero-banner-blue-player.webp", mobile_pos_x: 35, mobile_pos_y: 10, desktop_pos_x: 50, desktop_pos_y: 0, zoom: 100, mobile_zoom: 100, sort_order: 3 },
+        { image_url: "/images/hero-banner2.webp", mobile_pos_x: 50, mobile_pos_y: 25, desktop_pos_x: 50, desktop_pos_y: 25, zoom: 100, mobile_zoom: 100, sort_order: 4 },
       ];
       const { data: seeded } = await supabase.from("hero_banners").insert(defaults).select();
       if (seeded) setBanners(seeded as BannerItem[]);
@@ -54,6 +55,7 @@ export default function AdminBannerPage() {
         desktop_pos_x: b.desktop_pos_x,
         desktop_pos_y: b.desktop_pos_y,
         zoom: b.zoom,
+        mobile_zoom: b.mobile_zoom,
         sort_order: b.sort_order,
       }).eq("id", b.id);
     }
@@ -75,6 +77,7 @@ export default function AdminBannerPage() {
         mobile_pos_x: 50, mobile_pos_y: 50,
         desktop_pos_x: 50, desktop_pos_y: 50,
         zoom: 100,
+        mobile_zoom: 100,
         sort_order: newOrder,
       }).select().single();
       if (inserted) setBanners([...banners, inserted as BannerItem]);
@@ -165,7 +168,7 @@ export default function AdminBannerPage() {
                     src={banner.image_url}
                     alt=""
                     className="w-full h-full object-cover"
-                    style={{ objectPosition: `${banner.mobile_pos_x}% ${banner.mobile_pos_y}%` }}
+                    style={{ objectPosition: `${banner.mobile_pos_x}% ${banner.mobile_pos_y}%`, transform: `scale(${(banner.mobile_zoom || 100) / 100})` }}
                   />
                 </div>
                 <p className="text-center text-[#94a3b8] font-bold mt-1" style={{ fontSize: "10px" }}>
@@ -192,13 +195,22 @@ export default function AdminBannerPage() {
                   </div>
                 </div>
 
-                {/* Zoom */}
-                <div className="p-3 rounded mb-3" style={{ background: "#f0f4fa" }}>
-                  <div className="flex items-center justify-between">
-                    <label className={labelCls}>Zoom</label>
-                    <span className="text-[9px] font-bold text-[#012d74]">{banner.zoom || 100}%</span>
+                {/* Zoom desktop + mobile */}
+                <div className="grid grid-cols-2 gap-3 mb-3">
+                  <div className="p-3 rounded" style={{ background: "#f0f4fa" }}>
+                    <div className="flex items-center justify-between">
+                      <label className={labelCls}>Zoom Desktop</label>
+                      <span className="text-[9px] font-bold text-[#012d74]">{banner.zoom || 100}%</span>
+                    </div>
+                    <input type="range" min={100} max={200} value={banner.zoom || 100} onChange={(e) => updatePos(banner.id, "zoom", +e.target.value)} className="w-full accent-[#012d74]" />
                   </div>
-                  <input type="range" min={100} max={200} value={banner.zoom || 100} onChange={(e) => updatePos(banner.id, "zoom", +e.target.value)} className="w-full accent-[#012d74]" />
+                  <div className="p-3 rounded" style={{ background: "#f0f4fa" }}>
+                    <div className="flex items-center justify-between">
+                      <label className={labelCls}>Zoom Mobile</label>
+                      <span className="text-[9px] font-bold text-[#012d74]">{banner.mobile_zoom || 100}%</span>
+                    </div>
+                    <input type="range" min={100} max={200} value={banner.mobile_zoom || 100} onChange={(e) => updatePos(banner.id, "mobile_zoom", +e.target.value)} className="w-full accent-[#012d74]" />
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">

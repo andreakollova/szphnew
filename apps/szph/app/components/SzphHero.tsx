@@ -32,6 +32,7 @@ interface HeroImage {
   mobilePos: string;
   desktopPos: string;
   zoom?: number;
+  mobileZoom?: number;
 }
 
 export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | null; dbBanners?: any[] }) {
@@ -43,6 +44,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
         mobilePos: `${b.mobile_pos_x}% ${b.mobile_pos_y}%`,
         desktopPos: `${b.desktop_pos_x}% ${b.desktop_pos_y}%`,
         zoom: b.zoom || 100,
+        mobileZoom: b.mobile_zoom || 100,
       }))
     : DEFAULT_HERO_IMAGES;
 
@@ -73,7 +75,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               objectPosition: img.mobilePos,
               opacity: current === i ? 1 : 0,
               transition: "opacity 1s ease-in-out",
-              transform: img.zoom && img.zoom !== 100 ? `scale(${img.zoom / 100})` : undefined,
+              transform: img.mobileZoom && img.mobileZoom !== 100 ? `scale(${img.mobileZoom / 100})` : undefined,
             }}
             priority={i === 0}
             quality={100}
