@@ -423,7 +423,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
         {nextMatch && (() => {
           const md = new Date(nextMatch.date);
           const day = md.getDate();
-          const month = md.toLocaleDateString("sk-SK", { month: "short" });
+          const month = md.toLocaleDateString("sk-SK", { month: "long" });
           const time = md.toLocaleTimeString("sk-SK", { hour: "2-digit", minute: "2-digit" });
           const matchUrl = `/zapasy/${nextMatch.id}`;
           const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(`https://szph.sk${matchUrl}`)}`;
@@ -456,7 +456,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
                 <p className="font-garet font-bold italic uppercase text-[#051937]" style={{ fontSize: "clamp(12px, 1.1vw, 22px)", letterSpacing: "0.06em" }}>
                   Najbližší zápas
                 </p>
-                <p className="text-[#64748b] mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600 }}>
+                <p className="text-[#012d74] mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600 }}>
                   {nextMatch.league || "Zápas"}
                 </p>
               </div>
@@ -471,9 +471,9 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
                   <p className="font-garet font-bold text-[#051937] text-center" style={{ fontSize: "clamp(8px, 0.75vw, 15px)", marginTop: "clamp(2px, 0.3vw, 6px)" }}>{clean(nextMatch.home_short || nextMatch.home_team)}</p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
-                  <span className="font-bold text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 12px)" }}>VS</span>
-                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
+                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "#012d74", opacity: 0.3 }} />
+                  <span className="font-bold text-[#012d74]" style={{ fontSize: "clamp(7px, 0.6vw, 12px)" }}>VS</span>
+                  <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "#012d74", opacity: 0.3 }} />
                 </div>
                 <div className="flex flex-col items-center gap-0.5 flex-1">
                   <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
