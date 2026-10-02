@@ -11,6 +11,7 @@ interface BannerItem {
   mobile_pos_y: number;
   desktop_pos_x: number;
   desktop_pos_y: number;
+  zoom: number;
   sort_order: number;
 }
 
@@ -29,11 +30,11 @@ export default function AdminBannerPage() {
     } else {
       // Seed defaults if empty
       const defaults: Omit<BannerItem, "id">[] = [
-        { image_url: "/images/hero-banner3.webp", mobile_pos_x: 50, mobile_pos_y: 25, desktop_pos_x: 50, desktop_pos_y: 25, sort_order: 0 },
-        { image_url: "/images/hero-banner3b.webp", mobile_pos_x: 65, mobile_pos_y: 30, desktop_pos_x: 50, desktop_pos_y: 55, sort_order: 1 },
-        { image_url: "/images/hero-banner7.webp", mobile_pos_x: 65, mobile_pos_y: 30, desktop_pos_x: 50, desktop_pos_y: 55, sort_order: 2 },
-        { image_url: "/images/hero-banner-blue-player.webp", mobile_pos_x: 35, mobile_pos_y: 10, desktop_pos_x: 50, desktop_pos_y: 0, sort_order: 3 },
-        { image_url: "/images/hero-banner2.webp", mobile_pos_x: 50, mobile_pos_y: 25, desktop_pos_x: 50, desktop_pos_y: 25, sort_order: 4 },
+        { image_url: "/images/hero-banner3.webp", mobile_pos_x: 50, mobile_pos_y: 25, desktop_pos_x: 50, desktop_pos_y: 25, zoom: 100, sort_order: 0 },
+        { image_url: "/images/hero-banner3b.webp", mobile_pos_x: 65, mobile_pos_y: 30, desktop_pos_x: 50, desktop_pos_y: 55, zoom: 100, sort_order: 1 },
+        { image_url: "/images/hero-banner7.webp", mobile_pos_x: 65, mobile_pos_y: 30, desktop_pos_x: 50, desktop_pos_y: 55, zoom: 100, sort_order: 2 },
+        { image_url: "/images/hero-banner-blue-player.webp", mobile_pos_x: 35, mobile_pos_y: 10, desktop_pos_x: 50, desktop_pos_y: 0, zoom: 100, sort_order: 3 },
+        { image_url: "/images/hero-banner2.webp", mobile_pos_x: 50, mobile_pos_y: 25, desktop_pos_x: 50, desktop_pos_y: 25, zoom: 100, sort_order: 4 },
       ];
       const { data: seeded } = await supabase.from("hero_banners").insert(defaults).select();
       if (seeded) setBanners(seeded as BannerItem[]);
@@ -51,6 +52,7 @@ export default function AdminBannerPage() {
         mobile_pos_y: b.mobile_pos_y,
         desktop_pos_x: b.desktop_pos_x,
         desktop_pos_y: b.desktop_pos_y,
+        zoom: b.zoom,
         sort_order: b.sort_order,
       }).eq("id", b.id);
     }
@@ -71,6 +73,7 @@ export default function AdminBannerPage() {
         image_url: url,
         mobile_pos_x: 50, mobile_pos_y: 50,
         desktop_pos_x: 50, desktop_pos_y: 50,
+        zoom: 100,
         sort_order: newOrder,
       }).select().single();
       if (inserted) setBanners([...banners, inserted as BannerItem]);
@@ -79,7 +82,7 @@ export default function AdminBannerPage() {
   }
 
   async function handleDelete(id: string) {
-    if (!confirm("Zmazat tento banner?")) return;
+    if (!confirm("Zmazať tento banner?")) return;
     await supabase.from("hero_banners").delete().eq("id", id);
     setBanners(banners.filter(b => b.id !== id));
   }
@@ -106,18 +109,18 @@ export default function AdminBannerPage() {
 
   const labelCls = "block text-[9px] font-semibold uppercase tracking-wider text-[#94a3b8] mb-1";
 
-  if (loading) return <div className="text-[#64748b] p-8">Nacitavam...</div>;
+  if (loading) return <div className="text-[#64748b] p-8">Načítavam...</div>;
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#051937]">Hlavny banner</h1>
+          <h1 className="text-2xl font-bold text-[#051937]">Hlavný banner</h1>
           <p className="text-sm text-[#64748b] mt-1">{banners.length} fotiek v rotacii</p>
         </div>
         <div className="flex gap-2">
           <label className="inline-flex items-center gap-2 rounded bg-[#012d74] px-4 py-2.5 text-sm font-bold text-white hover:bg-[#012d74]/90 transition-all cursor-pointer">
-            {uploading ? "Nahravam..." : "+ Pridat fotku"}
+            {uploading ? "Nahrávam..." : "+ Pridať fotku"}
             <input type="file" accept="image/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) handleUpload(f); }} disabled={uploading} />
           </label>
           <button
@@ -125,14 +128,14 @@ export default function AdminBannerPage() {
             disabled={saving}
             className="rounded bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-emerald-700 transition-all disabled:opacity-50"
           >
-            {saving ? "Ukladam..." : "Ulozit zmeny"}
+            {saving ? "Ukladám..." : "Uložiť zmeny"}
           </button>
         </div>
       </div>
 
       {saved && (
         <div className="rounded bg-emerald-500/15 border border-emerald-500/25 px-4 py-3 text-sm text-emerald-600 font-semibold">
-          Zmeny ulozene
+          Zmeny uložené
         </div>
       )}
 
@@ -148,7 +151,7 @@ export default function AdminBannerPage() {
                     src={banner.image_url}
                     alt={`Banner ${idx + 1}`}
                     className="w-full h-full object-cover"
-                    style={{ objectPosition: `${banner.desktop_pos_x}% ${banner.desktop_pos_y}%` }}
+                    style={{ objectPosition: `${banner.desktop_pos_x}% ${banner.desktop_pos_y}%`, transform: `scale(${(banner.zoom || 100) / 100})` }}
                   />
                 </div>
                 <p className="text-center text-[#94a3b8] font-bold mt-1.5" style={{ fontSize: "10px" }}>
@@ -182,10 +185,19 @@ export default function AdminBannerPage() {
                     <button onClick={() => moveDown(idx)} disabled={idx >= banners.length - 1} className="rounded p-1.5 hover:bg-gray-100 disabled:opacity-20 transition-colors" title="Posun dole">
                       <svg className="h-4 w-4 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                     </button>
-                    <button onClick={() => handleDelete(banner.id)} className="rounded p-1.5 hover:bg-red-50 transition-colors ml-2" title="Zmazat">
+                    <button onClick={() => handleDelete(banner.id)} className="rounded p-1.5 hover:bg-red-50 transition-colors ml-2" title="Zmazať">
                       <svg className="h-4 w-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
                   </div>
+                </div>
+
+                {/* Zoom */}
+                <div className="p-3 rounded mb-3" style={{ background: "#f0f4fa" }}>
+                  <div className="flex items-center justify-between">
+                    <label className={labelCls}>Zoom</label>
+                    <span className="text-[9px] font-bold text-[#012d74]">{banner.zoom || 100}%</span>
+                  </div>
+                  <input type="range" min={100} max={200} value={banner.zoom || 100} onChange={(e) => updatePos(banner.id, "zoom", +e.target.value)} className="w-full accent-[#012d74]" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
