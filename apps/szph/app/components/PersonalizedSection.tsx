@@ -284,20 +284,11 @@ export function PersonalizedSection({ matches }: { matches: Match[] }) {
           <p className="text-[#051937]" style={{ fontSize: "16px" }}>Ahoj, <strong>{prefs.name}</strong>!</p>
           <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>
             {clubName && <span>{clubName}</span>}
+            {clubName && (weather || meniny) && <span> · </span>}
+            {weather && <span>{WEATHER_ICONS[weather.code] || "🌡️"} {weather.temp}°</span>}
+            {weather && meniny && <span> · </span>}
+            {meniny && <span>Meniny má {meniny}</span>}
           </p>
-        </div>
-        <div className="ml-auto flex items-center gap-2 shrink-0">
-          {weather && (
-            <div className="flex items-center gap-1">
-              <span style={{ fontSize: "16px" }}>{WEATHER_ICONS[weather.code] || "🌡️"}</span>
-              <span className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>{weather.temp}°</span>
-            </div>
-          )}
-          {meniny && (
-            <span className="text-[#94a3b8]" style={{ fontSize: "10px" }}>
-              Meniny má {meniny}
-            </span>
-          )}
         </div>
       </div>
 
