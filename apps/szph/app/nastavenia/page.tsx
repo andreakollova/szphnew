@@ -5,12 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 const CLUBS = [
-  { id: "none", name: "Žiadny klub" },
-  { id: "HAŠ", name: "HA Šenkvice", logo: "/images/timy/HAS.webp", color: "#e67e22" },
-  { id: "ŠK", name: "ŠK 1952 Šenkvice", logo: "/images/timy/SEN.webp", color: "#e67e22" },
-  { id: "RAČ", name: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", color: "#234079" },
-  { id: "HOKO", name: "HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp", color: "#16a34a" },
-  { id: "HKM", name: "HKM Nová Dubnica", logo: "/images/timy/nova-dubnica-32x32.webp", color: "#7c3aed" },
+  { id: "none", name: "Žiadny klub", short: "Žiadny" },
+  { id: "HAŠ", name: "HA Šenkvice", short: "HAŠ", logo: "/images/timy/HAS.webp", color: "#e67e22" },
+  { id: "ŠK", name: "ŠK 1952 Šenkvice", short: "ŠEN", logo: "/images/timy/SEN.webp", color: "#e67e22" },
+  { id: "RAČ", name: "KPH Rača", short: "RAČ", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", color: "#234079" },
+  { id: "HOKO", name: "HOKO Zlaté Moravce", short: "ZLM", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp", color: "#16a34a" },
+  { id: "HKM", name: "HKM Nová Dubnica", short: "DUB", logo: "/images/timy/nova-dubnica-32x32.webp", color: "#7c3aed" },
 ];
 
 interface UserPrefs {
@@ -166,7 +166,7 @@ export default function NastaveniaPage() {
                     </div>
                   )}
                   <span className="font-bold text-[#051937] truncate" style={{ fontSize: club.id === "none" ? "12px" : "11px" }}>
-                    {club.id === "none" ? "Žiadny" : club.name.split(" ").slice(-1)[0]}
+                    {(club as any).short || club.name}
                   </span>
                 </button>
               ))}
