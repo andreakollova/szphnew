@@ -42,19 +42,12 @@ export default async function SzphZapasyPage() {
   return (
     <div style={{ background: "#f8f9fa", minHeight: "100vh" }}>
       <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8 pb-20">
-        {/* Najbližšie turnaje — first on mobile */}
-        <div className="sm:hidden">
-          <TournamentCarousel tournaments={TOURNAMENTS} />
-        </div>
+        {/* Najbližšie turnaje — always first */}
+        <TournamentCarousel tournaments={TOURNAMENTS} />
 
         <h1 className="font-garet font-bold italic text-[#051937] mb-5" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
           Zápasové centrum
         </h1>
-
-        {/* Najbližšie turnaje — after title on desktop */}
-        <div className="hidden sm:block">
-          <TournamentCarousel tournaments={TOURNAMENTS} />
-        </div>
 
         {/* MatchCenter — all devices */}
         <MatchCenter matches={matches as any} pageSize={999} />
