@@ -831,7 +831,7 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           SPONZORI A PARTNERI
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="pt-8 pb-2 md:pt-14 md:pb-6">
+      <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="pt-8 pb-0 md:pt-14 md:pb-4">
         <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
           {/* Oficiálni sponzori */}
@@ -878,8 +878,12 @@ export default async function SzphHome() {
           </div>
 
           {/* Partner CTA */}
-          <div className="mt-6 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "14px" }}>
-            <div>
+          <Link
+            href="/kontakt"
+            className="mt-5 md:mt-10 flex items-center justify-between gap-3 group transition-colors hover:bg-[#f8fafd] py-3"
+            style={{ borderTop: "1px solid rgba(1,45,116,0.06)" }}
+          >
+            <div className="min-w-0">
               <p className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>
                 Máte záujem stať sa partnerom SZPH?
               </p>
@@ -887,17 +891,12 @@ export default async function SzphHome() {
                 Kontaktujte nás pre viac informácií o partnerstve
               </p>
             </div>
-            <Link
-              href="/kontakt"
-              className="inline-flex items-center gap-2 font-bold text-[#012d74] hover:text-[#051937] transition-colors shrink-0"
-              style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}
-            >
-              Viac informácií
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <div className="shrink-0 flex items-center justify-center rounded-full group-hover:bg-[#012d74]/10 transition-colors" style={{ width: 36, height: 36, border: "1px solid rgba(1,45,116,0.12)" }}>
+              <svg className="h-4 w-4 text-[#012d74]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
-            </Link>
-          </div>
+            </div>
+          </Link>
 
         </div>
       </section>
