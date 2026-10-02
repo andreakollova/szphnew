@@ -932,9 +932,9 @@ export default async function SzphHome() {
           </div>
 
           {/* Partner CTA */}
-          <div className="mt-6 flex items-center justify-between" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "14px" }}>
+          <div className="mt-10 flex items-center justify-between mb-2" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "16px" }}>
             <div>
-              <p className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>
+              <p className="font-black text-[#051937]" style={{ fontSize: "14px" }}>
                 Máte záujem stať sa partnerom SZPH?
               </p>
               <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>
