@@ -59,7 +59,6 @@ async function getDashboardData() {
 
 export default async function AdminDashboard() {
   const data = await getDashboardData();
-  const publishedCount = data.articles.filter((a: any) => a.status === "published").length;
 
   const STATUS_LABELS: Record<string, string> = {
     scheduled: "Plánovaný", live: "Naživo", finished: "Odohraný", postponed: "Preložený",
@@ -72,20 +71,6 @@ export default async function AdminDashboard() {
         <p className="text-sm text-[#334155] mt-1">Vitajte v admin paneli SZPH</p>
       </div>
 
-      {/* Stats */}
-      <div className="grid gap-3 grid-cols-2 sm:grid-cols-4">
-        {[
-          { label: "Článkov", value: publishedCount, color: "#016fb4", href: "/admin/clanky" },
-          { label: "Zápasov", value: data.totalMatches, color: "#012d74", href: "/admin/zapasy" },
-          { label: "Tímov", value: data.teamCount, color: "#34d399", href: "/admin/timy" },
-          { label: "Partnerov", value: data.partners.length, color: "#f59e0b", href: "/admin/partneri" },
-        ].map((stat) => (
-          <Link key={stat.label} href={stat.href} className="rounded-xl p-4 hover:bg-gray-50 transition-colors" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-            <p className="text-[10px] font-bold uppercase text-[#334155] tracking-wider">{stat.label}</p>
-            <p className="text-2xl font-black mt-1" style={{ color: stat.color }}>{stat.value}</p>
-          </Link>
-        ))}
-      </div>
 
       {/* OVERDUE MATCHES — red alert */}
       {data.overdueMatches.length > 0 && (
