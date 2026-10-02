@@ -273,7 +273,7 @@ export function PersonalizedSection({ matches }: { matches: Match[] }) {
   return (
     <div className="md:hidden px-4 mb-4">
       {/* Greeting */}
-      <div className="flex items-center gap-3 mb-4 mt-6">
+      <div className="flex items-center gap-3 mb-6 mt-8">
         {clubLogo && (
           <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden" style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)", border: "1px solid rgba(1,45,116,0.06)" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -281,7 +281,7 @@ export function PersonalizedSection({ matches }: { matches: Match[] }) {
           </div>
         )}
         <div className="flex-1 min-w-0">
-          <p className="text-[#051937]" style={{ fontSize: "16px" }}>Ahoj, <strong>{prefs.name}</strong>!</p>
+          <p className="text-[#051937] font-bold" style={{ fontSize: "20px" }}>Ahoj, {prefs.name}!</p>
           <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>
             {clubName && <span>{clubName}</span>}
             {clubName && (weather || meniny) && <span> · </span>}
