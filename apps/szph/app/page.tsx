@@ -441,7 +441,7 @@ export default async function SzphHome() {
               {/* Posledné zápasy — reálne dáta z DB */}
               <div className="pt-6">
                 <p className="font-garet font-bold italic text-[#051937] mb-2" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-                  Posledné repre SVK
+                  Posledné zápasy SVK
                 </p>
                 <div className="mb-4" style={{ width: "28px", height: "2px", background: "#012d74" }} />
 

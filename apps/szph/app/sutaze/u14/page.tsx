@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "U14 - Mladeznicke sutaze - Slovensky pozemnohokejovy zvaz",
-  description: "Mladeznicka kategoria U14 v pozemnom hokeji na Slovensku. Informacie o sutaziach hracov do 14 rokov.",
+  title: "U14 - Mládežnícke súťaže - Slovenský pozemnohokejový zväz",
+  description: "Mládežnícka kategória U14 v pozemnom hokeji na Slovensku. Informácie o súťažiach hráčov do 14 rokov.",
 };
 
 export default function U14Page() {
@@ -13,13 +13,13 @@ export default function U14Page() {
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
-            Sutaze
+            Súťaže
           </span>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
             U14
           </h1>
           <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px" }}>
-            Mladeznicka kategoria hracov do 14 rokov.
+            Mládežnícka kategória hráčov do 14 rokov.
           </p>
         </div>
       </div>
@@ -27,55 +27,55 @@ export default function U14Page() {
       {/* Content */}
       <div className="max-w-[900px] mx-auto px-6 pt-12">
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Kategoria U14 je stredna mladeznicka vekova skupina v slovenskom pozemnom hokeji. Zdruzuje hracov a hracky do 14 rokov a predstavuje doelzity stupien vo vyvoji mladych hokejistov. V tomto veku sa hraci uz ucsia pokrocilejsie taktiky a pripravuju sa na prechod do vyssich mladeznicskych kategorii.
+          Kategória U14 je stredná mládežnícka veková skupina v slovenskom pozemnom hokeji. Združuje hráčov a hráčky do 14 rokov a predstavuje dôležitý stupeň vo vývoji mladých hokejistov. V tomto veku sa hráči už učia pokročilejšie taktiky a pripravujú sa na prechod do vyšších mládežníckych kategórií.
         </p>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Format sutaze
+          Formát súťaže
         </h2>
         <div className="space-y-4 mb-8">
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Pozemna sezona:</strong> Zapasy sa hraju na mensich ihriskach v uparvenom formate, typicky 7 na 7 alebo 8 na 8. Rozmery ihriska a cas zapasu su prisposobene veku hracov.
+              <strong>Pozemná sezóna:</strong> Zápasy sa hrajú na menších ihriskách v upravenom formáte, typicky 7 na 7 alebo 8 na 8. Rozmery ihriska a čas zápasu sú prispôsobené veku hráčov.
             </p>
           </div>
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Halova sezona:</strong> V zimnych mesiacoch sa hra halovy hokej vo formate prisposobenom tejto vekovej kategorii.
+              <strong>Halová sezóna:</strong> V zimných mesiacoch sa hrá halový hokej vo formáte prispôsobenom tejto vekovej kategórii.
             </p>
           </div>
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10148;</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Turnaje:</strong> Sutaze prebiehaju casto formou turnajoyvch kol, kde sa v priebehu jedneho vikednoveho dna odohraju viacere zapasy.
+              <strong>Turnaje:</strong> Súťaže prebiehajú často formou turnajových kôl, kde sa v priebehu jedného víkendového dňa odohrá viacero zápasov.
             </p>
           </div>
         </div>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Rozvoj hracov
+          Rozvoj hráčov
         </h2>
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          V kategorii U14 sa kladie doraz na rozvoj individualnych zrucnosti, timovu hru a zaklady taktiky. Trening je zamerany na zlepsovanie techniky ovladania lopty, prihravaok, strelieb a pohybu na ihrisku. Cielom je pripravit hracov na plnoformatovu hru v kategorii U18.
+          V kategórii U14 sa kladie dôraz na rozvoj individuálnych zručností, tímovú hru a základy taktiky. Tréning je zameraný na zlepšovanie techniky ovládania lopty, prihrávok, strieľania a pohybu na ihrisku. Cieľom je pripraviť hráčov na plnoformátovú hru v kategórii U18.
         </p>
 
         <div className="rounded-2xl p-6 mb-8" style={{ background: "#051937" }}>
           <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Zapojte sa</h3>
           <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
-            Ak mate zaujem o zaradenie vasho dietata do mladeznickeho poznemneho hokeja, kontaktujte priamo kluby v beznom okoli alebo Slovensky pozemnohokejovy zvaz. Pozemny hokej je vhodny pre chlapcov aj dievcata od utleho veku.
+            Ak máte záujem o zaradenie vášho dieťaťa do mládežníckeho pozemného hokeja, kontaktujte priamo kluby v blízkom okolí alebo Slovenský pozemnohokejový zväz. Pozemný hokej je vhodný pre chlapcov aj dievčatá od útleho veku.
           </p>
         </div>
 
         {/* Link to results */}
         <div className="mt-12 flex gap-6">
           <Link href="/zapasy" className="inline-flex items-center gap-2 font-bold text-[#012d74] hover:underline" style={{ fontSize: "15px" }}>
-            Vysledky a tabulky
+            Výsledky a tabuľky
             <span>&#8594;</span>
           </Link>
           <Link href="/sutaze" className="inline-flex items-center gap-2 font-bold text-[#334155] hover:underline" style={{ fontSize: "15px" }}>
-            Vsetky sutaze
+            Všetky súťaže
           </Link>
         </div>
       </div>

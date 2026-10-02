@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "U21 Zeny - Reprezentacia",
-  description: "Mladeznicka zienska reprezentacia Slovenska do 21 rokov v pozemnom hokeji.",
+  title: "U21 Ženy - Reprezentácia",
+  description: "Mládežnícka ženská reprezentácia Slovenska do 21 rokov v pozemnom hokeji.",
 };
 
 export default function U21ZenyPage() {
@@ -13,13 +13,13 @@ export default function U21ZenyPage() {
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
-            Reprezentacia
+            Reprezentácia
           </span>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            U21 Zeny
+            U21 Ženy
           </h1>
           <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px" }}>
-            Mladeznicka zienska reprezentacia Slovenska do 21 rokov v pozemnom hokeji.
+            Mládežnícka ženská reprezentácia Slovenska do 21 rokov v pozemnom hokeji.
           </p>
         </div>
       </div>
@@ -27,10 +27,10 @@ export default function U21ZenyPage() {
       {/* Content */}
       <div className="max-w-[900px] mx-auto px-6 pt-12">
         <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>
-          O time
+          O tíme
         </h2>
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Zienska mladeznicka reprezentacia do 21 rokov je dolezitou sucastou rozvoja zienskeho pozemneho hokeja na Slovensku. Tim zdruzuje mlade hracky s najvaciem potencialom, ktore sa pripravuju na posobenie v seniorskej reprezentacii. Ucast na medzinarodnych turnajoch im dava prilezitost porovnat sa s rovesnickami z inych europskych krajin.
+          Ženská mládežnícka reprezentácia do 21 rokov je dôležitou súčasťou rozvoja ženského pozemného hokeja na Slovensku. Tím združuje mladé hráčky s najväčším potenciálom, ktoré sa pripravujú na pôsobenie v seniorskej reprezentácii. Účasť na medzinárodných turnajoch im dáva príležitosť porovnať sa s rovesníčkami z iných európskych krajín.
         </p>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>

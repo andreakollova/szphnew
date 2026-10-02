@@ -453,7 +453,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
                     <svg className="h-3.5 w-3.5 text-[#d80027] shrink-0 ml-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                   )}
                 </div>
-                <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(12px, 1.1vw, 22px)", letterSpacing: "0.06em" }}>
+                <p className="font-garet font-bold italic uppercase text-[#051937]" style={{ fontSize: "clamp(12px, 1.1vw, 22px)", letterSpacing: "0.06em" }}>
                   Najbližší zápas
                 </p>
                 <p className="text-[#64748b] mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600 }}>
@@ -487,11 +487,11 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
               {/* Date/Time */}
               <div className="flex items-center" style={{ margin: "0 clamp(14px, 1.4vw, 28px)", padding: "clamp(8px, 0.8vw, 16px) 0", background: "#f8f9fa", borderRadius: "clamp(4px, 0.4vw, 6px)" }}>
                 <div className="flex-1 text-center" style={{ borderRight: "1px solid rgba(1,45,116,0.1)" }}>
-                  <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 0.9 }}>{day}.</p>
-                  <p className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 13px)" }}>{month}</p>
+                  <p className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 0.9 }}>{day}.</p>
+                  <p className="font-garet font-bold italic uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 13px)" }}>{month}</p>
                 </div>
                 <div className="flex-1 text-center">
-                  <p className="font-garet font-bold text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1 }}>{time}</p>
+                  <p className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(18px, 1.8vw, 36px)", lineHeight: 1 }}>{time}</p>
                 </div>
               </div>
 
