@@ -26,10 +26,10 @@ export default function ZacniHratPage() {
           Ako začať s pozemným hokejom
         </h2>
         <p className="text-[#334155] mb-4" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Ak vás zaujal pozemný hokej a chcete sa naučiť základy tohto krásneho, dynamického, olympijského športu, je tu výborná príležitosť nahliadnuť do zákutia pozemného hokeja. Pozemný hokej je síce fyzicky náročný a technicky zameraný šport, ale so správnym prístupom sa ho môže naučiť každý, kto má chuť na športovú výzvu a rád pracuje v tíme.
+          Ak ťa zaujal pozemný hokej a chceš sa naučiť základy tohto dynamického olympijského športu, si na správnom mieste. Pozemný hokej je fyzicky náročný a technicky zameraný šport, ale so správnym prístupom sa ho môže naučiť každý, kto má chuť na športovú výzvu a rád pracuje v tíme.
         </p>
         <p className="text-[#334155] mb-10" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Začať s pozemným hokejom je skvelá príležitosť pre ľudí všetkých vekových kategórií pre mužov a ženy. Tento šport podporuje tímovú prácu, rozvíja kondíciu a techniku a poskytuje skvelé spoločenské zážitky. S pomocou tréningov, základného výstroja a odhodlania sa môžete rýchlo zlepšovať a užívať si všetky výhody, ktoré pozemný hokej ponúka.
+          Začať s pozemným hokejom môžeš v akejkoľvek vekovej kategórii — od detí cez juniorov až po dospelých, mužov aj ženy. Tento šport podporuje tímovú prácu, rozvíja kondíciu a techniku a poskytuje skvelé spoločenské zážitky. S pravidelnými tréningmi, základným výstrojom a odhodlaním sa budeš rýchlo zlepšovať.
         </p>
 
         {/* Kluby */}
@@ -38,90 +38,94 @@ export default function ZacniHratPage() {
           <p className="text-[#334155] mb-5" style={{ fontSize: "15px", lineHeight: 1.8 }}>
             Na Slovensku pôsobí niekoľko klubov, ktoré prijímajú nových hráčov a hráčky. Kontaktuj ktorýkoľvek z nich.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             {[
-              { name: "KPH Rača", logo: "/images/timy/RAC.webp", city: "Bratislava - Rača" },
-              { name: "HA Senkvice", logo: "/images/timy/Logo-SK-Senkvice-59x70-1-27x32.webp", city: "Šenkvice" },
-              { name: "HK Senkvice", logo: "/images/timy/SEN.webp", city: "Šenkvice" },
+              { name: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", city: "Bratislava" },
+              { name: "HA Šenkvice", logo: "/images/timy/HAS.webp", city: "Šenkvice" },
+              { name: "ŠK 1952 Šenkvice", logo: "/images/timy/SEN.webp", city: "Šenkvice" },
               { name: "HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp", city: "Zlaté Moravce" },
               { name: "HKM Nová Dubnica", logo: "/images/timy/nova-dubnica-32x32.webp", city: "Nová Dubnica" },
             ].map((club) => (
-              <Link key={club.name} href="/kluby" className="flex items-center gap-4 bg-white p-4 hover:bg-[#f8fafd] transition-colors" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                <div className="shrink-0 flex items-center justify-center" style={{ width: 40, height: 40 }}>
-                  <Image src={club.logo} alt={club.name} width={40} height={40} className="object-contain" />
+              <Link key={club.name} href="/kluby" className="flex flex-col items-center gap-2 bg-white p-4 hover:bg-[#f8fafd] transition-colors text-center" style={{ borderRadius: "8px", border: "1px solid rgba(1,45,116,0.06)" }}>
+                <div className="shrink-0 flex items-center justify-center" style={{ width: 48, height: 48 }}>
+                  <Image src={club.logo} alt={club.name} width={48} height={48} className="object-contain" sizes="48px" />
                 </div>
                 <div>
-                  <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>{club.name}</p>
-                  <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{club.city}</p>
+                  <p className="font-bold text-[#051937]" style={{ fontSize: "12px" }}>{club.name}</p>
+                  <p className="text-[#94a3b8]" style={{ fontSize: "10px" }}>{club.city}</p>
                 </div>
-                <svg className="h-3.5 w-3.5 text-[#94a3b8] ml-auto shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               </Link>
             ))}
+            <Link href="/pre-kluby/zalozenie" className="flex flex-col items-center justify-center gap-2 bg-white p-4 hover:bg-[#f8fafd] transition-colors text-center" style={{ borderRadius: "8px", border: "1px dashed rgba(1,45,116,0.15)" }}>
+              <div className="flex items-center justify-center rounded-full" style={{ width: 48, height: 48, background: "rgba(1,45,116,0.06)" }}>
+                <svg className="h-5 w-5 text-[#012d74]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+              </div>
+              <div>
+                <p className="font-bold text-[#012d74]" style={{ fontSize: "12px" }}>Nie je klub v tvojom meste?</p>
+                <p className="text-[#94a3b8]" style={{ fontSize: "10px" }}>Založ ho</p>
+              </div>
+            </Link>
           </div>
-          <Link href="/kluby" className="inline-flex items-center gap-2 mt-4 font-bold text-[#012d74] hover:text-[#051937] transition-colors" style={{ fontSize: "13px" }}>
-            Zobraziť všetky kluby
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </Link>
         </div>
 
         {[
           {
             num: "1",
-            title: "Zoznámte sa so športom a pravidlami",
+            title: "Zoznám sa so športom a pravidlami",
             text: "Prvým krokom je pochopiť, ako sa hra hrá, aké sú jej základné pravidlá a aká je dynamika na ihrisku. Pozemný hokej má síce jednoduchý cieľ (streliť viac gólov ako súper), ale existuje niekoľko pravidiel, ktoré sú špecifické a môžu sa líšiť od iných športov, napríklad:",
             bullets: [
               "Používa sa iba plochá strana hokejky.",
               "Gól môže byť strelený iba z vnútra útočného kruhu.",
               "Dotyk lopty nohou alebo inou časťou tela (okrem brankára) je zakázaný.",
             ],
-            footer: "Pozrite si online videá, zápasy alebo pravidlá z oficiálnych zdrojov, aby ste získali základný prehľad o tom, ako sa hrá.",
+            footer: "Pozri si online videá, zápasy alebo pravidlá z oficiálnych zdrojov, aby si získal/a základný prehľad o tom, ako sa hrá.",
           },
           {
             num: "2",
-            title: "Nájdite si miestny klub alebo tréningovú skupinu",
-            text: "Najlepší spôsob, ako začať, je pripojiť sa k miestnemu hokejovému klubu alebo tréningovej skupine pre začiatočníkov, prípadne ak sa jedná o dieťa vyhľadať si krúžok na miestnej základnej škole. Väčšina klubov má programy pre nováčikov a ponúka tréningy pre rôzne vekové a výkonnostné skupiny. Hľadajte tieto možnosti vo vašom meste alebo regióne a prihláste sa do klubu alebo na úvodný tréning. Mnohé kluby tiež umožňujú požičiavanie vybavenia, čo vám umožní začať bez toho, aby ste museli okamžite kupovať všetok potrebný výstroj.",
+            title: "Nájdi si miestny klub alebo tréningovú skupinu",
+            text: "Najlepší spôsob, ako začať, je pripojiť sa k miestnemu hokejovému klubu alebo tréningovej skupine pre začiatočníkov, prípadne ak sa jedná o dieťa vyhľadať si krúžok na miestnej základnej škole. Väčšina klubov má programy pre nováčikov a ponúka tréningy pre rôzne vekové a výkonnostné skupiny. Hľadaj tieto možnosti vo tvojom meste alebo regióne a prihlás sa do klubu alebo na úvodný tréning. Mnohé kluby tiež umožňujú požičiavanie vybavenia, čo ti umožní začať bez toho, aby si musel/a okamžite kupovať všetok potrebný výstroj.",
           },
           {
             num: "3",
             title: "Základná výstroj pre začiatočníkov",
-            text: "Aj keď mnohé kluby požičiavajú hokejky a základnú výstroj, je dobré vedieť, čo budete potrebovať, ak sa rozhodnete investovať do vlastného vybavenia:",
+            text: "Aj keď mnohé kluby požičiavajú hokejky a základnú výstroj, je dobré vedieť, čo budeš potrebovať, ak sa rozhodneš investovať do vlastného vybavenia:",
             items: [
-              { name: "Hokejka", desc: "Hokejky sú kľúčovým nástrojom hráča. Pre začiatočníkov je dôležité vybrať si správnu dĺžku a váhu hokejky. Hokejka by vám mala siahať približne po pupok. Začnite s hokejkou, ktorá je pohodlná a ľahká na ovládanie." },
+              { name: "Hokejka", desc: "Hokejky sú kľúčovým nástrojom hráča. Pre začiatočníkov je dôležité vybrať si správnu dĺžku a váhu hokejky. Hokejka by ti mala siahať približne po pupok. Začni s hokejkou, ktorá je pohodlná a ľahká na ovládanie." },
               { name: "Chrániče holení", desc: "Keďže lopta je tvrdá a pohybuje sa vysokou rýchlosťou, chrániče holení sú nevyhnutné na ochranu pred zraneniami." },
-              { name: "Chránič zubov", desc: "Aj keď sa fauly v pozemnom hokeji prísne trestajú, riziko zraneniu tu je. Chránič zubov ochráni váš chrup. Chránič chrupu je bežne dostupný v športových obchodoch." },
+              { name: "Chránič zubov", desc: "Aj keď sa fauly v pozemnom hokeji prísne trestajú, riziko zraneniu tu je. Chránič zubov ochráni tvoj chrup. Chránič chrupu je bežne dostupný v športových obchodoch." },
               { name: "Vhodná obuv", desc: 'Na pozemný hokej sa používa športová obuv so stupeľmi. Na umelej tráve sú potrebné topánky, ktoré zabránia pošmyknutiu a zabezpečia rýchle zmeny smeru — tzv. "tarfy".' },
             ],
           },
           {
             num: "4",
-            title: "Zamerajte sa na základy techniky",
-            text: "Keď začínate s pozemným hokejom, zamerajte sa na osvojenie si základných techník:",
+            title: "Zameraj sa na základy techniky",
+            text: "Keď začínaš s pozemným hokejom, zameraj sa na osvojenie si základných techník:",
             items: [
-              { name: "Dribling", desc: "Dribling je spôsob, ako kontrolovať loptu pri pohybe po ihrisku. Naučte sa jemne viesť loptu pomocou plochej strany hokejky, pričom udržujte stabilnú kontrolu nad loptou." },
-              { name: "Prihrávanie", desc: "Prihrávka je kľúčová pre úspešnú tímovú hru. Naučte sa rôzne typy prihrávok, ako sú krátke, rýchle prihrávky a dlhé údery, ktoré pomáhajú preniesť hru na inú stranu ihriska." },
-              { name: "Streľba", desc: "Naučte sa, ako efektívne strieľať na bránku z rôznych pozícií. Cvičenie streľby z útočného kruhu vám pomôže zlepšiť presnosť a rýchlosť." },
-              { name: "Obrana", desc: "Dobrý obranca musí vedieť, ako efektívne brániť protihráča bez toho, aby spáchal faul. Trénujte správne umiestnenie tela a hokejky na blokovanie prihrávok a streľby." },
+              { name: "Dribling", desc: "Dribling je spôsob, ako kontrolovať loptu pri pohybe po ihrisku. Nauč sa jemne viesť loptu pomocou plochej strany hokejky, pričom udržuj stabilnú kontrolu nad loptou." },
+              { name: "Prihrávanie", desc: "Prihrávka je kľúčová pre úspešnú tímovú hru. Nauč sa rôzne typy prihrávok, ako sú krátke, rýchle prihrávky a dlhé údery, ktoré pomáhajú preniesť hru na inú stranu ihriska." },
+              { name: "Streľba", desc: "Nauč sa, ako efektívne strieľať na bránku z rôznych pozícií. Cvičenie streľby z útočného kruhu ti pomôže zlepšiť presnosť a rýchlosť." },
+              { name: "Obrana", desc: "Dobrý obranca musí vedieť, ako efektívne brániť protihráča bez toho, aby spáchal faul. Trénuj správne umiestnenie tela a hokejky na blokovanie prihrávok a streľby." },
             ],
           },
           {
             num: "5",
-            title: "Trénujte kondičnú prípravu a koordináciu",
-            text: "Pozemný hokej je fyzicky náročný šport, ktorý si vyžaduje vytrvalosť, rýchlosť a dobrú koordináciu. Aby ste boli na ihrisku úspešní, je dôležité venovať sa aj kondičnému tréningu:",
+            title: "Trénuj kondičnú prípravu a koordináciu",
+            text: "Pozemný hokej je fyzicky náročný šport, ktorý si vyžaduje vytrvalosť, rýchlosť a dobrú koordináciu. Aby si bol/a na ihrisku úspešný/á, je dôležité venovať sa aj kondičnému tréningu:",
             items: [
-              { name: "Vytrvalosť", desc: "Behanie, intervalový tréning a kardiovaskulárne cvičenia vám pomôžu zlepšiť vytrvalosť, aby ste vydržali celé zápasy." },
-              { name: "Sila a stabilita", desc: "Silový tréning zlepší vašu schopnosť tlačiť sa proti súperom a udržať stabilitu pri obranných a útočných manévroch." },
-              { name: "Rýchlosť a reakcie", desc: "Rýchle štarty, zmeny smeru a schopnosť reagovať na hru sú nevyhnutné. Cvičte rýchlostné cvičenia a zlepšujte svoju reakčnú dobu." },
+              { name: "Vytrvalosť", desc: "Behanie, intervalový tréning a kardiovaskulárne cvičenia ti pomôžu zlepšiť vytrvalosť, aby si vydržal/a celé zápasy." },
+              { name: "Sila a stabilita", desc: "Silový tréning zlepší tvoju schopnosť tlačiť sa proti súperom a udržať stabilitu pri obranných a útočných manévroch." },
+              { name: "Rýchlosť a reakcie", desc: "Rýchle štarty, zmeny smeru a schopnosť reagovať na hru sú nevyhnutné. Cvič rýchlostné cvičenia a zlepšuj svoju reakčnú dobu." },
             ],
           },
           {
             num: "6",
-            title: "Zúčastnite sa tréningov a zápasov",
-            text: "Keď máte za sebou niekoľko tréningov, skúste sa zapojiť do priateľských zápasov. Ak navštevujete miestny klub, ten vám pomôže a zaradí vás do skupiny, kde by ste mohli hrávať zápasy. Týmto spôsobom získate skúsenosti a lepšie pochopíte dynamiku hry. Zúčastnením sa na zápasoch sa tiež naučíte, ako efektívne komunikovať so spoluhráčmi a reagovať na rôzne herné situácie.",
+            title: "Zúčastni sa tréningov a zápasov",
+            text: "Keď máš za sebou niekoľko tréningov, skús sa zapojiť do priateľských zápasov. Ak navštevuješ miestny klub, ten ti pomôže a ťa zaradí do skupiny, kde by si mohol/a hrávať zápasy. Týmto spôsobom získaš skúsenosti a lepšie pochopíš dynamiku hry. Zúčastnením sa na zápasoch sa tiež naučíš, ako efektívne komunikovať so spoluhráčmi a reagovať na rôzne herné situácie.",
           },
           {
             num: "7",
-            title: "Buďte trpezliví a učte sa z chýb",
-            text: "Ako pri každom športe, aj pri pozemnom hokeji je dôležitá trpezlivosť. Učenie sa správnych techník a získavanie kondície si vyžaduje čas. Nebojte sa robiť chyby a poučte sa z nich. Čím viac budete trénovať a hrať, tým rýchlejšie budete napredovať.",
+            title: "Buď trpezlivý/á a uč sa z chýb",
+            text: "Ako pri každom športe, aj pri pozemnom hokeji je dôležitá trpezlivosť. Učenie sa správnych techník a získavanie kondície si vyžaduje čas. Neboj sa robiť chyby a pouč sa z nich. Čím viac budeš trénovať a hrať, tým rýchlejšie budeš napredovať.",
           },
         ].map((section) => (
           <div key={section.num} className="mb-10">
