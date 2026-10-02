@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createBrowserSupabaseClient } from "@szph/db/client";
+import { optimizeImage } from "../../../utils/optimizeImage";
 
 export default function NovyTimPage() {
   const router = useRouter();
@@ -22,9 +23,9 @@ export default function NovyTimPage() {
 
     let logo_url: string | null = null;
     if (logoFile) {
-      const ext = logoFile.name.split(".").pop();
-      const path = `${Date.now()}.${ext}`;
-      const { data } = await supabase.storage.from("team-logos").upload(path, logoFile, { upsert: true });
+      const { blob, filename } = await optimizeImage(logoFile, { maxWidth: 256, quality: 0.85 });
+      const path = `${Date.now()}-${filename}`;
+      const { data } = await supabase.storage.from("team-logos").upload(path, blob, { upsert: true, contentType: "image/webp" });
       if (data) logo_url = supabase.storage.from("team-logos").getPublicUrl(data.path).data.publicUrl;
     }
 

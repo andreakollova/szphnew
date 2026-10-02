@@ -8,6 +8,7 @@ import { z } from "zod";
 import { createBrowserSupabaseClient } from "@szph/db/client";
 import { slugify } from "@szph/ui";
 import type { Article, ArticleCategory, VisibleOn, Status } from "@szph/db/types";
+import { optimizeImage } from "../../utils/optimizeImage";
 import { RichTextEditor } from "./RichTextEditor";
 
 const articleSchema = z.object({
@@ -76,11 +77,11 @@ export function ArticleForm({ article }: ArticleFormProps) {
   }
 
   async function uploadImage(file: File): Promise<string> {
-    const ext = file.name.split(".").pop();
-    const path = `${Date.now()}.${ext}`;
+    const { blob, filename } = await optimizeImage(file);
+    const path = `${Date.now()}-${filename}`;
     const { data, error } = await supabase.storage
       .from("articles-covers")
-      .upload(path, file, { cacheControl: "3600", upsert: false });
+      .upload(path, blob, { cacheControl: "3600", upsert: false, contentType: "image/webp" });
     if (error) throw error;
     const { data: { publicUrl } } = supabase.storage
       .from("articles-covers")

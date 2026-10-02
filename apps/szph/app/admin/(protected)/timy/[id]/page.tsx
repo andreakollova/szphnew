@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import Image from "next/image";
 import { createBrowserSupabaseClient } from "@szph/db/client";
 import type { Team } from "@szph/db/types";
+import { optimizeImage } from "../../../utils/optimizeImage";
 
 export default function UpravitTimPage() {
   const { id } = useParams<{ id: string }>();
@@ -31,9 +32,9 @@ export default function UpravitTimPage() {
 
     let logo_url = team.logo_url;
     if (logoFile) {
-      const ext = logoFile.name.split(".").pop();
-      const path = `${id}.${ext}`;
-      const { data } = await supabase.storage.from("team-logos").upload(path, logoFile, { upsert: true });
+      const { blob, filename } = await optimizeImage(logoFile, { maxWidth: 256, quality: 0.85 });
+      const path = `${id}-${filename}`;
+      const { data } = await supabase.storage.from("team-logos").upload(path, blob, { upsert: true, contentType: "image/webp" });
       if (data) logo_url = supabase.storage.from("team-logos").getPublicUrl(data.path).data.publicUrl;
     }
 

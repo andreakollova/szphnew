@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { createBrowserSupabaseClient } from "@szph/db/client";
 import Image from "next/image";
+import { optimizeImage } from "../../utils/optimizeImage";
 
 interface BannerItem {
   id: string;
@@ -63,9 +64,9 @@ export default function AdminBannerPage() {
 
   async function handleUpload(file: File) {
     setUploading(true);
-    const ext = file.name.split(".").pop();
-    const path = `hero-${Date.now()}.${ext}`;
-    const { data } = await supabase.storage.from("hero-banners").upload(path, file, { upsert: true });
+    const { blob, filename } = await optimizeImage(file);
+    const path = `hero-${Date.now()}-${filename}`;
+    const { data } = await supabase.storage.from("hero-banners").upload(path, blob, { upsert: true, contentType: "image/webp" });
     if (data) {
       const url = supabase.storage.from("hero-banners").getPublicUrl(data.path).data.publicUrl;
       const newOrder = banners.length;
