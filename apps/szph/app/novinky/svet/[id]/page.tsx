@@ -19,7 +19,7 @@ const getArticle = unstable_cache(
       const hr = getHrClient();
       const { data } = await hr
         .from("articles")
-        .select("id, title_sk, text_sk, image_url, url, source, scraped_at")
+        .select("id, title_sk, text_sk, image_url, url, scraped_at")
         .eq("id", id)
         .eq("published", true)
         .single();
@@ -170,9 +170,9 @@ export default async function SvetArticleDetail({ params }: Props) {
                     {formatDate(article.scraped_at)}
                   </span>
                 )}
-                {(article.source || article.url) && (
+                {article.url && (
                   <span className="font-bold uppercase text-[#64748b]" style={{ fontSize: "10px", letterSpacing: "0.08em" }}>
-                    Zdroj: {article.source || (() => { try { return new URL(article.url).hostname.replace("www.", ""); } catch { return "externý"; } })()}
+                    Zdroj: {(() => { try { return new URL(article.url).hostname.replace("www.", ""); } catch { return "externý"; } })()}
                   </span>
                 )}
                 {article.url && (

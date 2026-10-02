@@ -17,7 +17,7 @@ const getWorldNews = unstable_cache(
       );
       const { data } = await hr
         .from("articles")
-        .select("id, title_sk, image_url, url, source, scraped_at")
+        .select("id, title_sk, image_url, url, scraped_at")
         .eq("published", true)
         .order("scraped_at", { ascending: false })
         .limit(30);
@@ -27,7 +27,6 @@ const getWorldNews = unstable_cache(
         cover_image_url: a.image_url,
         published_at: a.scraped_at,
         url: a.url ?? null,
-        source: a.source ?? null,
       }));
     } catch {
       return [];
@@ -89,12 +88,12 @@ export default async function SvetNovinkyPage() {
                     >
                       / svet
                     </span>
-                    {(article.source || article.url) && (
+                    {article.url && (
                       <span
                         className="inline-block font-bold uppercase text-[#64748b]"
                         style={{ fontSize: "8px", letterSpacing: "0.08em" }}
                       >
-                        {article.source || (() => { try { return new URL(article.url).hostname.replace("www.", ""); } catch { return ""; } })()}
+                        {(() => { try { return new URL(article.url).hostname.replace("www.", ""); } catch { return ""; } })()}
                       </span>
                     )}
                   </div>
