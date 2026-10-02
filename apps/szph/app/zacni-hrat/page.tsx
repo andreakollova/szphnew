@@ -174,7 +174,7 @@ export default function ZacniHratPage() {
           <p className="text-white/60 mb-6" style={{ fontSize: "13px" }}>
             Vyplň formulár a my ťa spojíme s najbližším klubom.
           </p>
-          <form className="grid gap-4 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
+          <form className="grid gap-4 sm:grid-cols-2" action="/api/kontakt" method="POST">
             <div>
               <label className="block text-[10px] font-semibold uppercase tracking-wider text-white/50 mb-1.5">Meno *</label>
               <input type="text" required placeholder="Tvoje meno" className="w-full rounded-lg bg-white/10 border border-white/15 px-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-white/40 transition-colors" />
