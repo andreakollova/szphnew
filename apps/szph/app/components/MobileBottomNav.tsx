@@ -82,7 +82,7 @@ export function MobileBottomNav() {
               key={item.href}
               href={item.href}
               className="flex flex-col items-center justify-center gap-1 transition-colors"
-              style={{ width: "52px", color: active ? "#0078fd" : "#8a92a6" }}
+              style={{ width: "52px", color: active ? "#012d74" : "#8a92a6" }}
             >
               {item.icon(active)}
               <span className="font-semibold" style={{ fontSize: "9px" }}>{item.label}</span>
