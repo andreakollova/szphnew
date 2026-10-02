@@ -106,9 +106,10 @@ export default function NastaveniaPage() {
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <div className="relative">
-            <div className="w-16 h-16 rounded-full bg-[#051937] flex items-center justify-center">
-              {selectedClub && selectedClub.id !== "none" ? (
-                <span className="font-black text-white" style={{ fontSize: "15px" }}>{selectedClub.id}</span>
+            <div className="w-16 h-16 rounded-full bg-[#051937] flex items-center justify-center overflow-hidden">
+              {selectedClub && selectedClub.id !== "none" && "logo" in selectedClub ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img src={(selectedClub as any).logo} alt="" className="w-10 h-10 object-contain" />
               ) : prefs.name ? (
                 <span className="font-black text-white text-xl">{prefs.name.charAt(0).toUpperCase()}</span>
               ) : (
