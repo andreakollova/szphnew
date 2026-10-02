@@ -16,30 +16,19 @@ const ALL_NAV_ITEMS = [
     ],
   },
   {
-    group: "Obsah",
+    group: "Evidencia",
     items: [
       { label: "Články", href: "/admin/clanky", icon: "article", roles: ["superadmin", "editor"] },
-      { label: "Stránky", href: "/admin/stranky", icon: "page", roles: ["superadmin"] },
-    ],
-  },
-  {
-    group: "Súťaže",
-    items: [
+      { label: "Zápasy", href: "/admin/zapasy", icon: "match", roles: ["superadmin", "editor", "zapasy"] },
       { label: "Tímy", href: "/admin/timy", icon: "team", roles: ["superadmin", "editor", "zapasy"] },
       { label: "Súťaže", href: "/admin/sutaze", icon: "trophy", roles: ["superadmin", "editor"] },
-      { label: "Zápasy", href: "/admin/zapasy", icon: "match", roles: ["superadmin", "editor", "zapasy"] },
-    ],
-  },
-  {
-    group: "Vzdelávanie",
-    items: [
       { label: "Cvičenia", href: "/admin/cvicenia", icon: "exercise", roles: ["superadmin", "editor"] },
+      { label: "Partneri", href: "/admin/partneri", icon: "partner", roles: ["superadmin"] },
     ],
   },
   {
     group: "Nastavenia",
     items: [
-      { label: "Partneri", href: "/admin/partneri", icon: "partner", roles: ["superadmin"] },
       { label: "Správcovia", href: "/admin/spravcovia", icon: "users", roles: ["superadmin"] },
     ],
   },
@@ -132,9 +121,10 @@ export function AdminSidebar({ role = "superadmin", username = "admin" }: { role
             <form action="/api/admin/logout" method="POST">
               <button
                 type="submit"
-                className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm font-semibold text-[#94a3b8] transition-colors hover:bg-gray-50 hover:text-[#051937]"
+                className="flex w-full items-center gap-3 rounded-xl px-3 py-2 font-semibold text-[#94a3b8] transition-colors hover:bg-gray-50 hover:text-[#051937]"
+                style={{ fontSize: "12px" }}
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
                 </svg>
                 Odhlásiť sa
