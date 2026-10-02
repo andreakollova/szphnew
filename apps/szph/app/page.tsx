@@ -5,6 +5,7 @@ import { createClient } from "@supabase/supabase-js";
 import { MatchCenter } from "@szph/ui";
 import { SzphHero } from "./components/SzphHero";
 import { RychleOdkazy } from "./components/RychleOdkazy";
+import { PersonalizedSection } from "./components/PersonalizedSection";
 
 const MOCK_ARTICLES = [
   {
@@ -330,7 +331,8 @@ export default async function SzphHome() {
         return { id: m.id, home_team: m.home_team, away_team: m.away_team, home_short: m.home_short, away_short: m.away_short, home_logo: m.home_logo, away_logo: m.away_logo, date: m.date, league: m.league, venue: m.venue, video_url: m.video_url, isRep: isRep(m) };
       })()} />
 
-      {/* ═══ NEXT MATCH TICKET (mobile only) ═══ */}
+      {/* ═══ PERSONALIZED + NEXT MATCH (mobile only) ═══ */}
+      <PersonalizedSection matches={matches as any[]} />
       <NextMatchTicket matches={matches as any[]} />
 
       {/* ═══════════════════════════════════════════════════════
@@ -360,7 +362,7 @@ export default async function SzphHome() {
 
               {/* Pripnuté články */}
               <div
-                className="relative overflow-hidden"
+                className="relative overflow-hidden -mx-6 px-0 sm:mx-0 sm:px-0"
                 style={{
                   background: "linear-gradient(135deg, #051937 0%, #012d74 100%)",
                   borderRadius: "3px",
