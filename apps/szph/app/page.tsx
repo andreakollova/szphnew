@@ -885,7 +885,7 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           SPONZORI A PARTNERI
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="py-8 md:py-14">
+      <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="pt-8 pb-4 md:pt-14 md:pb-6">
         <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
           {/* Oficiálni sponzori */}
@@ -932,9 +932,9 @@ export default async function SzphHome() {
           </div>
 
           {/* Partner CTA */}
-          <div className="mt-10 flex items-center justify-between mb-2" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "16px" }}>
+          <div className="mt-12 flex items-center justify-between" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "18px" }}>
             <div>
-              <p className="font-black text-[#051937]" style={{ fontSize: "14px" }}>
+              <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>
                 Máte záujem stať sa partnerom SZPH?
               </p>
               <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>
