@@ -829,11 +829,11 @@ export default async function SzphHome() {
       {/* ═══════════════════════════════════════════════════════
           SPONZORI A PARTNERI
           ═══════════════════════════════════════════════════ */}
-      <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="pt-8 pb-4 md:pt-14 md:pb-6">
+      <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="pt-8 pb-2 md:pt-14 md:pb-6">
         <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
 
           {/* Oficiálni sponzori */}
-          <div className="mb-12">
+          <div className="mb-6 md:mb-12">
             <p className="font-garet font-bold italic text-[#051937] text-center mb-6 md:mb-10" style={{ fontSize: "clamp(16px, 4vw, 20px)", letterSpacing: "0.05em", textTransform: "uppercase" }}>
               Oficiálni sponzori a partneri
             </p>
@@ -853,7 +853,7 @@ export default async function SzphHome() {
           </div>
 
           {/* Divider */}
-          <div style={{ height: "1px", background: "rgba(1,45,116,0.06)" }} className="mb-12" />
+          <div style={{ height: "1px", background: "rgba(1,45,116,0.06)" }} className="mb-6 md:mb-12" />
 
           {/* Inštitucionálni partneri */}
           <div>
@@ -876,9 +876,9 @@ export default async function SzphHome() {
           </div>
 
           {/* Partner CTA */}
-          <div className="mt-12 flex items-center justify-between" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "18px" }}>
+          <div className="mt-6 md:mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3" style={{ borderTop: "1px solid rgba(1,45,116,0.06)", paddingTop: "14px" }}>
             <div>
-              <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>
+              <p className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>
                 Máte záujem stať sa partnerom SZPH?
               </p>
               <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>
@@ -887,7 +887,7 @@ export default async function SzphHome() {
             </div>
             <Link
               href="/kontakt"
-              className="inline-flex items-center gap-2 font-bold text-[#051937] hover:text-[#012d74] transition-colors shrink-0"
+              className="inline-flex items-center gap-2 font-bold text-[#012d74] hover:text-[#051937] transition-colors shrink-0"
               style={{ fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase" }}
             >
               Viac informácií
