@@ -211,15 +211,11 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
               <span className="font-bold text-[#051937] block" style={{ fontSize: "12px" }}>{dateStr} · {time}</span>
               {m.venue && <span className="font-semibold text-[#94a3b8] block" style={{ fontSize: "10px" }}>{m.venue}</span>}
             </div>
-            <div className="flex items-center gap-1.5 flex-wrap justify-end">
-              {isIndoor && <span className="rounded-full px-1.5 py-0.5 text-[7px] font-bold uppercase" style={{ background: "rgba(208,0,39,0.08)", color: "#d00027" }}>Halový</span>}
-              {!isIndoor && m.league && <span className="rounded-full px-1.5 py-0.5 text-[7px] font-bold uppercase" style={{ background: "rgba(1,45,116,0.06)", color: "#012d74" }}>Pozemný</span>}
-              {m.league && (
-                <span className="font-bold uppercase text-[#012d74] text-right" style={{ fontSize: "8px", letterSpacing: "0.08em" }}>
-                  {(m.league || "").replace(/\s*\(.*miesto\)/, "").replace(/\s*\(finále\)/, "")}
-                </span>
-              )}
-            </div>
+            {m.league && (
+              <span className="font-bold uppercase text-[#012d74] text-right" style={{ fontSize: "8px", letterSpacing: "0.08em" }}>
+                {(m.league || "").replace(/\s*\(.*miesto\)/, "").replace(/\s*\(finále\)/, "")}
+              </span>
+            )}
           </div>
           {/* Teams row */}
           <div className="flex items-center gap-2">
@@ -257,8 +253,6 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
           </div>
           <div className="shrink-0" style={{ width: "160px" }}>
             <div className="flex items-center gap-1.5">
-              {isIndoor && <span className="rounded-full px-1.5 py-0.5 text-[7px] font-bold uppercase shrink-0" style={{ background: "rgba(208,0,39,0.08)", color: "#d00027" }}>H</span>}
-              {!isIndoor && m.league && <span className="rounded-full px-1.5 py-0.5 text-[7px] font-bold uppercase shrink-0" style={{ background: "rgba(1,45,116,0.06)", color: "#012d74" }}>P</span>}
               <span className="font-bold uppercase text-[#012d74] truncate" style={{ fontSize: "9px", letterSpacing: "0.08em" }}>
                 {(m.league || "Zápas").replace(/\s*\(.*miesto\)/, "").replace(/\s*\(finále\)/, "")}
               </span>
