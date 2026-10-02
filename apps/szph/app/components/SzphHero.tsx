@@ -472,7 +472,7 @@ export function SzphHero({ nextMatch }: { nextMatch?: NextMatch | null }) {
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
-                  <span className="font-bold text-[#94a3b8]" style={{ fontSize: "clamp(7px, 0.6vw, 12px)" }}>VS</span>
+                  <span className="font-bold text-[#051937]" style={{ fontSize: "clamp(7px, 0.6vw, 12px)" }}>VS</span>
                   <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "1px", background: "rgba(0,0,0,0.1)" }} />
                 </div>
                 <div className="flex flex-col items-center gap-0.5 flex-1">
