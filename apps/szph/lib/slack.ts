@@ -26,6 +26,7 @@ export function notifyFormSubmission(form: {
   name: string;
   email: string;
   message?: string;
+  page?: string;
   extra?: Record<string, string>;
 }) {
   const typeLabels: Record<string, string> = {
@@ -35,7 +36,21 @@ export function notifyFormSubmission(form: {
     klub: "Zalozenie klubu",
     kontakt: "Kontaktny formular",
     akademia: "Navrh na cvicenie",
+    podcast: "Podcast navrh",
   };
+
+  const pageLinks: Record<string, string> = {
+    hrac: "/zacni-hrat/hrac",
+    trener: "/zacni-hrat/trener",
+    rozhodca: "/zacni-hrat/rozhodca",
+    klub: "/pre-kluby/zalozenie",
+    kontakt: "/kontakt",
+    akademia: "/projekty/hokejova-akademia",
+    podcast: "/podcast",
+  };
+
+  const pageUrl = form.page || pageLinks[form.type] || "";
+  const fullUrl = pageUrl ? `https://szphnew-fieldhockey.vercel.app${pageUrl}` : "";
 
   const fields: Array<{ type: string; text: string }> = [
     { type: "mrkdwn", text: `*Meno:*\n${form.name}` },
@@ -52,6 +67,10 @@ export function notifyFormSubmission(form: {
     {
       type: "header",
       text: { type: "plain_text", text: `Novy formular: ${typeLabels[form.type] ?? form.type}`, emoji: true },
+    },
+    {
+      type: "context",
+      elements: [{ type: "mrkdwn", text: fullUrl ? `Stranka: <${fullUrl}|${typeLabels[form.type] ?? form.type}>` : `Stranka: ${form.type}` }],
     },
     { type: "section", fields },
   ];
