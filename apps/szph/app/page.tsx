@@ -470,7 +470,7 @@ export default async function SzphHome() {
                       return (
                         <div key={m.id || i} className="bg-white" style={{ padding: "12px 14px" }}>
                           <div className="flex items-center justify-between mb-2">
-                            <span className="font-bold uppercase text-[#64748b]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
+                            <span className="font-bold uppercase text-[#041837]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                               {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" })} · {m.league?.split(" ").slice(0,3).join(" ") || "Zápas"}
                             </span>
                             <span className="font-bold uppercase" style={{ fontSize: "9px", letterSpacing: "0.1em", color: win ? "#16a34a" : draw ? "#64748b" : "#012d74" }}>
