@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -62,6 +63,15 @@ export default function HistoriaPage() {
           </div>
         </div>
 
+        <div className="grid grid-cols-2 gap-3 mb-12">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/historia-1.webp" alt="Vladimír Dzurilla" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/historia-2.webp" alt="Pozemný hokej v minulosti" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
+          </div>
+        </div>
+
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
           Začiatky pozemného hokeja
         </h2>
@@ -77,6 +87,15 @@ export default function HistoriaPage() {
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               Najväčšiu návštevu na medzištátnom zápase zažila v roku 1949 Praha, keď sa na Strahovský štadión 4. septembra 1949 prišlo pozrieť na stretnutie s Poľskom rekordných 40 tisíc divákov. Prvý medzištátny zápas na Slovensku sa hral v roku 1953 v Nitre. ČSR porazila Juhosláviu 2:1.
             </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 mt-8 mb-4">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/historia-3.webp" alt="Ženský pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/historia-4.webp" alt="Historický zápas" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
           </div>
         </div>
       </div>
