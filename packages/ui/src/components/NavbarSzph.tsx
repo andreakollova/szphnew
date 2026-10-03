@@ -82,7 +82,7 @@ const MAIN_NAV: NavItem[] = [
         {
           title: "Aktuálne",
           links: [
-            { label: "Úspechy a ocenenia", href: "/reprezentacia/muzi#ocenenia", desc: "Medaily a výsledky" },
+            { label: "Úspechy a ocenenia", href: "/reprezentacia/uspechy", desc: "Medaily a výsledky" },
             { label: "PEM - Klubové ME", href: "/sutaze/pem", desc: "EuroHockey Club Championships" },
             { label: "Výsledky a zápasy", href: "/zapasy", desc: "Zápasové centrum" },
             { label: "Nominácie", href: "/reprezentacia/nominacie", desc: "Aktuálne zostavy" },
