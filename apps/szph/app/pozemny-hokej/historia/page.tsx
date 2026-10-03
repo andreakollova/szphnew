@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -97,6 +98,18 @@ export default function HistoriaPage() {
           <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
             <Image src="/images/historia-4.webp" alt="Historický zápas" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
           </div>
+        </div>
+
+        {/* PEM link */}
+        <div className="mt-12 p-6" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)", borderRadius: "8px" }}>
+          <h3 className="font-bold text-white mb-2" style={{ fontSize: "16px" }}>Pohár európskych majstrov</h3>
+          <p className="text-white/70 mb-4" style={{ fontSize: "13px", lineHeight: 1.7 }}>
+            Slovenské kluby majú na európskej scéne dlhú tradíciu. Lokomotíva Rača, Šenkvice aj KPH Rača sa pravidelne zúčastňujú EuroHockey Club Championships od roku 1992. Ženy Lokomotívy Rača hrali dokonca najvyššiu úroveň — Club Cup.
+          </p>
+          <Link href="/sutaze/pem" className="inline-flex items-center gap-2 font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "10px 20px", fontSize: "12px" }}>
+            Kompletné výsledky PEM
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </Link>
         </div>
       </div>
     </article>

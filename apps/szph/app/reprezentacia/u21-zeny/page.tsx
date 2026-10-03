@@ -66,14 +66,14 @@ export default function U21ZenyPage() {
             </thead>
             <tbody>
               {[
-                { year: "1994", form: "Hala", event: "Elitné ME, Llodio", result: "3. miesto v Európe" },
+                { year: "2019", form: "Hala", event: "ME II", result: "2. miesto" },
                 { year: "2007", form: "Hala", event: "Elitné ME, Viedeň", result: "4. miesto" },
+                { year: "2006, 2008", form: "Vonku", event: "ME III", result: "3. miesto v oboch rokoch" },
                 { year: "2005", form: "Hala", event: "II. úroveň, Bratislava", result: "1. miesto" },
                 { year: "2001, 2011", form: "Hala", event: "II. úroveň", result: "3. miesto v oboch rokoch" },
-                { year: "2019", form: "Hala", event: "ME II", result: "2. miesto" },
-                { year: "2006, 2008", form: "Vonku", event: "ME III", result: "3. miesto v oboch rokoch" },
+                { year: "1994", form: "Hala", event: "Elitné ME, Llodio", result: "3. miesto v Európe" },
               ].map((r, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)", background: r.result.includes("1.") ? "rgba(212,160,23,0.08)" : r.result.includes("2.") ? "rgba(138,138,138,0.06)" : r.result.includes("3.") ? "rgba(205,127,50,0.06)" : "transparent" }}>
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <td className="px-4 py-3 font-bold text-[#051937]" style={{ fontSize: "13px" }}>{r.year}</td>
                   <td className="px-4 py-3 text-[#64748b]" style={{ fontSize: "13px" }}>{r.form}</td>
                   <td className="px-4 py-3 text-[#334155]" style={{ fontSize: "13px" }}>{r.event}</td>

@@ -7,7 +7,6 @@ export const metadata: Metadata = {
 };
 
 function resultColor(r: string) { return r.includes("1.") ? "#D4A017" : r.includes("2.") ? "#8a8a8a" : r.includes("3.") ? "#CD7F32" : "#334155"; }
-function resultBg(r: string) { return r.includes("1.") ? "rgba(212,160,23,0.08)" : r.includes("2.") ? "rgba(138,138,138,0.06)" : r.includes("3.") ? "rgba(205,127,50,0.06)" : "transparent"; }
 
 export default function ZenyPage() {
   return (
@@ -93,14 +92,14 @@ export default function ZenyPage() {
             </thead>
             <tbody>
               {[
-                { year: "1996, 1998, 2000", form: "Hala", event: "Elitné ME – Glasgow, Ourense, Viedeň", result: "Trikrát 5. miesto" },
-                { year: "2010", form: "Hala", event: "Nations Trophy II, Nymburk", result: "3. miesto" },
-                { year: "2018", form: "Hala", event: "ME III, Apače", result: "2. miesto" },
-                { year: "2022", form: "Hala", event: "ME III, Bratislava", result: "2. miesto" },
-                { year: "2005", form: "Vonku", event: "ME III, Praha", result: "3. miesto" },
                 { year: "2023", form: "Vonku", event: "ME II, Praha", result: "8. miesto – účasť v II. divízii" },
+                { year: "2022", form: "Hala", event: "ME III, Bratislava", result: "2. miesto" },
+                { year: "2018", form: "Hala", event: "ME III, Apače", result: "2. miesto" },
+                { year: "2010", form: "Hala", event: "Nations Trophy II, Nymburk", result: "3. miesto" },
+                { year: "2005", form: "Vonku", event: "ME III, Praha", result: "3. miesto" },
+                { year: "1996, 1998, 2000", form: "Hala", event: "Elitné ME – Glasgow, Ourense, Viedeň", result: "Trikrát 5. miesto" },
               ].map((r, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)", background: resultBg(r.result) }}>
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <td className="px-4 py-3 font-bold text-[#051937]" style={{ fontSize: "13px" }}>{r.year}</td>
                   <td className="px-4 py-3 text-[#64748b]" style={{ fontSize: "13px" }}>{r.form}</td>
                   <td className="px-4 py-3 text-[#334155]" style={{ fontSize: "13px" }}>{r.event}</td>

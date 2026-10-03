@@ -13,12 +13,6 @@ function resultColor(result: string) {
   return "#334155";
 }
 
-function resultBg(result: string) {
-  if (result.includes("1.")) return "rgba(212,160,23,0.08)";
-  if (result.includes("2.")) return "rgba(138,138,138,0.06)";
-  if (result.includes("3.")) return "rgba(205,127,50,0.06)";
-  return "transparent";
-}
 
 export default function MuziPage() {
   return (
@@ -111,15 +105,15 @@ export default function MuziPage() {
             </thead>
             <tbody>
               {[
+                { year: "2026", form: "Hala", event: "ME II-A, Sveti Ivan Zelina", result: "3. miesto" },
+                { year: "2024", form: "Hala", event: "ME II-B, Budapešť", result: "3. miesto" },
+                { year: "2021", form: "Vonku", event: "ME III, Lousada", result: "5. miesto" },
+                { year: "2018", form: "Hala", event: "ME III, Nikózia", result: "2. miesto" },
                 { year: "2015", form: "Vonku", event: "ME IV, Vilnius", result: "1. miesto, postup do III. divízie" },
                 { year: "2009", form: "Vonku", event: "ME IV, Bratislava", result: "2. miesto" },
-                { year: "2021", form: "Vonku", event: "ME III, Lousada", result: "5. miesto" },
                 { year: "2008", form: "Hala", event: "Nations Trophy II, Kodaň", result: "3. miesto" },
-                { year: "2018", form: "Hala", event: "ME III, Nikózia", result: "2. miesto" },
-                { year: "2024", form: "Hala", event: "ME II-B, Budapešť", result: "3. miesto" },
-                { year: "2026", form: "Hala", event: "ME II-A, Sveti Ivan Zelina", result: "3. miesto" },
               ].map((r, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)", background: resultBg(r.result) }}>
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <td className="px-4 py-3 font-bold text-[#051937]" style={{ fontSize: "13px" }}>{r.year}</td>
                   <td className="px-4 py-3 text-[#64748b]" style={{ fontSize: "13px" }}>{r.form}</td>
                   <td className="px-4 py-3 text-[#334155]" style={{ fontSize: "13px" }}>{r.event}</td>
@@ -128,12 +122,6 @@ export default function MuziPage() {
               ))}
             </tbody>
           </table>
-        </div>
-
-        <div className="rounded-lg p-5 mb-8" style={{ background: "rgba(0,120,253,0.04)", border: "1px solid rgba(0,120,253,0.1)" }}>
-          <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
-            Z menších reprezentačných podujatí archív eviduje aj prvenstvá v halovom Pannonia Cupe: muži 2009, ženy 2002 a 2009. Chlapci U16 získali 2. miesto na Hockey5s ME II v Alanyi v roku 2022.
-          </p>
         </div>
 
         <div className="mt-6">

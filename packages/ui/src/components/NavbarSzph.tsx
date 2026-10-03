@@ -270,9 +270,6 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
                       href={link.href}
                       className="group flex items-start gap-2.5 px-2 py-1.5 rounded-lg transition-colors hover:bg-[#f5f7fb]"
                     >
-                      <div className="mt-[7px] shrink-0 transition-all duration-200" style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#051937" }}>
-                        <div className="w-full h-full rounded-full transition-all duration-200 scale-0 group-hover:scale-100" style={{ background: "#012d74" }} />
-                      </div>
                       <div>
                         <p className="font-semibold text-[#051937] leading-none group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>{link.label}</p>
                         {link.desc && <p className="text-[#94a3b8] mt-0.5 leading-tight" style={{ fontSize: "12px" }}>{link.desc}</p>}
@@ -805,7 +802,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                                   {col.links.map(link => (
                                     <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}
                                       className="flex items-center gap-2.5 py-2 pl-1 text-[14px] text-[#051937]/70 hover:text-[#051937] transition-colors">
-                                      <span className="shrink-0 h-1 w-1 rounded-full bg-[#051937]/20" />
+                                      {/* no bullet */}
                                       {link.label}
                                     </Link>
                                   ))}

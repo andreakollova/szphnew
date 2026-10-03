@@ -66,15 +66,15 @@ export default function U21MuziPage() {
             </thead>
             <tbody>
               {[
-                { year: "1998", form: "Hala", event: "II. úroveň, Bratislava", result: "2. miesto" },
-                { year: "2002, 2007, 2013", form: "Hala", event: "II. úroveň", result: "3. miesto v každom ročníku" },
-                { year: "2015, 2017", form: "Hala", event: "ME II", result: "3. miesto v oboch rokoch" },
-                { year: "2019", form: "Hala", event: "ME II, Paredes", result: "2. miesto" },
                 { year: "2025", form: "Hala", event: "ME II, Lousada", result: "2. miesto" },
-                { year: "2010, 2014", form: "Vonku", event: "ME III", result: "3. miesto v oboch rokoch" },
+                { year: "2019", form: "Hala", event: "ME II, Paredes", result: "2. miesto" },
+                { year: "2015, 2017", form: "Hala", event: "ME II", result: "3. miesto v oboch rokoch" },
                 { year: "2012", form: "Vonku", event: "ME III-B, Bratislava", result: "2. miesto" },
+                { year: "2010, 2014", form: "Vonku", event: "ME III", result: "3. miesto v oboch rokoch" },
+                { year: "2002, 2007, 2013", form: "Hala", event: "II. úroveň", result: "3. miesto v každom ročníku" },
+                { year: "1998", form: "Hala", event: "II. úroveň, Bratislava", result: "2. miesto" },
               ].map((r, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)", background: r.result.includes("1.") ? "rgba(212,160,23,0.08)" : r.result.includes("2.") ? "rgba(138,138,138,0.06)" : r.result.includes("3.") ? "rgba(205,127,50,0.06)" : "transparent" }}>
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <td className="px-4 py-3 font-bold text-[#051937]" style={{ fontSize: "13px" }}>{r.year}</td>
                   <td className="px-4 py-3 text-[#64748b]" style={{ fontSize: "13px" }}>{r.form}</td>
                   <td className="px-4 py-3 text-[#334155]" style={{ fontSize: "13px" }}>{r.event}</td>

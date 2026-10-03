@@ -1,72 +1,57 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "PEM — EuroHockey Club Championships",
-  description: "Výsledky slovenských klubov na európskych klubových šampionátoch v pozemnom hokeji.",
+  description: "Kompletné výsledky slovenských klubov na európskych klubových šampionátoch v pozemnom a halovom hokeji.",
 };
 
-function resultColor(r: string) { return r.includes("1.") ? "#D4A017" : r.includes("2.") ? "#8a8a8a" : r.includes("3.") ? "#CD7F32" : "#334155"; }
-function resultBg(r: string) { return r.includes("1.") ? "rgba(212,160,23,0.08)" : r.includes("2.") ? "rgba(138,138,138,0.06)" : r.includes("3.") ? "rgba(205,127,50,0.06)" : "transparent"; }
+function rc(r: string) { return r.includes("1.") ? "#D4A017" : r.includes("2.") ? "#8a8a8a" : r.includes("3.") ? "#CD7F32" : "#334155"; }
+function rb(r: string) { return r.includes("1.") ? "rgba(212,160,23,0.08)" : r.includes("2.") ? "rgba(138,138,138,0.06)" : r.includes("3.") ? "rgba(205,127,50,0.06)" : "transparent"; }
 
-const MUZI_HALA = [
-  { year: "2015", level: "Challenge I", venue: "Rotterdam (NED)", club: "ŠK Šenkvice", logo: "/images/timy/SEN.webp", result: "4." },
-  { year: "2016", level: "Challenge I", venue: "Varna (BUL)", club: "ŠK Šenkvice", logo: "/images/timy/SEN.webp", result: "3." },
-  { year: "2017", level: "Challenge I", venue: "Budapešť (HUN)", club: "ŠK Šenkvice", logo: "/images/timy/SEN.webp", result: "4." },
-  { year: "2018", level: "Challenge I", venue: "Praha (CZE)", club: "ŠK Šenkvice", logo: "/images/timy/SEN.webp", result: "5." },
-  { year: "2019", level: "Challenge I", venue: "Oslo (NOR)", club: "ŠK Šenkvice", logo: "/images/timy/SEN.webp", result: "8. (zostup)" },
-  { year: "2020", level: "Challenge II", venue: "Bratislava (SVK)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", result: "1. (postup)" },
-  { year: "2022", level: "Challenge I", venue: "Puconci (SLO)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", result: "5." },
-  { year: "2023", level: "Challenge I", venue: "Lousada (POR)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", result: "3." },
-  { year: "2024", level: "Challenge I", venue: "Ferrara (ITA)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", result: "1. (postup do Trophy)" },
-  { year: "2025", level: "Trophy", venue: "Budapešť (HUN)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", result: "7. (zostup)" },
-  { year: "2026", level: "Challenge I", venue: "Sofia (BUL)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", result: "3." },
-];
+const LOGOS: Record<string, string> = {
+  "Lokomotíva Bratislava": "/images/timy/Raca-logo-70x58-1-32x27.webp",
+  "Lokomotíva Rača": "/images/timy/Raca-logo-70x58-1-32x27.webp",
+  "Mazda Bratislava": "/images/timy/Raca-logo-70x58-1-32x27.webp",
+  "KPH Rača": "/images/timy/Raca-logo-70x58-1-32x27.webp",
+  "Palma Šenkvice": "/images/timy/SEN.webp",
+  "ŠKPH Šenkvice": "/images/timy/SEN.webp",
+  "Šenkvice": "/images/timy/SEN.webp",
+  "SK Šenkvice": "/images/timy/SEN.webp",
+  "ŠK Šenkvice": "/images/timy/SEN.webp",
+  "HK Zlaté Moravce": "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp",
+  "HKM Nová Dubnica": "/images/timy/nova-dubnica-32x32.webp",
+};
 
-const MUZI_VONKU = [
-  { year: "2015", level: "Challenge II", venue: "Lousada (POR)", club: "ŠK Šenkvice", logo: "/images/timy/SEN.webp", result: "6." },
-  { year: "2016", level: "Challenge II", venue: "Bratislava (SVK)", club: "ŠK Šenkvice", logo: "/images/timy/SEN.webp", result: "5." },
-  { year: "2018", level: "Challenge II", venue: "Lipovci (SLO)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", result: "3. v skupine B" },
-  { year: "2019", level: "Challenge II", venue: "Praha (CZE)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", result: "2. v skupine A" },
-];
-
-const ZENY_HALA = [
-  { year: "2018", level: "Challenge I", venue: "Murska Sobota (SLO)", result: "7." },
-  { year: "2019", level: "Challenge I", venue: "Douai (FRA)", result: "6." },
-  { year: "2020", level: "Challenge I", venue: "Porto (POR)", result: "7." },
-  { year: "2022", level: "Challenge I", venue: "Sveti Ivan Zelina (CRO)", result: "4." },
-  { year: "2025", level: "Challenge I", venue: "Viedeň (AUT)", result: "4." },
-  { year: "2026", level: "Challenge I", venue: "Tbilisi (GEO)", result: "3." },
-];
-
-function PEMTable({ data, showClub = true }: { data: typeof MUZI_HALA; showClub?: boolean }) {
+function T({ data, showClub = true }: { data: { year: string; level: string; venue: string; club?: string; result: string }[]; showClub?: boolean }) {
   return (
     <div className="overflow-x-auto mb-8">
       <table className="w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
         <thead>
           <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
-            <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Rok</th>
-            <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Súťaž</th>
-            <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Miesto</th>
-            {showClub && <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Klub</th>}
-            <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Umiestnenie</th>
+            <th className="px-3 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Rok</th>
+            <th className="px-3 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Súťaž</th>
+            <th className="px-3 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Miesto</th>
+            {showClub && <th className="px-3 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Klub</th>}
+            <th className="px-3 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Umiestnenie</th>
           </tr>
         </thead>
         <tbody>
-          {data.map((r: any, i: number) => (
-            <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)", background: resultBg(r.result) }}>
-              <td className="px-4 py-3 font-bold text-[#051937]" style={{ fontSize: "13px" }}>{r.year}</td>
-              <td className="px-4 py-3 text-[#64748b]" style={{ fontSize: "13px" }}>{r.level}</td>
-              <td className="px-4 py-3 text-[#334155]" style={{ fontSize: "13px" }}>{r.venue}</td>
-              {showClub && (
-                <td className="px-4 py-3" style={{ fontSize: "13px" }}>
-                  <div className="flex items-center gap-2">
-                    {r.logo && <Image src={r.logo} alt={r.club} width={20} height={20} className="object-contain" />}
+          {data.map((r, i) => (
+            <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)", background: rb(r.result) }}>
+              <td className="px-3 py-2.5 font-bold text-[#051937]" style={{ fontSize: "12px" }}>{r.year}</td>
+              <td className="px-3 py-2.5 text-[#64748b]" style={{ fontSize: "12px" }}>{r.level}</td>
+              <td className="px-3 py-2.5 text-[#334155]" style={{ fontSize: "12px" }}>{r.venue}</td>
+              {showClub && r.club && (
+                <td className="px-3 py-2.5" style={{ fontSize: "12px" }}>
+                  <div className="flex items-center gap-1.5">
+                    {LOGOS[r.club] && <Image src={LOGOS[r.club]} alt="" width={16} height={16} className="object-contain" />}
                     <span className="text-[#051937] font-semibold">{r.club}</span>
                   </div>
                 </td>
               )}
-              <td className="px-4 py-3 font-bold" style={{ fontSize: "13px", color: resultColor(r.result) }}>{r.result}</td>
+              <td className="px-3 py-2.5 font-bold" style={{ fontSize: "12px", color: rc(r.result) }}>{r.result}</td>
             </tr>
           ))}
         </tbody>
@@ -75,84 +60,160 @@ function PEMTable({ data, showClub = true }: { data: typeof MUZI_HALA; showClub?
   );
 }
 
+const MH = [
+  { year: "1994", level: "Trophy", venue: "Praha", club: "Lokomotíva Bratislava", result: "2." },
+  { year: "1995", level: "Trophy", venue: "Edinburgh", club: "Lokomotíva Rača", result: "8." },
+  { year: "1998", level: "Challenge I", venue: "Belehrad", club: "Lokomotíva Rača", result: "7." },
+  { year: "1999", level: "Challenge I", venue: "Budapešť", club: "Lokomotíva Rača", result: "9." },
+  { year: "2000", level: "Challenge I", venue: "Venlo", club: "Palma Šenkvice", result: "5." },
+  { year: "2001", level: "Challenge I", venue: "Brusel", club: "Palma Šenkvice", result: "2." },
+  { year: "2002", level: "Challenge I", venue: "Porto", club: "ŠKPH Šenkvice", result: "3." },
+  { year: "2003", level: "Challenge I", venue: "Brusel", club: "Šenkvice", result: "3." },
+  { year: "2004", level: "Challenge I", venue: "Loughborough", club: "Šenkvice", result: "4." },
+  { year: "2005", level: "Challenge I", venue: "Budapešť", club: "KPH Rača", result: "4." },
+  { year: "2006", level: "Challenge II", venue: "Praha", club: "SK Šenkvice", result: "3." },
+  { year: "2007", level: "Challenge I", venue: "Budapešť", club: "SK Šenkvice", result: "3." },
+  { year: "2008", level: "Challenge I", venue: "Vršac", club: "KPH Rača", result: "5." },
+  { year: "2009", level: "Challenge I", venue: "Cambrai", club: "SK Šenkvice", result: "7." },
+  { year: "2010", level: "Challenge II", venue: "Bratislava", club: "SK Šenkvice", result: "1." },
+  { year: "2011", level: "Challenge I", venue: "Lousada", club: "SK Šenkvice", result: "4." },
+  { year: "2012", level: "Challenge I", venue: "Padova", club: "SK Šenkvice", result: "3." },
+  { year: "2013", level: "Challenge I", venue: "Budapešť", club: "SK Šenkvice", result: "4." },
+  { year: "2014", level: "Challenge I", venue: "Praha", club: "SK Šenkvice", result: "3." },
+  { year: "2015", level: "Challenge I", venue: "Rotterdam", club: "SK Šenkvice", result: "4." },
+  { year: "2016", level: "Challenge I", venue: "Varna", club: "SK Šenkvice", result: "3." },
+  { year: "2017", level: "Challenge I", venue: "Budapešť", club: "SK Šenkvice", result: "4." },
+  { year: "2018", level: "Challenge I", venue: "Praha", club: "SK Šenkvice", result: "5." },
+  { year: "2019", level: "Challenge I", venue: "Oslo", club: "SK Šenkvice", result: "8. (zostup)" },
+  { year: "2020", level: "Challenge II", venue: "Bratislava", club: "KPH Rača", result: "1. (postup)" },
+  { year: "2022", level: "Challenge I", venue: "Puconci", club: "KPH Rača", result: "5." },
+  { year: "2023", level: "Challenge I", venue: "Lousada", club: "KPH Rača", result: "3." },
+  { year: "2024", level: "Challenge I", venue: "Ferrara", club: "KPH Rača", result: "1. (postup do Trophy)" },
+  { year: "2025", level: "Trophy", venue: "Budapešť", club: "KPH Rača", result: "7. (zostup)" },
+  { year: "2026", level: "Challenge I", venue: "Sofia", club: "KPH Rača", result: "3." },
+];
+
+const MV = [
+  { year: "1995", level: "Challenge I", venue: "Bratislava", club: "Mazda Bratislava", result: "5." },
+  { year: "1996", level: "Challenge I", venue: "Viedeň", club: "Mazda Bratislava", result: "7." },
+  { year: "2006", level: "Challenge II", venue: "Atény", club: "KPH Rača", result: "1., postup" },
+  { year: "2007", level: "Challenge I", venue: "Rím", club: "KPH Rača", result: "7." },
+  { year: "2008", level: "Challenge III", venue: "Bratislava", club: "KPH Rača", result: "3." },
+  { year: "2009", level: "Challenge III", venue: "Bratislava", club: "KPH Rača", result: "1., postup" },
+  { year: "2010", level: "Challenge IV", venue: "Albena", club: "SK Šenkvice", result: "2." },
+  { year: "2012a", level: "Challenge III", venue: "Bratislava", club: "KPH Rača", result: "1., postup" },
+  { year: "2012b", level: "Challenge III", venue: "Bratislava", club: "SK Šenkvice", result: "3." },
+  { year: "2013a", level: "Challenge III", venue: "Bratislava", club: "SK Šenkvice", result: "1., postup" },
+  { year: "2013b", level: "Challenge II", venue: "Atény", club: "KPH Rača", result: "7." },
+  { year: "2014a", level: "Challenge II", venue: "Slagelse", club: "SK Šenkvice", result: "3." },
+  { year: "2014b", level: "Challenge III", venue: "Bratislava", club: "KPH Rača", result: "3." },
+  { year: "2015", level: "Challenge II", venue: "Lousada", club: "SK Šenkvice", result: "6." },
+  { year: "2016", level: "Challenge II", venue: "Bratislava", club: "SK Šenkvice", result: "5." },
+  { year: "2017", level: "Challenge II", venue: "Gibraltár", club: "KPH Rača", result: "6." },
+  { year: "2018", level: "Challenge II", venue: "Lipovci", club: "KPH Rača", result: "5." },
+  { year: "2019", level: "Challenge II", venue: "Praha", club: "KPH Rača", result: "1., postup" },
+];
+
+const ZH = [
+  { year: "1992", level: "Trophy", venue: "Viedeň", club: "Lokomotíva Bratislava", result: "4." },
+  { year: "1993", level: "Trophy", venue: "Zürich", club: "Lokomotíva Rača", result: "5." },
+  { year: "1994", level: "Trophy", venue: "Bratislava", club: "Lokomotíva Rača", result: "3." },
+  { year: "1995", level: "Trophy", venue: "Mödling", club: "Lokomotíva Rača", result: "2." },
+  { year: "1996", level: "Club Cup", venue: "Bratislava", club: "Lokomotíva Rača", result: "6." },
+  { year: "1997", level: "Club Cup", venue: "Amiens", club: "Lokomotíva Rača", result: "7." },
+  { year: "1998", level: "Trophy", venue: "Mödling", club: "Lokomotíva Rača", result: "1." },
+  { year: "1999", level: "Club Cup", venue: "Glasgow", club: "Lokomotíva Rača", result: "8." },
+  { year: "2000", level: "Trophy", venue: "Wiener Neudorf", club: "KPH Rača", result: "6." },
+  { year: "2001", level: "Trophy", venue: "Rotterdam", club: "KPH Rača", result: "7." },
+  { year: "2002", level: "Trophy", venue: "Opole", club: "KPH Rača", result: "8." },
+  { year: "2003", level: "Challenge I", venue: "Olcote", club: "KPH Rača", result: "1." },
+  { year: "2004", level: "Trophy", venue: "Wettingen", club: "KPH Rača", result: "8." },
+  { year: "2005", level: "Challenge I", venue: "Verona", club: "KPH Rača", result: "2." },
+  { year: "2006", level: "Challenge I", venue: "Bratislava", club: "KPH Rača", result: "2." },
+  { year: "2007", level: "Trophy", venue: "Praha", club: "KPH Rača", result: "7." },
+  { year: "2011", level: "Challenge I", venue: "Bratislava", club: "KPH Rača", result: "3." },
+  { year: "2018", level: "Challenge I", venue: "Murska Sobota", club: "KPH Rača", result: "7." },
+  { year: "2019", level: "Challenge I", venue: "Douai", club: "KPH Rača", result: "6." },
+  { year: "2020", level: "Challenge I", venue: "Porto", club: "KPH Rača", result: "7." },
+  { year: "2022", level: "Challenge I", venue: "Sv. Ivan Zelina", club: "KPH Rača", result: "4." },
+  { year: "2023", level: "Trophy", venue: "Cambrai", club: "KPH Rača", result: "6." },
+  { year: "2024", level: "Trophy", venue: "Skierniewice", club: "KPH Rača", result: "6." },
+  { year: "2025", level: "Challenge I", venue: "Viedeň", club: "KPH Rača", result: "4." },
+  { year: "2026", level: "Challenge I", venue: "Tbilisi", club: "KPH Rača", result: "3." },
+];
+
+const ZV = [
+  { year: "1994", level: "Trophy", venue: "Bratislava", club: "Lokomotíva Rača", result: "5." },
+  { year: "1995", level: "Trophy", venue: "San Sebastián", club: "Lokomotíva Rača", result: "4." },
+  { year: "1996", level: "Trophy", venue: "Praha", club: "Lokomotíva Rača", result: "5." },
+  { year: "1997", level: "Trophy", venue: "Catania", club: "Lokomotíva Rača", result: "7." },
+  { year: "1998", level: "Challenge I", venue: "Gibraltár", club: "Lokomotíva Rača", result: "1." },
+  { year: "1999", level: "Trophy", venue: "Miláno", club: "Lokomotíva Rača", result: "7." },
+  { year: "2000", level: "Challenge I", venue: "Wettingen", club: "Lokomotíva Rača", result: "5." },
+  { year: "2003", level: "Challenge I", venue: "Moravské Toplice", club: "Lokomotíva Rača", result: "5." },
+  { year: "2006", level: "Challenge I", venue: "Atény", club: "KPH Rača", result: "5." },
+  { year: "2007", level: "Challenge I", venue: "Záhreb", club: "KPH Rača", result: "5." },
+  { year: "2008", level: "Challenge I", venue: "Viedeň", club: "KPH Rača", result: "5." },
+  { year: "2009", level: "Challenge I", venue: "Viedeň", club: "HK Zlaté Moravce", result: "3." },
+  { year: "2010a", level: "Challenge II", venue: "Wels", club: "HKM Nová Dubnica", result: "7." },
+  { year: "2010b", level: "Challenge III", venue: "Bratislava", club: "KPH Rača", result: "5." },
+  { year: "2011", level: "Challenge III", venue: "Moravské Toplice", club: "KPH Rača", result: "3." },
+  { year: "2014", level: "Challenge III", venue: "Viedeň", club: "KPH Rača", result: "5." },
+];
+
 export default function PEMPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1000px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Súťaže</span>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
             EuroHockey Club Championships
           </h1>
           <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px" }}>
-            Prehľad výsledkov slovenských klubov na európskych klubových šampionátoch v pozemnom a halovom hokeji.
+            Kompletný prehľad výsledkov slovenských klubov na európskych klubových šampionátoch od roku 1992. Slovenské kluby reprezentujú krajinu v halovom aj vonkajšom pozemnom hokeji na úrovni Challenge, Trophy aj Club Cup.
           </p>
         </div>
       </div>
 
-      <div className="max-w-[900px] mx-auto px-6 pt-12">
-        {/* Muži hala */}
+      <div className="max-w-[1000px] mx-auto px-6 pt-12">
         <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>Muži — halový PEM</h2>
-        <PEMTable data={MUZI_HALA} />
+        <T data={MH} />
 
-        {/* Muži vonku */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Muži — vonkajší PEM</h2>
-        <PEMTable data={MUZI_VONKU} />
+        <T data={MV.map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") }))} />
 
-        {/* Ženy hala */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy — halový PEM</h2>
-        <div className="flex items-center gap-3 mb-4">
-          <Image src="/images/timy/Raca-logo-70x58-1-32x27.webp" alt="KPH Rača" width={28} height={28} className="object-contain" />
-          <span className="font-semibold text-[#051937]" style={{ fontSize: "14px" }}>KPH Rača</span>
-        </div>
-        <PEMTable data={ZENY_HALA} showClub={false} />
+        <T data={ZH} />
 
-        {/* Historické výsledky */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Historické výsledky</h2>
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy — vonkajší PEM</h2>
+        <T data={ZV.map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") }))} />
+
+        {/* Zaujímavosti */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Historické zaujímavosti</h2>
         <div className="space-y-3 mb-8">
-          <div className="p-5 bg-white" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
-            <div className="flex items-center gap-2 mb-2">
-              <Image src="/images/timy/Raca-logo-70x58-1-32x27.webp" alt="Rača" width={20} height={20} className="object-contain" />
-              <h3 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Lokomotíva Rača — ženy, vonkajší Club Trophy 1995</h3>
-            </div>
-            <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
-              Na vonkajšom Club Trophy žien v roku 1995 skončila Lokomotíva Rača na 4. mieste. Turnaj vyhral CA San Sebastián pred Wiener AC, tretí bol Donc Volgodonsk. Club Trophy žien sa konal aj v roku 1994 priamo v Bratislave.
-            </p>
-          </div>
-          <div className="p-5 bg-white" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
-            <div className="flex items-center gap-2 mb-2">
-              <Image src="/images/timy/Raca-logo-70x58-1-32x27.webp" alt="Rača" width={20} height={20} className="object-contain" />
-              <h3 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Lokomotíva Rača — muži, halový Trophy 1995 (Edinburgh)</h3>
-            </div>
-            <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
-              Mužský tím Lokomotívy Rača sa zúčastnil halového Club Trophy v roku 1995 v Edinburghu.
-            </p>
-          </div>
-          <div className="p-5 bg-white" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
-            <div className="flex items-center gap-2 mb-2">
-              <Image src="/images/timy/SEN.webp" alt="Šenkvice" width={20} height={20} className="object-contain" />
-              <h3 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>ŠK Šenkvice — halový PEM C-divízia</h3>
-            </div>
-            <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
-              ŠK Šenkvice sa zúčastnili halového PEM v C-divízii.
-            </p>
-          </div>
           <div className="p-5" style={{ borderRadius: "6px", background: "linear-gradient(135deg, #051937 0%, #012d74 100%)" }}>
-            <div className="flex items-center gap-2 mb-2">
-              <Image src="/images/timy/Raca-logo-70x58-1-32x27.webp" alt="Rača" width={20} height={20} className="object-contain" />
-              <h3 className="font-bold text-white" style={{ fontSize: "14px" }}>Lokomotíva Rača — majstri Československa</h3>
-            </div>
+            <h3 className="font-bold text-white mb-1" style={{ fontSize: "14px" }}>Lokomotíva Rača — majstri Československa</h3>
             <p className="text-white/80" style={{ fontSize: "13px", lineHeight: 1.7 }}>
               Muži Lokomotívy Rača boli majstrami Československa v rokoch 1981 a 1986.
             </p>
           </div>
+          <div className="rounded-lg p-5" style={{ background: "rgba(0,120,253,0.04)", border: "1px solid rgba(0,120,253,0.1)" }}>
+            <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
+              V roku 2019 bola brankárka KPH Rača <strong>Daniela Šutovská</strong> vyhlásená za najlepšiu brankárku turnaja EuroHockey Indoor Club Challenge I vo francúzskom Douai.
+            </p>
+          </div>
+          <div className="rounded-lg p-5" style={{ background: "rgba(0,120,253,0.04)", border: "1px solid rgba(0,120,253,0.1)" }}>
+            <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
+              Ženy Lokomotívy Rača sa v rokoch 1996, 1997 a 1999 zúčastnili najvyššej úrovne — <strong>Club Cup</strong> (predchodca dnešnej EHL). Ide o historicky najvyššiu klubovú účasť slovenského tímu na európskej scéne.
+            </p>
+          </div>
         </div>
 
-        {/* Poznámky */}
-        <div className="rounded-lg p-5" style={{ background: "rgba(0,120,253,0.04)", border: "1px solid rgba(0,120,253,0.1)" }}>
-          <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
-            V roku 2019 bola brankárka KPH Rača <strong>Daniela Šutovská</strong> vyhlásená za najlepšiu brankárku turnaja EuroHockey Indoor Club Challenge I vo francúzskom Douai.
-          </p>
+        <div className="mt-8">
+          <Link href="/pozemny-hokej/historia" className="text-[#012d74] hover:underline font-bold" style={{ fontSize: "14px" }}>
+            &#8592; História pozemného hokeja na Slovensku
+          </Link>
         </div>
       </div>
     </article>
