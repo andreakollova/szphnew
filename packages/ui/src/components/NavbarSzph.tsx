@@ -141,6 +141,7 @@ const MAIN_NAV: NavItem[] = [
             { label: "Zoznam klubov", href: "/kluby", desc: "Všetky členské kluby" },
             { label: "Registrácia hráča", href: "/kluby/registracia", desc: "Postup registrácie" },
             { label: "Prestup hráča", href: "/kluby/prestup", desc: "Prestupy a hosťovania" },
+            { label: "Založenie klubu", href: "/pre-kluby/zalozenie", desc: "Nový klub" },
           ],
         },
         {
