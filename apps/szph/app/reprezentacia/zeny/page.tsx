@@ -26,7 +26,7 @@ export default function ZenyPage() {
         {/* O tíme */}
         <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>O tíme</h2>
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Ženská A-reprezentácia Slovenska v pozemnom hokeji združuje najlepšie hráčky slovenského pozemného hokeja. Tím sa pravidelne zúčastňuje turnajov EuroHockey Championship v rámci ženského divízneho systému. Ženská reprezentácia má kľúčový význam pre rozvoj ženského pozemného hokeja na Slovensku a slúži ako motivácia pre mladé hráčky v kluboch.
+          Ženský pozemný hokej má na Slovensku dlhú tradíciu siahajúcu až k olympijskému striebru z roku 1980 v Moskve. Ženská A-reprezentácia združuje najlepšie hráčky pôsobiace v slovenských kluboch a pravidelne sa zúčastňuje európskych šampionátov v rámci divízneho systému EuroHockey. Slovenské hráčky patria medzi stabilné účastníčky medzinárodných súťaží a tím systematicky pracuje na postupe do vyšších divízií.
         </p>
 
         {/* Nominácia */}
