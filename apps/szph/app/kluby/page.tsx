@@ -1,19 +1,148 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Kluby",
-  description: "Zoznam klubov pozemného hokeja na Slovensku. Nájdi klub vo svojom meste.",
-};
+import { useState } from "react";
 
 const CLUBS = [
-  { name: "KPH Rača", short: "RAČ", city: "Bratislava - Rača", lat: 48.2070, lng: 17.1530, logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", email: "kph.raca@gmail.com", web: "https://kphraca.sk" },
-  { name: "HA Šenkvice", short: "HAŠ", city: "Šenkvice", lat: 48.2919, lng: 17.3419, logo: "/images/timy/HAS.webp" },
-  { name: "ŠK 1952 Šenkvice", short: "ŠK", city: "Šenkvice", lat: 48.2919, lng: 17.3419, logo: "/images/timy/SEN.webp" },
-  { name: "HOKO Zlaté Moravce", short: "HOKO", city: "Zlaté Moravce", lat: 48.3873, lng: 18.3968, logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
-  { name: "HKM Nová Dubnica", short: "HKM", city: "Nová Dubnica", lat: 48.9348, lng: 18.1475, logo: "/images/timy/nova-dubnica-32x32.webp" },
+  {
+    name: "KPH Rača",
+    short: "RAČ",
+    city: "Bratislava",
+    phone: "0903 714 909",
+    email: "kphraca@kphraca.sk",
+    web: "https://www.kphraca.sk",
+    facebook: "KPH Rača Bratislava",
+    logo: "/images/timy/Raca-logo-70x58-1-32x27.webp",
+    address: "Jurkovičova 5, 831 06 Bratislava",
+    ico: "31795773",
+    chairman: "Ing. Peter Romanec",
+    account: "SK27310000000040700062032",
+  },
+  {
+    name: "HC 1952 Šenkvice",
+    short: "ŠEN",
+    city: "Šenkvice",
+    phone: "0903 754 769",
+    email: "pozemnyhokej1952@gmail.com",
+    web: "https://hockeysenkvice.sk/",
+    facebook: "HC 1952 Šenkvice – field hockey team",
+    logo: "/images/timy/SEN.webp",
+    address: "Domovina 55, 900 81 Šenkvice",
+    ico: "55935842",
+    chairman: "Milan Dugovič",
+    account: "SK2209000000000019187856",
+  },
+  {
+    name: "HA Šenkvice",
+    short: "HAŠ",
+    city: "Šenkvice",
+    phone: "0908 777 623",
+    email: "has@hockeysenkvice.sk",
+    web: "https://hockeysenkvice.sk/",
+    facebook: "Hokejová Akadémia Šenkvice",
+    logo: "/images/timy/HAS.webp",
+    address: "Domovina 55, 900 81 Šenkvice",
+    ico: "34004106",
+    chairman: "Zuzana Krajčírová",
+  },
+  {
+    name: "HKM Nová Dubnica",
+    short: "HKM",
+    city: "Nová Dubnica",
+    phone: "0910 928 292",
+    email: "hkmnovadubnica@gmail.com",
+    web: "https://www.hkmnovadubnica.sk/",
+    facebook: "HKM Nová Dubnica",
+    logo: "/images/timy/nova-dubnica-32x32.webp",
+    address: "P. O. Hviezdoslava 14/2, 018 51 Nová Dubnica",
+    ico: "37917099",
+    chairman: "Ing. Zuzana Hoštáková",
+    account: "SK49 0200 0000 0023 3304 6751",
+  },
+  {
+    name: "KPH HOKO Zlaté Moravce",
+    short: "HOKO",
+    city: "Zlaté Moravce",
+    phone: "0903 915 108",
+    email: "kph.hoko@gmail.com",
+    facebook: "KPH HOKO Zlaté Moravce",
+    logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp",
+    address: "Továrenská 39, 953 01 Zlaté Moravce",
+    ico: "37854887",
+    chairman: "Zuzana Jakabová",
+    account: "SK07 0900 0000 0002 3223 0972",
+  },
 ];
+
+function ClubCard({ club }: { club: typeof CLUBS[0] }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="bg-white flex flex-col" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+      <div className="px-5 py-5 flex flex-col items-center text-center">
+        <div className="flex items-center justify-center mb-3" style={{ width: 56, height: 56 }}>
+          <Image src={club.logo} alt={club.name} width={56} height={56} className="object-contain" />
+        </div>
+        <h3 className="font-bold text-[#051937] leading-snug" style={{ fontSize: "13px" }}>{club.name}</h3>
+        <div className="flex items-center gap-1.5 mt-2">
+          <svg className="h-3 w-3 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z" />
+          </svg>
+          <span className="text-[#64748b]" style={{ fontSize: "11px" }}>{club.city}</span>
+        </div>
+        <a href={`mailto:${club.email}`} className="text-[#012d74] hover:text-[#051937] transition-colors mt-1 truncate max-w-full" style={{ fontSize: "10px" }}>{club.email}</a>
+        <span className="text-[#64748b] mt-0.5" style={{ fontSize: "10px" }}>{club.phone}</span>
+        {club.web && (
+          <a href={club.web} target="_blank" rel="noopener noreferrer" className="text-[#012d74] hover:text-[#051937] transition-colors mt-0.5 truncate max-w-full" style={{ fontSize: "10px" }}>
+            {club.web.replace("https://", "").replace(/\/$/, "")}
+          </a>
+        )}
+      </div>
+
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="mt-auto flex items-center justify-center gap-1.5 py-3 font-bold text-[#012d74] hover:bg-[#f0f4fa] transition-colors"
+        style={{ fontSize: "10px", borderTop: "1px solid rgba(1,45,116,0.06)" }}
+      >
+        {expanded ? "Skryť" : "Viac info"}
+        <svg className={`h-3 w-3 transition-transform ${expanded ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {expanded && (
+        <div className="px-5 pb-5 space-y-2" style={{ borderTop: "1px solid rgba(1,45,116,0.06)" }}>
+          <div className="pt-3">
+            <p className="text-[#94a3b8] font-bold uppercase" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>Adresa</p>
+            <p className="text-[#334155]" style={{ fontSize: "11px" }}>{club.address}</p>
+          </div>
+          <div>
+            <p className="text-[#94a3b8] font-bold uppercase" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>Predseda</p>
+            <p className="text-[#334155]" style={{ fontSize: "11px" }}>{club.chairman}</p>
+          </div>
+          <div>
+            <p className="text-[#94a3b8] font-bold uppercase" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>IČO</p>
+            <p className="text-[#334155]" style={{ fontSize: "11px" }}>{club.ico}</p>
+          </div>
+          {club.account && (
+            <div>
+              <p className="text-[#94a3b8] font-bold uppercase" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>Dotačný účet</p>
+              <p className="text-[#334155] font-mono" style={{ fontSize: "10px" }}>{club.account}</p>
+            </div>
+          )}
+          {club.facebook && (
+            <div>
+              <p className="text-[#94a3b8] font-bold uppercase" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>Facebook</p>
+              <p className="text-[#334155]" style={{ fontSize: "11px" }}>{club.facebook}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function KlubyPage() {
   return (
@@ -28,64 +157,10 @@ export default function KlubyPage() {
           </p>
         </div>
 
-        {/* Map */}
-        <div className="relative w-full overflow-hidden mb-10 h-[280px] sm:h-[420px]" style={{ borderRadius: "4px" }}>
-          <iframe
-            src="https://www.google.com/maps/d/embed?mid=1_placeholder&z=8&ll=48.7,19.0"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          {/* Fallback static map image */}
-          <div className="absolute inset-0 flex items-center justify-center" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)" }}>
-            <div className="text-center">
-              <svg className="h-12 w-12 text-white/30 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z" />
-              </svg>
-              <p className="font-garet font-bold text-white" style={{ fontSize: "18px" }}>Mapa klubov</p>
-              <p className="text-white mt-1" style={{ fontSize: "12px" }}>{CLUBS.length} klubov po celom Slovensku</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Club grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+        {/* Club grid — 5 columns on desktop */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {CLUBS.map((club) => (
-            <div key={club.short} className="bg-white px-5 py-4 flex items-start gap-4" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
-              <div className="shrink-0 flex items-center justify-center" style={{ width: 44, height: 44 }}>
-                <Image src={club.logo} alt={club.name} width={44} height={44} className="object-contain" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-[#051937] leading-snug" style={{ fontSize: "13px" }}>{club.name}</h3>
-                <div className="flex items-center gap-1.5 mt-1">
-                  <svg className="h-3 w-3 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0115 0z" />
-                  </svg>
-                  <span className="text-[#64748b]" style={{ fontSize: "11px" }}>{club.city}</span>
-                </div>
-                {club.email && (
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <svg className="h-3 w-3 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                    </svg>
-                    <a href={`mailto:${club.email}`} className="text-[#012d74] hover:text-[#051937] transition-colors" style={{ fontSize: "11px" }}>{club.email}</a>
-                  </div>
-                )}
-                {club.web && (
-                  <div className="flex items-center gap-1.5 mt-1">
-                    <svg className="h-3 w-3 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 003 12c0-1.605.42-3.113 1.157-4.418" />
-                    </svg>
-                    <a href={club.web} target="_blank" rel="noopener noreferrer" className="text-[#012d74] hover:text-[#051937] transition-colors truncate" style={{ fontSize: "11px" }}>{club.web.replace("https://", "")}</a>
-                  </div>
-                )}
-              </div>
-            </div>
+            <ClubCard key={club.short} club={club} />
           ))}
         </div>
 
