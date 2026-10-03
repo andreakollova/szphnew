@@ -78,6 +78,10 @@ export default function ChcemSaStatHracomPage() {
           <p className="text-[#334155] leading-relaxed" style={{ fontSize: "15px" }}>
             Nemusíš hneď kupovať výstroj. Najskôr sa v klube informuj, čo potrebuješ na prvý tréning a aké vybavenie si môžeš požičať.
           </p>
+          <Link href="/pozemny-hokej/vybavenie" className="inline-flex items-center gap-2 mt-4 font-bold text-[#012d74] hover:text-[#051937] transition-colors" style={{ fontSize: "13px" }}>
+            Pozrieť prehľad vybavenia
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </Link>
         </section>
 
         {/* Začni v akomkoľvek veku */}
