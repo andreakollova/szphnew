@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -44,6 +45,26 @@ export default function ChcemSaStatHracomPage() {
             Nájdi svoj klub
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </Link>
+
+          {/* Season cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+            <div className="relative overflow-hidden" style={{ borderRadius: "8px", height: "200px" }}>
+              <Image src="/images/hrac-pozemny.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 100vw, 400px" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.85) 0%, rgba(5,25,55,0.2) 60%)" }} />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <h3 className="font-garet font-bold text-white" style={{ fontSize: "16px" }}>Pozemný hokej</h3>
+                <p className="text-white/70 mt-1" style={{ fontSize: "12px" }}>Jar a jeseň (marec - jún, september - november)</p>
+              </div>
+            </div>
+            <div className="relative overflow-hidden" style={{ borderRadius: "8px", height: "200px" }}>
+              <Image src="/images/hrac-halovy.webp" alt="Halový hokej" fill className="object-cover" sizes="(max-width: 900px) 100vw, 400px" />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.85) 0%, rgba(5,25,55,0.2) 60%)" }} />
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <h3 className="font-garet font-bold text-white" style={{ fontSize: "16px" }}>Halový hokej</h3>
+                <p className="text-white/70 mt-1" style={{ fontSize: "12px" }}>Zimné mesiace (október - marec)</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -57,6 +78,31 @@ export default function ChcemSaStatHracomPage() {
           <p className="text-[#334155] leading-relaxed" style={{ fontSize: "15px" }}>
             Nemusíš hneď kupovať výstroj. Najskôr sa v klube informuj, čo potrebuješ na prvý tréning a aké vybavenie si môžeš požičať.
           </p>
+        </section>
+
+        {/* Začni v akomkoľvek veku */}
+        <section className="mb-12">
+          <h2 className="font-garet font-bold text-[#051937] mb-6" style={{ fontSize: "22px" }}>Začni v akomkoľvek veku</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="overflow-hidden" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+              <div className="relative" style={{ height: "200px" }}>
+                <Image src="/images/hrac-deti.webp" alt="Deti hraju pozemny hokej" fill className="object-cover" sizes="(max-width: 900px) 100vw, 420px" />
+              </div>
+              <div className="bg-white p-4">
+                <h3 className="font-bold text-[#051937]" style={{ fontSize: "15px" }}>Deti a mládež</h3>
+                <p className="text-[#64748b] mt-1 leading-relaxed" style={{ fontSize: "13px" }}>Kategórie U12, U14, U18. Tréningy prispôsobené veku, dôraz na hru a radosť z pohybu.</p>
+              </div>
+            </div>
+            <div className="overflow-hidden" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+              <div className="relative" style={{ height: "200px" }}>
+                <Image src="/images/hrac-dospely.webp" alt="Dospely hrac" fill className="object-cover" sizes="(max-width: 900px) 100vw, 420px" />
+              </div>
+              <div className="bg-white p-4">
+                <h3 className="font-bold text-[#051937]" style={{ fontSize: "15px" }}>Dospelí</h3>
+                <p className="text-[#64748b] mt-1 leading-relaxed" style={{ fontSize: "13px" }}>Mužská aj ženská liga. Začať môžeš aj bez predchádzajúcich skúseností.</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Ako začať */}
