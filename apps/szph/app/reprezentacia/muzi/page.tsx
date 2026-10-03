@@ -6,36 +6,76 @@ export const metadata: Metadata = {
   description: "Seniorská mužská reprezentácia Slovenska v pozemnom hokeji.",
 };
 
+function resultColor(result: string) {
+  if (result.includes("1.")) return "#D4A017";
+  if (result.includes("2.")) return "#8a8a8a";
+  if (result.includes("3.")) return "#CD7F32";
+  return "#334155";
+}
+
+function resultBg(result: string) {
+  if (result.includes("1.")) return "rgba(212,160,23,0.08)";
+  if (result.includes("2.")) return "rgba(138,138,138,0.06)";
+  if (result.includes("3.")) return "rgba(205,127,50,0.06)";
+  return "transparent";
+}
+
 export default function MuziPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
-      {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[900px] mx-auto">
-          <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
-            Reprezentácia
-          </span>
-          <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Muži A
-          </h1>
+          <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Reprezentácia</span>
+          <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>Muži A</h1>
           <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px" }}>
             Seniorská mužská reprezentácia Slovenska v pozemnom hokeji zastupuje krajinu na medzinárodných turnajoch organizovaných EuroHockey a FIH.
           </p>
         </div>
       </div>
 
-      {/* Content */}
       <div className="max-w-[900px] mx-auto px-6 pt-12">
-        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>
-          O tíme
-        </h2>
+        {/* O tíme */}
+        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>O tíme</h2>
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Mužská A-reprezentácia Slovenska v pozemnom hokeji je najvyšším reprezentačným tímom krajiny. Tím sa pravidelne zúčastňuje turnajov EuroHockey Championship, kde súťaží v rámci divízneho systému. Hráčsky káder tvoria najlepšie dostupní hráči pôsobiaci v slovenských kluboch, pričom niektorých hráčov posilňujú aj legionári pôsobiaci v zahraničných ligách.
         </p>
 
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Medzinárodné súťaže
-        </h2>
+        {/* Nominácia */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Nominácia</h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <thead>
+              <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>#</th>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Hráč</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { n: 1, name: "BOGÁR Jakub" },
+                { n: 7, name: "VACHA Tomáš" },
+                { n: 10, name: "ROMANEC Tomáš (C)" },
+                { n: 11, name: "PETRÁŠ Daniel" },
+                { n: 13, name: "AUGUSTINIČ Adrian" },
+                { n: 16, name: "GARAJ Richard" },
+                { n: 9, name: "KAJABA Matúš" },
+                { n: 18, name: "BLAZOVSKY Michal" },
+                { n: 20, name: "KRAMPL Matej" },
+                { n: 23, name: "BOGAR Juraj" },
+                { n: 24, name: "BARATH Tomas" },
+                { n: 26, name: "BELOŠOVIČ Šimon" },
+              ].map((p, i) => (
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
+                  <td className="px-4 py-2.5 font-bold text-[#012d74]" style={{ fontSize: "13px" }}>{p.n}</td>
+                  <td className="px-4 py-2.5 text-[#051937] font-semibold" style={{ fontSize: "13px" }}>{p.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Medzinárodné súťaže */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Medzinárodné súťaže</h2>
         <div className="space-y-4 mb-8">
           <div className="flex gap-3 items-start">
             <span className="text-[#012d74] font-bold shrink-0">&#10140;</span>
@@ -57,9 +97,8 @@ export default function MuziPage() {
           </div>
         </div>
 
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Ocenenia a výsledky
-        </h2>
+        {/* Ocenenia a výsledky */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ocenenia a výsledky</h2>
         <div className="overflow-x-auto mb-8">
           <table className="w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
             <thead>
@@ -80,11 +119,11 @@ export default function MuziPage() {
                 { year: "2024", form: "Hala", event: "ME II-B, Budapešť", result: "3. miesto" },
                 { year: "2026", form: "Hala", event: "ME II-A, Sveti Ivan Zelina", result: "3. miesto" },
               ].map((r, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)", background: resultBg(r.result) }}>
                   <td className="px-4 py-3 font-bold text-[#051937]" style={{ fontSize: "13px" }}>{r.year}</td>
                   <td className="px-4 py-3 text-[#64748b]" style={{ fontSize: "13px" }}>{r.form}</td>
                   <td className="px-4 py-3 text-[#334155]" style={{ fontSize: "13px" }}>{r.event}</td>
-                  <td className="px-4 py-3 font-bold" style={{ fontSize: "13px", color: r.result.includes("1.") ? "#d80027" : r.result.includes("2.") ? "#012d74" : r.result.includes("3.") ? "#016fb4" : "#334155" }}>{r.result}</td>
+                  <td className="px-4 py-3 font-bold" style={{ fontSize: "13px", color: resultColor(r.result) }}>{r.result}</td>
                 </tr>
               ))}
             </tbody>
@@ -95,41 +134,6 @@ export default function MuziPage() {
           <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
             Z menších reprezentačných podujatí archív eviduje aj prvenstvá v halovom Pannonia Cupe: muži 2009, ženy 2002 a 2009. Chlapci U16 získali 2. miesto na Hockey5s ME II v Alanyi v roku 2022.
           </p>
-        </div>
-
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Aktuálna nominácia</h2>
-        <div className="overflow-x-auto mb-8">
-          <table className="w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
-            <thead>
-              <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
-                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>#</th>
-                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Hráč</th>
-                <th className="px-4 py-3 text-center font-bold text-[#051937]" style={{ fontSize: "11px" }}>Góly</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { n: 1, name: "BOGÁR Jakub", goals: 0 },
-                { n: 7, name: "VACHA Tomáš", goals: 0 },
-                { n: 10, name: "ROMANEC Tomáš (C)", goals: 0 },
-                { n: 11, name: "PETRÁŠ Daniel", goals: 4 },
-                { n: 13, name: "AUGUSTINIČ Adrian", goals: 0 },
-                { n: 16, name: "GARAJ Richard", goals: 1 },
-                { n: 9, name: "KAJABA Matúš", goals: 0 },
-                { n: 18, name: "BLAZOVSKY Michal", goals: 1 },
-                { n: 20, name: "KRAMPL Matej", goals: 0 },
-                { n: 23, name: "BOGAR Juraj", goals: 0 },
-                { n: 24, name: "BARATH Tomas", goals: 0 },
-                { n: 26, name: "BELOŠOVIČ Šimon", goals: 0 },
-              ].map((p, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
-                  <td className="px-4 py-2.5 font-bold text-[#012d74]" style={{ fontSize: "13px" }}>{p.n}</td>
-                  <td className="px-4 py-2.5 text-[#051937] font-semibold" style={{ fontSize: "13px" }}>{p.name}</td>
-                  <td className="px-4 py-2.5 text-center text-[#64748b]" style={{ fontSize: "13px" }}>{p.goals}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
 
         <div className="mt-6">

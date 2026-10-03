@@ -74,11 +74,11 @@ export default function U21MuziPage() {
                 { year: "2010, 2014", form: "Vonku", event: "ME III", result: "3. miesto v oboch rokoch" },
                 { year: "2012", form: "Vonku", event: "ME III-B, Bratislava", result: "2. miesto" },
               ].map((r, i) => (
-                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)", background: r.result.includes("1.") ? "rgba(212,160,23,0.08)" : r.result.includes("2.") ? "rgba(138,138,138,0.06)" : r.result.includes("3.") ? "rgba(205,127,50,0.06)" : "transparent" }}>
                   <td className="px-4 py-3 font-bold text-[#051937]" style={{ fontSize: "13px" }}>{r.year}</td>
                   <td className="px-4 py-3 text-[#64748b]" style={{ fontSize: "13px" }}>{r.form}</td>
                   <td className="px-4 py-3 text-[#334155]" style={{ fontSize: "13px" }}>{r.event}</td>
-                  <td className="px-4 py-3 font-bold" style={{ fontSize: "13px", color: r.result.includes("2.") ? "#012d74" : r.result.includes("3.") ? "#016fb4" : "#334155" }}>{r.result}</td>
+                  <td className="px-4 py-3 font-bold" style={{ fontSize: "13px", color: r.result.includes("1.") ? "#D4A017" : r.result.includes("2.") ? "#8a8a8a" : r.result.includes("3.") ? "#CD7F32" : "#334155" }}>{r.result}</td>
                 </tr>
               ))}
             </tbody>
