@@ -92,6 +92,16 @@ export default function VybaveniePage() {
           ))}
         </div>
 
+        {/* Galéria */}
+        <div className="grid grid-cols-2 gap-3 mt-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/hokej-vo-svete/2.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/hokej-vo-svete/1.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
+          </div>
+        </div>
+
         {/* Kde kúpiť */}
         <div className="mt-10 p-6 bg-white" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
           <h2 className="font-bold text-[#051937] mb-2" style={{ fontSize: "20px" }}>Kde kúpiť vybavenie?</h2>

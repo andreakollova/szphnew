@@ -47,7 +47,6 @@ const PINNED_ARTICLES: Record<string, any> = {
         images: [
           "/images/articles/hokej-vo-svete/1.webp",
           "/images/articles/hokej-vo-svete/2.webp",
-          "/images/articles/hokej-vo-svete/3.webp",
           "/images/articles/hokej-vo-svete/4.webp",
         ],
       },
@@ -273,10 +272,10 @@ function GalleryGrid({ gallery }: { gallery: { title: string; images: string[] }
   return (
     <div className="my-10">
       <h3 className="font-garet font-bold text-[#051937] mb-4" style={{ fontSize: "18px" }}>{gallery.title || "Fotogaléria"}</h3>
-      <div className="grid grid-cols-2 gap-3">
+      <div className={`grid gap-3 ${gallery.images.length === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
         {gallery.images.map((img, i) => (
           <div key={i} className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "3px" }}>
-            <Image src={img} alt={`Foto ${i + 1}`} fill className="object-cover" sizes="(max-width: 1024px) 50vw, 35vw" />
+            <Image src={img} alt={`Foto ${i + 1}`} fill className="object-cover" sizes={gallery.images.length === 3 ? "(max-width: 1024px) 33vw, 25vw" : "(max-width: 1024px) 50vw, 35vw"} />
           </div>
         ))}
       </div>
