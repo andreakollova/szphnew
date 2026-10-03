@@ -101,7 +101,45 @@ export default function ZenyPage() {
           </div>
         </div>
 
-        <div className="mt-12 rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Aktuálna nominácia</h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <thead>
+              <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>#</th>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Hráčka</th>
+                <th className="px-4 py-3 text-center font-bold text-[#051937]" style={{ fontSize: "11px" }}>Góly</th>
+                <th className="px-4 py-3 text-center font-bold text-[#051937]" style={{ fontSize: "11px" }}>Zápasy</th>
+                <th className="px-4 py-3 text-center font-bold text-[#051937]" style={{ fontSize: "11px" }}>Caps</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { n: 1, name: "SUTOVSKA Daniela (GK)", goals: 0, gp: 5, caps: 38 },
+                { n: 2, name: "LISKOVA Natalia (GK)", goals: 0, gp: 2, caps: 18 },
+                { n: 3, name: "VYSKOČOVÁ Karolína", goals: 6, gp: 6, caps: 16 },
+                { n: 7, name: "MEDVIKOVA Šarlota", goals: 13, gp: 5, caps: 29 },
+                { n: 8, name: "ČAPOVÁ Vanessa", goals: 2, gp: 6, caps: 21 },
+                { n: 9, name: "HUŠKOVÁ Bianka", goals: 0, gp: 3, caps: 3 },
+                { n: 10, name: "KRAMPLOVA Lenka", goals: 1, gp: 6, caps: 19 },
+                { n: 12, name: "FONDRKOVA Natalia (C)", goals: 2, gp: 6, caps: 41 },
+                { n: 14, name: "SURINOVA Martina", goals: 0, gp: 6, caps: 28 },
+                { n: 18, name: "HORÁČKOVÁ Lenka", goals: 1, gp: 6, caps: 26 },
+                { n: 20, name: "MÉSZÁROS Réka", goals: 0, gp: 0, caps: 0 },
+              ].map((p, i) => (
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
+                  <td className="px-4 py-2.5 font-bold text-[#012d74]" style={{ fontSize: "13px" }}>{p.n}</td>
+                  <td className="px-4 py-2.5 text-[#051937] font-semibold" style={{ fontSize: "13px" }}>{p.name}</td>
+                  <td className="px-4 py-2.5 text-center text-[#64748b]" style={{ fontSize: "13px" }}>{p.goals}</td>
+                  <td className="px-4 py-2.5 text-center text-[#64748b]" style={{ fontSize: "13px" }}>{p.gp}</td>
+                  <td className="px-4 py-2.5 text-center text-[#64748b]" style={{ fontSize: "13px" }}>{p.caps}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <h3 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>Rozvoj ženského pozemného hokeja</h3>
           <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
             Ženská reprezentácia je dôkazom rastúcej popularity pozemného hokeja medzi ženami na Slovensku. SZPH aktívne podporuje rozvoj ženského hokeja a snaží sa zvyšovať počet hráčok v kluboch po celej krajine.

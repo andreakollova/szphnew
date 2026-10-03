@@ -97,14 +97,39 @@ export default function MuziPage() {
           </p>
         </div>
 
-        <div className="mt-12 rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-          <h3 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>Aktuálne nominácie</h3>
-          <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
-            Aktuálne nominácie na nadchádzajúce turnaje nájdete v sekcii{" "}
-            <Link href="/reprezentacia/nominacie" className="text-[#012d74] underline hover:no-underline">
-              Nominácie
-            </Link>.
-          </p>
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Aktuálna nominácia</h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <thead>
+              <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>#</th>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Hráč</th>
+                <th className="px-4 py-3 text-center font-bold text-[#051937]" style={{ fontSize: "11px" }}>Góly</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { n: 1, name: "BOGÁR Jakub", goals: 0 },
+                { n: 7, name: "VACHA Tomáš", goals: 0 },
+                { n: 10, name: "ROMANEC Tomáš (C)", goals: 0 },
+                { n: 11, name: "PETRÁŠ Daniel", goals: 4 },
+                { n: 13, name: "AUGUSTINIČ Adrian", goals: 0 },
+                { n: 16, name: "GARAJ Richard", goals: 1 },
+                { n: 9, name: "KAJABA Matúš", goals: 0 },
+                { n: 18, name: "BLAZOVSKY Michal", goals: 1 },
+                { n: 20, name: "KRAMPL Matej", goals: 0 },
+                { n: 23, name: "BOGAR Juraj", goals: 0 },
+                { n: 24, name: "BARATH Tomas", goals: 0 },
+                { n: 26, name: "BELOŠOVIČ Šimon", goals: 0 },
+              ].map((p, i) => (
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
+                  <td className="px-4 py-2.5 font-bold text-[#012d74]" style={{ fontSize: "13px" }}>{p.n}</td>
+                  <td className="px-4 py-2.5 text-[#051937] font-semibold" style={{ fontSize: "13px" }}>{p.name}</td>
+                  <td className="px-4 py-2.5 text-center text-[#64748b]" style={{ fontSize: "13px" }}>{p.goals}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         <div className="mt-6">
