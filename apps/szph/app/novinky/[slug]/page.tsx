@@ -399,22 +399,44 @@ export default async function ArticleDetailPage({ params }: Props) {
   const relatedArticles = recentArticles.filter((a: any) => a.id !== article.id).slice(0, 5);
   const recentMatches: any[] = [];
 
+  const isPinned = !!PINNED_ARTICLES[slug];
+
   return (
     <article className="pb-20 overflow-x-hidden" style={{ background: "#f8f9fa" }}>
-      {/* Banner image — flush under header on mobile */}
-      {article.cover_image_url && (
-        <div className="sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] sm:mx-auto sm:pt-6" style={{ marginTop: "clamp(-24px, -1vw, 0px)" }}>
-          <div className="relative w-full overflow-hidden sm:rounded-lg" style={{ height: "clamp(220px, 40vw, 450px)" }}>
-            <Image
-              src={article.cover_image_url}
-              alt={article.title}
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 70vw"
-            />
+      {isPinned ? (
+        /* Pinned articles: dark blue header like subpages */
+        <div className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)", minHeight: "200px" }}>
+          <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
+          <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto py-12 sm:py-16">
+            <span className="inline-block font-extrabold uppercase text-white/50 mb-3" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
+              / {CATEGORY_LABELS[article.category] ?? article.category}
+            </span>
+            <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.8rem)" }}>
+              {article.title}
+            </h1>
+            {article.published_at && (
+              <span className="inline-block font-bold uppercase text-white/40 mt-3" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
+                {formatDate(article.published_at)}
+              </span>
+            )}
           </div>
         </div>
+      ) : (
+        /* Regular articles: cover image banner */
+        article.cover_image_url && (
+          <div className="sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] sm:mx-auto sm:pt-6" style={{ marginTop: "clamp(-24px, -1vw, 0px)" }}>
+            <div className="relative w-full overflow-hidden sm:rounded-lg" style={{ height: "clamp(220px, 40vw, 450px)" }}>
+              <Image
+                src={article.cover_image_url}
+                alt={article.title}
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 70vw"
+              />
+            </div>
+          </div>
+        )
       )}
       <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-0 sm:pt-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-0 items-start">
@@ -422,7 +444,8 @@ export default async function ArticleDetailPage({ params }: Props) {
           {/* ── Main content ── */}
           <div className="pr-0 lg:pr-10 xl:pr-14">
 
-            {/* Title below banner */}
+            {/* Title below banner — only for non-pinned */}
+            {!isPinned && (
             <div className="mt-6 mb-8">
               <span
                 className="inline-block font-extrabold uppercase text-[#012d74] mb-3"
@@ -444,6 +467,7 @@ export default async function ArticleDetailPage({ params }: Props) {
                 )}
               </div>
             </div>
+            )}
 
             {/* Excerpt */}
             {article.excerpt && (
