@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 import {
   notifyArticlePublished,
   notifyMatchResult,
@@ -10,6 +11,8 @@ import {
   notifyNewProject,
   notifyWeeklyResultsComplete,
 } from "@/lib/slack";
+
+const IG_SERVICE_URL = process.env.IG_SERVICE_URL || "https://szph-instagram.onrender.com";
 
 export async function POST(req: NextRequest) {
   try {
@@ -43,6 +46,39 @@ export async function POST(req: NextRequest) {
             away_score: record.away_score,
             competition: record.competition_name ?? record.league,
           });
+
+          // Check if all weekly matches for this league are complete → trigger IG post
+          if (record.league) {
+            try {
+              const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
+              const now = new Date();
+              const day = now.getDay();
+              const monday = new Date(now);
+              monday.setDate(now.getDate() - (day === 0 ? 6 : day - 1));
+              monday.setHours(0, 0, 0, 0);
+              const sunday = new Date(monday);
+              sunday.setDate(monday.getDate() + 6);
+              sunday.setHours(23, 59, 59, 999);
+
+              const { data: pending } = await supabase
+                .from("matches")
+                .select("id")
+                .eq("site", "szph")
+                .eq("league", record.league)
+                .eq("status", "scheduled")
+                .gte("date", monday.toISOString())
+                .lte("date", sunday.toISOString());
+
+              if (!pending || pending.length === 0) {
+                // All matches complete — trigger Instagram post generation
+                await fetch(`${IG_SERVICE_URL}/webhook/results-complete`, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ category: record.league }),
+                }).catch(() => {});
+              }
+            } catch {}
+          }
         }
         break;
 
