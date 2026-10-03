@@ -51,6 +51,56 @@ export default function ZenyPage() {
           </div>
         </div>
 
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
+          Ocenenia a výsledky
+        </h2>
+        <div className="overflow-x-auto mb-8">
+          <table className="w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <thead>
+              <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Rok</th>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Forma</th>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Súťaž a miesto</th>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Výsledok</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { year: "1996, 1998, 2000", form: "Hala", event: "Elitné ME – Glasgow, Ourense, Viedeň", result: "Trikrát 5. miesto" },
+                { year: "2010", form: "Hala", event: "Nations Trophy II, Nymburk", result: "3. miesto" },
+                { year: "2018", form: "Hala", event: "ME III, Apače", result: "2. miesto" },
+                { year: "2022", form: "Hala", event: "ME III, Bratislava", result: "2. miesto" },
+                { year: "2005", form: "Vonku", event: "ME III, Praha", result: "3. miesto" },
+                { year: "2023", form: "Vonku", event: "ME II, Praha", result: "8. miesto – účasť v II. divízii" },
+              ].map((r, i) => (
+                <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
+                  <td className="px-4 py-3 font-bold text-[#051937]" style={{ fontSize: "13px" }}>{r.year}</td>
+                  <td className="px-4 py-3 text-[#64748b]" style={{ fontSize: "13px" }}>{r.form}</td>
+                  <td className="px-4 py-3 text-[#334155]" style={{ fontSize: "13px" }}>{r.event}</td>
+                  <td className="px-4 py-3 font-bold" style={{ fontSize: "13px", color: r.result.includes("2.") ? "#012d74" : r.result.includes("3.") ? "#016fb4" : "#334155" }}>{r.result}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Historický presah */}
+        <div className="flex gap-4 p-6 mb-8" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)", borderRadius: "8px" }}>
+          <div className="shrink-0 pt-1">
+            <img src="/images/logo-olympics.png" alt="Olympijské hry" width={48} height={24} style={{ objectFit: "contain" }} />
+          </div>
+          <div>
+            <h3 className="font-bold text-white mb-1" style={{ fontSize: "15px" }}>Historický presah: olympijské striebro 1980</h3>
+            <p className="text-white/80 leading-relaxed" style={{ fontSize: "13px" }}>
+              Na OH v Moskve získali striebro tri Slovenky: Alena Kyselicová, Viera Podhányiová a Iveta Šranková. Asistentom trénerky bol Slovák Pavol Rosa. Je to významný úspech slovenských osobností pozemného hokeja, ale medaila patrí reprezentácii Československa.
+            </p>
+            <Link href="/novinky/reportaz-alena-kyselicova" className="inline-flex items-center gap-1.5 mt-2 font-bold text-white/70 hover:text-white transition-colors" style={{ fontSize: "11px" }}>
+              Reportáž s Alenou Kyselicovou
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+            </Link>
+          </div>
+        </div>
+
         <div className="mt-12 rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <h3 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>Rozvoj ženského pozemného hokeja</h3>
           <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
