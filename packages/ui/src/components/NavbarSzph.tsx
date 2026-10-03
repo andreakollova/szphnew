@@ -258,7 +258,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
         <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
           {columns.map((col) => (
             <div key={col.title}>
-              <p className="font-bold uppercase tracking-widest text-[#051937] mb-2" style={{ fontSize: "11px" }}>
+              <p className="font-bold uppercase tracking-widest text-[#94a3b8] mb-2" style={{ fontSize: "10px" }}>
                 {col.title}
               </p>
               <ul className="space-y-0">
