@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -20,17 +21,22 @@ export default function ChcemSaStatTreneromPage() {
     <article className="pb-20" style={{ background: "#f8f9fa" }}>
       <div className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)", minHeight: "320px" }}>
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
-        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto py-16">
-          <Link href="/" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-            <svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
-            Späť
-          </Link>
-          <h1 className="font-garet font-bold italic text-white leading-tight mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>Chcem sa stať trénerom</h1>
-          <p className="text-white max-w-xl leading-relaxed" style={{ fontSize: "15px" }}>Pomáhaj hráčom napredovať a odovzdaj im svoj vzťah k športu.</p>
-          <Link href="#formular" className="mt-6 inline-flex items-center gap-2 font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "12px 24px", fontSize: "13px" }}>
-            Mám záujem o trénovanie
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </Link>
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto py-16 flex items-center gap-10">
+          <div className="flex-1">
+            <Link href="/" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              <svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              Späť
+            </Link>
+            <h1 className="font-garet font-bold italic text-white leading-tight mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>Chcem sa stať trénerom</h1>
+            <p className="text-white max-w-xl leading-relaxed" style={{ fontSize: "15px" }}>Pomáhaj hráčom napredovať a odovzdaj im svoj vzťah k športu.</p>
+            <Link href="#formular" className="mt-6 inline-flex items-center gap-2 font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "12px 24px", fontSize: "13px" }}>
+              Mám záujem o trénovanie
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </Link>
+          </div>
+          <div className="hidden lg:block shrink-0 relative overflow-hidden" style={{ width: 320, height: 220, borderRadius: "10px" }}>
+            <Image src="/images/trener-header.webp" alt="Tréner pozemného hokeja" fill className="object-cover" sizes="320px" />
+          </div>
         </div>
       </div>
       <div className="px-6 lg:px-10 xl:px-16 max-w-[900px] mx-auto pt-12">
@@ -79,6 +85,25 @@ export default function ChcemSaStatTreneromPage() {
             </Link>
           </div>
         </section>
+        <section className="mb-12">
+          <div className="p-6" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)", borderRadius: "8px" }}>
+            <h2 className="font-garet font-bold italic text-white mb-3" style={{ fontSize: "20px" }}>Klub nie je v tvojom meste?</h2>
+            <p className="text-white/80 leading-relaxed mb-4" style={{ fontSize: "14px" }}>
+              Založ si vlastný klub pozemného hokeja. Slovenský zväz pozemného hokeja ti poskytne plnú podporu - pomôžeme s registráciou, organizáciou tréningov, vybavením aj zaradením do súťaží. Stačí skupina nadšencov a chuť začať.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/pre-kluby/zalozenie" className="inline-flex items-center gap-2 font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "10px 20px", fontSize: "12px" }}>
+                Chcem založiť klub
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </Link>
+              <Link href="/kluby" className="inline-flex items-center gap-2 font-bold text-white/70 hover:text-white transition-colors" style={{ fontSize: "12px" }}>
+                Pozrieť existujúce kluby
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="mb-12">
           <h2 className="font-garet font-bold text-[#051937] mb-6" style={{ fontSize: "22px" }}>Časté otázky</h2>
           <div className="space-y-2">

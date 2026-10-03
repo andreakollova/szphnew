@@ -30,7 +30,7 @@ const MAIN_NAV: NavItem[] = [
     label: "Pozemný hokej", href: "/pozemny-hokej",
     mega: {
       featured: {
-        image: "/images/mega-pozemny-hokej.webp",
+        image: "/images/articles/olympiada-2036/g2-1.webp",
         tag: "Šport",
         title: "Čo je pozemný hokej?",
         desc: "Rýchly, technický a taktický šport pre celú rodinu. Zisti prečo si ho zamilujú tisíce hráčov.",

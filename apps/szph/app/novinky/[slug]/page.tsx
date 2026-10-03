@@ -17,6 +17,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   reprezentacia: "Reprezentácia",
   kluby: "Kluby",
   oznamy: "Oznamy",
+  neprehliadnite: "Neprehliadnite",
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -25,6 +26,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   kluby: "bg-[#016fb4] text-white",
   oznamy: "bg-[#0e264a] text-white",
   svet: "bg-[#051937] text-white",
+  neprehliadnite: "bg-[#d80027] text-white",
 };
 
 interface Props {
@@ -38,7 +40,7 @@ const PINNED_ARTICLES: Record<string, any> = {
     title: "Pozemný hokej vo svete",
     excerpt: "30 miliónov hráčov a miliardový trh. Pozemný hokej je tretím najhranejším športom na svete, s viac ako 30 miliónov aktívnych hráčov na globálnej úrovni.",
     cover_image_url: "/images/pinned-hokej-vo-svete.webp",
-    category: "novinky",
+    category: "neprehliadnite",
     published_at: "2026-10-01T09:00:00Z",
     status: "published",
     galleries: [
