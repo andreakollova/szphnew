@@ -84,7 +84,6 @@ const MAIN_NAV: NavItem[] = [
           links: [
             { label: "Výsledky a zápasy", href: "/zapasy", desc: "Posledné výsledky" },
             { label: "Nominácie", href: "/reprezentacia/nominacie", desc: "Aktuálne zostavy" },
-            { label: "Rebríčky FIH", href: "/reprezentacia/rebricek", desc: "Svetový rebríček" },
             { label: "Archív výsledkov", href: "/reprezentacia/archiv", desc: "Historické výsledky" },
           ],
         },
