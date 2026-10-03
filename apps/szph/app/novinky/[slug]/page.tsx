@@ -397,7 +397,7 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   if (!article) notFound();
 
-  const relatedArticles = recentArticles.filter((a: any) => a.id !== article.id).slice(0, 5);
+  const relatedArticles = recentArticles.filter((a: any) => a.id !== article.id).slice(0, 15);
   const recentMatches: any[] = [];
 
   return (
