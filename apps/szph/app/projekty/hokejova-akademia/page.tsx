@@ -110,9 +110,9 @@ export default function HokejovaAkademiaPage() {
           <h2 className="font-garet font-bold text-[#051937] mb-6" style={{ fontSize: "22px" }}>Cvičenia</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
-              { title: "Herné cvičenia", desc: "Cvičenia zamerané na hernú prípravu", image: "/images/hero-banner3.webp" },
-              { title: "Technické cvičenia", desc: "Dribling, nahrávky, streľba", image: "/images/hero-banner7.webp" },
-              { title: "Kondičná príprava", desc: "Rýchlosť, koordinácia, výdrž", image: "/images/hero-banner2.webp" },
+              { title: "Herné cvičenia", desc: "Cvičenia zamerané na hernú prípravu", image: "/images/cvicenia/in-out.webp" },
+              { title: "Technické cvičenia", desc: "Dribling, nahrávky, streľba", image: "/images/cvicenia/utok-na-kruh.webp" },
+              { title: "Kondičná príprava", desc: "Rýchlosť, koordinácia, výdrž", image: "/images/korim-u4e-gallery0.webp" },
             ].map((c) => (
               <Link key={c.title} href="/vzdelavanie/cvicenia" className="group block bg-white overflow-hidden" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
                 <div className="relative h-32 overflow-hidden">
