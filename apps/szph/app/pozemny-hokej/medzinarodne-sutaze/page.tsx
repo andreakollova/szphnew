@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -28,9 +29,12 @@ export default function MedzinarodneSubazePage() {
       <div className="max-w-[900px] mx-auto px-6 pt-12">
 
         {/* Olympijské hry */}
-        <h2 className="font-bold text-[#051937] mt-0 mb-4" style={{ fontSize: "24px" }}>
-          Olympijské hry
-        </h2>
+        <div className="flex items-center gap-4 mt-0 mb-4">
+          <Image src="/images/logo-olympics.png" alt="Olympijské hry" width={56} height={28} className="object-contain shrink-0" />
+          <h2 className="font-bold text-[#051937]" style={{ fontSize: "24px" }}>
+            Olympijské hry
+          </h2>
+        </div>
         <div className="space-y-4 mb-12">
           <p className="text-[#334155] leading-relaxed" style={{ fontSize: "15px" }}>
             Pozemný hokej patrí do programu letných olympijských hier. Muži sa na olympiáde prvýkrát predstavili v Londýne v roku 1908, ženy v Moskve v roku 1980. Mužské a ženské reprezentácie súťažia v samostatných turnajoch o olympijské medaily.
@@ -45,9 +49,12 @@ export default function MedzinarodneSubazePage() {
         </div>
 
         {/* Majstrovstvá sveta */}
-        <h2 className="font-bold text-[#051937] mb-4" style={{ fontSize: "24px" }}>
-          Majstrovstvá sveta
-        </h2>
+        <div className="flex items-center gap-4 mb-4">
+          <Image src="/images/logo-fih.svg" alt="FIH" width={48} height={48} className="object-contain shrink-0" />
+          <h2 className="font-bold text-[#051937]" style={{ fontSize: "24px" }}>
+            Majstrovstvá sveta
+          </h2>
+        </div>
         <div className="space-y-4 mb-12">
           <p className="text-[#334155] leading-relaxed" style={{ fontSize: "15px" }}>
             Majstrovstvá sveta v pozemnom hokeji nesú názov <strong>FIH Hockey World Cup</strong>. Ide o reprezentačné turnaje mužov a žien pod hlavičkou Medzinárodnej hokejovej federácie FIH.
@@ -62,9 +69,12 @@ export default function MedzinarodneSubazePage() {
         </div>
 
         {/* Majstrovstvá Európy */}
-        <h2 className="font-bold text-[#051937] mb-4" style={{ fontSize: "24px" }}>
-          Majstrovstvá Európy
-        </h2>
+        <div className="flex items-center gap-4 mb-4">
+          <Image src="/images/logo-eurohockey.png" alt="EuroHockey" width={48} height={48} className="object-contain shrink-0" />
+          <h2 className="font-bold text-[#051937]" style={{ fontSize: "24px" }}>
+            Majstrovstvá Európy
+          </h2>
+        </div>
         <div className="space-y-4 mb-12">
           <p className="text-[#334155] leading-relaxed" style={{ fontSize: "15px" }}>
             Európske reprezentačné súťaže zastrešuje <strong>EuroHockey</strong>. Najvyššou úrovňou sú EuroHockey Championships, na ktorých mužské a ženské tímy hrajú o titul majstrov Európy.
