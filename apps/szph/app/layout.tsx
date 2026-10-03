@@ -73,6 +73,9 @@ export default async function RootLayout({
     <html lang="sk" data-brand="szph" className={inter.variable}>
       <head>
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async />
+        <script dangerouslySetInnerHTML={{ __html: `function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'sk',includedLanguages:'en,sk',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},'google_translate_element')}` }} />
+        <style dangerouslySetInnerHTML={{ __html: `.goog-te-banner-frame{display:none!important}.skiptranslate{display:none!important}body{top:0!important}#google_translate_element{position:fixed;bottom:80px;right:16px;z-index:100;background:#fff;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.1);padding:4px 8px;border:1px solid rgba(1,45,116,0.08)}#google_translate_element .goog-te-gadget{font-size:0}#google_translate_element select{font-size:12px;font-weight:600;border:none;background:transparent;color:#051937;cursor:pointer;outline:none}@media(min-width:768px){#google_translate_element{bottom:16px;right:16px}}` }} />
       </head>
       <body>
         <ScrollToTop />
@@ -81,6 +84,7 @@ export default async function RootLayout({
         <main className="mobile-header-offset pb-0">{children}</main>
         <Footer brand="szph" />
         <MobileBottomNav />
+        <div id="google_translate_element" />
         <CookieBanner />
         <AppOnboarding />
       </body>
