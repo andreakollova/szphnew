@@ -391,7 +391,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
         <div className="flex items-center gap-2">
           {([
             { key: "liga", label: "Liga", logo: "/images/logo-liga.webp" },
-            { key: "reprezentacia", label: "Rep.", logo: "/images/logo-reprezentacia.webp" },
+            { key: "reprezentacia", label: "Reprezentácia", logo: "/images/logo-reprezentacia.webp" },
           ]).map((tab) => {
             const active = activeSections.has(tab.key);
             return (
