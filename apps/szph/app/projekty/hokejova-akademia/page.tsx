@@ -110,14 +110,14 @@ export default function HokejovaAkademiaPage() {
           <h2 className="font-garet font-bold text-[#051937] mb-6" style={{ fontSize: "22px" }}>Cvičenia</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
-              { title: "Herné cvičenia", desc: "Cvičenia zamerané na hernú prípravu", image: "/images/cvicenia/in-out.webp" },
-              { title: "Technické cvičenia", desc: "Dribling, nahrávky, streľba", image: "/images/cvicenia/utok-na-kruh.webp" },
-              { title: "Kondičná príprava", desc: "Rýchlosť, koordinácia, výdrž", image: "/images/korim-u4e-gallery0.webp" },
+              { title: "Útočné cvičenia", desc: "Príprava útoku, zakončenie, spolupráca", image: "https://tqybiozrmzegtgdgyrax.supabase.co/storage/v1/object/public/exercises/3-proti-2.png" },
+              { title: "Obranné cvičenia", desc: "Press, bránenie, protiútok", image: "https://tqybiozrmzegtgdgyrax.supabase.co/storage/v1/object/public/exercises/press.png" },
+              { title: "Pre mládež", desc: "Cvičenia pre kategórie U12 - U18", image: "https://tqybiozrmzegtgdgyrax.supabase.co/storage/v1/object/public/exercises/boj-o-loptu.png" },
             ].map((c) => (
               <Link key={c.title} href="/vzdelavanie/cvicenia" className="group block bg-white overflow-hidden" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                <div className="relative h-32 overflow-hidden">
+                <div className="relative h-32 overflow-hidden" style={{ background: "#2d8a3e" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.image} alt={c.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <img src={c.image} alt={c.title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <div className="p-4">
                   <h3 className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>{c.title}</h3>

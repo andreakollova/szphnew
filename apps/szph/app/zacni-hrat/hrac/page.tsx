@@ -223,6 +223,22 @@ export default function ChcemSaStatHracomPage() {
             )}
           </div>
         </section>
+
+        {/* Cross-links */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <Link href="/zacni-hrat/trener" className="group p-5 bg-white hover:bg-[#f0f4fa] transition-colors" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <h3 className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>Chcem byť tréner</h3>
+            <p className="text-[#64748b] mt-1" style={{ fontSize: "11px" }}>Odovzdaj svoje skúsenosti ďalej</p>
+          </Link>
+          <Link href="/zacni-hrat/rozhodca" className="group p-5 bg-white hover:bg-[#f0f4fa] transition-colors" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <h3 className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>Chcem byť rozhodca</h3>
+            <p className="text-[#64748b] mt-1" style={{ fontSize: "11px" }}>Rozhoduj zápasy na Slovensku</p>
+          </Link>
+          <Link href="/pre-kluby/zalozenie" className="group p-5 bg-white hover:bg-[#f0f4fa] transition-colors" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <h3 className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>Založiť klub</h3>
+            <p className="text-[#64748b] mt-1" style={{ fontSize: "11px" }}>Nový klub vo vašom meste</p>
+          </Link>
+        </div>
       </div>
     </article>
   );
