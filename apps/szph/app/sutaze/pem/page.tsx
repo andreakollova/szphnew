@@ -107,7 +107,48 @@ export default function PEMPage() {
         </div>
         <PEMTable data={ZENY_HALA} showClub={false} />
 
-        {/* Poznámka */}
+        {/* Historické výsledky */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Historické výsledky</h2>
+        <div className="space-y-3 mb-8">
+          <div className="p-5 bg-white" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <div className="flex items-center gap-2 mb-2">
+              <Image src="/images/timy/Raca-logo-70x58-1-32x27.webp" alt="Rača" width={20} height={20} className="object-contain" />
+              <h3 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Lokomotíva Rača — ženy, vonkajší Club Trophy 1995</h3>
+            </div>
+            <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
+              Na vonkajšom Club Trophy žien v roku 1995 skončila Lokomotíva Rača na 4. mieste. Turnaj vyhral CA San Sebastián pred Wiener AC, tretí bol Donc Volgodonsk. Club Trophy žien sa konal aj v roku 1994 priamo v Bratislave.
+            </p>
+          </div>
+          <div className="p-5 bg-white" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <div className="flex items-center gap-2 mb-2">
+              <Image src="/images/timy/Raca-logo-70x58-1-32x27.webp" alt="Rača" width={20} height={20} className="object-contain" />
+              <h3 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Lokomotíva Rača — muži, halový Trophy 1995 (Edinburgh)</h3>
+            </div>
+            <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
+              Mužský tím Lokomotívy Rača sa zúčastnil halového Club Trophy v roku 1995 v Edinburghu.
+            </p>
+          </div>
+          <div className="p-5 bg-white" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <div className="flex items-center gap-2 mb-2">
+              <Image src="/images/timy/SEN.webp" alt="Šenkvice" width={20} height={20} className="object-contain" />
+              <h3 className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>ŠK Šenkvice — halový PEM C-divízia</h3>
+            </div>
+            <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
+              ŠK Šenkvice sa zúčastnili halového PEM v C-divízii.
+            </p>
+          </div>
+          <div className="p-5" style={{ borderRadius: "6px", background: "linear-gradient(135deg, #051937 0%, #012d74 100%)" }}>
+            <div className="flex items-center gap-2 mb-2">
+              <Image src="/images/timy/Raca-logo-70x58-1-32x27.webp" alt="Rača" width={20} height={20} className="object-contain" />
+              <h3 className="font-bold text-white" style={{ fontSize: "14px" }}>Lokomotíva Rača — majstri Československa</h3>
+            </div>
+            <p className="text-white/80" style={{ fontSize: "13px", lineHeight: 1.7 }}>
+              Muži Lokomotívy Rača boli majstrami Československa v rokoch 1981 a 1986.
+            </p>
+          </div>
+        </div>
+
+        {/* Poznámky */}
         <div className="rounded-lg p-5" style={{ background: "rgba(0,120,253,0.04)", border: "1px solid rgba(0,120,253,0.1)" }}>
           <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
             V roku 2019 bola brankárka KPH Rača <strong>Daniela Šutovská</strong> vyhlásená za najlepšiu brankárku turnaja EuroHockey Indoor Club Challenge I vo francúzskom Douai.
