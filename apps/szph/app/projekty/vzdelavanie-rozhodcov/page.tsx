@@ -29,7 +29,13 @@ const FAQ = [
 export default function VzdelavanieRozhodcovPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", city: "", club: "", experience: "", learn: "" });
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await fetch("/api/form", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "rozhodca", ...formData }) });
+    } catch {}
+    setSubmitted(true);
+  };
 
   return (
     <article className="pb-20" style={{ background: "#f8f9fa" }}>

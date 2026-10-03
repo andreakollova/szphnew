@@ -23,7 +23,13 @@ export default function PodcastPage() {
   const [formData, setFormData] = useState({ name: "", suggestion: "", interest: "", email: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await fetch("/api/form", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "podcast", name: formData.name, email: formData.email, message: formData.suggestion, interest: formData.interest }) });
+    } catch {}
+    setSubmitted(true);
+  };
 
   return (
     <article className="pb-20" style={{ background: "#f8f9fa" }}>

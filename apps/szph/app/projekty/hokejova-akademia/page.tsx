@@ -23,7 +23,13 @@ const TOPICS = [
 export default function HokejovaAkademiaPage() {
   const [formData, setFormData] = useState({ topic: "", explanation: "", role: "", email: "" });
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await fetch("/api/form", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "akademia", name: formData.topic, email: formData.email, message: formData.explanation, role: formData.role }) });
+    } catch {}
+    setSubmitted(true);
+  };
 
   return (
     <article className="pb-20" style={{ background: "#f8f9fa" }}>

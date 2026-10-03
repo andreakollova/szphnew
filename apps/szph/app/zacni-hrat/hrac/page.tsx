@@ -23,7 +23,13 @@ const FAQ = [
 export default function ChcemSaStatHracomPage() {
   const [formData, setFormData] = useState({ name: "", email: "", city: "", age: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSubmitted(true); };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await fetch("/api/form", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "hrac", ...formData }) });
+    } catch {}
+    setSubmitted(true);
+  };
 
   return (
     <article className="pb-20" style={{ background: "#f8f9fa" }}>
