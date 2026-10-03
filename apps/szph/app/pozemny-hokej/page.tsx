@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -258,9 +260,78 @@ export default function PozemnyHokejPage() {
         <p className="text-[#334155] mb-6" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Pozemný hokej je populárny na celom svete, najmä v Európe, Indii, Pakistane, Austrálii a Južnej Afrike. Je to šport, ktorý kombinuje eleganciu techniky s rýchlosťou a stratégiou. Okrem fyzickej náročnosti prináša aj veľkú dávku intelektuálneho myslenia, pretože hráči musia byť neustále o krok pred súperom. Šport je atraktívny aj tým, že môže byť hrou pre mužov aj ženy, a to na všetkých úrovniach, od amatérov až po profesionálov. Pozemného hokeju sa hovorí aj šport elegánov.
         </p>
-        <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+        <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Pre tých, ktorí nikdy nevideli pozemný hokej, môže byť prvý pohľad fascinujúci pre niektorích zase zvláštny. Dynamika pohybov, presné prihrávky, rýchlosť hry a elegancia hokejky ovládanej rukami hráčov vytvárajú jedinečný zážitok. Aj keď sa môže na prvý pohľad zdať, že hra je komplikovaná, jej princípy sú pomerne jednoduché: dostať loptu do súperovej brány a brániť svoju vlastnú bránu.
         </p>
+
+        {/* Fotogaléria 1 */}
+        <div className="grid grid-cols-3 gap-3 my-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g1-1.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g1-2.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g1-4.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
+          </div>
+        </div>
+
+        {/* Fotogaléria 2 */}
+        <div className="grid grid-cols-3 gap-3 my-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g2-1.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g2-3.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g2-4.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
+          </div>
+        </div>
+
+        {/* Halový hokej */}
+        <h2 className="font-bold text-[#051937] mt-16 mb-6" style={{ fontSize: "24px" }}>
+          Halový hokej
+        </h2>
+        <p className="text-[#334155] mb-6" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+          Halový hokej je samostatná disciplína pozemného hokeja, ktorá sa hrá v uzavretej hale na menšom ihrisku. Hrá sa 6 proti 6 (vrátane brankára) na ihrisku s rozmermi 40 x 20 metrov, ohraničenom nízkymi mantinelmi. Oproti vonkajšiemu pozemnému hokeju je hra rýchlejšia a technickejšia, s väčším dôrazom na presné prihrávky a kontrolu lopty v obmedzenom priestore.
+        </p>
+        <p className="text-[#334155] mb-6" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+          Halová sezóna prebieha počas zimných mesiacov, kedy nie je možné hrať na vonkajších ihriskách. V halovom hokeji nie je povolené zdvíhať loptu nad úroveň mantinelov (okrem streľby v kruhu), čo vyžaduje od hráčov výbornú techniku a kontrolu hokejky. Halový hokej má vlastné medzinárodné súťaže vrátane Majstrovstiev Európy a Svetového pohára.
+        </p>
+        <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+          Na Slovensku sa halový hokej teší veľkej popularite. Slovenské reprezentácie sa pravidelne zúčastňujú európskych šampionátov v rámci divízneho systému EuroHockey. Halová liga prebieha od októbra do marca a zahŕňa mužskú aj ženskú súťaž.
+        </p>
+
+        <div className="grid grid-cols-2 gap-3 my-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/mega-reprezentacia.webp" alt="Reprezentácia" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/hero-banner2.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
+          </div>
+        </div>
+
+        {/* Odkazy */}
+        <div className="mt-12 pt-8 flex flex-col sm:flex-row gap-3" style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
+          <Link
+            href="/novinky/reportaz-alena-kyselicova"
+            className="flex-1 group block p-5 bg-white hover:bg-[#f0f4fa] transition-colors"
+            style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}
+          >
+            <span className="inline-block px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-[#d80027] text-white mb-2" style={{ borderRadius: "3px" }}>Reprezentácia</span>
+            <h3 className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>Reportáž s Olympioničkou – Alena Kyselicová</h3>
+          </Link>
+          <Link
+            href="/novinky/program-olympiada-2036"
+            className="flex-1 group block p-5 bg-white hover:bg-[#f0f4fa] transition-colors"
+            style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}
+          >
+            <span className="inline-block px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-[#012d74] text-white mb-2" style={{ borderRadius: "3px" }}>Novinky</span>
+            <h3 className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>Program Olympiáda 2036</h3>
+          </Link>
+        </div>
       </div>
     </article>
   );
