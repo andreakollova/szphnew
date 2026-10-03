@@ -177,17 +177,17 @@ export default function PEMPage() {
       </div>
 
       <div className="max-w-[1000px] mx-auto px-6 pt-12">
-        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>Muži — halový PEM</h2>
-        <T data={MH} />
+        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>Muži - halový PEM</h2>
+        <T data={[...MH].reverse()} />
 
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Muži — vonkajší PEM</h2>
-        <T data={MV.map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") }))} />
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Muži - vonkajší PEM</h2>
+        <T data={[...MV].reverse().map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") }))} />
 
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy — halový PEM</h2>
-        <T data={ZH} />
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy - halový PEM</h2>
+        <T data={[...ZH].reverse()} />
 
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy — vonkajší PEM</h2>
-        <T data={ZV.map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") }))} />
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy - vonkajší PEM</h2>
+        <T data={[...ZV].reverse().map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") }))} />
 
         {/* Zaujímavosti */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Historické zaujímavosti</h2>

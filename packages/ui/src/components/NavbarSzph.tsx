@@ -83,7 +83,7 @@ const MAIN_NAV: NavItem[] = [
           title: "Aktuálne",
           links: [
             { label: "Úspechy a ocenenia", href: "/reprezentacia/muzi#ocenenia", desc: "Medaily a výsledky" },
-            { label: "PEM — Klubové ME", href: "/sutaze/pem", desc: "EuroHockey Club Championships" },
+            { label: "PEM - Klubové ME", href: "/sutaze/pem", desc: "EuroHockey Club Championships" },
             { label: "Výsledky a zápasy", href: "/zapasy", desc: "Zápasové centrum" },
             { label: "Nominácie", href: "/reprezentacia/nominacie", desc: "Aktuálne zostavy" },
           ],
@@ -111,7 +111,7 @@ const MAIN_NAV: NavItem[] = [
           links: [
             { label: "Extraliga muži", href: "/sutaze/muzska-liga", desc: "Najvyššia súťaž" },
             { label: "Extraliga ženy", href: "/sutaze/zenska-liga", desc: "Najvyššia súťaž" },
-            { label: "PEM — Klubové ME", href: "/sutaze/pem", desc: "EuroHockey Club Championships" },
+            { label: "PEM - Klubové ME", href: "/sutaze/pem", desc: "EuroHockey Club Championships" },
             { label: "Zápasy a výsledky", href: "/zapasy", desc: "Rozpis a skóre" },
           ],
         },
