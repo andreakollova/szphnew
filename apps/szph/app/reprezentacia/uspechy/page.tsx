@@ -69,56 +69,70 @@ export default function UspechyPage() {
           </div>
         </div>
 
-        {/* Muži */}
-        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>Muži - seniorská reprezentácia</h2>
+        {/* Muži - hala */}
+        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>Muži - hala</h2>
         <Table data={[
-          { year: "2026", form: "Hala", event: "ME II-A, Sveti Ivan Zelina", result: "3. miesto" },
-          { year: "2024", form: "Hala", event: "ME II-B, Budapešť", result: "3. miesto" },
-          { year: "2021", form: "Vonku", event: "ME III, Lousada", result: "5. miesto" },
-          { year: "2018", form: "Hala", event: "ME III, Nikózia", result: "2. miesto" },
-          { year: "2015", form: "Vonku", event: "ME IV, Vilnius", result: "1. miesto, postup do III. divízie" },
-          { year: "2009", form: "Vonku", event: "ME IV, Bratislava", result: "2. miesto" },
-          { year: "2008", form: "Hala", event: "Nations Trophy II, Kodaň", result: "3. miesto" },
+          { year: "2026", form: "Championship II-A", event: "Sv. Ivan Zelina", result: "3. miesto" },
+          { year: "2024", form: "Championship II-B", event: "Budapešť", result: "3. miesto" },
+          { year: "2018", form: "Championship III", event: "Nikózia", result: "2. miesto" },
+          { year: "2008", form: "Nations Trophy", event: "Kodaň", result: "3. miesto" },
         ]} />
 
-        {/* Ženy */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy - seniorská reprezentácia</h2>
+        {/* Muži - vonku */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Muži - vonku</h2>
         <Table data={[
-          { year: "2023", form: "Vonku", event: "ME II, Praha", result: "8. miesto - účasť v II. divízii" },
-          { year: "2022", form: "Hala", event: "ME III, Bratislava", result: "2. miesto" },
-          { year: "2018", form: "Hala", event: "ME III, Apače", result: "2. miesto" },
-          { year: "2010", form: "Hala", event: "Nations Trophy II, Nymburk", result: "3. miesto" },
-          { year: "2005", form: "Vonku", event: "ME III, Praha", result: "3. miesto" },
-          { year: "1996, 1998, 2000", form: "Hala", event: "Elitné ME", result: "Trikrát 5. miesto" },
+          { year: "2015", form: "Championship IV", event: "Vilnius", result: "1. miesto, postup" },
+          { year: "2009", form: "Challenge II", event: "Bratislava", result: "2. miesto, postup" },
         ]} />
 
-        {/* U21 muži */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Juniori U21</h2>
+        {/* Ženy - hala */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy - hala</h2>
         <Table data={[
-          { year: "2025", form: "Hala", event: "ME II, Lousada", result: "2. miesto" },
-          { year: "2019", form: "Hala", event: "ME II, Paredes", result: "2. miesto" },
-          { year: "2015, 2017", form: "Hala", event: "ME II", result: "3. miesto v oboch rokoch" },
-          { year: "2012", form: "Vonku", event: "ME III-B, Bratislava", result: "2. miesto" },
-          { year: "2010, 2014", form: "Vonku", event: "ME III", result: "3. miesto v oboch rokoch" },
-          { year: "2002, 2007, 2013", form: "Hala", event: "II. úroveň", result: "3. miesto v každom ročníku" },
-          { year: "1998", form: "Hala", event: "II. úroveň, Bratislava", result: "2. miesto" },
+          { year: "2022", form: "Championship III", event: "Bratislava", result: "2. miesto" },
+          { year: "2018", form: "Championship III", event: "Apače", result: "2. miesto" },
+          { year: "2010", form: "Nations Trophy", event: "Nymburk", result: "3. miesto" },
         ]} />
 
-        {/* U21 ženy */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Juniorky U21</h2>
+        {/* Ženy - vonku */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy - vonku</h2>
         <Table data={[
-          { year: "2019", form: "Hala", event: "ME II", result: "2. miesto" },
-          { year: "2006, 2008", form: "Vonku", event: "ME III", result: "3. miesto v oboch rokoch" },
-          { year: "2007", form: "Hala", event: "Elitné ME, Viedeň", result: "4. miesto" },
-          { year: "2005", form: "Hala", event: "II. úroveň, Bratislava", result: "1. miesto" },
-          { year: "2001, 2011", form: "Hala", event: "II. úroveň", result: "3. miesto v oboch rokoch" },
-          { year: "1994", form: "Hala", event: "Elitné ME, Llodio", result: "3. miesto v Európe" },
+          { year: "2022", form: "Kvalifikácia na ME", event: "Durham", result: "3. miesto, postup do Championship II" },
+          { year: "2005", form: "Challenge", event: "Praha", result: "3. miesto" },
         ]} />
 
-        {/* U16 */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Mládež</h2>
+        {/* Juniori U21 - hala */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Juniori U21 - hala</h2>
         <Table data={[
-          { year: "2022", form: "Hockey5s", event: "ME II, Alanya - chlapci U16", result: "2. miesto" },
+          { year: "2025", form: "Championship II", event: "Lousada", result: "2. miesto" },
+          { year: "2019", form: "Championship II", event: "Paredes", result: "2. miesto" },
+          { year: "2017", form: "Championship II", event: "Puconci", result: "3. miesto" },
+          { year: "2015", form: "Championship II", event: "Sv. Ivan Zelina", result: "3. miesto" },
+          { year: "2013", form: "Championship II", event: "Bratislava", result: "3. miesto" },
+          { year: "2007", form: "Trophy", event: "Miláno", result: "3. miesto" },
+          { year: "2002", form: "Trophy", event: "Sopron", result: "3. miesto" },
+          { year: "1998", form: "Trophy", event: "Bratislava", result: "2. miesto" },
+        ]} />
+
+        {/* Juniorky U21 - hala */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Juniorky U21 - hala</h2>
+        <Table data={[
+          { year: "2019", form: "Championship II", event: "Sv. Ivan Zelina", result: "2. miesto" },
+          { year: "2011", form: "Championship II", event: "Lignano", result: "3. miesto" },
+          { year: "2005", form: "Trophy", event: "Bratislava", result: "1. miesto" },
+          { year: "2001", form: "Trophy", event: "Bratislava", result: "3. miesto" },
+          { year: "1994", form: "ME", event: "Llodio", result: "3. miesto v Európe" },
+        ]} />
+
+        {/* Juniorky/Juniori - vonku */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Mládež - vonku</h2>
+        <Table data={[
+          { year: "2026", form: "Dievčatá U16, 5s Championship II", event: "Kutaisi", result: "3. miesto" },
+          { year: "2022", form: "Chlapci U16, 5s Championship II", event: "Alanya", result: "2. miesto" },
+          { year: "2014", form: "Muži U21, Championship III", event: "Hradec Králové", result: "3. miesto" },
+          { year: "2012", form: "Muži U21, Championship III-B", event: "Bratislava", result: "2. miesto" },
+          { year: "2010", form: "Muži U21, Championship III", event: "Atény", result: "3. miesto" },
+          { year: "2008", form: "Ženy U21, Challenge", event: "Viedeň", result: "3. miesto" },
+          { year: "2006", form: "Ženy U21, Challenge", event: "Albena", result: "3. miesto" },
         ]} />
 
         {/* Pannonia Cup */}
