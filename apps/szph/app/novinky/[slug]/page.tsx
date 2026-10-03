@@ -403,7 +403,7 @@ export default async function ArticleDetailPage({ params }: Props) {
     <article className="pb-20 overflow-x-hidden" style={{ background: "#f8f9fa" }}>
       {/* Banner image — flush under header on mobile */}
       {article.cover_image_url && (
-        <div className="-mt-0 sm:mt-0 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] sm:mx-auto sm:pt-6">
+        <div className="sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] sm:mx-auto sm:pt-6" style={{ marginTop: "-24px" }}>
           <div className="relative w-full overflow-hidden sm:rounded-lg" style={{ height: "clamp(220px, 40vw, 450px)" }}>
             <Image
               src={article.cover_image_url}

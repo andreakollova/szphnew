@@ -81,7 +81,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
   return (
     <footer style={{ background: "#f8f9fa", borderTop: "1px solid rgba(1,45,116,0.07)" }}>
       {/* Mobile: Eshop banner */}
-      <div className="md:hidden px-4 pt-4 pb-2" style={{ paddingBottom: "80px" }}>
+      <div className="md:hidden px-4 pb-2" style={{ marginTop: "-50px", paddingBottom: "80px" }}>
         <Link
           href="/eshop"
           className="group block relative overflow-hidden active:opacity-90 transition-opacity"

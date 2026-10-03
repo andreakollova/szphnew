@@ -14,7 +14,7 @@ interface Tournament {
 function TournamentCard({ t }: { t: Tournament }) {
   return (
     <div className="bg-white px-4 py-3.5 flex flex-col gap-1.5" style={{ borderRadius: "10px", border: "1px solid rgba(1,45,116,0.06)", minWidth: 220 }}>
-      <span className="font-bold uppercase text-[#012d74]" style={{ fontSize: "8px", letterSpacing: "0.1em", lineHeight: 1.4, minHeight: "22px", display: "block" }}>{t.league}</span>
+      <span className="font-bold uppercase text-[#012d74]" style={{ fontSize: "8px", letterSpacing: "0.1em", lineHeight: 1.4, display: "block" }}>{t.league}</span>
       <div className="flex items-center gap-2">
         {t.flag ? (
           <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 20, height: 20 }}>
@@ -64,7 +64,7 @@ export function TournamentCarousel({ tournaments }: { tournaments: Tournament[] 
         <div className="flex gap-3 overflow-x-auto pb-2 md:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
           <style>{`.tournament-scroll::-webkit-scrollbar { display: none; }`}</style>
           {tournaments.map((t, i) => (
-            <div key={i} className="snap-start shrink-0 flex" style={{ width: "70%" }}>
+            <div key={i} className="snap-start shrink-0" style={{ width: "70%" }}>
               <TournamentCard t={t} />
             </div>
           ))}
