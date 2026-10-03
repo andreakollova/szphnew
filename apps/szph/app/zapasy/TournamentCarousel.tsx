@@ -13,7 +13,7 @@ interface Tournament {
 
 function TournamentCard({ t }: { t: Tournament }) {
   return (
-    <div className="bg-white px-4 py-3.5 flex flex-col gap-1.5" style={{ borderRadius: "10px", border: "1px solid rgba(1,45,116,0.06)", minWidth: 220 }}>
+    <div className="bg-white px-4 py-3.5 flex flex-col gap-1.5 w-full" style={{ borderRadius: "10px", border: "1px solid rgba(1,45,116,0.06)" }}>
       <span className="font-bold uppercase text-[#012d74]" style={{ fontSize: "8px", letterSpacing: "0.1em", lineHeight: 1.4, display: "block" }}>{t.league}</span>
       <div className="flex items-center gap-2">
         {t.flag ? (
