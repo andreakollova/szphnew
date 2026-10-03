@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Čo je pozemný hokej?",
-  description: "Pozemný hokej je dynamický, kolektívny, olympijský šport. Všetko čo potrebujete vedieť o pravidlách, hráčoch a histórii.",
+  title: "Pozemný hokej — základy a pravidlá",
+  description: "Pozemný hokej je olympijský tímový šport rozšírený po celom svete. Základy hry, pravidlá, karty, striedania a štandardné situácie.",
 };
 
 export default function PozemnyHokejPage() {
@@ -15,7 +15,7 @@ export default function PozemnyHokejPage() {
             O športe
           </span>
           <h1 className="font-bold text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Čo je pozemný hokej?
+            Pozemný hokej / základy a pravidlá
           </h1>
         </div>
       </div>
@@ -23,7 +23,7 @@ export default function PozemnyHokejPage() {
       {/* Content */}
       <div className="max-w-[900px] mx-auto px-6 pt-12">
         <p className="text-[#334155] mb-8" style={{ fontSize: "16px", lineHeight: 1.8 }}>
-          Pozemný hokej je dynamický, kolektívny, olympijský šport, ktorý sa hrá na obdĺžnikovom ihrisku s dvoma tímami, pričom každý tím sa snaží dostať malú loptu do súperovej bránky pomocou špeciálnych zakrivených hokejok. Pre ľudí, ktorí tento šport nikdy nevideli, môže pozemný hokej pripomínať mix medzi futbalom a ľadovým hokejom, avšak s niekoľkými kľúčovými rozdielmi.
+          Pozemný hokej je olympijský tímový šport, ktorý patrí medzi najrozšírenejšie športy na svete. Hrá sa vo viac ako 130 krajinách na všetkých kontinentoch a má vyše 30 miliónov aktívnych hráčov. V Európe dominujú krajiny ako Holandsko, Belgicko, Nemecko, Španielsko a Anglicko, kde pôsobia profesionálne ligy s vysokou sledovanosťou. Na svetovej úrovni riadi pozemný hokej Medzinárodná hokejová federácia (FIH), ktorá organizuje svetové šampionáty, FIH Pro League a ďalšie prestížne súťaže. Pozemný hokej je neoddeliteľnou súčasťou programu letných olympijských hier od roku 1908.
         </p>
 
         {/* Základné charakteristiky */}
@@ -119,58 +119,134 @@ export default function PozemnyHokejPage() {
           </div>
         </div>
 
-        {/* Pravidlá a stratégie */}
+        {/* Pravidlá */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Pravidlá a stratégie
+          Základné pravidlá pre hokejové zápasy
+        </h2>
+        <div className="space-y-4 mb-12">
+          {[
+            "Hokejové tímy dospelých hrajú 11 proti 11. Mládežnícke tímy hrajú zväčša 4 na 4 alebo 5 na 5 a niekedy platia aj iné pravidlá.",
+            "Všetci hráči majú svoju hokejku. Lopta sa môže odohrať iba jej vnútornou časťou hokejky. Druhá strana sa nazýva opačná strana hokejky, ktorou sa nemôže hrať a je to považované za priestupok proti pravidlám tzv. faul.",
+            "Chránič na zuby a chrániče holení sú povinné počas zápasov.",
+            "Gól je platný, ak útočiace družstvo zasiahne loptu vo vnútri kruhu a lopta potom úplne prejde za bránkovú čiaru.",
+            "Riadny hokejový zápas trvá 60 minút rozdelených do 15 minútových štvrtín. Po prvej a tretej štvrtine nasleduje 2-minútová prestávka. Cez polčas, po druhej štvrtine je 5-minútová prestávka.",
+            "Neexistuje žiadny čas predlženia alebo nastavenia. Čas počas zápasu zastavuje rozhodca, napríklad pri zranení alebo pri vykartovaní hráča. Pozemný hokej má čistý čas zápasu.",
+          ].map((text, i) => (
+            <div key={i} className="flex gap-3 items-start">
+              <span className="text-[#012d74] font-bold shrink-0">➜</span>
+              <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>{text}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Karty */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-4" style={{ fontSize: "24px" }}>
+          Zelená karta, žltá karta a červená karta
         </h2>
         <p className="text-[#334155] mb-6" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Pozemný hokej má súbor pravidiel, ktoré regulujú, ako môžu hráči hrať. Základným princípom je, že lopta sa nesmie dotknúť hráčovej ruky, nohy alebo tela (okrem brankára). Ak sa tak stane, ide o faul a rozhodca nariadi trest.
+          Počas hokejových zápasov môže rozhodca potrestať priestupky kartou. Hokej má 3 karty:
         </p>
-
-        <div className="space-y-6 mb-8">
-          <div className="rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-            <h4 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>1. Voľné údery</h4>
+        <div className="space-y-4 mb-12">
+          <div className="rounded-lg p-6 flex gap-4 items-start" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div className="shrink-0 rounded-lg flex items-center justify-center" style={{ width: "36px", height: "48px", background: "#22c55e" }} />
             <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
-              Ak sa poruší pravidlo (napr. faul, priestupok alebo iný typ nedovolenej hry), súper získa voľný úder z miesta priestupku. Špecifikom rozohrávky je že hráč si môže ale rozohrať voľný úder sám a tým pádom nemusí loptičku prihrať svoju spoluhráčovi. Toto rozhodnutie je na danom hráčovi či loptičku prihrá alebo ju rozohrá sám z miesta priestupku alebo faulu.
+              Hráč, ktorý dostane <strong>zelenú kartu</strong>, musí na 2 minúty opustiť ihrisko. Jeho tím hrá tie 2 minúty s jedným mužom menej. 2 zelené karty tomu istému hráčovi sú žlté, pokiaľ hráč nedostane kartu v pozícii kapitána.
             </p>
           </div>
-
-          <div className="rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-            <h4 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>2. Trestné rohy</h4>
+          <div className="rounded-lg p-6 flex gap-4 items-start" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div className="shrink-0 rounded-lg flex items-center justify-center" style={{ width: "36px", height: "48px", background: "#eab308" }} />
             <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
-              Pri vážnych porušeniach v útočnom kruhu sa udeľuje trestný roh. Útočiaci tím má v tejto situácii výhodu, keďže sa hráči rozostavia okolo kruhu a pripravujú sa na streľbu priamo na bránu.
+              V prípade <strong>žltej karty</strong> musí hráč tiež opustiť ihrisko. Aspoň na 5 minút, pri závažnejších priestupkoch 10 minút. 2 žlté karty tomu istému hráčovi znamená červená karta, pokiaľ hráč nedostane kartu v pozícii kapitána.
             </p>
           </div>
-
-          <div className="rounded-lg p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-            <h4 className="font-bold text-[#051937] mb-2" style={{ fontSize: "15px" }}>3. Karty a tresty</h4>
+          <div className="rounded-lg p-6 flex gap-4 items-start" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <div className="shrink-0 rounded-lg flex items-center justify-center" style={{ width: "36px", height: "48px", background: "#ef4444" }} />
             <p className="text-[#334155]" style={{ fontSize: "14px", lineHeight: 1.8 }}>
-              Rovnako ako v mnohých iných športoch, aj v pozemnom hokeji môže rozhodca udeliť hráčovi zelenú, žltú alebo červenú kartu za nebezpečnú alebo nešportovú hru. Zelená karta znamená opustenie ihriska na 2 min. Žltá karta znamená, že hráč musí opustiť ihrisko na určitý čas 5–15 min v závislosti od faulu, zatiaľ čo červená karta vedie k vylúčeniu hráča zo zvyšnej časti hry.
+              <strong>Červená karta</strong> je pre hráča, ktorý sa dopustí vážneho faulu. Po faule musí ihrisko natrvalo opustiť. To sa v hokeji takmer nestáva.
             </p>
           </div>
         </div>
 
-        {/* Dôležité aspekty */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Dôležité aspekty pozemného hokeja
+        {/* Striedania a rozhodcovia */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-4" style={{ fontSize: "24px" }}>
+          Počet striedaní
+        </h2>
+        <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+          V hokeji môžete počas zápasu neobmedzene striedať. Hráč, ktorý prichádza do poľa, nesmie vstúpiť na ihrisko, kým druhý hráč nie je mimo poľa. Striedania sa dejú pri stredovej čiare.
+        </p>
+
+        <h2 className="font-bold text-[#051937] mt-12 mb-4" style={{ fontSize: "24px" }}>
+          Rozhodcovia
+        </h2>
+        <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+          Zápas rozhodujú 2 rozhodcovia, obaja na jednej strane ihriska. Každý rozhodca rozhoduje na svojej polovici.
+        </p>
+
+        {/* Spôsoby hry */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-4" style={{ fontSize: "24px" }}>
+          Ako môžete hrať s loptou?
+        </h2>
+        <p className="text-[#334155] mb-6" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+          V hokeji môžete hrať s loptou 4 rôznymi spôsobmi:
+        </p>
+        <div className="space-y-4 mb-12">
+          {[
+            { name: "Úder", desc: "je švihový pohyb hokejky proti loptičke." },
+            { name: "Push", desc: "je tlačný pohyb s hokejkou proti lopte." },
+            { name: "Šrúber", desc: "je kombináciou techniky šrúberu a úderu." },
+            { name: "Vysoký push", desc: "je naberací pohyb hokejky, ktorý spôsobuje, že loptička stúpa." },
+          ].map((item) => (
+            <div key={item.name} className="flex gap-3 items-start">
+              <span className="text-[#012d74] font-bold shrink-0">➜</span>
+              <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+                <strong>{item.name}</strong> {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Malý roh */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-4" style={{ fontSize: "24px" }}>
+          Ako funguje malý roh?
+        </h2>
+        <p className="text-[#334155] mb-6" style={{ fontSize: "15px", lineHeight: 1.8 }}>
+          Malý roh je trestom pre brániace sa družstvo ktoré spôsobilo priestupok proti pravidlám. Je to veľká šanca skórovať pre útočiaci tím. Malý roh sa udeľuje, keď:
+        </p>
+        <div className="space-y-4 mb-6">
+          {[
+            "Neúmyselný faul obrancu vo svojom kruhu, ktorý nezabráni gólu.",
+            "Úmyselný faul obrancu v štvrtine.",
+            "Zámerné hranie lopty cez vlastnú zadnú čiaru.",
+          ].map((text, i) => (
+            <div key={i} className="flex gap-3 items-start">
+              <span className="text-[#012d74] font-bold shrink-0">➜</span>
+              <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>{text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-lg p-6 mb-12" style={{ background: "#051937" }}>
+          <h3 className="font-bold text-white mb-3" style={{ fontSize: "16px" }}>Takto funguje malý roh</h3>
+          <p className="text-white" style={{ fontSize: "14px", lineHeight: 1.8 }}>
+            Útočiace družstvo hrá loptu od zadnej čiary v kruhu a musí byť lopta prihraná mimo kruh, potom môže útočiace družstvo skórovať. Prvý výstrel, úderom alebo šrúberom, nesmie skončiť vyššie ako doska v bráne. Ak sa rozhodne hráč vystreliť pushom, táto strela môže ísť vyššie ako nad dosku v bráne.
+          </p>
+        </div>
+
+        {/* Nájazdy */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-4" style={{ fontSize: "24px" }}>
+          Nájazdy
         </h2>
         <div className="space-y-4 mb-8">
           <div className="flex gap-3 items-start">
-            <span className="text-[#051937]/30 font-bold shrink-0">–</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Tímová práca:</strong> Tímová spolupráca je v pozemnom hokeji kľúčová. Hráči musia rýchlo komunikovať a presne si prihrávať loptu, aby dosiahli úspech.
+              Nájazdy sú súboje 1 na 1 medzi hráčom a brankárom. Sú nariadené iba vtedy, ak je potrebné určiť víťaza a zápas skončil remízou. K rozstrelu nikdy nedochádza počas riadneho hracieho času.
             </p>
           </div>
           <div className="flex gap-3 items-start">
-            <span className="text-[#051937]/30 font-bold shrink-0">–</span>
+            <span className="text-[#012d74] font-bold shrink-0">➜</span>
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Fyzická náročnosť:</strong> Hráči musia byť vo výbornej fyzickej kondícii, pretože pozemný hokej je veľmi rýchla a intenzívna hra. Tím musí neustále meniť smer a rýchlo reagovať na vývoj hry.
-            </p>
-          </div>
-          <div className="flex gap-3 items-start">
-            <span className="text-[#051937]/30 font-bold shrink-0">–</span>
-            <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              <strong>Technická zručnosť:</strong> Ovládanie lopty pomocou hokejky, rýchle prihrávky a precízna streľba sú nevyhnutné pre úspech. Hráči musia neustále zlepšovať svoju techniku, aby dokázali efektívne prekonávať obranu súpera.
+              Zo štvrtinovej čiary sa útočník rozbehne smerom k bránke. Snaží sa skórovať do 8 sekúnd. Počas týchto 8 sekúnd môže urobiť niekoľko pokusov o gól, pokiaľ lopta zostáva v hre alebo na ihrisku.
             </p>
           </div>
         </div>
