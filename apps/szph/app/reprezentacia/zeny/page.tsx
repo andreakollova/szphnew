@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -36,25 +37,32 @@ export default function ZenyPage() {
               <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
                 <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>#</th>
                 <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Hráčka</th>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Klub</th>
               </tr>
             </thead>
             <tbody>
               {[
-                { n: 1, name: "SUTOVSKA Daniela (GK)" },
-                { n: 2, name: "LISKOVA Natalia (GK)" },
-                { n: 3, name: "VYSKOČOVÁ Karolína" },
-                { n: 7, name: "MEDVIKOVA Šarlota" },
-                { n: 8, name: "ČAPOVÁ Vanessa" },
-                { n: 9, name: "HUŠKOVÁ Bianka" },
-                { n: 10, name: "KRAMPLOVA Lenka" },
-                { n: 12, name: "FONDRKOVA Natalia (C)" },
-                { n: 14, name: "SURINOVA Martina" },
-                { n: 18, name: "HORÁČKOVÁ Lenka" },
-                { n: 20, name: "MÉSZÁROS Réka" },
+                { n: 1, name: "SUTOVSKA Daniela (GK)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 2, name: "LISKOVA Natalia (GK)", club: "KPH HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
+                { n: 3, name: "VYSKOČOVÁ Karolína", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 7, name: "MEDVIKOVA Šarlota", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 8, name: "ČAPOVÁ Vanessa", club: "KPH HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
+                { n: 9, name: "HUŠKOVÁ Bianka", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 10, name: "KRAMPLOVA Lenka", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 12, name: "FONDRKOVA Natalia (C)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 14, name: "SURINOVA Martina", club: "KPH HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
+                { n: 18, name: "HORÁČKOVÁ Lenka", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 20, name: "MÉSZÁROS Réka", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
               ].map((p, i) => (
                 <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <td className="px-4 py-2.5 font-bold text-[#012d74]" style={{ fontSize: "13px" }}>{p.n}</td>
                   <td className="px-4 py-2.5 text-[#051937] font-semibold" style={{ fontSize: "13px" }}>{p.name}</td>
+                  <td className="px-4 py-2.5" style={{ fontSize: "12px" }}>
+                    <div className="flex items-center gap-1.5">
+                      {p.logo && <Image src={p.logo} alt="" width={16} height={16} className="object-contain" />}
+                      <span className="text-[#64748b]">{p.club}</span>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
