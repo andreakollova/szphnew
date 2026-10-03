@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -42,26 +43,33 @@ export default function MuziPage() {
               <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
                 <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>#</th>
                 <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Hráč</th>
+                <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Klub</th>
               </tr>
             </thead>
             <tbody>
               {[
-                { n: 1, name: "BOGÁR Jakub" },
-                { n: 7, name: "VACHA Tomáš" },
-                { n: 10, name: "ROMANEC Tomáš (C)" },
-                { n: 11, name: "PETRÁŠ Daniel" },
-                { n: 13, name: "AUGUSTINIČ Adrian" },
-                { n: 16, name: "GARAJ Richard" },
-                { n: 9, name: "KAJABA Matúš" },
-                { n: 18, name: "BLAZOVSKY Michal" },
-                { n: 20, name: "KRAMPL Matej" },
-                { n: 23, name: "BOGAR Juraj" },
-                { n: 24, name: "BARATH Tomas" },
-                { n: 26, name: "BELOŠOVIČ Šimon" },
+                { n: 1, name: "BOGÁR Jakub", club: "SK Slavia Praha", logo: "/images/timy/SLA.webp" },
+                { n: 7, name: "VACHA Tomáš", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 10, name: "ROMANEC Tomáš (C)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 11, name: "PETRÁŠ Daniel", club: "Klipper THC Hamburg" },
+                { n: 13, name: "AUGUSTINIČ Adrian", club: "PH Plzeň-Litice" },
+                { n: 16, name: "GARAJ Richard", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 9, name: "KAJABA Matúš", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 18, name: "BLAZOVSKY Michal", club: "HC 1952 Šenkvice", logo: "/images/timy/SEN.webp" },
+                { n: 20, name: "KRAMPL Matej", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 23, name: "BOGAR Juraj", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 24, name: "BARATH Tomas", club: "HC 1952 Šenkvice", logo: "/images/timy/SEN.webp" },
+                { n: 26, name: "BELOŠOVIČ Šimon", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
               ].map((p, i) => (
                 <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <td className="px-4 py-2.5 font-bold text-[#012d74]" style={{ fontSize: "13px" }}>{p.n}</td>
                   <td className="px-4 py-2.5 text-[#051937] font-semibold" style={{ fontSize: "13px" }}>{p.name}</td>
+                  <td className="px-4 py-2.5" style={{ fontSize: "12px" }}>
+                    <div className="flex items-center gap-1.5">
+                      {p.logo && <Image src={p.logo} alt="" width={16} height={16} className="object-contain" />}
+                      <span className="text-[#64748b]">{p.club}</span>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
