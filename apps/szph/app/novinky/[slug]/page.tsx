@@ -401,24 +401,26 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   return (
     <article className="pb-20 overflow-x-hidden" style={{ background: "#f8f9fa" }}>
-      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6">
+      {/* Banner image — flush under header on mobile */}
+      {article.cover_image_url && (
+        <div className="-mt-0 sm:mt-0 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] sm:mx-auto sm:pt-6">
+          <div className="relative w-full overflow-hidden sm:rounded-lg" style={{ height: "clamp(220px, 40vw, 450px)" }}>
+            <Image
+              src={article.cover_image_url}
+              alt={article.title}
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 70vw"
+            />
+          </div>
+        </div>
+      )}
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-0 sm:pt-0">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-0 items-start">
 
           {/* ── Main content ── */}
           <div className="pr-0 lg:pr-10 xl:pr-14">
-            {/* Banner image */}
-            {article.cover_image_url && (
-              <div className="relative w-full overflow-hidden rounded-none sm:rounded-lg" style={{ height: "clamp(200px, 35vw, 450px)" }}>
-                <Image
-                  src={article.cover_image_url}
-                  alt={article.title}
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 70vw"
-                />
-              </div>
-            )}
 
             {/* Title below banner */}
             <div className="mt-6 mb-8">
