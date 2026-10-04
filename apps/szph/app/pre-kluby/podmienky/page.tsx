@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactFormSection from "@/app/components/ContactFormSection";
 
 export const metadata: Metadata = {
   title: "Podmienky registrácie klubu | SZPH",
@@ -163,6 +164,12 @@ export default function PodmienkyPage() {
             </svg>
           </Link>
         </div>
+
+        <ContactFormSection
+          title="Otázky k podmienkam"
+          subtitle="Máte otázky? Radi vám odpovieme."
+          formType="podmienky-kluby"
+        />
       </div>
     </article>
   );

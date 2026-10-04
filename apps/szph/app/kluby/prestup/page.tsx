@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactFormSection from "@/app/components/ContactFormSection";
 
 export const metadata: Metadata = {
   title: "Prestup hráčov | SZPH",
@@ -194,6 +195,12 @@ export default function PrestupPage() {
             .
           </p>
         </div>
+
+        <ContactFormSection
+          title="Prestup hráča"
+          subtitle="Potrebujete informácie o prestupe? Napíšte nám."
+          formType="prestup"
+        />
       </div>
     </article>
   );

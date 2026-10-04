@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactFormSection from "@/app/components/ContactFormSection";
 
 export const metadata: Metadata = {
   title: "Registrácia hráčov cez kluby | SZPH",
@@ -198,6 +199,12 @@ export default function PreKlubyRegistraciaPage() {
             .
           </p>
         </div>
+
+        <ContactFormSection
+          title="Registrácia"
+          subtitle="Vyplňte formulár a ozveme sa vám."
+          formType="registracia"
+        />
       </div>
     </article>
   );
