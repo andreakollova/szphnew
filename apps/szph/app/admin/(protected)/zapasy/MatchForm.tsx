@@ -67,24 +67,25 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
     setError(null);
 
     try {
-      const payload = {
-        competition_id: values.competition_id,
-        home_team_id:   values.home_team_id,
-        away_team_id:   values.away_team_id,
-        match_date:     values.match_date ? new Date(values.match_date).toISOString() : null,
+      const payload: Record<string, any> = {
         venue:          values.venue || null,
         status:         values.status,
         home_score:     values.status === "finished" ? (values.home_score ?? null) : null,
         away_score:     values.status === "finished" ? (values.away_score ?? null) : null,
-        visible_on:     values.visible_on,
         video_url:      values.video_url || null,
         goals:          goals.length > 0 ? goals : null,
       };
+      if (values.competition_id) payload.competition_id = values.competition_id;
+      if (values.home_team_id) payload.home_team_id = values.home_team_id;
+      if (values.away_team_id) payload.away_team_id = values.away_team_id;
+      if (values.match_date) payload.match_date = new Date(values.match_date).toISOString();
 
       if (match) {
-        await supabase.from("matches").update({ ...payload, updated_at: new Date().toISOString() }).eq("id", match.id);
+        const { error: dbErr } = await supabase.from("matches").update(payload).eq("id", match.id);
+        if (dbErr) throw new Error(dbErr.message);
       } else {
-        await supabase.from("matches").insert(payload);
+        const { error: dbErr } = await supabase.from("matches").insert(payload);
+        if (dbErr) throw new Error(dbErr.message);
       }
 
       if (match) {
