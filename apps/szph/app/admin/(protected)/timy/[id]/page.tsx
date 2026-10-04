@@ -16,11 +16,19 @@ export default function UpravitTimPage() {
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const supabase = createBrowserSupabaseClient();
 
+  const [loadError, setLoadError] = useState<string | null>(null);
+
   useEffect(() => {
-    supabase.from("teams").select("*").eq("id", id).single().then(({ data }) => {
+    supabase.from("teams").select("*").eq("id", id).single().then(({ data, error }) => {
+      if (error) {
+        setLoadError(error.message);
+        return;
+      }
       if (data) {
         setTeam(data as Team);
         setLogoPreview(data.logo_url);
+      } else {
+        setLoadError("Tím nenájdený");
       }
     });
   }, [id]);
@@ -47,6 +55,7 @@ export default function UpravitTimPage() {
   const selectCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
+  if (loadError) return <div className="text-red-500 font-bold">Chyba: {loadError}</div>;
   if (!team) return <div className="text-[#64748b]">Načítavam...</div>;
 
   return (
