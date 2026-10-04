@@ -33,6 +33,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
   const [error, setError]   = useState<string | null>(null);
+  const [saved, setSaved]   = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(article?.cover_image_url ?? null);
 
@@ -128,7 +129,13 @@ export function ArticleForm({ article }: ArticleFormProps) {
         }).catch(() => {});
       }
 
-      router.push("/admin/clanky");
+      if (article) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        router.push("/admin/clanky");
+      }
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Nastala chyba");
@@ -139,6 +146,11 @@ export function ArticleForm({ article }: ArticleFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {saved && (
+        <div className="rounded bg-emerald-500/15 border border-emerald-500/25 px-4 py-3 text-sm text-emerald-600 font-semibold">
+          Zmeny uložené.
+        </div>
+      )}
       {error && (
         <div className="rounded bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">
           {error}
