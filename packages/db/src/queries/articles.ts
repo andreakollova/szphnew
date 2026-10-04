@@ -55,6 +55,7 @@ export async function getAllArticlesAdmin(
   let query = supabase
     .from("articles")
     .select("*")
+    .order("published_at", { ascending: false, nullsFirst: false })
     .order("created_at", { ascending: false })
     .range(offset, offset + limit - 1);
 
