@@ -22,7 +22,15 @@ export default async function UpravitTimPage({ params }: Props) {
     .eq("id", id)
     .single();
 
-  if (error || !team) notFound();
+  if (error || !team) {
+    return (
+      <div className="p-8">
+        <h1 className="text-2xl font-bold text-[#051937] mb-4">Chyba pri načítaní tímu</h1>
+        <p className="text-red-500 font-semibold mb-2">{error?.message || "Tím nenájdený"}</p>
+        <p className="text-[#94a3b8] text-xs">ID: {id} · Skontrolujte RLS politiku na tabuľke &quot;teams&quot; — pridajte SELECT policy pre anon rolu.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
