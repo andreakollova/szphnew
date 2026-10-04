@@ -9,10 +9,10 @@ import { createBrowserSupabaseClient } from "@szph/db/client";
 import type { Team, Competition, Match, MatchGoal } from "@szph/db/types";
 
 const matchSchema = z.object({
-  competition_id: z.string().min(1, "Vyberte súťaž"),
-  home_team_id:   z.string().min(1, "Vyberte domáci tím"),
-  away_team_id:   z.string().min(1, "Vyberte hosťujúci tím"),
-  match_date:     z.string().min(1, "Vyberte dátum a čas"),
+  competition_id: z.string().optional(),
+  home_team_id:   z.string().optional(),
+  away_team_id:   z.string().optional(),
+  match_date:     z.string().optional(),
   venue:          z.string().optional(),
   status:         z.enum(["scheduled", "live", "finished", "postponed"]),
   home_score:     z.coerce.number().int().min(0).nullable().optional(),
@@ -48,8 +48,8 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
       competition_id: match?.competition_id ?? "",
       home_team_id:   match?.home_team_id   ?? "",
       away_team_id:   match?.away_team_id   ?? "",
-      match_date:     match?.match_date
-        ? new Date(match.match_date).toISOString().slice(0, 16)
+      match_date:     (match?.match_date || (match as any)?.date)
+        ? new Date(match?.match_date || (match as any)?.date).toISOString().slice(0, 16)
         : "",
       venue:          match?.venue ?? "",
       status:         match?.status ?? "scheduled",
@@ -109,9 +109,27 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 max-w-2xl">
+      {saved && (
+        <div className="rounded bg-emerald-500/15 border border-emerald-500/25 px-4 py-3 text-sm text-emerald-600 font-semibold">
+          Zmeny uložené.
+        </div>
+      )}
       {error && (
         <div className="rounded bg-red-500/15 border border-red-500/25 px-4 py-3 text-sm text-red-400">
           {error}
+        </div>
+      )}
+
+      {/* Info panel for scraped matches */}
+      {match && (match as any).home_team && (
+        <div className="rounded p-5" style={{ background: "#f0f4fa", border: "1px solid rgba(1,45,116,0.06)" }}>
+          <p className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-2">Údaje zápasu</p>
+          <div className="grid gap-2 sm:grid-cols-2 text-sm">
+            <p><span className="text-[#94a3b8]">Domáci:</span> <strong className="text-[#051937]">{(match as any).home_team}</strong></p>
+            <p><span className="text-[#94a3b8]">Hostia:</span> <strong className="text-[#051937]">{(match as any).away_team}</strong></p>
+            <p><span className="text-[#94a3b8]">Liga:</span> <strong className="text-[#051937]">{(match as any).league}</strong></p>
+            <p><span className="text-[#94a3b8]">Dátum:</span> <strong className="text-[#051937]">{(match as any).date ? new Date((match as any).date).toLocaleString("sk-SK") : "—"}</strong></p>
+          </div>
         </div>
       )}
 
@@ -126,7 +144,6 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
                 <option key={c.id} value={c.id}>{c.name} ({c.season})</option>
               ))}
             </select>
-            {errors.competition_id && <p className="text-red-400 text-xs mt-1">{errors.competition_id.message}</p>}
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
@@ -138,7 +155,6 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
                   <option key={t.id} value={t.id}>{t.name} ({t.category})</option>
                 ))}
               </select>
-              {errors.home_team_id && <p className="text-red-400 text-xs mt-1">{errors.home_team_id.message}</p>}
             </div>
             <div>
               <label className={labelCls}>Hosťujúci tím</label>
@@ -148,7 +164,6 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
                   <option key={t.id} value={t.id}>{t.name} ({t.category})</option>
                 ))}
               </select>
-              {errors.away_team_id && <p className="text-red-400 text-xs mt-1">{errors.away_team_id.message}</p>}
             </div>
           </div>
 
@@ -163,24 +178,14 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <label className={labelCls}>Stav zápasu</label>
-              <select {...register("status")} className={selectCls}>
-                <option value="scheduled">Plánovaný</option>
-                <option value="live">Naživo</option>
-                <option value="finished">Odohraný</option>
-                <option value="postponed">Preložený</option>
-              </select>
-            </div>
-            <div>
-              <label className={labelCls}>Viditeľnosť</label>
-              <select {...register("visible_on")} className={selectCls}>
-                <option value="both">Oba weby</option>
-                <option value="fieldhockey">fieldhockey.sk</option>
-                <option value="szph">szph.sk</option>
-              </select>
-            </div>
+          <div>
+            <label className={labelCls}>Stav zápasu</label>
+            <select {...register("status")} className={selectCls}>
+              <option value="scheduled">Plánovaný</option>
+              <option value="live">Naživo</option>
+              <option value="finished">Odohraný</option>
+              <option value="postponed">Preložený</option>
+            </select>
           </div>
 
           {(status === "finished" || status === "live") && (
