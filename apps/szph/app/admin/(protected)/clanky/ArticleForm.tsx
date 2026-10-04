@@ -111,9 +111,11 @@ export function ArticleForm({ article }: ArticleFormProps) {
       };
 
       if (article) {
-        await supabase.from("articles").update({ ...payload, updated_at: new Date().toISOString() }).eq("id", article.id);
+        const { error: dbErr } = await supabase.from("articles").update({ ...payload, updated_at: new Date().toISOString() }).eq("id", article.id);
+        if (dbErr) throw new Error(dbErr.message);
       } else {
-        await supabase.from("articles").insert(payload);
+        const { error: dbErr } = await supabase.from("articles").insert(payload);
+        if (dbErr) throw new Error(dbErr.message);
       }
 
       // Slack notification when article is published
@@ -145,7 +147,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit, (errs) => { console.error("Validation errors:", errs); setError("Validačná chyba: " + Object.values(errs).map((e: any) => e?.message).filter(Boolean).join(", ")); window.scrollTo({ top: 0, behavior: "smooth" }); })} className="space-y-6">
       {saved && (
         <div className="rounded bg-emerald-500/15 border border-emerald-500/25 px-4 py-3 text-sm text-emerald-600 font-semibold">
           Zmeny uložené.
