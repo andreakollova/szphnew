@@ -7,7 +7,7 @@ interface Partner {
   id: string;
   name: string;
   logo_url: string | null;
-  url: string | null;
+  website: string | null;
   tier: string;
   sort_order: number;
 }
@@ -16,11 +16,14 @@ export default function AdminPartneriPage() {
   const [partners, setPartners] = useState<Partner[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [form, setForm] = useState({ name: "", logo_url: "", url: "", tier: "institucionalny" });
+  const [error, setError] = useState<string | null>(null);
+  const [saved, setSaved] = useState(false);
+  const [form, setForm] = useState({ name: "", logo_url: "", website: "", tier: "institucionalny" });
   const supabase = createBrowserSupabaseClient();
 
   useEffect(() => {
-    supabase.from("partners").select("*").order("sort_order").then(({ data }) => {
+    supabase.from("partners").select("*").order("sort_order").then(({ data, error: loadErr }) => {
+      if (loadErr) setError(loadErr.message);
       setPartners((data as Partner[]) ?? []);
       setLoading(false);
     });
@@ -29,23 +32,39 @@ export default function AdminPartneriPage() {
   async function handleAdd(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
+    setError(null);
+    setSaved(false);
+
     const maxOrder = partners.reduce((max, p) => Math.max(max, p.sort_order), 0);
-    await supabase.from("partners").insert({
+    const { error: insertError } = await supabase.from("partners").insert({
       name: form.name,
       logo_url: form.logo_url || null,
-      url: form.url || null,
+      website: form.website || null,
       tier: form.tier,
       sort_order: maxOrder + 1,
     });
+
+    if (insertError) {
+      setError(insertError.message);
+      setSaving(false);
+      return;
+    }
+
     const { data } = await supabase.from("partners").select("*").order("sort_order");
     setPartners((data as Partner[]) ?? []);
-    setForm({ name: "", logo_url: "", url: "", tier: "institucionalny" });
+    setForm({ name: "", logo_url: "", website: "", tier: "institucionalny" });
     setSaving(false);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
   }
 
   async function handleDelete(id: string) {
     if (!confirm("Zmazať partnera?")) return;
-    await supabase.from("partners").delete().eq("id", id);
+    const { error: delError } = await supabase.from("partners").delete().eq("id", id);
+    if (delError) {
+      setError(delError.message);
+      return;
+    }
     setPartners((prev) => prev.filter((p) => p.id !== id));
   }
 
@@ -59,6 +78,18 @@ export default function AdminPartneriPage() {
         <p className="text-sm text-[#64748b] mt-1">Spravujte sponzorov a partnerov</p>
       </div>
 
+      {error && (
+        <div className="rounded bg-red-50 px-4 py-3 text-sm font-semibold text-red-600" style={{ border: "1px solid rgba(208,0,39,0.15)" }}>
+          Chyba: {error}
+        </div>
+      )}
+
+      {saved && (
+        <div className="rounded bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700" style={{ border: "1px solid rgba(16,185,129,0.2)" }}>
+          Partner pridaný
+        </div>
+      )}
+
       {/* Pridať partnera */}
       <div className="rounded p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         <h2 className="font-bold text-[#051937] mb-4">Pridať partnera</h2>
@@ -69,7 +100,7 @@ export default function AdminPartneriPage() {
               <input required value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} className={inputCls} placeholder="Názov partnera" />
             </div>
             <div>
-              <label className={labelCls}>Tier</label>
+              <label className={labelCls}>Kategória</label>
               <select value={form.tier} onChange={(e) => setForm((f) => ({ ...f, tier: e.target.value }))} className={inputCls}>
                 <option value="oficialny">Oficiálny sponzor</option>
                 <option value="institucionalny">Inštitucionálny partner</option>
@@ -82,7 +113,7 @@ export default function AdminPartneriPage() {
           </div>
           <div>
             <label className={labelCls}>Link na web partnera</label>
-            <input value={form.url} onChange={(e) => setForm((f) => ({ ...f, url: e.target.value }))} className={inputCls} placeholder="https://www.partner.sk" />
+            <input value={form.website} onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))} className={inputCls} placeholder="https://www.partner.sk" />
           </div>
           {form.logo_url && (
             <div className="flex items-center gap-3 p-3 rounded bg-[#f8f9fa]">
@@ -114,7 +145,7 @@ export default function AdminPartneriPage() {
               )}
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-[#051937]">{p.name}</p>
-                {p.url && <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-xs text-[#0078fd] hover:underline truncate block">{p.url}</a>}
+                {p.website && <a href={p.website} target="_blank" rel="noopener noreferrer" className="text-xs text-[#0078fd] hover:underline truncate block">{p.website}</a>}
               </div>
               <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold shrink-0 ${p.tier === "oficialny" ? "bg-amber-100 text-amber-700" : "bg-[#f0f4fa] text-[#64748b]"}`}>
                 {p.tier === "oficialny" ? "Oficiálny" : "Inštit."}

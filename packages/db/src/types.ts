@@ -112,7 +112,7 @@ export interface Partner {
   id: string;
   name: string;
   logo_url: string | null;
-  url: string | null;
+  website: string | null;
   tier: PartnerTier;
   sort_order: number;
   created_at: string;
