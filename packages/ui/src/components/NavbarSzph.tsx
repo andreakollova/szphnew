@@ -340,7 +340,7 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
               Slovenčina
             </button>
             <button
-              onClick={() => { setOpen(false); const el = document.getElementById("google_translate_element"); const sel = el?.querySelector("select"); if (sel) { sel.value = "en"; sel.dispatchEvent(new Event("change")); } }}
+              onClick={() => { setOpen(false); const el = document.getElementById("google_translate_element"); const sel = el?.querySelector<HTMLSelectElement>("select"); if (sel) { sel.value = "en"; sel.dispatchEvent(new Event("change")); } else { document.cookie = "googtrans=/sk/en;path=/;domain=" + window.location.hostname; document.cookie = "googtrans=/sk/en;path=/"; window.location.reload(); } }}
               className="flex items-center gap-3 w-full px-4 py-2.5 text-[#051937]/50 hover:bg-[#051937]/[0.04] transition-colors"
               style={{ fontSize: "12px", fontWeight: 600 }}
             >
