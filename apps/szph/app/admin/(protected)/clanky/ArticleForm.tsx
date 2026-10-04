@@ -14,9 +14,15 @@ import { RichTextEditor } from "./RichTextEditor";
 const articleSchema = z.object({
   title: z.string().min(3, "Nadpis musí mať aspoň 3 znaky"),
   slug: z.string().min(3, "Slug musí mať aspoň 3 znaky").regex(/^[a-z0-9-]+$/, "Len malé písmená, čísla a pomlčky"),
-  excerpt: z.string().optional(),
-  content: z.string().optional(),
-  cover_image_url: z.union([z.string().url("Zadajte platnú URL adresu"), z.literal(""), z.undefined()]),
+  excerpt: z.string().min(1, "Excerpt je povinný").refine(
+    (val) => val.trim().split(/\s+/).filter(Boolean).length >= 10,
+    "Excerpt musí mať aspoň 10 slov"
+  ).refine(
+    (val) => val.trim().split(/\s+/).filter(Boolean).length <= 30,
+    "Excerpt môže mať maximálne 30 slov"
+  ),
+  content: z.string().min(1, "Obsah článku je povinný"),
+  cover_image_url: z.string().url("Titulná fotka je povinná"),
   video_url: z.union([z.string().url("Zadajte platnú URL adresu"), z.literal(""), z.undefined()]),
   category: z.enum(["novinky", "reprezentacia", "kluby", "oznamy"]),
   visible_on: z.enum(["fieldhockey", "szph", "both"]),
@@ -187,13 +193,21 @@ export function ArticleForm({ article }: ArticleFormProps) {
 
               {/* Excerpt */}
               <div>
-                <label className="field-label">Krátky popis (excerpt)</label>
+                <label className="field-label">
+                  Krátky popis (excerpt)
+                  {(() => {
+                    const wc = (watch("excerpt") || "").trim().split(/\s+/).filter(Boolean).length;
+                    const color = wc >= 10 && wc <= 30 ? "#16a34a" : "#f87171";
+                    return <span style={{ color, marginLeft: 8, fontWeight: 700, textTransform: "none", letterSpacing: 0 }}>{wc} / 10-30 slov</span>;
+                  })()}
+                </label>
                 <textarea
                   {...register("excerpt")}
                   rows={2}
                   className="field-input resize-none"
-                  placeholder="Krátky popis článku pre náhľady..."
+                  placeholder="Krátky popis článku pre náhľady (10-30 slov)..."
                 />
+                {errors.excerpt && <p className="field-error">{errors.excerpt.message}</p>}
               </div>
 
               {/* Content — Rich Text Editor */}
@@ -203,6 +217,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
                   content={watch("content") ?? ""}
                   onChange={(html) => setValue("content", html)}
                 />
+                {errors.content && <p className="field-error">{errors.content.message}</p>}
               </div>
             </div>
           </div>
@@ -239,6 +254,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
               className="field-input mt-1"
               placeholder="https://..."
             />
+            {errors.cover_image_url && <p className="field-error">{errors.cover_image_url.message}</p>}
           </div>
         </div>
 
