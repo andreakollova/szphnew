@@ -391,7 +391,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
         <div className="flex items-center gap-2">
           {([
             { key: "liga", label: "Liga", logo: "/images/logo-liga.webp" },
-            { key: "reprezentacia", label: "Reprezentácia", logo: "/images/logo-reprezentacia.webp" },
+            { key: "reprezentacia", label: "Reprezentácia", logo: "/images/logo-reprezentacia.webp", logoInactive: "/images/logo-reprezentacia-color.webp" },
           ]).map((tab) => {
             const active = activeSections.has(tab.key);
             return (
@@ -410,7 +410,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
                 }}
               >
                 <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
-                  <Image src={tab.logo} alt="" fill className="object-contain" sizes="18px" style={active ? { filter: "brightness(0) invert(1)" } : { filter: "grayscale(1) opacity(0.4)" }} />
+                  <Image src={active ? tab.logo : (tab.logoInactive || tab.logo)} alt="" fill className="object-contain" sizes="18px" style={active ? { filter: "brightness(0) invert(1)" } : undefined} />
                 </div>
                 {tab.label}
               </button>

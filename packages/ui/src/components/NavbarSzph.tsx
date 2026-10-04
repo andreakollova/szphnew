@@ -287,6 +287,12 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
 
 function LangSelector({ scrolled }: { scrolled: boolean }) {
   const [open, setOpen] = useState(false);
+  const [isEn, setIsEn] = useState(false);
+
+  useEffect(() => {
+    const cookie = document.cookie.split(";").find(c => c.trim().startsWith("googtrans="));
+    if (cookie && cookie.includes("/en")) setIsEn(true);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -307,7 +313,7 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
       >
         <div className="overflow-hidden" style={{ width: 20, height: 14, borderRadius: "2px" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="https://flagcdn.com/w40/sk.png" alt="SK" width={20} height={14} style={{ width: 20, height: 14, objectFit: "cover" }} />
+          <img src={isEn ? "https://flagcdn.com/w40/gb.png" : "https://flagcdn.com/w40/sk.png"} alt={isEn ? "EN" : "SK"} width={20} height={14} style={{ width: 20, height: 14, objectFit: "cover" }} />
         </div>
       </button>
       <AnimatePresence>
@@ -329,7 +335,7 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
             }}
           >
             <button
-              onClick={() => { setOpen(false); const f = document.querySelector<HTMLIFrameElement>(".goog-te-menu-frame"); if (f) { f.contentDocument?.querySelector<HTMLAnchorElement>('[lang="sk"]')?.click(); } else { document.cookie = "googtrans=;path=/"; window.location.reload(); } }}
+              onClick={() => { setIsEn(false); setOpen(false); const f = document.querySelector<HTMLIFrameElement>(".goog-te-menu-frame"); if (f) { f.contentDocument?.querySelector<HTMLAnchorElement>('[lang="sk"]')?.click(); } else { document.cookie = "googtrans=;path=/"; window.location.reload(); } }}
               className="flex items-center gap-3 w-full px-4 py-2.5 text-[#051937] hover:bg-[#051937]/[0.04] transition-colors"
               style={{ fontSize: "12px", fontWeight: 600 }}
             >
@@ -340,8 +346,8 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
               Slovenčina
             </button>
             <button
-              onClick={() => { setOpen(false); const el = document.getElementById("google_translate_element"); const sel = el?.querySelector<HTMLSelectElement>("select"); if (sel) { sel.value = "en"; sel.dispatchEvent(new Event("change")); } else { document.cookie = "googtrans=/sk/en;path=/;domain=" + window.location.hostname; document.cookie = "googtrans=/sk/en;path=/"; window.location.reload(); } }}
-              className="flex items-center gap-3 w-full px-4 py-2.5 text-[#051937]/50 hover:bg-[#051937]/[0.04] transition-colors"
+              onClick={() => { setIsEn(true); setOpen(false); const el = document.getElementById("google_translate_element"); const sel = el?.querySelector<HTMLSelectElement>("select"); if (sel) { sel.value = "en"; sel.dispatchEvent(new Event("change")); } else { document.cookie = "googtrans=/sk/en;path=/;domain=" + window.location.hostname; document.cookie = "googtrans=/sk/en;path=/"; window.location.reload(); } }}
+              className="flex items-center gap-3 w-full px-4 py-2.5 text-[#051937] hover:bg-[#051937]/[0.04] transition-colors"
               style={{ fontSize: "12px", fontWeight: 600 }}
             >
               <div className="overflow-hidden" style={{ width: 22, height: 15, borderRadius: "2px" }}>
