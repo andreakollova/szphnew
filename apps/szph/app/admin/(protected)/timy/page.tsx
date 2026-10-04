@@ -1,23 +1,25 @@
-import { cookies } from "next/headers";
-import { createServerSupabaseClient } from "@szph/db/client";
+import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { DeleteTeamButton } from "./DeleteTeamButton";
 
-export const metadata: Metadata = { title: "Timy" };
+export const metadata: Metadata = { title: "Tímy" };
+
+function getSupabase() {
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+}
 
 async function getTeams(supabase: any) {
-  // Try teams table first
   const { data: dbTeams } = await supabase.from("teams").select("*").order("name");
   if (dbTeams && dbTeams.length > 0) return dbTeams;
 
-  // Fallback: extract from matches
+  // Auto-seed from matches
   const { data } = await supabase
     .from("matches")
     .select("home_team, home_short, home_logo, away_team, away_short, away_logo")
     .eq("site", "szph");
 
-  if (!data) return [];
+  if (!data || data.length === 0) return [];
 
   const teamMap = new Map<string, { name: string; short_name: string; logo_url: string | null; category: string }>();
   for (const m of data) {
@@ -29,12 +31,19 @@ async function getTeams(supabase: any) {
     }
   }
 
-  return Array.from(teamMap.entries()).map(([name, t]) => ({ id: name, ...t })).sort((a, b) => a.name.localeCompare(b.name, "sk"));
+  // Insert into DB so they get proper UUIDs
+  const teamsToInsert = Array.from(teamMap.values());
+  if (teamsToInsert.length > 0) {
+    await supabase.from("teams").insert(teamsToInsert);
+    const { data: seeded } = await supabase.from("teams").select("*").order("name");
+    return seeded || [];
+  }
+
+  return [];
 }
 
 export default async function AdminTimyPage() {
-  const cookieStore = await cookies();
-  const supabase = createServerSupabaseClient(cookieStore);
+  const supabase = getSupabase();
   const teams = await getTeams(supabase);
 
   const CATEGORY_LABELS: Record<string, string> = {
