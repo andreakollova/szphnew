@@ -76,6 +76,7 @@ export default async function RootLayout({
         <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async />
         <script dangerouslySetInnerHTML={{ __html: `function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'sk',includedLanguages:'en,sk',layout:google.translate.TranslateElement.InlineLayout.SIMPLE,autoDisplay:false},'google_translate_element')}` }} />
         <style dangerouslySetInnerHTML={{ __html: `.goog-te-banner-frame{display:none!important}.skiptranslate{display:none!important}body{top:0!important}#google_translate_element{display:none}` }} />
+        <script dangerouslySetInnerHTML={{ __html: `setInterval(function(){var c=document.cookie;var isEn=c.indexOf('googtrans=/sk/en')>-1;document.querySelectorAll('[data-en]').forEach(function(el){if(!el.getAttribute('data-sk'))el.setAttribute('data-sk',el.textContent);el.textContent=isEn?el.getAttribute('data-en'):el.getAttribute('data-sk')})},1000)` }} />
       </head>
       <body>
         <ScrollToTop />

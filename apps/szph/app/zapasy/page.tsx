@@ -46,7 +46,7 @@ export default async function SzphZapasyPage() {
         <TournamentCarousel tournaments={TOURNAMENTS} />
 
         <h1 className="font-garet font-bold italic text-[#051937] mb-5" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
-          Zápasové centrum
+          <span className="notranslate" data-en="Match Center">Zápasové centrum</span>
         </h1>
 
         {/* MatchCenter — all devices */}

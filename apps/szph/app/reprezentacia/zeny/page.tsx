@@ -57,11 +57,8 @@ export default function ZenyPage() {
                 <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <td className="px-4 py-2.5 font-bold text-[#012d74]" style={{ fontSize: "13px" }}>{p.n}</td>
                   <td className="px-4 py-2.5 text-[#051937] font-semibold" style={{ fontSize: "13px" }}>{p.name}</td>
-                  <td className="px-4 py-2.5" style={{ fontSize: "12px" }}>
-                    <div className="flex items-center gap-1.5">
-                      {p.logo && <Image src={p.logo} alt="" width={16} height={16} className="object-contain" />}
-                      <span className="text-[#64748b]">{p.club}</span>
-                    </div>
+                  <td className="px-4 py-2.5 text-[#64748b]" style={{ fontSize: "12px" }}>
+                    {p.club}
                   </td>
                 </tr>
               ))}

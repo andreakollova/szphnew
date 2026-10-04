@@ -533,7 +533,7 @@ export default async function SzphHome() {
               className="font-garet font-bold italic text-[#051937]"
               style={{ fontSize: "clamp(1.1rem, 4vw, 2rem)", textTransform: "uppercase" }}
             >
-              Zápasové centrum
+              <span className="notranslate" data-en="Match Center">Zápasové centrum</span>
             </h2>
             <Link href="/zapasy" className="hidden md:flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors shrink-0" style={{ fontSize: "13px" }}>
               Zobraziť všetky
