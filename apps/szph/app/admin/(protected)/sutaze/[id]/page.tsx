@@ -35,20 +35,20 @@ export default function UpravitSutazPage() {
   const selectCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
   const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 
-  if (!loaded) return <div className="text-[#64748b]">Nacitavam...</div>;
+  if (!loaded) return <div className="text-[#64748b]">Načítavam...</div>;
 
   return (
     <div className="space-y-6 max-w-lg">
-      <h1 className="text-2xl font-bold text-[#051937]">Upravit sutaz</h1>
+      <h1 className="text-2xl font-bold text-[#051937]">Upraviť súťaž</h1>
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="rounded p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           <div className="space-y-4">
             <div>
-              <label className={labelCls}>Nazov sutaze *</label>
+              <label className={labelCls}>Názov súťaže *</label>
               <input required value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} className={inputCls} />
             </div>
             <div>
-              <label className={labelCls}>Sezona</label>
+              <label className={labelCls}>Sezóna</label>
               <input value={form.season} onChange={(e) => setForm((f) => ({ ...f, season: e.target.value }))} className={inputCls} />
             </div>
             <div>
@@ -59,10 +59,10 @@ export default function UpravitSutazPage() {
               </select>
             </div>
             <div>
-              <label className={labelCls}>Kategoria</label>
+              <label className={labelCls}>Kategória</label>
               <select value={form.category} onChange={(e) => setForm((f) => ({ ...f, category: e.target.value as typeof form.category }))} className={selectCls}>
-                <option value="muzi">Muzi</option>
-                <option value="zeny">Zeny</option>
+                <option value="muzi">Muži</option>
+                <option value="zeny">Ženy</option>
                 <option value="U18">U18</option>
                 <option value="U14">U14</option>
                 <option value="U12">U12</option>
@@ -72,9 +72,9 @@ export default function UpravitSutazPage() {
         </div>
         <div className="flex gap-3">
           <button type="submit" disabled={saving} className="rounded bg-[#012d74] px-6 py-3 text-sm font-bold text-white hover:bg-[#012d74]/90 disabled:opacity-50">
-            {saving ? "Ukladam..." : "Ulozit zmeny"}
+            {saving ? "Ukladám..." : "Uložiť zmeny"}
           </button>
-          <button type="button" onClick={() => router.back()} className="rounded border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50">Zrusit</button>
+          <button type="button" onClick={() => router.back()} className="rounded border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#64748b] hover:bg-gray-50">Zrušiť</button>
         </div>
       </form>
     </div>
