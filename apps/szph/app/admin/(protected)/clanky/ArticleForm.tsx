@@ -22,7 +22,7 @@ const articleSchema = z.object({
     "Excerpt môže mať maximálne 17 slov"
   ),
   content: z.string().min(1, "Obsah článku je povinný"),
-  cover_image_url: z.string().min(1, "Titulná fotka je povinná"),
+  cover_image_url: z.string().optional(),
   video_url: z.union([z.string().url("Zadajte platnú URL adresu"), z.literal(""), z.undefined()]),
   category: z.enum(["novinky", "reprezentacia", "kluby", "oznamy"]),
   visible_on: z.enum(["fieldhockey", "szph", "both"]),
@@ -106,6 +106,12 @@ export function ArticleForm({ article }: ArticleFormProps) {
       let coverUrl = values.cover_image_url ?? "";
       if (imageFile) {
         coverUrl = await uploadImage(imageFile);
+      }
+      if (!coverUrl && !imagePreview) {
+        setError("Titulná fotka je povinná — nahrajte súbor alebo zadajte URL.");
+        setSaving(false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
       }
 
       const payload = {
@@ -228,7 +234,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
           <div className="rounded p-6" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
             <h2 className="font-bold text-[#051937] mb-4">Titulná fotka</h2>
             {imagePreview && (
-              <div className="mb-4 relative h-48 w-full overflow-hidden rounded">
+              <div className="mb-4 relative h-72 w-full overflow-hidden rounded">
                 <img src={imagePreview} alt="Preview" className="h-full w-full object-cover" />
                 <button
                   type="button"
