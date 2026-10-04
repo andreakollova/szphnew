@@ -7,12 +7,12 @@ export function NewsletterForm() {
         type="email"
         placeholder="Váš e-mail"
         className="flex-1 sm:w-64 px-4 py-2.5 font-medium text-[#051937] placeholder-[#94a3b8] outline-none"
-        style={{ fontSize: "12px", background: "rgba(255,255,255,0.95)" }}
+        style={{ fontSize: "12px", background: "rgba(255,255,255,0.95)", borderRadius: "8px 0 0 8px" }}
       />
       <button
         type="submit"
         className="shrink-0 px-5 py-2.5 font-bold text-white transition-all hover:bg-[#a00d24]"
-        style={{ background: "#012d74", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase" }}
+        style={{ background: "#012d74", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", borderRadius: "0 8px 8px 0" }}
       >
         Odoberať
       </button>
