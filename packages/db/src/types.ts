@@ -151,6 +151,48 @@ export interface Exercise {
   updated_at: string;
 }
 
+// Kategórie (Reprezentácia / Liga)
+export type CategoryType = "reprezentacia" | "liga";
+export type CategoryStatus = "published" | "draft";
+
+export interface NominationPlayer {
+  number: number;
+  name: string;
+  club: string;
+}
+
+export interface Achievement {
+  year: string;
+  form: string; // "Hala" | "Vonku"
+  event: string;
+  result: string;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  type: CategoryType;
+  description: string | null;
+  nominations: NominationPlayer[] | null;
+  achievements: Achievement[] | null;
+  sort_order: number;
+  status: CategoryStatus;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CategoryFormData {
+  name: string;
+  slug: string;
+  type: CategoryType;
+  description: string;
+  nominations: NominationPlayer[];
+  achievements: Achievement[];
+  sort_order: number;
+  status: CategoryStatus;
+}
+
 // Formulárové typy
 export interface ArticleFormData {
   slug: string;
@@ -182,6 +224,44 @@ export interface TeamFormData {
   short_name: string;
   logo_url: string;
   category: TeamCategory;
+}
+
+// E-shop produkt
+export interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  price: number;
+  category: string; // mikiny, tricka, polokosele, bundy
+  images: string[]; // array of image URLs
+  description: string | null;
+  badge: string | null; // "Novinka", "Limitovaná edícia", etc.
+  sizes: string[] | null; // ["S", "M", "L", "XL"]
+  status: "published" | "draft";
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+// Klub (organizácia)
+export interface Club {
+  id: string;
+  name: string;
+  short_name: string;
+  city: string;
+  phone: string | null;
+  email: string | null;
+  web: string | null;
+  facebook: string | null;
+  logo_url: string | null;
+  address: string | null;
+  ico: string | null;
+  chairman: string | null;
+  account: string | null;
+  sort_order: number;
+  status: "published" | "draft";
+  created_at: string;
+  updated_at: string;
 }
 
 // Tabuľka ligy
