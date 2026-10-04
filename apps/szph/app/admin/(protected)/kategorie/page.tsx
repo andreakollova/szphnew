@@ -102,11 +102,11 @@ const SEED_CATEGORIES: Omit<Category, "id" | "created_at" | "updated_at">[] = [
       { year: "1994", form: "Hala", event: "Elitne ME, Llodio", result: "3. miesto v Europe" },
     ],
   },
-  { name: "Extraliga muzi", slug: "extraliga-muzi", type: "liga", description: null, sort_order: 10, status: "draft", nominations: null, achievements: null },
-  { name: "Extraliga zeny", slug: "extraliga-zeny", type: "liga", description: null, sort_order: 11, status: "draft", nominations: null, achievements: null },
-  { name: "U18", slug: "u18", type: "liga", description: null, sort_order: 12, status: "draft", nominations: null, achievements: null },
-  { name: "U14", slug: "u14", type: "liga", description: null, sort_order: 13, status: "draft", nominations: null, achievements: null },
-  { name: "U12", slug: "u12", type: "liga", description: null, sort_order: 14, status: "draft", nominations: null, achievements: null },
+  { name: "Extraliga muži", slug: "extraliga-muzi", type: "liga", description: null, sort_order: 10, status: "published", nominations: null, achievements: null },
+  { name: "Extraliga ženy", slug: "extraliga-zeny", type: "liga", description: null, sort_order: 11, status: "published", nominations: null, achievements: null },
+  { name: "U18", slug: "u18", type: "liga", description: null, sort_order: 12, status: "published", nominations: null, achievements: null },
+  { name: "U14", slug: "u14", type: "liga", description: null, sort_order: 13, status: "published", nominations: null, achievements: null },
+  { name: "U12", slug: "u12", type: "liga", description: null, sort_order: 14, status: "published", nominations: null, achievements: null },
 ];
 
 async function seedIfEmpty(supabase: ReturnType<typeof createBrowserSupabaseClient>) {
@@ -222,7 +222,7 @@ function CategoryTable({ categories }: { categories: Category[] }) {
                     color: cat.status === "published" ? "#15803d" : "#64748b",
                   }}
                 >
-                  {cat.status === "published" ? "Publikovane" : "Koncept"}
+                  {cat.status === "published" ? "Publikovaný" : "Koncept"}
                 </span>
               </td>
               <td className="px-4 py-4 text-[#64748b]">
