@@ -42,17 +42,17 @@ export default function ZenyPage() {
             </thead>
             <tbody>
               {[
-                { n: 1, name: "SUTOVSKA Daniela (GK)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 1, name: "SUTOVSKA Daniela (GK)", club: "KPH Rača", logo: "/images/timy/RAC-hq.png" },
                 { n: 2, name: "LISKOVA Natalia (GK)", club: "KPH HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
-                { n: 3, name: "VYSKOČOVÁ Karolína", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
-                { n: 7, name: "MEDVIKOVA Šarlota", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 3, name: "VYSKOČOVÁ Karolína", club: "KPH Rača", logo: "/images/timy/RAC-hq.png" },
+                { n: 7, name: "MEDVIKOVA Šarlota", club: "KPH Rača", logo: "/images/timy/RAC-hq.png" },
                 { n: 8, name: "ČAPOVÁ Vanessa", club: "KPH HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
-                { n: 9, name: "HUŠKOVÁ Bianka", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
-                { n: 10, name: "KRAMPLOVA Lenka", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
-                { n: 12, name: "FONDRKOVA Natalia (C)", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 9, name: "HUŠKOVÁ Bianka", club: "KPH Rača", logo: "/images/timy/RAC-hq.png" },
+                { n: 10, name: "KRAMPLOVA Lenka", club: "KPH Rača", logo: "/images/timy/RAC-hq.png" },
+                { n: 12, name: "FONDRKOVA Natalia (C)", club: "KPH Rača", logo: "/images/timy/RAC-hq.png" },
                 { n: 14, name: "SURINOVA Martina", club: "KPH HOKO Zlaté Moravce", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
-                { n: 18, name: "HORÁČKOVÁ Lenka", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
-                { n: 20, name: "MÉSZÁROS Réka", club: "KPH Rača", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+                { n: 18, name: "HORÁČKOVÁ Lenka", club: "KPH Rača", logo: "/images/timy/RAC-hq.png" },
+                { n: 20, name: "MÉSZÁROS Réka", club: "KPH Rača", logo: "/images/timy/RAC-hq.png" },
               ].map((p, i) => (
                 <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <td className="px-4 py-2.5 font-bold text-[#012d74]" style={{ fontSize: "13px" }}>{p.n}</td>

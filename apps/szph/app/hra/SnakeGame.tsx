@@ -21,11 +21,11 @@ const TEAMS = [
 ];
 
 const TEAM_LOGOS: Record<string, string> = {
-  "HAŠ": "/images/timy/HAS.webp",
-  "ŠEN": "/images/timy/SEN.webp",
-  "RAČ": "/images/timy/Raca-logo-70x58-1-32x27.webp",
+  "HAŠ": "/images/timy/HAS-hq.png",
+  "ŠEN": "/images/timy/SEN-hq.png",
+  "RAČ": "/images/timy/RAC-hq.png",
   "HOK": "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp",
-  "HKM": "/images/timy/nova-dubnica-32x32.webp",
+  "HKM": "/images/timy/NOV-hq.png",
   "KAP": "/images/timy/KAP.webp",
 };
 

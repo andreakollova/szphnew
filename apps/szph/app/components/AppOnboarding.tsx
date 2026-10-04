@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 
 const CLUBS = [
-  { id: "HAŠ", name: "HA Šenkvice", short: "HAŠ", logo: "/images/timy/HAS.webp" },
-  { id: "ŠK", name: "ŠK 1952 Šenkvice", short: "ŠEN", logo: "/images/timy/SEN.webp" },
-  { id: "RAČ", name: "KPH Rača", short: "RAČ", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp" },
+  { id: "HAŠ", name: "HA Šenkvice", short: "HAŠ", logo: "/images/timy/HAS-hq.png" },
+  { id: "ŠK", name: "ŠK 1952 Šenkvice", short: "ŠEN", logo: "/images/timy/SEN-hq.png" },
+  { id: "RAČ", name: "KPH Rača", short: "RAČ", logo: "/images/timy/RAC-hq.png" },
   { id: "HOKO", name: "HOKO Zlaté Moravce", short: "ZLM", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp" },
-  { id: "HKM", name: "HKM Nová Dubnica", short: "DUB", logo: "/images/timy/nova-dubnica-32x32.webp" },
+  { id: "HKM", name: "HKM Nová Dubnica", short: "DUB", logo: "/images/timy/NOV-hq.png" },
 ];
 
 const CATEGORIES = [

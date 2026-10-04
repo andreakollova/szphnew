@@ -11,17 +11,17 @@ function rc(r: string) { return r.includes("1.") ? "#D4A017" : r.includes("2.") 
 function rb(r: string) { return r.includes("1.") ? "rgba(212,160,23,0.08)" : r.includes("2.") ? "rgba(138,138,138,0.06)" : r.includes("3.") ? "rgba(205,127,50,0.06)" : "transparent"; }
 
 const LOGOS: Record<string, string> = {
-  "Lokomotíva Bratislava": "/images/timy/Raca-logo-70x58-1-32x27.webp",
-  "Lokomotíva Rača": "/images/timy/Raca-logo-70x58-1-32x27.webp",
-  "Mazda Bratislava": "/images/timy/Raca-logo-70x58-1-32x27.webp",
-  "KPH Rača": "/images/timy/Raca-logo-70x58-1-32x27.webp",
-  "Palma Šenkvice": "/images/timy/SEN.webp",
-  "ŠKPH Šenkvice": "/images/timy/SEN.webp",
-  "Šenkvice": "/images/timy/SEN.webp",
-  "SK Šenkvice": "/images/timy/SEN.webp",
-  "ŠK Šenkvice": "/images/timy/SEN.webp",
+  "Lokomotíva Bratislava": "/images/timy/RAC-hq.png",
+  "Lokomotíva Rača": "/images/timy/RAC-hq.png",
+  "Mazda Bratislava": "/images/timy/RAC-hq.png",
+  "KPH Rača": "/images/timy/RAC-hq.png",
+  "Palma Šenkvice": "/images/timy/SEN-hq.png",
+  "ŠKPH Šenkvice": "/images/timy/SEN-hq.png",
+  "Šenkvice": "/images/timy/SEN-hq.png",
+  "SK Šenkvice": "/images/timy/SEN-hq.png",
+  "ŠK Šenkvice": "/images/timy/SEN-hq.png",
   "HK Zlaté Moravce": "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp",
-  "HKM Nová Dubnica": "/images/timy/nova-dubnica-32x32.webp",
+  "HKM Nová Dubnica": "/images/timy/NOV-hq.png",
 };
 
 function T({ data, showClub = true }: { data: { year: string; level: string; venue: string; club?: string; result: string }[]; showClub?: boolean }) {

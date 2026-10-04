@@ -6,11 +6,11 @@ import Image from "next/image";
 
 const CLUBS = [
   { id: "none", name: "Žiadny klub", short: "Žiadny" },
-  { id: "HAŠ", name: "HA Šenkvice", short: "HAŠ", logo: "/images/timy/HAS.webp", color: "#e67e22" },
-  { id: "ŠK", name: "ŠK 1952 Šenkvice", short: "ŠEN", logo: "/images/timy/SEN.webp", color: "#e67e22" },
-  { id: "RAČ", name: "KPH Rača", short: "RAČ", logo: "/images/timy/Raca-logo-70x58-1-32x27.webp", color: "#234079" },
+  { id: "HAŠ", name: "HA Šenkvice", short: "HAŠ", logo: "/images/timy/HAS-hq.png", color: "#e67e22" },
+  { id: "ŠK", name: "ŠK 1952 Šenkvice", short: "ŠEN", logo: "/images/timy/SEN-hq.png", color: "#e67e22" },
+  { id: "RAČ", name: "KPH Rača", short: "RAČ", logo: "/images/timy/RAC-hq.png", color: "#234079" },
   { id: "HOKO", name: "HOKO Zlaté Moravce", short: "ZLM", logo: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp", color: "#16a34a" },
-  { id: "HKM", name: "HKM Nová Dubnica", short: "DUB", logo: "/images/timy/nova-dubnica-32x32.webp", color: "#7c3aed" },
+  { id: "HKM", name: "HKM Nová Dubnica", short: "DUB", logo: "/images/timy/NOV-hq.png", color: "#7c3aed" },
 ];
 
 interface UserPrefs {

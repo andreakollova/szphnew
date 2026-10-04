@@ -82,11 +82,11 @@ function getTodayMeniny(): string {
 }
 
 const CLUB_LOGOS: Record<string, string> = {
-  "HAŠ": "/images/timy/HAS.webp",
-  "ŠK": "/images/timy/SEN.webp",
-  "RAČ": "/images/timy/Raca-logo-70x58-1-32x27.webp",
+  "HAŠ": "/images/timy/HAS-hq.png",
+  "ŠK": "/images/timy/SEN-hq.png",
+  "RAČ": "/images/timy/RAC-hq.png",
   HOKO: "/images/timy/logo-KPH-HOKO-1-Photoroom-32x18.webp",
-  HKM: "/images/timy/nova-dubnica-32x32.webp",
+  HKM: "/images/timy/NOV-hq.png",
 };
 
 const CLUB_NAMES: Record<string, string> = {
