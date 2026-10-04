@@ -127,7 +127,7 @@ export function AddExerciseForm() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className={labelCls}>Zťažte to</label>
+          <label className={labelCls}>Sťažte to</label>
           <textarea value={harder} onChange={(e) => setHarder(e.target.value)} className={textareaCls} placeholder="Ako sťažiť cvičenie..." />
         </div>
         <div>

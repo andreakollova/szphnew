@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { createBrowserSupabaseClient } from "@szph/db/client";
 import type { Exercise } from "@szph/db";
 
@@ -28,6 +29,12 @@ export function ExerciseAdminActions({ exercise }: { exercise: Exercise }) {
 
   return (
     <div className="flex items-center justify-end gap-2">
+      <Link
+        href={`/admin/cvicenia/${exercise.id}`}
+        className="rounded px-2.5 py-1 text-xs font-semibold text-[#051937] bg-gray-100 hover:bg-gray-200 transition-colors"
+      >
+        Upraviť
+      </Link>
       <button
         onClick={toggleStatus}
         className="rounded px-2.5 py-1 text-xs font-semibold text-[#012d74] hover:bg-[#012d74]/10 transition-colors"
