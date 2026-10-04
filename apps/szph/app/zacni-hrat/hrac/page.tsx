@@ -2,15 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 
-const CLUBS = [
-  { name: "KPH Rača", city: "Bratislava — Rača", href: "/kluby" },
-  { name: "ŠK Šenkvice", city: "Šenkvice", href: "/kluby" },
-  { name: "HAS Šenkvice", city: "Šenkvice", href: "/kluby" },
-  { name: "KPH HOKO Zlaté Moravce", city: "Zlaté Moravce", href: "/kluby" },
-  { name: "HKM Nová Dubnica", city: "Nová Dubnica", href: "/kluby" },
-];
+interface ClubItem {
+  name: string;
+  city: string;
+}
+
 
 const FAQ = [
   { q: "Môžem prísť bez skúseností?", a: "Áno, záujem o tréning môžeš prejaviť aj bez predchádzajúcich skúseností. V klube si over, ktorá skupina je vhodná pre začiatočníkov." },
@@ -23,6 +22,21 @@ const FAQ = [
 export default function ChcemSaStatHracomPage() {
   const [formData, setFormData] = useState({ name: "", email: "", city: "", age: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [clubs, setClubs] = useState<ClubItem[]>([]);
+
+  useEffect(() => {
+    const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+    supabase
+      .from("clubs")
+      .select("name, city")
+      .eq("status", "published")
+      .order("sort_order", { ascending: true })
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setClubs(data as ClubItem[]);
+        }
+      });
+  }, []);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -144,8 +158,8 @@ export default function ChcemSaStatHracomPage() {
             Podmienky prijímania hráčov, vekové skupiny a časy tréningov ti vysvetlia priamo v jednotlivých kluboch.
           </p>
           <div className="space-y-2">
-            {CLUBS.map((club) => (
-              <Link key={club.name} href={club.href} className="group flex items-center justify-between bg-white p-5 transition-colors hover:bg-[#f8fafd]" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            {clubs.map((club) => (
+              <Link key={club.name} href="/kluby" className="group flex items-center justify-between bg-white p-5 transition-colors hover:bg-[#f8fafd]" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
                 <div>
                   <h3 className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "15px" }}>{club.name}</h3>
                   <p className="text-[#64748b] mt-0.5" style={{ fontSize: "12px" }}>{club.city}</p>
