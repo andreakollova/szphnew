@@ -2,7 +2,6 @@ import { createClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { DeleteProductButton } from "./DeleteProductButton";
-import { SeedProducts } from "./SeedProducts";
 
 export const metadata: Metadata = { title: "E-shop - Admin" };
 
@@ -149,28 +148,38 @@ const CATEGORY_LABELS: Record<string, string> = {
   bundy: "Bundy",
 };
 
-export default async function AdminEshopPage() {
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-
-  let products: Product[] = [];
-  let isEmpty = false;
-
+async function getProducts(): Promise<Product[]> {
   try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
+
     const { data, error } = await supabase
       .from("products")
       .select("*")
       .order("sort_order");
 
     if (error) throw error;
-    products = (data as Product[]) ?? [];
-    isEmpty = products.length === 0;
+
+    // Auto-seed if table is empty
+    if (!data || data.length === 0) {
+      await supabase.from("products").insert(SEED_PRODUCTS);
+      const { data: seeded } = await supabase
+        .from("products")
+        .select("*")
+        .order("sort_order");
+      return (seeded as Product[]) ?? [];
+    }
+
+    return (data as Product[]) ?? [];
   } catch {
-    // Table may not exist yet
-    isEmpty = true;
+    return [];
   }
+}
+
+export default async function AdminEshopPage() {
+  const products = await getProducts();
 
   return (
     <div className="space-y-6">
@@ -187,13 +196,11 @@ export default async function AdminEshopPage() {
         </Link>
       </div>
 
-      {isEmpty && <SeedProducts products={SEED_PRODUCTS} />}
-
-      {products.length === 0 && !isEmpty ? (
+      {products.length === 0 ? (
         <div className="rounded py-16 text-center text-[#64748b]" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
           Žiadne produkty. Vytvorte prvý!
         </div>
-      ) : products.length > 0 ? (
+      ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {products.map((product) => (
             <div
@@ -259,7 +266,7 @@ export default async function AdminEshopPage() {
             </div>
           ))}
         </div>
-      ) : null}
+      )}
     </div>
   );
 }
