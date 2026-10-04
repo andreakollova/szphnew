@@ -1,5 +1,4 @@
-import { cookies } from "next/headers";
-import { createServerSupabaseClient } from "@szph/db/client";
+import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import { EditTeamForm } from "./EditTeamForm";
 import type { Metadata } from "next";
@@ -9,10 +8,13 @@ interface Props { params: Promise<{ id: string }> }
 
 export const metadata: Metadata = { title: "Upraviť tím" };
 
+function getSupabase() {
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+}
+
 export default async function UpravitTimPage({ params }: Props) {
   const { id } = await params;
-  const cookieStore = await cookies();
-  const supabase = createServerSupabaseClient(cookieStore);
+  const supabase = getSupabase();
 
   const { data: team, error } = await supabase
     .from("teams")
