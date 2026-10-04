@@ -139,7 +139,7 @@ export default function AdminBannerPage() {
 
       {saved && (
         <div className="rounded bg-emerald-500/15 border border-emerald-500/25 px-4 py-3 text-sm text-emerald-600 font-semibold">
-          Zmeny uložené
+          Zmeny uložené. Prejavia sa na webe do pár minút.
         </div>
       )}
 
