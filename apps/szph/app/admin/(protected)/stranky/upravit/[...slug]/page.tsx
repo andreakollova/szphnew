@@ -22,8 +22,19 @@ export default async function UpravitStrankuBySlugPage({ params, searchParams }:
 
   const supabase = getSupabase();
 
-  // Upsert - create if not exists, then redirect to the ID-based editor
-  const page = await upsertPageBySlug(supabase, fullSlug, pageTitle, "szph");
-
-  redirect(`/admin/stranky/${page.id}`);
+  try {
+    const page = await upsertPageBySlug(supabase, fullSlug, pageTitle, "szph");
+    redirect(`/admin/stranky/${page.id}`);
+  } catch (err: any) {
+    // redirect() throws a special error — rethrow it
+    if (err?.digest?.startsWith("NEXT_REDIRECT")) throw err;
+    return (
+      <div className="p-8">
+        <h1 className="text-2xl font-bold text-[#051937] mb-4">Chyba</h1>
+        <p className="text-red-500 font-semibold mb-2">Nepodarilo sa vytvoriť stránku v databáze.</p>
+        <p className="text-[#64748b] text-sm mb-4">Chyba: {err?.message || "Neznáma chyba"}</p>
+        <p className="text-[#94a3b8] text-xs">Skontrolujte či tabuľka &quot;pages&quot; existuje v Supabase a má správne stĺpce (slug, title, site, status, content).</p>
+      </div>
+    );
+  }
 }
