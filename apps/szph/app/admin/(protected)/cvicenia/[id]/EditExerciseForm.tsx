@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { createBrowserSupabaseClient } from "@szph/db/client";
 import type { Exercise } from "@szph/db";
+import { optimizeImage } from "../../../utils/optimizeImage";
 
 export function EditExerciseForm({ exercise }: { exercise: Exercise }) {
   const router = useRouter();
@@ -147,8 +148,32 @@ export function EditExerciseForm({ exercise }: { exercise: Exercise }) {
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label className={labelCls}>URL diagramu</label>
-              <input value={diagramUrl} onChange={(e) => setDiagramUrl(e.target.value)} className={inputCls} />
+              <label className={labelCls}>Diagram</label>
+              {diagramUrl && (
+                <div className="mb-2 relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={diagramUrl} alt="Diagram" className="w-full max-h-48 object-contain rounded" style={{ background: "#f8f9fa" }} />
+                </div>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  try {
+                    const { blob, filename } = await optimizeImage(file);
+                    const path = `diagrams/${Date.now()}-${filename}`;
+                    const { data, error: upErr } = await supabase.storage.from("exercises").upload(path, blob, { contentType: "image/webp", upsert: false });
+                    if (upErr) throw upErr;
+                    const { data: { publicUrl } } = supabase.storage.from("exercises").getPublicUrl(data.path);
+                    setDiagramUrl(publicUrl);
+                  } catch { alert("Chyba pri nahrávaní diagramu"); }
+                  e.target.value = "";
+                }}
+                className="w-full text-xs text-[#64748b] file:mr-4 file:rounded file:border-0 file:bg-gray-100 file:px-3 file:py-2 file:text-xs file:text-[#051937] mb-1"
+              />
+              <input value={diagramUrl} onChange={(e) => setDiagramUrl(e.target.value)} className={inputCls} placeholder="alebo zadaj URL..." />
             </div>
             <div>
               <label className={labelCls}>Zdroj / Poznámky</label>
