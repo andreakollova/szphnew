@@ -272,6 +272,16 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
         >
           {saving ? "Ukladám..." : match ? "Uložiť zmeny" : "Vytvoriť zápas"}
         </button>
+        {match && (
+          <a
+            href={`/zapasy/${match.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded border border-[rgba(1,45,116,0.08)] px-6 py-3 text-sm font-semibold text-[#012d74] text-center hover:bg-[#f0f4fa] transition-colors"
+          >
+            Zobraziť stránku →
+          </a>
+        )}
         <button
           type="button"
           onClick={() => router.back()}

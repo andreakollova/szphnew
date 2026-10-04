@@ -304,6 +304,16 @@ export function ArticleForm({ article }: ArticleFormProps) {
             >
               {saving ? "Ukladám..." : article ? "Uložiť zmeny" : "Vytvoriť článok"}
             </button>
+            {article && (
+              <a
+                href={`/novinky/${article.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full rounded border border-[rgba(1,45,116,0.08)] py-3 text-sm font-semibold text-[#012d74] text-center transition-colors hover:bg-[#f0f4fa]"
+              >
+                Zobraziť stránku →
+              </a>
+            )}
             <button
               type="button"
               onClick={() => router.back()}
