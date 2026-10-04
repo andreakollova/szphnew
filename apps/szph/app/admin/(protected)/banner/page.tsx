@@ -163,7 +163,11 @@ export default function AdminBannerPage() {
                     src={banner.image_url}
                     alt={`Banner ${idx + 1}`}
                     className="w-full h-full object-cover"
-                    style={{ objectPosition: `${banner.desktop_pos_x}% ${banner.desktop_pos_y}%`, transform: `scale(${(banner.zoom || 100) / 100})` }}
+                    style={{
+                      objectPosition: `${banner.desktop_pos_x}% ${banner.desktop_pos_y}%`,
+                      transform: `scale(${(banner.zoom || 100) / 100})`,
+                      transformOrigin: `${banner.desktop_pos_x}% ${banner.desktop_pos_y}%`,
+                    }}
                   />
                 </div>
                 <p className="text-center text-[#94a3b8] font-bold mt-1.5" style={{ fontSize: "10px" }}>
@@ -176,7 +180,11 @@ export default function AdminBannerPage() {
                     src={banner.image_url}
                     alt=""
                     className="w-full h-full object-cover"
-                    style={{ objectPosition: `${banner.mobile_pos_x}% ${banner.mobile_pos_y}%`, transform: `scale(${(banner.mobile_zoom || 100) / 100})` }}
+                    style={{
+                      objectPosition: `${banner.mobile_pos_x}% ${banner.mobile_pos_y}%`,
+                      transform: `scale(${(banner.mobile_zoom || 100) / 100})`,
+                      transformOrigin: `${banner.mobile_pos_x}% ${banner.mobile_pos_y}%`,
+                    }}
                   />
                 </div>
                 <p className="text-center text-[#94a3b8] font-bold mt-1" style={{ fontSize: "10px" }}>
