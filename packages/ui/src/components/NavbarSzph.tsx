@@ -773,6 +773,16 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             </div>
 
             <div className="flex flex-col min-h-full px-5 pt-4 pb-8">
+              {/* Admin login */}
+              <Link href="/admin/prihlasenie" onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-between py-3 mb-2 text-sm font-bold text-[#012d74] transition-colors"
+                style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
+                <span>Prihlásiť sa</span>
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                </svg>
+              </Link>
+
               {/* Nav items */}
               <div className="flex-1 space-y-1">
                 {MAIN_NAV.map(item => (
@@ -848,10 +858,6 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                   Nastavenia
-                </Link>
-                <Link href="/admin/prihlasenie" onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full px-4 py-2 mt-6 text-xs font-semibold text-[#94a3b8]/50 transition-all">
-                  Admin prihlásenie
                 </Link>
               </div>
             </div>
