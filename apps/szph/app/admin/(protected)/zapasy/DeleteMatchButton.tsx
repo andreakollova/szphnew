@@ -12,7 +12,12 @@ export function DeleteMatchButton({ id }: { id: string }) {
     if (!confirm("Naozaj chcete vymazať tento zápas?")) return;
     setDeleting(true);
     const supabase = createBrowserSupabaseClient();
-    await supabase.from("matches").delete().eq("id", id);
+    const { error } = await supabase.from("matches").delete().eq("id", id);
+    if (error) {
+      alert("Chyba pri mazaní: " + error.message);
+      setDeleting(false);
+      return;
+    }
     router.refresh();
   }
 

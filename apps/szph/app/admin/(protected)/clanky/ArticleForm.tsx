@@ -22,7 +22,7 @@ const articleSchema = z.object({
     "Excerpt môže mať maximálne 17 slov"
   ),
   content: z.string().min(1, "Obsah článku je povinný"),
-  cover_image_url: z.string().url("Titulná fotka je povinná"),
+  cover_image_url: z.string().min(1, "Titulná fotka je povinná"),
   video_url: z.union([z.string().url("Zadajte platnú URL adresu"), z.literal(""), z.undefined()]),
   category: z.enum(["novinky", "reprezentacia", "kluby", "oznamy"]),
   visible_on: z.enum(["fieldhockey", "szph", "both"]),

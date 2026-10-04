@@ -32,6 +32,7 @@ interface MatchFormProps {
 export function MatchForm({ teams, competitions, match }: MatchFormProps) {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
+  const [saved, setSaved]   = useState(false);
   const [error, setError]   = useState<string | null>(null);
   const [goals, setGoals]   = useState<MatchGoal[]>(match?.goals ?? []);
   const supabase = createBrowserSupabaseClient();
@@ -86,10 +87,17 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
         await supabase.from("matches").insert(payload);
       }
 
-      router.push("/admin/zapasy");
+      if (match) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        router.push("/admin/zapasy");
+      }
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Nastala chyba");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {
       setSaving(false);
     }

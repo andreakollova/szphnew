@@ -29,12 +29,18 @@ export function InlineScore({ matchId, homeScore, awayScore, status, homeTeamNam
     const a = away === "" ? null : parseInt(away);
     const newStatus = h !== null && a !== null ? "finished" : status;
 
-    await supabase.from("matches").update({
+    const { error } = await supabase.from("matches").update({
       home_score: h,
       away_score: a,
       status: newStatus,
       updated_at: new Date().toISOString(),
     }).eq("id", matchId);
+
+    if (error) {
+      alert("Chyba pri ukladaní: " + error.message);
+      setSaving(false);
+      return;
+    }
 
     // Slack notification when result is filled in
     if (h !== null && a !== null && (homeScore === null || awayScore === null)) {
@@ -43,14 +49,14 @@ export function InlineScore({ matchId, homeScore, awayScore, status, homeTeamNam
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "match_result",
-          data: { home_team: homeTeamName ?? "Domaci", away_team: awayTeamName ?? "Hostia", home_score: h, away_score: a },
+          data: { home_team: homeTeamName ?? "Domáci", away_team: awayTeamName ?? "Hostia", home_score: h, away_score: a },
         }),
       }).catch(() => {});
     }
 
     setSaving(false);
     setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    setTimeout(() => setSaved(false), 4000);
     router.refresh();
   }
 
@@ -81,11 +87,11 @@ export function InlineScore({ matchId, homeScore, awayScore, status, homeTeamNam
           disabled={saving}
           className="ml-1 rounded bg-[#012d74] px-2 py-1 text-[10px] font-bold text-white hover:bg-[#012d74]/90 transition-colors disabled:opacity-50"
         >
-          {saving ? "..." : saved ? "OK" : "Uloz"}
+          {saving ? "..." : "Uložiť"}
         </button>
       )}
       {saved && !hasChanged && (
-        <span className="ml-1 text-emerald-500 text-[10px] font-bold">OK</span>
+        <span className="ml-1 text-emerald-500 text-[10px] font-bold">Uložené ✓</span>
       )}
     </div>
   );
