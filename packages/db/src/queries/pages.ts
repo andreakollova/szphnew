@@ -59,6 +59,47 @@ export async function updatePage(
   return data as Page;
 }
 
+export async function getPageBySlugAdmin(
+  supabase: SupabaseClient,
+  slug: string,
+  site: PageSite
+): Promise<Page | null> {
+  const { data, error } = await supabase
+    .from("pages")
+    .select("*")
+    .eq("slug", slug)
+    .eq("site", site)
+    .single();
+  if (error) return null;
+  return data as Page;
+}
+
+export async function upsertPageBySlug(
+  supabase: SupabaseClient,
+  slug: string,
+  title: string,
+  site: PageSite
+): Promise<Page> {
+  // Check if page exists
+  const existing = await getPageBySlugAdmin(supabase, slug, site);
+  if (existing) return existing;
+
+  // Create new page with empty content
+  const { data, error } = await supabase
+    .from("pages")
+    .insert({
+      slug,
+      title,
+      site,
+      status: "published",
+      content: [],
+    })
+    .select()
+    .single();
+  if (error) throw error;
+  return data as Page;
+}
+
 export async function deletePage(
   supabase: SupabaseClient,
   id: string

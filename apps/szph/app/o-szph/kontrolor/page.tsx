@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
+import { getDbPageContent } from "@/app/lib/getDbPageContent";
+import { PageContentRenderer } from "@/app/components/PageContentRenderer";
 
 export const metadata: Metadata = {
   title: "Kontrolór",
   description: "Dokumenty kontrolóra SZPH.",
 };
 
-export default function KontrolorPage() {
+export default async function KontrolorPage() {
+  const dbPage = await getDbPageContent("o-szph/kontrolor");
+  if (dbPage && dbPage.content.length > 0) {
+    return <PageContentRenderer blocks={dbPage.content} breadcrumb="O SZPH" title={dbPage.title} />;
+  }
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}

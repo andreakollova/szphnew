@@ -118,6 +118,13 @@ export default async function AdminStrankyPage() {
 
   const totalPages = SITE_PAGES.reduce((sum, g) => sum + g.pages.length, 0);
 
+  // Build a map of slug -> dbPage for quick lookup
+  const dbPageBySlug = new Map<string, (typeof dbPages)[number]>();
+  for (const p of dbPages) {
+    dbPageBySlug.set(p.slug, p);
+    dbPageBySlug.set("/" + p.slug, p);
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -133,74 +140,108 @@ export default async function AdminStrankyPage() {
         </Link>
       </div>
 
-      {/* DB Pages */}
-      {dbPages.length > 0 && (
-        <div>
-          <h2 className="text-sm font-bold text-[#64748b] mb-3 uppercase tracking-wider">Dynamické stránky (DB)</h2>
-          <div className="rounded overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-[rgba(1,45,116,0.08)]">
-                  <th className="px-5 py-3 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Nadpis</th>
-                  <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Slug</th>
-                  <th className="px-4 py-3 text-center text-[10px] uppercase tracking-wider text-[#64748b]">Stav</th>
-                  <th className="px-4 py-3 text-right text-[10px] uppercase tracking-wider text-[#64748b]">Akcie</th>
-                </tr>
-              </thead>
-              <tbody>
-                {dbPages.map((page) => (
-                  <tr key={page.id} className="border-b border-[rgba(1,45,116,0.08)] hover:bg-gray-50 transition-colors">
-                    <td className="px-5 py-4 font-semibold text-[#051937]">{page.title}</td>
-                    <td className="px-4 py-4 font-mono text-xs text-[#64748b]">/{page.slug}</td>
-                    <td className="px-4 py-4 text-center">
-                      <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${page.status === "published" ? "bg-emerald-500/20 text-emerald-600" : "bg-gray-100 text-[#64748b]"}`}>
-                        {page.status === "published" ? "Pub." : "Draft"}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Link href={`/admin/stranky/${page.id}`} className="rounded bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors">Upraviť</Link>
-                        <PageActions id={page.id} />
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
+      {/* All site pages grouped */}
+      {SITE_PAGES.map(({ group, pages }) => {
+        return (
+          <div key={group}>
+            <h2 className="text-sm font-bold text-[#64748b] mb-3 uppercase tracking-wider">{group}</h2>
+            <div className="rounded overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+              {pages.map((page, i) => {
+                const slug = page.slug.startsWith("/") ? page.slug.slice(1) : page.slug;
+                const dbPage = dbPageBySlug.get(page.slug) || dbPageBySlug.get(slug);
+                const editHref = dbPage
+                  ? `/admin/stranky/${dbPage.id}`
+                  : `/admin/stranky/upravit/${slug || "domov"}?title=${encodeURIComponent(page.title)}`;
 
-      {/* All site pages */}
-      {SITE_PAGES.map(({ group, pages }) => (
-        <div key={group}>
-          <h2 className="text-sm font-bold text-[#64748b] mb-3 uppercase tracking-wider">{group}</h2>
-          <div className="rounded overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-            {pages.map((page, i) => (
-              <div
-                key={page.slug}
-                className="flex items-center justify-between px-5 py-3 hover:bg-gray-50 transition-colors"
-                style={{ borderBottom: i < pages.length - 1 ? "1px solid rgba(1,45,116,0.06)" : undefined }}
-              >
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-[#051937] text-sm">{page.title}</p>
-                  <p className="text-[#94a3b8] font-mono" style={{ fontSize: "10px" }}>{page.slug}</p>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <a
-                    href={page.slug}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors"
+                return (
+                  <div
+                    key={page.slug}
+                    className="flex items-center justify-between px-5 py-3 hover:bg-gray-50 transition-colors"
+                    style={{ borderBottom: i < pages.length - 1 ? "1px solid rgba(1,45,116,0.06)" : undefined }}
                   >
-                    Zobraziť
-                  </a>
-                </div>
-              </div>
-            ))}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <p className="font-semibold text-[#051937] text-sm">{page.title}</p>
+                        {dbPage && (
+                          <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${dbPage.status === "published" ? "bg-emerald-500/20 text-emerald-600" : "bg-amber-500/20 text-amber-600"}`}>
+                            {dbPage.status === "published" ? "V DB" : "Draft"}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[#94a3b8] font-mono" style={{ fontSize: "10px" }}>{page.slug}</p>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <Link
+                        href={editHref}
+                        className="rounded bg-[#012d74]/10 px-3 py-1.5 text-xs font-semibold text-[#012d74] hover:bg-[#012d74]/20 transition-colors"
+                      >
+                        Upraviť
+                      </Link>
+                      <a
+                        href={page.slug}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors"
+                      >
+                        Zobraziť
+                      </a>
+                      {dbPage && <PageActions id={dbPage.id} />}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
+
+      {/* DB-only pages (not in SITE_PAGES) */}
+      {(() => {
+        const sitePageSlugs = new Set(
+          SITE_PAGES.flatMap(g => g.pages.map(p => {
+            const s = p.slug.startsWith("/") ? p.slug.slice(1) : p.slug;
+            return s;
+          }))
+        );
+        const extraDbPages = dbPages.filter(p => !sitePageSlugs.has(p.slug));
+        if (extraDbPages.length === 0) return null;
+        return (
+          <div>
+            <h2 className="text-sm font-bold text-[#64748b] mb-3 uppercase tracking-wider">Dynamicke stranky (len v DB)</h2>
+            <div className="rounded overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-[rgba(1,45,116,0.08)]">
+                    <th className="px-5 py-3 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Nadpis</th>
+                    <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Slug</th>
+                    <th className="px-4 py-3 text-center text-[10px] uppercase tracking-wider text-[#64748b]">Stav</th>
+                    <th className="px-4 py-3 text-right text-[10px] uppercase tracking-wider text-[#64748b]">Akcie</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {extraDbPages.map((page) => (
+                    <tr key={page.id} className="border-b border-[rgba(1,45,116,0.08)] hover:bg-gray-50 transition-colors">
+                      <td className="px-5 py-4 font-semibold text-[#051937]">{page.title}</td>
+                      <td className="px-4 py-4 font-mono text-xs text-[#64748b]">/{page.slug}</td>
+                      <td className="px-4 py-4 text-center">
+                        <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${page.status === "published" ? "bg-emerald-500/20 text-emerald-600" : "bg-gray-100 text-[#64748b]"}`}>
+                          {page.status === "published" ? "Pub." : "Draft"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <Link href={`/admin/stranky/${page.id}`} className="rounded bg-[#012d74]/10 px-3 py-1.5 text-xs font-semibold text-[#012d74] hover:bg-[#012d74]/20 transition-colors">Upraviť</Link>
+                          <PageActions id={page.id} />
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }

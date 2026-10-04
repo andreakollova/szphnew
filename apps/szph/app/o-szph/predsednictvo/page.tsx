@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getDbPageContent } from "@/app/lib/getDbPageContent";
+import { PageContentRenderer } from "@/app/components/PageContentRenderer";
 
 export const metadata: Metadata = {
   title: "Predsedníctvo",
@@ -20,7 +22,12 @@ const clenovia = [
   "Martin Čavoš",
 ];
 
-export default function PredsednictvoPage() {
+export default async function PredsednictvoPage() {
+  const dbPage = await getDbPageContent("o-szph/predsednictvo");
+  if (dbPage && dbPage.content.length > 0) {
+    return <PageContentRenderer blocks={dbPage.content} breadcrumb="O SZPH" title={dbPage.title} />;
+  }
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}

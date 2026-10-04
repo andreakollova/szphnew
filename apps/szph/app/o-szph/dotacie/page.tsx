@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
+import { getDbPageContent } from "@/app/lib/getDbPageContent";
+import { PageContentRenderer } from "@/app/components/PageContentRenderer";
 
 export const metadata: Metadata = {
   title: "Čerpanie dotácií poskytnutých MŠVVaŠ",
   description: "Dokumenty o čerpaní dotácií poskytnutých MŠVVaŠ pre SZPH.",
 };
 
-export default function DotaciePage() {
+export default async function DotaciePage() {
+  const dbPage = await getDbPageContent("o-szph/dotacie");
+  if (dbPage && dbPage.content.length > 0) {
+    return <PageContentRenderer blocks={dbPage.content} breadcrumb="O SZPH" title={dbPage.title} />;
+  }
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getDbPageContent } from "@/app/lib/getDbPageContent";
+import { PageContentRenderer } from "@/app/components/PageContentRenderer";
 
 export const metadata: Metadata = {
   title: "Vybavenie pre pozemný hokej",
@@ -40,7 +42,12 @@ const EQUIPMENT = [
   },
 ];
 
-export default function VybaveniePage() {
+export default async function VybaveniePage() {
+  const dbPage = await getDbPageContent("pozemny-hokej/vybavenie");
+  if (dbPage && dbPage.content.length > 0) {
+    return <PageContentRenderer blocks={dbPage.content} breadcrumb="O sporte" title={dbPage.title} />;
+  }
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-16 px-6" style={{ background: "#051937" }}>

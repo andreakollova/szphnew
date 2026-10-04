@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { getDbPageContent } from "@/app/lib/getDbPageContent";
+import { PageContentRenderer } from "@/app/components/PageContentRenderer";
 
 export const metadata: Metadata = {
   title: "Stanovy a predpisy",
@@ -21,7 +23,12 @@ const documents = [
   },
 ];
 
-export default function StanovyPage() {
+export default async function StanovyPage() {
+  const dbPage = await getDbPageContent("o-szph/stanovy");
+  if (dbPage && dbPage.content.length > 0) {
+    return <PageContentRenderer blocks={dbPage.content} breadcrumb="O SZPH" title={dbPage.title} />;
+  }
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}

@@ -1,13 +1,20 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getDbPageContent } from "@/app/lib/getDbPageContent";
+import { PageContentRenderer } from "@/app/components/PageContentRenderer";
 
 export const metadata: Metadata = {
   title: "Medzinárodné súťaže",
   description: "Olympijské hry, majstrovstvá sveta a majstrovstvá Európy. Spoznajte hlavné reprezentačné súťaže v pozemnom hokeji.",
 };
 
-export default function MedzinarodneSubazePage() {
+export default async function MedzinarodneSubazePage() {
+  const dbPage = await getDbPageContent("pozemny-hokej/medzinarodne-sutaze");
+  if (dbPage && dbPage.content.length > 0) {
+    return <PageContentRenderer blocks={dbPage.content} breadcrumb="O sporte" title={dbPage.title} />;
+  }
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}
