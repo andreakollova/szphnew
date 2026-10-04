@@ -94,18 +94,18 @@ export default async function AdminDashboard() {
           <p className="text-[#64748b] mb-4" style={{ fontSize: "12px" }}>Tieto zápasy sa už mali odohrať, ale nemajú zadaný výsledok.</p>
           <div className="space-y-2">
             {data.overdueMatches.map((m: any) => (
-              <Link key={m.id} href={`/admin/zapasy/${m.id}`} className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3 bg-white rounded p-3 hover:bg-gray-50 transition-colors" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
+              <div key={m.id} className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3 bg-white rounded p-3 hover:bg-gray-50 transition-colors" style={{ border: "1px solid rgba(1,45,116,0.06)" }}>
                 <div className="flex-1 min-w-0">
                   <p className="font-bold text-[#051937] truncate" style={{ fontSize: "13px" }}>
                     {m.home_short || m.home_team || "?"} vs {m.away_short || m.away_team || "?"}
                   </p>
                   <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>{formatDate(m.date)} · {formatTime(m.date)}{m.venue ? ` · ${m.venue}` : ""}</p>
                 </div>
-                <InlineScore matchId={m.id} homeScore={m.home_score} awayScore={m.away_score} status={m.status} />
-                <span className="shrink-0 rounded bg-[#d00027] px-2.5 sm:px-3 py-1.5 text-[10px] sm:text-xs font-bold text-white">
-                  Zadať výsledok
-                </span>
-              </Link>
+                <InlineScore matchId={m.id} homeScore={m.home_score} awayScore={m.away_score} status={m.status} homeTeamName={m.home_team} awayTeamName={m.away_team} />
+                <Link href={`/admin/zapasy/${m.id}`} className="shrink-0 rounded bg-[#64748b] px-2.5 sm:px-3 py-1.5 text-[10px] sm:text-xs font-bold text-white hover:bg-[#051937] transition-colors">
+                  Upraviť
+                </Link>
+              </div>
             ))}
           </div>
         </div>
