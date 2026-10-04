@@ -33,7 +33,6 @@ export function InlineScore({ matchId, homeScore, awayScore, status, homeTeamNam
       home_score: h,
       away_score: a,
       status: newStatus,
-      updated_at: new Date().toISOString(),
     }).eq("id", matchId);
 
     if (error) {
