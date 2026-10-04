@@ -27,6 +27,7 @@ const articleSchema = z.object({
   category: z.enum(["novinky", "reprezentacia", "kluby", "oznamy"]),
   visible_on: z.enum(["fieldhockey", "szph", "both"]),
   status: z.enum(["draft", "published"]),
+  published_at: z.string().optional(),
 });
 
 type ArticleFormValues = z.infer<typeof articleSchema>;
@@ -63,6 +64,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
       category:        article?.category ?? "novinky",
       visible_on:      article?.visible_on ?? "both",
       status:          article?.status ?? "draft",
+      published_at:    article?.published_at ? new Date(article.published_at).toISOString().slice(0, 16) : "",
     },
   });
 
@@ -112,7 +114,7 @@ export function ArticleForm({ article }: ArticleFormProps) {
         video_url: values.video_url || null,
         published_at:
           values.status === "published"
-            ? (article?.published_at ?? new Date().toISOString())
+            ? (values.published_at ? new Date(values.published_at).toISOString() : (article?.published_at ?? new Date().toISOString()))
             : null,
       };
 
@@ -271,6 +273,12 @@ export function ArticleForm({ article }: ArticleFormProps) {
                   <option value="draft">Draft</option>
                   <option value="published">Publikovaný</option>
                 </select>
+              </div>
+
+              {/* Dátum publikácie */}
+              <div>
+                <label className="field-label">Dátum publikácie</label>
+                <input type="datetime-local" {...register("published_at")} className="field-input" />
               </div>
 
               {/* Kategória */}
