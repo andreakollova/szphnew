@@ -384,7 +384,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
   const list = allList.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
 
   return (
-    <div className={cn("", className)}>
+    <div className={cn("notranslate", className)}>
       {/* Controls */}
       <div className="flex flex-col gap-3 mb-6">
         {/* Row 1: Liga / Rep toggle buttons */}

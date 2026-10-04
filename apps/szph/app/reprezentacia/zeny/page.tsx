@@ -31,7 +31,7 @@ export default function ZenyPage() {
 
         {/* Nominácia */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Nominácia</h2>
-        <div className="overflow-x-auto mb-8">
+        <div className="overflow-x-auto mb-8 notranslate">
           <table className="w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
             <thead>
               <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
