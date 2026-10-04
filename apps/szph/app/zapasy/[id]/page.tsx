@@ -193,14 +193,13 @@ export default async function MatchDetailPage({ params }: Props) {
               <div className="grid grid-cols-2 gap-x-6">
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <TeamLogo logo={m.home_logo} name={m.home_team || ""} size={20} />
-                    <p className="font-bold text-[#051937]" style={{ fontSize: "11px" }}>{m.home_short || m.home_team}</p>
+                    <TeamLogo logo={m.home_logo} name={m.home_team || ""} size={22} />
+                    <p className="font-bold text-[#051937] uppercase" style={{ fontSize: "12px", letterSpacing: "0.05em" }}>{m.home_team || m.home_short}</p>
                   </div>
                   <div className="space-y-2">
                     {homeGoals.length === 0 && <p className="text-[#94a3b8]" style={{ fontSize: "12px" }}>-</p>}
                     {homeGoals.map((g, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <TeamLogo logo={m.home_logo} name="" size={16} />
+                      <div key={i} className="flex items-center gap-2 pl-[30px]">
                         <span className="font-semibold text-[#051937]" style={{ fontSize: "13px" }}>{g.player}</span>
                         {g.minute && <span className="text-[#94a3b8] font-bold" style={{ fontSize: "11px" }}>{g.minute}&apos;</span>}
                       </div>
@@ -209,14 +208,13 @@ export default async function MatchDetailPage({ params }: Props) {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <TeamLogo logo={m.away_logo} name={m.away_team || ""} size={20} />
-                    <p className="font-bold text-[#051937]" style={{ fontSize: "11px" }}>{m.away_short || m.away_team}</p>
+                    <TeamLogo logo={m.away_logo} name={m.away_team || ""} size={22} />
+                    <p className="font-bold text-[#051937] uppercase" style={{ fontSize: "12px", letterSpacing: "0.05em" }}>{m.away_team || m.away_short}</p>
                   </div>
                   <div className="space-y-2">
                     {awayGoals.length === 0 && <p className="text-[#94a3b8]" style={{ fontSize: "12px" }}>-</p>}
                     {awayGoals.map((g, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <TeamLogo logo={m.away_logo} name="" size={16} />
+                      <div key={i} className="flex items-center gap-2 pl-[30px]">
                         <span className="font-semibold text-[#051937]" style={{ fontSize: "13px" }}>{g.player}</span>
                         {g.minute && <span className="text-[#94a3b8] font-bold" style={{ fontSize: "11px" }}>{g.minute}&apos;</span>}
                       </div>
