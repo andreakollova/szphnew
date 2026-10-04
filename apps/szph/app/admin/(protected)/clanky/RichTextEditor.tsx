@@ -6,7 +6,9 @@ import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import Youtube from "@tiptap/extension-youtube";
-import { useCallback } from "react";
+import { useCallback, useRef } from "react";
+import { createBrowserSupabaseClient } from "@szph/db/client";
+import { optimizeImage } from "../../utils/optimizeImage";
 
 interface RichTextEditorProps {
   content: string;
@@ -48,12 +50,29 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
     },
   });
 
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const supabase = createBrowserSupabaseClient();
+
   const addImage = useCallback(() => {
-    const url = prompt("Zadajte URL obrázka:");
-    if (url && editor) {
-      editor.chain().focus().setImage({ src: url }).run();
+    imageInputRef.current?.click();
+  }, []);
+
+  const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !editor) return;
+    try {
+      const { blob, filename } = await optimizeImage(file);
+      const path = `content/${Date.now()}-${filename}`;
+      const { data, error } = await supabase.storage.from("articles-covers").upload(path, blob, { contentType: "image/webp", upsert: false });
+      if (error) throw error;
+      const { data: { publicUrl } } = supabase.storage.from("articles-covers").getPublicUrl(data.path);
+      editor.chain().focus().setImage({ src: publicUrl }).run();
+    } catch (err) {
+      alert("Chyba pri nahrávaní obrázka");
+      console.error(err);
     }
-  }, [editor]);
+    e.target.value = "";
+  }, [editor, supabase]);
 
   const addYoutube = useCallback(() => {
     const url = prompt("Zadajte YouTube URL:");
@@ -126,6 +145,9 @@ export function RichTextEditor({ content, onChange }: RichTextEditorProps) {
           <span className="text-xs">—</span>
         </ToolbarButton>
       </div>
+
+      {/* Hidden file input for image upload */}
+      <input ref={imageInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
 
       {/* Editor */}
       <EditorContent editor={editor} />
