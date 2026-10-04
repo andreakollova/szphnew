@@ -84,7 +84,7 @@ export function InlineScore({ matchId, homeScore, awayScore, status, homeTeamNam
         <button
           onClick={handleSave}
           disabled={saving}
-          className="ml-1 rounded bg-[#012d74] px-2 py-1 text-[10px] font-bold text-white hover:bg-[#012d74]/90 transition-colors disabled:opacity-50"
+          className="ml-1 rounded bg-emerald-600 px-2 py-1 text-[10px] font-bold text-white hover:bg-emerald-700 transition-colors disabled:opacity-50"
         >
           {saving ? "..." : "Uložiť"}
         </button>
