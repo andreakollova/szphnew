@@ -335,7 +335,7 @@ function LangSelector({ scrolled }: { scrolled: boolean }) {
             }}
           >
             <button
-              onClick={() => { setIsEn(false); setOpen(false); const f = document.querySelector<HTMLIFrameElement>(".goog-te-menu-frame"); if (f) { f.contentDocument?.querySelector<HTMLAnchorElement>('[lang="sk"]')?.click(); } else { document.cookie = "googtrans=;path=/"; window.location.reload(); } }}
+              onClick={() => { setIsEn(false); setOpen(false); document.cookie = "googtrans=;path=/;expires=Thu, 01 Jan 1970 00:00:00 GMT"; document.cookie = "googtrans=;path=/;domain=" + window.location.hostname + ";expires=Thu, 01 Jan 1970 00:00:00 GMT"; document.cookie = "googtrans=;path=/;domain=." + window.location.hostname + ";expires=Thu, 01 Jan 1970 00:00:00 GMT"; const f = document.querySelector<HTMLIFrameElement>(".goog-te-menu-frame"); if (f) { f.contentDocument?.querySelector<HTMLAnchorElement>('[lang="sk"]')?.click(); } else { window.location.reload(); } }}
               className="flex items-center gap-3 w-full px-4 py-2.5 text-[#051937] hover:bg-[#051937]/[0.04] transition-colors"
               style={{ fontSize: "12px", fontWeight: 600 }}
             >
