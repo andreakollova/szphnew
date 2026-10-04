@@ -71,7 +71,7 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
         competition_id: values.competition_id,
         home_team_id:   values.home_team_id,
         away_team_id:   values.away_team_id,
-        match_date:     new Date(values.match_date).toISOString(),
+        match_date:     values.match_date ? new Date(values.match_date).toISOString() : null,
         venue:          values.venue || null,
         status:         values.status,
         home_score:     values.status === "finished" ? (values.home_score ?? null) : null,
