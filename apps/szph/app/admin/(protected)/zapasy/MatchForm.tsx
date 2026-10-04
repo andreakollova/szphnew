@@ -75,10 +75,7 @@ export function MatchForm({ teams, competitions, match }: MatchFormProps) {
         video_url:      values.video_url || null,
         goals:          goals.length > 0 ? goals : null,
       };
-      if (values.competition_id) payload.competition_id = values.competition_id;
-      if (values.home_team_id) payload.home_team_id = values.home_team_id;
-      if (values.away_team_id) payload.away_team_id = values.away_team_id;
-      if (values.match_date) payload.match_date = new Date(values.match_date).toISOString();
+      if (values.match_date) payload.date = new Date(values.match_date).toISOString();
 
       if (match) {
         const { error: dbErr } = await supabase.from("matches").update(payload).eq("id", match.id);
