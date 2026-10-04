@@ -38,34 +38,34 @@ export default async function AdminTimyPage() {
   const teams = await getTeams(supabase);
 
   const CATEGORY_LABELS: Record<string, string> = {
-    muzi: "Muzi", zeny: "Zeny", U18: "U18", U14: "U14", U12: "U12",
+    muzi: "Muži", zeny: "Ženy", U18: "U18", U14: "U14", U12: "U12",
   };
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#051937]">Timy</h1>
-          <p className="text-sm text-[#64748b] mt-1">{teams.length} timov celkovo</p>
+          <h1 className="text-2xl font-bold text-[#051937]">Tímy</h1>
+          <p className="text-sm text-[#64748b] mt-1">{teams.length} tímov celkovo</p>
         </div>
         <Link
           href="/admin/timy/novy"
           className="inline-flex items-center gap-2 rounded bg-[#012d74] px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-[#012d74]/90"
         >
-          + Novy tim
+          + Nový tím
         </Link>
       </div>
 
       <div className="rounded overflow-hidden" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
         {teams.length === 0 ? (
-          <div className="py-16 text-center text-[#64748b]">Ziadne timy</div>
+          <div className="py-16 text-center text-[#64748b]">Žiadne tímy</div>
         ) : (
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-[rgba(1,45,116,0.08)]">
-                <th className="px-5 py-3 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Tim</th>
+                <th className="px-5 py-3 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Tím</th>
                 <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Skratka</th>
-                <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Kategoria</th>
+                <th className="px-4 py-3 text-left text-[10px] uppercase tracking-wider text-[#64748b]">Kategória</th>
                 <th className="px-4 py-3 text-right text-[10px] uppercase tracking-wider text-[#64748b]">Akcie</th>
               </tr>
             </thead>
@@ -110,7 +110,7 @@ export default async function AdminTimyPage() {
                   <td className="px-4 py-3.5 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link href={`/admin/timy/${team.id}`} className="rounded bg-gray-100 px-3 py-1.5 text-xs font-semibold text-[#051937] hover:bg-gray-200 transition-colors">
-                        Upravit
+                        Upraviť
                       </Link>
                       <DeleteTeamButton id={team.id} name={team.name} />
                     </div>
