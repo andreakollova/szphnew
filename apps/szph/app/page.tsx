@@ -156,7 +156,7 @@ const getData = unstable_cache(
     };
   },
   ["szph-home-data"],
-  { revalidate: 300 }
+  { revalidate: 30 }
 );
 
 function ArticleCard({ article }: { article: any }) {

@@ -597,7 +597,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             </svg>
           </button>
           <Link href="/" className="absolute left-1/2 -translate-x-1/2 shrink-0">
-            <Image src="/images/logo-szph.webp" alt="SZPH" height={56} width={190} className="h-14 w-auto object-contain" priority />
+            <Image src="/images/logo-szph-color.png" alt="SZPH" height={56} width={190} className="h-14 w-auto object-contain" priority />
           </Link>
           <Link href="/zapasy" className="flex items-center justify-center h-11 w-11 rounded-full hover:bg-[#051937]/5 transition-colors" aria-label="Zapasy">
             <svg className="h-6 w-6 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.6}>
@@ -629,7 +629,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         <div className="hidden md:flex items-center gap-2 px-6 h-20">
           <Link href="/" className="shrink-0 mr-8 relative" style={{ height: "76px", width: "234px" }}>
             <Image
-              src={(hasHero && scrolled) ? "/images/logo-szph.webp" : "/images/logo-szph-white.webp"}
+              src={(hasHero && scrolled) ? "/images/logo-szph-color.png" : "/images/logo-szph-white.webp"}
               alt="SZPH"
               fill
               className="object-contain object-left transition-opacity duration-300"
@@ -763,7 +763,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           >
             {/* Header: logo + close */}
             <div className="flex items-center justify-between px-5 py-4" style={{ borderBottom: "1px solid rgba(1,45,116,0.06)" }}>
-              <Image src="/images/logo-szph.webp" alt="SZPH" height={44} width={150} className="h-11 w-auto object-contain" />
+              <Image src="/images/logo-szph-color.png" alt="SZPH" height={44} width={150} className="h-11 w-auto object-contain" />
               <button onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center h-10 w-10 rounded-full bg-[#051937]/5">
                 <svg className="h-5 w-5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

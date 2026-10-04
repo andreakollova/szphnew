@@ -76,6 +76,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               opacity: current === i ? 1 : 0,
               transition: "opacity 1s ease-in-out",
               transform: img.mobileZoom && img.mobileZoom !== 100 ? `scale(${img.mobileZoom / 100})` : undefined,
+              transformOrigin: `${img.mobilePos}`,
             }}
             priority={i === 0}
             quality={100}
@@ -177,6 +178,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               opacity: current === i ? 1 : 0,
               transition: "opacity 1s ease-in-out",
               transform: img.zoom && img.zoom !== 100 ? `scale(${img.zoom / 100})` : undefined,
+              transformOrigin: `${img.desktopPos}`,
             }}
             priority={i === 0}
             quality={90}
