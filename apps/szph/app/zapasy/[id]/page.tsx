@@ -228,7 +228,7 @@ export default async function MatchDetailPage({ params }: Props) {
           )}
 
           {/* Video */}
-          {m.video_url && <MatchVideo url={m.video_url} />}
+          {m.video_url && <MatchVideo url={m.video_url} finished={m.status === "finished"} />}
         </div>
       </div>
     </article>

@@ -2,8 +2,9 @@
 
 import { YouTubeInline } from "../../components/YouTubeInline";
 
-export function MatchVideo({ url }: { url: string }) {
+export function MatchVideo({ url, finished = false }: { url: string; finished?: boolean }) {
   const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
+  const label = finished ? "Záznam zápasu" : "Videoprenos zápasu";
 
   if (!isYouTube) {
     return (
@@ -12,7 +13,7 @@ export function MatchVideo({ url }: { url: string }) {
           <svg className="h-4 w-4 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
         </div>
         <div>
-          <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Sledovať záznam zápasu</p>
+          <p className="font-bold text-[#051937]" style={{ fontSize: "14px" }}>Sledovať {label.toLowerCase()}</p>
           <p className="text-[#94a3b8]" style={{ fontSize: "11px" }}>Otvoriť video</p>
         </div>
       </a>
@@ -21,9 +22,9 @@ export function MatchVideo({ url }: { url: string }) {
 
   return (
     <div className="overflow-hidden bg-white" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
-      <YouTubeInline url={url} title="Záznam zápasu" />
+      <YouTubeInline url={url} title={label} />
       <div className="px-5 py-3">
-        <p className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>Záznam zápasu</p>
+        <p className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>{label}</p>
       </div>
     </div>
   );
