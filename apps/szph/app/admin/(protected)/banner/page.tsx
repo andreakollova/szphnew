@@ -48,8 +48,9 @@ export default function AdminBannerPage() {
 
   async function handleSaveAll() {
     setSaving(true);
+    let hasError = false;
     for (const b of banners) {
-      await supabase.from("hero_banners").update({
+      const { error } = await supabase.from("hero_banners").update({
         mobile_pos_x: b.mobile_pos_x,
         mobile_pos_y: b.mobile_pos_y,
         desktop_pos_x: b.desktop_pos_x,
@@ -58,10 +59,17 @@ export default function AdminBannerPage() {
         mobile_zoom: b.mobile_zoom,
         sort_order: b.sort_order,
       }).eq("id", b.id);
+      if (error) { console.error("Save error:", error); hasError = true; }
     }
     setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    if (hasError) {
+      alert("Chyba pri ukladaní! Skontroluj konzolu.");
+    } else {
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+      // Reload to confirm data persisted
+      await load();
+    }
   }
 
   async function handleUpload(file: File) {
