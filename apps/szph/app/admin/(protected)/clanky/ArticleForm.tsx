@@ -18,8 +18,8 @@ const articleSchema = z.object({
     (val) => val.trim().split(/\s+/).filter(Boolean).length >= 10,
     "Excerpt musí mať aspoň 10 slov"
   ).refine(
-    (val) => val.trim().split(/\s+/).filter(Boolean).length <= 30,
-    "Excerpt môže mať maximálne 30 slov"
+    (val) => val.trim().split(/\s+/).filter(Boolean).length <= 17,
+    "Excerpt môže mať maximálne 17 slov"
   ),
   content: z.string().min(1, "Obsah článku je povinný"),
   cover_image_url: z.string().url("Titulná fotka je povinná"),
@@ -197,8 +197,8 @@ export function ArticleForm({ article }: ArticleFormProps) {
                   Krátky popis (excerpt)
                   {(() => {
                     const wc = (watch("excerpt") || "").trim().split(/\s+/).filter(Boolean).length;
-                    const color = wc >= 10 && wc <= 30 ? "#16a34a" : "#f87171";
-                    return <span style={{ color, marginLeft: 8, fontWeight: 700, textTransform: "none", letterSpacing: 0 }}>{wc} / 10-30 slov</span>;
+                    const color = wc >= 10 && wc <= 17 ? "#16a34a" : "#f87171";
+                    return <span style={{ color, marginLeft: 8, fontWeight: 700, textTransform: "none", letterSpacing: 0 }}>{wc} / 10-17 slov</span>;
                   })()}
                 </label>
                 <textarea
