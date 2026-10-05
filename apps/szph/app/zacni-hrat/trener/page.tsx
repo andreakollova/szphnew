@@ -83,15 +83,6 @@ export default function ChcemSaStatTreneromPage() {
           </div>
         </section>
         <section className="mb-12">
-          <div className="p-6" style={{ background: "rgba(0,120,253,0.04)", borderRadius: "3px", border: "1px solid rgba(0,120,253,0.08)" }}>
-            <h2 className="font-garet font-bold text-[#051937] mb-3" style={{ fontSize: "20px" }}>Vzdelávanie trénerov</h2>
-            <p className="text-[#334155] leading-relaxed mb-4" style={{ fontSize: "14px" }}>Trénovanie si vyžaduje znalosť hry aj schopnosť vysvetľovať, plánovať a pracovať s ľuďmi.</p>
-            <Link href="/projekty/hokejova-akademia" className="inline-flex items-center gap-1.5 font-garet font-bold text-[#012d74] hover:text-[#051937] transition-colors" style={{ fontSize: "13px" }}>
-              Pozrieť Hokejovú akadémiu <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </Link>
-          </div>
-        </section>
-        <section className="mb-12">
           <div className="p-6" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)", borderRadius: "8px" }}>
             <h2 className="font-garet font-bold italic text-white mb-3" style={{ fontSize: "20px" }}>Klub nie je v tvojom meste?</h2>
             <p className="text-white/80 leading-relaxed mb-4" style={{ fontSize: "14px" }}>
