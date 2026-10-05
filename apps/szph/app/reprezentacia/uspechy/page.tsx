@@ -1,22 +1,88 @@
-import Image from "next/image";
-import Link from "next/link";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Úspechy a ocenenia - Reprezentácia",
-  description: "Kompletný prehľad medailí a výsledkov slovenských reprezentácií v pozemnom hokeji.",
+import { useState } from "react";
+import Link from "next/link";
+
+const TABS = [
+  "Muži - hala",
+  "Muži - vonku",
+  "Ženy - hala",
+  "Ženy - vonku",
+  "Juniori U21 - hala",
+  "Juniorky U21 - hala",
+  "Mládež - vonku",
+] as const;
+
+type TabKey = (typeof TABS)[number];
+
+interface Row {
+  year: string;
+  event: string;
+  result: string;
+}
+
+const DATA: Record<TabKey, Row[]> = {
+  "Muži - hala": [
+    { year: "2026", event: "Championship II-A, Sv. Ivan Zelina", result: "3. miesto" },
+    { year: "2024", event: "Championship II-B, Budapešť", result: "3. miesto" },
+    { year: "2018", event: "Championship III, Nikózia", result: "2. miesto" },
+    { year: "2008", event: "Nations Trophy, Kodaň", result: "3. miesto" },
+  ],
+  "Muži - vonku": [
+    { year: "2015", event: "Championship IV, Vilnius", result: "1. miesto, postup" },
+    { year: "2009", event: "Challenge II, Bratislava", result: "2. miesto, postup" },
+  ],
+  "Ženy - hala": [
+    { year: "2022", event: "Championship III, Bratislava", result: "2. miesto" },
+    { year: "2018", event: "Championship III, Apače", result: "2. miesto" },
+    { year: "2010", event: "Nations Trophy, Nymburk", result: "3. miesto" },
+  ],
+  "Ženy - vonku": [
+    { year: "2022", event: "Kvalifikácia na ME, Durham", result: "3. miesto, postup do Championship II" },
+    { year: "2005", event: "Challenge, Praha", result: "3. miesto" },
+  ],
+  "Juniori U21 - hala": [
+    { year: "2025", event: "Championship II, Lousada", result: "2. miesto" },
+    { year: "2019", event: "Championship II, Paredes", result: "2. miesto" },
+    { year: "2017", event: "Championship II, Puconci", result: "3. miesto" },
+    { year: "2015", event: "Championship II, Sv. Ivan Zelina", result: "3. miesto" },
+    { year: "2013", event: "Championship II, Bratislava", result: "3. miesto" },
+    { year: "2007", event: "Trophy, Miláno", result: "3. miesto" },
+    { year: "2002", event: "Trophy, Sopron", result: "3. miesto" },
+    { year: "1998", event: "Trophy, Bratislava", result: "2. miesto" },
+  ],
+  "Juniorky U21 - hala": [
+    { year: "2019", event: "Championship II, Sv. Ivan Zelina", result: "2. miesto" },
+    { year: "2011", event: "Championship II, Lignano", result: "3. miesto" },
+    { year: "2005", event: "Trophy, Bratislava", result: "1. miesto" },
+    { year: "2001", event: "Trophy, Bratislava", result: "3. miesto" },
+    { year: "1994", event: "ME, Llodio", result: "3. miesto v Európe" },
+  ],
+  "Mládež - vonku": [
+    { year: "2026", event: "Dievčatá U16 5s Championship II, Kutaisi", result: "3. miesto" },
+    { year: "2022", event: "Chlapci U16 5s Championship II, Alanya", result: "2. miesto" },
+    { year: "2014", event: "Muži U21 Championship III, Hradec Králové", result: "3. miesto" },
+    { year: "2012", event: "Muži U21 Championship III-B, Bratislava", result: "2. miesto" },
+    { year: "2010", event: "Muži U21 Championship III, Atény", result: "3. miesto" },
+    { year: "2008", event: "Ženy U21 Challenge, Viedeň", result: "3. miesto" },
+    { year: "2006", event: "Ženy U21 Challenge, Albena", result: "3. miesto" },
+  ],
 };
 
-function rc(r: string) { return r.includes("1.") ? "#D4A017" : r.includes("2.") ? "#8a8a8a" : r.includes("3.") ? "#CD7F32" : "#334155"; }
+function resultColor(r: string) {
+  if (r.includes("1.")) return "#D4A017";
+  if (r.includes("2.")) return "#8a8a8a";
+  if (r.includes("3.")) return "#CD7F32";
+  return "#334155";
+}
 
-function Table({ data }: { data: { year: string; form: string; event: string; result: string }[] }) {
+function Table({ data }: { data: Row[] }) {
   return (
-    <div className="overflow-x-auto mb-8">
-      <table className="w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+    <div className="overflow-x-auto">
+      <table className="notranslate w-full text-sm" style={{ background: "#fff", borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
         <thead>
           <tr style={{ borderBottom: "2px solid rgba(1,45,116,0.08)" }}>
             <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Rok</th>
-            <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Forma</th>
             <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Súťaž a miesto</th>
             <th className="px-4 py-3 text-left font-bold text-[#051937]" style={{ fontSize: "11px" }}>Výsledok</th>
           </tr>
@@ -25,9 +91,8 @@ function Table({ data }: { data: { year: string; form: string; event: string; re
           {data.map((r, i) => (
             <tr key={i} style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
               <td className="px-4 py-3 font-bold text-[#051937]" style={{ fontSize: "13px" }}>{r.year}</td>
-              <td className="px-4 py-3 text-[#64748b]" style={{ fontSize: "13px" }}>{r.form}</td>
               <td className="px-4 py-3 text-[#334155]" style={{ fontSize: "13px" }}>{r.event}</td>
-              <td className="px-4 py-3 font-bold" style={{ fontSize: "13px", color: rc(r.result) }}>{r.result}</td>
+              <td className="px-4 py-3 font-bold whitespace-nowrap" style={{ fontSize: "13px", color: resultColor(r.result) }}>{r.result}</td>
             </tr>
           ))}
         </tbody>
@@ -37,8 +102,11 @@ function Table({ data }: { data: { year: string; form: string; event: string; re
 }
 
 export default function UspechyPage() {
+  const [activeTab, setActiveTab] = useState<TabKey>("Muži - hala");
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
+      {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[1100px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Reprezentácia</span>
@@ -69,81 +137,35 @@ export default function UspechyPage() {
           </div>
         </div>
 
-        {/* Muži - hala */}
-        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>Muži - hala</h2>
-        <Table data={[
-          { year: "2026", form: "Championship II-A", event: "Sv. Ivan Zelina", result: "3. miesto" },
-          { year: "2024", form: "Championship II-B", event: "Budapešť", result: "3. miesto" },
-          { year: "2018", form: "Championship III", event: "Nikózia", result: "2. miesto" },
-          { year: "2008", form: "Nations Trophy", event: "Kodaň", result: "3. miesto" },
-        ]} />
-
-        {/* Muži - vonku */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Muži - vonku</h2>
-        <Table data={[
-          { year: "2015", form: "Championship IV", event: "Vilnius", result: "1. miesto, postup" },
-          { year: "2009", form: "Challenge II", event: "Bratislava", result: "2. miesto, postup" },
-        ]} />
-
-        {/* Ženy - hala */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy - hala</h2>
-        <Table data={[
-          { year: "2022", form: "Championship III", event: "Bratislava", result: "2. miesto" },
-          { year: "2018", form: "Championship III", event: "Apače", result: "2. miesto" },
-          { year: "2010", form: "Nations Trophy", event: "Nymburk", result: "3. miesto" },
-        ]} />
-
-        {/* Ženy - vonku */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy - vonku</h2>
-        <Table data={[
-          { year: "2022", form: "Kvalifikácia na ME", event: "Durham", result: "3. miesto, postup do Championship II" },
-          { year: "2005", form: "Challenge", event: "Praha", result: "3. miesto" },
-        ]} />
-
-        {/* Juniori U21 - hala */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Juniori U21 - hala</h2>
-        <Table data={[
-          { year: "2025", form: "Championship II", event: "Lousada", result: "2. miesto" },
-          { year: "2019", form: "Championship II", event: "Paredes", result: "2. miesto" },
-          { year: "2017", form: "Championship II", event: "Puconci", result: "3. miesto" },
-          { year: "2015", form: "Championship II", event: "Sv. Ivan Zelina", result: "3. miesto" },
-          { year: "2013", form: "Championship II", event: "Bratislava", result: "3. miesto" },
-          { year: "2007", form: "Trophy", event: "Miláno", result: "3. miesto" },
-          { year: "2002", form: "Trophy", event: "Sopron", result: "3. miesto" },
-          { year: "1998", form: "Trophy", event: "Bratislava", result: "2. miesto" },
-        ]} />
-
-        {/* Juniorky U21 - hala */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Juniorky U21 - hala</h2>
-        <Table data={[
-          { year: "2019", form: "Championship II", event: "Sv. Ivan Zelina", result: "2. miesto" },
-          { year: "2011", form: "Championship II", event: "Lignano", result: "3. miesto" },
-          { year: "2005", form: "Trophy", event: "Bratislava", result: "1. miesto" },
-          { year: "2001", form: "Trophy", event: "Bratislava", result: "3. miesto" },
-          { year: "1994", form: "ME", event: "Llodio", result: "3. miesto v Európe" },
-        ]} />
-
-        {/* Juniorky/Juniori - vonku */}
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Mládež - vonku</h2>
-        <Table data={[
-          { year: "2026", form: "Dievčatá U16, 5s Championship II", event: "Kutaisi", result: "3. miesto" },
-          { year: "2022", form: "Chlapci U16, 5s Championship II", event: "Alanya", result: "2. miesto" },
-          { year: "2014", form: "Muži U21, Championship III", event: "Hradec Králové", result: "3. miesto" },
-          { year: "2012", form: "Muži U21, Championship III-B", event: "Bratislava", result: "2. miesto" },
-          { year: "2010", form: "Muži U21, Championship III", event: "Atény", result: "3. miesto" },
-          { year: "2008", form: "Ženy U21, Challenge", event: "Viedeň", result: "3. miesto" },
-          { year: "2006", form: "Ženy U21, Challenge", event: "Albena", result: "3. miesto" },
-        ]} />
-
-        {/* Pannonia Cup */}
-        <div className="rounded-lg p-5 mb-8" style={{ background: "rgba(0,120,253,0.04)", border: "1px solid rgba(0,120,253,0.1)" }}>
-          <p className="text-[#334155]" style={{ fontSize: "13px", lineHeight: 1.7 }}>
-            Z menších podujatí archív eviduje aj prvenstvá v halovom <strong>Pannonia Cupe</strong>: muži 2009, ženy 2002 a 2009.
-          </p>
+        {/* Tabs */}
+        <div className="overflow-x-auto pb-2 mb-6 -mx-6 px-6" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <div className="flex gap-2" style={{ minWidth: "max-content" }}>
+            {TABS.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className="whitespace-nowrap font-bold transition-all"
+                style={{
+                  fontSize: "13px",
+                  padding: "8px 18px",
+                  borderRadius: "20px",
+                  background: activeTab === tab ? "#012d74" : "rgba(1,45,116,0.06)",
+                  color: activeTab === tab ? "#fff" : "#334155",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
 
+        {/* Active tab table */}
+        <Table data={DATA[activeTab]} />
+
         {/* Klubové */}
-        <div className="mt-8 p-6 bg-white" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+        <div className="mt-12 p-6 bg-white" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
           <h3 className="font-bold text-[#051937] mb-2" style={{ fontSize: "16px" }}>Klubové výsledky na európskej scéne</h3>
           <p className="text-[#334155] mb-4" style={{ fontSize: "14px", lineHeight: 1.7 }}>
             Slovenské kluby sa pravidelne zúčastňujú EuroHockey Club Championships od roku 1992. Kompletné výsledky nájdete na stránke PEM.
