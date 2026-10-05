@@ -213,7 +213,7 @@ export default function ProductDetailPage() {
               <Link
                 href={`/eshop/objednavka?produkt=${encodeURIComponent(product.name)}${selectedSize ? `&velkost=${selectedSize}` : ""}`}
                 className="flex items-center justify-center gap-2 w-full mt-6 font-garet font-bold text-white transition-all hover:brightness-110"
-                style={{ background: "#012d74", borderRadius: "4px", padding: "14px", fontSize: "14px" }}
+                style={{ background: "#012d74", borderRadius: "20px", padding: "14px", fontSize: "14px" }}
               >
                 Objednať
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>

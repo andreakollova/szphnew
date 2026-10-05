@@ -117,7 +117,7 @@ function OrderFormContent() {
               <p className="text-[#94a3b8]" style={{ fontSize: "12px" }}>Platba prebieha pri prevzatí objednávky. Po odoslaní vás budeme kontaktovať s potvrdením a dohodou na doručení.</p>
             </div>
 
-            <button type="submit" className="w-full font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#012d74", borderRadius: "4px", padding: "14px", fontSize: "14px" }}>
+            <button type="submit" className="w-full font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#012d74", borderRadius: "20px", padding: "14px", fontSize: "14px" }}>
               Odoslať záväznú objednávku
             </button>
           </form>

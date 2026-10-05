@@ -400,11 +400,11 @@ export default async function SzphHome() {
                       { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-olympiada-2036.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
                       <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden snap-start shrink-0" style={{ borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", width: "75%" }}>
-                        <div className="relative overflow-hidden" style={{ height: "150px" }}>
+                        <div className="relative overflow-hidden" style={{ height: "180px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         </div>
                         <div className="px-4 py-3">
-                          <h3 className="font-bold text-white leading-snug line-clamp-2" style={{ fontSize: "13px" }}>
+                          <h3 className="font-bold text-white leading-snug line-clamp-3" style={{ fontSize: "14px" }}>
                             {article.title}
                           </h3>
                         </div>
@@ -418,15 +418,15 @@ export default async function SzphHome() {
                       { title: "Program Olympiáda 2036", image: "/images/pinned-kyselicova.webp", slug: "program-olympiada-2036" },
                       { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-olympiada-2036.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
-                      <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "3px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                        <div className="relative overflow-hidden" style={{ height: "180px" }}>
+                      <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                        <div className="relative overflow-hidden" style={{ height: "200px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         </div>
                         <div className="px-4 py-3.5">
                           <span className="inline-block font-extrabold uppercase text-[#0078fd] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                             / neprehliadnite
                           </span>
-                          <h3 className="font-bold text-white leading-snug group-hover:text-white/90 transition-colors line-clamp-2" style={{ fontSize: "14px" }}>
+                          <h3 className="font-bold text-white leading-snug group-hover:text-white/90 transition-colors line-clamp-3" style={{ fontSize: "15px" }}>
                             {article.title}
                           </h3>
                           <span className="inline-block mt-2 font-bold text-white/60 group-hover:text-white transition-colors underline underline-offset-2" style={{ fontSize: "11px" }}>
