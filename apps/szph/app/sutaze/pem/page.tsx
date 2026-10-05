@@ -1,11 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "PEM — EuroHockey Club Championships",
-  description: "Kompletné výsledky slovenských klubov na európskych klubových šampionátoch v pozemnom a halovom hokeji.",
-};
+import { useState } from "react";
 
 function rc(r: string) { return r.includes("1.") ? "#D4A017" : r.includes("2.") ? "#8a8a8a" : r.includes("3.") ? "#CD7F32" : "#334155"; }
 function rb(r: string) { return r.includes("1.") ? "rgba(212,160,23,0.08)" : r.includes("2.") ? "rgba(138,138,138,0.06)" : r.includes("3.") ? "rgba(205,127,50,0.06)" : "transparent"; }
@@ -161,6 +158,31 @@ const ZV = [
   { year: "2014", level: "Challenge III", venue: "Viedeň", club: "KPH Rača", result: "5." },
 ];
 
+function PEMTabs() {
+  const [active, setActive] = useState("Muži - halový");
+  const tabs = ["Muži - halový", "Muži - vonkajší", "Ženy - halový", "Ženy - vonkajší"];
+  const tabData: Record<string, any[]> = {
+    "Muži - halový": [...MH].reverse(),
+    "Muži - vonkajší": [...MV].reverse().map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") })),
+    "Ženy - halový": [...ZH].reverse(),
+    "Ženy - vonkajší": [...ZV].reverse().map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") })),
+  };
+  return (
+    <>
+      <div className="flex items-center gap-2 mb-8 flex-wrap">
+        {tabs.map((tab) => (
+          <button key={tab} onClick={() => setActive(tab)}
+            className="px-5 py-2.5 font-bold uppercase transition-all"
+            style={{ fontSize: "11px", letterSpacing: "0.08em", background: active === tab ? "#012d74" : "transparent", color: active === tab ? "#fff" : "#64748b", border: active === tab ? "1px solid #012d74" : "1px solid rgba(1,45,116,0.12)", borderRadius: "24px" }}>
+            {tab}
+          </button>
+        ))}
+      </div>
+      <T data={tabData[active]} />
+    </>
+  );
+}
+
 export default function PEMPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
@@ -168,6 +190,9 @@ export default function PEMPage() {
         <div className="max-w-[1000px] mx-auto">
           <Link href="/sutaze" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}><svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>Späť</Link>
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Súťaže</span>
+          <div className="flex items-center gap-4 mb-2">
+            <Image src="/images/logo-eurohockey-white.webp" alt="EuroHockey" width={60} height={50} className="object-contain" />
+          </div>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
             EuroHockey Club Championships
           </h1>
@@ -178,17 +203,7 @@ export default function PEMPage() {
       </div>
 
       <div className="max-w-[1000px] mx-auto px-6 pt-12">
-        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>Muži - halový PEM</h2>
-        <T data={[...MH].reverse()} />
-
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Muži - vonkajší PEM</h2>
-        <T data={[...MV].reverse().map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") }))} />
-
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy - halový PEM</h2>
-        <T data={[...ZH].reverse()} />
-
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Ženy - vonkajší PEM</h2>
-        <T data={[...ZV].reverse().map(r => ({ ...r, year: r.year.replace(/[ab]$/, "") }))} />
+        <PEMTabs />
 
         {/* Zaujímavosti */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Historické zaujímavosti</h2>
