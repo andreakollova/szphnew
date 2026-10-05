@@ -41,7 +41,7 @@ export function ArticleCard({ article, href, className, delay = 0, featured = fa
     >
       <Link href={link} className="block">
         {article.cover_image_url && (
-          <div className={cn("relative overflow-hidden", featured ? "h-64 md:h-80" : "h-48")}>
+          <div className={cn("relative overflow-hidden", featured ? "h-64 md:h-80" : "h-56")}>
             <Image
               src={article.cover_image_url}
               alt={article.title}
@@ -63,7 +63,7 @@ export function ArticleCard({ article, href, className, delay = 0, featured = fa
 
           <h3 className={cn(
             "font-bold text-[#012d74] transition-colors group-hover:text-[#016fb4] leading-snug",
-            featured ? "text-xl md:text-2xl" : "text-base"
+            featured ? "text-xl md:text-2xl" : "text-[17px]"
           )}>
             {article.title}
           </h3>
