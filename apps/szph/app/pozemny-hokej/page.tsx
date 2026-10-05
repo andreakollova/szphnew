@@ -96,6 +96,16 @@ export default function PozemnyHokejPage() {
           </li>
         </ul>
 
+        {/* Fotogaléria — vonkajší hokej */}
+        <div className="grid grid-cols-2 gap-3 my-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/vonku-1.jpg" alt="Vonkajší pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 500px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/vonku-2.jpg" alt="Vonkajší pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 500px" />
+          </div>
+        </div>
+
         {/* Ako sa hrá */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
           Ako sa hrá
@@ -263,16 +273,6 @@ export default function PozemnyHokejPage() {
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Pre tých, ktorí nikdy nevideli pozemný hokej, môže byť prvý pohľad fascinujúci pre niektorích zase zvláštny. Dynamika pohybov, presné prihrávky, rýchlosť hry a elegancia hokejky ovládanej rukami hráčov vytvárajú jedinečný zážitok. Aj keď sa môže na prvý pohľad zdať, že hra je komplikovaná, jej princípy sú pomerne jednoduché: dostať loptu do súperovej brány a brániť svoju vlastnú bránu.
         </p>
-
-        {/* Fotogaléria — vonkajší hokej */}
-        <div className="grid grid-cols-2 gap-3 my-10">
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/vonku-1.jpg" alt="Vonkajší pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 500px" />
-          </div>
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/vonku-2.jpg" alt="Vonkajší pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 500px" />
-          </div>
-        </div>
 
         {/* Halový hokej */}
         <h2 className="font-bold text-[#051937] mt-16 mb-6" style={{ fontSize: "24px" }}>
