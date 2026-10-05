@@ -57,7 +57,7 @@ export default async function KlubyPage() {
         <ClubGrid clubs={clubs} />
 
         {/* CTA */}
-        <div className="mt-10 p-6 text-center" style={{ background: "#fff", borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+        <div className="mt-4 p-6 text-center" style={{ background: "#fff", borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
           <p className="font-garet font-bold text-[#051937] mb-2" style={{ fontSize: "18px" }}>Nenašli ste svoj klub?</p>
           <p className="text-[#64748b] mb-4" style={{ fontSize: "13px" }}>Založte si vlastný klub pozemného hokeja vo vašom meste.</p>
           <Link href="/pre-kluby/zalozenie" className="inline-flex items-center gap-2 font-bold text-white transition-all hover:brightness-110" style={{ background: "#012d74", borderRadius: "20px", padding: "10px 24px", fontSize: "12px" }}>
