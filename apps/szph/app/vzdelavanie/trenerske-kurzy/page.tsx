@@ -96,42 +96,6 @@ export default function TrenerskeKurzyPage() {
                 Trvanie: 3 dni | Podmienka: Level 1 + min. 1 rok praxe
               </p>
             </div>
-            <div className="p-5 bg-white rounded-xl border border-gray-200">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="px-2.5 py-0.5 bg-[#051937]/10 text-[#051937] text-xs font-bold rounded">
-                  Level 3
-                </span>
-                <h3 className="font-garet font-bold text-[#051937]">
-                  Výkonnostný trénerský kurz
-                </h3>
-              </div>
-              <p className="text-sm text-[#666] mb-2">
-                Pokročilý kurz pre trénerov súťažných družstiev. Pokročilá
-                taktika, analýza hry, periodizácia tréningu, psychologická
-                príprava a vedenie tímu na vysokej úrovni.
-              </p>
-              <p className="text-xs text-[#999]">
-                Trvanie: 4-5 dni | Podmienka: Level 2 + min. 2 roky praxe
-              </p>
-            </div>
-            <div className="p-5 bg-white rounded-xl border border-gray-200">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="px-2.5 py-0.5 bg-[#051937]/10 text-[#051937] text-xs font-bold rounded">
-                  Level 4
-                </span>
-                <h3 className="font-garet font-bold text-[#051937]">
-                  Elitný trénerský kurz
-                </h3>
-              </div>
-              <p className="text-sm text-[#666] mb-2">
-                Najvyššia úroveň pre trénerov národných tímov. Strategické
-                vedenie, športová veda, medzinárodné štandardy a príprava na
-                vrcholové súťaže. Realizovaný v spolupráci s FIH.
-              </p>
-              <p className="text-xs text-[#999]">
-                Trvanie: individuálne | Podmienka: Level 3 + nominácia SZPH
-              </p>
-            </div>
           </div>
         </section>
 
