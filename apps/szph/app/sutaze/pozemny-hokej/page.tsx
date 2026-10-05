@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { MatchList, getCurrentSeason } from "../MatchList";
 
 export const metadata: Metadata = {
   title: "Pozemný hokej - Súťaže - Slovenský pozemnohokejový zväz",
-  description: "Prehľad outdoorovej sezóny pozemného hokeja na Slovensku. Informácie o formáte, pravidlách a priebehu pozemnej sezóny.",
+  description: "Prehľad outdoorovej sezóny pozemného hokeja na Slovensku. Zápasy, výsledky a informácie o pozemnej sezóne.",
 };
 
 export default function PozemnyHokejSutazPage() {
+  const season = getCurrentSeason();
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}
@@ -19,14 +22,22 @@ export default function PozemnyHokejSutazPage() {
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
             Pozemný hokej
           </h1>
-          <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px" }}>
+          <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px", opacity: 0.85 }}>
             Outdoorová sezóna na umelej tráve - hlavná disciplína pozemného hokeja.
+          </p>
+          <p className="text-white mt-2" style={{ fontSize: "13px", opacity: 0.6 }}>
+            Sezóna {season}
           </p>
         </div>
       </div>
 
+      {/* Match list */}
+      <div className="max-w-[1100px] mx-auto px-6 pt-10">
+        <MatchList type="outdoor" />
+      </div>
+
       {/* Content */}
-      <div className="max-w-[1100px] mx-auto px-6 pt-12">
+      <div className="max-w-[1100px] mx-auto px-6">
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Pozemný (outdoor) hokej je základná a najrozšírenejšia forma tohto športu. Hrá sa na ihriskách s umelou trávou v jarných a jesenných mesiacoch. Na Slovensku prebieha pozemná sezóna typicky od marca do novembra, pričom sa hrá v dvoch častiach - jarná a jesenná časť.
         </p>
@@ -72,7 +83,7 @@ export default function PozemnyHokejSutazPage() {
         {/* Link to results */}
         <div className="mt-12 flex gap-6">
           <Link href="/zapasy" className="inline-flex items-center gap-2 font-bold text-[#012d74] hover:underline" style={{ fontSize: "15px" }}>
-            Výsledky a tabuľky
+            Všetky zápasy
             <span>&#8594;</span>
           </Link>
           <Link href="/sutaze" className="inline-flex items-center gap-2 font-bold text-[#334155] hover:underline" style={{ fontSize: "15px" }}>
