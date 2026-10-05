@@ -168,6 +168,12 @@ export interface Achievement {
   result: string;
 }
 
+export interface Champion {
+  year: string;
+  event: string; // "Pozemný hokej" | "Halový hokej"
+  team: string;
+}
+
 export interface Category {
   id: string;
   name: string;
@@ -176,6 +182,7 @@ export interface Category {
   description: string | null;
   nominations: NominationPlayer[] | null;
   achievements: Achievement[] | null;
+  champions: Champion[] | null;
   sort_order: number;
   status: CategoryStatus;
   created_at: string;
@@ -189,6 +196,7 @@ export interface CategoryFormData {
   description: string;
   nominations: NominationPlayer[];
   achievements: Achievement[];
+  champions: Champion[];
   sort_order: number;
   status: CategoryStatus;
 }

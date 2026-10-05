@@ -1,12 +1,47 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { createClient } from "@supabase/supabase-js";
+import type { Champion } from "@szph/db/types";
 
 export const metadata: Metadata = {
   title: "Extraliga mužov - Slovenský pozemnohokejový zväz",
   description: "Extraliga mužov je najvyššia súťaž v pozemnom hokeji na Slovensku. Informácie o formáte, kluboch a priebehu súťaže.",
 };
 
-export default function MuskaLigaPage() {
+function getSupabase() {
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+}
+
+const fallbackPozemny = [
+  { year: "2026", team: "KPH Rača" },
+  { year: "2025", team: "KPH Rača" },
+  { year: "2024", team: "KPH Rača" },
+  { year: "2023", team: "KPH Rača" },
+  { year: "2022", team: "KPH Rača" },
+];
+
+const fallbackHalovy = [
+  { year: "2026", team: "KPH Rača" },
+  { year: "2025", team: "KPH HOKO Zlaté Moravce" },
+  { year: "2024", team: "KPH Rača" },
+  { year: "2023", team: "KPH Rača" },
+  { year: "2022", team: "KPH Rača" },
+];
+
+export default async function MuskaLigaPage() {
+  const supabase = getSupabase();
+  const { data: category } = await supabase
+    .from("categories")
+    .select("champions")
+    .eq("slug", "extraliga-muzi")
+    .single();
+
+  const champions: Champion[] = category?.champions ?? [];
+  const pozemny = champions.filter((c) => c.event === "Pozemný hokej").sort((a, b) => b.year.localeCompare(a.year));
+  const halovy = champions.filter((c) => c.event === "Halový hokej").sort((a, b) => b.year.localeCompare(a.year));
+
+  const pozemnyData = pozemny.length > 0 ? pozemny : fallbackPozemny;
+  const halovyData = halovy.length > 0 ? halovy : fallbackHalovy;
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}
@@ -72,13 +107,7 @@ export default function MuskaLigaPage() {
           <div className="bg-white p-5" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
             <p className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-3">Pozemný hokej</p>
             <div className="space-y-2">
-              {[
-                { year: "2026", team: "KPH Rača" },
-                { year: "2025", team: "KPH Rača" },
-                { year: "2024", team: "KPH Rača" },
-                { year: "2023", team: "KPH Rača" },
-                { year: "2022", team: "KPH Rača" },
-              ].map((r) => (
+              {pozemnyData.map((r) => (
                 <div key={r.year} className="flex items-center justify-between py-1.5" style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <span className="font-bold text-[#012d74]" style={{ fontSize: "14px" }}>{r.year}</span>
                   <span className="font-semibold text-[#051937]" style={{ fontSize: "14px" }}>{r.team}</span>
@@ -89,13 +118,7 @@ export default function MuskaLigaPage() {
           <div className="bg-white p-5" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
             <p className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-3">Halový hokej</p>
             <div className="space-y-2">
-              {[
-                { year: "2026", team: "KPH Rača" },
-                { year: "2025", team: "KPH HOKO Zlaté Moravce" },
-                { year: "2024", team: "KPH Rača" },
-                { year: "2023", team: "KPH Rača" },
-                { year: "2022", team: "KPH Rača" },
-              ].map((r) => (
+              {halovyData.map((r) => (
                 <div key={r.year} className="flex items-center justify-between py-1.5" style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
                   <span className="font-bold text-[#012d74]" style={{ fontSize: "14px" }}>{r.year}</span>
                   <span className="font-semibold text-[#051937]" style={{ fontSize: "14px" }}>{r.team}</span>

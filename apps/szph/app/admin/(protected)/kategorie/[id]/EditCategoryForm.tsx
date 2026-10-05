@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createBrowserSupabaseClient } from "@szph/db/client";
-import type { Category, NominationPlayer, Achievement, CategoryType, CategoryStatus } from "@szph/db/types";
+import type { Category, NominationPlayer, Achievement, Champion, CategoryType, CategoryStatus } from "@szph/db/types";
 
 const inputCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none focus:border-[#012d74]/50 transition-all";
 const selectCls = "w-full rounded border border-[rgba(1,45,116,0.15)] bg-white px-4 py-2.5 text-sm text-[#051937] outline-none [&_option]:bg-white";
 const labelCls = "block text-[10px] font-semibold uppercase tracking-wider text-[#64748b] mb-1.5";
 const smallInputCls = "rounded border border-[rgba(1,45,116,0.15)] bg-white px-3 py-2 text-sm text-[#051937] outline-none focus:border-[#012d74]/50 transition-all";
 
-type Tab = "zakladne" | "nominacia" | "uspechy";
+type Tab = "zakladne" | "nominacia" | "uspechy" | "majstri";
 
 export function EditCategoryForm({ category }: { category: Category }) {
   const router = useRouter();
@@ -29,6 +29,7 @@ export function EditCategoryForm({ category }: { category: Category }) {
 
   const [nominations, setNominations] = useState<NominationPlayer[]>(category.nominations || []);
   const [achievements, setAchievements] = useState<Achievement[]>(category.achievements || []);
+  const [champions, setChampions] = useState<Champion[]>(category.champions || []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -47,6 +48,7 @@ export function EditCategoryForm({ category }: { category: Category }) {
         sort_order: sortOrder,
         nominations: nominations.length > 0 ? nominations : null,
         achievements: achievements.length > 0 ? achievements : null,
+        champions: champions.length > 0 ? champions : null,
         updated_at: new Date().toISOString(),
       })
       .eq("id", category.id);
@@ -83,6 +85,11 @@ export function EditCategoryForm({ category }: { category: Category }) {
         <button type="button" className={tabBtnCls("uspechy")} onClick={() => setTab("uspechy")}>
           Uspechy ({achievements.length})
         </button>
+        {type === "liga" && (
+          <button type="button" className={tabBtnCls("majstri")} onClick={() => setTab("majstri")}>
+            Majstri ({champions.length})
+          </button>
+        )}
       </div>
 
       {/* Tab: Zakladne */}
@@ -300,6 +307,78 @@ export function EditCategoryForm({ category }: { category: Category }) {
               ))}
             </div>
           )}
+        </div>
+      )}
+
+      {/* Tab: Majstri */}
+      {tab === "majstri" && type === "liga" && (
+        <div className="rounded p-6 space-y-6" style={{ background: "#fff", border: "1px solid rgba(1,45,116,0.08)" }}>
+          {(["Pozemný hokej", "Halový hokej"] as const).map((eventType) => {
+            const filtered = champions.filter((c) => c.event === eventType);
+            return (
+              <div key={eventType}>
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-sm font-semibold text-[#051937]">{eventType}</p>
+                  <button
+                    type="button"
+                    onClick={() => setChampions((ch) => [...ch, { year: "", event: eventType, team: "" }])}
+                    className="rounded bg-[#012d74] px-3 py-1.5 text-xs font-bold text-white hover:bg-[#012d74]/90"
+                  >
+                    + Pridat rok
+                  </button>
+                </div>
+
+                {filtered.length === 0 ? (
+                  <p className="text-[#64748b] text-sm py-3 text-center">Ziadni majstri</p>
+                ) : (
+                  <div className="space-y-2">
+                    <div className="grid grid-cols-[100px_1fr_40px] gap-2 text-[10px] font-semibold uppercase tracking-wider text-[#64748b] px-1">
+                      <span>Rok</span>
+                      <span>Tym</span>
+                      <span />
+                    </div>
+                    {filtered.map((ch) => {
+                      const globalIdx = champions.findIndex((c) => c === ch);
+                      return (
+                        <div key={globalIdx} className="grid grid-cols-[100px_1fr_40px] gap-2 items-center">
+                          <input
+                            value={ch.year}
+                            onChange={(e) => {
+                              const updated = [...champions];
+                              updated[globalIdx] = { ...updated[globalIdx], year: e.target.value };
+                              setChampions(updated);
+                            }}
+                            className={smallInputCls}
+                            placeholder="2024"
+                          />
+                          <input
+                            value={ch.team}
+                            onChange={(e) => {
+                              const updated = [...champions];
+                              updated[globalIdx] = { ...updated[globalIdx], team: e.target.value };
+                              setChampions(updated);
+                            }}
+                            className={smallInputCls}
+                            placeholder="Nazov tymu"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setChampions((c) => c.filter((_, i) => i !== globalIdx))}
+                            className="text-red-400 hover:text-red-600 transition-colors text-center"
+                            title="Odstranit"
+                          >
+                            <svg className="h-4 w-4 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                          </button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
 
