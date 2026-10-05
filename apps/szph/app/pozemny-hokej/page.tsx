@@ -304,33 +304,16 @@ export default function PozemnyHokejPage() {
           Na Slovensku sa halový hokej teší veľkej popularite. Slovenské reprezentácie sa pravidelne zúčastňujú európskych šampionátov v rámci divízneho systému EuroHockey. Halová liga prebieha od októbra do marca a zahŕňa mužskú aj ženskú súťaž.
         </p>
 
-        <div className="grid grid-cols-2 gap-3 my-10">
+        <div className="grid grid-cols-3 gap-3 my-10">
           <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/mega-reprezentacia.webp" alt="Reprezentácia" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
+            <Image src="/images/hala-1.jpg" alt="Halový hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
           </div>
           <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/hero-banner2.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 420px" />
+            <Image src="/images/hala-2.jpg" alt="Halový hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
           </div>
-        </div>
-
-        {/* Odkazy */}
-        <div className="mt-12 pt-8 flex flex-col sm:flex-row gap-3" style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
-          <Link
-            href="/novinky/reportaz-alena-kyselicova"
-            className="flex-1 group block p-5 bg-white hover:bg-[#f0f4fa] transition-colors"
-            style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}
-          >
-            <span className="inline-block px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-[#d80027] text-white mb-2" style={{ borderRadius: "3px" }}>Reprezentácia</span>
-            <h3 className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>Reportáž s Olympioničkou – Alena Kyselicová</h3>
-          </Link>
-          <Link
-            href="/novinky/program-olympiada-2036"
-            className="flex-1 group block p-5 bg-white hover:bg-[#f0f4fa] transition-colors"
-            style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}
-          >
-            <span className="inline-block px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-[#012d74] text-white mb-2" style={{ borderRadius: "3px" }}>Novinky</span>
-            <h3 className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>Program Olympiáda 2036</h3>
-          </Link>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/hala-3.jpg" alt="Halový hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
         </div>
       </div>
     </article>
