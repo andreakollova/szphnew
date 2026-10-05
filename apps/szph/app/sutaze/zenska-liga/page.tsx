@@ -28,7 +28,7 @@ export default function ZenskaLigaPage() {
       {/* Content */}
       <div className="max-w-[1100px] mx-auto px-6 pt-12">
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Extraliga žien je hlavná súťaž ženského pozemného hokeja na Slovensku. Reprezentuje najvyššiu úroveň ženského hokeja v krajine a každú sezónu v nej súria najlepšie ženské tímy o titul Majsteriek Slovenska. Súťaž organizuje Slovenský pozemnohokejový zväz.
+          Extraliga žien je hlavná súťaž ženského pozemného hokeja na Slovensku. Reprezentuje najvyššiu úroveň ženského hokeja v krajine a každú sezónu v nej súťažia najlepšie ženské tímy o titul Majsteriek Slovenska. Súťaž organizuje Slovenský pozemnohokejový zväz.
         </p>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>

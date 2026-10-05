@@ -9,12 +9,12 @@ export const metadata: Metadata = {
 export default function SutazePage() {
   const competitions = [
     {
-      title: "Extraliga mužov",
+      title: "Liga mužov",
       description: "Najvyššia mužská súťaž v pozemnom hokeji na Slovensku.",
       href: "/sutaze/muzska-liga",
     },
     {
-      title: "Extraliga žien",
+      title: "Liga žien",
       description: "Najvyššia ženská súťaž v pozemnom hokeji na Slovensku.",
       href: "/sutaze/zenska-liga",
     },
@@ -73,7 +73,7 @@ export default function SutazePage() {
           Seniorské súťaže
         </h2>
         <p className="text-[#334155] mb-6" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Najvyššou súťažou v slovenskom pozemnom hokeji je Extraliga, ktorá sa hrá oddelene pre mužov a ženy. Extraliga je hlavnou celoštátnou ligou, v ktorej sa stretávajú najlepšie kluby zo všetkých regiónov Slovenska. Víťaz Extraligy získava titul Majstra Slovenska.
+          Najvyššou súťažou v slovenskom pozemnom hokeji je Liga, ktorá sa hrá oddelene pre mužov a ženy. Liga je hlavnou celoštátnou súťažou, v ktorej sa stretávajú najlepšie kluby zo všetkých regiónov Slovenska. Víťaz získava titul Majstra Slovenska.
         </p>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>

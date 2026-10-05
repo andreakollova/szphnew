@@ -28,7 +28,7 @@ export default function MuskaLigaPage() {
       {/* Content */}
       <div className="max-w-[1100px] mx-auto px-6 pt-12">
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Extraliga mužov je najvyššia a najprestížnejšia súťaž v slovenskom pozemnom hokeji. Každú sezónu sa v nej stretávajú najlepšie mužské kluby zo Slovenska, ktoré súria o titul Majstra Slovenska. Súťaž organizuje Slovenský pozemnohokejový zväz (SZPH) a prebieha v pozemnej (outdoor) aj halovej (indoor) forme.
+          Extraliga mužov je najvyššia a najprestížnejšia súťaž v slovenskom pozemnom hokeji. Každú sezónu sa v nej stretávajú najlepšie mužské kluby zo Slovenska, ktoré súťažia o titul Majstra Slovenska. Súťaž organizuje Slovenský pozemnohokejový zväz (SZPH) a prebieha v pozemnej (outdoor) aj halovej (indoor) forme.
         </p>
 
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
