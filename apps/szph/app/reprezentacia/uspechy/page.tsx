@@ -62,9 +62,9 @@ export default function UspechyPage() {
             <p className="text-white/80 leading-relaxed" style={{ fontSize: "13px" }}>
               Na Letných olympijských hrách v Moskve získali striebornú medailu tri Slovenky: Alena Kyselicová, Viera Podhányiová a Iveta Šranková. Asistentom trénerky bol Slovák Pavol Rosa. Medaila patrí reprezentácii Československa, no ide o významný úspech slovenských osobností pozemného hokeja.
             </p>
-            <Link href="/novinky/reportaz-alena-kyselicova" className="inline-flex items-center gap-1.5 mt-3 font-bold text-white/70 hover:text-white transition-colors" style={{ fontSize: "11px" }}>
+            <Link href="/novinky/reportaz-alena-kyselicova" className="inline-flex items-center gap-2 mt-4 font-bold text-white transition-all hover:brightness-110" style={{ fontSize: "12px", background: "#d80027", borderRadius: "20px", padding: "10px 20px" }}>
               Reportáž s Alenou Kyselicovou
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </Link>
           </div>
         </div>
