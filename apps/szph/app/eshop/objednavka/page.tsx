@@ -118,7 +118,7 @@ function OrderFormContent() {
             </div>
 
             <button type="submit" className="w-full font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#012d74", borderRadius: "4px", padding: "14px", fontSize: "14px" }}>
-              Odoslať objednávku
+              Odoslať záväznú objednávku
             </button>
           </form>
         )}
