@@ -25,7 +25,9 @@ export default function RozhodcaPage() {
   return (
     <article className="pb-20" style={{ background: "#f8f9fa" }}>
       <div className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)", minHeight: "320px" }}>
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/images/korim-u4e-gallery6.webp" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" style={{ objectPosition: "center 30%" }} />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(5,25,55,0.95) 0%, rgba(1,45,116,0.7) 50%, rgba(1,45,116,0.4) 100%)" }} />
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto py-16">
           <Link href="/" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}><svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>Späť</Link>
           <h1 className="font-garet font-bold italic text-white leading-tight mb-4" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}>Chcem sa stať rozhodcom</h1>
