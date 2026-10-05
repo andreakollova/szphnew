@@ -221,23 +221,23 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2 flex-1 min-w-0">
               <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={34} />
-              <span className={cn("font-bold truncate", homeWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "15px" }}>
+              <span className={cn("font-bold truncate", "text-[#051937]")} style={{ fontSize: "15px" }}>
                 {m.home_short || m.home_team}
               </span>
             </div>
             <div className="shrink-0 flex items-center justify-center" style={{ minWidth: 56 }}>
               {finished ? (
                 <div className="flex items-center gap-1.5">
-                  <span style={{ fontSize: "20px", fontWeight: 800, color: homeWin ? "#16a34a" : "#051937" }}>{m.home_score ?? 0}</span>
+                  <span style={{ fontSize: "20px", fontWeight: 800, color: "#051937" }}>{m.home_score ?? 0}</span>
                   <span style={{ fontSize: "12px", fontWeight: 700, color: "#012d74" }}>:</span>
-                  <span style={{ fontSize: "20px", fontWeight: 800, color: awayWin ? "#16a34a" : "#051937" }}>{m.away_score ?? 0}</span>
+                  <span style={{ fontSize: "20px", fontWeight: 800, color: "#051937" }}>{m.away_score ?? 0}</span>
                 </div>
               ) : (
                 <span className="font-bold text-[#012d74]" style={{ fontSize: "12px" }}>vs</span>
               )}
             </div>
             <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
-              <span className={cn("font-bold truncate text-right", awayWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "15px" }}>
+              <span className={cn("font-bold truncate text-right", "text-[#051937]")} style={{ fontSize: "15px" }}>
                 {m.away_short || m.away_team}
               </span>
               <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={34} />
@@ -269,15 +269,15 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
             )}
           </div>
           <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
-            <span className={cn("font-bold truncate text-right", homeWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "16px" }}>{m.home_short || m.home_team}</span>
+            <span className={cn("font-bold truncate text-right", "text-[#051937]")} style={{ fontSize: "16px" }}>{m.home_short || m.home_team}</span>
             <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={36} />
           </div>
           <div className="shrink-0 flex items-center justify-center" style={{ minWidth: "70px" }}>
             {finished ? (
               <div className="flex items-center gap-2">
-                <span style={{ fontSize: "22px", fontWeight: 800, color: homeWin ? "#16a34a" : "#051937" }}>{m.home_score ?? 0}</span>
+                <span style={{ fontSize: "22px", fontWeight: 800, color: "#051937" }}>{m.home_score ?? 0}</span>
                 <span style={{ fontSize: "13px", fontWeight: 700, color: "#012d74" }}>:</span>
-                <span style={{ fontSize: "22px", fontWeight: 800, color: awayWin ? "#16a34a" : "#051937" }}>{m.away_score ?? 0}</span>
+                <span style={{ fontSize: "22px", fontWeight: 800, color: "#051937" }}>{m.away_score ?? 0}</span>
               </div>
             ) : (
               <div className="flex items-center gap-2">
@@ -289,7 +289,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
           </div>
           <div className="flex items-center gap-3 flex-1 min-w-0">
             <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={36} />
-            <span className={cn("font-bold truncate", awayWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "16px" }}>{m.away_short || m.away_team}</span>
+            <span className={cn("font-bold truncate", "text-[#051937]")} style={{ fontSize: "16px" }}>{m.away_short || m.away_team}</span>
           </div>
           <div className="shrink-0 hidden lg:flex items-center gap-2 justify-end" style={{ width: "180px" }}>
             {m.venue && <span className="font-bold text-[#012d74]/40 truncate" style={{ fontSize: "12px" }}>{m.venue}</span>}
