@@ -1,8 +1,5 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 
 const QUICK_LINKS = [
   {
@@ -13,11 +10,6 @@ const QUICK_LINKS = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
-    sub: [
-      { label: "Kurz rozhodcov", href: "/vzdelavanie/kurz-rozhodcov" },
-      { label: "Licencie a podmienky", href: "/vzdelavanie/licencie" },
-      { label: "Kontakt na komisiu", href: "/kontakt" },
-    ],
   },
   {
     label: "Chcem sa stať trénerom",
@@ -27,11 +19,6 @@ const QUICK_LINKS = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
       </svg>
     ),
-    sub: [
-      { label: "Trénerské kurzy SZPH", href: "/vzdelavanie/trenerske-kurzy" },
-      { label: "FIH licencie", href: "/vzdelavanie/fih-licencie" },
-      { label: "Podmienky certifikácie", href: "/vzdelavanie/certifikacia" },
-    ],
   },
   {
     label: "Chcem si založiť klub",
@@ -41,11 +28,6 @@ const QUICK_LINKS = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
       </svg>
     ),
-    sub: [
-      { label: "Podmienky registrácie", href: "/pre-kluby/podmienky" },
-      { label: "Potrebné dokumenty", href: "/dokumenty" },
-      { label: "Kontakt SZPH", href: "/kontakt" },
-    ],
   },
   {
     label: "Chcem sa stať hráčom",
@@ -55,17 +37,10 @@ const QUICK_LINKS = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
       </svg>
     ),
-    sub: [
-      { label: "Kde hrať — nájdi klub", href: "/kluby" },
-      { label: "Registrácia hráča", href: "/pre-kluby/registracia" },
-      { label: "Potrebné vybavenie", href: "/o-pozemnom-hokeji/vybavenie" },
-    ],
   },
 ];
 
 export function RychleOdkazy() {
-  const [open, setOpen] = useState<number | null>(null);
-
   return (
     <div>
       {/* Banner */}
@@ -155,42 +130,26 @@ export function RychleOdkazy() {
       {/* Links */}
       <div className="flex flex-col">
         {QUICK_LINKS.map((item, i) => (
-          <div key={i} style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}>
-            <button
-              onClick={() => setOpen(open === i ? null : i)}
-              className="w-full flex items-center gap-3 py-3.5 text-left group"
+          <Link
+            key={i}
+            href={item.href}
+            className="flex items-center gap-3 py-3.5 group"
+            style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }}
+          >
+            <span className="shrink-0 text-[#012d74]">{item.icon}</span>
+            <span
+              className="flex-1 font-bold text-[#051937] group-hover:text-[#012D74] transition-colors"
+              style={{ fontSize: "13px" }}
             >
-              <span className="shrink-0 text-[#012d74]">{item.icon}</span>
-              <span
-                className="flex-1 font-bold text-[#051937] group-hover:text-[#012D74] transition-colors"
-                style={{ fontSize: "13px" }}
-              >
-                {item.label}
-              </span>
-              <svg
-                className="h-4 w-4 shrink-0 text-[#94a3b8] transition-transform"
-                style={{ transform: open === i ? "rotate(90deg)" : "rotate(0deg)" }}
-                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-            {open === i && (
-              <div className="pb-3 flex flex-col gap-1.5 pl-9">
-                {item.sub.map((s, j) => (
-                  <Link
-                    key={j}
-                    href={s.href}
-                    className="flex items-center gap-2 text-[#64748b] hover:text-[#012D74] transition-colors"
-                    style={{ fontSize: "11px" }}
-                  >
-                    <span className="h-1 w-1 rounded-full bg-[#012d74] shrink-0" />
-                    {s.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+              {item.label}
+            </span>
+            <svg
+              className="h-4 w-4 shrink-0 text-[#94a3b8]"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         ))}
         <div style={{ borderTop: "1px solid rgba(1,45,116,0.08)" }} />
       </div>

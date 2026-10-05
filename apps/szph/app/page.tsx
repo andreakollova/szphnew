@@ -162,7 +162,7 @@ const getData = unstable_cache(
 function ArticleCard({ article }: { article: any }) {
   return (
     <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white shrink-0" style={{ borderRadius: "10px", border: "1px solid rgba(1,45,116,0.06)" }}>
-      <div className="relative overflow-hidden" style={{ height: "160px" }}>
+      <div className="relative overflow-hidden" style={{ height: "200px" }}>
         {article.cover_image_url ? (
           <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
         ) : (
@@ -180,7 +180,7 @@ function ArticleCard({ article }: { article: any }) {
         <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
           / {article.category}
         </span>
-        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2" style={{ fontSize: "13px" }}>
+        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3" style={{ fontSize: "15px" }}>
           {article.title}
         </h3>
       </div>
