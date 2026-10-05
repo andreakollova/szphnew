@@ -162,27 +162,27 @@ const MAIN_NAV: NavItem[] = [
       featured: {
         image: "/images/korim-u4e-gallery0.webp",
         tag: "Vzdelávanie",
-        title: "Rozvíjaj sa s SZPH",
+        title: "Rozvíjaj sa so SZPH",
         desc: "Kurzy, semináre a školenia pre hráčov, trénerov aj rozhodcov. Investuj do svojho rozvoja.",
         href: "/vzdelavanie",
         cta: { label: "SZPH Akadémia", href: "/projekty/hokejova-akademia" },
       },
       columns: [
         {
-          title: "Pre trénerov",
+          title: "Kurzy a vzdelávanie",
           links: [
-            { label: "Trénerské licencie", href: "/vzdelavanie/treneri", desc: "UEFA/FIH licencie" },
-            { label: "Kurzy a školenia", href: "/vzdelavanie/kurzy", desc: "Termíny kurzov" },
-            { label: "Semináre", href: "/vzdelavanie/seminare", desc: "Odborné semináre" },
-            { label: "Cvičenia", href: "/vzdelavanie/cvicenia", desc: "Tréningové materiály" },
+            { label: "Kurzy pre trénerov", href: "/vzdelavanie/trenerske-kurzy", desc: "Level 1 a Level 2" },
+            { label: "Kurzy pre rozhodcov", href: "/vzdelavanie/kurz-rozhodcov", desc: "Staň sa rozhodcom" },
+            { label: "Semináre pre oficiálov", href: "/vzdelavanie/seminare", desc: "Odborné semináre" },
+            { label: "Trénerské licencie", href: "/vzdelavanie/licencie", desc: "FIH licenčné podmienky" },
           ],
         },
         {
-          title: "Pre rozhodcov",
+          title: "Pre hráčov a trénerov",
           links: [
-            { label: "Rozhodcovské kurzy", href: "/vzdelavanie/rozhodcovia", desc: "Staň sa rozhodcom" },
+            { label: "Hokejová akadémia", href: "/projekty/hokejova-akademia", desc: "Vzdelávacia platforma" },
+            { label: "Vzorové cvičenia", href: "/vzdelavanie/cvicenia", desc: "Tréningové materiály" },
             { label: "Pravidlá hry", href: "/pozemny-hokej/pravidla", desc: "Aktuálne pravidlá FIH" },
-            { label: "Kontakt komisie", href: "/kontakt", desc: "Rozhodcovská komisia" },
           ],
         },
       ],
