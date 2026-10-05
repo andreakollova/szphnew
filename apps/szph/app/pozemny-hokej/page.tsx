@@ -264,29 +264,13 @@ export default function PozemnyHokejPage() {
           Pre tých, ktorí nikdy nevideli pozemný hokej, môže byť prvý pohľad fascinujúci pre niektorích zase zvláštny. Dynamika pohybov, presné prihrávky, rýchlosť hry a elegancia hokejky ovládanej rukami hráčov vytvárajú jedinečný zážitok. Aj keď sa môže na prvý pohľad zdať, že hra je komplikovaná, jej princípy sú pomerne jednoduché: dostať loptu do súperovej brány a brániť svoju vlastnú bránu.
         </p>
 
-        {/* Fotogaléria 1 */}
-        <div className="grid grid-cols-3 gap-3 my-10">
+        {/* Fotogaléria — vonkajší hokej */}
+        <div className="grid grid-cols-2 gap-3 my-10">
           <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/articles/olympiada-2036/g1-1.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
+            <Image src="/images/vonku-1.jpg" alt="Vonkajší pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 500px" />
           </div>
           <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/articles/olympiada-2036/g1-2.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
-          </div>
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/articles/olympiada-2036/g1-4.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
-          </div>
-        </div>
-
-        {/* Fotogaléria 2 */}
-        <div className="grid grid-cols-3 gap-3 my-10">
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/articles/olympiada-2036/g2-1.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
-          </div>
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/articles/olympiada-2036/g2-3.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
-          </div>
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/articles/olympiada-2036/g2-4.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 33vw, 280px" />
+            <Image src="/images/vonku-2.jpg" alt="Vonkajší pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 500px" />
           </div>
         </div>
 
