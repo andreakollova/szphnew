@@ -30,10 +30,37 @@ export default function MuziPage() {
 
       <div className="max-w-[1100px] mx-auto px-6 pt-12">
         {/* O tíme */}
-        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>O tíme</h2>
+        <div className="flex items-center gap-3 mb-6">
+          <Image src="/images/logo-fhs-color.png" alt="FHS" width={40} height={40} className="object-contain" />
+          <h2 className="font-bold text-[#051937]" style={{ fontSize: "24px" }}>O tíme</h2>
+        </div>
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Mužská A-reprezentácia Slovenska v pozemnom hokeji je najvyšším reprezentačným tímom krajiny. Tím sa pravidelne zúčastňuje turnajov EuroHockey Championship, kde súťaží v rámci divízneho systému. Hráčsky káder tvoria najlepšie dostupní hráči pôsobiaci v slovenských kluboch, pričom niektorých hráčov posilňujú aj legionári pôsobiaci v zahraničných ligách.
         </p>
+
+        {/* Fotogaléria */}
+        <div className="grid grid-cols-3 gap-3 my-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/hala-repre-1.jpg" alt="Muži A" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/hala-repre-2.jpg" alt="Muži A" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/hala-repre-3.jpg" alt="Muži A" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-3 mb-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g2-1.webp" alt="Muži A" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g2-3.webp" alt="Muži A" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g2-4.webp" alt="Muži A" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+        </div>
 
         {/* Nominácia */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Nominácia</h2>
@@ -71,19 +98,6 @@ export default function MuziPage() {
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Fotogaléria */}
-        <div className="grid grid-cols-3 gap-3 my-10">
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/hala-repre-1.jpg" alt="Muži A reprezentácia" className="object-cover" fill sizes="(max-width: 900px) 33vw, 350px" />
-          </div>
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/hala-repre-2.jpg" alt="Muži A reprezentácia" className="object-cover" fill sizes="(max-width: 900px) 33vw, 350px" />
-          </div>
-          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
-            <Image src="/images/hala-repre-3.jpg" alt="Muži A reprezentácia" className="object-cover" fill sizes="(max-width: 900px) 33vw, 350px" />
-          </div>
         </div>
 
         {/* Medzinárodné súťaže */}

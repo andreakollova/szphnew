@@ -58,9 +58,9 @@ export default function UspechyPage() {
             <img src="/images/logo-olympics.png" alt="Olympijské hry" width={56} height={28} style={{ objectFit: "contain" }} />
           </div>
           <div>
-            <h3 className="font-bold text-white mb-1" style={{ fontSize: "17px" }}>Olympijské striebro 1980 - Moskva</h3>
+            <h3 className="font-bold text-white mb-1" style={{ fontSize: "17px" }}>Olympijské striebro 1980</h3>
             <p className="text-white/80 leading-relaxed" style={{ fontSize: "13px" }}>
-              Na Letných olympijských hrách v Moskve získali striebornú medailu tri Slovenky: Alena Kyselicová, Viera Podhányiová a Iveta Šranková. Asistentom trénerky bol Slovák Pavol Rosa. Medaila patrí reprezentácii Československa, no ide o významný úspech slovenských osobností pozemného hokeja.
+              Na Letných olympijských hrách 1980 získali striebornú medailu tri Slovenky: Alena Kyselicová, Viera Podhányiová a Iveta Šranková. Asistentom trénerky bol Slovák Pavol Rosa. Medaila patrí reprezentácii Československa, no ide o významný úspech slovenských osobností pozemného hokeja.
             </p>
             <Link href="/novinky/reportaz-alena-kyselicova" className="inline-flex items-center gap-2 mt-4 font-bold text-white transition-all hover:brightness-110" style={{ fontSize: "12px", background: "#d80027", borderRadius: "20px", padding: "10px 20px" }}>
               Reportáž s Alenou Kyselicovou

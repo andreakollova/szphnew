@@ -26,9 +26,10 @@ export default function U21ZenyPage() {
 
       {/* Content */}
       <div className="max-w-[1100px] mx-auto px-6 pt-12">
-        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>
-          O tíme
-        </h2>
+        <div className="flex items-center gap-3 mb-6">
+          <img src="/images/logo-fhs-color.png" alt="FHS" width={40} height={40} style={{ objectFit: "contain" }} />
+          <h2 className="font-bold text-[#051937]" style={{ fontSize: "24px" }}>O tíme</h2>
+        </div>
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Ženská mládežnícka reprezentácia do 21 rokov je dôležitou súčasťou rozvoja ženského pozemného hokeja na Slovensku. Tím združuje mladé hráčky s najväčším potenciálom, ktoré sa pripravujú na pôsobenie v seniorskej reprezentácii. Účasť na medzinárodných turnajoch im dáva príležitosť porovnať sa s rovesníčkami z iných európskych krajín.
         </p>

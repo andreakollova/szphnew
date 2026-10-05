@@ -24,7 +24,10 @@ export default function ZenyPage() {
 
       <div className="max-w-[1100px] mx-auto px-6 pt-12">
         {/* O tíme */}
-        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>O tíme</h2>
+        <div className="flex items-center gap-3 mb-6">
+          <Image src="/images/logo-fhs-color.png" alt="FHS" width={40} height={40} className="object-contain" />
+          <h2 className="font-bold text-[#051937]" style={{ fontSize: "24px" }}>O tíme</h2>
+        </div>
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Ženský pozemný hokej má na Slovensku dlhú tradíciu siahajúcu až k olympijskému striebru z roku 1980 v Moskve. Ženská A-reprezentácia združuje najlepšie hráčky pôsobiace v slovenských kluboch a pravidelne sa zúčastňuje európskych šampionátov v rámci divízneho systému EuroHockey. Slovenské hráčky patria medzi stabilné účastníčky medzinárodných súťaží a tím systematicky pracuje na postupe do vyšších divízií.
         </p>
