@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactFormSection from "@/app/components/ContactFormSection";
 
 export const metadata: Metadata = {
   title: "Trénerské vzdelávanie | SZPH",
@@ -113,40 +114,33 @@ export default function TreneriPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/zacni-hrat/trener"
-              className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
+              className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold hover:bg-[#051937] hover:text-white transition-colors"
+              style={{ borderRadius: "50px" }}
             >
               Chcem byť tréner
             </Link>
             <Link
               href="/vzdelavanie/trenerske-kurzy"
-              className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
+              className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold hover:bg-[#051937] hover:text-white transition-colors"
+              style={{ borderRadius: "50px" }}
             >
               Prehľad kurzov
             </Link>
             <Link
               href="/vzdelavanie/fih-licencie"
-              className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
+              className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold hover:bg-[#051937] hover:text-white transition-colors"
+              style={{ borderRadius: "50px" }}
             >
               FIH licencie
             </Link>
           </div>
         </section>
 
-        <section className="p-6 bg-white rounded-xl border border-gray-200">
-          <h3 className="font-garet font-bold text-[#051937] mb-2">
-            Potrebujete viac informácií?
-          </h3>
-          <p className="text-sm text-[#666] mb-4">
-            Kontaktujte nás pre individuálne poradenstvo ohľadom trénerského
-            vzdelávania a licencií.
-          </p>
-          <Link
-            href="/kontakt"
-            className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
-          >
-            Kontaktovať nás
-          </Link>
-        </section>
+        <ContactFormSection
+          title="Máte záujem o trénerské vzdelávanie?"
+          subtitle="Napíšte nám a radi vám poradíme s výberom kurzu."
+          formType="treneri-vzdelavanie"
+        />
       </div>
     </article>
   );
