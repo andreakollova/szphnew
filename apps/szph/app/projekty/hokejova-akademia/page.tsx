@@ -47,10 +47,10 @@ export default function HokejovaAkademiaPage() {
             <p className="text-white max-w-xl leading-relaxed" style={{ fontSize: "15px" }}>
               Tréningové postupy, videá a materiály pre hráčov, trénerov a učiteľov. Pozemný hokej od základných zručností až po vedenie tímu.
             </p>
-            <Link href="#materialy" className="mt-6 inline-flex items-center gap-2 font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "12px 24px", fontSize: "13px" }}>
-              Preskúmať materiály
+            <a href="https://ha.szph.sk/" target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 font-garet font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "12px 24px", fontSize: "13px" }}>
+              Ísť do Hokejovej akadémie
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-            </Link>
+            </a>
           </div>
           <div className="hidden lg:block shrink-0">
             <Image src="/images/hokejova-akademia-logo.webp" alt="Hokejová akadémia" width={200} height={200} className="object-contain" />
@@ -110,10 +110,14 @@ export default function HokejovaAkademiaPage() {
               </div>
             ))}
           </div>
+          <a href="https://ha.szph.sk/" target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "10px 20px", fontSize: "12px" }}>
+            Prejsť do Hokejovej akadémie
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
         </section>
 
         <section className="mb-12">
-          <h2 className="font-garet font-bold text-[#051937] mb-6" style={{ fontSize: "22px" }}>Cvičenia</h2>
+          <h2 className="font-garet font-bold text-[#051937] mb-6" style={{ fontSize: "22px" }}>Vzorové cvičenia</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               { title: "Útočné cvičenia", desc: "Príprava útoku, zakončenie, spolupráca", image: "https://tqybiozrmzegtgdgyrax.supabase.co/storage/v1/object/public/exercises/3-proti-2.png" },
@@ -121,7 +125,7 @@ export default function HokejovaAkademiaPage() {
               { title: "Pre mládež", desc: "Cvičenia pre kategórie U12 - U18", image: "https://tqybiozrmzegtgdgyrax.supabase.co/storage/v1/object/public/exercises/boj-o-loptu.png" },
             ].map((c) => (
               <Link key={c.title} href="/vzdelavanie/cvicenia" className="group block bg-white overflow-hidden" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
-                <div className="relative h-32 overflow-hidden" style={{ background: "#2d8a3e" }}>
+                <div className="relative h-44 overflow-hidden" style={{ background: "#2d8a3e" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={c.image} alt={c.title} className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
                 </div>
@@ -132,10 +136,16 @@ export default function HokejovaAkademiaPage() {
               </Link>
             ))}
           </div>
-          <Link href="/vzdelavanie/cvicenia" className="inline-flex items-center gap-2 mt-4 font-bold text-[#012d74] hover:text-[#051937] transition-colors" style={{ fontSize: "13px" }}>
-            Zobraziť všetky cvičenia
-            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </Link>
+          <div className="flex flex-wrap items-center gap-3 mt-4">
+            <a href="https://ha.szph.sk/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-bold text-white transition-all hover:brightness-110" style={{ background: "#d80027", borderRadius: "20px", padding: "10px 20px", fontSize: "12px" }}>
+              Prejsť do Hokejovej akadémie
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </a>
+            <Link href="/vzdelavanie/cvicenia" className="inline-flex items-center gap-2 font-bold text-[#0078fe] hover:text-[#0060cc] transition-colors" style={{ fontSize: "13px" }}>
+              Zobraziť všetky cvičenia
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </Link>
+          </div>
         </section>
 
         <section id="navrh">
