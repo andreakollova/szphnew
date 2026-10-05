@@ -33,6 +33,13 @@ export default function EkonomickeTlacivaPage() {
             </a>
           ))}
         </div>
+
+        <div className="mt-8">
+          <Link href="/dokumenty" className="inline-flex items-center gap-2 font-bold text-[#0078fe] hover:text-[#0060cc] transition-colors" style={{ fontSize: "14px" }}>
+            Zobraziť všetky dokumenty
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </Link>
+        </div>
       </div>
     </article>
   );
