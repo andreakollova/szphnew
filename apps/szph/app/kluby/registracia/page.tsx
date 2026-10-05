@@ -196,9 +196,9 @@ export default function RegistraciaHracovPage() {
         </div>
 
         <ContactFormSection
-          title="Registrácia klubu"
-          subtitle="Máte záujem zaregistrovať klub? Kontaktujte nás."
-          formType="registracia-klubu"
+          title="Registrácia hráča"
+          subtitle="Chcete sa zaregistrovať ako hráč? Napíšte nám."
+          formType="registracia-hraca"
         />
       </div>
     </article>
