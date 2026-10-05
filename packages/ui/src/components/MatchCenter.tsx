@@ -387,7 +387,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
       {/* Controls */}
       <div className="flex flex-col gap-3 mb-6">
         {/* Row 1: Liga / Rep toggle buttons */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {([
             { key: "liga", label: "Liga", logo: "/images/logo-liga.webp" },
             { key: "reprezentacia", label: "Reprezentácia", logo: "/images/logo-reprezentacia.webp", logoInactive: "/images/logo-reprezentacia-color.webp" },
@@ -398,18 +398,18 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
                 key={tab.key}
                 onClick={() => toggleSection(tab.key)}
                 className={cn(
-                  "flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 font-bold uppercase transition-all",
+                  "flex items-center justify-center gap-2.5 px-5 sm:px-6 py-3 font-bold uppercase transition-all",
                   active ? "text-white" : "text-[#64748b] hover:text-[#051937]"
                 )}
                 style={{
-                  fontSize: "10px", letterSpacing: "0.08em",
+                  fontSize: "12px", letterSpacing: "0.08em",
                   background: active ? "#012d74" : "transparent",
                   border: active ? "1px solid #012d74" : "1px solid rgba(1,45,116,0.12)",
-                  borderRadius: "20px",
+                  borderRadius: "24px",
                 }}
               >
-                <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
-                  <Image src={active ? tab.logo : (tab.logoInactive || tab.logo)} alt="" fill className="object-contain" sizes="18px" style={active ? { filter: "brightness(0) invert(1)" } : undefined} />
+                <div className="relative shrink-0" style={{ width: 22, height: 22 }}>
+                  <Image src={active ? tab.logo : (tab.logoInactive || tab.logo)} alt="" fill className="object-contain" sizes="22px" style={active ? { filter: "brightness(0) invert(1)" } : undefined} />
                 </div>
                 {tab.label}
               </button>
@@ -417,19 +417,19 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
           })}
         </div>
 
-        {/* Row 2: Program/Výsledky + Kategória + Šípky */}
-        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+        {/* Row 2: Program/Výsledky + Filter (right-aligned) */}
+        <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center shrink-0 gap-0">
             {([{ key: "upcoming", label: "Program" }, { key: "past", label: "Výsledky" }] as const).map((tab) => (
               <button
                 key={tab.key}
                 onClick={() => { setActiveTab(tab.key); setPage(0); }}
                 className={cn(
-                  "px-3 sm:px-4 py-2 sm:py-2.5 font-bold uppercase transition-all",
+                  "px-4 sm:px-5 py-2.5 sm:py-3 font-bold uppercase transition-all",
                   activeTab === tab.key ? "text-[#012d74]" : "text-[#94a3b8] hover:text-[#051937]"
                 )}
                 style={{
-                  fontSize: "10px",
+                  fontSize: "12px",
                   letterSpacing: "0.08em",
                   borderBottom: activeTab === tab.key ? "3px solid #012d74" : "3px solid transparent",
                 }}
