@@ -105,6 +105,14 @@ export default function PozemnyHokejPage() {
             <Image src="/images/vonku-2.jpg" alt="Vonkajší pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 500px" />
           </div>
         </div>
+        <div className="grid grid-cols-2 gap-3 mb-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/vonku-deti-1.jpg" alt="Deti pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 500px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/vonku-deti-2.jpg" alt="Deti pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 50vw, 500px" />
+          </div>
+        </div>
 
         {/* Ako sa hrá */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
