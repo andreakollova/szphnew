@@ -207,7 +207,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <div className="max-w-5xl mx-auto px-6 py-5 grid grid-cols-[280px_1fr] gap-5 items-stretch">
+      <div className="max-w-6xl 2xl:max-w-7xl mx-auto px-6 lg:px-10 py-6 lg:py-8 grid grid-cols-[300px_1fr] 2xl:grid-cols-[340px_1fr] gap-6 lg:gap-8 items-stretch">
 
         {/* Featured karta — landscape */}
         <div className="flex flex-col">
@@ -258,7 +258,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
         <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${columns.length}, 1fr)` }}>
           {columns.map((col) => (
             <div key={col.title}>
-              <p className="font-bold uppercase tracking-widest text-[#94a3b8] mb-2" style={{ fontSize: "10px" }}>
+              <p className="font-bold uppercase tracking-widest text-[#94a3b8] mb-3" style={{ fontSize: "11px" }}>
                 {col.title}
               </p>
               <ul className="space-y-0">
@@ -269,8 +269,8 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
                       className="group flex items-start gap-2.5 px-2 py-1.5 rounded-lg transition-colors hover:bg-[#f5f7fb]"
                     >
                       <div>
-                        <p className="font-semibold text-[#051937] leading-none group-hover:text-[#012d74] transition-colors" style={{ fontSize: "14px" }}>{link.label}</p>
-                        {link.desc && <p className="text-[#94a3b8] mt-0.5 leading-tight" style={{ fontSize: "12px" }}>{link.desc}</p>}
+                        <p className="font-semibold text-[#051937] leading-none group-hover:text-[#012d74] transition-colors" style={{ fontSize: "15px" }}>{link.label}</p>
+                        {link.desc && <p className="text-[#94a3b8] mt-0.5 leading-tight" style={{ fontSize: "13px" }}>{link.desc}</p>}
                       </div>
                     </Link>
                   </li>
