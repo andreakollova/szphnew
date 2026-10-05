@@ -52,7 +52,7 @@ const MAIN_NAV: NavItem[] = [
             { label: "Nájdi klub", href: "/kluby", desc: "Klub vo tvojom meste" },
             { label: "Začni hrať hokej", href: "/zacni-hrat/hrac", desc: "Pre začiatočníkov" },
             { label: "Vybavenie", href: "/pozemny-hokej/vybavenie", desc: "Čo potrebuješ" },
-            { label: "Trénerské licencie", href: "/zacni-hrat/trener", desc: "Pre trénerov" },
+            { label: "Staň sa trénerom", href: "/zacni-hrat/trener", desc: "Pre trénerov" },
           ],
         },
       ],
