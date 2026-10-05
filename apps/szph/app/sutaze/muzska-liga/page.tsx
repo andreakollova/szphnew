@@ -17,7 +17,7 @@ export default function MuskaLigaPage() {
             Súťaže
           </span>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
-            Extraliga mužov
+            Liga mužov
           </h1>
           <p className="text-white mt-3 max-w-xl" style={{ fontSize: "15px" }}>
             Najvyššia mužská súťaž v pozemnom hokeji na Slovensku.
@@ -53,6 +53,55 @@ export default function MuskaLigaPage() {
             <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
               <strong>Sezóna - halový hokej:</strong> Prebieha v zimných mesiacoch v športových halách. Halový hokej sa hrá vo formáte 6 na 6 (vrátane brankára) na menšej hracej ploche s odlišnými pravidlami.
             </p>
+          </div>
+        </div>
+
+        {/* Fotogaléria */}
+        <div className="grid grid-cols-2 gap-3 my-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <img src="/images/vonku-1.jpg" alt="Liga mužov" className="w-full h-full object-cover" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <img src="/images/vonku-2.jpg" alt="Liga mužov" className="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        {/* Majstri ligy */}
+        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Majstri ligy</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div className="bg-white p-5" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <p className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-3">Pozemný hokej</p>
+            <div className="space-y-2">
+              {[
+                { year: "2026", team: "KPH Rača" },
+                { year: "2025", team: "KPH Rača" },
+                { year: "2024", team: "KPH Rača" },
+                { year: "2023", team: "KPH Rača" },
+                { year: "2022", team: "KPH Rača" },
+              ].map((r) => (
+                <div key={r.year} className="flex items-center justify-between py-1.5" style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
+                  <span className="font-bold text-[#012d74]" style={{ fontSize: "14px" }}>{r.year}</span>
+                  <span className="font-semibold text-[#051937]" style={{ fontSize: "14px" }}>{r.team}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-white p-5" style={{ borderRadius: "6px", border: "1px solid rgba(1,45,116,0.06)" }}>
+            <p className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider mb-3">Halový hokej</p>
+            <div className="space-y-2">
+              {[
+                { year: "2026", team: "KPH Rača" },
+                { year: "2025", team: "KPH HOKO Zlaté Moravce" },
+                { year: "2024", team: "KPH Rača" },
+                { year: "2023", team: "KPH Rača" },
+                { year: "2022", team: "KPH Rača" },
+              ].map((r) => (
+                <div key={r.year} className="flex items-center justify-between py-1.5" style={{ borderBottom: "1px solid rgba(1,45,116,0.05)" }}>
+                  <span className="font-bold text-[#012d74]" style={{ fontSize: "14px" }}>{r.year}</span>
+                  <span className="font-semibold text-[#051937]" style={{ fontSize: "14px" }}>{r.team}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
