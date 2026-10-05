@@ -1,17 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { createClient } from "@supabase/supabase-js";
+import { NominacieClient } from "./NominacieClient";
 
 export const metadata: Metadata = {
   title: "Nominácie - Reprezentácia",
   description: "Aktuálne nominácie slovenských reprezentácií v pozemnom hokeji.",
 };
 
-export default function NominaciePage() {
+function getSupabase() {
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+}
+
+export default async function NominaciePage() {
+  const supabase = getSupabase();
+  const { data: categories } = await supabase
+    .from("categories")
+    .select("id, name, slug, type, nominations")
+    .eq("type", "reprezentacia")
+    .eq("status", "published")
+    .order("sort_order", { ascending: true });
+
+  const cats = (categories ?? []).filter((c: any) => c.nominations && c.nominations.length > 0);
+
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
-      {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[1100px] mx-auto">
+          <Link href="/reprezentacia" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+            Späť
+          </Link>
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Reprezentácia
           </span>
@@ -24,53 +43,19 @@ export default function NominaciePage() {
         </div>
       </div>
 
-      {/* Content */}
       <div className="max-w-[1100px] mx-auto px-6 pt-12">
-        <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "24px" }}>
-          Aktuálne nominácie
-        </h2>
-        <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-          Nominácie do slovenských reprezentácií sú zverejňované pred každým turnajom alebo medzinárodným stretnutím. O nominácii rozhoduje trénerský štáb príslušného národného tímu na základe aktuálnej formy, zdravotného stavu a dostupnosti hráčov.
-        </p>
-
-        <div className="rounded-lg p-8 text-center" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
-          <p className="text-[#64748b] mb-2" style={{ fontSize: "15px" }}>
-            V súčasnosti nie sú zverejnené žiadne aktuálne nominácie.
-          </p>
-          <p className="text-[#94a3b8]" style={{ fontSize: "13px" }}>
-            Nominácie budú zverejnené pred najbližším turnajom alebo medzinárodným stretnutím.
-          </p>
-        </div>
-
-        <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>
-          Ako prebieha nominácia
-        </h2>
-        <div className="space-y-4 mb-8">
-          <div className="flex gap-3 items-start">
-            <span className="text-[#051937]/30 font-bold shrink-0">-</span>
-            <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              Trénerský štáb sleduje výkonnosť hráčov v domácich a zahraničných súťažiach počas celej sezóny.
+        {cats.length === 0 ? (
+          <div className="rounded-lg p-8 text-center" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>
+            <p className="text-[#64748b] mb-2" style={{ fontSize: "15px" }}>
+              V súčasnosti nie sú zverejnené žiadne aktuálne nominácie.
+            </p>
+            <p className="text-[#94a3b8]" style={{ fontSize: "13px" }}>
+              Nominácie budú zverejnené pred najbližším turnajom alebo medzinárodným stretnutím.
             </p>
           </div>
-          <div className="flex gap-3 items-start">
-            <span className="text-[#051937]/30 font-bold shrink-0">-</span>
-            <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              Pred každým turnajom je zostavená nominácia, ktorá zohľadňuje aktuálnu formu, zdravotný stav a taktický zámer tímu.
-            </p>
-          </div>
-          <div className="flex gap-3 items-start">
-            <span className="text-[#051937]/30 font-bold shrink-0">-</span>
-            <p className="text-[#334155]" style={{ fontSize: "15px", lineHeight: 1.8 }}>
-              Nominácie sú zverejňované na webovej stránke SZPH a na sociálnych sieťach zväzu.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-6">
-          <Link href="/reprezentacia" className="text-[#012d74] hover:underline" style={{ fontSize: "14px" }}>
-            &#8592; Späť na prehľad reprezentácií
-          </Link>
-        </div>
+        ) : (
+          <NominacieClient categories={cats} />
+        )}
       </div>
     </article>
   );
