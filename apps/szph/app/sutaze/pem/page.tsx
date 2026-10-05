@@ -166,6 +166,7 @@ export default function PEMPage() {
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-16 px-6" style={{ background: "#051937" }}>
         <div className="max-w-[1000px] mx-auto">
+          <Link href="/sutaze" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}><svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>Späť</Link>
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Súťaže</span>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
             EuroHockey Club Championships
