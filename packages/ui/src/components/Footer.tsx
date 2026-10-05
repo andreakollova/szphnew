@@ -102,10 +102,10 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
 
       {/* Desktop: Newsletter bar */}
       <div className="hidden md:block" style={{ background: "#051937" }}>
-        <div className="container-szph py-8">
+        <div className="container-szph py-12">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
-              <p className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)", textTransform: "uppercase" }}>
+              <p className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.4rem)", textTransform: "uppercase" }}>
                 Odber noviniek
               </p>
               <p className="text-white mt-0.5" style={{ fontSize: "11px" }}>
