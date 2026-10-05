@@ -246,55 +246,54 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
         </div>
 
         {/* Desktop layout — single row */}
-        <div className="hidden sm:flex items-center gap-4">
-          <div className="shrink-0 w-[110px]">
-            <span className="font-bold text-[#051937] whitespace-nowrap block" style={{ fontSize: "11px" }}>{dateStr} · {time}</span>
-            {m.venue && <span className="font-bold text-[#94a3b8] block truncate" style={{ fontSize: "9px" }}>{m.venue}</span>}
+        <div className="hidden sm:flex items-center gap-5">
+          <div className="shrink-0 w-[120px]">
+            <span className="font-bold text-[#051937] whitespace-nowrap block" style={{ fontSize: "13px" }}>{dateStr} · {time}</span>
           </div>
-          <div className="shrink-0" style={{ width: "160px" }}>
+          <div className="shrink-0" style={{ width: "180px" }}>
             <div className="flex items-center gap-1.5">
-              <span className="font-bold uppercase text-[#012d74] truncate" style={{ fontSize: "9px", letterSpacing: "0.08em" }}>
+              <span className="font-bold uppercase text-[#012d74] truncate" style={{ fontSize: "11px", letterSpacing: "0.08em" }}>
                 {(m.league || "Zápas").replace(/\s*\(.*miesto\)/, "").replace(/\s*\(finále\)/, "")}
               </span>
               {m.video_url && (
                 <a href={m.video_url} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} className="shrink-0 hover:scale-110 transition-transform" title="Sledovať záznam">
-                  <svg className="h-3.5 w-3.5 text-[#d80027]" fill="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                  <svg className="h-4 w-4 text-[#d80027]" fill="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
                 </a>
               )}
             </div>
             {(isFinal || isBronze) && (
               <div className="flex items-center gap-0.5 mt-0.5">
-                <svg className="h-2.5 w-2.5" fill={isFinal ? "#d4a017" : "#b87333"} viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <span className="font-bold uppercase" style={{ fontSize: "7px", color: isFinal ? "#d4a017" : "#b87333" }}>{isFinal ? "FINÁLE" : "O BRONZ"}</span>
+                <svg className="h-3 w-3" fill={isFinal ? "#d4a017" : "#b87333"} viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span className="font-bold uppercase" style={{ fontSize: "9px", color: isFinal ? "#d4a017" : "#b87333" }}>{isFinal ? "FINÁLE" : "O BRONZ"}</span>
               </div>
             )}
           </div>
-          <div className="flex items-center gap-2.5 flex-1 min-w-0 justify-end">
-            <span className={cn("font-bold truncate text-right", homeWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "13px" }}>{m.home_short || m.home_team}</span>
-            <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={28} />
+          <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
+            <span className={cn("font-bold truncate text-right", homeWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "16px" }}>{m.home_short || m.home_team}</span>
+            <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={36} />
           </div>
-          <div className="shrink-0 flex items-center justify-center" style={{ minWidth: "60px" }}>
+          <div className="shrink-0 flex items-center justify-center" style={{ minWidth: "70px" }}>
             {finished ? (
               <div className="flex items-center gap-2">
-                <span style={{ fontSize: "18px", fontWeight: 800, color: homeWin ? "#16a34a" : "#051937" }}>{m.home_score ?? 0}</span>
-                <span style={{ fontSize: "11px", fontWeight: 700, color: "#012d74" }}>:</span>
-                <span style={{ fontSize: "18px", fontWeight: 800, color: awayWin ? "#16a34a" : "#051937" }}>{m.away_score ?? 0}</span>
+                <span style={{ fontSize: "22px", fontWeight: 800, color: homeWin ? "#16a34a" : "#051937" }}>{m.home_score ?? 0}</span>
+                <span style={{ fontSize: "13px", fontWeight: 700, color: "#012d74" }}>:</span>
+                <span style={{ fontSize: "22px", fontWeight: 800, color: awayWin ? "#16a34a" : "#051937" }}>{m.away_score ?? 0}</span>
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <div style={{ width: "16px", height: "2px", background: "#012d74", opacity: 0.5 }} />
-                <span className="font-bold text-[#012d74]" style={{ fontSize: "11px" }}>vs</span>
-                <div style={{ width: "16px", height: "2px", background: "#012d74", opacity: 0.5 }} />
+                <div style={{ width: "20px", height: "2px", background: "#012d74", opacity: 0.5 }} />
+                <span className="font-bold text-[#012d74]" style={{ fontSize: "13px" }}>vs</span>
+                <div style={{ width: "20px", height: "2px", background: "#012d74", opacity: 0.5 }} />
               </div>
             )}
           </div>
-          <div className="flex items-center gap-2.5 flex-1 min-w-0">
-            <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={28} />
-            <span className={cn("font-bold truncate", awayWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "13px" }}>{m.away_short || m.away_team}</span>
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={36} />
+            <span className={cn("font-bold truncate", awayWin ? "text-[#16a34a]" : "text-[#051937]")} style={{ fontSize: "16px" }}>{m.away_short || m.away_team}</span>
           </div>
-          <div className="shrink-0 hidden lg:flex items-center gap-2 justify-end" style={{ width: "140px" }}>
-            {m.venue && <span className="font-bold text-[#012d74]/40 truncate" style={{ fontSize: "10px" }}>{m.venue}</span>}
-            <svg className="h-3.5 w-3.5 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+          <div className="shrink-0 hidden lg:flex items-center gap-2 justify-end" style={{ width: "180px" }}>
+            {m.venue && <span className="font-bold text-[#012d74]/40 truncate" style={{ fontSize: "12px" }}>{m.venue}</span>}
+            <svg className="h-4 w-4 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
           </div>
         </div>
       </motion.div>

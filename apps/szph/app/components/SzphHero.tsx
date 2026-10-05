@@ -194,6 +194,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
             backgroundSize: "cover",
             backgroundPosition: "top left",
             mixBlendMode: "normal",
+            opacity: 0.85,
           }}
         />
 
