@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactFormSection from "@/app/components/ContactFormSection";
 
 export const metadata: Metadata = {
   title: "Kurzy | SZPH",
@@ -48,11 +49,13 @@ export default function KurzyPage() {
             skupiny v pozemnom hokeji. Kurzy sú určené pre trénerov, rozhodcov,
             funkcionárov aj ďalších záujemcov o rozvoj tohto športu na Slovensku.
           </p>
+          <p className="text-[#333] leading-relaxed mb-4" style={{ fontSize: "15px" }}>
+            Kurzy sa konajú spravidla v jarnom a jesennom období. Prihláste sa
+            včas - kapacita kurzov je obmedzená.
+          </p>
           <p className="text-[#333] leading-relaxed mb-6" style={{ fontSize: "15px" }}>
-            Aktuálne termíny kurzov sú zverejňované na webovej stránke SZPH a na
-            našich profiloch na sociálnych sieťach. Sledujte nás, aby vám
-            neunikli žiadne novinky a prihláste sa včas - kapacita kurzov je
-            obmedzená.
+            Informácie o aktuálnych termínoch nájdete na hlavnej stránke SZPH
+            a na sociálnych sieťach.
           </p>
         </section>
 
@@ -103,22 +106,11 @@ export default function KurzyPage() {
           </div>
         </section>
 
-        <section className="p-6 bg-white rounded-xl border border-gray-200">
-          <h3 className="font-garet font-bold text-[#051937] mb-2">
-            Prihlásenie na kurzy
-          </h3>
-          <p className="text-sm text-[#666] mb-4">
-            Informácie o prihlasovaní, termínoch a podmienkach účasti na
-            kurzoch získate na našej kontaktnej stránke alebo sledovaním našich
-            sociálnych sietí.
-          </p>
-          <Link
-            href="/kontakt"
-            className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
-          >
-            Kontaktovať nás
-          </Link>
-        </section>
+        <ContactFormSection
+          title="Máte záujem o kurz?"
+          subtitle="Napíšte nám a informujeme vás o najbližšom termíne."
+          formType="kurzy"
+        />
       </div>
     </article>
   );

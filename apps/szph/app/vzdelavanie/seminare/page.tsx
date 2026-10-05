@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactFormSection from "@/app/components/ContactFormSection";
 
 export const metadata: Metadata = {
   title: "Semináre | SZPH",
@@ -29,8 +30,8 @@ export default function SeminarePage() {
             className="text-white mt-3 max-w-xl"
             style={{ fontSize: "15px" }}
           >
-            Pravidelné vzdelávacie semináre pre odbornú verejnosť v pozemnom
-            hokeji.
+            Pravidelné vzdelávacie semináre pre trénerov, rozhodcov a ďalších
+            oficiálov v pozemnom hokeji.
           </p>
         </div>
       </div>
@@ -107,21 +108,19 @@ export default function SeminarePage() {
             SZPH a na našich profiloch na sociálnych sieťach. Účasť na
             seminároch je obvykle podmienená predchádzajúcou registráciou.
           </p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/vzdelavanie/kurzy"
-              className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
-            >
-              Prehľad kurzov
-            </Link>
-            <Link
-              href="/kontakt"
-              className="inline-block px-5 py-2.5 border border-[#051937] text-[#051937] text-sm font-semibold rounded-lg hover:bg-[#051937] hover:text-white transition-colors"
-            >
-              Kontaktovať nás
-            </Link>
-          </div>
+          <Link
+            href="/vzdelavanie/kurzy"
+            className="inline-block px-5 py-2.5 bg-[#051937] text-white text-sm font-semibold rounded-lg hover:bg-[#0a2a5c] transition-colors"
+          >
+            Prehľad kurzov
+          </Link>
         </section>
+
+        <ContactFormSection
+          title="Máte záujem o seminár?"
+          subtitle="Napíšte nám a informujeme vás o najbližšom termíne."
+          formType="seminare"
+        />
       </div>
     </article>
   );
