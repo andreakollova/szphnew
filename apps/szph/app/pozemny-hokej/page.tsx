@@ -310,6 +310,17 @@ export default function PozemnyHokejPage() {
             <Image src="/images/hala-repre-3.jpg" alt="Halový hokej reprezentácia" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
           </div>
         </div>
+        <div className="grid grid-cols-3 gap-3 my-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/hala-zeny-1.jpg" alt="Halový hokej ženy" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/hala-zeny-2.jpg" alt="Halový hokej ženy" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/hala-zeny-3.jpg" alt="Halový hokej ženy" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+        </div>
       </div>
     </article>
   );
