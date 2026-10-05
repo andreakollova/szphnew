@@ -66,6 +66,19 @@ export default function ZenyPage() {
           </table>
         </div>
 
+        {/* Fotogaléria */}
+        <div className="grid grid-cols-3 gap-3 my-10">
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g1-1.webp" alt="Ženy reprezentácia" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g1-3.webp" alt="Ženy reprezentácia" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+          <div className="relative overflow-hidden" style={{ aspectRatio: "16/10", borderRadius: "6px" }}>
+            <Image src="/images/articles/olympiada-2036/g1-4.webp" alt="Ženy reprezentácia" fill className="object-cover" sizes="(max-width: 900px) 33vw, 350px" />
+          </div>
+        </div>
+
         {/* Medzinárodné súťaže */}
         <h2 className="font-bold text-[#051937] mt-12 mb-6" style={{ fontSize: "24px" }}>Medzinárodné súťaže</h2>
         <div className="space-y-4 mb-8">
