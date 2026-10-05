@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
-import { ClubCard } from "./ClubCard";
+import { ClubGrid } from "./ClubGrid";
 
 function getSupabase() {
   return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
@@ -54,11 +54,7 @@ export default async function KlubyPage() {
         </div>
 
         {/* Club grid — 5 columns on desktop */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-          {clubs.map((club) => (
-            <ClubCard key={club.id} club={club} />
-          ))}
-        </div>
+        <ClubGrid clubs={clubs} />
 
         {/* CTA */}
         <div className="mt-10 p-6 text-center" style={{ background: "#fff", borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>

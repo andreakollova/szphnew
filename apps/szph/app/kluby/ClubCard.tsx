@@ -19,8 +19,7 @@ interface ClubProps {
   account: string | null;
 }
 
-export function ClubCard({ club }: { club: ClubProps }) {
-  const [expanded, setExpanded] = useState(false);
+export function ClubCard({ club, expanded, onToggle }: { club: ClubProps; expanded: boolean; onToggle: () => void }) {
 
   return (
     <div className="bg-white flex flex-col" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
@@ -52,7 +51,7 @@ export function ClubCard({ club }: { club: ClubProps }) {
       </div>
 
       <button
-        onClick={() => setExpanded(!expanded)}
+        onClick={onToggle}
         className="mt-auto flex items-center justify-center gap-1.5 py-3 font-bold text-[#012d74] hover:bg-[#f0f4fa] transition-colors"
         style={{ fontSize: "10px", borderTop: "1px solid rgba(1,45,116,0.06)" }}
       >
@@ -84,7 +83,7 @@ export function ClubCard({ club }: { club: ClubProps }) {
           )}
           {club.account && (
             <div>
-              <p className="text-[#94a3b8] font-bold uppercase" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>Dotacny ucet</p>
+              <p className="text-[#94a3b8] font-bold uppercase" style={{ fontSize: "8px", letterSpacing: "0.1em" }}>Dotačný účet</p>
               <p className="text-[#334155] font-mono" style={{ fontSize: "10px" }}>{club.account}</p>
             </div>
           )}
