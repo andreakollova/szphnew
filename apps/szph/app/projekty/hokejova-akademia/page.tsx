@@ -35,7 +35,7 @@ export default function HokejovaAkademiaPage() {
     <article className="pb-20" style={{ background: "#f8f9fa" }}>
       <div className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #051937 0%, #012d74 100%)", minHeight: "340px" }}>
         <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
-        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto py-16 flex items-center gap-10">
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto py-16 flex items-center gap-10">
           <div className="flex-1">
             <Link href="/projekty" className="inline-flex items-center gap-2 font-bold text-white hover:text-white transition-colors mb-6" style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase" }}>
               <svg className="h-3 w-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
@@ -58,7 +58,7 @@ export default function HokejovaAkademiaPage() {
         </div>
       </div>
 
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[900px] mx-auto pt-12">
+      <div className="px-6 lg:px-10 xl:px-16 max-w-[1100px] mx-auto pt-12">
         <section className="mb-12">
           <h2 className="font-garet font-bold text-[#051937] mb-4" style={{ fontSize: "22px" }}>O akadémii</h2>
           <p className="text-[#334155] leading-relaxed" style={{ fontSize: "15px" }}>

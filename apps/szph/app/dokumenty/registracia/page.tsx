@@ -15,12 +15,12 @@ export default function RegistraciaPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Dokumenty</span>
           <h1 className="font-bold text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>Registrácia</h1>
         </div>
       </div>
-      <div className="max-w-[900px] mx-auto px-6 pt-12">
+      <div className="max-w-[1100px] mx-auto px-6 pt-12">
         <h2 className="font-bold text-[#051937] mb-6" style={{ fontSize: "20px" }}>Elektronické formuláre</h2>
         <div className="space-y-3">
           {DOCS.map((doc) => (

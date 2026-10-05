@@ -131,7 +131,7 @@ export default async function SvetArticleDetail({ params }: Props) {
 
   return (
     <article className="pb-20" style={{ background: "#f8f9fa" }}>
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6">
+      <div className="px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto pt-6">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-0 items-start">
 
           {/* Main content */}

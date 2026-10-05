@@ -19,7 +19,7 @@ export default function EvidenciaPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-12 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}>
             Evidencia
           </h1>
@@ -29,7 +29,7 @@ export default function EvidenciaPage() {
         </div>
       </div>
 
-      <div className="max-w-[900px] mx-auto px-6 pt-10">
+      <div className="max-w-[1100px] mx-auto px-6 pt-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {SECTIONS.map((s) => (
             <Link key={s.href} href={s.href} className="group flex items-start gap-4 bg-white p-5 transition-colors hover:bg-[#f8fafd]" style={{ borderRadius: "8px", border: "1px solid rgba(1,45,116,0.06)" }}>

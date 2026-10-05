@@ -266,3 +266,13 @@ body {
 }
 
 .clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+
+/* Large screen optimizations */
+@media (min-width: 1536px) {
+  html { font-size: 17px; }
+  .container-szph { max-width: 1440px; }
+}
+@media (min-width: 1920px) {
+  html { font-size: 18px; }
+  .container-szph { max-width: 1600px; }
+}

@@ -63,7 +63,7 @@ export function VideoTabs() {
 
   return (
     <div style={{ background: "#f8f9fa", minHeight: "100vh" }}>
-      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6 pb-20">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto pt-6 pb-20">
         <h1 className="font-garet font-bold italic text-[#051937] mb-5" style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)", textTransform: "uppercase" }}>
           Video
         </h1>

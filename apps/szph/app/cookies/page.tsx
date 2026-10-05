@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function CookiePolicyPage() {
   return (
     <article className="pb-20" style={{ background: "#f8f9fa" }}>
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[900px] mx-auto pt-8">
+      <div className="px-6 lg:px-10 xl:px-16 max-w-[1100px] mx-auto pt-8">
         <Link
           href="/"
           className="inline-flex items-center gap-2 font-bold text-[#012d74] hover:text-[#051937] transition-colors mb-6"

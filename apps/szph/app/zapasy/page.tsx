@@ -41,7 +41,7 @@ export default async function SzphZapasyPage() {
 
   return (
     <div style={{ background: "#f8f9fa", minHeight: "100vh" }}>
-      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8 pb-20">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto pt-8 pb-20">
         {/* Najbližšie turnaje — always first */}
         <TournamentCarousel tournaments={TOURNAMENTS} />
 

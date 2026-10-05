@@ -99,7 +99,7 @@ export default function EshopPage() {
     <article style={{ background: "#f8f9fa" }} className="pb-20 overflow-x-hidden">
       {/* Hero */}
       <div className="py-10 sm:py-14 px-4 sm:px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[1600px] mx-auto px-0 lg:px-4">
+        <div className="max-w-[1920px] mx-auto px-0 lg:px-4">
           <span className="font-bold uppercase text-white mb-3 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Oficiálny obchod
           </span>
@@ -112,7 +112,7 @@ export default function EshopPage() {
         </div>
       </div>
 
-      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto pt-8">
 
         {/* Kategórie */}
         <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>

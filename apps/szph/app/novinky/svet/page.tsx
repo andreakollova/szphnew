@@ -46,7 +46,7 @@ export default async function SvetNovinkyPage() {
 
   return (
     <div style={{ background: "#f8f9fa", minHeight: "100vh" }}>
-      <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-8 pb-20">
+      <div className="px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto pt-8 pb-20">
         <div className="mb-8">
           <h1
             className="font-garet font-bold italic text-[#051937]"

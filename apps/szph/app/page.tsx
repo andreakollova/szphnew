@@ -349,7 +349,7 @@ export default async function SzphHome() {
           ═══════════════════════════════════════════════════ */}
       <section id="aktuality" className="scroll-mt-32" style={{ background: "#f8f9fa" }}>
       <div className="relative pt-10 pb-12">
-        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-0 items-start">
 
             {/* ── Ľavý stĺpec: Aktuality + Reprezentácia + Organizácia ── */}
@@ -527,7 +527,7 @@ export default async function SzphHome() {
           ZAPASOVE CENTRUM
           ═══════════════════════════════════════════════════ */}
       <section style={{ background: "#f8f9fa" }} className="relative pt-3 pb-6 md:py-14">
-        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
           <div className="flex items-center justify-between mb-5 md:mb-7">
             <h2
               className="font-garet font-bold italic text-[#051937]"
@@ -572,7 +572,7 @@ export default async function SzphHome() {
             background: "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.04) 0%, transparent 60%), radial-gradient(ellipse at 80% 80%, rgba(255,255,255,0.03) 0%, transparent 50%)",
           }}
         />
-        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
 
 
           <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-8 md:gap-12 xl:gap-20 items-center">
@@ -656,7 +656,7 @@ export default async function SzphHome() {
           NOVINKY Z EURÓPY
           ═══════════════════════════════════════════════════ */}
       <section style={{ background: "#f8f9fa" }} className="py-12">
-        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
           <CardSection
             title="Novinky zo sveta"
             href="/novinky/svet"
@@ -672,7 +672,7 @@ export default async function SzphHome() {
       <section style={{ background: "#f8f9fa" }} className="px-4 pb-4 md:hidden">
         <Link
           href="/eshop"
-          className="group block relative overflow-hidden active:opacity-90 transition-opacity max-w-[1600px] mx-auto"
+          className="group block relative overflow-hidden active:opacity-90 transition-opacity max-w-[1920px] mx-auto"
           style={{ borderRadius: "14px", height: "120px" }}
         >
           <Image
@@ -698,7 +698,7 @@ export default async function SzphHome() {
           PROJEKTY
           ═══════════════════════════════════════════════════ */}
       <section style={{ background: "#f8f9fa" }} className="relative pt-2 pb-6 md:pt-4 md:pb-14">
-        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
           <div className="flex items-center justify-between mb-6 md:mb-8">
             <h2 className="font-garet font-bold italic text-[#051937]" style={{ fontSize: "clamp(1.1rem, 4vw, 2rem)", textTransform: "uppercase" }}>
               Projekty
@@ -766,7 +766,7 @@ export default async function SzphHome() {
 
         {/* ── #wearehockey — vodorovná čiara za nadpisom ── */}
 
-        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
 
           {/* Header — rovnaký štýl ako Aktuality/Projekty */}
           <div className="flex items-center justify-between mb-6 md:mb-8">
@@ -832,7 +832,7 @@ export default async function SzphHome() {
           SPONZORI A PARTNERI
           ═══════════════════════════════════════════════════ */}
       <section style={{ background: "#ffffff", borderTop: "1px solid rgba(1,45,116,0.06)" }} className="pt-8 pb-0 md:pt-14 md:pb-4">
-        <div className="px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
 
           {/* Oficiálni sponzori */}
           <div className="mb-6 md:mb-12">

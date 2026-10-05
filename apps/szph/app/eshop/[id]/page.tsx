@@ -92,7 +92,7 @@ export default function ProductDetailPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20 overflow-x-hidden">
       {/* Breadcrumb */}
-      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto pt-6 pb-4">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto pt-6 pb-4">
         <div className="flex items-center gap-2 text-[#94a3b8]" style={{ fontSize: "11px" }}>
           <Link href="/eshop" className="hover:text-[#051937] transition-colors font-bold">Eshop</Link>
           <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
@@ -100,7 +100,7 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1600px] mx-auto">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-8 xl:gap-12">
 
           {/* Ľavá — galéria */}

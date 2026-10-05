@@ -19,12 +19,12 @@ export default function ZmluvyPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Ostatné</span>
           <h1 className="font-bold text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>Zmluvy</h1>
         </div>
       </div>
-      <div className="max-w-[900px] mx-auto px-6 pt-12">
+      <div className="max-w-[1100px] mx-auto px-6 pt-12">
         <div className="space-y-3">
           {DOCS.map((doc) => (
             <div key={doc.name} className="flex items-center gap-4 rounded-lg p-5" style={{ background: "#ffffff", border: "1px solid rgba(1,45,116,0.08)" }}>

@@ -33,7 +33,7 @@ export default async function ExerciseDetailPage({ params }: Props) {
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           <Link href="/vzdelavanie/cvicenia" className="inline-flex items-center gap-1 text-white/70 hover:text-white text-sm mb-4 transition-colors">
             <span>&#8592;</span> Všetky cvičenia
           </Link>
@@ -60,7 +60,7 @@ export default async function ExerciseDetailPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="max-w-[900px] mx-auto px-6 pt-12">
+      <div className="max-w-[1100px] mx-auto px-6 pt-12">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Diagram */}
           {ex.diagram_url && (

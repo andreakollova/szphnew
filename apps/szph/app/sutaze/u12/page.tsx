@@ -11,7 +11,7 @@ export default function U12Page() {
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Súťaže
           </span>
@@ -25,7 +25,7 @@ export default function U12Page() {
       </div>
 
       {/* Content */}
-      <div className="max-w-[900px] mx-auto px-6 pt-12">
+      <div className="max-w-[1100px] mx-auto px-6 pt-12">
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Kategória U12 je najmladšou súťažnou vekovou skupinou v slovenskom pozemnom hokeji. Je určená pre hráčov a hráčky do 12 rokov a zameriava sa predovšetkým na základné hokejové zručnosti, radosť z pohybu a budovanie lásky k športu. V tomto veku je kľúčové, aby deti získali pozitívny vzťah k pozemnému hokeju.
         </p>

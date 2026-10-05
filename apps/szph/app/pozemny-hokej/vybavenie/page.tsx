@@ -51,7 +51,7 @@ export default async function VybaveniePage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Pozemný hokej
           </span>
@@ -64,7 +64,7 @@ export default async function VybaveniePage() {
         </div>
       </div>
 
-      <div className="max-w-[900px] mx-auto px-6 pt-10">
+      <div className="max-w-[1100px] mx-auto px-6 pt-10">
         {/* Info box */}
         <div className="flex gap-4 p-6 mb-10" style={{ background: "rgba(0,120,253,0.04)", borderRadius: "8px", border: "1px solid rgba(0,120,253,0.12)" }}>
           <div className="shrink-0 flex items-start pt-0.5">

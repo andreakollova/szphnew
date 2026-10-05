@@ -18,7 +18,7 @@ export function PageContentRenderer({ blocks, breadcrumb, title }: PageContentRe
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           {breadcrumb && (
             <span
               className="font-bold uppercase text-white mb-4 block"
@@ -37,7 +37,7 @@ export function PageContentRenderer({ blocks, breadcrumb, title }: PageContentRe
       </div>
 
       {/* Content blocks */}
-      <div className="max-w-[900px] mx-auto px-6 pt-12">
+      <div className="max-w-[1100px] mx-auto px-6 pt-12">
         {blocks.map((block) => (
           <ContentBlockRenderer key={block.id} block={block} />
         ))}

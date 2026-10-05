@@ -12,7 +12,7 @@ export default function RegistraciaHracovPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           <span
             className="font-bold uppercase text-white mb-4 block"
             style={{ fontSize: "10px", letterSpacing: "0.14em" }}
@@ -34,7 +34,7 @@ export default function RegistraciaHracovPage() {
         </div>
       </div>
 
-      <div className="max-w-[900px] mx-auto px-6 pt-12">
+      <div className="max-w-[1100px] mx-auto px-6 pt-12">
         <h2
           className="font-bold text-[#051937] mb-3"
           style={{ fontSize: "24px" }}

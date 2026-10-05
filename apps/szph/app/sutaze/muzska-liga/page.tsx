@@ -11,7 +11,7 @@ export default function MuskaLigaPage() {
     <article style={{ background: "#f8f9fa" }} className="pb-20">
       {/* Hero */}
       <div className="py-16 px-6" style={{ background: "#051937" }}>
-        <div className="max-w-[900px] mx-auto">
+        <div className="max-w-[1100px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>
             Súťaže
           </span>
@@ -25,7 +25,7 @@ export default function MuskaLigaPage() {
       </div>
 
       {/* Content */}
-      <div className="max-w-[900px] mx-auto px-6 pt-12">
+      <div className="max-w-[1100px] mx-auto px-6 pt-12">
         <p className="text-[#334155] mb-8" style={{ fontSize: "15px", lineHeight: 1.8 }}>
           Extraliga mužov je najvyššia a najprestížnejšia súťaž v slovenskom pozemnom hokeji. Každú sezónu sa v nej stretávajú najlepšie mužské kluby zo Slovenska, ktoré súria o titul Majstra Slovenska. Súťaž organizuje Slovenský pozemnohokejový zväz (SZPH) a prebieha v pozemnej (outdoor) aj halovej (indoor) forme.
         </p>
