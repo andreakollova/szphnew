@@ -14,6 +14,7 @@ const SEED_CATEGORIES: Omit<Category, "id" | "created_at" | "updated_at">[] = [
     description: "Seniorska muzska reprezentacia Slovenska v pozemnom hokeji.",
     sort_order: 1,
     status: "published",
+    champions: null,
     nominations: [
       { number: 1, name: "BOGAR Jakub", club: "SK Slavia Praha" },
       { number: 7, name: "VACHA Tomas", club: "KPH Raca" },
@@ -45,6 +46,7 @@ const SEED_CATEGORIES: Omit<Category, "id" | "created_at" | "updated_at">[] = [
     description: "Seniorska zenska reprezentacia Slovenska v pozemnom hokeji.",
     sort_order: 2,
     status: "published",
+    champions: null,
     nominations: [
       { number: 1, name: "SUTOVSKA Daniela (GK)", club: "KPH Raca" },
       { number: 2, name: "LISKOVA Natalia (GK)", club: "KPH HOKO Zlate Moravce" },
@@ -75,6 +77,7 @@ const SEED_CATEGORIES: Omit<Category, "id" | "created_at" | "updated_at">[] = [
     sort_order: 3,
     status: "published",
     nominations: null,
+    champions: null,
     achievements: [
       { year: "2025", form: "Hala", event: "ME II, Lousada", result: "2. miesto" },
       { year: "2019", form: "Hala", event: "ME II, Paredes", result: "2. miesto" },
@@ -93,6 +96,7 @@ const SEED_CATEGORIES: Omit<Category, "id" | "created_at" | "updated_at">[] = [
     sort_order: 4,
     status: "published",
     nominations: null,
+    champions: null,
     achievements: [
       { year: "2019", form: "Hala", event: "ME II", result: "2. miesto" },
       { year: "2007", form: "Hala", event: "Elitne ME, Vieden", result: "4. miesto" },
@@ -102,11 +106,11 @@ const SEED_CATEGORIES: Omit<Category, "id" | "created_at" | "updated_at">[] = [
       { year: "1994", form: "Hala", event: "Elitne ME, Llodio", result: "3. miesto v Europe" },
     ],
   },
-  { name: "Extraliga muži", slug: "extraliga-muzi", type: "liga", description: null, sort_order: 10, status: "published", nominations: null, achievements: null },
-  { name: "Extraliga ženy", slug: "extraliga-zeny", type: "liga", description: null, sort_order: 11, status: "published", nominations: null, achievements: null },
-  { name: "U18", slug: "u18", type: "liga", description: null, sort_order: 12, status: "published", nominations: null, achievements: null },
-  { name: "U14", slug: "u14", type: "liga", description: null, sort_order: 13, status: "published", nominations: null, achievements: null },
-  { name: "U12", slug: "u12", type: "liga", description: null, sort_order: 14, status: "published", nominations: null, achievements: null },
+  { name: "Extraliga muži", slug: "extraliga-muzi", type: "liga", description: null, sort_order: 10, status: "published", nominations: null, achievements: null, champions: null },
+  { name: "Extraliga ženy", slug: "extraliga-zeny", type: "liga", description: null, sort_order: 11, status: "published", nominations: null, achievements: null, champions: null },
+  { name: "U18", slug: "u18", type: "liga", description: null, sort_order: 12, status: "published", nominations: null, achievements: null, champions: null },
+  { name: "U14", slug: "u14", type: "liga", description: null, sort_order: 13, status: "published", nominations: null, achievements: null, champions: null },
+  { name: "U12", slug: "u12", type: "liga", description: null, sort_order: 14, status: "published", nominations: null, achievements: null, champions: null },
 ];
 
 async function seedIfEmpty(supabase: ReturnType<typeof createBrowserSupabaseClient>) {
