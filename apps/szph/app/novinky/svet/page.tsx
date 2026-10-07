@@ -17,7 +17,7 @@ const getWorldNews = unstable_cache(
       );
       const { data } = await hr
         .from("articles")
-        .select("id, title_sk, image_url, url, scraped_at")
+        .select("id, title_sk, image_url, url, scraped_at, source")
         .eq("published", true)
         .order("scraped_at", { ascending: false })
         .limit(30);
@@ -27,6 +27,7 @@ const getWorldNews = unstable_cache(
         cover_image_url: a.image_url,
         published_at: a.scraped_at,
         url: a.url ?? null,
+        source: a.source ?? null,
       }));
     } catch {
       return [];
@@ -35,6 +36,15 @@ const getWorldNews = unstable_cache(
   ["world-news-all"],
   { revalidate: 300 }
 );
+
+const SOURCE_FLAGS: Record<string, string> = {
+  "Hockey Netherlands": "🇳🇱", "Hockey Germany": "🇩🇪", "Hockey Belgium": "🇧🇪",
+  "Hockey Australia": "🇦🇺", "Hockey Spain": "🇪🇸", "Argentina Hockey": "🇦🇷",
+  "Ireland Hockey": "🇮🇪", "Scottish Hockey": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "EuroHockey": "🇪🇺",
+  "FIH Hockey": "🏑", "England Hockey": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Hockey Wales": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+  "GB Hockey": "🇬🇧", "Uruguay Hockey": "🇺🇾", "Hockey New Zealand": "🇳🇿",
+  "Field Hockey Canada": "🇨🇦", "Hockey India": "🇮🇳",
+};
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);
@@ -59,61 +69,66 @@ export default async function SvetNovinkyPage() {
           <div className="py-20 text-center text-[#64748b]">Žiadne novinky zo sveta</div>
         ) : (
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {articles.map((article: any) => (
-              <a
-                key={article.id}
-                href={`/novinky/svet/${article.id}`}
-                className="group block overflow-hidden"
-              >
-                <div
-                  className="relative overflow-hidden"
-                  style={{ height: "180px", borderRadius: "3px" }}
+            {articles.map((article: any) => {
+              const flag = article.source ? SOURCE_FLAGS[article.source] : null;
+              return (
+                <a
+                  key={article.id}
+                  href={`/novinky/svet/${article.id}`}
+                  className="group block overflow-hidden bg-white"
+                  style={{ borderRadius: "10px", border: "1px solid rgba(1,45,116,0.06)" }}
                 >
-                  {article.cover_image_url ? (
-                    <Image
-                      src={article.cover_image_url}
-                      alt={article.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-[#e2e8f0]" />
-                  )}
-                </div>
-                <div className="pt-3">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span
-                      className="inline-block font-extrabold uppercase text-[#012d74]"
-                      style={{ fontSize: "9px", letterSpacing: "0.1em" }}
-                    >
-                      / svet
-                    </span>
-                    {article.url && (
-                      <span
-                        className="inline-block font-bold uppercase text-[#64748b]"
-                        style={{ fontSize: "8px", letterSpacing: "0.08em" }}
-                      >
-                        {(() => { try { return new URL(article.url).hostname.replace("www.", ""); } catch { return ""; } })()}
-                      </span>
+                  <div
+                    className="relative overflow-hidden"
+                    style={{ height: "200px" }}
+                  >
+                    {article.cover_image_url ? (
+                      <Image
+                        src={article.cover_image_url}
+                        alt={article.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-[#e2e8f0]" />
                     )}
                   </div>
-                  <h3
-                    className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-2"
-                    style={{ fontSize: "14px" }}
-                  >
-                    {article.title}
-                  </h3>
-                  {article.published_at && (
-                    <p
-                      className="text-[#64748b] mt-1.5 font-bold uppercase"
-                      style={{ fontSize: "9px", letterSpacing: "0.08em" }}
+                  <div className="px-4 py-3">
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <span
+                        className="inline-block font-extrabold uppercase text-[#0078fe]"
+                        style={{ fontSize: "9px", letterSpacing: "0.1em" }}
+                      >
+                        / svet
+                      </span>
+                      {flag && <span style={{ fontSize: "12px" }}>{flag}</span>}
+                      {article.source && (
+                        <span
+                          className="inline-block font-bold uppercase text-[#94a3b8]"
+                          style={{ fontSize: "8px", letterSpacing: "0.08em" }}
+                        >
+                          {article.source}
+                        </span>
+                      )}
+                    </div>
+                    <h3
+                      className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3"
+                      style={{ fontSize: "15px" }}
                     >
-                      {formatDate(article.published_at)}
-                    </p>
-                  )}
-                </div>
-              </a>
-            ))}
+                      {article.title}
+                    </h3>
+                    {article.published_at && (
+                      <p
+                        className="text-[#94a3b8] mt-1.5 font-bold uppercase"
+                        style={{ fontSize: "9px", letterSpacing: "0.08em" }}
+                      >
+                        {formatDate(article.published_at)}
+                      </p>
+                    )}
+                  </div>
+                </a>
+              );
+            })}
           </div>
         )}
       </div>

@@ -97,7 +97,7 @@ const getWorldNews = unstable_cache(
         "https://oivzvihdhidpbrjpygfl.supabase.co",
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9pdnp2aWhkaGlkcGJyanB5Z2ZsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MzI3MTgsImV4cCI6MjA5MDIwODcxOH0.7d917agBywM3D1RlFJ27oHTRvjBaE_pyDxCzLKaKaIE"
       );
-      const { data } = await hr.from("articles").select("id, title_sk, image_url, url, scraped_at").eq("published", true).order("scraped_at", { ascending: false }).limit(4);
+      const { data } = await hr.from("articles").select("id, title_sk, image_url, url, scraped_at, source").eq("published", true).order("scraped_at", { ascending: false }).limit(4);
       return (data ?? []).map((a: any) => ({
         id: String(a.id),
         slug: `svet/${a.id}`,
@@ -105,6 +105,7 @@ const getWorldNews = unstable_cache(
         cover_image_url: a.image_url,
         category: "svet",
         source_url: a.url ?? null,
+        source: a.source ?? null,
         published_at: a.scraped_at,
         status: "published",
       }));
@@ -159,7 +160,17 @@ const getData = unstable_cache(
   { revalidate: 30 }
 );
 
+const SOURCE_FLAGS: Record<string, string> = {
+  "Hockey Netherlands": "🇳🇱", "Hockey Germany": "🇩🇪", "Hockey Belgium": "🇧🇪",
+  "Hockey Australia": "🇦🇺", "Hockey Spain": "🇪🇸", "Argentina Hockey": "🇦🇷",
+  "Ireland Hockey": "🇮🇪", "Scottish Hockey": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "EuroHockey": "🇪🇺",
+  "FIH Hockey": "🏑", "England Hockey": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Hockey Wales": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+  "GB Hockey": "🇬🇧", "Uruguay Hockey": "🇺🇾", "Hockey New Zealand": "🇳🇿",
+  "Field Hockey Canada": "🇨🇦", "Hockey India": "🇮🇳",
+};
+
 function ArticleCard({ article }: { article: any }) {
+  const flag = article.source ? SOURCE_FLAGS[article.source] : null;
   return (
     <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white shrink-0" style={{ borderRadius: "10px", border: "1px solid rgba(1,45,116,0.06)" }}>
       <div className="relative overflow-hidden" style={{ height: "200px" }}>
@@ -177,9 +188,12 @@ function ArticleCard({ article }: { article: any }) {
         )}
       </div>
       <div className="px-4 py-3">
-        <span className="inline-block font-extrabold uppercase text-[#0078fe] mb-1" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
-          / {article.category}
-        </span>
+        <div className="flex items-center gap-1.5 mb-1">
+          <span className="inline-block font-extrabold uppercase text-[#0078fe]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
+            / {article.category}
+          </span>
+          {flag && <span style={{ fontSize: "12px" }}>{flag}</span>}
+        </div>
         <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3" style={{ fontSize: "15px" }}>
           {article.title}
         </h3>
