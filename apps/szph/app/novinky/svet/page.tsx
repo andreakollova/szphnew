@@ -21,14 +21,16 @@ const getWorldNews = unstable_cache(
         .eq("published", true)
         .order("scraped_at", { ascending: false })
         .limit(30);
-      return (data ?? []).map((a: any) => ({
-        id: String(a.id),
-        title: a.title_sk ?? "",
-        cover_image_url: a.image_url,
-        published_at: a.scraped_at,
-        url: a.url ?? null,
-        source: a.source ?? null,
-      }));
+      return (data ?? [])
+        .filter((a: any) => a.image_url && a.image_url.startsWith("https://"))
+        .map((a: any) => ({
+          id: String(a.id),
+          title: a.title_sk ?? "",
+          cover_image_url: a.image_url,
+          published_at: a.scraped_at,
+          url: a.url ?? null,
+          source: a.source ?? null,
+        }));
     } catch {
       return [];
     }
