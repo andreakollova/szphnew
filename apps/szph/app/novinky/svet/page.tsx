@@ -38,12 +38,12 @@ const getWorldNews = unstable_cache(
 );
 
 const SOURCE_FLAGS: Record<string, string> = {
-  "Hockey Netherlands": "🇳🇱", "Hockey Germany": "🇩🇪", "Hockey Belgium": "🇧🇪",
-  "Hockey Australia": "🇦🇺", "Hockey Spain": "🇪🇸", "Argentina Hockey": "🇦🇷",
-  "Ireland Hockey": "🇮🇪", "Scottish Hockey": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "EuroHockey": "🇪🇺",
-  "FIH Hockey": "🏑", "England Hockey": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Hockey Wales": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-  "GB Hockey": "🇬🇧", "Uruguay Hockey": "🇺🇾", "Hockey New Zealand": "🇳🇿",
-  "Field Hockey Canada": "🇨🇦", "Hockey India": "🇮🇳",
+  "Hockey Netherlands": "nl", "Hockey Germany": "de", "Hockey Belgium": "be",
+  "Hockey Australia": "au", "Hockey Spain": "es", "Argentina Hockey": "ar",
+  "Ireland Hockey": "ie", "Scottish Hockey": "gb-sct", "EuroHockey": "eu",
+  "FIH Hockey": "eu", "England Hockey": "gb-eng", "Hockey Wales": "gb-wls",
+  "GB Hockey": "gb", "Uruguay Hockey": "uy", "Hockey New Zealand": "nz",
+  "Field Hockey Canada": "ca", "Hockey India": "in",
 };
 
 function formatDate(dateStr: string) {
@@ -70,7 +70,7 @@ export default async function SvetNovinkyPage() {
         ) : (
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {articles.map((article: any) => {
-              const flag = article.source ? SOURCE_FLAGS[article.source] : null;
+              const flagCode = article.source ? SOURCE_FLAGS[article.source] : null;
               return (
                 <a
                   key={article.id}
@@ -101,7 +101,7 @@ export default async function SvetNovinkyPage() {
                       >
                         / svet
                       </span>
-                      {flag && <span style={{ fontSize: "12px" }}>{flag}</span>}
+                      {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={16} height={12} style={{ width: 16, height: 12, objectFit: "cover", borderRadius: 2 }} />}
                       {article.source && (
                         <span
                           className="inline-block font-bold uppercase text-[#94a3b8]"

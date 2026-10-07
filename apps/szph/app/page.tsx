@@ -161,16 +161,16 @@ const getData = unstable_cache(
 );
 
 const SOURCE_FLAGS: Record<string, string> = {
-  "Hockey Netherlands": "🇳🇱", "Hockey Germany": "🇩🇪", "Hockey Belgium": "🇧🇪",
-  "Hockey Australia": "🇦🇺", "Hockey Spain": "🇪🇸", "Argentina Hockey": "🇦🇷",
-  "Ireland Hockey": "🇮🇪", "Scottish Hockey": "🏴󠁧󠁢󠁳󠁣󠁴󠁿", "EuroHockey": "🇪🇺",
-  "FIH Hockey": "🏑", "England Hockey": "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Hockey Wales": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-  "GB Hockey": "🇬🇧", "Uruguay Hockey": "🇺🇾", "Hockey New Zealand": "🇳🇿",
-  "Field Hockey Canada": "🇨🇦", "Hockey India": "🇮🇳",
+  "Hockey Netherlands": "nl", "Hockey Germany": "de", "Hockey Belgium": "be",
+  "Hockey Australia": "au", "Hockey Spain": "es", "Argentina Hockey": "ar",
+  "Ireland Hockey": "ie", "Scottish Hockey": "gb-sct", "EuroHockey": "eu",
+  "FIH Hockey": "eu", "England Hockey": "gb-eng", "Hockey Wales": "gb-wls",
+  "GB Hockey": "gb", "Uruguay Hockey": "uy", "Hockey New Zealand": "nz",
+  "Field Hockey Canada": "ca", "Hockey India": "in",
 };
 
 function ArticleCard({ article }: { article: any }) {
-  const flag = article.source ? SOURCE_FLAGS[article.source] : null;
+  const flagCode = article.source ? SOURCE_FLAGS[article.source] : null;
   return (
     <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white shrink-0" style={{ borderRadius: "10px", border: "1px solid rgba(1,45,116,0.06)" }}>
       <div className="relative overflow-hidden" style={{ height: "200px" }}>
@@ -192,7 +192,7 @@ function ArticleCard({ article }: { article: any }) {
           <span className="inline-block font-extrabold uppercase text-[#0078fe]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
             / {article.category}
           </span>
-          {flag && <span style={{ fontSize: "12px" }}>{flag}</span>}
+          {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={16} height={12} style={{ width: 16, height: 12, objectFit: "cover", borderRadius: 2 }} />}
         </div>
         <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3" style={{ fontSize: "15px" }}>
           {article.title}
