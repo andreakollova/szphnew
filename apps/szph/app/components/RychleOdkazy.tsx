@@ -113,22 +113,6 @@ export function RychleOdkazy() {
         </div>
       </Link>
 
-      {/* Links */}
-      <div className="grid grid-cols-4 gap-2">
-        {QUICK_LINKS.map((item, i) => (
-          <Link
-            key={i}
-            href={item.href}
-            className="group flex flex-col items-center gap-1.5 py-3 text-center hover:bg-[#f5f7fb] transition-all"
-            style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.08)" }}
-          >
-            <span className="flex items-center justify-center text-[#012d74]" style={{ width: 20, height: 20 }}>{item.icon}</span>
-            <span className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "9px", lineHeight: 1.2 }}>
-              {item.label.replace("Chcem sa stať ", "").replace("Chcem si založiť ", "")}
-            </span>
-          </Link>
-        ))}
-      </div>
     </div>
   );
 }
