@@ -114,16 +114,18 @@ export function RychleOdkazy() {
       </Link>
 
       {/* Links */}
-      <div className="flex flex-wrap gap-2">
+      <div className="grid grid-cols-4 gap-2">
         {QUICK_LINKS.map((item, i) => (
           <Link
             key={i}
             href={item.href}
-            className="group flex items-center gap-1.5 px-3 py-2 font-bold text-[#051937] hover:text-white hover:bg-[#012d74] transition-all"
-            style={{ fontSize: "11px", borderRadius: "20px", border: "1px solid rgba(1,45,116,0.12)", background: "#fff" }}
+            className="group flex flex-col items-center gap-1.5 py-3 text-center hover:bg-[#f5f7fb] transition-all"
+            style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.08)" }}
           >
-            <span className="shrink-0 text-[#012d74] group-hover:text-white transition-colors" style={{ width: 14, height: 14 }}>{item.icon}</span>
-            {item.label.replace("Chcem sa stať ", "").replace("Chcem si založiť ", "")}
+            <span className="flex items-center justify-center text-[#012d74]" style={{ width: 20, height: 20 }}>{item.icon}</span>
+            <span className="font-bold text-[#051937] group-hover:text-[#012d74] transition-colors" style={{ fontSize: "9px", lineHeight: 1.2 }}>
+              {item.label.replace("Chcem sa stať ", "").replace("Chcem si založiť ", "")}
+            </span>
           </Link>
         ))}
       </div>
