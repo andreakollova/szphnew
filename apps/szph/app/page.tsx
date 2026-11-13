@@ -199,7 +199,7 @@ function ArticleCard({ article }: { article: any }) {
           {article.title}
         </h3>
         <div className="flex items-center justify-between mt-auto pt-3">
-          <span className={`inline-flex items-center gap-1.5 font-extrabold uppercase px-2 py-0.5 ${article.category === "svet" ? "text-[#64748b] bg-[#f1f5f9]" : "text-white bg-[#d80027]"}`} style={{ fontSize: "8px", letterSpacing: "0.1em", borderRadius: "2px" }}>
+          <span className={`inline-flex items-center gap-1.5 font-extrabold uppercase px-2 py-0.5 ${article.category === "svet" ? "text-[#051937] bg-[#f1f5f9]" : "text-white bg-[#d80027]"}`} style={{ fontSize: "8px", letterSpacing: "0.1em", borderRadius: "2px" }}>
             {article.category}
             {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={14} height={10} style={{ width: 14, height: 10, objectFit: "cover", borderRadius: 1 }} />}
           </span>
@@ -611,7 +611,7 @@ export default async function SzphHome() {
               </div>
 
               <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
-                Rozhovor o infraštruktúre a výstavbe nového štadióna
+                Rozhovor o infraštruktúre a výstavbe<br />nového štadióna
               </h3>
               <p className="mb-1">
                 <span className="inline-block font-bold uppercase text-white px-2 py-0.5" style={{ fontSize: "9px", letterSpacing: "0.08em", background: "#012d74", borderRadius: "2px" }}>

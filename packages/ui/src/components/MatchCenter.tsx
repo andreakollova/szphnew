@@ -386,8 +386,8 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
     <div className={cn("notranslate", className)}>
       {/* Controls */}
       <div className="flex flex-col items-center gap-3 mb-6">
-        {/* Row 1: Liga / Rep toggle buttons */}
-        <div className="flex items-center gap-3">
+        {/* All controls in one row */}
+        <div className="flex items-center gap-3 flex-wrap justify-center">
           {([
             { key: "liga", label: "Liga", logo: "/images/logo-liga.webp" },
             { key: "reprezentacia", label: "Reprezentácia", logo: "/images/logo-reprezentacia.webp", logoInactive: "/images/logo-reprezentacia-color.webp" },
@@ -415,10 +415,8 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
               </button>
             );
           })}
-        </div>
-
-        {/* Row 2: Program/Výsledky + Filter */}
-        <div className="flex items-center gap-2">
+          {/* Separator */}
+          <div className="hidden sm:block shrink-0" style={{ width: 1, height: 24, background: "rgba(1,45,116,0.12)" }} />
           <div className="flex items-center shrink-0 gap-0">
             {([{ key: "upcoming", label: "Program" }, { key: "past", label: "Výsledky" }] as const).map((tab) => (
               <button
@@ -530,7 +528,6 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
             )}
           </div>
         </div>
-      </div>
 
       {/* Zápasy grid s paginovaním */}
       {list.length === 0 ? (
