@@ -437,7 +437,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
         </div>
 
         {/* Pagination dots */}
-        <div className="absolute flex items-center gap-2.5" style={{ left: "6.5%", bottom: "clamp(30px, 5vw, 60px)" }}>
+        <div className="absolute flex items-center gap-2.5" style={{ left: "6.5%", bottom: "clamp(50px, 8vw, 100px)" }}>
           {HERO_IMAGES.map((_, i) => (
             <button
               key={i}
