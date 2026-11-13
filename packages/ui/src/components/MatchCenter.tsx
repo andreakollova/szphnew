@@ -232,7 +232,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
                   <span style={{ fontSize: "20px", fontWeight: 800, color: "#051937" }}>{m.away_score ?? 0}</span>
                 </div>
               ) : (
-                <span className="font-bold text-[#012d74]" style={{ fontSize: "12px" }}>vs</span>
+                <span className="font-bold text-[#051937]" style={{ fontSize: "12px" }}>vs</span>
               )}
             </div>
             <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
@@ -281,9 +281,9 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <div style={{ width: "20px", height: "2px", background: "#012d74", opacity: 0.5 }} />
-                <span className="font-bold text-[#012d74]" style={{ fontSize: "13px" }}>vs</span>
-                <div style={{ width: "20px", height: "2px", background: "#012d74", opacity: 0.5 }} />
+                <div style={{ width: "20px", height: "2px", background: "#051937", opacity: 1 }} />
+                <span className="font-bold text-[#051937]" style={{ fontSize: "13px" }}>vs</span>
+                <div style={{ width: "20px", height: "2px", background: "#051937", opacity: 1 }} />
               </div>
             )}
           </div>
