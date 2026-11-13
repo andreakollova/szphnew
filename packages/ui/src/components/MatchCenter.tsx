@@ -293,7 +293,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
           </div>
           <div className="shrink-0 hidden lg:flex items-center gap-2 justify-end" style={{ width: "180px" }}>
             {m.venue && <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>{m.venue}</span>}
-            <svg className="h-4 w-4 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+            <svg className="h-3 w-3 text-[#051937] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
           </div>
         </div>
       </motion.div>
