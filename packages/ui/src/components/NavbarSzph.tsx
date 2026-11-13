@@ -552,7 +552,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
         {announcement ? (
           announcement.href ? (
             <Link href={announcement.href} className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400" />
               {announcement.text}
               <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -560,7 +560,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             </Link>
           ) : (
             <span className="flex items-center gap-2 text-white font-bold truncate" style={{ fontSize: "11px", letterSpacing: "0.03em" }}>
-              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="shrink-0 h-1.5 w-1.5 rounded-full bg-green-400" />
               {announcement.text}
             </span>
           )
@@ -575,13 +575,13 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
           {announcement && (
             announcement.href ? (
               <Link href={announcement.href} className="flex items-center gap-1.5 text-white font-bold" style={{ fontSize: "10px", letterSpacing: "0.03em", maxWidth: "100%" }}>
-                <span className="shrink-0 h-1 w-1 rounded-full bg-green-400 animate-pulse" />
+                <span className="shrink-0 h-1 w-1 rounded-full bg-green-400" />
                 <span className="truncate">{announcement.text.length > 50 ? announcement.text.slice(0, 50) + "..." : announcement.text}</span>
                 <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
               </Link>
             ) : (
               <span className="flex items-center gap-1.5 text-white font-bold truncate" style={{ fontSize: "9px" }}>
-                <span className="shrink-0 h-1 w-1 rounded-full bg-green-400 animate-pulse" />
+                <span className="shrink-0 h-1 w-1 rounded-full bg-green-400" />
                 <span className="truncate">{announcement.text.length > 50 ? announcement.text.slice(0, 50) + "..." : announcement.text}</span>
               </span>
             )
