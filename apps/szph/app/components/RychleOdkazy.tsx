@@ -106,15 +106,15 @@ export function RychleOdkazy() {
             Dresy, merch a vybavenie.
           </p>
           <div
-            className="mt-2.5 inline-flex items-center justify-center self-start px-4 py-2 font-bold text-white"
+            className="mt-2.5 inline-flex items-center justify-center self-start px-4 py-2 font-bold text-[#051937]"
             style={{
               fontSize: "10px",
-              background: "#d80027",
+              background: "#ffffff",
               borderRadius: "20px",
               letterSpacing: "0.04em",
             }}
           >
-            Zobraziť obchod
+            Zobraziť eshop
           </div>
         </div>
       </Link>
