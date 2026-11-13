@@ -385,7 +385,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
           }}
         >
           {/* Pagination dots */}
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-5" style={{ transform: "skewX(-12deg)" }}>
             {HERO_IMAGES.map((_, i) => (
               <button
                 key={i}
