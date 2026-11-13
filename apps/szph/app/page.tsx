@@ -448,7 +448,7 @@ export default async function SzphHome() {
                       <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "3px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
                         <div className="relative overflow-hidden" style={{ height: "260px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(1,45,116,0.9) 0%, rgba(1,45,116,0.4) 50%, transparent 70%)" }} />
+                          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(1,45,116,0.95) 0%, rgba(1,45,116,0.6) 50%, rgba(1,45,116,0.2) 80%)" }} />
                           <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
                             <span className="inline-block font-extrabold uppercase text-white px-2.5 py-1 mb-2" style={{ fontSize: "8px", letterSpacing: "0.1em", background: "#012d74", borderRadius: "2px" }}>
                               neprehliadnite
@@ -553,7 +553,7 @@ export default async function SzphHome() {
           ZAPASOVE CENTRUM
           ═══════════════════════════════════════════════════ */}
       <section style={{ background: "#f8f9fa" }} className="relative pt-3 pb-6 md:py-14">
-        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1200px] mx-auto">
+        <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
           <div className="flex flex-col items-center mb-5 md:mb-7">
             <h2
               className="font-garet font-bold italic text-[#051937] text-center"
