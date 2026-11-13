@@ -385,7 +385,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
   return (
     <div className={cn("notranslate", className)}>
       {/* Controls */}
-      <div className="flex flex-col items-center gap-3 mb-6">
+      <div className="flex flex-col gap-3 mb-6">
         {/* Row 1: Liga / Rep toggle buttons */}
         <div className="flex items-center gap-3">
           {([
@@ -418,7 +418,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
         </div>
 
         {/* Row 2: Program/Výsledky + Filter */}
-        <div className="flex items-center justify-center flex-wrap gap-2">
+        <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center shrink-0 gap-0">
             {([{ key: "upcoming", label: "Program" }, { key: "past", label: "Výsledky" }] as const).map((tab) => (
               <button
