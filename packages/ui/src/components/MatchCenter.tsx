@@ -529,31 +529,6 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
               </>
             )}
           </div>
-          {totalPages > 1 && (
-            <div className="flex items-center gap-1 ml-auto">
-              <button
-                onClick={() => setPage(p => Math.max(0, p - 1))}
-                disabled={page === 0}
-                className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
-                style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
-              >
-                <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <span className="font-bold text-[#64748b] px-1" style={{ fontSize: "10px" }}>{page + 1}/{totalPages}</span>
-              <button
-                onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
-                disabled={page >= totalPages - 1}
-                className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
-                style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
-              >
-                <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          )}
         </div>
       </div>
 
@@ -585,6 +560,32 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
           ))}
         </motion.div>
       </AnimatePresence>
+      )}
+
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-1 mt-4">
+          <button
+            onClick={() => setPage(p => Math.max(0, p - 1))}
+            disabled={page === 0}
+            className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
+            style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
+          >
+            <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <span className="font-bold text-[#64748b] px-2" style={{ fontSize: "11px" }}>{page + 1}/{totalPages}</span>
+          <button
+            onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
+            disabled={page >= totalPages - 1}
+            className="flex items-center justify-center rounded-full transition-colors disabled:opacity-30"
+            style={{ width: 32, height: 32, border: "1px solid rgba(1,45,116,0.12)" }}
+          >
+            <svg className="h-3.5 w-3.5 text-[#051937]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
       )}
     </div>
   );

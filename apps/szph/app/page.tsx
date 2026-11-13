@@ -613,8 +613,10 @@ export default async function SzphHome() {
               <h3 className="font-garet font-bold italic text-white leading-tight mb-3" style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}>
                 Rozhovor o infraštruktúre a výstavbe nového štadióna
               </h3>
-              <p className="text-white/50 font-bold uppercase mb-1" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
-                Richard Garaj / Matej Boho
+              <p className="mb-1">
+                <span className="inline-block font-bold uppercase text-white px-2 py-0.5" style={{ fontSize: "9px", letterSpacing: "0.08em", background: "#012d74", borderRadius: "2px" }}>
+                  Richard Garaj / Matej Boho
+                </span>
               </p>
               <p className="text-white mb-6" style={{ fontSize: "13px", fontWeight: 500 }}>
                 Rozhovory s hráčmi, trénermi a funkcionármi slovenského pozemného hokeja.
