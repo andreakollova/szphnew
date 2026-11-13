@@ -384,21 +384,22 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
             width: "51.82%",
           }}
         >
-          <p
-            className="font-garet"
-            style={{
-              fontSize: "clamp(0.6rem, 0.85vw, 20px)",
-              fontStyle: "italic",
-              fontWeight: 500,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase" as const,
-              marginBottom: "clamp(4px, 0.6vw, 14px)",
-              textShadow: "0 2px 20px rgba(0,0,0,0.3)",
-              color: "rgba(255,255,255,0.95)",
-            }}
-          >
-            Nová generácia, veľké ambície
-          </p>
+          {/* Pagination dots */}
+          <div className="flex items-center gap-2 mb-3">
+            {HERO_IMAGES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className="transition-all"
+                style={{
+                  width: current === i ? 28 : 10,
+                  height: 5,
+                  borderRadius: 3,
+                  background: current === i ? "#fff" : "rgba(255,255,255,0.35)",
+                }}
+              />
+            ))}
+          </div>
           <h1
             className="font-garet text-white"
             style={{
@@ -416,7 +417,22 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
             <br />
             <span style={{ color: "#0078fd", WebkitTextStroke: "1.5px #0078fd" }}>CIEĽ.</span>
           </h1>
-          <div style={{ marginTop: "clamp(12px, 1.5vw, 36px)" }}>
+          <p
+            className="font-garet"
+            style={{
+              fontSize: "clamp(0.6rem, 0.85vw, 20px)",
+              fontStyle: "italic",
+              fontWeight: 500,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase" as const,
+              marginTop: "clamp(6px, 0.8vw, 16px)",
+              textShadow: "0 2px 20px rgba(0,0,0,0.3)",
+              color: "rgba(255,255,255,0.95)",
+            }}
+          >
+            Nová generácia, veľké ambície
+          </p>
+          <div style={{ marginTop: "clamp(10px, 1.2vw, 28px)" }}>
             <Link
               href="#aktuality"
               className="relative inline-flex items-center justify-center font-garet font-bold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
@@ -436,22 +452,6 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
           </div>
         </div>
 
-        {/* Pagination dots */}
-        <div className="absolute flex items-center gap-2.5" style={{ left: "6.5%", bottom: "clamp(40px, 6vw, 80px)" }}>
-          {HERO_IMAGES.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className="transition-all"
-              style={{
-                width: current === i ? 32 : 10,
-                height: 5,
-                borderRadius: 3,
-                background: current === i ? "#fff" : "rgba(255,255,255,0.35)",
-              }}
-            />
-          ))}
-        </div>
 
         {/* ═══ Ticket card ═══ */}
         {nextMatch && (() => {
