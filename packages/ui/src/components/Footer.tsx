@@ -31,12 +31,24 @@ const FOOTER_LINKS_SZPH = [
   { group: "Navigácia", items: [
     { label: "Novinky", href: "/novinky" },
     { label: "Zápasy", href: "/zapasy" },
+    { label: "Reprezentácia", href: "/reprezentacia" },
+    { label: "Súťaže", href: "/sutaze" },
     { label: "Dokumenty", href: "/dokumenty" },
+    { label: "E-shop", href: "/eshop" },
   ]},
   { group: "Pre kluby", items: [
-    { label: "Registrácia", href: "/pre-kluby/registracia" },
-    { label: "Pravidlá", href: "/pre-kluby/pravidla" },
-    { label: "Formuláre", href: "/pre-kluby/formulare" },
+    { label: "Registrácia hráča", href: "/kluby/registracia" },
+    { label: "Zoznam klubov", href: "/kluby" },
+    { label: "Prestup hráča", href: "/kluby/prestup" },
+    { label: "Ekonomické tlačivá", href: "/dokumenty/ekonomicke-tlaciva" },
+    { label: "Kontakt", href: "/kontakt" },
+  ]},
+  { group: "Chcem začať", items: [
+    { label: "Chcem sa stať hráčom", href: "/zacni-hrat/hrac" },
+    { label: "Chcem sa stať trénerom", href: "/zacni-hrat/trener" },
+    { label: "Chcem sa stať rozhodcom", href: "/zacni-hrat/rozhodca" },
+    { label: "Chcem si založiť klub", href: "/pre-kluby/zalozenie" },
+    { label: "Vybavenie", href: "/pozemny-hokej/vybavenie" },
   ]},
   { group: "__photos__", items: [] },
 ];
@@ -119,7 +131,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
 
       {/* Main footer */}
       <div className="px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto py-12">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="mb-4">
