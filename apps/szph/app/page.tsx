@@ -179,7 +179,7 @@ function ArticleCard({ article }: { article: any }) {
       {/* Photo — full, no gradient */}
       <div className="relative overflow-hidden" style={{ height: "220px" }}>
         {article.cover_image_url ? (
-          <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+          <Image src={article.cover_image_url} alt={article.title} fill className="object-cover" />
         ) : (
           <div className="w-full h-full bg-[#e2e8f0]" />
         )}
