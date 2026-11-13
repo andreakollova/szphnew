@@ -462,7 +462,6 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               {/* Header */}
               <div style={{ padding: "clamp(12px, 1.2vw, 24px) clamp(14px, 1.4vw, 28px) clamp(8px, 0.8vw, 16px)" }}>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="h-2 w-2 rounded-full bg-[#0078fd] shrink-0" />
                   <span className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.65vw, 13px)", letterSpacing: "0.12em" }}>
                     {clean(nextMatch.home_team || nextMatch.home_short || "")} vs. {clean(nextMatch.away_team || nextMatch.away_short || "")}
                   </span>
