@@ -129,7 +129,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
             <p className="leading-relaxed max-w-xs text-[#334155]" style={{ fontSize: "14px" }}>
               {isFieldhockey
                 ? "Pozemný hokej je viac ako šport. Príbehy, emócie a komunita slovenského pozemného hokeja."
-                : "Slovenský zväz pozemného hokeja — riadiaci orgán pozemného hokeja na Slovensku od roku 1928."}
+                : "Slovenský zväz pozemného hokeja - riadiaci orgán pozemného hokeja na Slovensku od roku 1928."}
             </p>
             {/* App badges */}
             <div className="mt-5 flex gap-2 flex-wrap">

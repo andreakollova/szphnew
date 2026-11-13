@@ -894,7 +894,7 @@ export default async function SzphHome() {
           {/* Partner CTA */}
           <Link
             href="/kontakt"
-            className="mt-5 md:mt-10 flex items-center justify-between gap-3 group transition-colors hover:bg-[#f8fafd] py-3"
+            className="mt-5 md:mt-10 flex items-center justify-between gap-3 group pt-6 pb-3"
             style={{ borderTop: "1px solid rgba(1,45,116,0.06)" }}
           >
             <div className="min-w-0">
@@ -905,8 +905,8 @@ export default async function SzphHome() {
                 Kontaktujte nás pre viac informácií o partnerstve
               </p>
             </div>
-            <div className="shrink-0 flex items-center justify-center rounded-full group-hover:bg-[#012d74]/10 transition-colors" style={{ width: 36, height: 36, border: "1px solid rgba(1,45,116,0.12)" }}>
-              <svg className="h-4 w-4 text-[#012d74]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <div className="shrink-0 flex items-center justify-center rounded-full transition-colors" style={{ width: 36, height: 36, border: "1px solid rgba(1,45,116,0.12)" }}>
+              <svg className="h-4 w-4 text-[#012d74] group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </div>
