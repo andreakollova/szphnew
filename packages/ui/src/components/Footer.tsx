@@ -102,7 +102,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
 
       {/* Desktop: Newsletter bar */}
       <div className="hidden md:block" style={{ background: "#051937" }}>
-        <div className="container-szph py-12">
+        <div className="px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto py-12">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
               <p className="font-garet font-bold italic text-white" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.4rem)", textTransform: "uppercase" }}>
@@ -118,7 +118,7 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
       </div>
 
       {/* Main footer */}
-      <div className="container-szph py-12">
+      <div className="px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto py-12">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
