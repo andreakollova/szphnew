@@ -175,9 +175,9 @@ const SOURCE_FLAGS: Record<string, string> = {
 function ArticleCard({ article }: { article: any }) {
   const flagCode = article.source ? SOURCE_FLAGS[article.source] : null;
   return (
-    <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden shrink-0 bg-white" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+    <Link href={`/novinky/${article.slug}`} className="group flex flex-col overflow-hidden shrink-0 bg-white h-full" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
       {/* Photo — full, no gradient */}
-      <div className="relative overflow-hidden" style={{ height: "220px" }}>
+      <div className="relative overflow-hidden shrink-0" style={{ height: "220px" }}>
         {article.cover_image_url ? (
           <Image src={article.cover_image_url} alt={article.title} fill className="object-cover" />
         ) : (
@@ -192,13 +192,13 @@ function ArticleCard({ article }: { article: any }) {
         )}
       </div>
       {/* Gradient divider */}
-      <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #ffffff)" }} />
+      <div className="shrink-0" style={{ height: 3, background: "linear-gradient(to right, #d80027, #ffffff)" }} />
       {/* Text area */}
-      <div className="px-4 py-4">
-        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3 mb-3" style={{ fontSize: "15px" }}>
+      <div className="px-4 py-4 flex flex-col flex-1">
+        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3" style={{ fontSize: "15px" }}>
           {article.title}
         </h3>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto pt-3">
           <span className={`inline-flex items-center gap-1.5 font-extrabold uppercase px-2 py-0.5 ${article.category === "svet" ? "text-[#64748b] bg-[#f1f5f9]" : "text-white bg-[#d80027]"}`} style={{ fontSize: "8px", letterSpacing: "0.1em", borderRadius: "2px" }}>
             {article.category}
             {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={14} height={10} style={{ width: 14, height: 10, objectFit: "cover", borderRadius: 1 }} />}
@@ -554,16 +554,16 @@ export default async function SzphHome() {
           ═══════════════════════════════════════════════════ */}
       <section style={{ background: "#f8f9fa" }} className="relative pt-3 pb-6 md:py-14">
         <div className="relative px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto">
-          <div className="flex items-center justify-between mb-5 md:mb-7">
+          <div className="flex flex-col items-center mb-5 md:mb-7">
             <h2
               className="font-garet font-bold italic text-[#051937]"
               style={{ fontSize: "clamp(1.1rem, 4vw, 2rem)", textTransform: "uppercase" }}
             >
               <span className="notranslate" data-en="Match Center">Zápasové centrum</span>
             </h2>
-            <Link href="/zapasy" className="hidden md:flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors shrink-0" style={{ fontSize: "13px" }}>
+            <Link href="/zapasy" className="hidden md:flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors mt-1" style={{ fontSize: "12px" }}>
               Zobraziť všetky
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
@@ -618,7 +618,7 @@ export default async function SzphHome() {
                   Richard Garaj / Matej Boho
                 </span>
               </p>
-              <p className="text-white mb-6" style={{ fontSize: "13px", fontWeight: 500 }}>
+              <p className="text-white mt-3 mb-4" style={{ fontSize: "13px", fontWeight: 500 }}>
                 Rozhovory s hráčmi, trénermi a funkcionármi slovenského pozemného hokeja.
               </p>
 
