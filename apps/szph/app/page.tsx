@@ -416,7 +416,7 @@ export default async function SzphHome() {
                       { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
                       { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
-                      <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden snap-start shrink-0" style={{ borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", width: "75%" }}>
+                      <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden snap-start shrink-0" style={{ borderRadius: "3px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", width: "75%" }}>
                         <div className="relative overflow-hidden" style={{ height: "180px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         </div>
@@ -435,7 +435,7 @@ export default async function SzphHome() {
                       { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
                       { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
-                      <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                      <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "3px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
                         <div className="relative overflow-hidden" style={{ height: "200px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         </div>
