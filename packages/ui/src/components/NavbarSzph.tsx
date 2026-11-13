@@ -264,7 +264,7 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="group flex items-start gap-2.5 px-2 py-1.5 rounded-lg transition-colors hover:bg-[#f5f7fb]"
+                      className="group flex items-start gap-2.5 px-2 py-1.5 rounded-lg transition-colors"
                     >
                       <div>
                         <p className="font-semibold text-[#051937] leading-none group-hover:text-[#012d74] transition-colors" style={{ fontSize: "15px" }}>{link.label}</p>
