@@ -175,30 +175,40 @@ const SOURCE_FLAGS: Record<string, string> = {
 function ArticleCard({ article }: { article: any }) {
   const flagCode = article.source ? SOURCE_FLAGS[article.source] : null;
   return (
-    <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden shrink-0 relative" style={{ borderRadius: "3px", height: "340px" }}>
-      {article.cover_image_url ? (
-        <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-      ) : (
-        <div className="absolute inset-0 bg-[#e2e8f0]" />
-      )}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.9) 0%, rgba(5,25,55,0.5) 40%, transparent 70%)" }} />
-      {article.video_url && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex items-center justify-center rounded-full bg-white/90 shadow-lg" style={{ width: 36, height: 36 }}>
-            <svg className="h-3.5 w-3.5 text-[#d00027] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+    <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden shrink-0 bg-white" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+      {/* Photo — full, no gradient */}
+      <div className="relative overflow-hidden" style={{ height: "220px" }}>
+        {article.cover_image_url ? (
+          <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+        ) : (
+          <div className="w-full h-full bg-[#e2e8f0]" />
+        )}
+        {article.video_url && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="flex items-center justify-center rounded-full bg-white/90 shadow-lg" style={{ width: 36, height: 36 }}>
+              <svg className="h-3.5 w-3.5 text-[#d00027] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+            </div>
           </div>
-        </div>
-      )}
-      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
-        <div className="flex items-center gap-1.5 mb-1.5">
-          <span className="inline-block font-extrabold uppercase text-white/70" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
-            / {article.category}
-          </span>
-          {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={8} height={6} style={{ width: 8, height: 6, objectFit: "cover", borderRadius: 0.5 }} />}
-        </div>
-        <h3 className="font-bold text-white leading-snug line-clamp-3" style={{ fontSize: "15px" }}>
+        )}
+      </div>
+      {/* Gradient divider */}
+      <div style={{ height: 3, background: "linear-gradient(to left, #d80027, #012d74)" }} />
+      {/* Text area */}
+      <div className="px-4 py-4">
+        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3 mb-3" style={{ fontSize: "15px" }}>
           {article.title}
         </h3>
+        <div className="flex items-center justify-between">
+          <span className="inline-block font-extrabold uppercase text-[#d80027] px-2 py-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em", background: "rgba(216,0,39,0.08)", borderRadius: "2px" }}>
+            {article.category}
+          </span>
+          {article.published_at && (
+            <span className="font-bold uppercase text-[#012d74]" style={{ fontSize: "9px", letterSpacing: "0.06em" }}>
+              {new Date(article.published_at).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric" })}
+            </span>
+          )}
+          {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={8} height={6} style={{ width: 8, height: 6, objectFit: "cover", borderRadius: 0.5 }} />}
+        </div>
       </div>
     </Link>
   );
@@ -413,7 +423,7 @@ export default async function SzphHome() {
                     {[
                       { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
                       { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
-                      { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
+                      { title: "Reportáž s Olympioničkou - Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
                       <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden snap-start shrink-0" style={{ borderRadius: "3px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", width: "75%" }}>
                         <div className="relative overflow-hidden" style={{ height: "180px" }}>
@@ -432,7 +442,7 @@ export default async function SzphHome() {
                     {[
                       { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
                       { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
-                      { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
+                      { title: "Reportáž s Olympioničkou - Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
                       <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "3px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
                         <div className="relative overflow-hidden" style={{ height: "200px" }}>

@@ -151,7 +151,7 @@ Regenerácia a prevencia zranení budú integrované do každého tréningového
   "reportaz-alena-kyselicova": {
     id: "pinned-3",
     slug: "reportaz-alena-kyselicova",
-    title: "Reportáž s Olympioničkou – Alena Kyselicová",
+    title: "Reportáž s Olympioničkou - Alena Kyselicová",
     excerpt: "Alena Kyselicová Mejzlíková je dnes uznávaná ako jedna z najvýznamnejších športových osobností v oblasti pozemného hokeja v bývalom Československu.",
     cover_image_url: "/images/pinned-kyselicova.webp",
     category: "reprezentacia",
