@@ -234,11 +234,8 @@ function MegaMenu({ item, onLeave, onEnter, topOffset }: { item: NavItem; onLeav
               <div className="absolute inset-0" style={{ borderRadius: "4px", background: "linear-gradient(to top, #012d74 0%, rgba(1,45,116,0.9) 30%, rgba(1,45,116,0.3) 55%, transparent 75%)" }} />
               <div className="absolute bottom-0 p-4">
                 <h3 className="font-garet font-black italic text-white leading-tight mb-2" style={{ fontSize: "16px" }}>{featured.title}</h3>
-                <span className="inline-flex items-center gap-1.5 font-bold text-white px-3 py-1.5 transition-all hover:brightness-110" style={{ fontSize: "10px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "20px" }}>
+                <span className="inline-flex items-center justify-center font-bold text-[#051937] px-4 py-2 transition-all hover:opacity-90" style={{ fontSize: "10px", background: "#ffffff", borderRadius: "20px" }}>
                   Zobraziť
-                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
                 </span>
               </div>
             </Link>
