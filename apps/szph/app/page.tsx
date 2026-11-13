@@ -484,7 +484,8 @@ export default async function SzphHome() {
                       const draw = svkScore === oppScore;
                       return (
                         <div key={m.id || i} className="bg-white" style={{ padding: "6px 14px 12px" }}>
-                          <div className="text-center mb-1.5">
+                          <div className="flex items-center justify-center gap-1.5 mb-1.5">
+                            <img src="/images/logo-eurohockey.png" alt="" style={{ width: 14, height: 14, objectFit: "contain" }} />
                             <span className="font-bold uppercase text-[#051937]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                               {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" })} · {m.league?.split(" ").slice(0,3).join(" ") || "Zápas"}
                             </span>
