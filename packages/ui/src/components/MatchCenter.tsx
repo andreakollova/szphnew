@@ -574,7 +574,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <span className="font-bold text-[#64748b] px-2" style={{ fontSize: "11px" }}>{page + 1}/{totalPages}</span>
+          <span className="font-bold text-[#051937] px-2" style={{ fontSize: "11px" }}>{page + 1}/{totalPages}</span>
           <button
             onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
             disabled={page >= totalPages - 1}

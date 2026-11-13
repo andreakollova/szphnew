@@ -561,7 +561,7 @@ export default async function SzphHome() {
             >
               <span className="notranslate" data-en="Match Center">Zápasové centrum</span>
             </h2>
-            <Link href="/zapasy" className="hidden md:flex items-center gap-1.5 font-garet font-bold text-[#0078fe] hover:text-[#0060cc] transition-colors shrink-0" style={{ fontSize: "13px" }}>
+            <Link href="/zapasy" className="hidden md:flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors shrink-0" style={{ fontSize: "13px" }}>
               Zobraziť všetky
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -570,7 +570,7 @@ export default async function SzphHome() {
           </div>
           <MatchCenter matches={matches as any} pageSize={7} />
           <div className="mt-4 md:hidden">
-            <Link href="/zapasy" className="flex items-center justify-center gap-2 font-bold text-[#0078fe] py-3" style={{ fontSize: "12px", letterSpacing: "0.04em" }}>
+            <Link href="/zapasy" className="flex items-center justify-center gap-2 font-bold text-[#051937] py-3" style={{ fontSize: "12px", letterSpacing: "0.04em" }}>
               Zobraziť všetky zápasy
               <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
