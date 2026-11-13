@@ -667,7 +667,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
               onClick={() => setQuickLinksOpen(v => !v)}
               className={cn(
                 "flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300",
-                "hover:bg-white/10"
+                ""
               )}
               style={{ color: (hasHero && scrolled) ? "#051937" : "rgba(255,255,255,1)" }}
               aria-label="Rýchle odkazy"
@@ -720,13 +720,13 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             <LangSelector scrolled={scrolled} />
             <button
               onClick={() => setSearchOpen(true)}
-              className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", (hasHero && scrolled) ? "hover:bg-[#051937]/8" : "hover:bg-white/10")}
+              className="flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300"
               style={{ color: (hasHero && scrolled) ? "#051937" : "rgba(255,255,255,1)" }} aria-label="Vyhľadať">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <Link href="/admin/prihlasenie" className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", (hasHero && scrolled) ? "hover:bg-[#051937]/8" : "hover:bg-white/10")}
+            <Link href="/admin/prihlasenie" className="flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300"
               style={{ color: (hasHero && scrolled) ? "#051937" : "rgba(255,255,255,1)" }} aria-label="Prihlásenie">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
