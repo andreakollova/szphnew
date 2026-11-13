@@ -763,7 +763,7 @@ export default async function SzphHome() {
                 </div>
                 {/* Tag */}
                 <div className="px-3 py-2.5 flex items-center gap-2" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                  <span className="font-bold text-white" style={{ fontSize: "11px" }}>{p.name}</span>
+                  <span className="font-bold text-[#051937]" style={{ fontSize: "11px" }}>{p.name}</span>
                 </div>
               </Link>
             ))}
