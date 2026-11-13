@@ -37,7 +37,7 @@ const PINNED_ARTICLES: Record<string, any> = {
   "pozemny-hokej-vo-svete": {
     id: "pinned-1",
     slug: "pozemny-hokej-vo-svete",
-    title: "Pozemný hokej vo svete",
+    title: "Pozemný hokej vo svete: 30 miliónov hráčov a svetové súťaže",
     excerpt: "30 miliónov hráčov a miliardový trh. Pozemný hokej je tretím najhranejším športom na svete, s viac ako 30 miliónov aktívnych hráčov na globálnej úrovni.",
     cover_image_url: "/images/pinned-hokej-vo-svete.webp",
     category: "neprehliadnite",

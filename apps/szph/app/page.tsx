@@ -421,7 +421,7 @@ export default async function SzphHome() {
                   {/* Mobile: carousel */}
                   <div className="flex gap-3 overflow-x-auto pb-2 sm:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
                     {[
-                      { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
+                      { title: "Pozemný hokej vo svete: 30 miliónov hráčov a svetové súťaže", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
                       { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
                       { title: "Reportáž s Olympioničkou - Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
@@ -441,7 +441,7 @@ export default async function SzphHome() {
                   {/* Desktop: grid */}
                   <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 gap-4">
                     {[
-                      { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
+                      { title: "Pozemný hokej vo svete: 30 miliónov hráčov a svetové súťaže", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
                       { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
                       { title: "Reportáž s Olympioničkou - Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
