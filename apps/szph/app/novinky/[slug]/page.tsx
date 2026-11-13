@@ -74,7 +74,7 @@ Pozemný hokej dnes zahŕňa niekoľko významných líg, ktoré formujú globá
   "program-olympiada-2036": {
     id: "pinned-2",
     slug: "program-olympiada-2036",
-    title: "Program Olympiáda 2036",
+    title: "Program Olympiáda 2036 rozvíja slovenský hokej",
     excerpt: "Akčný plán pre rozvoj slovenského pozemného hokeja. SZPH predkladá tento akčný plán ako súčasť iniciatívy Program Olympiáda 2036.",
     cover_image_url: "/images/pinned-olympiada-2036.webp",
     category: "novinky",
