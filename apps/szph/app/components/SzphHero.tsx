@@ -433,6 +433,22 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
+            {/* Pagination dots */}
+            <div className="flex items-center gap-2 mt-4">
+              {HERO_IMAGES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className="transition-all"
+                  style={{
+                    width: current === i ? 24 : 8,
+                    height: 4,
+                    borderRadius: 2,
+                    background: current === i ? "#fff" : "rgba(255,255,255,0.35)",
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
 

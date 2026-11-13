@@ -484,8 +484,8 @@ export default async function SzphHome() {
                       const win = svkScore > oppScore;
                       const draw = svkScore === oppScore;
                       return (
-                        <div key={m.id || i} className="bg-white" style={{ padding: "6px 14px 10px" }}>
-                          <div className="text-center mb-0.5">
+                        <div key={m.id || i} className="bg-white" style={{ padding: "6px 14px 12px" }}>
+                          <div className="text-center mb-1.5">
                             <span className="font-bold uppercase text-[#051937]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                               {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" })} · {m.league?.split(" ").slice(0,3).join(" ") || "Zápas"}
                             </span>
