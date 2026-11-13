@@ -451,15 +451,14 @@ export default async function SzphHome() {
                         </div>
                         <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #012d74)" }} />
                         <div className="px-4 py-3.5">
-                          <span className="inline-block font-extrabold uppercase text-[#0078fd] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
-                            / neprehliadnite
-                          </span>
-                          <h3 className="font-bold text-white leading-snug group-hover:text-white/90 transition-colors line-clamp-3" style={{ fontSize: "15px" }}>
+                          <h3 className="font-bold text-white leading-snug group-hover:text-white/90 transition-colors line-clamp-3 mb-3" style={{ fontSize: "15px" }}>
                             {article.title}
                           </h3>
-                          <span className="inline-block mt-2 font-bold text-white/60 group-hover:text-white transition-colors underline underline-offset-2" style={{ fontSize: "11px" }}>
-                            Zobraziť
-                          </span>
+                          <div className="flex items-center justify-between">
+                            <span className="inline-block font-extrabold uppercase text-[#0078fd] px-2 py-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em", background: "rgba(0,120,253,0.15)", borderRadius: "2px" }}>
+                              neprehliadnite
+                            </span>
+                          </div>
                         </div>
                       </Link>
                     ))}
