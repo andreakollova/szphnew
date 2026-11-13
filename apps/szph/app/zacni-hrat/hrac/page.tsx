@@ -73,7 +73,7 @@ export default function ChcemSaStatHracomPage() {
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.85) 0%, rgba(5,25,55,0.2) 60%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-5">
                 <h3 className="font-garet font-bold text-white" style={{ fontSize: "16px" }}>Pozemný hokej</h3>
-                <p className="text-white/70 mt-1" style={{ fontSize: "12px" }}>Jar a jeseň (marec - jún, september - november)</p>
+                <p className="text-white mt-1" style={{ fontSize: "12px" }}>Jar a jeseň (marec - jún, september - november)</p>
               </div>
             </div>
             <div className="relative overflow-hidden" style={{ borderRadius: "8px", height: "280px" }}>
@@ -81,7 +81,7 @@ export default function ChcemSaStatHracomPage() {
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.85) 0%, rgba(5,25,55,0.2) 60%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-5">
                 <h3 className="font-garet font-bold text-white" style={{ fontSize: "16px" }}>Halový hokej</h3>
-                <p className="text-white/70 mt-1" style={{ fontSize: "12px" }}>Zimné mesiace (október - marec)</p>
+                <p className="text-white mt-1" style={{ fontSize: "12px" }}>Zimné mesiace (október - marec)</p>
               </div>
             </div>
           </div>
