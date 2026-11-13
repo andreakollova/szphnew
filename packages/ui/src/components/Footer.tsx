@@ -185,9 +185,9 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
 
           {/* Partner logá */}
           {!isFieldhockey && (
-            <div>
+            <div className="lg:ml-auto">
               <h4 className="font-garet font-bold italic text-[#051937] mb-4" style={{ fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase" }}>Príspevok uznanému športu</h4>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 items-end">
                 {["/images/footer-1.webp", "/images/footer-2.webp", "/images/footer-3.webp"].map((src, i) => (
                   <div key={i}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
