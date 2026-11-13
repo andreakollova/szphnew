@@ -180,8 +180,8 @@ export function Footer({ brand, logoSrc = "/images/logo-szph.webp" }: FooterProp
             </div>
           </div>
 
-          {links.filter(g => g.group !== "__photos__").map(group => (
-            <div key={group.group}>
+          {links.filter(g => g.group !== "__photos__").map((group, gi) => (
+            <div key={group.group} className={gi === 0 ? "lg:pl-10" : ""}>
               <h4 className="font-garet font-bold italic text-[#051937] mb-4" style={{ fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase" }}>{group.group}</h4>
               <ul className="space-y-2.5">
                 {group.items.map(item => (
