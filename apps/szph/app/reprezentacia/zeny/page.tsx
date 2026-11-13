@@ -12,7 +12,7 @@ function resultColor(r: string) { return r.includes("1.") ? "#D4A017" : r.includ
 export default function ZenyPage() {
   return (
     <article style={{ background: "#f8f9fa" }} className="pb-20">
-      <div className="py-16 px-6" style={{ background: "#051937" }}>
+      <div className="pt-6 pb-16 px-6 lg:px-10 xl:px-16" style={{ background: "#051937" }}>
         <div className="max-w-[1100px] mx-auto">
           <span className="font-bold uppercase text-white mb-4 block" style={{ fontSize: "10px", letterSpacing: "0.14em" }}>Reprezentácia</span>
           <h1 className="font-garet font-bold italic text-white leading-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>Ženy A</h1>
