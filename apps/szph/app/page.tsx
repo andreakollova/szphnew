@@ -192,7 +192,7 @@ function ArticleCard({ article }: { article: any }) {
         )}
       </div>
       {/* Gradient divider */}
-      <div style={{ height: 3, background: "linear-gradient(to left, #d80027, #012d74)" }} />
+      <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #012d74)" }} />
       {/* Text area */}
       <div className="px-4 py-4">
         <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3 mb-3" style={{ fontSize: "15px" }}>
