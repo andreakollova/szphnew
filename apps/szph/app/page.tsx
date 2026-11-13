@@ -429,7 +429,7 @@ export default async function SzphHome() {
                         <div className="relative overflow-hidden" style={{ height: "180px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         </div>
-                        <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #ffffff)" }} />
+                        <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #012d74)" }} />
                         <div className="px-4 py-3">
                           <h3 className="font-bold text-white leading-snug line-clamp-3" style={{ fontSize: "14px" }}>
                             {article.title}
@@ -449,7 +449,7 @@ export default async function SzphHome() {
                         <div className="relative overflow-hidden" style={{ height: "200px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         </div>
-                        <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #ffffff)" }} />
+                        <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #012d74)" }} />
                         <div className="px-4 py-3.5">
                           <span className="inline-block font-extrabold uppercase text-[#0078fd] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                             / neprehliadnite
