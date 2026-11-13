@@ -402,7 +402,7 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   return (
     <article className="pb-20 overflow-x-hidden" style={{ background: "#f8f9fa" }}>
-      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto pt-6">
+      <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-0 items-start">
 
           {/* ── Main content ── */}
@@ -422,7 +422,7 @@ export default async function ArticleDetailPage({ params }: Props) {
               >
                 {article.title}
               </h1>
-              <div className="flex items-center gap-4 mt-3">
+              <div className="flex items-center gap-4 mt-1">
                 {article.published_at && (
                   <span className="font-bold uppercase text-[#94a3b8]" style={{ fontSize: "10px", letterSpacing: "0.1em" }}>
                     {formatDate(article.published_at)}
