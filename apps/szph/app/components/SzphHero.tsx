@@ -130,7 +130,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
           >
-            JEDEN TÝM,
+            JEDEN TÍM,
             <br />
             SPOLOČNÝ
             <br />
@@ -410,7 +410,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               textShadow: "0 4px 40px rgba(0,0,0,0.3)",
             }}
           >
-            JEDEN TÝM,
+            JEDEN TÍM,
             <br />
             SPOLOČNÝ
             <br />
