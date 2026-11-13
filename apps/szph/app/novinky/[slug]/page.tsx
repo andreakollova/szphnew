@@ -551,11 +551,10 @@ export default async function ArticleDetailPage({ params }: Props) {
                   Nájdi svoj tím a pridaj sa.
                 </p>
                 <div
-                  className="mt-3 inline-flex items-center gap-2 self-start px-3.5 py-1.5 font-bold text-white"
-                  style={{ fontSize: "10px", background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: "20px", letterSpacing: "0.04em" }}
+                  className="mt-3 inline-flex items-center justify-center self-start px-4 py-2 font-bold text-[#051937]"
+                  style={{ fontSize: "10px", background: "#ffffff", borderRadius: "20px", letterSpacing: "0.04em" }}
                 >
-                  Chcem sa stať hráčom
-                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                  Začať hrať
                 </div>
               </div>
             </Link>
@@ -585,11 +584,10 @@ export default async function ArticleDetailPage({ params }: Props) {
                   Dresy, merch a vybavenie.
                 </p>
                 <div
-                  className="mt-2.5 inline-flex items-center gap-2 self-start px-3.5 py-1.5 font-bold text-white"
-                  style={{ fontSize: "10px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: "20px", letterSpacing: "0.04em" }}
+                  className="mt-2.5 inline-flex items-center justify-center self-start px-4 py-2 font-bold text-[#051937]"
+                  style={{ fontSize: "10px", background: "#ffffff", borderRadius: "20px", letterSpacing: "0.04em" }}
                 >
-                  Zobraziť obchod
-                  <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                  Zobraziť eshop
                 </div>
               </div>
             </Link>
