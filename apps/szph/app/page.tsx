@@ -199,9 +199,9 @@ function ArticleCard({ article }: { article: any }) {
           {article.title}
         </h3>
         <div className="flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 font-extrabold uppercase text-white px-2 py-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em", background: "#d80027", borderRadius: "2px" }}>
+          <span className={`inline-flex items-center gap-1.5 font-extrabold uppercase px-2 py-0.5 ${article.category === "svet" ? "text-[#64748b] bg-[#f1f5f9]" : "text-white bg-[#d80027]"}`} style={{ fontSize: "8px", letterSpacing: "0.1em", borderRadius: "2px" }}>
             {article.category}
-            {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={10} height={7} style={{ width: 10, height: 7, objectFit: "cover", borderRadius: 1 }} />}
+            {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={14} height={10} style={{ width: 14, height: 10, objectFit: "cover", borderRadius: 1 }} />}
           </span>
           {article.published_at && (
             <span className="font-bold uppercase text-[#051937]" style={{ fontSize: "9px", letterSpacing: "0.06em" }}>
