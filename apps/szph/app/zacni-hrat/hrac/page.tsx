@@ -68,7 +68,7 @@ export default function ChcemSaStatHracomPage() {
 
           {/* Season cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
-            <div className="relative overflow-hidden" style={{ borderRadius: "8px", height: "200px" }}>
+            <div className="relative overflow-hidden" style={{ borderRadius: "8px", height: "280px" }}>
               <Image src="/images/hrac-pozemny.webp" alt="Pozemný hokej" fill className="object-cover" sizes="(max-width: 900px) 100vw, 400px" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.85) 0%, rgba(5,25,55,0.2) 60%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-5">
@@ -76,7 +76,7 @@ export default function ChcemSaStatHracomPage() {
                 <p className="text-white/70 mt-1" style={{ fontSize: "12px" }}>Jar a jeseň (marec - jún, september - november)</p>
               </div>
             </div>
-            <div className="relative overflow-hidden" style={{ borderRadius: "8px", height: "200px" }}>
+            <div className="relative overflow-hidden" style={{ borderRadius: "8px", height: "280px" }}>
               <Image src="/images/hrac-halovy.webp" alt="Halový hokej" fill className="object-cover" sizes="(max-width: 900px) 100vw, 400px" />
               <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.85) 0%, rgba(5,25,55,0.2) 60%)" }} />
               <div className="absolute bottom-0 left-0 right-0 p-5">
