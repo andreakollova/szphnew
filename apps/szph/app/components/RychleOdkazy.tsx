@@ -64,9 +64,6 @@ export function RychleOdkazy() {
           <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
             Začni hrať pozemný hokej!
           </p>
-          <p className="text-white mt-1" style={{ fontSize: "11px" }}>
-            Nájdi svoj tím a pridaj sa.
-          </p>
           <div
             className="mt-3 inline-flex items-center justify-center self-start px-4 py-2 font-bold text-[#051937]"
             style={{
@@ -101,9 +98,6 @@ export function RychleOdkazy() {
         <div className="absolute inset-0 flex flex-col justify-center px-5">
           <p className="font-garet font-bold text-white leading-tight" style={{ fontSize: "15px" }}>
             Oficiálny e-shop
-          </p>
-          <p className="text-white mt-1" style={{ fontSize: "11px" }}>
-            Dresy, merch a vybavenie.
           </p>
           <div
             className="mt-2.5 inline-flex items-center justify-center self-start px-4 py-2 font-bold text-[#051937]"
