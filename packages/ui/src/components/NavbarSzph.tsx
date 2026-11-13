@@ -648,7 +648,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                       "flex items-center gap-1 px-3 py-2 text-[11px] font-extrabold uppercase tracking-wide transition-colors duration-300 rounded-lg whitespace-nowrap",
                       (hasHero && scrolled)
                         ? (activeMega === item.href ? "text-[#051937] bg-[#051937]/8" : "text-[#051937]/80 hover:text-[#051937]/50")
-                        : (activeMega === item.href ? "text-white bg-white/10" : "text-white/90 hover:text-white/65")
+                        : (activeMega === item.href ? "text-white bg-white/10" : "text-white hover:text-white/80")
                     )}
                   >
                     {item.label}
@@ -672,7 +672,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
                 "flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300",
                 "hover:bg-white/10"
               )}
-              style={{ color: (hasHero && scrolled) ? "rgba(5,25,55,0.5)" : "rgba(255,255,255,0.6)" }}
+              style={{ color: (hasHero && scrolled) ? "rgba(5,25,55,0.5)" : "rgba(255,255,255,1)" }}
               aria-label="Rýchle odkazy"
             >
               <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -724,13 +724,13 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
             <button
               onClick={() => setSearchOpen(true)}
               className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", (hasHero && scrolled) ? "hover:bg-[#051937]/8" : "hover:bg-white/10")}
-              style={{ color: (hasHero && scrolled) ? "rgba(5,25,55,0.5)" : "rgba(255,255,255,0.6)" }} aria-label="Vyhľadať">
+              style={{ color: (hasHero && scrolled) ? "rgba(5,25,55,0.5)" : "rgba(255,255,255,1)" }} aria-label="Vyhľadať">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
             <Link href="/admin/prihlasenie" className={cn("flex items-center justify-center h-8 w-8 rounded-full transition-all duration-300", (hasHero && scrolled) ? "hover:bg-[#051937]/8" : "hover:bg-white/10")}
-              style={{ color: (hasHero && scrolled) ? "rgba(5,25,55,0.5)" : "rgba(255,255,255,0.6)" }} aria-label="Prihlásenie">
+              style={{ color: (hasHero && scrolled) ? "rgba(5,25,55,0.5)" : "rgba(255,255,255,1)" }} aria-label="Prihlásenie">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
@@ -739,8 +739,7 @@ export function NavbarSzph({ announcement }: NavbarSzphProps) {
               className={cn("flex items-center gap-2 rounded-full px-5 py-2 text-sm font-bold transition-all hover:brightness-110", (hasHero && scrolled) ? "text-white" : "text-white")}
               style={{ background: (hasHero && scrolled) ? "#051937" : "#012d74" }}>
               <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}>
-                <circle cx="12" cy="12" r="9" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 8.5l5 3.5-5 3.5V8.5z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
               </svg>
               <span className="notranslate" data-en="Match Center">Zápasové centrum</span>
             </a>

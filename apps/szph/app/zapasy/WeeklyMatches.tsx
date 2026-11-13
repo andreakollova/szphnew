@@ -80,7 +80,7 @@ function MatchCard({ m }: { m: Match }) {
   const awayWin = finished && (m.away_score ?? 0) > (m.home_score ?? 0);
 
   return (
-    <Link href={`/zapasy/${m.id}`} className="block bg-white px-4 py-3 transition-colors active:bg-gray-50" style={{ borderRadius: "12px", border: "1px solid rgba(1,45,116,0.06)" }}>
+    <Link href={`/zapasy/${m.id}`} className="block bg-white px-4 py-3 transition-colors active:bg-gray-50" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
       {/* Top: date, time, league, venue */}
       <div className="flex items-center justify-between mb-2">
         <span className="font-bold text-[#051937]" style={{ fontSize: "11px" }}>{dayStr} · {time}</span>
@@ -90,21 +90,21 @@ function MatchCard({ m }: { m: Match }) {
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-2 flex-1 min-w-0">
           <TeamLogo logo={m.home_logo} name={m.home_team} />
-          <span className={`font-bold truncate ${homeWin ? "text-[#16a34a]" : "text-[#051937]"}`} style={{ fontSize: "14px" }}>{m.home_short || m.home_team}</span>
+          <span className="font-bold truncate text-[#051937]" style={{ fontSize: "14px" }}>{m.home_short || m.home_team}</span>
         </div>
         <div className="shrink-0 flex items-center justify-center" style={{ minWidth: 48 }}>
           {finished ? (
             <span className="font-black text-[#051937]" style={{ fontSize: "18px" }}>
-              <span style={{ color: homeWin ? "#16a34a" : "#051937" }}>{m.home_score}</span>
+              <span style={{ color: "#051937" }}>{m.home_score}</span>
               <span className="text-[#012d74] mx-0.5" style={{ fontSize: "12px" }}>:</span>
-              <span style={{ color: awayWin ? "#16a34a" : "#051937" }}>{m.away_score}</span>
+              <span style={{ color: "#051937" }}>{m.away_score}</span>
             </span>
           ) : (
             <span className="font-bold text-[#012d74]" style={{ fontSize: "11px" }}>vs</span>
           )}
         </div>
         <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
-          <span className={`font-bold truncate text-right ${awayWin ? "text-[#16a34a]" : "text-[#051937]"}`} style={{ fontSize: "14px" }}>{m.away_short || m.away_team}</span>
+          <span className="font-bold truncate text-right text-[#051937]" style={{ fontSize: "14px" }}>{m.away_short || m.away_team}</span>
           <TeamLogo logo={m.away_logo} name={m.away_team} />
         </div>
       </div>

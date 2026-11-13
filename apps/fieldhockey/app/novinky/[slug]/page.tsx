@@ -35,20 +35,6 @@ export default async function ArticleDetailPage({ params }: Props) {
 
   return (
     <article className="min-h-screen pt-20">
-      {/* Hero */}
-      {article.cover_image_url && (
-        <div className="relative h-72 w-full overflow-hidden md:h-96">
-          <Image
-            src={article.cover_image_url}
-            alt={article.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--brand-bg)] via-[var(--brand-bg)]/30 to-transparent" />
-        </div>
-      )}
-
       <div className="container-szph py-12 max-w-3xl">
         {/* Breadcrumb */}
         <Link href="/novinky" className="label-wide text-[var(--sky)] hover:underline mb-6 inline-block">
@@ -73,6 +59,19 @@ export default async function ArticleDetailPage({ params }: Props) {
           <p className="text-lg text-white/70 mb-8 border-l-4 border-[var(--sky)] pl-5">
             {article.excerpt}
           </p>
+        )}
+
+        {/* Cover image inline */}
+        {article.cover_image_url && (
+          <div className="relative w-full overflow-hidden rounded-lg mb-8" style={{ aspectRatio: "16/9" }}>
+            <Image
+              src={article.cover_image_url}
+              alt={article.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 720px"
+            />
+          </div>
         )}
 
         {/* Content — TODO: render markdown */}

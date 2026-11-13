@@ -270,7 +270,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
           </div>
           <div className="flex items-center gap-3 flex-1 min-w-0 justify-end">
             <span className={cn("font-bold truncate text-right", "text-[#051937]")} style={{ fontSize: "16px" }}>{m.home_short || m.home_team}</span>
-            <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={36} />
+            <TeamLogoFromDb logo={m.home_logo} name={m.home_team} size={42} />
           </div>
           <div className="shrink-0 flex items-center justify-center" style={{ minWidth: "70px" }}>
             {finished ? (
@@ -288,7 +288,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
             )}
           </div>
           <div className="flex items-center gap-3 flex-1 min-w-0">
-            <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={36} />
+            <TeamLogoFromDb logo={m.away_logo} name={m.away_team} size={42} />
             <span className={cn("font-bold truncate", "text-[#051937]")} style={{ fontSize: "16px" }}>{m.away_short || m.away_team}</span>
           </div>
           <div className="shrink-0 hidden lg:flex items-center gap-2 justify-end" style={{ width: "180px" }}>
@@ -571,7 +571,7 @@ export function MatchCenter({ matches, className, pageSize = 100 }: MatchCenterP
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18 }}
           className="flex flex-col overflow-x-auto"
-          style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "20px", WebkitOverflowScrolling: "touch" } as any}
+          style={{ border: "1px solid rgba(1,45,116,0.08)", borderRadius: "6px", WebkitOverflowScrolling: "touch" } as any}
         >
           {list.map((m, i) => (
             <div

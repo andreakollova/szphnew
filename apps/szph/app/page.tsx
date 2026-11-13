@@ -175,8 +175,8 @@ const SOURCE_FLAGS: Record<string, string> = {
 function ArticleCard({ article }: { article: any }) {
   const flagCode = article.source ? SOURCE_FLAGS[article.source] : null;
   return (
-    <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white shrink-0" style={{ borderRadius: "10px", border: "1px solid rgba(1,45,116,0.06)" }}>
-      <div className="relative overflow-hidden" style={{ height: "200px" }}>
+    <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white shrink-0" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
+      <div className="relative overflow-hidden" style={{ height: "240px" }}>
         {article.cover_image_url ? (
           <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
         ) : (
@@ -413,8 +413,8 @@ export default async function SzphHome() {
                   <div className="flex gap-3 overflow-x-auto pb-2 sm:hidden snap-x snap-mandatory" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" } as any}>
                     {[
                       { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
-                      { title: "Program Olympiáda 2036", image: "/images/pinned-kyselicova.webp", slug: "program-olympiada-2036" },
-                      { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-olympiada-2036.webp", slug: "reportaz-alena-kyselicova" },
+                      { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
+                      { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
                       <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden snap-start shrink-0" style={{ borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", width: "75%" }}>
                         <div className="relative overflow-hidden" style={{ height: "180px" }}>
@@ -432,8 +432,8 @@ export default async function SzphHome() {
                   <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 gap-4">
                     {[
                       { title: "Pozemný hokej vo svete", image: "/images/pinned-hokej-vo-svete.webp", slug: "pozemny-hokej-vo-svete" },
-                      { title: "Program Olympiáda 2036", image: "/images/pinned-kyselicova.webp", slug: "program-olympiada-2036" },
-                      { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-olympiada-2036.webp", slug: "reportaz-alena-kyselicova" },
+                      { title: "Program Olympiáda 2036", image: "/images/pinned-olympiada-2036.webp", slug: "program-olympiada-2036" },
+                      { title: "Reportáž s Olympioničkou – Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
                       <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "10px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
                         <div className="relative overflow-hidden" style={{ height: "200px" }}>
@@ -472,7 +472,7 @@ export default async function SzphHome() {
                 </p>
                 <div className="mb-4" style={{ width: "28px", height: "2px", background: "#012d74" }} />
 
-                <div className="flex flex-col gap-1.5 overflow-hidden" style={{ borderRadius: "14px" }}>
+                <div className="flex flex-col gap-1.5 overflow-hidden" style={{ borderRadius: "3px" }}>
                   {(matches as any[])
                     .filter((m: any) => m.status === "finished" && (m.home_short === "SVK" || m.away_short === "SVK") && !m.league?.includes("ČESKÁ"))
                     .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -487,11 +487,8 @@ export default async function SzphHome() {
                       return (
                         <div key={m.id || i} className="bg-white" style={{ padding: "12px 14px" }}>
                           <div className="flex items-center justify-between mb-2">
-                            <span className="font-bold uppercase text-[#041837]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
+                            <span className="font-bold uppercase text-[#051937]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                               {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" })} · {m.league?.split(" ").slice(0,3).join(" ") || "Zápas"}
-                            </span>
-                            <span className="font-bold uppercase" style={{ fontSize: "9px", letterSpacing: "0.1em", color: win ? "#16a34a" : draw ? "#64748b" : "#012d74" }}>
-                              {win ? "Výhra" : draw ? "Remíza" : "Prehra"}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">

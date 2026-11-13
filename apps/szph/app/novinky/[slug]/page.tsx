@@ -438,6 +438,20 @@ export default async function ArticleDetailPage({ params }: Props) {
               </p>
             )}
 
+            {/* Cover image inline */}
+            {article.cover_image_url && (
+              <div className="relative w-full overflow-hidden mb-8" style={{ aspectRatio: "16/9", borderRadius: "3px" }}>
+                <Image
+                  src={article.cover_image_url}
+                  alt={article.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 900px"
+                  priority
+                />
+              </div>
+            )}
+
             {/* Article body */}
             <div className="max-w-none article-content">
               {article.content ? (

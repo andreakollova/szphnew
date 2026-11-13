@@ -457,7 +457,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
           return (
             <Link href={matchUrl} className="absolute hidden lg:flex flex-col" style={{
               right: "4%", top: "35%", width: "clamp(240px, 18vw, 340px)",
-              background: "rgba(255,255,255,0.97)", borderRadius: "clamp(6px, 0.6vw, 10px)",
+              background: "rgba(255,255,255,0.97)", borderRadius: "clamp(4px, 0.4vw, 6px)",
               boxShadow: "0 12px 40px rgba(0,0,0,0.2)", overflow: "visible",
               WebkitMaskImage: "radial-gradient(circle 10px at 0px 26%, transparent 9px, black 10px), radial-gradient(circle 10px at 100% 26%, transparent 9px, black 10px)",
               WebkitMaskComposite: "destination-in",
@@ -468,7 +468,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               {/* Header */}
               <div style={{ padding: "clamp(12px, 1.2vw, 24px) clamp(14px, 1.4vw, 28px) clamp(8px, 0.8vw, 16px)" }}>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="h-2 w-2 rounded-full bg-[#0078fd] animate-pulse shrink-0" />
+                  <span className="h-2 w-2 rounded-full bg-[#0078fd] shrink-0" />
                   <span className="font-garet font-bold uppercase text-[#051937]" style={{ fontSize: "clamp(7px, 0.65vw, 13px)", letterSpacing: "0.12em" }}>
                     {clean(nextMatch.home_team || nextMatch.home_short || "")} vs. {clean(nextMatch.away_team || nextMatch.away_short || "")}
                   </span>
