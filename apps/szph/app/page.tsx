@@ -483,42 +483,46 @@ export default async function SzphHome() {
                       const win = svkScore > oppScore;
                       const draw = svkScore === oppScore;
                       return (
-                        <div key={m.id || i} className="bg-white" style={{ padding: "6px 14px 12px" }}>
-                          <div className="flex items-center justify-center gap-1.5 mb-1.5">
-                            <img src="/images/logo-eurohockey.png" alt="" style={{ width: 14, height: 14, objectFit: "contain" }} />
-                            <span className="font-bold uppercase text-[#051937]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
-                              {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" })} · {m.league?.split(" ").slice(0,3).join(" ") || "Zápas"}
+                        <div key={m.id || i} className="bg-white" style={{ padding: "14px 16px 16px" }}>
+                          {/* Logo + tournament */}
+                          <div className="flex flex-col items-center mb-3">
+                            <img src="/images/logo-eurohockey.png" alt="" style={{ width: 28, height: 28, objectFit: "contain", marginBottom: 4 }} />
+                            <span className="font-bold uppercase text-[#051937] text-center" style={{ fontSize: "8px", letterSpacing: "0.08em", lineHeight: 1.3 }}>
+                              {m.league?.split(" ").slice(0,4).join(" ") || "Zápas"}
                             </span>
                           </div>
+                          {/* Date */}
+                          <p className="text-center font-bold text-[#012d74] mb-3" style={{ fontSize: "13px" }}>
+                            {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" }).toUpperCase()}
+                          </p>
+                          {/* Teams + score */}
                           <div className="flex items-center gap-2">
-                            <div className="flex items-center gap-1.5 flex-1 min-w-0">
+                            <div className="flex flex-col items-center flex-1 min-w-0">
                               {m.home_logo?.startsWith("flag:") ? (
-                                <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 22, height: 22 }}>
-                                  <img src={`https://flagcdn.com/w40/${m.home_logo.replace("flag:","")}.png`} alt="" width={22} height={22} style={{ width: 22, height: 22, objectFit: "cover" }} />
+                                <div className="shrink-0 overflow-hidden rounded-sm" style={{ width: 36, height: 24 }}>
+                                  <img src={`https://flagcdn.com/w80/${m.home_logo.replace("flag:","")}.png`} alt="" width={36} height={24} style={{ width: 36, height: 24, objectFit: "cover" }} />
                                 </div>
                               ) : m.home_logo ? (
-                                <div className="shrink-0" style={{ width: 22, height: 22 }}>
-                                  <img src={m.home_logo} alt="" width={22} height={22} style={{ width: 22, height: 22, objectFit: "contain" }} />
+                                <div className="shrink-0" style={{ width: 32, height: 32 }}>
+                                  <img src={m.home_logo} alt="" width={32} height={32} style={{ width: 32, height: 32, objectFit: "contain" }} />
                                 </div>
                               ) : null}
-                              <span className="font-bold text-[#051937] truncate" style={{ fontSize: "11px" }}>{m.home_short}</span>
+                              <span className="font-bold text-[#051937] mt-1" style={{ fontSize: "11px" }}>{m.home_short}</span>
                             </div>
-                            <div className="shrink-0 flex items-center gap-1.5 px-2">
-                              <span style={{ fontSize: "18px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.home_score}</span>
-                              <span style={{ fontSize: "11px", fontWeight: 700, color: "#012d74" }}>:</span>
-                              <span style={{ fontSize: "18px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.away_score}</span>
+                            <div className="shrink-0 flex flex-col items-center px-1">
+                              <span style={{ fontSize: "20px", fontWeight: 800, lineHeight: 1, color: "#051937" }}>{m.home_score}-{m.away_score}</span>
                             </div>
-                            <div className="flex items-center gap-1.5 flex-1 min-w-0 justify-end">
-                              <span className="font-bold text-[#051937] truncate" style={{ fontSize: "11px" }}>{m.away_short}</span>
+                            <div className="flex flex-col items-center flex-1 min-w-0">
                               {m.away_logo?.startsWith("flag:") ? (
-                                <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 22, height: 22 }}>
-                                  <img src={`https://flagcdn.com/w40/${m.away_logo.replace("flag:","")}.png`} alt="" width={22} height={22} style={{ width: 22, height: 22, objectFit: "cover" }} />
+                                <div className="shrink-0 overflow-hidden rounded-sm" style={{ width: 36, height: 24 }}>
+                                  <img src={`https://flagcdn.com/w80/${m.away_logo.replace("flag:","")}.png`} alt="" width={36} height={24} style={{ width: 36, height: 24, objectFit: "cover" }} />
                                 </div>
                               ) : m.away_logo ? (
-                                <div className="shrink-0" style={{ width: 22, height: 22 }}>
-                                  <img src={m.away_logo} alt="" width={22} height={22} style={{ width: 22, height: 22, objectFit: "contain" }} />
+                                <div className="shrink-0" style={{ width: 32, height: 32 }}>
+                                  <img src={m.away_logo} alt="" width={32} height={32} style={{ width: 32, height: 32, objectFit: "contain" }} />
                                 </div>
                               ) : null}
+                              <span className="font-bold text-[#051937] mt-1" style={{ fontSize: "11px" }}>{m.away_short}</span>
                             </div>
                           </div>
                         </div>

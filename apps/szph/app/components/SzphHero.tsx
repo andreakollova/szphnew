@@ -437,16 +437,16 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
         </div>
 
         {/* Pagination dots */}
-        <div className="absolute flex items-center gap-2" style={{ left: "6.5%", bottom: "clamp(16px, 3vw, 40px)" }}>
+        <div className="absolute flex items-center gap-2.5" style={{ left: "6.5%", bottom: "clamp(30px, 5vw, 60px)" }}>
           {HERO_IMAGES.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
               className="transition-all"
               style={{
-                width: current === i ? 24 : 8,
-                height: 4,
-                borderRadius: 2,
+                width: current === i ? 32 : 10,
+                height: 5,
+                borderRadius: 3,
                 background: current === i ? "#fff" : "rgba(255,255,255,0.35)",
               }}
             />
