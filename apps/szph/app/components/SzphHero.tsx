@@ -490,8 +490,12 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
                   Najbližší zápas
                 </p>
                 <div className="flex items-center gap-1.5 mt-0.5">
-                  {(nextMatch.league || "").toLowerCase().includes("česká") && (
+                  {(nextMatch.league || "").toLowerCase().includes("česká") ? (
                     <img src="/images/logo-ceska-liga.webp" alt="" style={{ width: "clamp(12px, 1vw, 18px)", height: "clamp(12px, 1vw, 18px)", objectFit: "contain" }} />
+                  ) : (nextMatch.league || "").toLowerCase().includes("eurohockey") || (nextMatch.league || "").toLowerCase().includes("euro hockey") ? (
+                    <img src="/images/logo-eurohockey.png" alt="" style={{ width: "clamp(12px, 1vw, 18px)", height: "clamp(12px, 1vw, 18px)", objectFit: "contain" }} />
+                  ) : (
+                    <img src="/images/logo-szph-icon.webp" alt="" style={{ width: "clamp(12px, 1vw, 18px)", height: "clamp(12px, 1vw, 18px)", objectFit: "contain" }} />
                   )}
                   <p style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600, color: "#041837" }}>
                     {nextMatch.league || "Zápas"}
