@@ -114,27 +114,16 @@ export function RychleOdkazy() {
       </Link>
 
       {/* Links */}
-      <div className="flex flex-col">
+      <div className="flex flex-wrap gap-2">
         {QUICK_LINKS.map((item, i) => (
           <Link
             key={i}
             href={item.href}
-            className="group flex items-center gap-3 py-2.5"
-            style={{ borderBottom: i < QUICK_LINKS.length - 1 ? "1px solid rgba(1,45,116,0.06)" : undefined }}
+            className="group flex items-center gap-1.5 px-3 py-2 font-bold text-[#051937] hover:text-white hover:bg-[#012d74] transition-all"
+            style={{ fontSize: "11px", borderRadius: "20px", border: "1px solid rgba(1,45,116,0.12)", background: "#fff" }}
           >
-            <span className="shrink-0 flex items-center justify-center text-[#012d74]">{item.icon}</span>
-            <span
-              className="flex-1 font-bold text-[#051937] group-hover:text-[#012D74] transition-colors whitespace-nowrap"
-              style={{ fontSize: "12px" }}
-            >
-              {item.label}
-            </span>
-            <svg
-              className="h-3.5 w-3.5 shrink-0 text-[#94a3b8] group-hover:text-[#012d74] transition-colors"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            <span className="shrink-0 text-[#012d74] group-hover:text-white transition-colors" style={{ width: 14, height: 14 }}>{item.icon}</span>
+            {item.label.replace("Chcem sa stať ", "").replace("Chcem si založiť ", "")}
           </Link>
         ))}
       </div>
