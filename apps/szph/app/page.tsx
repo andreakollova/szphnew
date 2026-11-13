@@ -495,16 +495,16 @@ export default async function SzphHome() {
                       const win = svkScore > oppScore;
                       const draw = svkScore === oppScore;
                       return (
-                        <div key={m.id || i} className="bg-white" style={{ padding: "14px 16px 16px" }}>
+                        <div key={m.id || i} className="bg-white" style={{ padding: "10px 16px 14px" }}>
                           {/* Logo + tournament */}
-                          <div className="flex flex-col items-center mb-3">
-                            <img src="/images/logo-eurohockey.png" alt="" style={{ width: 28, height: 28, objectFit: "contain", marginBottom: 4 }} />
+                          <div className="flex flex-col items-center mb-1">
+                            <img src="/images/logo-eurohockey.png" alt="" style={{ width: 24, height: 24, objectFit: "contain", marginBottom: 2 }} />
                             <span className="font-bold uppercase text-[#051937] text-center" style={{ fontSize: "8px", letterSpacing: "0.08em", lineHeight: 1.3 }}>
                               {m.league?.split(" ").slice(0,4).join(" ") || "Zápas"}
                             </span>
                           </div>
                           {/* Date */}
-                          <p className="text-center font-bold text-[#012d74] mb-2" style={{ fontSize: "13px" }}>
+                          <p className="text-center font-bold text-[#012d74] mb-1.5" style={{ fontSize: "12px" }}>
                             {d.getDate()} {d.toLocaleDateString("en-US", { month: "short" }).toUpperCase()}
                           </p>
                           {/* Teams + score */}
