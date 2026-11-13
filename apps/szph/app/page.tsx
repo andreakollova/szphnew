@@ -195,7 +195,7 @@ function ArticleCard({ article }: { article: any }) {
           <span className="inline-block font-extrabold uppercase text-[#0078fe]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
             / {article.category}
           </span>
-          {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={16} height={12} style={{ width: 16, height: 12, objectFit: "cover", borderRadius: 2 }} />}
+          {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={12} height={9} style={{ width: 12, height: 9, objectFit: "cover", borderRadius: 1 }} />}
         </div>
         <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3" style={{ fontSize: "15px" }}>
           {article.title}
