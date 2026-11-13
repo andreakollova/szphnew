@@ -506,7 +506,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               {/* Teams */}
               <div className="flex items-center justify-center gap-4" style={{ padding: "clamp(10px, 1vw, 20px) clamp(14px, 1.4vw, 28px)" }}>
                 <div className="flex flex-col items-center gap-0.5 flex-1">
-                  <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
+                  <div className="overflow-hidden rounded-sm border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     {homeLogo && <img src={homeLogo} alt="" className="w-full h-full object-cover" />}
                   </div>
@@ -518,7 +518,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
                   <div style={{ width: "clamp(16px, 1.2vw, 28px)", height: "2px", background: "#041837", opacity: 0.25 }} />
                 </div>
                 <div className="flex flex-col items-center gap-0.5 flex-1">
-                  <div className="overflow-hidden rounded-full border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
+                  <div className="overflow-hidden rounded-sm border-2 border-[#e2e8f0]" style={{ width: "clamp(40px, 3.5vw, 70px)", height: "clamp(40px, 3.5vw, 70px)" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     {awayLogo && <img src={awayLogo} alt="" className="w-full h-full object-cover" />}
                   </div>

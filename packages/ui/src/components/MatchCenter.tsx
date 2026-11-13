@@ -134,7 +134,7 @@ function TeamLogoFromDb({ logo, name, size = 28 }: { logo?: string; name: string
   if (logo?.startsWith("flag:")) {
     const code = logo.replace("flag:", "");
     return (
-      <div className="shrink-0 overflow-hidden rounded-full" style={{ width: size, height: size }}>
+      <div className="shrink-0 overflow-hidden rounded-sm" style={{ width: size, height: size }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`https://flagcdn.com/w80/${code}.png`} alt={name} width={size} height={size} style={{ width: size, height: size, objectFit: "cover" }} />
       </div>
@@ -160,7 +160,7 @@ function TeamLogoFromDb({ logo, name, size = 28 }: { logo?: string; name: string
   const flag = flagUrl(name);
   if (flag) {
     return (
-      <div className="shrink-0 overflow-hidden rounded-full" style={{ width: size, height: size }}>
+      <div className="shrink-0 overflow-hidden rounded-sm" style={{ width: size, height: size }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={flag} alt={name} width={size} height={size} style={{ width: size, height: size, objectFit: "cover" }} />
       </div>
@@ -180,7 +180,7 @@ function TeamLogo({ name }: { name: string }) {
   const logo = TEAM_LOGOS[name];
   const flag = flagUrl(name);
   if (logo) return <div className="relative shrink-0" style={{ width: 28, height: 28 }}><Image src={logo} alt={name} fill className="object-contain" sizes="28px" /></div>;
-  if (flag) return <div className="relative shrink-0 overflow-hidden rounded-full" style={{ width: 28, height: 28 }}><Image src={flag} alt={name} fill className="object-cover" sizes="28px" /></div>;
+  if (flag) return <div className="relative shrink-0 overflow-hidden rounded-sm" style={{ width: 28, height: 28 }}><Image src={flag} alt={name} fill className="object-cover" sizes="28px" /></div>;
   return <div className="shrink-0 flex items-center justify-center rounded-full" style={{ width: 28, height: 28, background: "#e2e8f0" }}><span className="font-black text-[#64748b]" style={{ fontSize: "8px" }}>{name.split(" ").map(w => w[0]).join("").slice(0, 3).toUpperCase()}</span></div>;
 }
 

@@ -295,7 +295,7 @@ function NextMatchTicket({ matches }: { matches: any[] }) {
     if (logo?.startsWith("flag:")) {
       const code = logo.replace("flag:", "");
       return (
-        <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 36, height: 36 }}>
+        <div className="shrink-0 overflow-hidden rounded-sm" style={{ width: 36, height: 36 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={`https://flagcdn.com/w80/${code}.png`} alt={name} width={36} height={36} style={{ width: 36, height: 36, objectFit: "cover" }} />
         </div>
@@ -824,9 +824,9 @@ export default async function SzphHome() {
 
           {/* ── SHORTS — accordion ── */}
           <details className="group/shorts mt-8">
-            <summary className="flex items-center justify-center gap-2 cursor-pointer py-3 rounded-lg transition-all hover:bg-white/[0.04] list-none [&::-webkit-details-marker]:hidden">
+            <summary className="flex items-center justify-center gap-2 cursor-pointer py-3 rounded-lg transition-all list-none [&::-webkit-details-marker]:hidden">
               <span className="font-bold text-white uppercase" style={{ fontSize: "11px", letterSpacing: "0.1em" }}>Zobraziť shorts</span>
-              <svg className="h-4 w-4 text-white/30 transition-transform duration-300 group-open/shorts:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="h-3 w-3 text-white transition-transform duration-300 group-open/shorts:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </summary>

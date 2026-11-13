@@ -50,7 +50,7 @@ function TeamLogo({ logo, name }: { logo?: string; name: string }) {
   if (logo?.startsWith("flag:")) {
     const code = logo.replace("flag:", "");
     return (
-      <div className="shrink-0 overflow-hidden rounded-full" style={{ width: 30, height: 30 }}>
+      <div className="shrink-0 overflow-hidden rounded-sm" style={{ width: 30, height: 30 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`https://flagcdn.com/w80/${code}.png`} alt={name} width={30} height={30} style={{ width: 30, height: 30, objectFit: "cover" }} />
       </div>
