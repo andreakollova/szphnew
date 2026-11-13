@@ -625,8 +625,7 @@ export default async function SzphHome() {
               {/* Platformy */}
               <div className="flex items-center gap-3 mb-6">
                 <a href="https://www.youtube.com/@zvaz_pozemneho_hokeja" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all hover:bg-white/10"
-                  style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
+                  className="flex items-center gap-2 transition-all hover:opacity-80">
                   <svg className="h-4 w-4" viewBox="0 0 24 24">
                     <path fill="#FF0000" d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
                     <path fill="#fff" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
@@ -634,8 +633,7 @@ export default async function SzphHome() {
                   <span className="font-bold text-white" style={{ fontSize: "10px" }}>YouTube</span>
                 </a>
                 <a href="https://open.spotify.com/show/5ZVmsgOAe7W7SQkTfrkkrc?si=e96b6415fd8040b4" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all hover:bg-white/10"
-                  style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
+                  className="flex items-center gap-2 transition-all hover:opacity-80">
                   <svg className="h-4 w-4" viewBox="0 0 24 24">
                     <path fill="#1DB954" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
                   </svg>
@@ -648,19 +646,15 @@ export default async function SzphHome() {
                 href="https://www.youtube.com/@zvaz_pozemneho_hokeja"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 font-bold text-white hover:text-white transition-all"
+                className="inline-flex items-center justify-center px-5 py-2.5 font-bold text-[#051937] hover:opacity-90 transition-all"
                 style={{
-                  fontSize: "9px",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
+                  fontSize: "10px",
+                  letterSpacing: "0.04em",
                   borderRadius: "20px",
-                  border: "1px solid rgba(255,255,255,0.08)",
+                  background: "#ffffff",
                 }}
               >
                 Zobraziť všetky epizódy
-                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
               </a>
             </div>
 
