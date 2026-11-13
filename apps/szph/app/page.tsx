@@ -699,9 +699,8 @@ export default async function SzphHome() {
           <div className="absolute inset-0 flex flex-col justify-center px-5">
             <p className="font-garet font-bold text-white" style={{ fontSize: "16px" }}>Oficiálny e-shop</p>
             <p className="text-white/80 mt-0.5" style={{ fontSize: "12px" }}>Dresy, merch a vybavenie</p>
-            <div className="mt-2.5 inline-flex items-center gap-2 self-start px-3 py-1.5 font-bold text-white" style={{ fontSize: "10px", background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)", borderRadius: "20px" }}>
-              Zobraziť obchod
-              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            <div className="mt-2.5 inline-flex items-center justify-center self-start px-4 py-2 font-bold text-[#051937]" style={{ fontSize: "10px", background: "#ffffff", borderRadius: "20px", letterSpacing: "0.04em" }}>
+              Zobraziť eshop
             </div>
           </div>
         </Link>
