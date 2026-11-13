@@ -114,10 +114,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               textTransform: "uppercase" as const,
               marginBottom: "6px",
               textShadow: "0 2px 20px rgba(0,0,0,0.3)",
-              background: "linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(200,210,225,0.6) 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              color: "rgba(255,255,255,0.95)",
             }}
           >
             Nová generácia, veľké ambície
@@ -397,10 +394,7 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
               textTransform: "uppercase" as const,
               marginBottom: "clamp(4px, 0.6vw, 14px)",
               textShadow: "0 2px 20px rgba(0,0,0,0.3)",
-              background: "linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(200,210,225,0.6) 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              color: "rgba(255,255,255,0.95)",
             }}
           >
             Nová generácia, veľké ambície
