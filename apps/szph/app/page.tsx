@@ -199,7 +199,7 @@ function ArticleCard({ article }: { article: any }) {
           {article.title}
         </h3>
         <div className="flex items-center justify-between">
-          <span className="inline-block font-extrabold uppercase text-[#d80027] px-2 py-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em", background: "rgba(216,0,39,0.08)", borderRadius: "2px" }}>
+          <span className="inline-block font-extrabold uppercase text-white px-2 py-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em", background: "#d80027", borderRadius: "2px" }}>
             {article.category}
           </span>
           {article.published_at && (
