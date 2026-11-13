@@ -175,29 +175,28 @@ const SOURCE_FLAGS: Record<string, string> = {
 function ArticleCard({ article }: { article: any }) {
   const flagCode = article.source ? SOURCE_FLAGS[article.source] : null;
   return (
-    <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden bg-white shrink-0" style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.06)" }}>
-      <div className="relative overflow-hidden" style={{ height: "240px" }}>
-        {article.cover_image_url ? (
-          <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-        ) : (
-          <div className="w-full h-full bg-[#e2e8f0]" />
-        )}
-        {article.video_url && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex items-center justify-center rounded-full bg-white/90 shadow-lg" style={{ width: 36, height: 36 }}>
-              <svg className="h-3.5 w-3.5 text-[#d00027] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-            </div>
+    <Link href={`/novinky/${article.slug}`} className="group block overflow-hidden shrink-0 relative" style={{ borderRadius: "3px", height: "340px" }}>
+      {article.cover_image_url ? (
+        <Image src={article.cover_image_url} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+      ) : (
+        <div className="absolute inset-0 bg-[#e2e8f0]" />
+      )}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.9) 0%, rgba(5,25,55,0.5) 40%, transparent 70%)" }} />
+      {article.video_url && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="flex items-center justify-center rounded-full bg-white/90 shadow-lg" style={{ width: 36, height: 36 }}>
+            <svg className="h-3.5 w-3.5 text-[#d00027] ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
           </div>
-        )}
-      </div>
-      <div className="px-4 py-3">
-        <div className="flex items-center gap-1.5 mb-1">
-          <span className="inline-block font-extrabold uppercase text-[#0078fe]" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
+        </div>
+      )}
+      <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
+        <div className="flex items-center gap-1.5 mb-1.5">
+          <span className="inline-block font-extrabold uppercase text-white/70" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
             / {article.category}
           </span>
           {flagCode && <img src={`https://flagcdn.com/w40/${flagCode}.png`} alt="" width={8} height={6} style={{ width: 8, height: 6, objectFit: "cover", borderRadius: 0.5 }} />}
         </div>
-        <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3" style={{ fontSize: "15px" }}>
+        <h3 className="font-bold text-white leading-snug line-clamp-3" style={{ fontSize: "15px" }}>
           {article.title}
         </h3>
       </div>
@@ -217,7 +216,7 @@ function CardSection({ title, href, articles, cols = 3 }: { title: string; href:
         </h2>
         <Link
           href={href}
-          className="flex items-center gap-1.5 font-garet font-bold text-[#0078fe] hover:text-[#0060cc] transition-colors shrink-0"
+          className="flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors shrink-0"
           style={{ fontSize: "clamp(11px, 2.5vw, 13px)" }}
         >
           Zobraziť všetky
@@ -717,7 +716,7 @@ export default async function SzphHome() {
             </h2>
             <Link
               href="/projekty"
-              className="flex items-center gap-1.5 font-garet font-bold text-[#0078fe] hover:text-[#0060cc] transition-colors shrink-0"
+              className="flex items-center gap-1.5 font-garet font-bold text-[#051937] hover:text-[#012d74] transition-colors shrink-0"
               style={{ fontSize: "clamp(11px, 2.5vw, 13px)" }}
             >
               Zobraziť všetky
