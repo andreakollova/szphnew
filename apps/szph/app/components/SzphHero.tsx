@@ -384,22 +384,6 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
             width: "51.82%",
           }}
         >
-          {/* Pagination dots */}
-          <div className="flex items-center gap-2 mb-5" style={{ transform: "skewX(-12deg)" }}>
-            {HERO_IMAGES.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                className="transition-all"
-                style={{
-                  width: current === i ? 28 : 10,
-                  height: 5,
-                  borderRadius: 3,
-                  background: current === i ? "#fff" : "rgba(255,255,255,0.35)",
-                }}
-              />
-            ))}
-          </div>
           <h1
             className="font-garet text-white"
             style={{
@@ -566,6 +550,22 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
             </Link>
           );
         })()}
+        {/* Pagination dots — center bottom */}
+        <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2" style={{ bottom: "clamp(20px, 3vw, 40px)" }}>
+          {HERO_IMAGES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className="transition-all"
+              style={{
+                width: current === i ? 28 : 10,
+                height: 5,
+                borderRadius: 3,
+                background: current === i ? "#fff" : "rgba(255,255,255,0.35)",
+              }}
+            />
+          ))}
+        </div>
       </section>{/* end desktop hero */}
     </div>
   );
