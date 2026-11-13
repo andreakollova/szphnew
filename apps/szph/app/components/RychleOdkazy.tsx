@@ -128,21 +128,27 @@ export function RychleOdkazy() {
       </Link>
 
       {/* Links */}
-      <div className="grid grid-cols-2 gap-2">
+      <div className="flex flex-col gap-1.5">
         {QUICK_LINKS.map((item, i) => (
           <Link
             key={i}
             href={item.href}
-            className="group flex items-center gap-2.5 px-3.5 py-3 bg-white hover:bg-[#f5f7fb] transition-colors"
+            className="group flex items-center gap-3 px-4 py-3 bg-white hover:bg-[#f5f7fb] transition-colors"
             style={{ borderRadius: "3px", border: "1px solid rgba(1,45,116,0.08)" }}
           >
-            <span className="shrink-0 flex items-center justify-center rounded-full bg-[#012d74]/8 text-[#012d74]" style={{ width: 28, height: 28 }}>{item.icon}</span>
+            <span className="shrink-0 flex items-center justify-center rounded-full bg-[#012d74] text-white" style={{ width: 32, height: 32 }}>{item.icon}</span>
             <span
-              className="flex-1 font-bold text-[#051937] group-hover:text-[#012D74] transition-colors leading-tight"
-              style={{ fontSize: "11px" }}
+              className="flex-1 font-bold text-[#051937] group-hover:text-[#012D74] transition-colors"
+              style={{ fontSize: "13px" }}
             >
               {item.label}
             </span>
+            <svg
+              className="h-4 w-4 shrink-0 text-[#94a3b8] group-hover:text-[#012d74] transition-colors"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </Link>
         ))}
       </div>
