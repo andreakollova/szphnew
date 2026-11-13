@@ -489,9 +489,14 @@ export function SzphHero({ nextMatch, dbBanners }: { nextMatch?: NextMatch | nul
                 <p className="font-garet font-bold italic uppercase text-[#051937]" style={{ fontSize: "clamp(12px, 1.1vw, 22px)", letterSpacing: "0.06em" }}>
                   Najbližší zápas
                 </p>
-                <p className="mt-0.5" style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600, color: "#041837" }}>
-                  {nextMatch.league || "Zápas"}
-                </p>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  {(nextMatch.league || "").toLowerCase().includes("česká") && (
+                    <img src="/images/logo-ceska-liga.webp" alt="" style={{ width: "clamp(12px, 1vw, 18px)", height: "clamp(12px, 1vw, 18px)", objectFit: "contain" }} />
+                  )}
+                  <p style={{ fontSize: "clamp(7px, 0.6vw, 12px)", lineHeight: 1.3, fontWeight: 600, color: "#041837" }}>
+                    {nextMatch.league || "Zápas"}
+                  </p>
+                </div>
               </div>
 
               {/* Teams */}
