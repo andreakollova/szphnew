@@ -76,7 +76,7 @@ export function RychleOdkazy() {
               letterSpacing: "0.04em",
             }}
           >
-            Chcem sa stať hráčom
+            Začať hrať
           </div>
         </div>
       </Link>
