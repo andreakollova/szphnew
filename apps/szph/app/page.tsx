@@ -446,18 +446,16 @@ export default async function SzphHome() {
                       { title: "Reportáž s Olympioničkou - Alena Kyselicová", image: "/images/pinned-kyselicova.webp", slug: "reportaz-alena-kyselicova" },
                     ].map((article) => (
                       <Link key={article.slug} href={`/novinky/${article.slug}`} className="group block overflow-hidden" style={{ borderRadius: "3px", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                        <div className="relative overflow-hidden" style={{ height: "200px" }}>
+                        <div className="relative overflow-hidden" style={{ height: "260px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                        </div>
-                        <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #012d74)" }} />
-                        <div className="px-4 py-3.5">
-                          <h3 className="font-bold text-white leading-snug group-hover:text-white/90 transition-colors line-clamp-3 mb-3" style={{ fontSize: "15px" }}>
-                            {article.title}
-                          </h3>
-                          <div className="flex items-center justify-between">
-                            <span className="inline-block font-extrabold uppercase text-[#0078fd] px-2 py-0.5" style={{ fontSize: "8px", letterSpacing: "0.1em", background: "rgba(0,120,253,0.15)", borderRadius: "2px" }}>
+                          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,25,55,0.85) 0%, rgba(5,25,55,0.3) 50%, transparent 70%)" }} />
+                          <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
+                            <span className="inline-block font-extrabold uppercase text-white px-2.5 py-1 mb-2" style={{ fontSize: "8px", letterSpacing: "0.1em", background: "#012d74", borderRadius: "2px" }}>
                               neprehliadnite
                             </span>
+                            <h3 className="font-bold text-white leading-snug line-clamp-3" style={{ fontSize: "15px" }}>
+                              {article.title}
+                            </h3>
                           </div>
                         </div>
                       </Link>
@@ -503,7 +501,7 @@ export default async function SzphHome() {
                             </span>
                           </div>
                           {/* Date */}
-                          <p className="text-center font-bold text-[#012d74] mb-1.5" style={{ fontSize: "12px" }}>
+                          <p className="text-center font-bold text-[#012d74] mb-0.5" style={{ fontSize: "12px" }}>
                             {d.getDate()} {d.toLocaleDateString("en-US", { month: "short" }).toUpperCase()}
                           </p>
                           {/* Teams + score */}
