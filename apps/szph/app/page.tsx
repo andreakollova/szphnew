@@ -192,7 +192,7 @@ function ArticleCard({ article }: { article: any }) {
         )}
       </div>
       {/* Gradient divider */}
-      <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #012d74)" }} />
+      <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #ffffff)" }} />
       {/* Text area */}
       <div className="px-4 py-4">
         <h3 className="font-bold text-[#051937] leading-snug group-hover:text-[#012d74] transition-colors line-clamp-3 mb-3" style={{ fontSize: "15px" }}>
@@ -203,7 +203,7 @@ function ArticleCard({ article }: { article: any }) {
             {article.category}
           </span>
           {article.published_at && (
-            <span className="font-bold uppercase text-[#012d74]" style={{ fontSize: "9px", letterSpacing: "0.06em" }}>
+            <span className="font-bold uppercase text-[#051937]" style={{ fontSize: "9px", letterSpacing: "0.06em" }}>
               {new Date(article.published_at).toLocaleDateString("sk-SK", { day: "numeric", month: "long", year: "numeric" })}
             </span>
           )}
@@ -429,7 +429,7 @@ export default async function SzphHome() {
                         <div className="relative overflow-hidden" style={{ height: "180px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         </div>
-                        <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #012d74)" }} />
+                        <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #ffffff)" }} />
                         <div className="px-4 py-3">
                           <h3 className="font-bold text-white leading-snug line-clamp-3" style={{ fontSize: "14px" }}>
                             {article.title}
@@ -449,7 +449,7 @@ export default async function SzphHome() {
                         <div className="relative overflow-hidden" style={{ height: "200px" }}>
                           <Image src={article.image} alt={article.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         </div>
-                        <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #012d74)" }} />
+                        <div style={{ height: 3, background: "linear-gradient(to right, #d80027, #ffffff)" }} />
                         <div className="px-4 py-3.5">
                           <span className="inline-block font-extrabold uppercase text-[#0078fd] mb-1.5" style={{ fontSize: "9px", letterSpacing: "0.1em" }}>
                             / neprehliadnite
