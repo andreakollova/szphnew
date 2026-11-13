@@ -209,7 +209,6 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
           <div className="flex items-center justify-between mb-2">
             <div>
               <span className="font-bold text-[#051937] block" style={{ fontSize: "12px" }}>{dateStr} · {time}</span>
-              {m.venue && <span className="font-semibold text-[#94a3b8] block" style={{ fontSize: "10px" }}>{m.venue}</span>}
             </div>
             {m.league && (
               <span className="font-bold uppercase text-[#012d74] text-right" style={{ fontSize: "8px", letterSpacing: "0.08em" }}>
@@ -249,6 +248,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
         <div className="hidden sm:flex items-center gap-5">
           <div className="shrink-0 w-[120px]">
             <span className="font-bold text-[#051937] whitespace-nowrap block" style={{ fontSize: "13px" }}>{dateStr} · {time}</span>
+            {m.venue && <span className="font-semibold text-[#94a3b8] block" style={{ fontSize: "10px" }}>{m.venue}</span>}
           </div>
           <div className="shrink-0" style={{ width: "180px" }}>
             <div className="flex items-center gap-1.5">
@@ -292,7 +292,7 @@ function MatchRow({ m, index }: { m: DbMatch; index: number }) {
             <span className={cn("font-bold truncate", "text-[#051937]")} style={{ fontSize: "16px" }}>{m.away_short || m.away_team}</span>
           </div>
           <div className="shrink-0 hidden lg:flex items-center gap-2 justify-end" style={{ width: "180px" }}>
-            {m.venue && <span className="font-bold text-[#012d74]/40 truncate" style={{ fontSize: "12px" }}>{m.venue}</span>}
+            {m.venue && <span className="font-bold text-[#051937] truncate" style={{ fontSize: "12px" }}>{m.venue}</span>}
             <svg className="h-4 w-4 text-[#94a3b8] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
           </div>
         </div>
