@@ -403,7 +403,7 @@ export default async function ArticleDetailPage({ params }: Props) {
   return (
     <article className="pb-20 overflow-x-hidden" style={{ background: "#f8f9fa" }}>
       <div className="px-4 sm:px-6 lg:px-10 xl:px-16 max-w-[1920px] mx-auto pt-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-0 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
 
           {/* ── Main content ── */}
           <div className="pr-0 lg:pr-10 xl:pr-14">
