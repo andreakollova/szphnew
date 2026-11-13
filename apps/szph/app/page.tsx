@@ -502,8 +502,8 @@ export default async function SzphHome() {
                             </span>
                           </div>
                           {/* Date */}
-                          <p className="text-center font-bold text-[#012d74] mb-3" style={{ fontSize: "13px" }}>
-                            {d.toLocaleDateString("sk-SK", { day: "numeric", month: "short" }).toUpperCase()}
+                          <p className="text-center font-bold text-[#012d74] mb-2" style={{ fontSize: "13px" }}>
+                            {d.getDate()} {d.toLocaleDateString("en-US", { month: "short" }).toUpperCase()}
                           </p>
                           {/* Teams + score */}
                           <div className="flex items-center gap-2">
