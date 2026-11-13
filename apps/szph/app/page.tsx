@@ -470,7 +470,6 @@ export default async function SzphHome() {
                 <p className="font-garet font-bold italic text-[#051937] mb-2" style={{ fontSize: "20px", letterSpacing: "0.05em", textTransform: "uppercase" }}>
                   Posledné zápasy SVK
                 </p>
-                <div className="mb-4" style={{ width: "28px", height: "2px", background: "#012d74" }} />
 
                 <div className="flex flex-col gap-1.5 overflow-hidden" style={{ borderRadius: "3px" }}>
                   {(matches as any[])
